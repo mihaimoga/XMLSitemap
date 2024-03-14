@@ -1,0 +1,271 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\XMLSitemap.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\XMLSitemap.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 183, 222
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About..."
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,126,201,50,14
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "SIATEL Homework, Version 1.0",IDC_VERSION,48,14,128,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2024 Stefan-Mihai MOGA",IDC_STATIC,48,26,128,8
+    EDITTEXT        IDC_WARNING,7,40,169,121,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN
+    RTEXT           "Website:",IDC_STATIC,7,167,41,12
+    LTEXT           "https://www.moga.doctor/",IDC_WEBSITE,57,167,119,12,SS_NOTIFY | SS_CENTERIMAGE
+    RTEXT           "Email:",IDC_STATIC,7,179,41,12
+    LTEXT           "stefan-mihai@moga.doctor",IDC_EMAIL,57,179,119,12,SS_NOTIFY | SS_CENTERIMAGE
+END
+
+IDD_XMLSITEMAP_DIALOG DIALOGEX 0, 0, 400, 168
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "XML Sitemap"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Domain:",IDC_STATIC,7,7,73,13,SS_CENTERIMAGE
+    EDITTEXT        IDC_DOMAIN,88,7,305,13,ES_AUTOHSCROLL
+    LTEXT           "Frequency:",IDC_STATIC,7,28,73,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_FREQUENCY,88,28,80,165,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Priority:",IDC_STATIC,7,44,73,12,SS_CENTERIMAGE
+    COMBOBOX        IDC_PRIORITY,88,44,80,149,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Date last modified:",IDC_STATIC,7,60,73,12,SS_CENTERIMAGE
+    CONTROL         "",IDC_MODIFIED,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,88,60,80,12
+    LTEXT           "Status:",IDC_STATIC,7,80,73,13,SS_CENTERIMAGE
+    LTEXT           "Static",IDC_STATUS,88,80,305,13,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "Progress:",IDC_STATIC,7,97,73,13,SS_CENTERIMAGE
+    CONTROL         "",IDC_PROGRESS,"msctls_progress32",WS_BORDER,88,97,305,13
+    DEFPUSHBUTTON   "Generate",IDC_GENERATE,152,144,76,17
+    PUSHBUTTON      "&Help",ID_HELP,236,144,76,17
+    PUSHBUTTON      "Exit",IDCANCEL,320,144,73,17
+    LTEXT           "Good news, this XML sitemap generator tool is compliant with http://sitemaps.org/.",IDC_STATIC,7,144,137,17,SS_SUNKEN
+    PUSHBUTTON      "Select...",IDC_SELECT,7,120,73,16
+    EDITTEXT        IDC_OUTPUT,88,120,305,16,ES_AUTOHSCROLL | ES_READONLY
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,5,0,0
+ PRODUCTVERSION 1,5,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "http://www.moga.doctor/"
+            VALUE "FileDescription", "Main application for XML Sitemap"
+            VALUE "FileVersion", "1.5.0.0"
+            VALUE "InternalName", "XMLSitemap.exe"
+            VALUE "LegalCopyright", "Copyright © 2024 Mihai Moga - All rights reserved."
+            VALUE "OriginalFilename", "XMLSitemap.exe"
+            VALUE "ProductName", "XML Sitemap"
+            VALUE "ProductVersion", "1.5.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        VERTGUIDE, 48
+        VERTGUIDE, 57
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 215
+        HORZGUIDE, 161
+        HORZGUIDE, 167
+    END
+
+    IDD_XMLSITEMAP_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 393
+        VERTGUIDE, 80
+        VERTGUIDE, 88
+        VERTGUIDE, 113
+        VERTGUIDE, 144
+        VERTGUIDE, 152
+        VERTGUIDE, 168
+        VERTGUIDE, 176
+        VERTGUIDE, 228
+        VERTGUIDE, 236
+        VERTGUIDE, 312
+        VERTGUIDE, 320
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 161
+        HORZGUIDE, 20
+        HORZGUIDE, 28
+        HORZGUIDE, 40
+        HORZGUIDE, 44
+        HORZGUIDE, 56
+        HORZGUIDE, 60
+        HORZGUIDE, 72
+        HORZGUIDE, 80
+        HORZGUIDE, 93
+        HORZGUIDE, 97
+        HORZGUIDE, 110
+        HORZGUIDE, 120
+        HORZGUIDE, 136
+        HORZGUIDE, 144
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_XMLSITEMAP          PNG                     "res\\XMLSitemap.png"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "&About ..."
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\XMLSitemap.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
