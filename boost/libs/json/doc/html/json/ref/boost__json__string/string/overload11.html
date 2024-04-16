@@ -52,7 +52,7 @@
                 If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">==</span> <span class="special">*</span><span class="identifier">sp</span></code>,
                 ownership of the underlying memory is transferred in constant time,
                 with no possibility of exceptions. After construction, the moved-from
-                string behaves as if newly constructed with its current <a class="link" href="../../boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>. Otherwise,
+                string behaves as if newly constructed with its current <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>. Otherwise,
               </li>
 <li class="listitem">
                 If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">!=</span> <span class="special">*</span><span class="identifier">sp</span></code>,
@@ -118,9 +118,10 @@
                   </td>
 <td>
                     <p>
-                      An optional pointer to the <a class="link" href="../../boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> to
-                      use. The container will acquire shared ownership of the memory
-                      resource. The default argument for this parameter is <code class="computeroutput"><span class="special">{}</span></code>.
+                      An optional pointer to the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
+                      to use. The container will acquire shared ownership of the
+                      memory resource. The default argument for this parameter is
+                      <code class="computeroutput"><span class="special">{}</span></code>.
                     </p>
                   </td>
 </tr>

@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classboost_1_1locale_1_1generator.html#a7ad16257142e13377a163d1fe75526dc":[11,0,0,0,20,3],
 "classboost_1_1locale_1_1generator.html#a7b4458ef36df82bc9e359735c55203e8":[11,0,0,0,20,8],
 "classboost_1_1locale_1_1generator.html#a99fb69f05b0d3f86e37f52b8282c2f18":[11,0,0,0,20,15],
 "classboost_1_1locale_1_1generator.html#aaf03dadcf6f9e4c2bf5de5db7dc2bdff":[11,0,0,0,20,13],
@@ -134,7 +135,7 @@ var NAVTREEINDEX1 =
 "dates_times_timezones.html#dates_times_timezones_qna":[3,8,4],
 "dates_times_timezones.html#dates_times_timezones_tz":[3,8,2],
 "default_encoding_under_windows.html":[7,3],
-"detail_2encoding_8hpp_source.html":[12,0,0,0,1,0],
+"detail_2encoding_8hpp_source.html":[12,0,0,0,1,1],
 "dir_1878a3f4746a95c6aad317458cc7ef80.html":[12,0,0],
 "dir_24a634756d649c6439a67f231a10e01b.html":[12,0,0,0,0],
 "dir_a6d5df1f5392b9b6ef23c723d95970c2.html":[12,0,0,0],
@@ -144,7 +145,7 @@ var NAVTREEINDEX1 =
 "encoding__errors_8hpp_source.html":[12,0,0,0,10],
 "encoding__utf_8hpp_source.html":[12,0,0,0,11],
 "examples.html":[13],
-"facet__id_8hpp_source.html":[12,0,0,0,1,1],
+"facet__id_8hpp_source.html":[12,0,0,0,1,2],
 "facets_8hpp_source.html":[12,0,0,0,0,1],
 "faq.html":[7,2],
 "files.html":[12,0],
@@ -155,8 +156,8 @@ var NAVTREEINDEX1 =
 "formatting_and_parsing.html#date_and_time_formatting":[3,3,2],
 "formatting_and_parsing.html#formatting_internals":[3,3,3],
 "formatting_and_parsing.html#numbers_formatting":[3,3,0],
-"functions.html":[11,2,0,0],
 "functions.html":[11,2,0],
+"functions.html":[11,2,0,0],
 "functions_b.html":[11,2,0,1],
 "functions_c.html":[11,2,0,2],
 "functions_d.html":[11,2,0,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "group__boundary.html#ga1e66dea2e29dee9d31a6f62798ba5ed4":[9,0,117],
 "group__boundary.html#ga205fd51daa439a18527675e663a0802f":[9,0,56],
 "group__boundary.html#ga232b789c3de408e5e41e8e7c4da07d5b":[9,0,107],
-"group__boundary.html#ga25e193c81052ef1795f1b53b46bc2095":[9,0,16],
-"group__boundary.html#ga2c354f4cc03677b58c97038cd84dc465":[9,0,98]
+"group__boundary.html#ga25e193c81052ef1795f1b53b46bc2095":[9,0,16]
 };

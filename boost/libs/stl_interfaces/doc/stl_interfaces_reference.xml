@@ -589,6 +589,10 @@ std::input_iterator)</computeroutput>.</para><para><note><para>This macro expand
           <template-type-parameter name="T"/>
           <template-type-parameter name="Enable"><default>std::enable_if_t&lt;detail::is_invocable_v&lt;F const &amp;, T&gt;&gt;</default></template-type-parameter>
         </template><parameter name="t"><paramtype>T &amp;&amp;</paramtype></parameter></method>
+<method name="operator()"><type>constexpr decltype(auto)</type><template>
+          <template-type-parameter name="T"/>
+          <template-type-parameter name="Enable"><default>std::enable_if_t&lt;detail::is_invocable_v&lt;F &amp;&amp;, T&gt;&gt;</default></template-type-parameter>
+        </template><parameter name="t"><paramtype>T &amp;&amp;</paramtype></parameter></method>
 </method-group>
 <constructor><parameter name="f"><paramtype>F</paramtype></parameter></constructor>
 </struct><struct name="range_adaptor_closure"><template>

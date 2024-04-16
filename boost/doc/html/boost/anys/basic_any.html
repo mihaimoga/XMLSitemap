@@ -8,7 +8,7 @@
 <link rel="home" href="../../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
 <link rel="up" href="../../reference_section_of_boost_any.html#header.boost.any.basic_any_hpp" title="Header &lt;boost/any/basic_any.hpp&gt;">
 <link rel="prev" href="../bad_any_cast.html" title="Class bad_any_cast">
-<link rel="next" href="swap_idm1073.html" title="Function template swap">
+<link rel="next" href="swap_idm1074.html" title="Function template swap">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -22,7 +22,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../bad_any_cast.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference_section_of_boost_any.html#header.boost.any.basic_any_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="swap_idm1073.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../bad_any_cast.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference_section_of_boost_any.html#header.boost.any.basic_any_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="swap_idm1074.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="boost.anys.basic_any"></a><div class="titlepage"></div>
@@ -37,24 +37,24 @@
 <span class="keyword">class</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// <a class="link" href="basic_any.html#boost.anys.basic_anyconstruct-copy-destruct">construct/copy/destruct</a></span>
-  <a class="link" href="basic_any.html#idm940-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="basic_any.html#idm945-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="basic_any.html#idm962-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="basic_any.html#idm976-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <a class="link" href="basic_any.html#idm941-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="basic_any.html#idm946-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="basic_any.html#idm963-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="basic_any.html#idm977-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> 
-    <a class="link" href="basic_any.html#idm990-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">,</span> 
+    <a class="link" href="basic_any.html#idm991-bb"><span class="identifier">basic_any</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">,</span> 
               <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_same</span><span class="special">&lt;</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> 
               <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_const</span><span class="special">&lt;</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm1021-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm1036-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm1054-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="basic_any.html#idm1014-bb"><span class="special">~</span><span class="identifier">basic_any</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm1022-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm1037-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm1055-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="basic_any.html#idm1015-bb"><span class="special">~</span><span class="identifier">basic_any</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="basic_any.html#idm897-bb">public member functions</a></span>
-  <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm898-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">bool</span> <a class="link" href="basic_any.html#idm915-bb"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="basic_any.html#idm926-bb"><span class="identifier">clear</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm932-bb"><span class="identifier">type</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="comment">// <a class="link" href="basic_any.html#idm898-bb">public member functions</a></span>
+  <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm899-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="basic_any.html#idm916-bb"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="basic_any.html#idm927-bb"><span class="identifier">clear</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a class="link" href="basic_any.html#idm933-bb"><span class="identifier">type</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
   <span class="comment">// public data members</span>
   <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">buffer_size</span><span class="special">;</span>
@@ -72,7 +72,7 @@
        construct/copy/destruct</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><a name="idm940-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm941-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
@@ -87,7 +87,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a name="idm945-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a name="idm946-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>
 <p>Makes a copy of <code class="computeroutput">value</code>, so that the initial content of the new instance is equivalent in both type and value to <code class="computeroutput">value</code>.</p>
 <p>Does not dynamically allocate if <code class="computeroutput">ValueType</code> is nothrow move constructible and <code class="computeroutput">sizeof(value) &lt;= OptimizeForSize</code> and <code class="computeroutput">alignof(value) &lt;= OptimizeForAlignment</code>.</p>
 <p>
@@ -104,7 +104,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idm962-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm963-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>
 <p>Copy constructor that copies content of <code class="computeroutput">other</code> into new instance, so that any content is equivalent in both type and value to the content of <code class="computeroutput">other</code>, or empty if <code class="computeroutput">other</code> is empty.</p>
 <p>
 </p>
@@ -120,7 +120,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idm976-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm977-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Move constructor that moves content of <code class="computeroutput">other</code> into new instance and leaves <code class="computeroutput">other</code> empty.</p>
 <p>
 
@@ -144,7 +144,7 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> 
-  <a name="idm990-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> value<span class="special">,</span> 
+  <a name="idm991-bb"></a><span class="identifier">basic_any</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> value<span class="special">,</span> 
             <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_same</span><span class="special">&lt;</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> 
             <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_const</span><span class="special">&lt;</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span></pre>
 <p>Forwards <code class="computeroutput">value</code>, so that the initial content of the new instance is equivalent in both type and value to <code class="computeroutput">value</code> before the forward.</p>
@@ -163,7 +163,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm1021-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm1022-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
 <p>Copies content of <code class="computeroutput">rhs</code> into current instance, discarding previous content, so that the new content is equivalent in both type and value to the content of <code class="computeroutput">rhs</code>, or empty if <code class="computeroutput">rhs.empty()</code>.</p>
 <p>
 </p>
@@ -179,7 +179,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm1036-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm1037-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Moves content of <code class="computeroutput">rhs</code> into current instance, discarding previous content, so that the new content is equivalent in both type and value to the content of <code class="computeroutput">rhs</code> before move, or empty if <code class="computeroutput">rhs.empty()</code>.</p>
 <p>
 
@@ -202,7 +202,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm1054-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm1055-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
 <p>Forwards <code class="computeroutput">rhs</code>, discarding previous content, so that the new content of is equivalent in both type and value to <code class="computeroutput">rhs</code> before forward.</p>
 <p>Does not dynamically allocate if <code class="computeroutput">ValueType</code> is nothrow move constructible and <code class="computeroutput">sizeof(value) &lt;= OptimizeForSize</code> and <code class="computeroutput">alignof(value) &lt;= OptimizeForAlignment</code>.</p>
 <p>
@@ -219,7 +219,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idm1014-bb"></a><span class="special">~</span><span class="identifier">basic_any</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm1015-bb"></a><span class="special">~</span><span class="identifier">basic_any</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Releases any and all resources used in management of instance.</p>
 <p>
 </p>
@@ -238,10 +238,10 @@
 </div>
 <div class="refsect2">
 <a name="id-1.3.5.6.4.4.4.6"></a><h3>
-<a name="idm897-bb"></a><code class="computeroutput">basic_any</code> public member functions</h3>
+<a name="idm898-bb"></a><code class="computeroutput">basic_any</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm898-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> <a name="idm899-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="basic_any.html" title="Class template basic_any">basic_any</a> <span class="special">&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Exchange of the contents of <code class="computeroutput">*this</code> and <code class="computeroutput">rhs</code>.</p>
 <p>
 
@@ -264,7 +264,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">bool</span> <a name="idm915-bb"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">bool</span> <a name="idm916-bb"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 
 </p>
@@ -286,7 +286,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idm926-bb"></a><span class="identifier">clear</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idm927-bb"></a><span class="identifier">clear</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
@@ -301,7 +301,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a name="idm932-bb"></a><span class="identifier">type</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a name="idm933-bb"></a><span class="identifier">type</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 Useful for querying against types known either at compile time or only at runtime. </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
@@ -319,14 +319,14 @@ Useful for querying against types known either at compile time or only at runtim
 </div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2001 Kevlin Henney<br>Copyright © 2013-2023 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2001 Kevlin Henney<br>Copyright © 2013-2024 Antony Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="../bad_any_cast.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference_section_of_boost_any.html#header.boost.any.basic_any_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="swap_idm1073.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="../bad_any_cast.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference_section_of_boost_any.html#header.boost.any.basic_any_hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="swap_idm1074.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

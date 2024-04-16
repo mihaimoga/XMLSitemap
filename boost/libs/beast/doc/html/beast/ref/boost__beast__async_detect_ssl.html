@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__async_detect_ssl"></a><a class="link" href="boost__beast__async_detect_ssl.html" title="async_detect_ssl">async_detect_ssl</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm70076"></a>
+        <a class="indexterm" name="idm70478"></a>
       </p>
 <p>
         Detect a TLS/SSL handshake asynchronously on a stream.
@@ -56,9 +56,11 @@
       </h5>
 <p>
         This function reads asynchronously from a stream to determine if a client
-        handshake message is being received. This call always returns immediately.
-        The asynchronous operation will continue until one of the following conditions
-        is true:
+        handshake message is being received.
+      </p>
+<p>
+        This call always returns immediately. The asynchronous operation will continue
+        until one of the following conditions is true:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -75,10 +77,12 @@
         The algorithm, known as a <span class="emphasis"><em>composed asynchronous operation</em></span>,
         is implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">async_read_some</span></code>
         function. The program must ensure that no other calls to <code class="computeroutput"><span class="identifier">async_read_some</span></code>
-        are performed until this operation completes. Bytes read from the stream
-        will be stored in the passed dynamic buffer, which may be used to perform
-        the TLS handshake if the detector returns true, or be otherwise consumed
-        by the caller based on the expected protocol.
+        are performed until this operation completes.
+      </p>
+<p>
+        Bytes read from the stream will be stored in the passed dynamic buffer, which
+        may be used to perform the TLS handshake if the detector returns true, or
+        be otherwise consumed by the caller based on the expected protocol.
       </p>
 <h5>
 <a name="beast.ref.boost__beast__async_detect_ssl.h2"></a>

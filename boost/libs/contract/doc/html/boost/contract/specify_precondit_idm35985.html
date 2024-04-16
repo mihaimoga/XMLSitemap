@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="specify_precondit_idm35985.html" title="Class template specify_precondition_old_postcondition_except">specify_precondition_old_postcondition_except</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// <a class="link" href="specify_precondit_idm35985.html#boost.contract.specify_precondit_idm35985construct-copy-destruct">construct/copy/destruct</a></span>
-  <a class="link" href="specify_precondit_idm35985.html#idm36093-bb"><span class="special">~</span><span class="identifier">specify_precondition_old_postcondition_except</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="specify_precondit_idm35985.html#idm36093-bb"><span class="special">~</span><span class="identifier">specify_precondition_old_postcondition_except</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="keyword">false</span><span class="special">)</span><span class="special">;</span>
 
   <span class="comment">// <a class="link" href="specify_precondit_idm35985.html#idm36005-bb">public member functions</a></span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> F<span class="special">&gt;</span> 
@@ -47,7 +47,7 @@
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> F<span class="special">&gt;</span> <a class="link" href="specify_nothing.html" title="Class specify_nothing">specify_nothing</a> <a class="link" href="specify_precondit_idm35985.html#idm36074-bb"><span class="identifier">except</span></a><span class="special">(</span><span class="identifier">F</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm40493"></a><h2>Description</h2>
+<a name="idm40535"></a><h2>Description</h2>
 <p>Allow to specify functors this library will call to check preconditions, copy old values at body, check postconditions, and check exception guarantees. This object is internally constructed by the library when users specify contracts calling  <code class="computeroutput"><a class="link" href="function.html" title="Function function">boost::contract::function</a></code> and similar functions (that is why this class does not have a public constructor).</p>
 <p><span class="bold"><strong>See Also:</strong></span></p>
 <p> <a class="link" href="../../boost_contract/tutorial.html#boost_contract.tutorial.preconditions" title="Preconditions"> Preconditions</a>,  <a class="link" href="../../boost_contract/advanced.html#boost_contract.advanced.old_values_copied_at_body" title="Old Values Copied at Body"> Old Values Copied at Body</a>,  <a class="link" href="../../boost_contract/tutorial.html#boost_contract.tutorial.postconditions" title="Postconditions"> Postconditions</a>,  <a class="link" href="../../boost_contract/tutorial.html#boost_contract.tutorial.exception_guarantees" title="Exception Guarantees"> Exception Guarantees</a></p>
@@ -57,24 +57,24 @@
 
 </p>
 <div class="refsect2">
-<a name="idm40506"></a><h3>Template Parameters</h3>
+<a name="idm40548"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> VirtualResult <span class="special">=</span> <span class="keyword">void</span></pre>
 <p>Return type of the enclosing function declaring the contract if that is either a virtual or an overriding public function, otherwise this is always <code class="computeroutput">void</code>. (Usually this template parameter is automatically deduced by C++ and it does not need to be explicitly specified by programmers.) </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm40518"></a><h3>
+<a name="idm40560"></a><h3>
 <a name="boost.contract.specify_precondit_idm35985construct-copy-destruct"></a><code class="computeroutput">specify_precondition_old_postcondition_except</code> 
         public
        construct/copy/destruct</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
-<pre class="literallayout"><a name="idm36093-bb"></a><span class="special">~</span><span class="identifier">specify_precondition_old_postcondition_except</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destruct this object. <p><span class="bold"><strong>Throws:</strong></span> This is declared <code class="computeroutput">noexcept(false)</code> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <a class="link" href="../../boost_contract/advanced.html#boost_contract.advanced.throw_on_failures__and__noexcept__" title="Throw on Failures (and noexcept)">
+<pre class="literallayout"><a name="idm36093-bb"></a><span class="special">~</span><span class="identifier">specify_precondition_old_postcondition_except</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="keyword">false</span><span class="special">)</span><span class="special">;</span></pre>Destruct this object. <p><span class="bold"><strong>Throws:</strong></span> This is declared <code class="computeroutput">noexcept(false)</code> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <a class="link" href="../../boost_contract/advanced.html#boost_contract.advanced.throw_on_failures__and__noexcept__" title="Throw on Failures (and noexcept)">
             Throw on Failure</a>). </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm40536"></a><h3>
+<a name="idm40582"></a><h3>
 <a name="idm36005-bb"></a><code class="computeroutput">specify_precondition_old_postcondition_except</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

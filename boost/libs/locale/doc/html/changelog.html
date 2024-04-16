@@ -65,6 +65,16 @@ $(document).ready(function(){initNavTree('changelog.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><ul>
+<li>1.85.0<ul>
+<li>Breaking changes<ul>
+<li><code>collator</code> does no longer derive from <code>std::collator</code> avoiding possible type confusion</li>
+<li><code>date_time</code> stores time in second resolution for the ICU backend, where sub-second resolution was added/fixed in Boost 1.81</li>
+<li><code>comparator</code> in case of errors now throws on construction instead of on use as documented</li>
+<li>Character encoding conversion using IConv throws a <code>std::runtime_error</code> when the used IConv library is detected to be faulty (instead of running into an infinite loop)</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>1.84.0<ul>
 <li>Breaking changes<ul>
 <li><code>to_title</code> for the WinAPI backend returns the string unchanged instead of an empty string</li>

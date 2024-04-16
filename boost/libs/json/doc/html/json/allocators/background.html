@@ -81,8 +81,8 @@
       </h5>
 <p>
         C++17 improves the allocator model by representing the low-level allocation
-        operation with an abstract interface called <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>, which is not parameterized
-        on the element type, and has no traits:
+        operation with an abstract interface called <code class="computeroutput"><span class="identifier">memory_resource</span></code>,
+        which is not parameterized on the element type, and has no traits:
       </p>
 <pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">std</span> <span class="special">{</span>
 <span class="keyword">namespace</span> <span class="identifier">pmr</span> <span class="special">{</span>
@@ -106,8 +106,9 @@
 <span class="special">}</span> <span class="comment">// namespace std</span>
 </pre>
 <p>
-        The class template <a class="link" href="../ref/boost__json__polymorphic_allocator.html" title="polymorphic_allocator"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a> wraps a <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
-        pointer and meets the requirements of <a href="https://en.cppreference.com/w/cpp/named_req/Allocator" target="_top"><span class="emphasis"><em>Allocator</em></span></a>,
+        The class template <code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code>
+        wraps a <code class="computeroutput"><span class="identifier">memory_resource</span></code> pointer
+        and meets the requirements of <a href="https://en.cppreference.com/w/cpp/named_req/Allocator" target="_top"><span class="emphasis"><em>Allocator</em></span></a>,
         allowing it to be used where an allocator is expected. The standard provides
         type aliases using the polymorphic allocator for standard containers:
       </p>
@@ -115,7 +116,7 @@
 <span class="keyword">namespace</span> <span class="identifier">pmr</span> <span class="special">{</span>
 
 <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">T</span> <span class="special">&gt;</span>
-<span class="keyword">using</span> <span class="identifier">vector</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">polymorphic_allocator</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">vector</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">polymorphic_allocator</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="special">&gt;;</span>
 
 <span class="special">}</span> <span class="comment">// namespace pmr</span>
 <span class="special">}</span> <span class="comment">// namespace std</span>
@@ -127,7 +128,7 @@
 <span class="identifier">monotonic_resource</span> <span class="identifier">mr</span><span class="special">;</span>
 
 <span class="comment">// Construct a vector using the monotonic buffer resource</span>
-<span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="identifier">v1</span><span class="special">((</span> <span class="identifier">polymorphic_allocator</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;(&amp;</span><span class="identifier">mr</span><span class="special">)</span> <span class="special">));</span>
+<span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="identifier">v1</span><span class="special">((</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">polymorphic_allocator</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;(&amp;</span><span class="identifier">mr</span><span class="special">)</span> <span class="special">));</span>
 
 <span class="comment">// Or this way, since construction from memory_resource* is implicit:</span>
 <span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="identifier">v2</span><span class="special">(</span> <span class="special">&amp;</span><span class="identifier">mr</span> <span class="special">);</span>
@@ -171,10 +172,10 @@
 <p>
         This can be worked around by declaring the container to use a custom allocator
         (perhaps using a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span>
-        <span class="identifier">memory_resource</span> <span class="special">&gt;</span></code>
-        as a data member). This hinders library composition; every library now exports
-        unique, incompatible container types. A raw memory resource pointer is also
-        easy to misuse:
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span>
+        <span class="special">&gt;</span></code> as a data member). This hinders
+        library composition; every library now exports unique, incompatible container
+        types. A raw memory resource pointer is also easy to misuse:
       </p>
 <pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">my_library</span> <span class="special">{</span>
 
@@ -194,8 +195,9 @@
 </pre>
 <p>
         Workarounds for this problem are worse than the problem itself. The library
-        could return a pair with the vector and <code class="computeroutput"><span class="identifier">unique_ptr</span><span class="special">&lt;</span><span class="identifier">memory_resource</span><span class="special">&gt;</span></code> which the caller must manage. Or the
-        library could change its function signatures to accept a <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">*</span></code> provided by the caller, where the library
+        could return a pair with the vector and <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">unique_ptr</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span><span class="special">&gt;</span></code>
+        which the caller must manage. Or the library could change its function signatures
+        to accept a <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">*</span></code> provided by the caller, where the library
         also makes public the desired memory resources (<code class="computeroutput"><span class="identifier">my_resource</span></code>
         above).
       </p>
@@ -213,7 +215,7 @@
             <code class="computeroutput"><span class="identifier">T</span></code> is not a class template
           </li>
 <li class="listitem">
-            <code class="computeroutput"><span class="identifier">T</span></code> references a <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
+            <code class="computeroutput"><span class="identifier">T</span></code> references a <code class="computeroutput"><span class="identifier">memory_resource</span></code>
           </li>
 <li class="listitem">
             <code class="computeroutput"><span class="identifier">T</span></code> supports both reference

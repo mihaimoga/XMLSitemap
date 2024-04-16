@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__parser.put_eof"></a><a class="link" href="put_eof.html" title="http::parser::put_eof">http::parser::put_eof</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm46396"></a>
+          <a class="indexterm" name="idm46551"></a>
         </p>
 <p>
           (Inherited from <a class="link" href="../boost__beast__http__basic_parser.html" title="http::basic_parser"><code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_parser</span></code></a>)
@@ -52,8 +52,11 @@
           In certain cases, HTTP needs to know where the end of the stream is. For
           example, sometimes servers send responses without Content-Length and expect
           the client to consume input (for the body) until EOF. Callbacks and errors
-          will still be processed as usual. This is typically called when a read
-          from the underlying stream object sets the error code to <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">error</span><span class="special">::</span><span class="identifier">eof</span></code>.
+          will still be processed as usual.
+        </p>
+<p>
+          This is typically called when a read from the underlying stream object
+          sets the error code to <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">error</span><span class="special">::</span><span class="identifier">eof</span></code>.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__http__parser.put_eof.h2"></a>

@@ -76,8 +76,11 @@
           operation completes. The implementation may read additional bytes from
           the stream that lie past the end of the message being read. These additional
           bytes are stored in the dynamic buffer, which must be preserved for subsequent
-          reads. If the end of file error is received while reading from the stream,
-          then the error returned from this function will be:
+          reads.
+        </p>
+<p>
+          If the end of file error is received while reading from the stream, then
+          the error returned from this function will be:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -173,7 +176,7 @@
                   </p>
 <pre class="table-programlisting"><span class="keyword">void</span> <span class="identifier">handler</span><span class="special">(</span>
     <span class="identifier">error_code</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="identifier">error</span><span class="special">,</span>        <span class="comment">// result of operation</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">bytes_transferred</span>   <span class="comment">// the total number of bytes transferred from the stream</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">bytes_transferred</span>   <span class="comment">// the number of bytes consumed by the parser</span>
 <span class="special">);</span>
 </pre>
                   <p>
@@ -191,10 +194,7 @@
           <span class="phrase"><a name="beast.ref.boost__beast__http__async_read.overload1.remarks"></a></span><a class="link" href="overload1.html#beast.ref.boost__beast__http__async_read.overload1.remarks">Remarks</a>
         </h6>
 <p>
-          The completion handler will receive as a parameter the total number of
-          bytes transferred from the stream. This may be zero for the case where
-          there is sufficient pre-existing message data in the dynamic buffer. The
-          implementation will call <a class="link" href="../boost__beast__http__basic_parser/eager.html" title="http::basic_parser::eager"><code class="computeroutput"><span class="identifier">basic_parser</span><span class="special">::</span><span class="identifier">eager</span></code></a> with the value <code class="computeroutput"><span class="keyword">true</span></code> on the parser passed in.
+          The implementation will call <a class="link" href="../boost__beast__http__basic_parser/eager.html" title="http::basic_parser::eager"><code class="computeroutput"><span class="identifier">basic_parser</span><span class="special">::</span><span class="identifier">eager</span></code></a> with the value <code class="computeroutput"><span class="keyword">true</span></code> on the parser passed in.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__http__async_read.overload1.h4"></a>
@@ -210,7 +210,7 @@
             </li></ul></div>
 <p>
           if the <code class="computeroutput"><span class="identifier">stream</span></code> also supports
-          terminal cancellation. <code class="computeroutput"><span class="identifier">terminal</span></code>
+          terminal cancellation, <code class="computeroutput"><span class="identifier">terminal</span></code>
           cancellation leaves the stream in an undefined state, so that only closing
           it is guaranteed to succeed.
         </p>

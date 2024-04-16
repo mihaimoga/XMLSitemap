@@ -8,7 +8,7 @@
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
 <link rel="up" href="../stacktrace.html" title="Chapter 35. Boost.Stacktrace 1.0">
 <link rel="prev" href="getting_started.html" title="Getting Started">
-<link rel="next" href="acknowledgements.html" title="Acknowledgements">
+<link rel="next" href="theoretical_async_signal_safety.html" title="Theoretical async signal safety">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -22,7 +22,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="getting_started.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../stacktrace.html"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="acknowledgements.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="getting_started.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../stacktrace.html"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="theoretical_async_signal_safety.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -151,8 +151,10 @@
             </td>
 <td>
               <p>
-                Uses <code class="computeroutput"><span class="identifier">dbgeng</span><span class="special">.</span><span class="identifier">h</span></code> to show debug info. May require
-                linking with <span class="bold"><strong>ole32</strong></span> and <span class="bold"><strong>dbgeng</strong></span>.
+                Uses <code class="computeroutput"><span class="identifier">dbgeng</span><span class="special">.</span><span class="identifier">h</span></code> to show debug info, stores the
+                implementation internals in a static varaible protected with mutex.
+                May require linking with <span class="bold"><strong>ole32</strong></span> and
+                <span class="bold"><strong>dbgeng</strong></span>.
               </p>
             </td>
 <td>
@@ -218,8 +220,9 @@
 <td>
               <p>
                 Uses <code class="computeroutput"><span class="identifier">dbgeng</span><span class="special">.</span><span class="identifier">h</span></code> to show debug info and caches
-                internals in TLS for better performance. Useful only for cases when
-                traces are gathered very often. May require linking with <span class="bold"><strong>ole32</strong></span> and <span class="bold"><strong>dbgeng</strong></span>.
+                implementation internals in TLS for better performance. Useful only
+                for cases when traces are gathered very often. May require linking
+                with <span class="bold"><strong>ole32</strong></span> and <span class="bold"><strong>dbgeng</strong></span>.
               </p>
             </td>
 <td>
@@ -482,14 +485,15 @@
 </ul></div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2016-2023 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2016-2024 Antony
+      Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="getting_started.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../stacktrace.html"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="acknowledgements.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="getting_started.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../stacktrace.html"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="theoretical_async_signal_safety.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

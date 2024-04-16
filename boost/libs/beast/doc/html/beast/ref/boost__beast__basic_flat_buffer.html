@@ -356,8 +356,11 @@
         as required, where the memory is divided into two regions: readable bytes
         followed by writable bytes. These memory regions are internal to the dynamic
         buffer, but direct access to the elements is provided to permit them to be
-        efficiently used with I/O operations. Objects of this type meet the requirements
-        of <span class="emphasis"><em>DynamicBuffer</em></span> and have the following additional properties:
+        efficiently used with I/O operations.
+      </p>
+<p>
+        Objects of this type meet the requirements of <span class="emphasis"><em>DynamicBuffer</em></span>
+        and have the following additional properties:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -371,7 +374,8 @@
           </li>
 <li class="listitem">
             Buffer sequences representing the readable and writable bytes, returned
-            by <a class="link" href="boost__beast__basic_flat_buffer/data.html" title="basic_flat_buffer::data"><code class="computeroutput"><span class="identifier">data</span></code></a> and <a class="link" href="boost__beast__basic_flat_buffer/prepare.html" title="basic_flat_buffer::prepare"><code class="computeroutput"><span class="identifier">prepare</span></code></a>, will have length one.
+            by <a class="link" href="boost__beast__basic_flat_buffer/data.html" title="basic_flat_buffer::data"><code class="computeroutput"><span class="identifier">data</span></code></a> and <a class="link" href="boost__beast__basic_flat_buffer/prepare.html" title="basic_flat_buffer::prepare"><code class="computeroutput"><span class="identifier">prepare</span></code></a>, will have a type of
+            net::const_buffer or net::mutable_buffer.
           </li>
 </ul></div>
 <p>

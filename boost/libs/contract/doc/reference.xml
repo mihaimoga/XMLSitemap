@@ -830,7 +830,7 @@ public:
 </para></description></constructor>
 <constructor specifiers="explicit"><parameter name="code"><paramtype>char const *</paramtype><description><para>Text listing the source code of the assertion condition. </para></description></parameter><purpose>Construct this object only with the source code text of the assertion condition. </purpose><description><para>
 </para></description></constructor>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept</computeroutput> (or <computeroutput>throw()</computeroutput> before C++11). </para></description></destructor>
+<destructor specifiers="virtual"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept</computeroutput> (or <computeroutput>throw()</computeroutput> before C++11). </para></description></destructor>
 </class><class name="bad_virtual_result_cast"><inherit access="public">std::bad_cast</inherit><inherit access="public">boost::contract::exception</inherit><purpose>Exception thrown when inconsistent return values are passed to overridden virtual public functions. </purpose><description><para>This exception is thrown when programmers pass to this library return value parameters for public function overrides in derived classes that are not consistent with the return type parameter passed for the virtual public function being overridden from the base classes. This allows this library to give more descriptive error messages in such cases of misuse.</para><para>This exception is internally thrown by this library and programmers should not need to throw it from user code.</para><para><para><emphasis role="bold">See Also:</emphasis><para> <link linkend="boost_contract.tutorial.public_function_overrides__subcontracting_">
         Public Function Overrides</link> </para>
 </para>
@@ -839,12 +839,12 @@ public:
 </method-group>
 <constructor specifiers="explicit"><parameter name="from_type_name"><paramtype>char const *</paramtype><description><para>Name of the from-type (source of the cast). </para></description></parameter><parameter name="to_type_name"><paramtype>char const *</paramtype><description><para>Name of the to-type (destination of the cast). </para></description></parameter><purpose>Construct this object with the name of the from- and to- result types. </purpose><description><para>
 </para></description></constructor>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept</computeroutput> (or <computeroutput>throw()</computeroutput> before C++11). </para></description></destructor>
+<destructor specifiers="virtual"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept</computeroutput> (or <computeroutput>throw()</computeroutput> before C++11). </para></description></destructor>
 </class><class name="exception"><purpose>Public base class for all exceptions directly thrown by this library. </purpose><description><para>This class does not inherit from <computeroutput>std::exception</computeroutput> because exceptions deriving from this class will do that (inheriting from <computeroutput>std::exception</computeroutput>, <computeroutput>std::bad_cast</computeroutput>, etc.).</para><para><para><emphasis role="bold">See Also:</emphasis><para> <computeroutput><classname alt="boost::contract::assertion_failure">boost::contract::assertion_failure</classname></computeroutput>,  <computeroutput><classname alt="boost::contract::bad_virtual_result_cast">boost::contract::bad_virtual_result_cast</classname></computeroutput>, etc. </para>
 </para>
 </para></description><method-group name="public member functions">
 </method-group>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept</computeroutput> (or <computeroutput>throw()</computeroutput> before C++11). </para></description></destructor>
+<destructor specifiers="virtual"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept</computeroutput> (or <computeroutput>throw()</computeroutput> before C++11). </para></description></destructor>
 </class><enum name="from"><enumvalue name="from_constructor"><purpose>Assertion failed when checking contracts for constructors. </purpose></enumvalue><enumvalue name="from_destructor"><purpose>Assertion failed when checking contracts for destructors . </purpose></enumvalue><enumvalue name="from_function"><purpose>Assertion failed when checking contracts for functions (members or not, public or not). </purpose></enumvalue><purpose>Indicate the kind of operation where the contract assertion failed. </purpose><description><para>This is passed as a parameter to the assertion failure handler functions. For example, it might be necessary to know in which operation an assertion failed to make sure exceptions are never thrown from destructors, not even when contract failure handlers are programmed by users to throw exceptions instead of terminating the program.</para><para><para><emphasis role="bold">See Also:</emphasis><para> <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__"> Throw on Failure</link> </para>
 </para>
 </para></description></enum>
@@ -1007,13 +1007,13 @@ public:
 </para></description><returns><para>After exception guarantees have been specified, the object returned by this function does not allow to specify any additional contract. </para>
 </returns></method>
 </method-group>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
+<destructor cv="noexcept(false)"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
             Throw on Failure</link>). </para></description></destructor>
 </class><class name="specify_nothing"><purpose>Used to prevent setting other contract conditions after exception guarantees. </purpose><description><para>This class has no member function so it is used to prevent specifying additional functors to check any other contract. This object is internally constructed by the library when users specify contracts calling  <computeroutput><functionname alt="boost::contract::function">boost::contract::function</functionname></computeroutput> and similar functions (that is why this class does not have a public constructor).</para><para><para><emphasis role="bold">See Also:</emphasis><para> <link linkend="boost_contract.tutorial"> Tutorial</link> </para>
 </para>
 </para></description><method-group name="public member functions">
 </method-group>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
+<destructor cv="noexcept(false)"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
             Throw on Failure</link>). </para></description></destructor>
 </class><class name="specify_old_postcondition_except"><template>
       <template-type-parameter name="VirtualResult"><default>void</default><purpose><para>Return type of the enclosing function declaring the contract if that is either a virtual or an overriding public function, otherwise this is always <computeroutput>void</computeroutput>. (Usually this template parameter is automatically deduced by C++ and it does not need to be explicitly specified by programmers.) </para></purpose></template-type-parameter>
@@ -1040,7 +1040,7 @@ public:
 </para></description><returns><para>After exception guarantees have been specified, the object returned by this function does not allow to specify any additional contract. </para>
 </returns></method>
 </method-group>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
+<destructor cv="noexcept(false)"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
             Throw on Failure</link>). </para></description></destructor>
 </class><class name="specify_postcondition_except"><template>
       <template-type-parameter name="VirtualResult"><default>void</default><purpose><para>Return type of the enclosing function declaring the contract if that is either a virtual or an overriding public function, otherwise this is always <computeroutput>void</computeroutput>. (Usually this template parameter is automatically deduced by C++ and it does not need to be explicitly specified by programmers.) </para></purpose></template-type-parameter>
@@ -1061,7 +1061,7 @@ public:
 </para></description><returns><para>After exception guarantees have been specified, the object returned by this function does not allow to specify any additional contract. </para>
 </returns></method>
 </method-group>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
+<destructor cv="noexcept(false)"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
             Throw on Failure</link>). </para></description></destructor>
 </class><class name="specify_precondition_old_postcondition_except"><template>
       <template-type-parameter name="VirtualResult"><default>void</default><purpose><para>Return type of the enclosing function declaring the contract if that is either a virtual or an overriding public function, otherwise this is always <computeroutput>void</computeroutput>. (Usually this template parameter is automatically deduced by C++ and it does not need to be explicitly specified by programmers.) </para></purpose></template-type-parameter>
@@ -1094,7 +1094,7 @@ public:
 </para></description><returns><para>After exception guarantees have been specified, the object returned by this function does not allow to specify any additional contract. </para>
 </returns></method>
 </method-group>
-<destructor><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
+<destructor cv="noexcept(false)"><purpose>Destruct this object. </purpose><description><para><emphasis role="bold">Throws:</emphasis> This is declared <computeroutput>noexcept(false)</computeroutput> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <link linkend="boost_contract.advanced.throw_on_failures__and__noexcept__">
             Throw on Failure</link>). </para></description></destructor>
 </class>
 

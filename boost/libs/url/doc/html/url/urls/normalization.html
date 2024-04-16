@@ -91,9 +91,11 @@
       </p>
 <pre class="programlisting"><span class="identifier">url_view</span> <span class="identifier">u1</span><span class="special">(</span><span class="string">"https://www.boost.org/index.html"</span><span class="special">);</span>
 <span class="identifier">url</span> <span class="identifier">u2</span><span class="special">(</span><span class="string">"https://www.boost.org/doc/../index.html"</span><span class="special">);</span>
+<span class="identifier">assert</span><span class="special">(</span><span class="identifier">u1</span><span class="special">.</span><span class="identifier">buffer</span><span class="special">()</span> <span class="special">!=</span> <span class="identifier">u2</span><span class="special">.</span><span class="identifier">buffer</span><span class="special">());</span>
 <span class="identifier">assert</span><span class="special">(</span><span class="identifier">u1</span> <span class="special">==</span> <span class="identifier">u2</span><span class="special">);</span>
 <span class="identifier">u2</span><span class="special">.</span><span class="identifier">normalize</span><span class="special">();</span>
 <span class="identifier">assert</span><span class="special">(</span><span class="identifier">u1</span><span class="special">.</span><span class="identifier">buffer</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">u2</span><span class="special">.</span><span class="identifier">buffer</span><span class="special">());</span>
+<span class="identifier">assert</span><span class="special">(</span><span class="identifier">u1</span> <span class="special">==</span> <span class="identifier">u2</span><span class="special">);</span>
 </pre>
 <p>
         Normalization uses the following definitions of <a href="https://tools.ietf.org/html/rfc3986" target="_top">rfc3986</a>

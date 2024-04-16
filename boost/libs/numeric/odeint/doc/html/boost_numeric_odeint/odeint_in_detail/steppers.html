@@ -283,7 +283,7 @@
         </p>
 <p>
 </p>
-<pre class="programlisting"><span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">1</span> <span class="special">&gt;</span> <span class="identifier">vector_type</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">1</span> <span class="special">&gt;</span> <span class="identifier">vector_type</span><span class="special">;</span>
 
 
 <span class="keyword">struct</span> <span class="identifier">harm_osc_f1</span>
@@ -342,7 +342,7 @@
 <p>
 </p>
 <pre class="programlisting"><span class="identifier">harm_osc</span> <span class="identifier">h</span><span class="special">;</span>
-<span class="identifier">rkn</span><span class="special">.</span><span class="identifier">do_step</span><span class="special">(</span> <span class="identifier">make_pair</span><span class="special">(</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">bind</span><span class="special">(</span> <span class="special">&amp;</span><span class="identifier">harm_osc</span><span class="special">::</span><span class="identifier">f1</span> <span class="special">,</span> <span class="identifier">h</span> <span class="special">,</span> <span class="identifier">_1</span> <span class="special">,</span> <span class="identifier">_2</span> <span class="special">)</span> <span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">bind</span><span class="special">(</span> <span class="special">&amp;</span><span class="identifier">harm_osc</span><span class="special">::</span><span class="identifier">f2</span> <span class="special">,</span> <span class="identifier">h</span> <span class="special">,</span> <span class="identifier">_1</span> <span class="special">,</span> <span class="identifier">_2</span> <span class="special">)</span> <span class="special">)</span> <span class="special">,</span>
+<span class="identifier">rkn</span><span class="special">.</span><span class="identifier">do_step</span><span class="special">(</span> <span class="identifier">make_pair</span><span class="special">(</span> <span class="identifier">detail</span><span class="special">::</span><span class="identifier">bind</span><span class="special">(</span> <span class="special">&amp;</span><span class="identifier">harm_osc</span><span class="special">::</span><span class="identifier">f1</span> <span class="special">,</span> <span class="identifier">h</span> <span class="special">,</span> <span class="identifier">_1</span> <span class="special">,</span> <span class="identifier">_2</span> <span class="special">)</span> <span class="special">,</span> <span class="identifier">detail</span><span class="special">::</span><span class="identifier">bind</span><span class="special">(</span> <span class="special">&amp;</span><span class="identifier">harm_osc</span><span class="special">::</span><span class="identifier">f2</span> <span class="special">,</span> <span class="identifier">h</span> <span class="special">,</span> <span class="identifier">_1</span> <span class="special">,</span> <span class="identifier">_2</span> <span class="special">)</span> <span class="special">)</span> <span class="special">,</span>
         <span class="identifier">x</span> <span class="special">,</span> <span class="identifier">t</span> <span class="special">,</span> <span class="identifier">dt</span> <span class="special">);</span>
 </pre>
 <p>
@@ -894,7 +894,7 @@
 </tr>
 <tr><td align="left" valign="top"><p>
             You only have to worry about memory allocation when using dynamically
-            sized vector types. If your state type is heap allocated, like <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span></code>, no memory allocation is required
+            sized vector types. If your state type is heap allocated, like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span></code>, no memory allocation is required
             whatsoever.
           </p></td></tr>
 </table></div>
@@ -918,7 +918,7 @@
           if a state type is at least resizeable - a meta-function <code class="computeroutput"><span class="identifier">is_resizeable</span></code>. This meta-function returns
           a static Boolean value if any type is resizable. For example it will return
           <code class="computeroutput"><span class="keyword">true</span></code> for <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span></code> but <code class="computeroutput"><span class="keyword">false</span></code>
-          for <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span></code>.
+          for <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span></code>.
           By default and for unknown types <code class="computeroutput"><span class="identifier">is_resizeable</span></code>
           returns <code class="computeroutput"><span class="keyword">false</span></code>, so if you have
           your own type you need to specialize this meta-function. For more details
@@ -2057,8 +2057,8 @@
 <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;</span> <span class="identifier">state_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;</span> <span class="identifier">deriv_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;</span> <span class="identifier">state_type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;</span> <span class="identifier">deriv_type</span><span class="special">;</span>
     <span class="keyword">typedef</span> <span class="keyword">double</span> <span class="identifier">value_type</span><span class="special">;</span>
     <span class="keyword">typedef</span> <span class="keyword">double</span> <span class="identifier">time_type</span><span class="special">;</span>
     <span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="identifier">order_type</span><span class="special">;</span>
@@ -2143,7 +2143,7 @@
 <p>
 </p>
 <pre class="programlisting"><span class="keyword">const</span> <span class="keyword">static</span> <span class="identifier">size_t</span> <span class="identifier">N</span> <span class="special">=</span> <span class="number">1</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;</span> <span class="identifier">state_type</span><span class="special">;</span>
+<span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="identifier">N</span> <span class="special">&gt;</span> <span class="identifier">state_type</span><span class="special">;</span>
 
 <span class="keyword">struct</span> <span class="identifier">ornstein_det</span>
 <span class="special">{</span>
@@ -2220,7 +2220,7 @@ c3 = 2/3, a31 =  0 , a32 = 2/3
 <p>
 </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Value</span> <span class="special">=</span> <span class="keyword">double</span> <span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">heun_a1</span> <span class="special">:</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">1</span> <span class="special">&gt;</span> <span class="special">{</span>
+<span class="keyword">struct</span> <span class="identifier">heun_a1</span> <span class="special">:</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">1</span> <span class="special">&gt;</span> <span class="special">{</span>
     <span class="identifier">heun_a1</span><span class="special">(</span> <span class="keyword">void</span> <span class="special">)</span>
     <span class="special">{</span>
         <span class="special">(*</span><span class="keyword">this</span><span class="special">)[</span><span class="number">0</span><span class="special">]</span> <span class="special">=</span> <span class="keyword">static_cast</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">&gt;(</span> <span class="number">1</span> <span class="special">)</span> <span class="special">/</span> <span class="keyword">static_cast</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">&gt;(</span> <span class="number">3</span> <span class="special">);</span>
@@ -2228,7 +2228,7 @@ c3 = 2/3, a31 =  0 , a32 = 2/3
 <span class="special">};</span>
 
 <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Value</span> <span class="special">=</span> <span class="keyword">double</span> <span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">heun_a2</span> <span class="special">:</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">2</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">heun_a2</span> <span class="special">:</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">2</span> <span class="special">&gt;</span>
 <span class="special">{</span>
     <span class="identifier">heun_a2</span><span class="special">(</span> <span class="keyword">void</span> <span class="special">)</span>
     <span class="special">{</span>
@@ -2239,7 +2239,7 @@ c3 = 2/3, a31 =  0 , a32 = 2/3
 
 
 <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Value</span> <span class="special">=</span> <span class="keyword">double</span> <span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">heun_b</span> <span class="special">:</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">heun_b</span> <span class="special">:</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span>
 <span class="special">{</span>
     <span class="identifier">heun_b</span><span class="special">(</span> <span class="keyword">void</span> <span class="special">)</span>
     <span class="special">{</span>
@@ -2250,7 +2250,7 @@ c3 = 2/3, a31 =  0 , a32 = 2/3
 <span class="special">};</span>
 
 <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">Value</span> <span class="special">=</span> <span class="keyword">double</span> <span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">heun_c</span> <span class="special">:</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">heun_c</span> <span class="special">:</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="identifier">Value</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span>
 <span class="special">{</span>
     <span class="identifier">heun_c</span><span class="special">(</span> <span class="keyword">void</span> <span class="special">)</span>
     <span class="special">{</span>
@@ -2271,10 +2271,10 @@ c3 = 2/3, a31 =  0 , a32 = 2/3
         </p>
 <p>
 </p>
-<pre class="programlisting"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">1</span> <span class="special">&gt;</span> <span class="identifier">heun_a1</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">1.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">}};</span>
-<span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">2</span> <span class="special">&gt;</span> <span class="identifier">heun_a2</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">0.0</span> <span class="special">,</span> <span class="number">2.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">}};</span>
-<span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span> <span class="identifier">heun_b</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">1.0</span> <span class="special">/</span> <span class="number">4.0</span> <span class="special">,</span> <span class="number">0.0</span> <span class="special">,</span> <span class="number">3.0</span> <span class="special">/</span> <span class="number">4.0</span> <span class="special">}};</span>
-<span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span> <span class="identifier">heun_c</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">0.0</span> <span class="special">,</span> <span class="number">1.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">,</span> <span class="number">2.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">}};</span>
+<pre class="programlisting"><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">1</span> <span class="special">&gt;</span> <span class="identifier">heun_a1</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">1.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">}};</span>
+<span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">2</span> <span class="special">&gt;</span> <span class="identifier">heun_a2</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">0.0</span> <span class="special">,</span> <span class="number">2.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">}};</span>
+<span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span> <span class="identifier">heun_b</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">1.0</span> <span class="special">/</span> <span class="number">4.0</span> <span class="special">,</span> <span class="number">0.0</span> <span class="special">,</span> <span class="number">3.0</span> <span class="special">/</span> <span class="number">4.0</span> <span class="special">}};</span>
+<span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span> <span class="identifier">heun_c</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">0.0</span> <span class="special">,</span> <span class="number">1.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">,</span> <span class="number">2.0</span> <span class="special">/</span> <span class="number">3.0</span> <span class="special">}};</span>
 </pre>
 <p>
         </p>
@@ -2334,7 +2334,7 @@ c3 = 2/3, a31 =  0 , a32 = 2/3
         </p>
 <p>
 </p>
-<pre class="programlisting"><span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span> <span class="identifier">state_type</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span> <span class="keyword">double</span> <span class="special">,</span> <span class="number">3</span> <span class="special">&gt;</span> <span class="identifier">state_type</span><span class="special">;</span>
 <span class="identifier">heun</span><span class="special">&lt;</span> <span class="identifier">state_type</span> <span class="special">&gt;</span> <span class="identifier">h</span><span class="special">;</span>
 <span class="identifier">state_type</span> <span class="identifier">x</span> <span class="special">=</span> <span class="special">{{</span> <span class="number">10.0</span> <span class="special">,</span> <span class="number">10.0</span> <span class="special">,</span> <span class="number">10.0</span> <span class="special">}};</span>
 

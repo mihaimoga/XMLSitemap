@@ -317,10 +317,14 @@
    <span class="identifier">url_components</span> <span class="special">&amp;</span><span class="identifier">out</span><span class="special">)</span>
 <span class="special">{</span>
     <span class="keyword">if</span> <span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">starts_with</span><span class="special">(</span><span class="string">"//"</span><span class="special">)</span> <span class="special">&amp;&amp;</span> <span class="special">!</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">starts_with</span><span class="special">(</span><span class="string">"///"</span><span class="special">))</span>
+    <span class="special">{</span>
         <span class="keyword">return</span> <span class="identifier">extract_scheme_relative</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">substr</span><span class="special">(</span><span class="number">2</span><span class="special">),</span> <span class="identifier">out</span><span class="special">);</span>
+    <span class="special">}</span>
 
     <span class="keyword">if</span> <span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">starts_with</span><span class="special">(</span><span class="char">'/'</span><span class="special">))</span>
+    <span class="special">{</span>
         <span class="keyword">return</span> <span class="identifier">extract_relative_ref</span><span class="special">(</span><span class="identifier">s</span><span class="special">,</span> <span class="identifier">out</span><span class="special">);</span>
+    <span class="special">}</span>
 
     <span class="comment">// extract scheme</span>
     <span class="comment">// first char in a scheme must be letter (we accept uppercase here)</span>
@@ -343,9 +347,17 @@
     <span class="comment">// The usual route, parse scheme first</span>
     <span class="identifier">core</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">scheme_relative</span> <span class="special">=</span> <span class="identifier">s</span><span class="special">;</span>
     <span class="keyword">if</span> <span class="special">(</span><span class="identifier">has_scheme</span><span class="special">)</span>
+    <span class="special">{</span>
         <span class="identifier">scheme_relative</span> <span class="special">=</span> <span class="identifier">s</span><span class="special">.</span><span class="identifier">substr</span><span class="special">(</span><span class="identifier">out</span><span class="special">.</span><span class="identifier">scheme</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span> <span class="special">+</span> <span class="number">1</span><span class="special">);</span>
+    <span class="special">}</span>
 
     <span class="keyword">const</span> <span class="keyword">bool</span> <span class="identifier">has_authority</span> <span class="special">=</span> <span class="identifier">scheme_relative</span><span class="special">.</span><span class="identifier">starts_with</span><span class="special">(</span><span class="string">"//"</span><span class="special">);</span>
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">has_authority</span><span class="special">)</span>
+    <span class="special">{</span>
+        <span class="identifier">scheme_relative</span> <span class="special">=</span> <span class="identifier">scheme_relative</span><span class="special">.</span><span class="identifier">substr</span><span class="special">(</span><span class="number">2</span><span class="special">);</span>
+        <span class="keyword">return</span> <span class="identifier">extract_scheme_relative</span><span class="special">(</span><span class="identifier">scheme_relative</span><span class="special">,</span> <span class="identifier">out</span><span class="special">);</span>
+    <span class="special">}</span>
+
     <span class="keyword">const</span> <span class="keyword">bool</span> <span class="identifier">is_relative_ref</span> <span class="special">=</span> <span class="special">!</span><span class="identifier">has_scheme</span> <span class="special">&amp;&amp;</span> <span class="special">!</span><span class="identifier">has_authority</span><span class="special">;</span>
     <span class="keyword">if</span> <span class="special">(</span><span class="identifier">is_relative_ref</span><span class="special">)</span>
     <span class="special">{</span>
@@ -373,9 +385,6 @@
         <span class="comment">// if the first_seg is really a seg, parse as relative ref</span>
         <span class="keyword">return</span> <span class="identifier">extract_relative_ref</span><span class="special">(</span><span class="identifier">s</span><span class="special">,</span> <span class="identifier">out</span><span class="special">);</span>
     <span class="special">}</span>
-
-    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">has_authority</span><span class="special">)</span>
-        <span class="identifier">scheme_relative</span> <span class="special">=</span> <span class="identifier">scheme_relative</span><span class="special">.</span><span class="identifier">substr</span><span class="special">(</span><span class="number">2</span><span class="special">);</span>
 
     <span class="comment">// all that's left is a relative path</span>
     <span class="keyword">return</span> <span class="identifier">extract_relative_ref</span><span class="special">(</span><span class="identifier">scheme_relative</span><span class="special">,</span> <span class="identifier">out</span><span class="special">);</span>

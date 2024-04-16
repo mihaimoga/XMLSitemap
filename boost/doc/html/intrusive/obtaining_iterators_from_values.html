@@ -70,7 +70,6 @@
     </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">intrusive</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">intrusive</span><span class="special">/</span><span class="identifier">unordered_set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container_hash</span><span class="special">/</span><span class="identifier">hash</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
 
 <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive</span><span class="special">;</span>
@@ -97,7 +96,9 @@
 
    <span class="comment">//The hash function</span>
    <span class="keyword">friend</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">hash_value</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">intrusive_data</span> <span class="special">&amp;</span><span class="identifier">i</span><span class="special">)</span>
-   <span class="special">{</span>  <span class="keyword">return</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">hash</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;()(</span><span class="identifier">i</span><span class="special">.</span><span class="identifier">data_id_</span><span class="special">);</span>  <span class="special">}</span>
+   <span class="special">{</span>  <span class="comment">//Use your favorite hash function, like boost::hash or std::hash</span>
+      <span class="keyword">return</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span><span class="special">(</span><span class="identifier">i</span><span class="special">.</span><span class="identifier">data_id_</span><span class="special">);</span>
+   <span class="special">}</span>
 <span class="special">};</span>
 
 <span class="comment">//Definition of the intrusive list that will hold intrusive_data</span>

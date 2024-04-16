@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__zlib__inflate_stream.write"></a><a class="link" href="write.html" title="zlib::inflate_stream::write">zlib::inflate_stream::write</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm36773"></a>
+          <a class="indexterm" name="idm36885"></a>
         </p>
 <p>
           Decompress input and produce output.
@@ -51,7 +51,10 @@
           This function decompresses as much data as possible, and stops when the
           input buffer becomes empty or the output buffer becomes full. It may introduce
           some output latency (reading input without producing any output) except
-          when forced to flush. One or both of the following actions are performed:
+          when forced to flush.
+        </p>
+<p>
+          One or both of the following actions are performed:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -79,16 +82,24 @@
           or after each call. If <code class="computeroutput"><span class="identifier">write</span></code>
           returns no error and with zero <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">avail_out</span></code>,
           it must be called again after making room in the output buffer because
-          there might be more output pending. The flush parameter may be <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">none</span></code></a>, <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">sync</span></code></a>, <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">finish</span></code></a>, <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a>, or <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">trees</span></code></a>. <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">sync</span></code></a> requests to flush as much
+          there might be more output pending.
+        </p>
+<p>
+          The flush parameter may be <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">none</span></code></a>, <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">sync</span></code></a>, <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">finish</span></code></a>, <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a>, or <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">trees</span></code></a>. <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">sync</span></code></a> requests to flush as much
           output as possible to the output buffer. <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a> requests to stop if and
           when it gets to the next deflate block boundary. When decoding the zlib
           or gzip format, this will cause <code class="computeroutput"><span class="identifier">write</span></code>
           to return immediately after the header and before the first block. When
           doing a raw inflate, <code class="computeroutput"><span class="identifier">write</span></code>
           will go ahead and process the first block, and will return when it gets
-          to the end of that block, or when it runs out of data. The <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a> option assists in appending
-          to or combining deflate streams. Also to assist in this, on return <code class="computeroutput"><span class="identifier">write</span></code> will set <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">data_type</span></code>
-          to the number of unused bits in the last byte taken from <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">next_in</span></code>,
+          to the end of that block, or when it runs out of data.
+        </p>
+<p>
+          The <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a>
+          option assists in appending to or combining deflate streams. Also to assist
+          in this, on return <code class="computeroutput"><span class="identifier">write</span></code>
+          will set <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">data_type</span></code> to the number of unused bits
+          in the last byte taken from <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">next_in</span></code>,
           plus 64 if <code class="computeroutput"><span class="identifier">write</span></code> is currently
           decoding the last block in the deflate stream, plus 128 if <code class="computeroutput"><span class="identifier">write</span></code> returned immediately after decoding
           an end-of-block code or decoding the complete header up to just before
@@ -100,13 +111,19 @@
           <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">data_type</span></code> is set as noted here every
           time <code class="computeroutput"><span class="identifier">write</span></code> returns for
           all flush options, and so can be used to determine the amount of currently
-          consumed input in bits. The <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">trees</span></code></a> option behaves as <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a>
-          does, but it also returns when the end of each deflate block header is
-          reached, before any actual data in that block is decoded. This allows the
-          caller to determine the length of the deflate block header for later use
-          in random access within a deflate block. 256 is added to the value of
-          <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">data_type</span></code> when <code class="computeroutput"><span class="identifier">write</span></code>
-          returns immediately after reaching the end of the deflate block header.
+          consumed input in bits.
+        </p>
+<p>
+          The <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">trees</span></code></a>
+          option behaves as <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a> does, but it also returns
+          when the end of each deflate block header is reached, before any actual
+          data in that block is decoded. This allows the caller to determine the
+          length of the deflate block header for later use in random access within
+          a deflate block. 256 is added to the value of <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">data_type</span></code>
+          when <code class="computeroutput"><span class="identifier">write</span></code> returns immediately
+          after reaching the end of the deflate block header.
+        </p>
+<p>
           <code class="computeroutput"><span class="identifier">write</span></code> should normally be
           called until it returns <a class="link" href="../boost__beast__zlib__error.html" title="zlib::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">end_of_stream</span></code></a> or another error.
           However if all decompression is to be performed in a single step (a single
@@ -122,15 +139,17 @@
           memory footprint. If the stream does not complete, either because not all
           of the stream is provided or not enough output space is provided, then
           a sliding window will be allocated and <code class="computeroutput"><span class="identifier">write</span></code>
-          can be called again to continue the operation as if <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">none</span></code></a> had been used. In this implementation,
-          <code class="computeroutput"><span class="identifier">write</span></code> always flushes as
-          much output as possible to the output buffer, and always uses the faster
-          approach on the first call. So the effects of the flush parameter in this
-          implementation are on the return value of <code class="computeroutput"><span class="identifier">write</span></code>
-          as noted below, when <code class="computeroutput"><span class="identifier">write</span></code>
-          returns early when <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a> or <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">trees</span></code></a> is used, and when <code class="computeroutput"><span class="identifier">write</span></code> avoids the allocation of memory
-          for a sliding window when <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">finish</span></code></a> is used. If a preset dictionary
-          is needed after this call, <code class="computeroutput"><span class="identifier">write</span></code>
+          can be called again to continue the operation as if <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">none</span></code></a> had been used.
+        </p>
+<p>
+          In this implementation, <code class="computeroutput"><span class="identifier">write</span></code>
+          always flushes as much output as possible to the output buffer, and always
+          uses the faster approach on the first call. So the effects of the flush
+          parameter in this implementation are on the return value of <code class="computeroutput"><span class="identifier">write</span></code> as noted below, when <code class="computeroutput"><span class="identifier">write</span></code> returns early when <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">block</span></code></a> or <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">trees</span></code></a> is used, and when <code class="computeroutput"><span class="identifier">write</span></code> avoids the allocation of memory
+          for a sliding window when <a class="link" href="../boost__beast__zlib__Flush.html" title="zlib::Flush"><code class="computeroutput"><span class="identifier">Flush</span><span class="special">::</span><span class="identifier">finish</span></code></a> is used.
+        </p>
+<p>
+          If a preset dictionary is needed after this call, <code class="computeroutput"><span class="identifier">write</span></code>
           sets <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">adler</span></code> to the Adler-32 checksum of the
           dictionary chosen by the compressor and returns <code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">need_dictionary</span></code>;
           otherwise it sets <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">adler</span></code> to the Adler-32 checksum of all
@@ -139,8 +158,11 @@
           <a class="link" href="../boost__beast__zlib__error.html" title="zlib::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">end_of_stream</span></code></a>,
           or an error code as described below. At the end of the stream, <code class="computeroutput"><span class="identifier">write</span></code> checks that its computed adler32
           checksum is equal to that saved by the compressor and returns <a class="link" href="../boost__beast__zlib__error.html" title="zlib::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">end_of_stream</span></code></a> only if the checksum
-          is correct. This function returns no error if some progress has been made
-          (more input processed or more output produced), <a class="link" href="../boost__beast__zlib__error.html" title="zlib::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">end_of_stream</span></code></a> if the end of the
+          is correct.
+        </p>
+<p>
+          This function returns no error if some progress has been made (more input
+          processed or more output produced), <a class="link" href="../boost__beast__zlib__error.html" title="zlib::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">end_of_stream</span></code></a> if the end of the
           compressed data has been reached and all uncompressed output has been produced,
           <code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">need_dictionary</span></code> if a preset dictionary
           is needed at this point, <code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">invalid_data</span></code>

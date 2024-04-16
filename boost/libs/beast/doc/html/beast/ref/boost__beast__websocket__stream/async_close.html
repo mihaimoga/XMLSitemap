@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__websocket__stream.async_close"></a><a class="link" href="async_close.html" title="websocket::stream::async_close">websocket::stream::async_close</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm60639"></a>
+          <a class="indexterm" name="idm60942"></a>
         </p>
 <p>
           Send a websocket close control frame asynchronously.
@@ -52,6 +52,8 @@
           This function is used to asynchronously send a <a href="https://tools.ietf.org/html/rfc6455#section-5.5.1" target="_top">close
           frame</a>, which begins the websocket closing handshake. The session
           ends when both ends of the connection have sent and received a close frame.
+        </p>
+<p>
           This call always returns immediately. The asynchronous operation will continue
           until one of the following conditions is true:
         </p>
@@ -67,10 +69,12 @@
           The algorithm, known as a <span class="emphasis"><em>composed asynchronous operation</em></span>,
           is implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">async_write_some</span></code>
           function. No other operations except for message reading operations should
-          be initiated on the stream after a close operation is started. After beginning
-          the closing handshake, the program should not write further message data,
-          pings, or pongs. Instead, the program should continue reading message data
-          until an error occurs. A read returning <a class="link" href="../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
+          be initiated on the stream after a close operation is started.
+        </p>
+<p>
+          After beginning the closing handshake, the program should not write further
+          message data, pings, or pongs. Instead, the program should continue reading
+          message data until an error occurs. A read returning <a class="link" href="../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
           connection closure.
         </p>
 <h6>
@@ -159,8 +163,11 @@
 <p>
           <code class="computeroutput"><span class="identifier">total</span></code>cancellation succeeds
           if the operation is suspended due to ongoing control operations such as
-          a ping/pong. <code class="computeroutput"><span class="identifier">terminal</span></code> cancellation
-          succeeds when supported by the underlying stream.
+          a ping/pong.
+        </p>
+<p>
+          <code class="computeroutput"><span class="identifier">terminal</span></code> cancellation succeeds
+          when supported by the underlying stream.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.async_close.h4"></a>

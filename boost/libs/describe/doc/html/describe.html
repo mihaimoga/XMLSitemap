@@ -2559,7 +2559,7 @@ with <code>BOOST_DESCRIBE_STRUCT</code> or <code>BOOST_DESCRIBE_CLASS</code>. It
 
         <span class="k">if</span><span class="p">(</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">end</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="n">it</span> <span class="o">!=</span> <span class="sc">'}'</span> <span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">ctx</span><span class="p">.</span><span class="n">error_handler</span><span class="p">().</span><span class="n">on_error</span><span class="p">(</span> <span class="s">"invalid format"</span> <span class="p">);</span>
+            <span class="n">throw_format_error</span><span class="p">(</span> <span class="s">"invalid format"</span> <span class="p">);</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">it</span><span class="p">;</span>
@@ -2682,7 +2682,7 @@ for described enums.</p>
 
         <span class="k">if</span><span class="p">(</span> <span class="n">i1</span> <span class="o">!=</span> <span class="n">i2</span> <span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">ctx</span><span class="p">.</span><span class="n">error_handler</span><span class="p">().</span><span class="n">on_error</span><span class="p">(</span> <span class="s">"invalid format"</span> <span class="p">);</span>
+            <span class="n">throw_format_error</span><span class="p">(</span> <span class="s">"invalid format"</span> <span class="p">);</span>
         <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">i1</span><span class="p">;</span>
@@ -3621,7 +3621,7 @@ the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License, Versi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-06 21:03:11 UTC
+Last updated 2024-04-11 18:48:02 UTC
 </div>
 </div>
 <style>

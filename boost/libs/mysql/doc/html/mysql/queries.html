@@ -35,12 +35,12 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
           <a class="link" href="ref/boost__mysql__connection/execute.html" title="connection::execute"><code class="literal">connection::execute</code></a>
-          or <a class="link" href="ref/boost__mysql__connection/async_execute.html" title="connection::async_execute"><code class="literal">connection::async_execute</code></a>:
+          or <a class="link" href="ref/boost__mysql__connection/async_execute.html" title="connection::async_execute"><code class="literal">async_execute</code></a>:
           these functions run the query and read the generated results into memory.
         </li>
 <li class="listitem">
           <a class="link" href="ref/boost__mysql__connection/start_execution.html" title="connection::start_execution"><code class="literal">connection::start_execution</code></a>
-          and <a class="link" href="ref/boost__mysql__connection/async_start_execution.html" title="connection::async_start_execution"><code class="literal">connection::async_start_execution</code></a>:
+          and <a class="link" href="ref/boost__mysql__connection/async_start_execution.html" title="connection::async_start_execution"><code class="literal">async_start_execution</code></a>:
           these functions initiate a text query as a multi-function operation.
         </li>
 </ul></div>
@@ -54,48 +54,6 @@
     </p>
 <h4>
 <a name="mysql.queries.h0"></a>
-      <span class="phrase"><a name="mysql.queries.limitations"></a></span><a class="link" href="queries.html#mysql.queries.limitations">Limitations</a>
-    </h4>
-<p>
-      At the moment, there is no equivalent to <a href="https://dev.mysql.com/doc/c-api/8.0/en/mysql-real-escape-string.html" target="_top"><code class="computeroutput"><span class="identifier">mysql_real_escape_string</span></code></a> to sanitize
-      user provided input. This limits text queries to queries without parameters.
-      Doing composition by hand can lead to SQL injection vulnerabilities. Please
-      use <a class="link" href="prepared_statements.html" title="Prepared statements">prepared statements</a> instead,
-      which perform composition server-side in a safe way.
-    </p>
-<div class="warning"><table border="0" summary="Warning">
-<tr>
-<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../../../doc/src/images/warning.png"></td>
-<th align="left">Warning</th>
-</tr>
-<tr><td align="left" valign="top"><p>
-        <span class="bold"><strong>SQL injection warning</strong></span>: if you compose queries
-        by concatenating strings without sanitization, your code is vulnerable to
-        SQL injection attacks. Use prepared statements when possible!
-      </p></td></tr>
-</table></div>
-<h4>
-<a name="mysql.queries.h1"></a>
-      <span class="phrase"><a name="mysql.queries.running_multiple_queries_at_once"></a></span><a class="link" href="queries.html#mysql.queries.running_multiple_queries_at_once">Running
-      multiple queries at once</a>
-    </h4>
-<p>
-      You can run several semicolon-separated queries in a single <code class="computeroutput"><span class="identifier">execute</span><span class="special">()</span></code> call by enabling the <a class="link" href="ref/boost__mysql__handshake_params/multi_queries.html" title="handshake_params::multi_queries"><code class="literal">handshake_params::multi_queries</code></a>
-      option. You can find an example <a class="link" href="multi_resultset.html#mysql.multi_resultset.multi_queries">here</a>.
-    </p>
-<div class="warning"><table border="0" summary="Warning">
-<tr>
-<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../../../doc/src/images/warning.png"></td>
-<th align="left">Warning</th>
-</tr>
-<tr><td align="left" valign="top"><p>
-        <span class="bold"><strong>SQL injection warning</strong></span>: do not use this feature
-        if any of your queries contains untrusted input. You can create SQL injection
-        vulnerabilities if you do.
-      </p></td></tr>
-</table></div>
-<h4>
-<a name="mysql.queries.h2"></a>
       <span class="phrase"><a name="mysql.queries.use_cases"></a></span><a class="link" href="queries.html#mysql.queries.use_cases">Use
       cases</a>
     </h4>
@@ -119,7 +77,38 @@
         </li>
 </ul></div>
 <p>
-      Avoid text queries involving user input.
+      If you need to run parametrized SQL, involving user input, you have two options:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          Use <a class="link" href="prepared_statements.html" title="Prepared statements">prepared statements</a>
+          instead of text queries.
+        </li>
+<li class="listitem">
+          If you don't mind using experimental features, you can use <a class="link" href="sql_formatting.html" title="(Experimental) Client-side SQL query formatting">client-side
+          SQL formatting</a> to securely compose queries in the client.
+        </li>
+</ul></div>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../../../doc/src/images/warning.png"></td>
+<th align="left">Warning</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        <span class="bold"><strong>SQL injection warning</strong></span>: if you compose queries
+        by concatenating strings without sanitization, your code is vulnerable to
+        SQL injection attacks. Use prepared statements or proper formatting functions
+        instead!
+      </p></td></tr>
+</table></div>
+<h4>
+<a name="mysql.queries.h1"></a>
+      <span class="phrase"><a name="mysql.queries.running_multiple_queries_at_once"></a></span><a class="link" href="queries.html#mysql.queries.running_multiple_queries_at_once">Running
+      multiple queries at once</a>
+    </h4>
+<p>
+      You can run several semicolon-separated queries in a single <code class="computeroutput"><span class="identifier">execute</span><span class="special">()</span></code> call by enabling the <a class="link" href="ref/boost__mysql__handshake_params/multi_queries.html" title="handshake_params::multi_queries"><code class="literal">handshake_params::multi_queries</code></a>
+      option. You can find an example <a class="link" href="multi_resultset.html#mysql.multi_resultset.multi_queries">here</a>.
     </p>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>

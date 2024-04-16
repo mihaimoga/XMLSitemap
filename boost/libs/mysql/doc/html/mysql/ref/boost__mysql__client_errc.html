@@ -7,7 +7,7 @@
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../../pt01.html" title="Part Two: Reference. ">
 <link rel="prev" href="boost__mysql__column_type.html" title="column_type">
-<link rel="next" href="boost__mysql__unix_ssl_connection.html" title="unix_ssl_connection">
+<link rel="next" href="boost__mysql__address_type.html" title="address_type">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,14 +21,14 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__mysql__column_type.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__unix_ssl_connection.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__mysql__column_type.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__address_type.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
 <a name="mysql.ref.boost__mysql__client_errc"></a><a class="link" href="boost__mysql__client_errc.html" title="client_errc">client_errc</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm65739"></a>
+        <a class="indexterm" name="idm90917"></a>
       </p>
 <p>
         MySQL client-defined error codes.
@@ -232,6 +232,136 @@
                 </p>
               </td>
 </tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">timeout</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) An operation controlled by Boost.MySQL timed out.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">cancelled</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) An operation controlled by Boost.MySQL was cancelled.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">pool_not_running</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) Getting a connection from a connection_pool failed
+                  because the pool is not running. Ensure that you're calling connection_pool::async_run.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">invalid_encoding</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) An invalid byte sequence was found while trying
+                  to decode a string.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">unformattable_value</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) A formatting operation could not format one of its
+                  arguments.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">format_string_invalid_syntax</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) An format string with invalid syntax was provided
+                  to a SQL formatting function.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">format_string_invalid_encoding</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) A format string with an invalid byte sequence was
+                  provided to a SQL formatting function.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">format_string_manual_auto_mix</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) A format string mixes manual (e.g. {0}) and automatic
+                  (e.g. {}) indexing.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">format_arg_not_found</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) A format argument referenced by a format string
+                  was not found. Check the number of format arguments passed and
+                  their names.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">unknown_character_set</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) The character set used by the connection is not
+                  known by the client. Use set_character_set or async_set_character_set
+                  before invoking operations that require a known charset.
+                </p>
+              </td>
+</tr>
 </tbody>
 </table></div>
 <h5>
@@ -252,7 +382,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__mysql__column_type.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__unix_ssl_connection.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__mysql__column_type.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__address_type.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

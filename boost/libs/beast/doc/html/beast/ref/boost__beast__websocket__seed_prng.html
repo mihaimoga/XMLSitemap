@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__websocket__seed_prng"></a><a class="link" href="boost__beast__websocket__seed_prng.html" title="websocket::seed_prng">websocket::seed_prng</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm88250"></a>
+        <a class="indexterm" name="idm88728"></a>
       </p>
 <p>
         Manually provide a one-time seed to initialize the PRNG.
@@ -51,8 +51,11 @@
 <p>
         This function invokes the specified seed sequence to produce a seed suitable
         for use with the pseudo-random number generator used to create masks and
-        perform WebSocket protocol handshakes. If a seed is not manually provided,
-        the implementation will perform a one-time seed generation using <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">random_device</span></code>.
+        perform WebSocket protocol handshakes.
+      </p>
+<p>
+        If a seed is not manually provided, the implementation will perform a one-time
+        seed generation using <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">random_device</span></code>.
         This function may be used when the application runs in an environment where
         the random device is unreliable or does not provide sufficient entropy.
       </p>

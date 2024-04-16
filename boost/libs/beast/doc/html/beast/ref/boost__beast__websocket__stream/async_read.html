@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__websocket__stream.async_read"></a><a class="link" href="async_read.html" title="websocket::stream::async_read">websocket::stream::async_read</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm61670"></a>
+          <a class="indexterm" name="idm61995"></a>
         </p>
 <p>
           Read a complete message asynchronously.
@@ -50,9 +50,11 @@
           <span class="phrase"><a name="beast.ref.boost__beast__websocket__stream.async_read.description"></a></span><a class="link" href="async_read.html#beast.ref.boost__beast__websocket__stream.async_read.description">Description</a>
         </h6>
 <p>
-          This function is used to asynchronously read a complete message. This call
-          always returns immediately. The asynchronous operation will continue until
-          one of the following conditions is true:
+          This function is used to asynchronously read a complete message.
+        </p>
+<p>
+          This call always returns immediately. The asynchronous operation will continue
+          until one of the following conditions is true:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -71,11 +73,15 @@
           is implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">async_read_some</span></code>
           and <code class="computeroutput"><span class="identifier">async_write_some</span></code> functions.
           The program must ensure that no other calls to <a class="link" href="read.html" title="websocket::stream::read"><code class="computeroutput"><span class="identifier">read</span></code></a>, <a class="link" href="read_some.html" title="websocket::stream::read_some"><code class="computeroutput"><span class="identifier">read_some</span></code></a>, <a class="link" href="async_read.html" title="websocket::stream::async_read"><code class="computeroutput"><span class="identifier">async_read</span></code></a>, or <a class="link" href="async_read_some.html" title="websocket::stream::async_read_some"><code class="computeroutput"><span class="identifier">async_read_some</span></code></a> are performed
-          until this operation completes. Received message data is appended to the
-          buffer. The functions <a class="link" href="got_binary.html" title="websocket::stream::got_binary"><code class="computeroutput"><span class="identifier">got_binary</span></code></a> and <a class="link" href="got_text.html" title="websocket::stream::got_text"><code class="computeroutput"><span class="identifier">got_text</span></code></a> may be used to query
-          the stream and determine the type of the last received message. Until the
-          operation completes, the implementation will read incoming control frames
-          and handle them automatically as follows:
+          until this operation completes.
+        </p>
+<p>
+          Received message data is appended to the buffer. The functions <a class="link" href="got_binary.html" title="websocket::stream::got_binary"><code class="computeroutput"><span class="identifier">got_binary</span></code></a> and <a class="link" href="got_text.html" title="websocket::stream::got_text"><code class="computeroutput"><span class="identifier">got_text</span></code></a> may be used to query
+          the stream and determine the type of the last received message.
+        </p>
+<p>
+          Until the operation completes, the implementation will read incoming control
+          frames and handle them automatically as follows:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -179,10 +185,16 @@
 <p>
           <code class="computeroutput"><span class="identifier">total</span></code>cancellation succeeds
           if the operation is suspended due to ongoing control operations such as
-          a ping/pong. <code class="computeroutput"><span class="identifier">terminal</span></code> cancellation
-          succeeds when supported by the underlying stream. <code class="computeroutput"><span class="identifier">terminal</span></code>
-          cancellation leaves the stream in an undefined state, so that only closing
-          it is guaranteed to succeed.
+          a ping/pong.
+        </p>
+<p>
+          <code class="computeroutput"><span class="identifier">terminal</span></code> cancellation succeeds
+          when supported by the underlying stream.
+        </p>
+<p>
+          <code class="computeroutput"><span class="identifier">terminal</span></code> cancellation leaves
+          the stream in an undefined state, so that only closing it is guaranteed
+          to succeed.
         </p>
 </div>
 <div class="copyright-footer">Copyright © 2016-2019 Vinnie

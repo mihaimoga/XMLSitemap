@@ -30,6 +30,44 @@
 </h2></div></div></div>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
+          <span class="bold"><strong>boost 1.85.0 :</strong></span>
+          <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; ">
+<li class="listitem">
+                Significant rewrite of the internal logic to separate optimized and
+                C++ Standard Library IO-based streams:
+                <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: square; ">
+<li class="listitem">
+                      C++ Standard Library based streams now constructed in less
+                      cases leading to <span class="bold"><strong>better performance</strong></span>;
+                    </li>
+<li class="listitem">
+                      less template instantiations and simpler code;
+                    </li>
+<li class="listitem">
+                      always use <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">char_traits</span></code>
+                      (do not use custom traits from input/output types as it leads
+                      to linktime or runtime errors);
+                    </li>
+<li class="listitem">
+                      support for <code class="computeroutput"><span class="keyword">volatile</span></code>
+                      input types was dropped, following the C++ Standard Library
+                      trend.
+                    </li>
+</ul></div>
+              </li>
+<li class="listitem">
+                Optimized conversions from std::basic_string_view and boost::basic_string_view
+              </li>
+<li class="listitem">
+                Dropped dependency on Boost.NumericConversion and Boost.MPL. Fixed
+                some cases of converting floting point types to arithmetics.
+              </li>
+<li class="listitem">
+                The library now works fine with <code class="computeroutput"><span class="special">-</span><span class="identifier">fno</span><span class="special">-</span><span class="identifier">sanitize</span><span class="special">-</span><span class="identifier">recover</span><span class="special">=</span><span class="identifier">integer</span></code>.
+              </li>
+</ul></div>
+        </li>
+<li class="listitem">
           <span class="bold"><strong>boost 1.84.0 :</strong></span>
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
                 Dropped support of C++98 and C++03.
@@ -226,7 +264,8 @@
         </li>
 </ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2000-2005 Kevlin Henney<br>Copyright © 2006-2010 Alexander Nasonov<br>Copyright © 2011-2023 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2000-2005 Kevlin Henney<br>Copyright © 2006-2010 Alexander Nasonov<br>Copyright © 2011-2024 Antony
+      Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

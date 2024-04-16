@@ -244,8 +244,7 @@
 
     <span class="identifier">iterator</span> <a class="link" href="unordered_set_of_reference.html#reference_unordered_set_of_erase_iterator">erase</a><span class="special">(</span><span class="identifier">iterator</span> <span class="identifier">position</span><span class="special">);</span>
 
-    <span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">CompatibleKey</span> <span class="special">&gt;</span>
-    <span class="identifier">size_type</span> <a class="link" href="unordered_set_of_reference.html#reference_unordered_set_of_erase_key">erase</a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">CompatibleKey</span> <span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
+    <span class="identifier">size_type</span> <a class="link" href="unordered_set_of_reference.html#reference_unordered_set_of_erase_key">erase</a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">key_type</span> <span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
 
     <span class="identifier">iterator</span> <a class="link" href="unordered_set_of_reference.html#reference_unordered_set_of_erase_iterator_iterator">erase</a><span class="special">(</span><span class="identifier">iterator</span> <span class="identifier">first</span><span class="special">,</span> <span class="identifier">iterator</span> <span class="identifier">last</span><span class="special">);</span>
 
@@ -638,8 +637,7 @@
                 <span class="bold"><strong>Exception safety:</strong></span> nothrow.
               </li>
 </ul></div>
-<a name="reference_unordered_set_of_erase_key"></a><pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">CompatibleKey</span> <span class="special">&gt;</span>
-<span class="identifier">size_type</span> <span class="identifier">erase</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">CompatibleKey</span> <span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
+<a name="reference_unordered_set_of_erase_key"></a><pre class="programlisting"><span class="identifier">size_type</span> <span class="identifier">erase</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">key_type</span> <span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
 </pre>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -1024,6 +1022,9 @@
 <li class="listitem">
                 <span class="bold"><strong>Requires: </strong></span> <code class="computeroutput"><span class="identifier">CompatibleKey</span></code>
                 is a compatible key of <code class="computeroutput"><span class="identifier">key_compare</span></code>.
+                <code class="computeroutput"><span class="identifier">key_type</span></code> is constructible
+                from <code class="computeroutput"><span class="keyword">const</span> <span class="identifier">CompatibleKey</span>
+                <span class="special">&amp;</span></code>.
               </li>
 <li class="listitem">
                 <span class="bold"><strong>Effects: </strong></span> <code class="computeroutput"><span class="keyword">return</span>

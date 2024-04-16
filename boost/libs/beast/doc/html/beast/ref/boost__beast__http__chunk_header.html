@@ -164,8 +164,10 @@
 <p>
         The chunk extension is optional. After the header and chunk body have been
         serialized, it is the callers responsibility to also serialize the final
-        CRLF (<code class="computeroutput"><span class="string">"\r\n"</span></code>). This
-        class allows the caller to emit piecewise chunk bodies, by first serializing
+        CRLF (<code class="computeroutput"><span class="string">"\r\n"</span></code>).
+      </p>
+<p>
+        This class allows the caller to emit piecewise chunk bodies, by first serializing
         the chunk header using this class and then serializing the chunk body in
         a series of one or more calls to a stream write operation.
       </p>

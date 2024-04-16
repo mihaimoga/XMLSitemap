@@ -50,17 +50,18 @@ var NAVTREE =
     [ "Reference", "index.html#autotoc_md18", null ],
     [ "Acknowledgement", "index.html#autotoc_md19", null ],
     [ "Changelog", "index.html#autotoc_md20", [
-      [ "develop", "index.html#autotoc_md21", null ],
-      [ "v1.4.2 (incorporates changes to conform the boost review and more)", "index.html#autotoc_md22", null ],
-      [ "v1.4.0-1", "index.html#autotoc_md23", null ],
-      [ "v1.3.0-1", "index.html#autotoc_md24", null ],
-      [ "v1.2.0", "index.html#autotoc_md25", null ],
-      [ "v1.1.0-1", "index.html#autotoc_md26", null ],
-      [ "v1.0.0", "index.html#autotoc_md27", null ],
-      [ "v0.3.0", "index.html#autotoc_md28", null ],
-      [ "v0.2.0-1", "index.html#autotoc_md29", null ],
-      [ "v0.1.0-2", "index.html#autotoc_md30", null ],
-      [ "v0.0.1", "index.html#autotoc_md31", null ]
+      [ "Boost 1.85", "index.html#autotoc_md21", null ],
+      [ "Boost 1.84 (First release in Boost)", "index.html#autotoc_md22", null ],
+      [ "v1.4.2 (incorporates changes to conform the boost review and more)", "index.html#autotoc_md23", null ],
+      [ "v1.4.0-1", "index.html#autotoc_md24", null ],
+      [ "v1.3.0-1", "index.html#autotoc_md25", null ],
+      [ "v1.2.0", "index.html#autotoc_md26", null ],
+      [ "v1.1.0-1", "index.html#autotoc_md27", null ],
+      [ "v1.0.0", "index.html#autotoc_md28", null ],
+      [ "v0.3.0", "index.html#autotoc_md29", null ],
+      [ "v0.2.0-1", "index.html#autotoc_md30", null ],
+      [ "v0.1.0-2", "index.html#autotoc_md31", null ],
+      [ "v0.0.1", "index.html#autotoc_md32", null ]
     ] ]
   ] ]
 ];

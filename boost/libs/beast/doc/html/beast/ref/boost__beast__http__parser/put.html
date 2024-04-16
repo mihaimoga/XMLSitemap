@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__parser.put"></a><a class="link" href="put.html" title="http::parser::put">http::parser::put</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm46302"></a>
+          <a class="indexterm" name="idm46455"></a>
         </p>
 <p>
           (Inherited from <a class="link" href="../boost__beast__http__basic_parser.html" title="http::basic_parser"><code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_parser</span></code></a>)
@@ -55,12 +55,17 @@
           This function attempts to incrementally parse the HTTP message data stored
           in the caller provided buffers. Upon success, a positive return value indicates
           that the parser made forward progress, consuming that number of bytes.
+        </p>
+<p>
           In some cases there may be an insufficient number of octets in the input
           buffer in order to make forward progress. This is indicated by the code
           <a class="link" href="../boost__beast__http__error.html" title="http::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">need_more</span></code></a>.
           When this happens, the caller should place additional bytes into the buffer
-          sequence and call <a class="link" href="put.html" title="http::parser::put"><code class="computeroutput"><span class="identifier">put</span></code></a> again. The error code <a class="link" href="../boost__beast__http__error.html" title="http::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">need_more</span></code></a>
-          is special. When this error is returned, a subsequent call to <a class="link" href="put.html" title="http::parser::put"><code class="computeroutput"><span class="identifier">put</span></code></a> may succeed if the buffers
+          sequence and call <a class="link" href="put.html" title="http::parser::put"><code class="computeroutput"><span class="identifier">put</span></code></a> again.
+        </p>
+<p>
+          The error code <a class="link" href="../boost__beast__http__error.html" title="http::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">need_more</span></code></a> is special. When this
+          error is returned, a subsequent call to <a class="link" href="put.html" title="http::parser::put"><code class="computeroutput"><span class="identifier">put</span></code></a> may succeed if the buffers
           have been updated. Otherwise, upon error the parser may not be restarted.
         </p>
 <h6>

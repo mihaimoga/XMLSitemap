@@ -28,6 +28,11 @@
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
 <a name="boost_pfr.how_it_works"></a><a class="link" href="how_it_works.html" title="How it works">How it works</a>
 </h2></div></div></div>
+<h3>
+<a name="boost_pfr.how_it_works.h0"></a>
+      <span class="phrase"><a name="boost_pfr.how_it_works.fields_count_detection_and_getti"></a></span><a class="link" href="how_it_works.html#boost_pfr.how_it_works.fields_count_detection_and_getti">Fields count
+      detection and getting references to members</a>
+    </h3>
 <p>
       Short description:
     </p>
@@ -144,8 +149,39 @@
       technique by its inventor Alexandr Poltavsky <a href="http://alexpolt.github.io/type-loophole.html" target="_top">in
       his blog</a>.
     </p>
+<h3>
+<a name="boost_pfr.how_it_works.h1"></a>
+      <span class="phrase"><a name="boost_pfr.how_it_works.field_name_retrieval"></a></span><a class="link" href="how_it_works.html#boost_pfr.how_it_works.field_name_retrieval">Field
+      name retrieval</a>
+    </h3>
+<div class="orderedlist"><ol class="orderedlist" type="1">
+<li class="listitem">
+          at compile-time:
+          <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+                Get references to members of an object of type <code class="computeroutput"><span class="identifier">T</span></code>
+                in <code class="computeroutput"><span class="keyword">constexpr</span></code> function
+              </li>
+<li class="listitem">
+                Feed the reference from previous as a template parameter to a <code class="computeroutput"><span class="keyword">constexpr</span></code> function with <code class="computeroutput"><span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">auto</span> <span class="identifier">member_ptr</span><span class="special">&gt;</span></code>. That function returns <code class="computeroutput"><span class="identifier">__PRETTY_FUNCTION__</span></code> or some other
+                vendor specific macro that prints the whole name of a function along
+                with the template arguments.
+              </li>
+<li class="listitem">
+                The returned value from previous step contains the member name (<a href="https://godbolt.org/z/K4aWdcE9G" target="_top">godbolt example</a>). Do
+                some compiler specific parsing of the value and make a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span></code> that contains only
+                the member name.
+              </li>
+</ul></div>
+        </li>
+<li class="listitem">
+          at run-time: return the <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span></code>
+          with the member name.
+        </li>
+</ol></div>
 </div>
-<div class="copyright-footer">Copyright © 2016-2023 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2016-2024 Antony
+      Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -35,7 +35,7 @@
         <span class="phrase"><a name="json.ref.boost__json__is_deallocate_trivial.synopsis"></a></span><a class="link" href="boost__json__is_deallocate_trivial.html#json.ref.boost__json__is_deallocate_trivial.synopsis">Synopsis</a>
       </h5>
 <p>
-        Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json/memory_resource.hpp" target="_top">boost/json/memory_resource.hpp</a>&gt;</code>
+        Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json/is_deallocate_trivial.hpp" target="_top">boost/json/is_deallocate_trivial.hpp</a>&gt;</code>
       </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
@@ -84,10 +84,11 @@
 <p>
         This metafunction may be specialized to indicate to the library that calls
         to the <code class="computeroutput"><span class="identifier">deallocate</span></code> function
-        of a <a class="link" href="boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> have no effect.
-        The implementation will elide such calls when it is safe to do so. By default,
-        the implementation assumes that all memory resources require a call to <code class="computeroutput"><span class="identifier">deallocate</span></code> for each memory region obtained
-        by calling <code class="computeroutput"><span class="identifier">allocate</span></code>.
+        of a <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
+        have no effect. The implementation will elide such calls when it is safe
+        to do so. By default, the implementation assumes that all memory resources
+        require a call to <code class="computeroutput"><span class="identifier">deallocate</span></code>
+        for each memory region obtained by calling <code class="computeroutput"><span class="identifier">allocate</span></code>.
       </p>
 <h5>
 <a name="json.ref.boost__json__is_deallocate_trivial.h3"></a>
@@ -125,8 +126,8 @@
         <span class="phrase"><a name="json.ref.boost__json__is_deallocate_trivial.see_also"></a></span><a class="link" href="boost__json__is_deallocate_trivial.html#json.ref.boost__json__is_deallocate_trivial.see_also">See Also</a>
       </h5>
 <p>
-        <a class="link" href="boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>,
-        <a class="link" href="boost__json__storage_ptr.html" title="storage_ptr"><code class="computeroutput"><span class="identifier">storage_ptr</span></code></a>
+        <a class="link" href="boost__json__storage_ptr.html" title="storage_ptr"><code class="computeroutput"><span class="identifier">storage_ptr</span></code></a>,
+        <a href="https://www.boost.org/doc/libs/release/doc/html/boost/container/pmr/memory_resource.html" target="_top"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code></a>.
       </p>
 <p>
         Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json.hpp" target="_top">boost/json.hpp</a>&gt;</code>

@@ -48,8 +48,10 @@
             handshake</a>, required before messages can be sent and received.
             During the handshake, the client sends the Websocket Upgrade HTTP request,
             and the server replies with an HTTP response indicating the result of
-            the handshake. The call blocks until one of the following conditions
-            is true:
+            the handshake.
+          </p>
+<p>
+            The call blocks until one of the following conditions is true:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -63,11 +65,16 @@
             The algorithm, known as a <span class="emphasis"><em>composed operation</em></span>, is
             implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">read_some</span></code>
             and <code class="computeroutput"><span class="identifier">write_some</span></code> functions.
+          </p>
+<p>
             If a valid upgrade request is received, an HTTP response with a <a href="https://tools.ietf.org/html/rfc7230#section-3.1.2" target="_top">status-code</a>
             of <a class="link" href="../../boost__beast__http__status.html" title="http::status"><code class="computeroutput"><span class="identifier">beast</span><span class="special">::</span><span class="identifier">http</span><span class="special">::</span><span class="identifier">status</span><span class="special">::</span><span class="identifier">switching_protocols</span></code></a> is sent
             to the peer, otherwise a non-successful error is associated with the
-            operation. If the request size exceeds the capacity of the stream's internal
-            buffer, the error <a class="link" href="../../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">buffer_overflow</span></code></a> will be indicated.
+            operation.
+          </p>
+<p>
+            If the request size exceeds the capacity of the stream's internal buffer,
+            the error <a class="link" href="../../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">buffer_overflow</span></code></a> will be indicated.
             To handle larger requests, an application should read the HTTP request
             directly using <a class="link" href="../../boost__beast__http__read.html" title="http::read"><code class="computeroutput">
             <span class="identifier">http</span><span class="special">::</span><span class="identifier">read</span> </code></a> and then pass the request

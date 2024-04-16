@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__detect_ssl"></a><a class="link" href="boost__beast__detect_ssl.html" title="detect_ssl">detect_ssl</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm69979"></a>
+        <a class="indexterm" name="idm70379"></a>
       </p>
 <p>
         Detect a TLS client handshake on a stream.
@@ -55,7 +55,10 @@
       </h5>
 <p>
         This function reads from a stream to determine if a client handshake message
-        is being received. The call blocks until one of the following is true:
+        is being received.
+      </p>
+<p>
+        The call blocks until one of the following is true:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -71,9 +74,12 @@
 <p>
         The algorithm, known as a <span class="emphasis"><em>composed operation</em></span>, is implemented
         in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">read_some</span></code>
-        function. Bytes read from the stream will be stored in the passed dynamic
-        buffer, which may be used to perform the TLS handshake if the detector returns
-        true, or be otherwise consumed by the caller based on the expected protocol.
+        function.
+      </p>
+<p>
+        Bytes read from the stream will be stored in the passed dynamic buffer, which
+        may be used to perform the TLS handshake if the detector returns true, or
+        be otherwise consumed by the caller based on the expected protocol.
       </p>
 <h5>
 <a name="beast.ref.boost__beast__detect_ssl.h2"></a>

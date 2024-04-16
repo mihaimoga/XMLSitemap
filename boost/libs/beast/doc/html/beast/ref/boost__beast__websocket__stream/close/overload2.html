@@ -48,7 +48,10 @@
             This function is used to send a <a href="https://tools.ietf.org/html/rfc6455#section-5.5.1" target="_top">close
             frame</a>, which begins the websocket closing handshake. The session
             ends when both ends of the connection have sent and received a close
-            frame. The call blocks until one of the following conditions is true:
+            frame.
+          </p>
+<p>
+            The call blocks until one of the following conditions is true:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -61,10 +64,12 @@
 <p>
             The algorithm, known as a <span class="emphasis"><em>composed operation</em></span>, is
             implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">write_some</span></code>
-            function. After beginning the closing handshake, the program should not
-            write further message data, pings, or pongs. Instead, the program should
-            continue reading message data until an error occurs. A read returning
-            <a class="link" href="../../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
+            function.
+          </p>
+<p>
+            After beginning the closing handshake, the program should not write further
+            message data, pings, or pongs. Instead, the program should continue reading
+            message data until an error occurs. A read returning <a class="link" href="../../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
             connection closure.
           </p>
 <h6>

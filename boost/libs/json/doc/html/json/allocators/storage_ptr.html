@@ -400,7 +400,7 @@
         <code class="computeroutput"><span class="identifier">do_deallocate</span></code>, and <code class="computeroutput"><span class="identifier">do_is_equal</span></code> as seen in this example below,
         which logs each operation it performs to the console:
       </p>
-<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">logging_resource</span> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">memory_resource</span>
+<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">logging_resource</span> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span>
 <span class="special">{</span>
 <span class="keyword">private</span><span class="special">:</span>
     <span class="keyword">void</span><span class="special">*</span> <span class="identifier">do_allocate</span><span class="special">(</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">bytes</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">align</span> <span class="special">)</span> <span class="identifier">override</span>

@@ -997,6 +997,7 @@ pre.rouge {
 </li>
 <li><a href="#changes">Change Log</a>
 <ul class="sectlevel2">
+<li><a href="#changes_release_1_85_0">Release 1.85.0</a></li>
 <li><a href="#changes_release_1_84_0_major_update">Release 1.84.0 - Major update</a></li>
 <li><a href="#changes_release_1_83_0_major_update">Release 1.83.0 - Major update</a></li>
 <li><a href="#changes_release_1_82_0_major_update">Release 1.82.0 - Major update</a></li>
@@ -5454,7 +5455,10 @@ Notes:
 <td class="hdlist2">
 <p>Can invalidate iterators, but only if the insert causes the load factor to be greater to or equal to the maximum load factor.<br></p>
 <div class="paragraph">
-<p>Pointers and references to elements are never invalidated.</p>
+<p>Pointers and references to elements are never invalidated.<br></p>
+</div>
+<div class="paragraph">
+<p>If <code>args&#8230;&#8203;</code> is of the form <code>k,v</code>, it delays constructing the whole object until it is certain that an element should be inserted, using only the <code>k</code> argument to check. This optimization happens when the map&#8217;s <code>key_type</code> is move constructible or when the <code>k</code> argument is a <code>key_type</code>.</p>
 </div>
 </td>
 </tr>
@@ -5511,7 +5515,10 @@ Notes:
 <p>Can invalidate iterators, but only if the insert causes the load factor to be greater to or equal to the maximum load factor.<br></p>
 </div>
 <div class="paragraph">
-<p>Pointers and references to elements are never invalidated.</p>
+<p>Pointers and references to elements are never invalidated.<br></p>
+</div>
+<div class="paragraph">
+<p>If <code>args&#8230;&#8203;</code> is of the form <code>k,v</code>, it delays constructing the whole object until it is certain that an element should be inserted, using only the <code>k</code> argument to check. This optimization happens when the map&#8217;s <code>key_type</code> is move constructible or when the <code>k</code> argument is a <code>key_type</code>.</p>
 </div>
 </td>
 </tr>
@@ -17761,6 +17768,9 @@ Notes:
 </td>
 <td class="hdlist2">
 <p>Can invalidate iterators, pointers and references, but only if the insert causes the load to be greater than the maximum load.<br></p>
+<div class="paragraph">
+<p>If <code>args&#8230;&#8203;</code> is of the form <code>k,v</code>, it delays constructing the whole object until it is certain that an element should be inserted, using only the <code>k</code> argument to check.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -17815,6 +17825,9 @@ Notes:
 </td>
 <td class="hdlist2">
 <p>Can invalidate iterators, pointers and references, but only if the insert causes the load to be greater than the maximum load.<br></p>
+<div class="paragraph">
+<p>If <code>args&#8230;&#8203;</code> is of the form <code>k,v</code>, it delays constructing the whole object until it is certain that an element should be inserted, using only the <code>k</code> argument to check.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -22905,6 +22918,9 @@ Notes:
 </td>
 <td class="hdlist2">
 <p>Can invalidate iterators, but only if the insert causes the load to be greater than the maximum load.<br></p>
+<div class="paragraph">
+<p>If <code>args&#8230;&#8203;</code> is of the form <code>k,v</code>, it delays constructing the whole object until it is certain that an element should be inserted, using only the <code>k</code> argument to check. This optimization happens when <code>key_type</code> is move constructible or when the <code>k</code> argument is a <code>key_type</code>.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -22959,6 +22975,9 @@ Notes:
 </td>
 <td class="hdlist2">
 <p>Can invalidate iterators, but only if the insert causes the load to be greater than the maximum load.<br></p>
+<div class="paragraph">
+<p>If <code>args&#8230;&#8203;</code> is of the form <code>k,v</code>, it delays constructing the whole object until it is certain that an element should be inserted, using only the <code>k</code> argument to check. This optimization happens when <code>key_type</code> is move constructible or when the <code>k</code> argument is a <code>key_type</code>.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -28726,7 +28745,10 @@ Concurrency:
 Notes:
 </td>
 <td class="hdlist2">
-<p>Invalidates pointers and references to elements if a rehashing is issued.</p>
+<p>Invalidates pointers and references to elements if a rehashing is issued.<br></p>
+<div class="paragraph">
+<p>If <code>args&#8230;&#8203;</code> is of the form <code>k,v</code>, it delays constructing the whole object until it is certain that an element should be inserted, using only the <code>k</code> argument to check.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -32839,6 +32861,25 @@ Concurrency:
 <h2 id="changes"><a class="link" href="#changes">Change Log</a></h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="changes_release_1_85_0"><a class="link" href="#changes_release_1_85_0">Release 1.85.0</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Optimized <code>emplace()</code> for a <code>value_type</code> or <code>init_type</code> (if applicable) argument to bypass creating an intermediate object. The argument is already the same type as the would-be intermediate object.</p>
+</li>
+<li>
+<p>Optimized <code>emplace()</code> for <code>k,v</code> arguments on map containers to delay constructing the object until it is certain that an element should be inserted. This optimization happens when the map&#8217;s <code>key_type</code> is move constructible or when the <code>k</code> argument is a <code>key_type</code>.</p>
+</li>
+<li>
+<p>Fixed support for allocators with <code>explicit</code> copy constructors (<a href="https://github.com/boostorg/unordered/pull/234" target="_blank" rel="noopener">PR#234</a>).</p>
+</li>
+<li>
+<p>Fixed bug in the <code>const</code> version of <code>unordered_multimap::find(k, hash, eq)</code> (<a href="https://github.com/boostorg/unordered/pull/238" target="_blank" rel="noopener">PR#238</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
 <h3 id="changes_release_1_84_0_major_update"><a class="link" href="#changes_release_1_84_0_major_update">Release 1.84.0 - Major update</a></h3>
 <div class="ulist">
 <ul>
@@ -33767,10 +33808,13 @@ An introduction to hash table implementations. Discusses the differences between
 <p>Copyright &#169; 2022-2023 Christian Mazakas</p>
 </div>
 <div class="paragraph">
-<p>Copyright &#169; 2022-2023 Joaqu&iacute;n M L&oacute;pez Mu&ntilde;oz</p>
+<p>Copyright &#169; 2022-2024 Joaqu&iacute;n M L&oacute;pez Mu&ntilde;oz</p>
 </div>
 <div class="paragraph">
 <p>Copyright &#169; 2022-2023 Peter Dimov</p>
+</div>
+<div class="paragraph">
+<p>Copyright &#169; 2024 Braden Ganetsky</p>
 </div>
 <div class="paragraph">
 <p>Distributed under the Boost Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" class="bare">http://www.boost.org/LICENSE_1_0.txt</a>)</p>

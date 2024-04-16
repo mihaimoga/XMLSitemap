@@ -34,16 +34,16 @@
     </h4>
 <p>
       MySQL defines a character set as "a set of symbols and their respective
-      encodings". <code class="computeroutput"><span class="identifier">ascii</span></code>, <code class="computeroutput"><span class="identifier">latin1</span></code>, <code class="computeroutput"><span class="identifier">utf8</span></code>
-      and <code class="computeroutput"><span class="identifier">utf16</span></code> are character sets
-      supported by MySQL.
+      encodings". <code class="computeroutput"><span class="identifier">utf8mb4</span></code>,
+      <code class="computeroutput"><span class="identifier">utf16</span></code> and <code class="computeroutput"><span class="identifier">ascii</span></code>
+      are character sets supported by MySQL.
     </p>
 <p>
       A collation is a set of rules for comparing characters in a character set.
       For example, a case-insensitive collation will make strings that only differ
       in case compare equal. All collations are associated to a single character
-      set. For example, <code class="computeroutput"><span class="identifier">utf8_spanish_ci</span></code>
-      is a case-insensitive collation associated to the <code class="computeroutput"><span class="identifier">utf8</span></code>
+      set. For example, <code class="computeroutput"><span class="identifier">utf8mb4_spanish_ci</span></code>
+      is a case-insensitive collation associated to the <code class="computeroutput"><span class="identifier">utf8mb4</span></code>
       character set. Every character set has a default collation, which will be used
       if a character set without a collation is specified. For example, <code class="computeroutput"><span class="identifier">latin1_swedish_ci</span></code> is the default collation
       for the <code class="computeroutput"><span class="identifier">latin1</span></code> character set.
@@ -83,7 +83,7 @@
           The problem with this approach is that if you specify a collation ID that
           is unknown to the server (e.g. <code class="computeroutput"><span class="identifier">utf8mb4_0900_ai_ci</span></code>
           for an old MySQL 5.7 server), the handshake operation will succeed but
-          the connection <span class="bold"><strong>will sillently fall back to the server's
+          the connection <span class="bold"><strong>will silently fall back to the server's
           default character set</strong></span>, (usually <code class="computeroutput"><span class="identifier">latin1</span></code>,
           which is not Unicode).
         </p>
@@ -259,6 +259,163 @@
 </tbody>
 </table>
 </div>
+<h4>
+<a name="mysql.charsets.h3"></a>
+      <span class="phrase"><a name="mysql.charsets.tracking"></a></span><a class="link" href="charsets.html#mysql.charsets.tracking">(Experimental)
+      Character set tracking</a>
+    </h4>
+<p>
+      <a class="link" href="ref/boost__mysql__any_connection.html" title="any_connection"><code class="literal">any_connection</code></a>
+      attempts to track the connection's current character set. You can access this
+      information using <a class="link" href="ref/boost__mysql__any_connection/current_character_set.html" title="any_connection::current_character_set"><code class="literal">any_connection::current_character_set</code></a>
+      and <a class="link" href="ref/boost__mysql__any_connection/format_opts.html" title="any_connection::format_opts"><code class="literal">any_connection::format_opts</code></a>.
+    </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        This functionality is only relevant when using SQL formatting and escaping
+        functions, like <a class="link" href="ref/boost__mysql__format_sql.html" title="format_sql"><code class="literal">format_sql</code></a>,
+        <a class="link" href="ref/boost__mysql__format_context.html" title="format_context"><code class="literal">format_context</code></a>
+        or <a class="link" href="ref/boost__mysql__escape_string.html" title="escape_string"><code class="literal">escape_string</code></a>.
+      </p></td></tr>
+</table></div>
+<p>
+      The MySQL protocol has limited support for character set tracking, so this
+      task requires some help from the user. Some situations can make the current
+      character set to be unknown. If this happens, <a class="link" href="ref/boost__mysql__any_connection/current_character_set.html" title="any_connection::current_character_set"><code class="literal">any_connection::current_character_set</code></a>
+      and <a class="link" href="ref/boost__mysql__any_connection/format_opts.html" title="any_connection::format_opts"><code class="literal">any_connection::format_opts</code></a>
+      return an <code class="computeroutput"><span class="identifier">unknown_character_set</span></code>
+      error.
+    </p>
+<p>
+      This is how tracking works:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          Before connection establishment, the current character set is always unknown.
+        </li>
+<li class="listitem">
+          After <a class="link" href="ref/boost__mysql__any_connection/connect.html" title="any_connection::connect"><code class="literal">any_connection::connect</code></a>
+          or <a class="link" href="ref/boost__mysql__any_connection/async_connect.html" title="any_connection::async_connect"><code class="literal">async_connect</code></a>
+          succeed, heuristics are used to determine the current character set. This
+          is required because the server may reject the collation requested by <a class="link" href="ref/boost__mysql__connect_params/connection_collation.html" title="connect_params::connection_collation"><code class="literal">connect_params::connection_collation</code></a>
+          and silently fall back to an unknown character set. If Boost.MySQL is not
+          sure that the collation will be accepted, the current character set will
+          be left unknown. Note that leaving <a class="link" href="ref/boost__mysql__connect_params/connection_collation.html" title="connect_params::connection_collation"><code class="literal">connect_params::connection_collation</code></a>
+          to its default value always sets the current character set to <a class="link" href="ref/boost__mysql__utf8mb4_charset.html" title="utf8mb4_charset"><code class="literal">utf8mb4_charset</code></a>.
+        </li>
+<li class="listitem">
+          After connection, you can call <a class="link" href="ref/boost__mysql__any_connection/set_character_set.html" title="any_connection::set_character_set"><code class="literal">any_connection::set_character_set</code></a>
+          or <a class="link" href="ref/boost__mysql__any_connection/async_set_character_set.html" title="any_connection::async_set_character_set"><code class="literal">async_set_character_set</code></a>
+          to set the current character set to a known value. This will issue a <code class="computeroutput"><span class="identifier">SET</span> <span class="identifier">NAMES</span></code>
+          statement and also update the value stored in the client.
+        </li>
+<li class="listitem">
+          Calling <a class="link" href="ref/boost__mysql__any_connection/reset_connection.html" title="any_connection::reset_connection"><code class="literal">any_connection::reset_connection</code></a>
+          or <a class="link" href="ref/boost__mysql__any_connection/async_reset_connection.html" title="any_connection::async_reset_connection"><code class="literal">async_reset_connection</code></a>
+          resets the character set to the server's default, which is unknown (usually
+          <code class="computeroutput"><span class="identifier">latin1</span></code>). The current character
+          set will be unknown until you call <a class="link" href="ref/boost__mysql__any_connection/set_character_set.html" title="any_connection::set_character_set"><code class="literal">set_character_set</code></a>
+          or <a class="link" href="ref/boost__mysql__any_connection/async_set_character_set.html" title="any_connection::async_set_character_set"><code class="literal">async_set_character_set</code></a>.
+        </li>
+</ul></div>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../../../doc/src/images/warning.png"></td>
+<th align="left">Warning</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        <span class="bold"><strong>Do not execute <code class="computeroutput"><span class="identifier">SET</span>
+        <span class="identifier">NAMES</span></code></strong></span>, <code class="computeroutput"><span class="identifier">SET</span> <span class="identifier">CHARACTER</span>
+        <span class="identifier">SET</span></code> or any other SQL statement
+        that modifies <code class="computeroutput"><span class="identifier">character_set_client</span></code>
+        using <code class="computeroutput"><span class="identifier">execute</span></code>. This will
+        make character set information stored in the client invalid.
+      </p></td></tr>
+</table></div>
+<h4>
+<a name="mysql.charsets.h4"></a>
+      <span class="phrase"><a name="mysql.charsets.custom"></a></span><a class="link" href="charsets.html#mysql.charsets.custom">(Experimental)
+      Adding support for a character set</a>
+    </h4>
+<p>
+      Built-in support is provided for <code class="computeroutput"><span class="identifier">utf8mb4</span></code>
+      (<a class="link" href="ref/boost__mysql__utf8mb4_charset.html" title="utf8mb4_charset"><code class="literal">utf8mb4_charset</code></a>)
+      and <code class="computeroutput"><span class="identifier">ascii</span></code> (<a class="link" href="ref/boost__mysql__ascii_charset.html" title="ascii_charset"><code class="literal">ascii_charset</code></a>).
+      We strongly encourage you to always use <code class="computeroutput"><span class="identifier">utf8mb4</span></code>.
+    </p>
+<p>
+      If you really need to use a different character set, you can implement them
+      by creating <a class="link" href="ref/boost__mysql__character_set.html" title="character_set"><code class="literal">character_set</code></a>
+      objects. You can then pass them to functions like <a class="link" href="ref/boost__mysql__any_connection/set_character_set.html" title="any_connection::set_character_set"><code class="literal">set_character_set</code></a>
+      like the built-in ones.
+    </p>
+<p>
+      The structure has the following members:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <a class="link" href="ref/boost__mysql__character_set/name.html" title="character_set::name"><code class="literal">character_set::name</code></a>
+          must match the name you would use in <code class="computeroutput"><span class="identifier">SET</span>
+          <span class="identifier">NAMES</span></code>.
+        </li>
+<li class="listitem">
+          <a class="link" href="ref/boost__mysql__character_set/next_char.html" title="character_set::next_char"><code class="literal">character_set::next_char</code></a>
+          is used to iterate the string. It must return the length in bytes of the
+          first code point in the string, or 0 if the code point is invalid.
+        </li>
+</ul></div>
+<p>
+      For example, this is how you could implement the <code class="computeroutput"><span class="identifier">utf8mb4</span></code>
+      character set. For brevity, only a small part of the implementation is shown
+      - have a look at the definition of <a class="link" href="ref/boost__mysql__utf8mb4_charset.html" title="utf8mb4_charset"><code class="literal">utf8mb4_charset</code></a>
+      for a full implementation.
+    </p>
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">utf8mb4_next_char</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">span</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">&gt;</span> <span class="identifier">input</span><span class="special">)</span> <span class="keyword">noexcept</span>
+<span class="special">{</span>
+    <span class="comment">// Input strings are never empty - they always have 1 byte, at least.</span>
+    <span class="identifier">assert</span><span class="special">(!</span><span class="identifier">input</span><span class="special">.</span><span class="identifier">empty</span><span class="special">());</span>
+
+    <span class="comment">// In UTF8, we need to look at the first byte to know the character's length</span>
+    <span class="keyword">auto</span> <span class="identifier">first_char</span> <span class="special">=</span> <span class="identifier">input</span><span class="special">[</span><span class="number">0</span><span class="special">];</span>
+
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">first_char</span> <span class="special">&lt;</span> <span class="number">0x80</span><span class="special">)</span>
+    <span class="special">{</span>
+        <span class="comment">// 0x00 to 0x7F: ASCII range. The character is 1 byte long</span>
+        <span class="keyword">return</span> <span class="number">1</span><span class="special">;</span>
+    <span class="special">}</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> <span class="special">(</span><span class="identifier">first_char</span> <span class="special">&lt;=</span> <span class="number">0xc1</span><span class="special">)</span>
+    <span class="special">{</span>
+        <span class="comment">// 0x80 to 0xc1: invalid. No UTF8 character starts with such a byte</span>
+        <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+    <span class="special">}</span>
+    <span class="keyword">else</span> <span class="keyword">if</span> <span class="special">(</span><span class="identifier">first_char</span> <span class="special">&lt;=</span> <span class="number">0xdf</span><span class="special">)</span>
+    <span class="special">{</span>
+        <span class="comment">// 0xc2 to 0xdf: two byte characters.</span>
+        <span class="comment">// It's vital that we check that the characters are valid. Otherwise, vulnerabilities can arise.</span>
+
+        <span class="comment">// Check that the string has enough bytes</span>
+        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">input</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span> <span class="special">&lt;</span> <span class="number">2u</span><span class="special">)</span>
+            <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+
+        <span class="comment">// The second byte must be between 0x80 and 0xbf. Otherwise, the character is invalid</span>
+        <span class="comment">// Do not skip this check - otherwise escaping will yield invalid results</span>
+        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">input</span><span class="special">[</span><span class="number">1</span><span class="special">]</span> <span class="special">&lt;</span> <span class="number">0x80</span> <span class="special">||</span> <span class="identifier">input</span><span class="special">[</span><span class="number">1</span><span class="special">]</span> <span class="special">&gt;</span> <span class="number">0xbf</span><span class="special">)</span>
+            <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+
+        <span class="comment">// Valid, 2 byte character</span>
+        <span class="keyword">return</span> <span class="number">2</span><span class="special">;</span>
+    <span class="special">}</span>
+    <span class="comment">// Omitted: 3 and 4 byte long characters</span>
+    <span class="keyword">else</span>
+    <span class="special">{</span>
+        <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+    <span class="special">}</span>
+<span class="special">}</span>
+</pre>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

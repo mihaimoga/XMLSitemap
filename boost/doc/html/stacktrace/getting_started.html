@@ -34,6 +34,8 @@
 <dt><span class="section"><a href="getting_started.html#stacktrace.getting_started.better_asserts">Better asserts</a></span></dt>
 <dt><span class="section"><a href="getting_started.html#stacktrace.getting_started.handle_terminates">Handle
       terminates</a></span></dt>
+<dt><span class="section"><a href="getting_started.html#stacktrace.getting_started.stacktrace_from_arbitrary_except">Stacktrace
+      from arbitrary exception</a></span></dt>
 <dt><span class="section"><a href="getting_started.html#stacktrace.getting_started.exceptions_with_stacktrace">Exceptions
       with stacktrace</a></span></dt>
 <dt><span class="section"><a href="getting_started.html#stacktrace.getting_started.enabling_and_disabling_stacktrac">Enabling
@@ -228,8 +230,88 @@
           Use</strong></span> platform specific ways to store and decode <span class="bold"><strong>core
           files</strong></span>.
         </p>
+<p>
+          See <a class="link" href="theoretical_async_signal_safety.html" title="Theoretical async signal safety">"Theoretical
+          async signal safety"</a> for more info.
+        </p>
 </td></tr>
 </table></div>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="stacktrace.getting_started.stacktrace_from_arbitrary_except"></a><a class="link" href="getting_started.html#stacktrace.getting_started.stacktrace_from_arbitrary_except" title="Stacktrace from arbitrary exception">Stacktrace
+      from arbitrary exception</a>
+</h3></div></div></div>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../doc/src/images/warning.png"></td>
+<th align="left">Warning</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+          At the moment the functionality is only available for some of the popular
+          C++ runtimes for POSIX systems and requires <span class="bold"><strong>libbacktrace</strong></span>.
+          Make sure that your platform is supported by running some tests.
+        </p></td></tr>
+</table></div>
+<p>
+        The library provides a way to get stacktrace from an exception as if the
+        stacktrace was captured at the point the exception was thrown. Works even
+        if the exception was thrown from a third party binary library.
+      </p>
+<p>
+        Link with <code class="computeroutput"><span class="identifier">boost_stacktrace_from_exception</span></code>
+        library (or just <code class="computeroutput"><span class="identifier">LD_PRELOAD</span></code>
+        it!) and call boost::stacktrace::stacktrace::from_current_exception() to
+        get the trace:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">stdexcept</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">stacktrace</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">void</span> <span class="identifier">foo</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">key</span><span class="special">);</span>
+<span class="keyword">void</span> <span class="identifier">bar</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">key</span><span class="special">);</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span> <span class="special">{</span>
+  <span class="keyword">try</span> <span class="special">{</span>
+    <span class="identifier">foo</span><span class="special">(</span><span class="string">"test1"</span><span class="special">);</span>
+    <span class="identifier">bar</span><span class="special">(</span><span class="string">"test2"</span><span class="special">);</span>
+  <span class="special">}</span> <span class="keyword">catch</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">exception</span><span class="special">&amp;</span> <span class="identifier">exc</span><span class="special">)</span> <span class="special">{</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">stacktrace</span><span class="special">::</span><span class="identifier">stacktrace</span> <span class="identifier">trace</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">stacktrace</span><span class="special">::</span><span class="identifier">from_current_exception</span><span class="special">();</span>  <span class="comment">// &lt;---</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cerr</span> <span class="special">&lt;&lt;</span> <span class="string">"Caught exception: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">exc</span><span class="special">.</span><span class="identifier">what</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="string">", trace:\n"</span> <span class="special">&lt;&lt;</span> <span class="identifier">trace</span><span class="special">;</span>
+  <span class="special">}</span>
+<span class="special">}</span>
+</pre>
+<p>
+        The output of the above sample may be the following:
+      </p>
+<pre class="programlisting"><span class="identifier">Caught</span> <span class="identifier">exception</span><span class="special">:</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">map</span><span class="special">::</span><span class="identifier">at</span><span class="special">,</span> <span class="identifier">trace</span><span class="special">:</span>
+ <span class="number">0</span><span class="special">#</span> <span class="identifier">get_data_from_config</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span><span class="special">)</span> <span class="identifier">at</span> <span class="special">/</span><span class="identifier">home</span><span class="special">/</span><span class="identifier">axolm</span><span class="special">/</span><span class="identifier">basic</span><span class="special">.</span><span class="identifier">cpp</span><span class="special">:</span><span class="number">600</span>
+ <span class="number">1</span><span class="special">#</span> <span class="identifier">bar</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span><span class="special">)</span> <span class="identifier">at</span> <span class="special">/</span><span class="identifier">home</span><span class="special">/</span><span class="identifier">axolm</span><span class="special">/</span><span class="identifier">basic</span><span class="special">.</span><span class="identifier">cpp</span><span class="special">:</span><span class="number">6</span>
+ <span class="number">2</span><span class="special">#</span> <span class="identifier">main</span> <span class="identifier">at</span> <span class="special">/</span><span class="identifier">home</span><span class="special">/</span><span class="identifier">axolm</span><span class="special">/</span><span class="identifier">basic</span><span class="special">.</span><span class="identifier">cpp</span><span class="special">:</span><span class="number">17</span>
+</pre>
+<p>
+        With the above technique a developer can locate the source file and the function
+        that has thrown the exception without a debugger help. it is especially useful
+        for testing in containers (github CI, other CIs), where the developer has
+        no direct access to the testing environment and reproducing the issue is
+        complicated.
+      </p>
+<p>
+        Note that linking with <code class="computeroutput"><span class="identifier">boost_stacktrace_from_exception</span></code>
+        may increase memory consumption of the application, as the exceptions now
+        additionally store traces.
+      </p>
+<p>
+        At runtime switch boost::stacktrace::this_thread::set_capture_stacktraces_at_throw()
+        allows to disable/enable capturing and storing traces in exceptions.
+      </p>
+<p>
+        To disable the <code class="computeroutput"><span class="identifier">boost_stacktrace_from_exception</span></code>
+        library builds the <code class="computeroutput"><span class="identifier">boost</span><span class="special">.</span><span class="identifier">stacktrace</span><span class="special">.</span><span class="identifier">from_exception</span><span class="special">=</span><span class="identifier">off</span></code> option,
+        for example <code class="computeroutput"><span class="special">./</span><span class="identifier">b2</span>
+        <span class="identifier">boost</span><span class="special">.</span><span class="identifier">stacktrace</span><span class="special">.</span><span class="identifier">from_exception</span><span class="special">=</span><span class="identifier">off</span></code>.
+      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -448,7 +530,8 @@
 </pre>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2016-2023 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2016-2024 Antony
+      Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

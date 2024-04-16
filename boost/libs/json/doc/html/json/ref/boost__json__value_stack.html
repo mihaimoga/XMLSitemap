@@ -257,11 +257,11 @@
         allows iterative construction of a JSON document in memory. The implementation
         uses temporary internal storage to buffer elements so that arrays, objects,
         and strings in the document are constructed using a single memory allocation.
-        This improves performance and makes efficient use of the <a class="link" href="boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> used to create the
-        resulting <a class="link" href="boost__json__value.html" title="value"><code class="computeroutput"><span class="identifier">value</span></code></a>.
+        This improves performance and makes efficient use of the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code> used to create the resulting
+        <a class="link" href="boost__json__value.html" title="value"><code class="computeroutput"><span class="identifier">value</span></code></a>.
         Temporary storage used by the implementation initially comes from an optional
         memory buffer owned by the caller. If that storage is exhausted, then memory
-        is obtained dynamically from the <a class="link" href="boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> provided on construction.
+        is obtained dynamically from the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code> provided on construction.
       </p>
 <h5>
 <a name="json.ref.boost__json__value_stack.h3"></a>
@@ -272,7 +272,7 @@
         to use for more storage when the initial buffer is exhausted. Then to build
         a <a class="link" href="boost__json__value.html" title="value"><code class="computeroutput"><span class="identifier">value</span></code></a>,
         first call <a class="link" href="boost__json__value_stack/reset.html" title="value_stack::reset"><code class="computeroutput"><span class="identifier">reset</span></code></a> and optionally specify the
-        <a class="link" href="boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
+        <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
         which will be used for the value. Then push elements onto the stack by calling
         the corresponding functions. After the document has been fully created, call
         <a class="link" href="boost__json__value_stack/release.html" title="value_stack::release"><code class="computeroutput"><span class="identifier">release</span></code></a>

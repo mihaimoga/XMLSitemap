@@ -217,7 +217,6 @@
 <p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="keyword">static_assert</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
 <span class="preprocessor">#ifdef</span> <span class="identifier">NDEBUG</span>
@@ -235,7 +234,7 @@
 
    <span class="comment">//Size-optimized vector is smaller than the default one.</span>
    <span class="keyword">typedef</span> <span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">new_allocator</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;,</span> <span class="identifier">size_option_t</span> <span class="special">&gt;</span> <span class="identifier">size_optimized_vector_t</span><span class="special">;</span>
-   <span class="identifier">BOOST_STATIC_ASSERT</span><span class="special">((</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">size_optimized_vector_t</span><span class="special">)</span> <span class="special">&lt;</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;)</span> <span class="special">));</span>
+   <span class="identifier">assert</span><span class="special">((</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">size_optimized_vector_t</span><span class="special">)</span> <span class="special">&lt;</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;)</span> <span class="special">));</span>
 
    <span class="comment">//Requesting capacity for more elements than representable by "unsigned char"</span>
    <span class="comment">//is an error in the size optimized vector.</span>
@@ -299,7 +298,6 @@
 <p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">static_vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="keyword">static_assert</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
 <span class="preprocessor">#ifdef</span> <span class="identifier">NDEBUG</span>
@@ -369,7 +367,6 @@
 <p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">small_vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="keyword">static_assert</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
 <span class="preprocessor">#ifdef</span> <span class="identifier">NDEBUG</span>
@@ -446,7 +443,6 @@
 <p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">deque</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="keyword">static_assert</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
 <span class="preprocessor">#ifdef</span> <span class="identifier">NDEBUG</span>
@@ -528,7 +524,6 @@
 <p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">devector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="keyword">static_assert</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
 <span class="preprocessor">#ifdef</span> <span class="identifier">NDEBUG</span>
@@ -548,7 +543,7 @@
 
    <span class="comment">//Size-optimized devector is smaller than the default one.</span>
    <span class="keyword">typedef</span> <span class="identifier">devector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">new_allocator</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;,</span> <span class="identifier">size_option_t</span> <span class="special">&gt;</span> <span class="identifier">size_optimized_devector_t</span><span class="special">;</span>
-   <span class="identifier">BOOST_STATIC_ASSERT</span><span class="special">((</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">size_optimized_devector_t</span><span class="special">)</span> <span class="special">&lt;</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">devector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;)</span> <span class="special">));</span>
+   <span class="identifier">assert</span><span class="special">((</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">size_optimized_devector_t</span><span class="special">)</span> <span class="special">&lt;</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">devector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;)</span> <span class="special">));</span>
 
    <span class="comment">//Requesting capacity for more elements than representable by "unsigned char" is an error</span>
    <span class="keyword">bool</span> <span class="identifier">exception_thrown</span> <span class="special">=</span> <span class="keyword">false</span><span class="special">;</span>

@@ -38,7 +38,7 @@
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
 <span class="identifier">storage_ptr</span><span class="special">(</span>
-    <span class="identifier">polymorphic_allocator</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">alloc</span><span class="special">);</span>
+    <span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">polymorphic_allocator</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">alloc</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__storage_ptr.storage_ptr.overload3.h1"></a>
@@ -49,13 +49,13 @@
             as <code class="computeroutput"><span class="identifier">alloc</span></code>, obtained by
             calling <code class="computeroutput"><span class="identifier">alloc</span><span class="special">.</span><span class="identifier">resource</span><span class="special">()</span></code>.
             The caller is responsible for maintaining the lifetime of the pointed-to
-            <a class="link" href="../../boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>.
+            <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>.
           </p>
 <h6>
 <a name="json.ref.boost__json__storage_ptr.storage_ptr.overload3.h2"></a>
             <span class="phrase"><a name="json.ref.boost__json__storage_ptr.storage_ptr.overload3.constraints"></a></span><a class="link" href="overload3.html#json.ref.boost__json__storage_ptr.storage_ptr.overload3.constraints">Constraints</a>
           </h6>
-<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">*,</span> <span class="identifier">memory_resource</span><span class="special">*</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">==</span> <span class="keyword">true</span>
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">*,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span><span class="special">*</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">==</span> <span class="keyword">true</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__storage_ptr.storage_ptr.overload3.h3"></a>
@@ -94,8 +94,8 @@
                   </td>
 <td>
                     <p>
-                      A <a class="link" href="../../boost__json__polymorphic_allocator.html" title="polymorphic_allocator"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a>
-                      to construct from.
+                      A <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">polymorphic_allocator</span></code> to
+                      construct from.
                     </p>
                   </td>
 </tr></tbody>

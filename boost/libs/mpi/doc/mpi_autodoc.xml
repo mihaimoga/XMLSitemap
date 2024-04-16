@@ -199,7 +199,7 @@
 <copy-assignment cv="= default"><type><classname>cartesian_topology</classname> &amp;</type><parameter name=""><paramtype><classname>cartesian_topology</classname> const &amp;</paramtype></parameter></copy-assignment>
 <constructor><parameter name="other"><paramtype><classname>cartesian_topology</classname> &amp;&amp;</paramtype></parameter></constructor>
 <copy-assignment><type><classname>cartesian_topology</classname> &amp;</type><parameter name="other"><paramtype><classname>cartesian_topology</classname> &amp;&amp;</paramtype></parameter></copy-assignment>
-<destructor/>
+<destructor cv="= default"/>
 <constructor><parameter name="ndim"><paramtype>int</paramtype></parameter><purpose>Create a N dimension space. Each dimension is initialized as non periodic of size 0. </purpose></constructor>
 <constructor><parameter name="dims"><paramtype>std::vector&lt; <classname>cartesian_dimension</classname> &gt; const &amp;</paramtype></parameter><purpose>Use the provided dimensions specification as initial values. </purpose></constructor>
 <constructor specifiers="explicit"><template>
@@ -1257,7 +1257,7 @@ If wrapped in a <computeroutput><classname alt="boost::mpi::inplace_t">inplace_t
 </method-group>
 <constructor><parameter name="routine"><paramtype>const char *</paramtype><description><para>The MPI routine in which the error occurred. This should be a pointer to a string constant: it will not be copied.</para></description></parameter><parameter name="result_code"><paramtype>int</paramtype><description><para>The result code returned from the MPI routine that aborted with an error. </para></description></parameter><description><para>Build a new <computeroutput>exception</computeroutput> exception.</para><para>
 </para></description></constructor>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class>
 
 
@@ -2555,7 +2555,7 @@ If wrapped in a <computeroutput><classname alt="boost::mpi::inplace_t">inplace_t
 <method name="active" cv="const = 0" specifiers="virtual"><type>bool</type></method>
 <method name="trivial" cv="= 0" specifiers="virtual"><type>optional&lt; MPI_Request &amp; &gt;</type></method>
 </method-group>
-<destructor/>
+<destructor cv="= 0" specifiers="virtual"/>
 </class><class name="legacy_dynamic_primitive_array_handler"><template>
       <template-type-parameter name="T"/>
       <template-type-parameter name="A"/>

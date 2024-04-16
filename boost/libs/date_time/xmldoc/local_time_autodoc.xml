@@ -42,7 +42,7 @@
 <method name="to_posix_string" cv="const" specifiers="virtual"><type>string_type</type><purpose>Returns a POSIX time_zone string for this object. </purpose></method>
 </method-group>
 <constructor><parameter name="zone_names"><paramtype>const time_zone_names &amp;</paramtype></parameter><parameter name="utc_offset"><paramtype>const time_duration_type &amp;</paramtype></parameter><parameter name="dst_shift"><paramtype>const dst_adjustment_offsets &amp;</paramtype></parameter><parameter name="calc_rule"><paramtype>boost::shared_ptr&lt; dst_calc_rule &gt;</paramtype></parameter></constructor>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class><typedef name="dst_calc_rule_ptr"><type>boost::shared_ptr&lt; dst_calc_rule &gt;</type></typedef>
 <typedef name="custom_time_zone"><type><classname>custom_time_zone_base</classname>&lt; char &gt;</type></typedef>
 
@@ -319,7 +319,7 @@
 <method name="to_posix_string" cv="const" specifiers="virtual"><type>string_type</type><purpose>Returns a POSIX time_zone string for this object. </purpose></method>
 </method-group>
 <constructor><parameter name="s"><paramtype>const string_type &amp;</paramtype></parameter><purpose>Construct from a POSIX time zone string. </purpose></constructor>
-<destructor/>
+<destructor specifiers="virtual"/>
 <method-group name="private member functions">
 <method name="calc_zone"><type>void</type><parameter name="obj"><paramtype>const string_type &amp;</paramtype></parameter><description><para>Extract time zone abbreviations for STD &amp; DST as well as the offsets for the time shift that occurs and how much of a shift. At this time full time zone names are NOT extracted so the abbreviations are used in their place </para></description></method>
 <method name="calc_rules"><type>void</type><parameter name="start"><paramtype>const string_type &amp;</paramtype></parameter><parameter name="end"><paramtype>const string_type &amp;</paramtype></parameter></method>

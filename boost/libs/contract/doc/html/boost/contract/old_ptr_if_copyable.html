@@ -48,7 +48,7 @@
   <span class="keyword">explicit</span> <a class="link" href="old_ptr_if_copyable.html#idm36378-bb"><span class="keyword">operator</span> <span class="keyword">bool</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm41708"></a><h2>Description</h2>
+<a name="idm41754"></a><h2>Description</h2>
 <p>This pointer can be set to point to an actual old value copy using either  <code class="computeroutput"><a class="link" href="../../BOOST_CONTRACT_OLDOF.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code> or  <code class="computeroutput"><a class="link" href="make_old_idm36506.html" title="Function make_old">boost::contract::make_old</a></code>:</p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">T</span><span class="special">&gt;</span> <span class="comment">// Type `T` might or not be copyable.</span>
 <span class="keyword">class</span> <span class="identifier">u</span> <span class="special">{</span>
@@ -73,14 +73,14 @@
 
 </p>
 <div class="refsect2">
-<a name="idm41768"></a><h3>Template Parameters</h3>
+<a name="idm41814"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> T</pre>
 <p>Type of the pointed old value. If this type is not copyable (i.e., <code class="computeroutput">boost::contract::is_old_value_copyable&lt;T&gt;::value</code> is <code class="computeroutput">false</code>), this pointer will always be null (but this library will not generate a compile-time error when this pointer is dereferenced). </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm41779"></a><h3>
+<a name="idm41825"></a><h3>
 <a name="boost.contract.old_ptr_if_copyableconstruct-copy-destruct"></a><code class="computeroutput">old_ptr_if_copyable</code> 
         public
        construct/copy/destruct</h3>
@@ -114,7 +114,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm41821"></a><h3>
+<a name="idm41867"></a><h3>
 <a name="idm36351-bb"></a><code class="computeroutput">old_ptr_if_copyable</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

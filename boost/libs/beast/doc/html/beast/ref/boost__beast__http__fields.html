@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__fields"></a><a class="link" href="boost__beast__http__fields.html" title="http::fields">http::fields</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm78965"></a>
+        <a class="indexterm" name="idm79416"></a>
       </p>
 <p>
         A typical HTTP header fields container.
@@ -608,13 +608,17 @@
 <p>
         This container is designed to store the field value pairs that make up the
         fields and trailers in an HTTP message. Objects of this type are iterable,
-        with each element holding the field name and field value. Field names are
-        stored as-is, but comparisons are case-insensitive. The container behaves
-        as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">multiset</span></code>; there will be a separate value
+        with each element holding the field name and field value.
+      </p>
+<p>
+        Field names are stored as-is, but comparisons are case-insensitive. The container
+        behaves as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">multiset</span></code>; there will be a separate value
         for each occurrence of the same field name. When the container is iterated
         the fields are presented in the order of insertion, with fields having the
-        same name following each other consecutively. Meets the requirements of
-        <span class="emphasis"><em>Fields</em></span>
+        same name following each other consecutively.
+      </p>
+<p>
+        Meets the requirements of <span class="emphasis"><em>Fields</em></span>
       </p>
 <h5>
 <a name="beast.ref.boost__beast__http__fields.h5"></a>

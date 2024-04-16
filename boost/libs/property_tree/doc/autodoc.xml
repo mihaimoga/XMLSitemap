@@ -11,7 +11,6 @@
           <template-type-parameter name="T"/>
         </template><parameter name="what"><paramtype>const std::string &amp;</paramtype><description><para>The message to associate with this error. </para></description></parameter><parameter name="data"><paramtype>const T &amp;</paramtype><description><para>The value associated with this error that was the source of the translation failure. </para></description></parameter><purpose>Instantiate a <classname alt="boost::property_tree::ptree_bad_data">ptree_bad_data</classname> instance with the given message and data. </purpose><description><para>
 </para></description></constructor>
-<destructor/>
 </class><class name="ptree_bad_path"><inherit access="public">boost::property_tree::ptree_error</inherit><purpose>Error indicating that specified path does not exist. Derives from <classname alt="boost::property_tree::ptree_error">ptree_error</classname>. </purpose><method-group name="public member functions">
 <method name="path" cv="const"><type>T</type><template>
           <template-type-parameter name="T"/>
@@ -21,16 +20,11 @@
           <template-type-parameter name="T"/>
         </template><parameter name="what"><paramtype>const std::string &amp;</paramtype><description><para>The message to associate with this error. </para></description></parameter><parameter name="path"><paramtype>const T &amp;</paramtype><description><para>The path that could not be found in the property_tree. </para></description></parameter><purpose>Instantiate a <classname alt="boost::property_tree::ptree_bad_path">ptree_bad_path</classname> with the given message and path data. </purpose><description><para>
 </para></description></constructor>
-<destructor/>
 </class><class name="ptree_error"><inherit access="public">std::runtime_error</inherit><purpose>Base class for all property tree errors. Derives from <computeroutput>std::runtime_error</computeroutput>. Call member function <computeroutput>what</computeroutput> to get human readable message associated with the error. </purpose><method-group name="public member functions">
 </method-group>
 <constructor><parameter name="what"><paramtype>const std::string &amp;</paramtype><description><para>The message to associate with this error. </para></description></parameter><purpose>Instantiate a <classname alt="boost::property_tree::ptree_error">ptree_error</classname> instance with the given message. </purpose><description><para>
 </para></description></constructor>
-<destructor/>
 </class>
-
-
-
 
 
 
@@ -57,9 +51,6 @@
       <template-type-parameter name="T"/>
     </template><specialization><template-arg>T</template-arg><template-arg>T</template-arg></specialization><typedef name="type"><type><classname>id_translator</classname>&lt; T &gt;</type></typedef>
 </struct-specialization>
-
-
-
 
 
 
@@ -108,9 +99,6 @@
 
 </para></description><throws><simpara><classname>info_parser_error</classname> If the file cannot be written to, or a conversion fails. </simpara></throws></function>
 </namespace>
-
-
-
 
 
 
@@ -179,9 +167,6 @@
 
 
 
-
-
-
 </namespace>
 </namespace>
 </header>
@@ -230,9 +215,6 @@
 </para></description><requires><para><emphasis>pt</emphasis> cannot contain keys that have both subkeys and non-empty data. </para>
 </requires><throws><simpara><classname>json_parser_error</classname> In case of error translating the property tree to JSON or writing to the file. </simpara></throws></function>
 </namespace>
-
-
-
 
 
 
@@ -321,6 +303,7 @@
 <method name="get_child" cv="const"><type>const self_type &amp;</type><parameter name="path"><paramtype>const path_type &amp;</paramtype></parameter><description><para>Get the child at the given path, or throw <computeroutput><classname alt="boost::property_tree::ptree_bad_path">ptree_bad_path</classname></computeroutput>. </para></description></method>
 <method name="get_child"><type>self_type &amp;</type><parameter name="path"><paramtype>const path_type &amp;</paramtype></parameter><parameter name="default_value"><paramtype>self_type &amp;</paramtype></parameter><description><para>Get the child at the given path, or return <computeroutput>default_value</computeroutput>. </para></description></method>
 <method name="get_child" cv="const"><type>const self_type &amp;</type><parameter name="path"><paramtype>const path_type &amp;</paramtype></parameter><parameter name="default_value"><paramtype>const self_type &amp;</paramtype></parameter><description><para>Get the child at the given path, or return <computeroutput>default_value</computeroutput>. </para></description></method>
+<method name="get_child" cv="const = delete"><type>void</type><parameter name="path"><paramtype>const path_type &amp;</paramtype></parameter><parameter name="default_value"><paramtype>const self_type &amp;&amp;</paramtype></parameter><description><para>Prevents calls to get_child with temporary default values </para></description></method>
 <method name="get_child_optional"><type>optional&lt; self_type &amp; &gt;</type><parameter name="path"><paramtype>const path_type &amp;</paramtype></parameter><description><para>Get the child at the given path, or return boost::null. </para></description></method>
 <method name="get_child_optional" cv="const"><type>optional&lt; const self_type &amp; &gt;</type><parameter name="path"><paramtype>const path_type &amp;</paramtype></parameter><description><para>Get the child at the given path, or return boost::null. </para></description></method>
 <method name="put_child"><type>self_type &amp;</type><parameter name="path"><paramtype>const path_type &amp;</paramtype></parameter><parameter name="value"><paramtype>const self_type &amp;</paramtype></parameter><description><para>Set the node at the given path to the given value. Create any missing parents. If the node at the path already exists, replace it. 
@@ -451,9 +434,6 @@ return boost::null;
 
 
 
-
-
-
 </namespace>
 </namespace>
 </header>
@@ -478,9 +458,6 @@ return boost::null;
 
 
 
-
-
-
 <function name="swap"><type>void</type><template>
           <template-type-parameter name="K"/>
           <template-type-parameter name="D"/>
@@ -492,15 +469,12 @@ return boost::null;
 <header name="boost/property_tree/ptree_serialization.hpp">
 <namespace name="boost">
 <namespace name="property_tree">
-
-
-
 <function name="save"><type>void</type><template>
           <template-type-parameter name="Archive"/>
           <template-type-parameter name="K"/>
           <template-type-parameter name="D"/>
           <template-type-parameter name="C"/>
-        </template><parameter name="ar"><paramtype>Archive &amp;</paramtype><description><para>The archive to which to save the serialized property tree. This archive should conform to the concept laid out by the Boost.Serialization library. </para></description></parameter><parameter name="t"><paramtype>const <classname>basic_ptree</classname>&lt; K, D, C &gt; &amp;</paramtype><description><para>The property tree to serialize. </para></description></parameter><parameter name="file_version"><paramtype>const unsigned int</paramtype><description><para>file_version for the archive. </para></description></parameter><description><para>Serialize the property tree to the given archive. <note><para>In addition to serializing to regular archives, this supports serializing to archives requiring name-value pairs, e.g. XML archives. However, the output format in the XML archive is not guaranteed to be the same as that when using the Boost.PropertyTree library's <computeroutput>boost::property_tree::xml_parser::write_xml</computeroutput>. </para>
+        </template><parameter name="ar"><paramtype>Archive &amp;</paramtype><description><para>The archive to which to save the serialized property tree. This archive should conform to the concept laid out by the Boost.Serialization library. </para></description></parameter><parameter name="t"><paramtype>const <classname>basic_ptree</classname>&lt; K, D, C &gt; &amp;</paramtype><description><para>The property tree to serialize. </para></description></parameter><parameter name=""><paramtype>const unsigned int</paramtype></parameter><description><para>Serialize the property tree to the given archive. <note><para>In addition to serializing to regular archives, this supports serializing to archives requiring name-value pairs, e.g. XML archives. However, the output format in the XML archive is not guaranteed to be the same as that when using the Boost.PropertyTree library's <computeroutput>boost::property_tree::xml_parser::write_xml</computeroutput>. </para>
 </note>
 
 
@@ -511,7 +485,7 @@ return boost::null;
           <template-type-parameter name="K"/>
           <template-type-parameter name="D"/>
           <template-type-parameter name="C"/>
-        </template><parameter name="ar"><paramtype>Archive &amp;</paramtype><description><para>The archive from which to load the serialized property tree. This archive should conform to the concept laid out by the Boost.Serialization library. </para></description></parameter><parameter name="t"><paramtype><classname>basic_ptree</classname>&lt; K, D, C &gt; &amp;</paramtype><description><para>The property tree to de-serialize. </para></description></parameter><parameter name="file_version"><paramtype>const unsigned int</paramtype><description><para>file_version for the archive. </para></description></parameter><description><para>De-serialize the property tree to the given archive. <note><para>In addition to de-serializing from regular archives, this supports loading from archives requiring name-value pairs, e.g. XML archives. The format should be that used by boost::property_tree::save. </para>
+        </template><parameter name="ar"><paramtype>Archive &amp;</paramtype><description><para>The archive from which to load the serialized property tree. This archive should conform to the concept laid out by the Boost.Serialization library. </para></description></parameter><parameter name="t"><paramtype><classname>basic_ptree</classname>&lt; K, D, C &gt; &amp;</paramtype><description><para>The property tree to de-serialize. </para></description></parameter><parameter name=""><paramtype>const unsigned int</paramtype></parameter><description><para>De-serialize the property tree to the given archive. <note><para>In addition to de-serializing from regular archives, this supports loading from archives requiring name-value pairs, e.g. XML archives. The format should be that used by boost::property_tree::save. </para>
 </note>
 
 
@@ -598,9 +572,6 @@ return boost::null;
 
 
 
-
-
-
 </namespace>
 </namespace>
 </header>
@@ -640,19 +611,10 @@ return boost::null;
 </para></description></constructor>
 <constructor><parameter name="o"><paramtype>const <classname>string_path</classname> &amp;</paramtype></parameter></constructor>
 <copy-assignment><type><classname>string_path</classname> &amp;</type><parameter name="o"><paramtype>const <classname>string_path</classname> &amp;</paramtype></parameter></copy-assignment>
-</class><function name="operator/"><type><classname>string_path</classname>&lt; String, Translator &gt;</type><template>
-          <template-type-parameter name="String"/>
-          <template-type-parameter name="Translator"/>
-        </template><parameter name="p1"><paramtype><classname>string_path</classname>&lt; String, Translator &gt;</paramtype></parameter><parameter name="p2"><paramtype>const <classname>string_path</classname>&lt; String, Translator &gt; &amp;</paramtype></parameter></function>
-<function name="operator/"><type><classname>string_path</classname>&lt; String, Translator &gt;</type><template>
-          <template-type-parameter name="String"/>
-          <template-type-parameter name="Translator"/>
-        </template><parameter name="p1"><paramtype><classname>string_path</classname>&lt; String, Translator &gt;</paramtype></parameter><parameter name="p2"><paramtype>const typename String::value_type *</paramtype></parameter></function>
-<function name="operator/"><type><classname>string_path</classname>&lt; String, Translator &gt;</type><template>
-          <template-type-parameter name="String"/>
-          <template-type-parameter name="Translator"/>
-        </template><parameter name="p1"><paramtype>const typename String::value_type *</paramtype></parameter><parameter name="p2"><paramtype>const <classname>string_path</classname>&lt; String, Translator &gt; &amp;</paramtype></parameter></function>
-
+<method-group name="friend functions">
+<method name="operator/"><type><classname>string_path</classname></type><parameter name="p1"><paramtype><classname>string_path</classname></paramtype></parameter><parameter name="p2"><paramtype>const <classname>string_path</classname> &amp;</paramtype></parameter><purpose>Concatenates two path components. </purpose></method>
+</method-group>
+</class>
 
 
 
@@ -706,9 +668,6 @@ return boost::null;
 
 </para></description><throws><simpara><classname>xml_parser_error</classname> In case of error translating the property tree to XML or writing to the output stream. </simpara></throws></function>
 </namespace>
-
-
-
 
 
 

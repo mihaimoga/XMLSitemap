@@ -72,9 +72,11 @@
           <code class="computeroutput"><span class="identifier">read_some</span></code> function. The
           implementation may read additional bytes from the stream that lie past
           the end of the message being read. These additional bytes are stored in
-          the dynamic buffer, which must be preserved for subsequent reads. If the
-          end of file error is received while reading from the stream, then the error
-          returned from this function will be:
+          the dynamic buffer, which must be preserved for subsequent reads.
+        </p>
+<p>
+          If the end of file error is received while reading from the stream, then
+          the error returned from this function will be:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -172,16 +174,7 @@
           Value</a>
         </h6>
 <p>
-          The number of bytes transferred from the stream.
-        </p>
-<h6>
-<a name="beast.ref.boost__beast__http__read_some.overload2.h4"></a>
-          <span class="phrase"><a name="beast.ref.boost__beast__http__read_some.overload2.remarks"></a></span><a class="link" href="overload2.html#beast.ref.boost__beast__http__read_some.overload2.remarks">Remarks</a>
-        </h6>
-<p>
-          The function returns the total number of bytes transferred from the stream.
-          This may be zero for the case where there is sufficient pre-existing message
-          data in the dynamic buffer.
+          The number of bytes consumed by the parser.
         </p>
 </div>
 <div class="copyright-footer">Copyright © 2016-2019 Vinnie

@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__websocket__stream.secure_prng"></a><a class="link" href="secure_prng.html" title="websocket::stream::secure_prng">websocket::stream::secure_prng</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm57773"></a>
+          <a class="indexterm" name="idm58029"></a>
         </p>
 <p>
           Set whether the PRNG is cryptographically secure.
@@ -54,12 +54,16 @@
           a much faster algorithm is used. Masking is only performed by streams operating
           in the client mode. For streams operating in the server mode, this setting
           has no effect. By default, newly constructed streams use a secure PRNG.
+        </p>
+<p>
           If the WebSocket stream is used with an encrypted SSL or TLS next layer,
           if it is known to the application that intermediate proxies are not vulnerable
           to cache poisoning, or if the application is designed such that an attacker
           cannot send arbitrary inputs to the stream interface, then the faster algorithm
-          may be used. For more information please consult the WebSocket protocol
-          RFC.
+          may be used.
+        </p>
+<p>
+          For more information please consult the WebSocket protocol RFC.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.secure_prng.h2"></a>

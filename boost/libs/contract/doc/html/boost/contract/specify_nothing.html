@@ -36,10 +36,10 @@
 <span class="keyword">class</span> <a class="link" href="specify_nothing.html" title="Class specify_nothing">specify_nothing</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// <a class="link" href="specify_nothing.html#boost.contract.specify_nothingconstruct-copy-destruct">construct/copy/destruct</a></span>
-  <a class="link" href="specify_nothing.html#idm35810-bb"><span class="special">~</span><span class="identifier">specify_nothing</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="specify_nothing.html#idm35810-bb"><span class="special">~</span><span class="identifier">specify_nothing</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="keyword">false</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm39931"></a><h2>Description</h2>
+<a name="idm39949"></a><h2>Description</h2>
 <p>This class has no member function so it is used to prevent specifying additional functors to check any other contract. This object is internally constructed by the library when users specify contracts calling  <code class="computeroutput"><a class="link" href="function.html" title="Function function">boost::contract::function</a></code> and similar functions (that is why this class does not have a public constructor).</p>
 <p><span class="bold"><strong>See Also:</strong></span></p>
 <p> <a class="link" href="../../boost_contract/tutorial.html" title="Tutorial"> Tutorial</a> </p>
@@ -48,12 +48,12 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="idm39941"></a><h3>
+<a name="idm39959"></a><h3>
 <a name="boost.contract.specify_nothingconstruct-copy-destruct"></a><code class="computeroutput">specify_nothing</code> 
         public
        construct/copy/destruct</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
-<pre class="literallayout"><a name="idm35810-bb"></a><span class="special">~</span><span class="identifier">specify_nothing</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destruct this object. <p><span class="bold"><strong>Throws:</strong></span> This is declared <code class="computeroutput">noexcept(false)</code> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <a class="link" href="../../boost_contract/advanced.html#boost_contract.advanced.throw_on_failures__and__noexcept__" title="Throw on Failures (and noexcept)">
+<pre class="literallayout"><a name="idm35810-bb"></a><span class="special">~</span><span class="identifier">specify_nothing</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="keyword">false</span><span class="special">)</span><span class="special">;</span></pre>Destruct this object. <p><span class="bold"><strong>Throws:</strong></span> This is declared <code class="computeroutput">noexcept(false)</code> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <a class="link" href="../../boost_contract/advanced.html#boost_contract.advanced.throw_on_failures__and__noexcept__" title="Throw on Failures (and noexcept)">
             Throw on Failure</a>). </p>
 </li></ol></div>
 </div>

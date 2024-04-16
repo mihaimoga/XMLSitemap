@@ -14,9 +14,6 @@ var hierarchy =
       [ "boost::locale::generic_codecvt< CharType, CodecvtImpl, 4 >", "classboost_1_1locale_1_1generic__codecvt_3_01CharType_00_01CodecvtImpl_00_014_01_4.html", null ],
       [ "boost::locale::generic_codecvt< char, CodecvtImpl, 1 >", "classboost_1_1locale_1_1generic__codecvt_3_01char_00_01CodecvtImpl_00_011_01_4.html", null ]
     ] ],
-    [ "std::collate", null, [
-      [ "boost::locale::collator< CharType >", "classboost_1_1locale_1_1collator.html", null ]
-    ] ],
     [ "boost::locale::comparator< CharType, default_level >", "structboost_1_1locale_1_1comparator.html", null ],
     [ "boost::locale::converter_base", "classboost_1_1locale_1_1converter__base.html", [
       [ "boost::locale::converter< Char >", "classboost_1_1locale_1_1converter.html", null ]
@@ -29,6 +26,7 @@ var hierarchy =
     [ "std::locale::facet", null, [
       [ "boost::locale::boundary::boundary_indexing< Char >", "classboost_1_1locale_1_1boundary_1_1boundary__indexing.html", null ],
       [ "boost::locale::calendar_facet", "classboost_1_1locale_1_1calendar__facet.html", null ],
+      [ "boost::locale::collator< CharType >", "classboost_1_1locale_1_1collator.html", null ],
       [ "boost::locale::converter< Char >", "classboost_1_1locale_1_1converter.html", null ],
       [ "boost::locale::info", "classboost_1_1locale_1_1info.html", null ],
       [ "boost::locale::message_format< CharType >", "classboost_1_1locale_1_1message__format.html", null ]
@@ -36,6 +34,7 @@ var hierarchy =
     [ "boost::locale::detail::facet_id", null, [
       [ "boost::locale::boundary::boundary_indexing< Char >", "classboost_1_1locale_1_1boundary_1_1boundary__indexing.html", null ],
       [ "boost::locale::calendar_facet", "classboost_1_1locale_1_1calendar__facet.html", null ],
+      [ "boost::locale::collator< CharType >", "classboost_1_1locale_1_1collator.html", null ],
       [ "boost::locale::converter< Char >", "classboost_1_1locale_1_1converter.html", null ],
       [ "boost::locale::info", "classboost_1_1locale_1_1info.html", null ],
       [ "boost::locale::message_format< CharType >", "classboost_1_1locale_1_1message__format.html", null ]

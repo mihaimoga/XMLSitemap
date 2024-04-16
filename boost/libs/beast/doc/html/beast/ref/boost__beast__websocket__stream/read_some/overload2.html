@@ -48,8 +48,10 @@
             <span class="phrase"><a name="beast.ref.boost__beast__websocket__stream.read_some.overload2.description"></a></span><a class="link" href="overload2.html#beast.ref.boost__beast__websocket__stream.read_some.overload2.description">Description</a>
           </h6>
 <p>
-            This function is used to read some message data. The call blocks until
-            one of the following is true:
+            This function is used to read some message data.
+          </p>
+<p>
+            The call blocks until one of the following is true:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -67,10 +69,14 @@
             The algorithm, known as a <span class="emphasis"><em>composed operation</em></span>, is
             implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">read_some</span></code>
             and <code class="computeroutput"><span class="identifier">write_some</span></code> functions.
+          </p>
+<p>
             Received message data is appended to the buffer. The functions <a class="link" href="../got_binary.html" title="websocket::stream::got_binary"><code class="computeroutput"><span class="identifier">got_binary</span></code></a> and <a class="link" href="../got_text.html" title="websocket::stream::got_text"><code class="computeroutput"><span class="identifier">got_text</span></code></a> may be used to query
             the stream and determine the type of the last received message. The function
             <a class="link" href="../is_message_done.html" title="websocket::stream::is_message_done"><code class="computeroutput"><span class="identifier">is_message_done</span></code></a> may be called
             to determine if the message received by the last read operation is complete.
+          </p>
+<p>
             Until the call returns, the implementation will read incoming control
             frames and handle them automatically as follows:
           </p>

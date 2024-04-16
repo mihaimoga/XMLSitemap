@@ -56,8 +56,11 @@
             established. The algorithm, known as a <span class="emphasis"><em>composed asynchronous
             operation</em></span>, is implemented in terms of calls to the underlying
             socket's <code class="computeroutput"><span class="identifier">async_connect</span></code>
-            function. If the timeout timer expires while the operation is outstanding,
-            the current connection attempt will be canceled and the completion handler
+            function.
+          </p>
+<p>
+            If the timeout timer expires while the operation is outstanding, the
+            current connection attempt will be canceled and the completion handler
             will be invoked with the error <a class="link" href="../../boost__beast__error.html" title="error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">timeout</span></code></a>.
           </p>
 <h6>

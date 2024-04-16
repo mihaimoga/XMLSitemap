@@ -241,13 +241,13 @@
         The parser may dynamically allocate temporary storage as needed to accommodate
         the nesting level of the JSON text being parsed. Temporary storage is first
         obtained from an optional, caller-owned buffer specified upon construction.
-        When that is exhausted, the next allocation uses the <a class="link" href="boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> passed to the constructor;
+        When that is exhausted, the next allocation uses the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code> passed to the constructor;
         if no such argument is specified, the default memory resource is used. Temporary
         storage is freed only when the parser is destroyed; The performance of parsing
         multiple JSON texts may be improved by reusing the same parser instance.
       </p>
 <p>
-        It is important to note that the <a class="link" href="boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> supplied upon construction
+        It is important to note that the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code> supplied upon construction
         is used for temporary storage only, and not for allocating the elements which
         make up the parsed value. That other memory resource is optionally supplied
         in each call to <a class="link" href="boost__json__stream_parser/reset.html" title="stream_parser::reset"><code class="computeroutput"><span class="identifier">reset</span></code></a>.

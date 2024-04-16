@@ -48,8 +48,10 @@
             <span class="phrase"><a name="beast.ref.boost__beast__websocket__stream.write_some.overload2.description"></a></span><a class="link" href="overload2.html#beast.ref.boost__beast__websocket__stream.write_some.overload2.description">Description</a>
           </h6>
 <p>
-            This function is used to send part of a message. The call blocks until
-            one of the following is true:
+            This function is used to send part of a message.
+          </p>
+<p>
+            The call blocks until one of the following is true:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -62,12 +64,17 @@
 <p>
             The algorithm, known as a <span class="emphasis"><em>composed operation</em></span>, is
             implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">write_some</span></code>
-            function. If this is the beginning of a new message, the message opcode
-            will be set to text or binary based on the current setting of the <a class="link" href="../binary.html" title="websocket::stream::binary"><code class="computeroutput"><span class="identifier">binary</span></code></a> (or <a class="link" href="../text.html" title="websocket::stream::text"><code class="computeroutput"><span class="identifier">text</span></code></a>) option. The actual payload
-            sent may be transformed as per the WebSocket protocol settings. This
-            function always writes a complete WebSocket frame (not WebSocket message)
-            upon successful completion, so it is well defined to perform ping, pong,
-            and close operations after this operation completes.
+            function.
+          </p>
+<p>
+            If this is the beginning of a new message, the message opcode will be
+            set to text or binary based on the current setting of the <a class="link" href="../binary.html" title="websocket::stream::binary"><code class="computeroutput"><span class="identifier">binary</span></code></a> (or <a class="link" href="../text.html" title="websocket::stream::text"><code class="computeroutput"><span class="identifier">text</span></code></a>) option. The actual payload
+            sent may be transformed as per the WebSocket protocol settings.
+          </p>
+<p>
+            This function always writes a complete WebSocket frame (not WebSocket
+            message) upon successful completion, so it is well defined to perform
+            ping, pong, and close operations after this operation completes.
           </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.write_some.overload2.h2"></a>

@@ -76,6 +76,25 @@
             function. This function involves communication with the server, and thus
             may fail.
           </p>
+<h6>
+<a name="mysql.ref.boost__mysql__connection.reset_connection.overload2.h2"></a>
+            <span class="phrase"><a name="mysql.ref.boost__mysql__connection.reset_connection.overload2.warning_on_character_sets"></a></span><a class="link" href="overload2.html#mysql.ref.boost__mysql__connection.reset_connection.overload2.warning_on_character_sets">Warning
+            on character sets</a>
+          </h6>
+<p>
+            This function will restore the connection's character set and collation
+            <span class="bold"><strong>to the server's default</strong></span>, and not to
+            the one specified during connection establishment. Some servers have
+            <code class="computeroutput"><span class="identifier">latin1</span></code> as their default
+            character set, which is not usually what you want. Use a <code class="computeroutput"><span class="identifier">SET</span> <span class="identifier">NAMES</span></code>
+            statement after using this function to be sure.
+          </p>
+<p>
+            You can find the character set that your server will use after reset
+            by running:
+          </p>
+<pre class="programlisting"><span class="string">"SELECT @@global.character_set_client, @@global.character_set_results;"</span>
+</pre>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

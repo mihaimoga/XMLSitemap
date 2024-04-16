@@ -84,19 +84,21 @@
       Let's see an example of how a set can be configured as a map indexed by an
       integer stored in the <code class="computeroutput"><span class="identifier">value_type</span></code>:
     </p>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="keyword">static_assert</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">type_traits</span><span class="special">/</span><span class="identifier">is_same</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">intrusive</span><span class="special">/</span><span class="identifier">set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">intrusive</span><span class="special">/</span><span class="identifier">set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">intrusive</span><span class="special">/</span><span class="identifier">unordered_set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#ifdef</span> <span class="identifier">NDEBUG</span>
+<span class="preprocessor">#undef</span> <span class="identifier">NDEBUG</span>
+<span class="preprocessor">#endif</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
 
 <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive</span><span class="special">;</span>
 
 <span class="keyword">class</span> <span class="identifier">MyClass</span> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">set_base_hook</span><span class="special">&lt;&gt;</span>
-              <span class="special">,</span> <span class="keyword">public</span> <span class="identifier">unordered_set_base_hook</span><span class="special">&lt;&gt;</span>
+   <span class="special">,</span> <span class="keyword">public</span> <span class="identifier">unordered_set_base_hook</span><span class="special">&lt;&gt;</span>
 <span class="special">{</span>
-   <span class="keyword">public</span><span class="special">:</span>
+<span class="keyword">public</span><span class="special">:</span>
    <span class="keyword">int</span> <span class="identifier">first</span><span class="special">;</span>
    <span class="keyword">explicit</span> <span class="identifier">MyClass</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">i</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">first</span><span class="special">(</span><span class="identifier">i</span><span class="special">){}</span>
 <span class="special">};</span>
@@ -120,9 +122,6 @@
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-   <span class="identifier">BOOST_STATIC_ASSERT</span><span class="special">((</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">is_same</span><span class="special">&lt;</span>  <span class="identifier">OrderedMap</span><span class="special">::</span><span class="identifier">key_type</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;::</span><span class="identifier">value</span><span class="special">));</span>
-   <span class="identifier">BOOST_STATIC_ASSERT</span><span class="special">((</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">is_same</span><span class="special">&lt;</span><span class="identifier">UnorderedMap</span><span class="special">::</span><span class="identifier">key_type</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;::</span><span class="identifier">value</span><span class="special">));</span>
-
    <span class="comment">//Create several MyClass objects, each one with a different value</span>
    <span class="comment">//and insert them into the omap</span>
    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">MyClass</span><span class="special">&gt;</span> <span class="identifier">values</span><span class="special">;</span>

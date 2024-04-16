@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>WritableFieldTuple concept</title>
+<title>WritableField and WritableFieldTuple concepts</title>
 <link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.MySQL">
@@ -24,22 +24,21 @@
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
-<a name="mysql.ref.boost__mysql__WritableFieldTuple"></a><a class="link" href="boost__mysql__WritableFieldTuple.html" title="WritableFieldTuple concept">WritableFieldTuple
-      concept</a>
+<a name="mysql.ref.boost__mysql__WritableFieldTuple"></a><a class="link" href="boost__mysql__WritableFieldTuple.html" title="WritableField and WritableFieldTuple concepts">WritableField
+      and WritableFieldTuple concepts</a>
 </h4></div></div></div>
-<p>
-        A type <code class="computeroutput"><span class="identifier">T</span></code> is a <code class="computeroutput"><span class="identifier">WritableFieldTuple</span></code> if it's a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>
-        specialization, or a reference to one, and all element types fulfill the
-        exposition-only concept <code class="computeroutput"><span class="identifier">WritableField</span></code>.
-        Empty tuples satisfy <code class="computeroutput"><span class="identifier">WritableFieldTuple</span></code>.
-      </p>
 <p>
         A type is a <code class="computeroutput"><span class="identifier">WritableField</span></code>
         if it can be used to represent a statement parameter value to be sent to
         the server. A type <code class="computeroutput"><span class="identifier">T</span></code> satisfies
         <code class="computeroutput"><span class="identifier">WritableField</span></code> if it is <a class="link" href="../prepared_statements.html#mysql.prepared_statements.writable_field_reference">any of the types
-        listed in this table</a>, or a (possibly cv-qualified) reference to any
-        of them. More types may be added in future releases.
+        listed in this table</a>. More types may be added in future releases.
+      </p>
+<p>
+        A type <code class="computeroutput"><span class="identifier">T</span></code> is a <code class="computeroutput"><span class="identifier">WritableFieldTuple</span></code> if it's a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>
+        specialization, or a reference to one, and all element types fulfill <code class="computeroutput"><span class="identifier">WritableField</span></code>, or are (possibly cv-qualified)
+        references to <code class="computeroutput"><span class="identifier">WritableField</span></code>
+        types. Empty tuples satisfy <code class="computeroutput"><span class="identifier">WritableFieldTuple</span></code>.
       </p>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>

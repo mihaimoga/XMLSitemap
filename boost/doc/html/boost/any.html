@@ -37,24 +37,24 @@
 <span class="keyword">class</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// <a class="link" href="any.html#boost.anyconstruct-copy-destruct">construct/copy/destruct</a></span>
-  <a class="link" href="any.html#idm634-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="any.html#idm639-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="any.html#idm652-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="any.html#idm666-bb"><span class="identifier">any</span></a><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <a class="link" href="any.html#idm635-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="any.html#idm640-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="any.html#idm653-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="any.html#idm667-bb"><span class="identifier">any</span></a><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> 
-    <a class="link" href="any.html#idm680-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">,</span> 
+    <a class="link" href="any.html#idm681-bb"><span class="identifier">any</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">,</span> 
         <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_same</span><span class="special">&lt;</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> 
         <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_const</span><span class="special">&lt;</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm707-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm722-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm740-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="any.html#idm700-bb"><span class="special">~</span><span class="identifier">any</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm708-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm723-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm741-bb"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="any.html#idm701-bb"><span class="special">~</span><span class="identifier">any</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="any.html#idm591-bb">public member functions</a></span>
-  <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm592-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">bool</span> <a class="link" href="any.html#idm609-bb"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">void</span> <a class="link" href="any.html#idm620-bb"><span class="identifier">clear</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a class="link" href="any.html#idm626-bb"><span class="identifier">type</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="comment">// <a class="link" href="any.html#idm592-bb">public member functions</a></span>
+  <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a class="link" href="any.html#idm593-bb"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="any.html#idm610-bb"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">void</span> <a class="link" href="any.html#idm621-bb"><span class="identifier">clear</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a class="link" href="any.html#idm627-bb"><span class="identifier">type</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
 <a name="id-1.3.5.6.2.4.4"></a><h2>Description</h2>
@@ -65,7 +65,7 @@
        construct/copy/destruct</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><a name="idm634-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm635-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
@@ -80,7 +80,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a name="idm639-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a name="idm640-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">ValueType</span> <span class="special">&amp;</span> value<span class="special">)</span><span class="special">;</span></pre>
 <p>Makes a copy of <code class="computeroutput">value</code>, so that the initial content of the new instance is equivalent in both type and value to <code class="computeroutput">value</code>.</p>
 <p>
 </p>
@@ -96,7 +96,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idm652-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm653-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> other<span class="special">)</span><span class="special">;</span></pre>
 <p>Copy constructor that copies content of <code class="computeroutput">other</code> into new instance, so that any content is equivalent in both type and value to the content of <code class="computeroutput">other</code>, or empty if <code class="computeroutput">other</code> is empty.</p>
 <p>
 </p>
@@ -112,7 +112,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idm666-bb"></a><span class="identifier">any</span><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm667-bb"></a><span class="identifier">any</span><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span> other<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Move constructor that moves content of <code class="computeroutput">other</code> into new instance and leaves <code class="computeroutput">other</code> empty.</p>
 <p>
 
@@ -136,7 +136,7 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> 
-  <a name="idm680-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> value<span class="special">,</span> 
+  <a name="idm681-bb"></a><span class="identifier">any</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> value<span class="special">,</span> 
       <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_same</span><span class="special">&lt;</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> 
       <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_const</span><span class="special">&lt;</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span></pre>
 <p>Forwards <code class="computeroutput">value</code>, so that the initial content of the new instance is equivalent in both type and value to <code class="computeroutput">value</code> before the forward.</p>
@@ -154,7 +154,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm707-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm708-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
 <p>Copies content of <code class="computeroutput">rhs</code> into current instance, discarding previous content, so that the new content is equivalent in both type and value to the content of <code class="computeroutput">rhs</code>, or empty if <code class="computeroutput">rhs.empty()</code>.</p>
 <p>
 </p>
@@ -170,7 +170,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm722-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm723-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Moves content of <code class="computeroutput">rhs</code> into current instance, discarding previous content, so that the new content is equivalent in both type and value to the content of <code class="computeroutput">rhs</code> before move, or empty if <code class="computeroutput">rhs.empty()</code>.</p>
 <p>
 
@@ -193,7 +193,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm740-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm741-bb"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="identifier">ValueType</span> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre>
 <p>Forwards <code class="computeroutput">rhs</code>, discarding previous content, so that the new content of is equivalent in both type and value to <code class="computeroutput">rhs</code> before forward.</p>
 <p>
 </p>
@@ -209,7 +209,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idm700-bb"></a><span class="special">~</span><span class="identifier">any</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><a name="idm701-bb"></a><span class="special">~</span><span class="identifier">any</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Releases any and all resources used in management of instance.</p>
 <p>
 </p>
@@ -228,10 +228,10 @@
 </div>
 <div class="refsect2">
 <a name="id-1.3.5.6.2.4.4.3"></a><h3>
-<a name="idm591-bb"></a><code class="computeroutput">any</code> public member functions</h3>
+<a name="idm592-bb"></a><code class="computeroutput">any</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
-<pre class="literallayout"><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm592-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> <a name="idm593-bb"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="any.html" title="Class any">any</a> <span class="special">&amp;</span> rhs<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>Exchange of the contents of <code class="computeroutput">*this</code> and <code class="computeroutput">rhs</code>.</p>
 <p>
 
@@ -254,7 +254,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">bool</span> <a name="idm609-bb"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">bool</span> <a name="idm610-bb"></a><span class="identifier">empty</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 
 </p>
@@ -276,7 +276,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">void</span> <a name="idm620-bb"></a><span class="identifier">clear</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">void</span> <a name="idm621-bb"></a><span class="identifier">clear</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
@@ -291,7 +291,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a name="idm626-bb"></a><span class="identifier">type</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">typeindex</span><span class="special">::</span><span class="identifier">type_info</span> <span class="special">&amp;</span> <a name="idm627-bb"></a><span class="identifier">type</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
 <p>
 Useful for querying against types known either at compile time or only at runtime. </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
@@ -309,7 +309,7 @@ Useful for querying against types known either at compile time or only at runtim
 </div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2001 Kevlin Henney<br>Copyright © 2013-2023 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2001 Kevlin Henney<br>Copyright © 2013-2024 Antony Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -1287,7 +1287,7 @@ pg.get_date(2000); // returns 2000-2-29
 <method name="to_string" cv="const = 0" specifiers="virtual"><type>std::string</type><purpose>Returns a string for use in a POSIX time_zone string. </purpose></method>
 </method-group>
 <constructor/>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class>
 
 
@@ -1370,7 +1370,7 @@ pg.get_date(2000); // returns 2000-2-29
 <method name="operator!=" cv="const"><type>bool</type><parameter name="d"><paramtype>const date_type &amp;</paramtype></parameter></method>
 </method-group>
 <constructor><parameter name="d"><paramtype>date_type</paramtype></parameter></constructor>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class><enum name="date_resolutions"><enumvalue name="day"/><enumvalue name="week"/><enumvalue name="months"/><enumvalue name="year"/><enumvalue name="decade"/><enumvalue name="century"/><enumvalue name="NumDateResolutions"/><purpose>An iterator over dates with varying resolution (day, week, month, year, etc) </purpose></enum>
 
 
@@ -1715,7 +1715,7 @@ pg.get_date(2000); // returns 2000-2-29
 <method name="end_day" cv="const = 0" specifiers="virtual"><type>date_type</type><parameter name="y"><paramtype>year_type</paramtype></parameter></method>
 <method name="end_rule_as_string" cv="const = 0" specifiers="virtual"><type>std::string</type></method>
 </method-group>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class>
 
 
@@ -4028,7 +4028,7 @@ special_value_formatter svf(&amp;special_value_names[0], &amp;special_value_name
 <method name="to_posix_string" cv="const = 0" specifiers="virtual"><type>string_type</type><purpose>Returns a POSIX time_zone string for this object. </purpose></method>
 </method-group>
 <constructor/>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class>
 
 

@@ -28,7 +28,7 @@
 <a name="url.ref.boost__urls__static_url_base.resolve"></a><a class="link" href="resolve.html" title="static_url_base::resolve">static_url_base::resolve</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm91664"></a>
+          <a class="indexterm" name="idm91971"></a>
         </p>
 <p>
           (Inherited from <a class="link" href="../boost__urls__url_base.html" title="url_base"><code class="computeroutput"><span class="identifier">url_base</span></code></a>)
@@ -81,6 +81,16 @@
         </p>
 <h6>
 <a name="url.ref.boost__urls__static_url_base.resolve.h2"></a>
+          <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.remarks"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.remarks">Remarks</a>
+        </h6>
+<p>
+          Abnormal hrefs where the number of ".." segments exceeds the
+          number of segments in the base path are handled by including the unmatched
+          ".." segments in the result, as described in <a href="https://www.rfc-editor.org/errata/eid4547" target="_top">Errata
+          4547</a>.
+        </p>
+<h6>
+<a name="url.ref.boost__urls__static_url_base.resolve.h3"></a>
           <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.example"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.example">Example</a>
         </h6>
 <pre class="programlisting"><span class="identifier">url</span> <span class="identifier">base1</span><span class="special">(</span> <span class="string">"/one/two/three"</span> <span class="special">);</span>
@@ -100,13 +110,13 @@
 <span class="identifier">assert</span><span class="special">(</span> <span class="identifier">base4</span><span class="special">.</span><span class="identifier">buffer</span><span class="special">()</span> <span class="special">==</span> <span class="string">" http: //a/b/c/g#s"</span> <span class="special">);</span>
 </pre>
 <h6>
-<a name="url.ref.boost__urls__static_url_base.resolve.h3"></a>
+<a name="url.ref.boost__urls__static_url_base.resolve.h4"></a>
           <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.bnf"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.bnf">BNF</a>
         </h6>
 <pre class="programlisting"><span class="identifier">absolute</span><span class="special">-</span><span class="identifier">URI</span>  <span class="special">=</span> <span class="identifier">scheme</span> <span class="string">":"</span> <span class="identifier">hier</span><span class="special">-</span><span class="identifier">part</span> <span class="special">[</span> <span class="string">"?"</span> <span class="identifier">query</span> <span class="special">]</span>
 </pre>
 <h6>
-<a name="url.ref.boost__urls__static_url_base.resolve.h4"></a>
+<a name="url.ref.boost__urls__static_url_base.resolve.h5"></a>
           <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.exception_safety"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.exception_safety">Exception
           Safety</a>
         </h6>
@@ -114,7 +124,7 @@
           Basic guarantee. Calls to allocate may throw.
         </p>
 <h6>
-<a name="url.ref.boost__urls__static_url_base.resolve.h5"></a>
+<a name="url.ref.boost__urls__static_url_base.resolve.h6"></a>
           <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.return_value"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.return_value">Return
           Value</a>
         </h6>
@@ -123,7 +133,7 @@
           upon success, otherwise an error code if <code class="computeroutput"><span class="special">!</span><span class="identifier">base</span><span class="special">.</span><span class="identifier">has_scheme</span><span class="special">()</span></code>.
         </p>
 <h6>
-<a name="url.ref.boost__urls__static_url_base.resolve.h6"></a>
+<a name="url.ref.boost__urls__static_url_base.resolve.h7"></a>
           <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.parameters"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.parameters">Parameters</a>
         </h6>
 <div class="informaltable"><table class="table">
@@ -157,7 +167,7 @@
 </tr></tbody>
 </table></div>
 <h6>
-<a name="url.ref.boost__urls__static_url_base.resolve.h7"></a>
+<a name="url.ref.boost__urls__static_url_base.resolve.h8"></a>
           <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.specification"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.specification">Specification</a>
         </h6>
 <p>
@@ -165,7 +175,7 @@
           Reference Resolution (rfc3986)</a>
         </p>
 <h6>
-<a name="url.ref.boost__urls__static_url_base.resolve.h8"></a>
+<a name="url.ref.boost__urls__static_url_base.resolve.h9"></a>
           <span class="phrase"><a name="url.ref.boost__urls__static_url_base.resolve.see_also"></a></span><a class="link" href="resolve.html#url.ref.boost__urls__static_url_base.resolve.see_also">See Also</a>
         </h6>
 <p>

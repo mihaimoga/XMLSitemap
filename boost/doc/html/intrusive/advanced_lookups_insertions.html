@@ -96,19 +96,26 @@
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">intrusive</span><span class="special">/</span><span class="identifier">set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">intrusive</span><span class="special">/</span><span class="identifier">unordered_set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstring</span><span class="special">&gt;</span>
-
-<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive</span><span class="special">;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">string</span><span class="special">&gt;</span>
 
 <span class="comment">// Hash function for strings</span>
 <span class="keyword">struct</span> <span class="identifier">StrHasher</span>
 <span class="special">{</span>
    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="keyword">operator</span><span class="special">()(</span><span class="keyword">const</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">str</span><span class="special">)</span> <span class="keyword">const</span>
    <span class="special">{</span>
+      <span class="comment">//Simple example, use favorite hash function (like boost::hash_combine)</span>
       <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">seed</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span>
-      <span class="keyword">for</span><span class="special">(;</span> <span class="special">*</span><span class="identifier">str</span><span class="special">;</span> <span class="special">++</span><span class="identifier">str</span><span class="special">)</span>   <span class="identifier">boost</span><span class="special">::</span><span class="identifier">hash_combine</span><span class="special">(</span><span class="identifier">seed</span><span class="special">,</span> <span class="special">*</span><span class="identifier">str</span><span class="special">);</span>
+      <span class="keyword">for</span><span class="special">(;</span> <span class="special">*</span><span class="identifier">str</span><span class="special">;</span> <span class="special">++</span><span class="identifier">str</span><span class="special">){</span>
+         <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">x</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span><span class="special">(*</span><span class="identifier">str</span><span class="special">);</span>
+         <span class="identifier">x</span> <span class="special">=</span> <span class="special">((</span><span class="identifier">x</span> <span class="special">&gt;&gt;</span> <span class="number">16</span><span class="special">)</span> <span class="special">^</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">*</span> <span class="number">0x45d9f3b</span><span class="special">;</span>
+         <span class="identifier">x</span> <span class="special">=</span> <span class="special">(</span><span class="identifier">x</span> <span class="special">&gt;&gt;</span> <span class="number">16</span><span class="special">)</span> <span class="special">^</span> <span class="identifier">x</span><span class="special">;</span>
+         <span class="identifier">seed</span> <span class="special">+=</span> <span class="identifier">x</span><span class="special">;</span>
+      <span class="special">}</span>
       <span class="keyword">return</span> <span class="identifier">seed</span><span class="special">;</span>
    <span class="special">}</span>
 <span class="special">};</span>
+
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive</span><span class="special">;</span>
 
 <span class="keyword">class</span> <span class="identifier">Expensive</span> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">set_base_hook</span><span class="special">&lt;&gt;,</span> <span class="keyword">public</span> <span class="identifier">unordered_set_base_hook</span><span class="special">&lt;&gt;</span>
 <span class="special">{</span>

@@ -712,7 +712,7 @@ pre.rouge {
 <li><a href="#polymorphic_memory_resource">polymorphic memory resource</a></li>
 <li><a href="#cancellation">cancellation</a></li>
 <li><a href="#design:promise">Promise</a></li>
-<li><a href="#design:race">Select</a></li>
+<li><a href="#design:race">Race</a></li>
 <li><a href="#design:interrupt_await">interrupt_await</a></li>
 <li><a href="#associators">Associators</a></li>
 <li><a href="#threading">Threading</a></li>
@@ -2829,7 +2829,7 @@ but practically speaking, compilers aren&#8217;t there as of 2023.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="design:race">Select</h3>
+<h3 id="design:race">Race</h3>
 <div class="paragraph">
 <p>The most important synchronization mechanism is the <code>race</code> function.</p>
 </div>
@@ -2866,13 +2866,13 @@ awaitable is found to be ready or completed immediately.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>race</code> must however internally wait  for all awaitable to complete
+<p>The <code>race</code> must however internally wait for all awaitable to complete
 once it initiates to <code>co_await</code>.
-Therefor, once the first <a href="#awaitable">awaitable</a> completes,
+Therefore, once the first <a href="#awaitable">awaitable</a> completes,
 it tries to <a href="#interrupt_await">interrupt</a> the rest, and if that fails cancels them.</p>
 </div>
 <div class="paragraph">
-<p><code>race</code> is the preferred way to trigger cancellations, e.g:</p>
+<p><code>race</code> is the preferred way to trigger cancellations, e.g.:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6327,7 +6327,7 @@ Vinnie trusted me enough to let me work on this project, while himself having ve
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2023-12-06 21:03:10 UTC
+Last updated 2024-04-11 18:48:01 UTC
 </div>
 </div>
 </body>

@@ -28,7 +28,8 @@
 <a name="beast.ref.boost__beast__flat_static_buffer"></a><a class="link" href="boost__beast__flat_static_buffer.html" title="flat_static_buffer">flat_static_buffer</a>
 </h4></div></div></div>
 <p>
-        A <span class="emphasis"><em>DynamicBuffer</em></span> with a fixed size internal buffer.
+        A <span class="emphasis"><em>DynamicBuffer</em></span> with a fixed size internal buffer using
+        no memory allocations.
       </p>
 <h5>
 <a name="beast.ref.boost__beast__flat_static_buffer.h0"></a>
@@ -303,8 +304,9 @@
         <span class="phrase"><a name="beast.ref.boost__beast__flat_static_buffer.description"></a></span><a class="link" href="boost__beast__flat_static_buffer.html#beast.ref.boost__beast__flat_static_buffer.description">Description</a>
       </h5>
 <p>
-        Buffer sequences returned by <a class="link" href="boost__beast__flat_static_buffer/data.html" title="flat_static_buffer::data"><code class="computeroutput"><span class="identifier">data</span></code></a> and <a class="link" href="boost__beast__flat_static_buffer/prepare.html" title="flat_static_buffer::prepare"><code class="computeroutput"><span class="identifier">prepare</span></code></a> will always be of length
-        one. This implements a dynamic buffer using no memory allocations.
+        Buffer sequences representing the readable and writable bytes, returned by
+        <a class="link" href="boost__beast__flat_static_buffer/data.html" title="flat_static_buffer::data"><code class="computeroutput"><span class="identifier">data</span></code></a> and <a class="link" href="boost__beast__flat_static_buffer/prepare.html" title="flat_static_buffer::prepare"><code class="computeroutput"><span class="identifier">prepare</span></code></a>, will have a type of net::const_buffer
+        or net::mutable_buffer.
       </p>
 <h5>
 <a name="beast.ref.boost__beast__flat_static_buffer.h5"></a>

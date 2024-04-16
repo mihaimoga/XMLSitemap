@@ -142,6 +142,44 @@
 <tr>
 <td>
                 <p>
+                  <code class="computeroutput"><span class="identifier">x1</span><span class="special">.</span><span class="identifier">is_connected</span><span class="special">()</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="keyword">bool</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Returns <code class="computeroutput"><span class="keyword">false</span></code> only
+                  if the slot can never cause the invocation of a handler attached
+                  to the slot using <code class="computeroutput"><span class="identifier">assign</span></code>
+                  or <code class="computeroutput"><span class="identifier">emplace</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">x1</span><span class="special">.</span><span class="identifier">has_handler</span><span class="special">()</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="keyword">bool</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Returns <code class="computeroutput"><span class="keyword">true</span></code> if a
+                  handler has been attached to the slot.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
                   <code class="computeroutput"><span class="identifier">x1</span><span class="special">.</span><span class="identifier">assign</span><span class="special">(</span><span class="identifier">h</span><span class="special">)</span></code>
                 </p>
               </td>
@@ -151,6 +189,14 @@
                 </p>
               </td>
 <td>
+                <p>
+                  Destroys the existing handler that is attached to the slot, if
+                  any, and attaches a move-constructed decay-copy of the handler
+                  <code class="computeroutput"><span class="identifier">h</span></code>.<br> <br>
+                  Returns a reference to the newly attached handler.<br> <br>
+                  post: <code class="computeroutput"><span class="identifier">x1</span><span class="special">.</span><span class="identifier">has_handler</span><span class="special">()</span>
+                  <span class="special">==</span> <span class="keyword">true</span></code>.
+                </p>
               </td>
 </tr>
 <tr>
@@ -168,7 +214,29 @@
 <td>
                 <p>
                   Requires that <code class="computeroutput"><span class="identifier">is_constructible</span><span class="special">&lt;</span><span class="identifier">H</span><span class="special">,</span> <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">u0</span><span class="special">),</span> <span class="special">...,</span>
-                  <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">u0</span><span class="special">)&gt;::</span><span class="identifier">value</span></code> be true.
+                  <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">u0</span><span class="special">)&gt;::</span><span class="identifier">value</span></code> be true.<br> <br> Destroys
+                  the existing handler that is attached to the slot, if any, and
+                  attaches a handler of type <code class="computeroutput"><span class="identifier">H</span></code>
+                  constructed with the specified arguments <code class="computeroutput"><span class="identifier">u0</span><span class="special">,</span> <span class="special">...,</span>
+                  <span class="identifier">uN</span></code>.<br> <br> Returns
+                  a reference to the newly attached handler.<br> <br> post:
+                  <code class="computeroutput"><span class="identifier">x1</span><span class="special">.</span><span class="identifier">has_handler</span><span class="special">()</span>
+                  <span class="special">==</span> <span class="keyword">true</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">x1</span><span class="special">.</span><span class="identifier">clear</span><span class="special">()</span></code>
+                </p>
+              </td>
+<td>
+              </td>
+<td>
+                <p>
+                  Post: <code class="computeroutput"><span class="identifier">x1</span><span class="special">.</span><span class="identifier">has_handler</span><span class="special">()</span>
+                  <span class="special">==</span> <span class="keyword">false</span></code>.
                 </p>
               </td>
 </tr>
@@ -177,7 +245,7 @@
 </div>
 <br class="table-break">
 </div>
-<div class="copyright-footer">Copyright © 2003-2023 Christopher M. Kohlhoff<p>
+<div class="copyright-footer">Copyright © 2003-2024 Christopher M. Kohlhoff<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

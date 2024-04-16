@@ -28,10 +28,10 @@
 <a name="beast.ref.boost__beast__basic_stream.expires_at"></a><a class="link" href="expires_at.html" title="basic_stream::expires_at">basic_stream::expires_at</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm12352"></a>
+          <a class="indexterm" name="idm12394"></a>
         </p>
 <p>
-          Set the timeout for the next logical operation.
+          Set the timeout for subsequent logical operations.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__basic_stream.expires_at.h0"></a>
@@ -51,9 +51,12 @@
           asynchronous operation is outstanding, the stream will be closed and any
           outstanding operations will complete with the error <a class="link" href="../boost__beast__error.html" title="error"><code class="computeroutput"><span class="identifier">beast</span><span class="special">::</span><span class="identifier">error</span><span class="special">::</span><span class="identifier">timeout</span></code></a>. Otherwise, if the timer
           expires while no operations are outstanding, and the expiraton is not set
-          again, the next operation will time out immediately. The timer applies
-          collectively to any asynchronous reads or writes initiated after the expiration
-          is set, until the expiration is set again. A call to <a class="link" href="async_connect.html" title="basic_stream::async_connect"><code class="computeroutput"><span class="identifier">async_connect</span></code></a> counts as both a
+          again, the next operation will time out immediately.
+        </p>
+<p>
+          The timer applies collectively to any asynchronous reads or writes initiated
+          after the expiration is set, until the expiration is set again. A call
+          to <a class="link" href="async_connect.html" title="basic_stream::async_connect"><code class="computeroutput"><span class="identifier">async_connect</span></code></a> counts as both a
           read and a write.
         </p>
 <h6>

@@ -255,13 +255,18 @@
         This wraps a <span class="emphasis"><em>Stream</em></span> implementation so that calls to
         write are passed through to the underlying stream, while calls to read will
         first consume the input sequence stored in a <span class="emphasis"><em>DynamicBuffer</em></span>
-        which is part of the object. The use-case for this class is different than
-        that of the <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">buffered_read_stream</span></code>. It is designed to
-        facilitate the use of <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">read_until</span></code>,
+        which is part of the object.
+      </p>
+<p>
+        The use-case for this class is different than that of the <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">buffered_read_stream</span></code>.
+        It is designed to facilitate the use of <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">read_until</span></code>,
         and to allow buffers acquired during detection of handshakes to be made transparently
         available to callers. A hypothetical implementation of the buffered version
         of <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">ssl</span><span class="special">::</span><span class="identifier">stream</span><span class="special">::</span><span class="identifier">async_handshake</span></code>
-        could make use of this wrapper. Uses:
+        could make use of this wrapper.
+      </p>
+<p>
+        Uses:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"group__boundary.html#ga2c354f4cc03677b58c97038cd84dc465":[9,0,98],
 "group__boundary.html#ga315e4baac1059256cd9009a765670554":[9,0,103],
 "group__boundary.html#ga363232d255dad62cc163a1dcd8e34144":[9,0,73],
 "group__boundary.html#ga38978e44980b283447eeb9bf860f0cf9":[9,0,34],
@@ -240,7 +241,7 @@ var NAVTREEINDEX2 =
 "index.html#main_tutorial":[1],
 "index_8hpp_source.html":[12,0,0,0,0,2],
 "info_8hpp_source.html":[12,0,0,0,18],
-"is__supported__char_8hpp_source.html":[12,0,0,0,1,2],
+"is__supported__char_8hpp_source.html":[12,0,0,0,1,3],
 "locale__data_8hpp_source.html":[12,0,0,0,2,0],
 "locale_gen.html":[3,0],
 "locale_gen.html#locale_gen_basics":[3,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "locale_gen.html#locale_gen_variant_icu":[3,0,1,1],
 "locale_gen.html#locale_gen_variant_non_icu":[3,0,1,0],
 "locale_information.html":[3,9],
-"localization__backend_8hpp_source.html":[12,0,0,0,19],
-"localized_text_formatting.html":[3,7]
+"localization__backend_8hpp_source.html":[12,0,0,0,19]
 };

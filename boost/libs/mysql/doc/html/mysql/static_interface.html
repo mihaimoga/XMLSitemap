@@ -107,10 +107,11 @@
 <p>
       You can write your query as:
     </p>
-<pre class="programlisting"><span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">sql</span> <span class="special">=</span> <span class="identifier">R</span><span class="string">"%(
+<pre class="programlisting"><span class="comment">// Summing 0e0 is MySQL way to cast a DECIMAL field to DOUBLE</span>
+<span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">sql</span> <span class="special">=</span> <span class="identifier">R</span><span class="string">"%(
     SELECT
-        IFNULL(AVG(salary), 0.0) AS average,
-        IFNULL(MAX(salary), 0.0) AS max_value,
+        IFNULL(AVG(salary), 0.0) + 0e0 AS average,
+        IFNULL(MAX(salary), 0.0) + 0e0 AS max_value,
         company_id AS company
     FROM employee
     GROUP BY company_id

@@ -47,8 +47,10 @@
             <span class="phrase"><a name="beast.ref.boost__beast__websocket__stream.read.overload2.description"></a></span><a class="link" href="overload2.html#beast.ref.boost__beast__websocket__stream.read.overload2.description">Description</a>
           </h6>
 <p>
-            This function is used to read a complete message. The call blocks until
-            one of the following is true:
+            This function is used to read a complete message.
+          </p>
+<p>
+            The call blocks until one of the following is true:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -66,10 +68,14 @@
             The algorithm, known as a <span class="emphasis"><em>composed operation</em></span>, is
             implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">read_some</span></code>
             and <code class="computeroutput"><span class="identifier">write_some</span></code> functions.
+          </p>
+<p>
             Received message data is appended to the buffer. The functions <a class="link" href="../got_binary.html" title="websocket::stream::got_binary"><code class="computeroutput"><span class="identifier">got_binary</span></code></a> and <a class="link" href="../got_text.html" title="websocket::stream::got_text"><code class="computeroutput"><span class="identifier">got_text</span></code></a> may be used to query
-            the stream and determine the type of the last received message. Until
-            the call returns, the implementation will read incoming control frames
-            and handle them automatically as follows:
+            the stream and determine the type of the last received message.
+          </p>
+<p>
+            Until the call returns, the implementation will read incoming control
+            frames and handle them automatically as follows:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">

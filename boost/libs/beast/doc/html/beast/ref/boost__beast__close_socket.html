@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__close_socket"></a><a class="link" href="boost__beast__close_socket.html" title="close_socket">close_socket</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm69377"></a>
+        <a class="indexterm" name="idm69775"></a>
       </p>
 <p>
         Close a socket or socket-like object.
@@ -56,11 +56,16 @@
         <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">beast_close_socket</span><span class="special">(</span><span class="identifier">Socket</span><span class="special">&amp;)</span></code> is well-defined. The function <code class="computeroutput"><span class="identifier">beast_close_socket</span></code> is a <span class="emphasis"><em>customization
         point</em></span>, allowing user-defined types to provide an algorithm for
         performing the close operation by overloading this function for the type
-        in question. Since the customization point is a function call, the normal
-        rules for finding the correct overload are applied including the rules for
-        argument-dependent lookup ("ADL"). This permits classes derived
-        from a type for which a customization is provided to inherit the customization
-        point. An overload for the networking class template <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">basic_socket</span></code>
+        in question.
+      </p>
+<p>
+        Since the customization point is a function call, the normal rules for finding
+        the correct overload are applied including the rules for argument-dependent
+        lookup ("ADL"). This permits classes derived from a type for which
+        a customization is provided to inherit the customization point.
+      </p>
+<p>
+        An overload for the networking class template <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">basic_socket</span></code>
         is provided, which implements the close algorithm for all socket-like objects
         (hence the name of this customization point). When used in conjunction with
         <a class="link" href="boost__beast__get_lowest_layer.html" title="get_lowest_layer"><code class="computeroutput"><span class="identifier">get_lowest_layer</span></code></a>,

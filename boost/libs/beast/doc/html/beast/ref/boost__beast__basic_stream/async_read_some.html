@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__basic_stream.async_read_some"></a><a class="link" href="async_read_some.html" title="basic_stream::async_read_some">basic_stream::async_read_some</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm14898"></a>
+          <a class="indexterm" name="idm14959"></a>
         </p>
 <p>
           Read some data asynchronously.
@@ -50,8 +50,10 @@
           <span class="phrase"><a name="beast.ref.boost__beast__basic_stream.async_read_some.description"></a></span><a class="link" href="async_read_some.html#beast.ref.boost__beast__basic_stream.async_read_some.description">Description</a>
         </h6>
 <p>
-          This function is used to asynchronously read data from the stream. This
-          call always returns immediately. The asynchronous operation will continue
+          This function is used to asynchronously read data from the stream.
+        </p>
+<p>
+          This call always returns immediately. The asynchronous operation will continue
           until one of the following conditions is true:
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -66,9 +68,12 @@
           The algorithm, known as a <span class="emphasis"><em>composed asynchronous operation</em></span>,
           is implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">async_read_some</span></code>
           function. The program must ensure that no other calls to <a class="link" href="read_some.html" title="basic_stream::read_some"><code class="computeroutput"><span class="identifier">read_some</span></code></a> or <a class="link" href="async_read_some.html" title="basic_stream::async_read_some"><code class="computeroutput"><span class="identifier">async_read_some</span></code></a> are performed
-          until this operation completes. If the timeout timer expires while the
-          operation is outstanding, the operation will be canceled and the completion
-          handler will be invoked with the error <a class="link" href="../boost__beast__error.html" title="error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">timeout</span></code></a>.
+          until this operation completes.
+        </p>
+<p>
+          If the timeout timer expires while the operation is outstanding, the operation
+          will be canceled and the completion handler will be invoked with the error
+          <a class="link" href="../boost__beast__error.html" title="error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">timeout</span></code></a>.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__basic_stream.async_read_some.h2"></a>

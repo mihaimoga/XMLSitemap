@@ -2329,7 +2329,7 @@ This method tries to do one step with step size dt. If the error estimate is to 
 <typedef name="stepper_category"><type>controlled_stepper_tag</type></typedef>
 <typedef name="wrapped_state_type"><type>stepper_type::wrapped_state_type</type></typedef>
 <typedef name="wrapped_deriv_type"><type>stepper_type::wrapped_deriv_type</type></typedef>
-<typedef name="error_storage_type"><type>boost::array&lt; wrapped_state_type, 4 &gt;</type></typedef>
+<typedef name="error_storage_type"><type>std::array&lt; wrapped_state_type, 4 &gt;</type></typedef>
 <typedef name="coeff_type"><type>stepper_type::coeff_type</type></typedef>
 <typedef name="controlled_stepper_type"><type>controlled_adams_bashforth_moulton&lt; ErrorStepper, StepAdjuster, OrderAdjuster, Resizer &gt;</type></typedef>
 <data-member name="order_value" specifiers="static"><type>const stepper_type::order_type</type></data-member>
@@ -2375,7 +2375,7 @@ This method tries to do one step with step size dt. If the error estimate is to 
 <typedef name="wrapped_state_type"><type>state_wrapper&lt; state_type &gt;</type></typedef>
 <typedef name="algebra_type"><type>Algebra</type></typedef>
 <method-group name="public member functions">
-<method name="adjust_order"><type>size_t</type><parameter name="order"><paramtype>size_t</paramtype></parameter><parameter name="init"><paramtype>size_t</paramtype></parameter><parameter name="xerr"><paramtype>boost::array&lt; wrapped_state_type, 4 &gt; &amp;</paramtype></parameter></method>
+<method name="adjust_order"><type>size_t</type><parameter name="order"><paramtype>size_t</paramtype></parameter><parameter name="init"><paramtype>size_t</paramtype></parameter><parameter name="xerr"><paramtype>std::array&lt; wrapped_state_type, 4 &gt; &amp;</paramtype></parameter></method>
 </method-group>
 <constructor><parameter name="algebra"><paramtype>const algebra_type &amp;</paramtype><default>algebra_type()</default></parameter></constructor>
 </class>
@@ -2569,7 +2569,7 @@ This method tries to do one step with step size dt. If the error estimate is to 
 <method name="try_step"><type>controlled_step_result</type><template>
           <template-type-parameter name="System"/>
           <template-type-parameter name="StateInOut"/>
-        </template><parameter name="system"><paramtype>System</paramtype><description><para>The system function to solve, hence the r.h.s. of the ODE. It must fulfill the Simple System concept. </para></description></parameter><parameter name="x"><paramtype>StateInOut &amp;</paramtype><description><para>The state of the ODE which should be solved. Overwritten if the step is successful. </para></description></parameter><parameter name="t"><paramtype>time_type &amp;</paramtype><description><para>The value of the time. Updated if the step is successful. </para></description></parameter><parameter name="dt"><paramtype>time_type &amp;</paramtype><description><para>The step size. Updated. </para></description></parameter><purpose>Tries to perform one step. </purpose><description><para>This method tries to do one step with step size dt. If the error estimate is to large, the step is rejected and the method returns fail and the step size dt is reduced. If the error estimate is acceptably small, the step is performed, success is returned and dt might be increased to make the steps as large as possible. This method also updates t if a step is performed.</para><para>
+        </template><parameter name="system"><paramtype>System</paramtype><description><para>The system function to solve, hence the r.h.s. of the ODE. It must fulfill the Simple System concept. </para></description></parameter><parameter name="x"><paramtype>StateInOut &amp;</paramtype><description><para>The state of the ODE which should be solved. Overwritten if the step is successful. </para></description></parameter><parameter name="t"><paramtype>time_type &amp;</paramtype><description><para>The value of the time. Updated if the step is successful. </para></description></parameter><parameter name="dt"><paramtype>time_type &amp;</paramtype><description><para>The step size. Updated. </para></description></parameter><purpose>Tries to perform one step. </purpose><description><para>This method tries to do one step with step size dt. If the error estimate is too large, the step is rejected and the method returns fail and the step size dt is reduced. If the error estimate is acceptably small, the step is performed, success is returned and dt might be increased to make the steps as large as possible. This method also updates t if a step is performed.</para><para>
 
 </para></description><returns><para>success if the step was accepted, fail otherwise. </para>
 </returns></method>
@@ -3319,18 +3319,6 @@ The dense-output functionality allows to interpolate the solution between subseq
 <data-member name="stepper_order_value" specifiers="static"><type>const order_type</type></data-member>
 <data-member name="error_order_value" specifiers="static"><type>const order_type</type></data-member>
 <data-member name="m_k_max" specifiers="static"><type>const size_t</type></data-member>
-<method-group name="private member functions">
-<method name="BOOST_STATIC_ASSERT_MSG"><type/><parameter name=""><paramtype>((Order % 2)==0) &amp;&amp;(Order &gt; 2)</paramtype></parameter><parameter name=""><paramtype>"extrapolation_stepper requires even Order larger than 2"</paramtype></parameter></method>
-<method name="resize_impl"><type>bool</type><template>
-          <template-type-parameter name="StateIn"/>
-        </template><parameter name="x"><paramtype>const StateIn &amp;</paramtype></parameter></method>
-<method name="resize_m_xout"><type>bool</type><template>
-          <template-type-parameter name="StateIn"/>
-        </template><parameter name="x"><paramtype>const StateIn &amp;</paramtype></parameter></method>
-<method name="extrapolate"><type>void</type><template>
-          <template-type-parameter name="StateInOut"/>
-        </template><parameter name="k"><paramtype>size_t</paramtype></parameter><parameter name="table"><paramtype>state_table_type &amp;</paramtype></parameter><parameter name="coeff"><paramtype>const value_matrix &amp;</paramtype></parameter><parameter name="xest"><paramtype>StateInOut &amp;</paramtype></parameter></method>
-</method-group>
 <method-group name="public member functions">
 <method name="do_step_impl"><type>void</type><template>
           <template-type-parameter name="System"/>
@@ -3372,6 +3360,17 @@ The dense-output functionality allows to interpolate the solution between subseq
         </template><parameter name="x"><paramtype>const StateIn &amp;</paramtype></parameter></method>
 </method-group>
 <constructor><parameter name="algebra"><paramtype>const algebra_type &amp;</paramtype><default>algebra_type()</default></parameter></constructor>
+<method-group name="private member functions">
+<method name="resize_impl"><type>bool</type><template>
+          <template-type-parameter name="StateIn"/>
+        </template><parameter name="x"><paramtype>const StateIn &amp;</paramtype></parameter></method>
+<method name="resize_m_xout"><type>bool</type><template>
+          <template-type-parameter name="StateIn"/>
+        </template><parameter name="x"><paramtype>const StateIn &amp;</paramtype></parameter></method>
+<method name="extrapolate"><type>void</type><template>
+          <template-type-parameter name="StateInOut"/>
+        </template><parameter name="k"><paramtype>size_t</paramtype></parameter><parameter name="table"><paramtype>state_table_type &amp;</paramtype></parameter><parameter name="coeff"><paramtype>const value_matrix &amp;</paramtype></parameter><parameter name="xest"><paramtype>StateInOut &amp;</paramtype></parameter></method>
+</method-group>
 </class>
 
 

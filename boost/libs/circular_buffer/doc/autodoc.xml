@@ -1168,7 +1168,7 @@ The number of <computeroutput>min[end() - pos, max[0, distance(first, last) - re
 <sbr/>
  If the number of items to be copied from the range <computeroutput>[first, last)</computeroutput> is greater than the specified <computeroutput>buffer_capacity</computeroutput> then only elements from the range <computeroutput>[last - buffer_capacity, last)</computeroutput> will be copied. </para>
 </postconditions><throws><simpara><classname>An allocation error</classname> if memory is exhausted (<computeroutput>std::bad_alloc</computeroutput> if the standard allocator is used). Whatever <computeroutput>T::T(const T&amp;)</computeroutput> throws. </simpara></throws></constructor>
-<destructor><purpose>The destructor. </purpose><description><para>Destroys the <computeroutput><classname alt="boost::circular_buffer">circular_buffer</classname></computeroutput>. 
+<destructor cv="noexcept"><purpose>The destructor. </purpose><description><para>Destroys the <computeroutput><classname alt="boost::circular_buffer">circular_buffer</classname></computeroutput>. 
 <formalpara><title>Iterator Invalidation</title><para>Invalidates all iterators pointing to the <computeroutput><classname alt="boost::circular_buffer">circular_buffer</classname></computeroutput> (including iterators equal to <computeroutput>end()</computeroutput>). </para>
 </formalpara>
 <formalpara><title>Complexity</title><para>Constant (in the size of the <computeroutput><classname alt="boost::circular_buffer">circular_buffer</classname></computeroutput>) for scalar types; linear for other types. </para>

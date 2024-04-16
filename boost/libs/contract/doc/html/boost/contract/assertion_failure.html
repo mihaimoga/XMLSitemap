@@ -41,7 +41,7 @@
   <span class="keyword">explicit</span> <a class="link" href="assertion_failure.html#idm35187-bb"><span class="identifier">assertion_failure</span></a><span class="special">(</span><span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span> <span class="special">=</span> <span class="string">""</span><span class="special">,</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> 
                              <span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span> <span class="special">=</span> <span class="string">""</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">explicit</span> <a class="link" href="assertion_failure.html#idm35211-bb"><span class="identifier">assertion_failure</span></a><span class="special">(</span><span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="assertion_failure.html#idm35219-bb"><span class="special">~</span><span class="identifier">assertion_failure</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">virtual</span> <a class="link" href="assertion_failure.html#idm35219-bb"><span class="special">~</span><span class="identifier">assertion_failure</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
   <span class="comment">// <a class="link" href="assertion_failure.html#idm35150-bb">public member functions</a></span>
   <span class="keyword">virtual</span> <span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span> <a class="link" href="assertion_failure.html#idm35151-bb"><span class="identifier">what</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
@@ -50,7 +50,7 @@
   <span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span> <a class="link" href="assertion_failure.html#idm35179-bb"><span class="identifier">code</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm38341"></a><h2>Description</h2>
+<a name="idm38342"></a><h2>Description</h2>
 <p>This exception is thrown by code expanded by  <code class="computeroutput"><a class="link" href="../../BOOST_CONTRACT_ASSERT.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code> (but it can also be thrown by user code programmed manually without that macro). This exception is typically used to report contract assertion failures because it contains detailed information about the file name, line number, and source code of the asserted condition (so it can be used by this library to provide detailed error messages when handling contract assertion failures).</p>
 <p>However, any other exception can be used to report a contract assertion failure (including user-defined exceptions). This library will call the appropriate contract failure handler function ( <code class="computeroutput"><a class="link" href="precondition_failure.html" title="Function precondition_failure">boost::contract::precondition_failure</a></code>, etc.) when this or any other exception is thrown while checking contracts (by default, these failure handler functions print an error message to <code class="computeroutput">std::cerr</code> and terminate the program, but they can be customized to take any other action).</p>
 <p><span class="bold"><strong>See Also:</strong></span></p>
@@ -60,7 +60,7 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="idm38356"></a><h3>
+<a name="idm38357"></a><h3>
 <a name="boost.contract.assertion_failureconstruct-copy-destruct"></a><code class="computeroutput">assertion_failure</code> 
         public
        construct/copy/destruct</h3>
@@ -124,12 +124,12 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="idm35219-bb"></a><span class="special">~</span><span class="identifier">assertion_failure</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destruct this object. <p><span class="bold"><strong>Throws:</strong></span> This is declared <code class="computeroutput">noexcept</code> (or <code class="computeroutput">throw()</code> before C++11). </p>
+<pre class="literallayout"><span class="keyword">virtual</span> <a name="idm35219-bb"></a><span class="special">~</span><span class="identifier">assertion_failure</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Destruct this object. <p><span class="bold"><strong>Throws:</strong></span> This is declared <code class="computeroutput">noexcept</code> (or <code class="computeroutput">throw()</code> before C++11). </p>
 </li>
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm38448"></a><h3>
+<a name="idm38450"></a><h3>
 <a name="idm35150-bb"></a><code class="computeroutput">assertion_failure</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

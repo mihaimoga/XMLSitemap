@@ -49,13 +49,14 @@
             <code class="computeroutput"><span class="identifier">is_sorted</span></code> determines
             if a range is sorted. For the non-predicate version the return value
             is <code class="computeroutput"><span class="keyword">true</span></code> if and only if for
-            each adjacent elements <code class="computeroutput"><span class="special">[</span><span class="identifier">x</span><span class="special">,</span><span class="identifier">y</span><span class="special">]</span></code>
-            the expression <code class="computeroutput"><span class="identifier">x</span> <span class="special">&lt;</span>
-            <span class="identifier">y</span></code> is <code class="computeroutput"><span class="keyword">true</span></code>.
-            For the predicate version the return value is <code class="computeroutput"><span class="keyword">true</span></code>
-            is and only if for each adjacent elements <code class="computeroutput"><span class="special">[</span><span class="identifier">x</span><span class="special">,</span><span class="identifier">y</span><span class="special">]</span></code>
-            the expression <code class="computeroutput"><span class="identifier">pred</span><span class="special">(</span><span class="identifier">x</span><span class="special">,</span><span class="identifier">y</span><span class="special">)</span></code>
-            is <code class="computeroutput"><span class="keyword">true</span></code>.
+            each adjacent elements <code class="computeroutput"><span class="special">[</span><span class="identifier">x</span><span class="special">,</span> <span class="identifier">y</span><span class="special">]</span></code>
+            the expression <code class="computeroutput"><span class="identifier">y</span> <span class="special">&lt;</span>
+            <span class="identifier">x</span></code> is <code class="computeroutput"><span class="keyword">false</span></code>
+            (i.e., <code class="computeroutput"><span class="identifier">x</span> <span class="special">&lt;=</span>
+            <span class="identifier">y</span></code>), or if the number of elements
+            is zero or one. For the predicate version the return value is <code class="computeroutput"><span class="keyword">true</span></code> is and only if for each adjacent
+            elements <code class="computeroutput"><span class="special">[</span><span class="identifier">x</span><span class="special">,</span> <span class="identifier">y</span><span class="special">]</span></code> the expression <code class="computeroutput"><span class="identifier">pred</span><span class="special">(</span><span class="identifier">y</span><span class="special">,</span> <span class="identifier">x</span><span class="special">)</span></code> is <code class="computeroutput"><span class="keyword">false</span></code>,
+            or if the number of elements is zero or one.
           </p>
 <h6>
 <a name="range.reference.algorithms.new.is_sorted.h2"></a>

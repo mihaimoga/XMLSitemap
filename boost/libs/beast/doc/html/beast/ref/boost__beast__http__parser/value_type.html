@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__parser.value_type"></a><a class="link" href="value_type.html" title="http::parser::value_type">http::parser::value_type</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm44057"></a>
+          <a class="indexterm" name="idm44200"></a>
         </p>
 <p>
           The type of message returned by the parser.
@@ -804,13 +804,20 @@
           to view the declaration for the <code class="computeroutput"><span class="identifier">Fields</span></code>
           type. When using the default fields container, those declarations are in
           <a class="link" href="../boost__beast__http__fields.html" title="http::fields"><code class="computeroutput"><span class="identifier">fields</span></code></a>.
+        </p>
+<p>
           A message can be a request or response, depending on the <code class="computeroutput"><span class="identifier">isRequest</span></code> template argument value. Requests
           and responses have different types; functions may be overloaded based on
-          the type if desired. The <code class="computeroutput"><span class="identifier">Body</span></code>
-          template argument type determines the model used to read or write the content
-          body of the message. Newly constructed messages objects have version set
-          to HTTP/1.1. Newly constructed response objects also have result code set
-          to <a class="link" href="../boost__beast__http__status.html" title="http::status"><code class="computeroutput"><span class="identifier">status</span><span class="special">::</span><span class="identifier">ok</span></code></a>.
+          the type if desired.
+        </p>
+<p>
+          The <code class="computeroutput"><span class="identifier">Body</span></code> template argument
+          type determines the model used to read or write the content body of the
+          message.
+        </p>
+<p>
+          Newly constructed messages objects have version set to HTTP/1.1. Newly
+          constructed response objects also have result code set to <a class="link" href="../boost__beast__http__status.html" title="http::status"><code class="computeroutput"><span class="identifier">status</span><span class="special">::</span><span class="identifier">ok</span></code></a>.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__http__parser.value_type.h4"></a>
@@ -1444,13 +1451,17 @@
 <p>
           This container is designed to store the field value pairs that make up
           the fields and trailers in an HTTP message. Objects of this type are iterable,
-          with each element holding the field name and field value. Field names are
-          stored as-is, but comparisons are case-insensitive. The container behaves
-          as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">multiset</span></code>; there will be a separate value
-          for each occurrence of the same field name. When the container is iterated
-          the fields are presented in the order of insertion, with fields having
-          the same name following each other consecutively. Meets the requirements
-          of <span class="emphasis"><em>Fields</em></span>
+          with each element holding the field name and field value.
+        </p>
+<p>
+          Field names are stored as-is, but comparisons are case-insensitive. The
+          container behaves as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">multiset</span></code>;
+          there will be a separate value for each occurrence of the same field name.
+          When the container is iterated the fields are presented in the order of
+          insertion, with fields having the same name following each other consecutively.
+        </p>
+<p>
+          Meets the requirements of <span class="emphasis"><em>Fields</em></span>
         </p>
 <h6>
 <a name="beast.ref.boost__beast__http__parser.value_type.h9"></a>

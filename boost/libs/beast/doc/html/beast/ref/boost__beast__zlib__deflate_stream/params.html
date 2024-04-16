@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__zlib__deflate_stream.params"></a><a class="link" href="params.html" title="zlib::deflate_stream::params">zlib::deflate_stream::params</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm24090"></a>
+          <a class="indexterm" name="idm24182"></a>
         </p>
 <p>
           Update the compression level and strategy.
@@ -55,8 +55,11 @@
           a different kind of input data requiring a different strategy. If the compression
           level is changed, the input available so far is compressed with the old
           level (and may be flushed); the new level will take effect only at the
-          next call of <a class="link" href="write.html" title="zlib::deflate_stream::write"><code class="computeroutput"><span class="identifier">write</span></code></a>. Before the call of <code class="computeroutput"><span class="identifier">params</span></code>, the stream state must be set
-          as for a call of <a class="link" href="write.html" title="zlib::deflate_stream::write"><code class="computeroutput"><span class="identifier">write</span></code></a>, since the currently available
+          next call of <a class="link" href="write.html" title="zlib::deflate_stream::write"><code class="computeroutput"><span class="identifier">write</span></code></a>.
+        </p>
+<p>
+          Before the call of <code class="computeroutput"><span class="identifier">params</span></code>,
+          the stream state must be set as for a call of <a class="link" href="write.html" title="zlib::deflate_stream::write"><code class="computeroutput"><span class="identifier">write</span></code></a>, since the currently available
           input may have to be compressed and flushed. In particular, <code class="computeroutput"><span class="identifier">zs</span><span class="special">.</span><span class="identifier">avail_out</span></code>
           must be non-zero.
         </p>

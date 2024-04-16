@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"localized_text_formatting.html":[3,7],
 "message_8hpp_source.html":[12,0,0,0,20],
 "messages_formatting.html":[3,4],
 "messages_formatting.html#adding_context_information":[3,4,2,2],
@@ -24,8 +25,8 @@ var NAVTREEINDEX3 =
 "namespacemembers_enum.html":[10,1,4],
 "namespacemembers_eval.html":[10,1,5],
 "namespacemembers_f.html":[10,1,0,5],
-"namespacemembers_func.html":[10,1,1],
 "namespacemembers_func.html":[10,1,1,0],
+"namespacemembers_func.html":[10,1,1],
 "namespacemembers_func_b.html":[10,1,1,1],
 "namespacemembers_func_c.html":[10,1,1,2],
 "namespacemembers_func_d.html":[10,1,1,3],

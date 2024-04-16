@@ -29,9 +29,9 @@
 </h3></div></div></div>
 <p>
         This example demonstrates how to use Boost.Asio's cancellation features to
-        add timeouts to your async operations, including the ones provided by <a href="https://anarthal.github.io/boost/index.html" target="_top">Boost.MySQL</a>. For
-        that purpose, it employs C++20 coroutines. If you are not familiar with them,
-        look at <a class="link" href="async_coroutinescpp20.html" title="Async functions using C++20 coroutines">this example</a>
+        add timeouts to your async operations, including the ones provided by <a href="../../../../../../libs/mysql/index.html" target="_top">Boost.MySQL</a>. For that purpose,
+        it employs C++20 coroutines. If you are not familiar with them, look at
+        <a class="link" href="async_coroutinescpp20.html" title="Async functions using C++20 coroutines">this example</a>
         first.
       </p>
 <p>
@@ -58,7 +58,7 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">stdexcept</span><span class="special">&gt;</span>
 
-<span class="preprocessor">#ifdef</span> <span class="identifier">BOOST_ASIO_HAS_CO_AWAIT</span>
+<span class="preprocessor">#if</span> <span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_ASIO_HAS_CO_AWAIT</span><span class="special">)</span> <span class="special">&amp;&amp;</span> <span class="special">!</span><span class="identifier">defined</span><span class="special">(</span><span class="identifier">BOOST_ASIO_USE_TS_EXECUTOR_AS_DEFAULT</span><span class="special">)</span>
 
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">asio</span><span class="special">/</span><span class="identifier">experimental</span><span class="special">/</span><span class="identifier">awaitable_operators</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
@@ -263,7 +263,7 @@
         <span class="comment">// You will only get this type of exceptions if you use throw_on_error.</span>
         <span class="comment">// Some errors include additional diagnostics, like server-provided error messages.</span>
         <span class="comment">// Security note: diagnostics::server_message may contain user-supplied values (e.g. the</span>
-        <span class="comment">// field value that caused the error) and is encoded using to the connection's encoding</span>
+        <span class="comment">// field value that caused the error) and is encoded using to the connection's character set</span>
         <span class="comment">// (UTF-8 by default). Treat is as untrusted input.</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">cerr</span> <span class="special">&lt;&lt;</span> <span class="string">"Error: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">err</span><span class="special">.</span><span class="identifier">what</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="char">'\n'</span>
                   <span class="special">&lt;&lt;</span> <span class="string">"Server diagnostics: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">err</span><span class="special">.</span><span class="identifier">get_diagnostics</span><span class="special">().</span><span class="identifier">server_message</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>

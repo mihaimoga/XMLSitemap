@@ -56,11 +56,11 @@
       </p>
 <p>
         Here we chose <code class="computeroutput"><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span></code>
-        as the state type, but others are also possible, for example <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span><span class="number">2</span><span class="special">&gt;</span></code>. odeint is designed in such a way that
-        you can easily use your own state types. Next, the ODE is defined which is
-        in this case a simple function calculating <span class="emphasis"><em>f(x)</em></span>. The
-        parameter signature of this function is crucial: the integration methods
-        will always call them in the form <code class="computeroutput"><span class="identifier">f</span><span class="special">(</span><span class="identifier">x</span><span class="special">,</span>
+        as the state type, but others are also possible, for example <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span><span class="number">2</span><span class="special">&gt;</span></code>.
+        odeint is designed in such a way that you can easily use your own state types.
+        Next, the ODE is defined which is in this case a simple function calculating
+        <span class="emphasis"><em>f(x)</em></span>. The parameter signature of this function is crucial:
+        the integration methods will always call them in the form <code class="computeroutput"><span class="identifier">f</span><span class="special">(</span><span class="identifier">x</span><span class="special">,</span>
         <span class="identifier">dxdt</span><span class="special">,</span>
         <span class="identifier">t</span><span class="special">)</span></code>
         (there are exceptions for some special routines). So, even if there is no

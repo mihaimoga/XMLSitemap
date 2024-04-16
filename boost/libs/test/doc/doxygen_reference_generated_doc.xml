@@ -2148,7 +2148,7 @@ em.register_exception_translator&lt;MyException&gt;( myExceptTr );
 <method name="test_unit_report_finish" cv="= 0" specifiers="virtual"><type>void</type><parameter name=""><paramtype><classname>test_unit</classname> const &amp;</paramtype></parameter><parameter name="ostr"><paramtype>std::ostream &amp;</paramtype></parameter></method>
 <method name="do_confirmation_report" cv="= 0" specifiers="virtual"><type>void</type><parameter name=""><paramtype><classname>test_unit</classname> const &amp;</paramtype></parameter><parameter name="ostr"><paramtype>std::ostream &amp;</paramtype></parameter></method>
 </method-group>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class><function name="set_level"><type>void</type><parameter name="l"><paramtype>report_level</paramtype><description><para>report level </para></description></parameter><purpose>Sets reporting level. </purpose><description><para>There are only four possible levels for results report:<itemizedlist>
 <listitem><para>confirmation report (boost::unit_test::CONFIRMATION_REPORT). This report level only produces short confirmation message about test module pass/fail status</para>
 </listitem><listitem><para>short report (boost::unit_test::SHORT_REPORT). This report level produces short summary report for failed/passed assertions and test units.</para>
@@ -2562,7 +2562,7 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <method-group name="protected member functions">
 </method-group>
 <constructor specifiers="explicit"><parameter name="module_name"><paramtype>const_string</paramtype></parameter></constructor>
-<destructor/>
+<destructor specifiers="virtual"/>
 <data-member name="p_type"><type>test_unit_type const</type><purpose>type for this test unit </purpose></data-member>
 <data-member name="p_type_name"><type>const_string const</type><purpose>"case"/"suite"/"module" </purpose></data-member>
 <data-member name="p_file_name"><type>const_string const</type></data-member>
@@ -2916,7 +2916,7 @@ Users/developers willing to implement their own formatter need to:<itemizedlist>
 </para></description></method>
 </method-group>
 <constructor><purpose>Constructor. </purpose></constructor>
-<destructor/>
+<destructor specifiers="virtual"/>
 </class>
 
 

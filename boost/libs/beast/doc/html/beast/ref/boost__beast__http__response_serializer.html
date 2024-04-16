@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__response_serializer"></a><a class="link" href="boost__beast__http__response_serializer.html" title="http::response_serializer">http::response_serializer</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm75831"></a>
+        <a class="indexterm" name="idm76251"></a>
       </p>
 <p>
         A serializer for HTTP/1 responses.
@@ -197,7 +197,8 @@
               </td>
 <td>
                 <p>
-                  Constructor.
+                  Move Constructor. <br><span class="silver">—</span><br>Copy Constructor.
+                  <br><span class="silver">—</span><br>Constructor.
                 </p>
               </td>
 </tr>
@@ -234,6 +235,8 @@
         a sequence of octets. To use this class, construct an instance with the message
         to be serialized. The implementation will automatically perform chunk encoding
         if the contents of the message indicate that chunk encoding is required.
+      </p>
+<p>
         Chunked output produced by the serializer never contains chunk extensions
         or trailers, and the location of chunk boundaries is not specified. If callers
         require chunk extensions, trailers, or control over the exact contents of
@@ -243,6 +246,15 @@
       </p>
 <h5>
 <a name="beast.ref.boost__beast__http__response_serializer.h3"></a>
+        <span class="phrase"><a name="beast.ref.boost__beast__http__response_serializer.remarks"></a></span><a class="link" href="boost__beast__http__response_serializer.html#beast.ref.boost__beast__http__response_serializer.remarks">Remarks</a>
+      </h5>
+<p>
+        Moving or copying the serializer after the first call to <a class="link" href="boost__beast__http__serializer/next.html" title="http::serializer::next"><code class="computeroutput"><span class="identifier">serializer</span><span class="special">::</span><span class="identifier">next</span></code></a> results in undefined behavior.
+        Try to heap-allocate the serializer object if you need to move the serializer
+        between multiple async operations (for example, between a call to <code class="computeroutput"><span class="identifier">async_write_header</span></code> and <code class="computeroutput"><span class="identifier">async_write</span></code>).
+      </p>
+<h5>
+<a name="beast.ref.boost__beast__http__response_serializer.h4"></a>
         <span class="phrase"><a name="beast.ref.boost__beast__http__response_serializer.template_parameters"></a></span><a class="link" href="boost__beast__http__response_serializer.html#beast.ref.boost__beast__http__response_serializer.template_parameters">Template
         Parameters</a>
       </h5>

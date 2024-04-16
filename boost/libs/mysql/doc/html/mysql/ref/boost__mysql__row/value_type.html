@@ -28,7 +28,7 @@
 <a name="mysql.ref.boost__mysql__row.value_type"></a><a class="link" href="value_type.html" title="row::value_type">row::value_type</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm46298"></a>
+          <a class="indexterm" name="idm71307"></a>
         </p>
 <p>
           A type that can hold elements in this collection with value semantics.
@@ -213,19 +213,22 @@
                     holding an <code class="computeroutput"><span class="identifier">int64</span></code>.
                     <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding an <code class="computeroutput"><span class="identifier">uint64</span></code>. <br><span class="silver">—</span><br>Constructs
                     a <code class="computeroutput"><span class="identifier">field</span></code> holding
-                    an <code class="computeroutput"><span class="identifier">uint64</span></code>. <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code>
-                    holding a string. <br><span class="silver">—</span><br>Constructs
+                    an <code class="computeroutput"><span class="identifier">uint64</span></code>. <br><span class="silver">—</span><br>Constructors from character types would
+                    incorrectly construct a <code class="computeroutput"><span class="identifier">field</span></code>
+                    holding an integer, so they are not allowed. <br><span class="silver">—</span><br>Constructors
+                    from character types would incorrectly construct a <code class="computeroutput"><span class="identifier">field</span></code> holding an integer, so
+                    they are not allowed. <br><span class="silver">—</span><br>Constructs
                     a <code class="computeroutput"><span class="identifier">field</span></code> holding
-                    a string. <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding a <code class="computeroutput"><span class="identifier">blob</span></code>. <br><span class="silver">—</span><br>Constructs
+                    a string. <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding a string. <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code>
+                    holding a <code class="computeroutput"><span class="identifier">blob</span></code>.
+                    <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding a <code class="computeroutput"><span class="keyword">float</span></code>. <br><span class="silver">—</span><br>Constructs
                     a <code class="computeroutput"><span class="identifier">field</span></code> holding
-                    a <code class="computeroutput"><span class="keyword">float</span></code>. <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code>
-                    holding a <code class="computeroutput"><span class="keyword">double</span></code>.
-                    <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding a <code class="computeroutput"><span class="identifier">date</span></code>. <br><span class="silver">—</span><br>Constructs
+                    a <code class="computeroutput"><span class="keyword">double</span></code>. <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code>
+                    holding a <code class="computeroutput"><span class="identifier">date</span></code>.
+                    <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding a <code class="computeroutput"><span class="identifier">datetime</span></code>. <br><span class="silver">—</span><br>Constructs
                     a <code class="computeroutput"><span class="identifier">field</span></code> holding
-                    a <code class="computeroutput"><span class="identifier">datetime</span></code>. <br>
-                    <span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding a <code class="computeroutput"><span class="identifier">time</span></code>. <br><span class="silver">—</span><br>Constructs
-                    a <code class="computeroutput"><span class="identifier">field</span></code> from
-                    a <a class="link" href="../boost__mysql__field_view.html" title="field_view"><code class="computeroutput"><span class="identifier">field_view</span></code></a>.
+                    a <code class="computeroutput"><span class="identifier">time</span></code>. <br><span class="silver">—</span><br>Constructs a <code class="computeroutput"><span class="identifier">field</span></code>
+                    from a <a class="link" href="../boost__mysql__field_view.html" title="field_view"><code class="computeroutput"><span class="identifier">field_view</span></code></a>.
                   </p>
                 </td>
 </tr>
@@ -542,7 +545,11 @@
                     <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>
                     with <code class="computeroutput"><span class="identifier">v</span></code>, changing
                     the kind to <code class="computeroutput"><span class="identifier">uint64</span></code>
-                    and destroying any previous contents. <br><span class="silver">—</span><br>Replaces
+                    and destroying any previous contents. <br><span class="silver">—</span><br>Assignments
+                    from character types would incorrectly assign an integer, so
+                    they are not allowed. <br><span class="silver">—</span><br>Assignments
+                    from character types would incorrectly assign an integer, so
+                    they are not allowed. <br><span class="silver">—</span><br>Replaces
                     <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>
                     with <code class="computeroutput"><span class="identifier">v</span></code>, changing
                     the kind to <code class="computeroutput"><span class="identifier">string</span></code>

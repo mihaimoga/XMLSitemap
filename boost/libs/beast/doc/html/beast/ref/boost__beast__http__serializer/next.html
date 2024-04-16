@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__serializer.next"></a><a class="link" href="next.html" title="http::serializer::next">http::serializer::next</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm49958"></a>
+          <a class="indexterm" name="idm50180"></a>
         </p>
 <p>
           Returns the next set of buffers in the serialization.
@@ -52,9 +52,12 @@
           This function will attempt to call the <code class="computeroutput"><span class="identifier">visit</span></code>
           function object with a <span class="emphasis"><em>ConstBufferSequence</em></span> of unspecified
           type representing the next set of buffers in the serialization of the message
-          represented by this object. If there are no more buffers in the serialization,
-          the visit function will not be called. In this case, no error will be indicated,
-          and the function <a class="link" href="is_done.html" title="http::serializer::is_done"><code class="computeroutput"><span class="identifier">is_done</span></code></a> will return <code class="computeroutput"><span class="keyword">true</span></code>.
+          represented by this object.
+        </p>
+<p>
+          If there are no more buffers in the serialization, the visit function will
+          not be called. In this case, no error will be indicated, and the function
+          <a class="link" href="is_done.html" title="http::serializer::is_done"><code class="computeroutput"><span class="identifier">is_done</span></code></a> will return <code class="computeroutput"><span class="keyword">true</span></code>.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__http__serializer.next.h2"></a>

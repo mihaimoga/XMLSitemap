@@ -246,6 +246,31 @@
       This message may contain non-ASCII characters. It's encoded using the connection's
       character set.
     </p>
+<h4>
+<a name="mysql.error_handling.h2"></a>
+      <span class="phrase"><a name="mysql.error_handling.system_result"></a></span><a class="link" href="error_handling.html#mysql.error_handling.system_result">Using
+      boost::system::result</a>
+    </h4>
+<p>
+      Some functions, like <a class="link" href="ref/boost__mysql__basic_format_context/get.html" title="basic_format_context::get"><code class="literal">basic_format_context::get</code></a>,
+      use <a href="../../../../../libs/system/doc/html/system.html#ref_boostsystemresult_hpp" target="_top"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code></a>
+      to communicate errors. <code class="computeroutput"><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+      contains either a value (an instance of <code class="computeroutput"><span class="identifier">T</span></code>),
+      or an <a class="link" href="ref/boost__mysql__error_code.html" title="error_code"><code class="literal">error_code</code></a>,
+      if the operation failed. <code class="computeroutput"><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+      is similar to <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">expected</span></code>, but only requires C++11.
+    </p>
+<p>
+      Given a <code class="computeroutput"><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code> object
+      <code class="computeroutput"><span class="identifier">r</span></code>, you can get its contained
+      value calling <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">value</span><span class="special">()</span></code>.
+      If <code class="computeroutput"><span class="identifier">r</span></code> contained an error, a
+      <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">result</span></code> exception with the contained error
+      code is thrown. <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">has_value</span><span class="special">()</span></code>,
+      <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">has_error</span><span class="special">()</span></code>
+      and <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">error</span><span class="special">()</span></code> can
+      be used to inspect the object.
+    </p>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__async_write_some"></a><a class="link" href="boost__beast__http__async_write_some.html" title="http::async_write_some">http::async_write_some</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm79910"></a>
+        <a class="indexterm" name="idm80366"></a>
       </p>
 <p>
         Write part of a message to a stream asynchronously using a serializer.
@@ -78,6 +78,8 @@
         <code class="computeroutput"><span class="identifier">async_write_some</span></code> function,
         and is known as a <span class="emphasis"><em>composed operation</em></span>. The program must
         ensure that the stream performs no other writes until this operation completes.
+      </p>
+<p>
         The amount of data actually transferred is controlled by the behavior of
         the underlying stream, subject to the buffer size limit of the serializer
         obtained or set through a call to <a class="link" href="boost__beast__http__serializer/limit.html" title="http::serializer::limit"><code class="computeroutput"><span class="identifier">serializer</span><span class="special">::</span><span class="identifier">limit</span></code></a>. Setting a limit and performing
@@ -175,7 +177,7 @@
           </li></ul></div>
 <p>
         if the <code class="computeroutput"><span class="identifier">stream</span></code> also supports
-        terminal cancellation. <code class="computeroutput"><span class="identifier">terminal</span></code>
+        terminal cancellation, <code class="computeroutput"><span class="identifier">terminal</span></code>
         cancellation leaves the stream in an undefined state, so that only closing
         it is guaranteed to succeed.
       </p>

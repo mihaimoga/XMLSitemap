@@ -687,6 +687,7 @@ pre.rouge {
 </li>
 <li><a href="#changes">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changes_in_boost_1_85">Changes in Boost 1.85</a></li>
 <li><a href="#changes_in_boost_1_84">Changes in Boost 1.84</a></li>
 <li><a href="#changes_in_boost_1_81">Changes in Boost 1.81</a></li>
 <li><a href="#changes_in_boost_1_80">Changes in Boost 1.80</a></li>
@@ -704,7 +705,6 @@ pre.rouge {
 <li><a href="#rationale">Design Rationale</a></li>
 <li><a href="#reference">Reference</a>
 <ul class="sectlevel2">
-<li><a href="#ref_use_of_c11_and_c14_features">Use of C&#43;&#43;11 and C&#43;&#43;14 Features</a></li>
 <li><a href="#ref_macros">Macros</a></li>
 <li><a href="#ref_deprecated_names">Deprecated Names</a></li>
 <li><a href="#ref_boostsystemis_error_code_enum_hpp">&lt;boost/system/&#8203;is_error_code_enum.hpp&gt;</a>
@@ -831,8 +831,9 @@ pre.rouge {
 <li><a href="#ref_chaining">Chaining</a>
 <ul class="sectlevel4">
 <li><a href="#ref_operator">operator|</a></li>
-<li><a href="#ref_operator_2">operator&amp;</a></li>
-<li><a href="#ref_operator_3">operator&amp;=</a></li>
+<li><a href="#ref_operator_2">operator|=</a></li>
+<li><a href="#ref_operator_3">operator&amp;</a></li>
+<li><a href="#ref_operator_4">operator&amp;=</a></li>
 </ul>
 </li>
 </ul>
@@ -2561,6 +2562,28 @@ image format" condition.</p>
 <h2 id="changes">Revision History</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="changes_in_boost_1_85">Changes in Boost 1.85</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>C&#43;&#43;03 is no longer supported; a C&#43;&#43;11 compiler is required. (This includes GCC 4.8 or later, and MSVC 14.0 (VS 2015) or later.)</p>
+</li>
+<li>
+<p>The deprecated header <code>boost/system/cygwin_error.hpp</code> has been removed.</p>
+</li>
+<li>
+<p>The original and obsolete (32 bit) MinGW is no longer supported. MinGW-w64 (both 64 and 32 bit) is still supported.</p>
+</li>
+<li>
+<p><code>operator&amp;</code> now works for <code>result&lt;void&gt;</code> (by way of taking a nullary function.)</p>
+</li>
+<li>
+<p>Added <code>operator|=</code> for <code>result</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
 <h3 id="changes_in_boost_1_84">Changes in Boost 1.84</h3>
 <div class="ulist">
 <ul>
@@ -2863,15 +2886,6 @@ useful in its own right.</p>
 <div class="sect1">
 <h2 id="reference">Reference</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="ref_use_of_c11_and_c14_features">Use of C&#43;&#43;11 and C&#43;&#43;14 Features</h3>
-<div class="paragraph">
-<p>The library is documented to use several C&#43;&#43;11 and C&#43;&#43;14 features,
-including <code>noexcept</code>, explicit conversion operators and <code>constexpr</code>. The
-actual implementation uses C&#43;&#43;11 and C&#43;&#43;14 features only when they are
-available, and otherwise falls back on C&#43;&#43;03 features.</p>
-</div>
-</div>
 <div class="sect2">
 <h3 id="ref_macros">Macros</h3>
 <div class="paragraph">
@@ -7563,7 +7577,102 @@ by invoking the function <code>f</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="ref_operator_2">operator&amp;</h5>
+<h5 id="ref_operator_2">operator|=</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span><span class="p">&gt;</span> <span class="n">result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">|=</span><span class="p">(</span> <span class="n">result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="n">U</span><span class="o">&amp;&amp;</span> <span class="n">u</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p></p>
+<div class="paragraph">
+<p>If <code>r</code> contains an error, assigns a value to it, constructed from <code>u</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>If <code>r.has_value()</code> is <code>false</code>, assigns <code>u</code> to <code>r</code>.</p>
+</dd>
+<dt class="hdlist1">Returns: </dt>
+<dd>
+<p><code>r</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Only enabled when <code>U</code> is convertible to <code>T</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="p">&gt;</span> <span class="n">result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">|=</span><span class="p">(</span> <span class="n">result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p></p>
+<div class="paragraph">
+<p>If <code>r</code> contains an error, assigns <code>f()</code> to it.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>If <code>r.has_value()</code> is <code>false</code>, assigns <code>f()</code> to <code>r</code>.</p>
+</dd>
+<dt class="hdlist1">Returns: </dt>
+<dd>
+<p><code>r</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Only enabled when the type of <code>f()</code> is either</p>
+<div class="ulist">
+<ul>
+<li>
+<p>convertible to <code>T</code> or</p>
+</li>
+<li>
+<p>an instance of <code>result</code> convertible to <code>result&lt;T, E&gt;</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Example: </dt>
+<dd>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">result</span><span class="o">&lt;</span><span class="n">response</span><span class="o">&gt;</span> <span class="n">query_impl</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">server</span><span class="p">,</span> <span class="n">request</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">req</span> <span class="p">);</span>
+
+<span class="n">result</span><span class="o">&lt;</span><span class="n">response</span><span class="o">&gt;</span> <span class="n">query</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="o">&gt;</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">servers</span><span class="p">,</span> <span class="n">request</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">req</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">result</span><span class="o">&lt;</span><span class="n">response</span><span class="o">&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">make_error_code</span><span class="p">(</span> <span class="n">errc</span><span class="o">::</span><span class="n">invalid_argument</span> <span class="p">);</span>
+
+    <span class="k">for</span><span class="p">(</span> <span class="k">auto</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">server</span><span class="o">:</span> <span class="n">servers</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">r</span> <span class="o">|=</span> <span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span> <span class="n">query_impl</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span> <span class="n">req</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="ref_operator_3">operator&amp;</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span> <span class="o">=</span> <span class="p">...&gt;</span>
@@ -7619,6 +7728,46 @@ by invoking the function <code>f</code>.</p>
 <span class="p">}</span></code></pre>
 </div>
 </div>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span> <span class="o">=</span> <span class="p">...&gt;</span>
+  <span class="n">result</span><span class="o">&lt;</span><span class="n">U</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">&amp;</span><span class="p">(</span> <span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p></p>
+<div class="paragraph">
+<p>Returns the error in <code>r</code>, or if <code>r</code> contains a value, replaces it with the result of calling <code>f</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let <code>U</code> be the type of <code>f()</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>r.has_value()</code> is <code>true</code>, returns <code>f()</code>.</p>
+</li>
+<li>
+<p>Otherwise, returns <code>r.error()</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Only enabled when <code>U</code> is not an instance of <code>result</code>.</p>
 </dd>
 </dl>
 </div>
@@ -7699,9 +7848,49 @@ by invoking the function <code>f</code> on the value in <code>r</code>.</p>
 </li>
 </ul>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="k">class</span> <span class="nc">R</span> <span class="o">=</span> <span class="p">...&gt;</span> <span class="n">R</span> <span class="k">operator</span><span class="o">&amp;</span><span class="p">(</span> <span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p></p>
+<div class="paragraph">
+<p>Returns the error in <code>r</code>, or if <code>r</code> contains a value, another <code>result</code> obtained
+by invoking the function <code>f</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let <code>R</code> be the type of <code>f()</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>If <code>r.has_value()</code> is <code>true</code>, returns <code>f()</code>.</p>
+</li>
+<li>
+<p>Otherwise, returns <code>r.error()</code>.</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Only enabled when <code>R</code> is an instance of <code>result</code> and <code>E</code> is convertible to <code>R::error_type</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect4">
-<h5 id="ref_operator_3">operator&amp;=</h5>
+<h5 id="ref_operator_4">operator&amp;=</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span> <span class="o">=</span> <span class="p">...&gt;</span>
@@ -7806,6 +7995,41 @@ by invoking the function <code>f</code> on the value in <code>r</code>.</p>
 </li>
 </ul>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="k">class</span> <span class="nc">R</span> <span class="o">=</span> <span class="p">...&gt;</span>
+  <span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">&amp;=</span><span class="p">(</span> <span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;&amp;</span> <span class="n">r</span><span class="p">,</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p></p>
+<div class="paragraph">
+<p>If <code>r</code> contains a value, replaces <code>r</code> with the result of invoking the function <code>f</code>.</p>
+</div>
+<div class="paragraph">
+<p>Let <code>R</code> be the type of <code>f()</code>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>If <code>r.has_value()</code> is <code>true</code>, assigns <code>f()</code> to <code>r</code>.</p>
+</dd>
+<dt class="hdlist1">Returns: </dt>
+<dd>
+<p><code>r</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Only enabled when <code>R</code> is an instance of <code>result&lt;void, E2&gt;</code> and <code>E2</code> is convertible to <code>E</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -7879,7 +8103,7 @@ paper. Johan Nilsson&#8217;s comments led to several of the refinements in N2066
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-06 21:03:16 UTC
+Last updated 2024-04-11 18:48:08 UTC
 </div>
 </div>
 <style>
