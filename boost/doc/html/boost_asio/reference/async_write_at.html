@@ -47,7 +47,8 @@
     <span class="identifier">AsyncRandomAccessWriteDevice</span> <span class="special">&amp;</span> <span class="identifier">d</span><span class="special">,</span>
     <span class="identifier">uint64_t</span> <span class="identifier">offset</span><span class="special">,</span>
     <span class="keyword">const</span> <span class="identifier">ConstBufferSequence</span> <span class="special">&amp;</span> <span class="identifier">buffers</span><span class="special">,</span>
-    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;());</span>
+    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">is_completion_condition</span><span class="special">&lt;</span> <span class="identifier">WriteToken</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
   <span class="emphasis"><em>» <a class="link" href="async_write_at/overload1.html" title="async_write_at (1 of 4 overloads)">more...</a></em></span>
 </pre>
 <p>
@@ -64,7 +65,8 @@
     <span class="identifier">uint64_t</span> <span class="identifier">offset</span><span class="special">,</span>
     <span class="keyword">const</span> <span class="identifier">ConstBufferSequence</span> <span class="special">&amp;</span> <span class="identifier">buffers</span><span class="special">,</span>
     <span class="identifier">CompletionCondition</span> <span class="identifier">completion_condition</span><span class="special">,</span>
-    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;());</span>
+    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_completion_condition</span><span class="special">&lt;</span> <span class="identifier">CompletionCondition</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
   <span class="emphasis"><em>» <a class="link" href="async_write_at/overload2.html" title="async_write_at (2 of 4 overloads)">more...</a></em></span>
 </pre>
 <p>
@@ -79,7 +81,8 @@
     <span class="identifier">AsyncRandomAccessWriteDevice</span> <span class="special">&amp;</span> <span class="identifier">d</span><span class="special">,</span>
     <span class="identifier">uint64_t</span> <span class="identifier">offset</span><span class="special">,</span>
     <span class="identifier">basic_streambuf</span><span class="special">&lt;</span> <span class="identifier">Allocator</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <span class="identifier">b</span><span class="special">,</span>
-    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;());</span>
+    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">is_completion_condition</span><span class="special">&lt;</span> <span class="identifier">WriteToken</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
   <span class="emphasis"><em>» <a class="link" href="async_write_at/overload3.html" title="async_write_at (3 of 4 overloads)">more...</a></em></span>
 </pre>
 <p>
@@ -96,7 +99,8 @@
     <span class="identifier">uint64_t</span> <span class="identifier">offset</span><span class="special">,</span>
     <span class="identifier">basic_streambuf</span><span class="special">&lt;</span> <span class="identifier">Allocator</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <span class="identifier">b</span><span class="special">,</span>
     <span class="identifier">CompletionCondition</span> <span class="identifier">completion_condition</span><span class="special">,</span>
-    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;());</span>
+    <span class="identifier">WriteToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncRandomAccessWriteDevice</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_completion_condition</span><span class="special">&lt;</span> <span class="identifier">CompletionCondition</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
   <span class="emphasis"><em>» <a class="link" href="async_write_at/overload4.html" title="async_write_at (4 of 4 overloads)">more...</a></em></span>
 </pre>
 <h5>
@@ -104,7 +108,7 @@
         <span class="phrase"><a name="boost_asio.reference.async_write_at.requirements"></a></span><a class="link" href="async_write_at.html#boost_asio.reference.async_write_at.requirements">Requirements</a>
       </h5>
 <p>
-        <span class="emphasis"><em>Header: </em></span><code class="literal">boost/asio/impl/write_at.hpp</code>
+        <span class="emphasis"><em>Header: </em></span><code class="literal">boost/asio/write_at.hpp</code>
       </p>
 <p>
         <span class="emphasis"><em>Convenience header: </em></span><code class="literal">boost/asio.hpp</code>

@@ -149,7 +149,7 @@
 <p>
       </p>
 <p>
-        It has an <code class="computeroutput"><a class="link" href="../boost/yap/expr_kind.html" title="Type expr_kind">expr_kind</a></code>
+        It has an <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1ad99d2de607e5e1f27d4de9cb4b283228.html" title="Type expr_kind">expr_kind</a></code>
         of <code class="computeroutput"><span class="identifier">plus</span></code> as its first template
         parameter (it's a non-type parameter); this indicates what kind of "node"
         it is. In this case, the top level expression is analogous to our <code class="computeroutput"><span class="keyword">operator</span><span class="special">+()</span></code>
@@ -232,7 +232,7 @@
         <span class="special">+</span> <span class="number">8.0f</span></code>.
       </p>
 <p>
-        To do this, we create <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.terminal"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">terminal</span></code></a> expressions out of one
+        To do this, we create <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">terminal</span></code></a> expressions out of one
         or more of the terminals in the expression we want to capture and evaluate
         lazily. Here, I've declared a template alias to make that easier to type:
       </p>
@@ -279,10 +279,10 @@
         The reason I can then just call the terminal with a <code class="computeroutput"><span class="number">3.0</span></code>
         argument and add <code class="computeroutput"><span class="number">8.0f</span></code> to the
         result is that I'm taking a great big shortcut in this example by using Boost.YAP's
-        built-in example expression template, <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code>.
-        <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code> is a template with all
+        built-in example expression template, <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code> is a template with all
         the operator overloads defined, including the call operator. Each operator
-        overload returns an <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code>,
+        overload returns an <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code>,
         which is why the <code class="computeroutput"><span class="special">+</span></code> in <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">sqrt</span><span class="special">(</span><span class="number">3.0</span><span class="special">)</span>
         <span class="special">+</span> <span class="number">8.0f</span></code>
         also works.
@@ -294,7 +294,7 @@
 </tr>
 <tr><td align="left" valign="top">
 <p>
-          <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code> is great for example
+          <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code> is great for example
           code like what you see here, and it's great for small expression template
           use cases that are essentially implementation details. You should write
           your own expression templates for anything that is to be used in any other
@@ -310,14 +310,14 @@
           go? Into <code class="computeroutput"><span class="identifier">a</span></code>, <code class="computeroutput"><span class="identifier">b</span></code>, or into an expiring <code class="computeroutput"><span class="identifier">a</span> <span class="special">+</span> <span class="identifier">b</span></code> temporary? What if <code class="computeroutput"><span class="identifier">a</span></code>
           is a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> and <code class="computeroutput"><span class="identifier">b</span></code>
           is a <code class="computeroutput"><span class="identifier">FILE</span> <span class="special">*</span></code>?
-          <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code> doesn't care. You probably
+          <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code> doesn't care. You probably
           want to design interfaces that are more carefully considered than the "everything
-          goes" style implied by using <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code>.
+          goes" style implied by using <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code>.
         </p>
 </td></tr>
 </table></div>
 <p>
-        Boost.YAP comes with a handy <code class="computeroutput"><a class="link" href="../boost/yap/print.html" title="Function template print">print()</a></code>
+        Boost.YAP comes with a handy <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a9446e8e01e08cfa00715a1416d17fdbc.html" title="Function template print">print()</a></code>
         function. Calling it like this:
       </p>
 <p>
@@ -369,7 +369,7 @@
             <span class="special">=</span> <span class="identifier">sort</span><span class="special">(</span><span class="identifier">v</span><span class="special">)</span> <span class="special">|</span> <span class="identifier">unique</span><span class="special">;</span></code>.
           </li>
 <li class="listitem">
-            Use the Boost.YAP <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+            Use the Boost.YAP <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
             algorithm to transform the expression into what you want. In this case,
             something like <code class="computeroutput"><span class="keyword">auto</span> <span class="identifier">desired_expr</span>
             <span class="special">=</span> <span class="identifier">yap</span><span class="special">::</span><span class="identifier">transform</span><span class="special">(</span><span class="identifier">expr</span><span class="special">,</span> <span class="identifier">my_transform</span><span class="special">);</span></code>, which turns the concise form <code class="computeroutput"><span class="identifier">sort</span><span class="special">(</span><span class="identifier">v</span><span class="special">)</span> <span class="special">|</span> <span class="identifier">unique</span></code>
@@ -378,8 +378,8 @@
             is desirable.
           </li>
 <li class="listitem">
-            Evauate the final expression, either using <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>
-            or a call to <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+            Evauate the final expression, either using <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>
+            or a call to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
             that transforms the final expression into an evaluated result.
           </li>
 </ul></div>
@@ -416,7 +416,7 @@
 <pre class="programlisting"><span class="keyword">auto</span> <span class="keyword">const</span> <span class="identifier">result</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">yap</span><span class="special">::</span><span class="identifier">evaluate</span><span class="special">(</span><span class="identifier">expr_n</span><span class="special">);</span>
 </pre>
 <p>
-        Each call to <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> here produces a new <a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a> that can subsequently
+        Each call to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> here produces a new <a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a> that can subsequently
         be transformed. This is conceptually similar to what happens inside many
         compilers. Capturing the expression is analogous to the compiler's parse;
         the transformations are analogous to optimization passes; and the evaluation
@@ -431,7 +431,7 @@
         <span class="phrase"><a name="boost_yap.manual.the_yap_way._code__phrase_role__identifier__transform__phrase__phrase_role__special______phrase___code__as_evaluate"></a></span><a class="link" href="manual.html#boost_yap.manual.the_yap_way._code__phrase_role__identifier__transform__phrase__phrase_role__special______phrase___code__as_evaluate"><code class="computeroutput"><span class="identifier">transform</span><span class="special">()</span></code>-as-evaluate</a>
       </h5>
 <p>
-        This is a variant of <code class="computeroutput"><span class="identifier">evaluate</span><span class="special">(</span><span class="identifier">transform</span><span class="special">())</span></code>, where the <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>
+        This is a variant of <code class="computeroutput"><span class="identifier">evaluate</span><span class="special">(</span><span class="identifier">transform</span><span class="special">())</span></code>, where the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>
         call at the end is unnecessary, because the final (or perhaps only) transform
         does all the evaluation we need.
       </p>
@@ -487,8 +487,8 @@
 <span class="keyword">static_assert</span><span class="special">(</span><span class="identifier">arity</span><span class="special">.</span><span class="identifier">value</span> <span class="special">==</span> <span class="number">2</span><span class="special">,</span> <span class="string">"Called with wrong number of args."</span><span class="special">);</span>
 </pre>
 <p>
-        In this case, <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> produces a non-<a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a>
-        value, all by itself. We got our result without ever needing to call <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>.
+        In this case, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> produces a non-<a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a>
+        value, all by itself. We got our result without ever needing to call <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>.
       </p>
 <div class="note"><table border="0" summary="Note">
 <tr>
@@ -496,10 +496,10 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-          Whether <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> returns an <a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a>
+          Whether <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> returns an <a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a>
           or non-<a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a>
           is entirely up to the caller. The transform object passed as the second
-          argument to <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> defines what <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>'s return type will be.
+          argument to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> defines what <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>'s return type will be.
         </p></td></tr>
 </table></div>
 </div>
@@ -516,7 +516,7 @@
         For a type <code class="computeroutput"><span class="identifier">T</span></code> to model the
         <a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a> concept,
         <code class="computeroutput"><span class="identifier">T</span></code> must contain at least an
-        <code class="computeroutput"><a class="link" href="../boost/yap/expr_kind.html" title="Type expr_kind">expr_kind</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1ad99d2de607e5e1f27d4de9cb4b283228.html" title="Type expr_kind">expr_kind</a></code>
         (terminal, plus-operation, etc.) and a <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">hana</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;&gt;</span></code> of values. That's it.
       </p>
 <div class="note"><table border="0" summary="Note">
@@ -569,7 +569,7 @@
 <p>
       </p>
 <p>
-        If we evaluate it using <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>,
+        If we evaluate it using <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>,
         it does what you would expect:
       </p>
 <p>
@@ -584,7 +584,7 @@
         One more thing. It is important to remember that Boost.YAP expressions are
         all-lazy, all the time. There is no auto-evaluation of a Boost.YAP expression
         like there is with normal C++ expressions. If you want your expressions to
-        be evaluated, you must call <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>,
+        be evaluated, you must call <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>,
         or define non-lazy operations that force evaluation where and when you want
         it. This last approach is usually the right one, and there are lots of examples
         of how to do this in the <a class="link" href="manual.html#boost_yap.manual.examples" title="Examples">Examples</a>
@@ -661,7 +661,7 @@
 <p>
         Most of the expression kinds are the overloadable operators (<code class="computeroutput"><span class="keyword">operator</span><span class="special">!()</span></code>,
         <code class="computeroutput"><span class="keyword">operator</span><span class="special">&lt;&lt;=()</span></code>,
-        etc.), See <code class="computeroutput"><a class="link" href="../boost/yap/expr_kind.html" title="Type expr_kind">expr_kind</a></code>
+        etc.), See <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1ad99d2de607e5e1f27d4de9cb4b283228.html" title="Type expr_kind">expr_kind</a></code>
         for the full list.
       </p>
 <p>
@@ -670,13 +670,13 @@
 <div class="variablelist">
 <p class="title"><b></b></p>
 <dl class="variablelist">
-<dt><span class="term"><a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.terminal"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">terminal</span></code></a></span></dt>
+<dt><span class="term"><a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">terminal</span></code></a></span></dt>
 <dd><p>
               A terminal contains a non-Expression value, and represents a leaf-node
-              in an expression tree. A terminal may have a <code class="computeroutput"><a class="link" href="../boost/yap/placeholder.html" title="Struct template placeholder">placeholder&lt;&gt;</a></code>
+              in an expression tree. A terminal may have a <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1placeholder.html" title="Struct template placeholder">placeholder&lt;&gt;</a></code>
               value, in which case it acts as a placeholder.
             </p></dd>
-<dt><span class="term"><a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.if_else"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">if_else</span></code></a></span></dt>
+<dt><span class="term"><a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">if_else</span></code></a></span></dt>
 <dd><p>
               An <code class="computeroutput"><span class="identifier">if_else</span></code> expression
               is analogous to the C++ ternary operator (<code class="computeroutput"><span class="special">?:</span></code>).
@@ -685,7 +685,7 @@
               to <code class="computeroutput"><span class="keyword">bool</span></code>; Boost.YAP does
               not check this.
             </p></dd>
-<dt><span class="term"><a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a></span></dt>
+<dt><span class="term"><a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a></span></dt>
 <dd><p>
               An <code class="computeroutput"><span class="identifier">expr_ref</span></code> expression
               is one that acts as a (possibly <code class="computeroutput"><span class="keyword">const</span></code>)
@@ -748,7 +748,7 @@
       Expressions</a>
 </h3></div></div></div>
 <p>
-        Transformations in Boost.YAP are done using the <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+        Transformations in Boost.YAP are done using the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
         function.
       </p>
 <p>
@@ -758,33 +758,33 @@
         <span class="inlinemediaobject"><img src="../yap/img/expr.png" alt="expr"></span>
       </p>
 <p>
-        Consider a call to <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>,
+        Consider a call to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>,
         operating on that expression:
       </p>
 <pre class="programlisting"><span class="keyword">auto</span> <span class="identifier">result</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">yap</span><span class="special">::</span><span class="identifier">transform</span><span class="special">(</span><span class="identifier">expr</span><span class="special">,</span> <span class="identifier">xform</span><span class="special">);</span>
 </pre>
 <p>
-        Boost.YAP's <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> first looks at the top level
+        Boost.YAP's <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> first looks at the top level
         expression, which in this case is a <code class="computeroutput"><span class="special">+</span></code>
         expression. If the transform object <code class="computeroutput"><span class="identifier">xform</span></code>
-        matches the <code class="computeroutput"><span class="special">+</span></code> expression, <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> is done; it just returns
+        matches the <code class="computeroutput"><span class="special">+</span></code> expression, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> is done; it just returns
         <code class="computeroutput"><span class="identifier">xform</span><span class="special">(</span><span class="identifier">expr</span><span class="special">)</span></code>.
         If <code class="computeroutput"><span class="identifier">xform</span></code> does not match the
-        <code class="computeroutput"><span class="special">+</span></code> expression, <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> transforms all its operands
+        <code class="computeroutput"><span class="special">+</span></code> expression, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> transforms all its operands
         (which for <code class="computeroutput"><span class="keyword">operator</span><span class="special">+()</span></code>
         is just the left and right operands), and returns a new <code class="computeroutput"><span class="special">+</span></code>
         expression with those transformed operands. What I mean by "match"
         is covered in detail below.
       </p>
 <p>
-        The overall effect of this is that <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+        The overall effect of this is that <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
         effectively copies an <code class="computeroutput"><span class="identifier">expr</span></code>
         node that <span class="bold"><strong>does not</strong></span> match <code class="computeroutput"><span class="identifier">xform</span></code>,
         and returns a transformed node for an <code class="computeroutput"><span class="identifier">expr</span></code>
         node that <span class="bold"><strong>does</strong></span> match <code class="computeroutput"><span class="identifier">xform</span></code>.
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> can also take multiple transform
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> can also take multiple transform
         objects. If you call it with N transform objects, it will attempt to match
         each of the N transforms to a given expression, one at a time and in their
         given order. Only if no transform matches an expression does the copy-and-recurse
@@ -796,9 +796,9 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-          There's another form of <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>,
-          <code class="computeroutput"><a class="link" href="../boost/yap/transform_strict.html" title="Function template transform_strict">transform_strict()</a></code>. <code class="computeroutput"><a class="link" href="../boost/yap/transform_strict.html" title="Function template transform_strict">transform_strict()</a></code>
-          is identical to <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+          There's another form of <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>,
+          <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a530f8c59f3f85b44ce6ebcb7b4cdb8c6.html" title="Function template transform_strict">transform_strict()</a></code>. <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a530f8c59f3f85b44ce6ebcb7b4cdb8c6.html" title="Function template transform_strict">transform_strict()</a></code>
+          is identical to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
           except that it does not copy or recurse into an unmatched expression. Instead,
           a failed match is a hard error. This is useful when you have written a
           transform that you expect to completely transform an expression, and you
@@ -806,10 +806,10 @@
         </p></td></tr>
 </table></div>
 <p>
-        One common result of calling <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+        One common result of calling <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
         is that you create a copy of <code class="computeroutput"><span class="identifier">expr</span></code>,
         with a few matching nodes transformed. But this does not have to be the result
-        of calling <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>, because a Boost.YAP transformation
+        of calling <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>, because a Boost.YAP transformation
         is free-form; it must return a value, but may do just about anything else.
         It can transform an expression into anything — a new expression of
         any kind, or even a non-expression value (effectively evaluating the expression).
@@ -881,7 +881,7 @@
 <tr><td align="left" valign="top"><p>
           Often when you create an expression, you will want to evaluate it in different
           contexts, changing its evaluation — or even entire meaning —
-          in each context. <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>
+          in each context. <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>
           is wrong for this task, since it only takes values for substitution into
           placeholders. In these situations, you should instead use multiple transforms
           that evaluate your expression in different ways.
@@ -893,13 +893,13 @@
         transform() Recurses</a>
       </h5>
 <p>
-        As described above, <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+        As described above, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
         only recurses when it <span class="bold"><strong>does not</strong></span> find a match.
         This means that if you want to transform a nonterminal, say an <code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">call</span></code> expression we'll call <code class="computeroutput"><span class="identifier">C</span></code>, and <span class="bold"><strong>also</strong></span>
         <code class="computeroutput"><span class="identifier">C</span></code>'s subexpressions, you must
-        explicitly call <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> yourself in your transform
+        explicitly call <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> yourself in your transform
         that matches <code class="computeroutput"><span class="identifier">C</span></code>. You can see
-        this kind of explicit <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+        this kind of explicit <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
         call in the recursive case of <code class="computeroutput"><span class="identifier">get_arity</span></code>
         in the example code above.
       </p>
@@ -910,13 +910,13 @@
 </tr>
 <tr><td align="left" valign="top"><p>
           The code you write with Boost.YAP is likely going to be very generic, especially
-          when you're writing a transform. <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+          when you're writing a transform. <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
           requires an <a class="link" href="concepts.html#boost_yap.concepts.expression">Expression</a>
           as its first parameter. In situations when you want to make sure that the
-          first parameter you pass to <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
-          is always a Boost.YAP expression, use the <code class="computeroutput"><a class="link" href="../boost/yap/as_exp_1_3_46_8_2_2_1_1_15.html" title="Function template as_expr">as_expr()</a></code>
+          first parameter you pass to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
+          is always a Boost.YAP expression, use the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a400188ffc7742bb8eb2e69c811ccf132.html" title="Function template as_expr">as_expr()</a></code>
           function. This is commonly needed when writing a transform in which you
-          manually recurse by calling <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>
+          manually recurse by calling <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>
           inside one of your transform overloads.
         </p></td></tr>
 </table></div>
@@ -965,7 +965,7 @@
       </p>
 <p>
         A <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransform</a> overload
-        takes a tag that indicates the <code class="computeroutput"><a class="link" href="../boost/yap/expr_kind.html" title="Type expr_kind">expr_kind</a></code> of the expression
+        takes a tag that indicates the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1ad99d2de607e5e1f27d4de9cb4b283228.html" title="Type expr_kind">expr_kind</a></code> of the expression
         to be transformed, and then (loosely) the value of each operand of the expression
         to be transformed. This looseness prevents you from needing to write out
         the full type of the matched expression. Here's one from the <a class="link" href="manual.html#boost_yap.manual.examples.pipable_algorithms" title="Pipable Algorithms">Pipable
@@ -987,7 +987,7 @@
 <p>
         <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransforms</a> are
         most useful when the transform needs to match an expression without regard
-        to whether its operands are <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a> expressions, or —
+        to whether its operands are <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a> expressions, or —
         if they are terminals — whether they contain or refer to their values.
         <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransforms</a> tend
         to be far more concise.
@@ -1001,7 +1001,7 @@
         That "(loosely)" before probably bothered you, right? Me too. Each
         non-tag parameter is passed to a <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransform</a>
         by calling an operand accessor appropriate to <code class="computeroutput"><span class="identifier">expr</span></code>'s
-        kind, and then calling a terminal-specific version of <code class="computeroutput"><a class="link" href="../boost/yap/value.html" title="Function template value">value()</a></code>
+        kind, and then calling a terminal-specific version of <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a1827574c3a11821c03649a3bff42ea24.html" title="Function template value">value()</a></code>
         (<code class="computeroutput"><span class="identifier">terminal_value</span><span class="special">()</span></code>)
         on the result. For example, consider a plus expression <code class="computeroutput"><span class="identifier">expr</span></code>.
         The <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransform</a> on
@@ -1011,22 +1011,22 @@
 <pre class="programlisting"><span class="identifier">xform</span><span class="special">(</span><span class="identifier">plus_tag</span><span class="special">,</span> <span class="identifier">terminal_value</span><span class="special">(</span><span class="identifier">left</span><span class="special">(</span><span class="identifier">expr</span><span class="special">)),</span> <span class="identifier">terminal_value</span><span class="special">(</span><span class="identifier">right</span><span class="special">(</span><span class="identifier">expr</span><span class="special">)))</span>
 </pre>
 <p>
-        The operand accessors (<code class="computeroutput"><a class="link" href="../boost/yap/left.html" title="Function template left">left()</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/yap/right.html" title="Function template right">right()</a></code> in this example) all dereference
-        <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>
+        The operand accessors (<code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a184da8d47376463214e90a30ac590415.html" title="Function template left">left()</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a16830edaeada1f44038a39e09e429314.html" title="Function template right">right()</a></code> in this example) all dereference
+        <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>
         expressions before operating on them, and <code class="computeroutput"><span class="identifier">terminal_value</span><span class="special">()</span></code> does the same.
       </p>
 <p>
         <code class="computeroutput"><span class="identifier">terminal_value</span><span class="special">()</span></code>
-        works much like <code class="computeroutput"><a class="link" href="../boost/yap/value.html" title="Function template value">value()</a></code>, except that it does not
+        works much like <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a1827574c3a11821c03649a3bff42ea24.html" title="Function template value">value()</a></code>, except that it does not
         take the value of a <span class="bold"><strong>nonterminal</strong></span> unary expression;
         it just forwards a nonterminal through. It still takes values out of terminals
-        and unwraps <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>
+        and unwraps <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>
         expressions, though.
       </p>
 <p>
         The auto-unwrapping of terminals means that you can effectively ignore the
-        presence of <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>
+        presence of <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>
         expressions when writing a <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransform</a>.
         You can also just deal with the values inside terminals, and not the terminals
         themselves. Also, you can match all terminal value qualifiers (<code class="computeroutput"><span class="keyword">const</span></code> or not, lvalue or rvalue) uniformly
@@ -1088,10 +1088,10 @@
         Transform Objects</a>
       </h5>
 <p>
-        In the case that multiple transform objects are being used in <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code>, the above logic applies
+        In the case that multiple transform objects are being used in <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code>, the above logic applies
         to each one independently before the next one is used. In other words, in
         the call <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">yap</span><span class="special">::</span><span class="identifier">transform</span><span class="special">(</span><span class="identifier">expr</span><span class="special">,</span>
-        <span class="identifier">a</span><span class="special">,</span> <span class="identifier">b</span><span class="special">)</span></code>, <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> tries to match any <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransform</a> from <code class="computeroutput"><span class="identifier">a</span></code> to an expression first, then any <a class="link" href="concepts.html#boost_yap.concepts.expressiontransform">ExpressionTransform</a>
+        <span class="identifier">a</span><span class="special">,</span> <span class="identifier">b</span><span class="special">)</span></code>, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> tries to match any <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransform</a> from <code class="computeroutput"><span class="identifier">a</span></code> to an expression first, then any <a class="link" href="concepts.html#boost_yap.concepts.expressiontransform">ExpressionTransform</a>
         from <code class="computeroutput"><span class="identifier">a</span></code>, then any <a class="link" href="concepts.html#boost_yap.concepts.tagtransform">TagTransform</a>
         from <code class="computeroutput"><span class="identifier">b</span></code>, and finally any
         <a class="link" href="concepts.html#boost_yap.concepts.expressiontransform">ExpressionTransform</a>
@@ -1106,25 +1106,25 @@
       </h5>
 <p>
         Boost.YAP comes with a couple of functions that return ready-made transforms,
-        <code class="computeroutput"><a class="link" href="../boost/yap/replacements.html" title="Function template replacements">replacements()</a></code> and <code class="computeroutput"><a class="link" href="../boost/yap/evaluation.html" title="Function template evaluation">evaluation()</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1af4f30d11916622320c421082408bf8c0.html" title="Function template replacements">replacements()</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a160b93c8d28215970ca0b1ac2d4270e5.html" title="Function template evaluation">evaluation()</a></code>.
       </p>
 <p>
-        The transforms returned by <code class="computeroutput"><a class="link" href="../boost/yap/replacements.html" title="Function template replacements">replacements()</a></code>
+        The transforms returned by <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1af4f30d11916622320c421082408bf8c0.html" title="Function template replacements">replacements()</a></code>
         replace only placeholder terminals. Placeholder <code class="computeroutput"><span class="identifier">I</span></code>
-        is replaced by the <code class="computeroutput"><span class="identifier">I</span><span class="special">-</span><span class="number">1</span></code>-th argument passed to <code class="computeroutput"><a class="link" href="../boost/yap/replacements.html" title="Function template replacements">replacements()</a></code>.
+        is replaced by the <code class="computeroutput"><span class="identifier">I</span><span class="special">-</span><span class="number">1</span></code>-th argument passed to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1af4f30d11916622320c421082408bf8c0.html" title="Function template replacements">replacements()</a></code>.
         Placeholders are <code class="computeroutput"><span class="number">1</span></code>-based for
         consistency with other Boost and <code class="computeroutput"><span class="identifier">std</span></code>
         placeholders.
       </p>
 <p>
-        There are also a couple of specialty transform functions, <code class="computeroutput"><a class="link" href="../boost/yap/replace_placeholders.html" title="Function template replace_placeholders">replace_placeholders()</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>. These are convenience functions
-        that just call <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> on an expression using
-        <code class="computeroutput"><a class="link" href="../boost/yap/replacements.html" title="Function template replacements">replacements()</a></code> or <code class="computeroutput"><a class="link" href="../boost/yap/evaluation.html" title="Function template evaluation">evaluation()</a></code>
+        There are also a couple of specialty transform functions, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1acf4669f0121359dd4079ee371eeace90.html" title="Function template replace_placeholders">replace_placeholders()</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>. These are convenience functions
+        that just call <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> on an expression using
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1af4f30d11916622320c421082408bf8c0.html" title="Function template replacements">replacements()</a></code> or <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a160b93c8d28215970ca0b1ac2d4270e5.html" title="Function template evaluation">evaluation()</a></code>
         as the transform, respectively.
       </p>
 <p>
-        The behavior of <code class="computeroutput"><a class="link" href="../boost/yap/evaluation.html" title="Function template evaluation">evaluation()</a></code>
+        The behavior of <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a160b93c8d28215970ca0b1ac2d4270e5.html" title="Function template evaluation">evaluation()</a></code>
         is covered in the next section, <a class="link" href="manual.html#boost_yap.manual.evaluating_expressions" title="Evaluating Expressions">Evaluating
         Expressions</a>.
       </p>
@@ -1134,17 +1134,17 @@
 <a name="boost_yap.manual.evaluating_expressions"></a><a class="link" href="manual.html#boost_yap.manual.evaluating_expressions" title="Evaluating Expressions">Evaluating Expressions</a>
 </h3></div></div></div>
 <p>
-        Boost.YAP expressions are evaluated explicitly, by calling the <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code> function or calling <code class="computeroutput"><a class="link" href="../boost/yap/transform.html" title="Function template transform">transform()</a></code> using a transform object
-        returned from <code class="computeroutput"><a class="link" href="../boost/yap/evaluation.html" title="Function template evaluation">evaluation()</a></code>. The former is a convenince
+        Boost.YAP expressions are evaluated explicitly, by calling the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code> function or calling <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a19030c29aa00bb02fe1d7897241a7e50.html" title="Function template transform">transform()</a></code> using a transform object
+        returned from <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a160b93c8d28215970ca0b1ac2d4270e5.html" title="Function template evaluation">evaluation()</a></code>. The former is a convenince
         function that does the latter.
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code> simply removes all the Boost.YAP
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code> simply removes all the Boost.YAP
         machinery from an expression and evaluates it exactly as it would have been
         if Boost.YAP were not used. This means that functions are called, operators
         evaluated, etc. all as normal. To illustrate this, take a look at the implementation
         of <code class="computeroutput"><span class="keyword">operator</span><span class="special">,()</span></code>
-        used in <code class="computeroutput"><a class="link" href="../boost/yap/evaluate.html" title="Function template evaluate">evaluate()</a></code>:
+        used in <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa1bcb690cafa777e2032616133da0b2f.html" title="Function template evaluate">evaluate()</a></code>:
       </p>
 <p>
 </p>
@@ -1232,7 +1232,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_1.html" title="Macro BOOST_YAP_USER_UNARY_OPERATOR">BOOST_YAP_USER_UNARY_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a835bf2c8a57e5572849469d6f3acb0cf.html" title="Macro BOOST_YAP_USER_UNARY_OPERATOR">BOOST_YAP_USER_UNARY_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1258,7 +1258,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_2.html" title="Macro BOOST_YAP_USER_BINARY_OPERATOR">BOOST_YAP_USER_BINARY_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a69f2ddbdd70ed2ed3eaea7494daafba7.html" title="Macro BOOST_YAP_USER_BINARY_OPERATOR">BOOST_YAP_USER_BINARY_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1287,7 +1287,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_9.html" title="Macro BOOST_YAP_USER_UDT_UNARY_OPERATOR">BOOST_YAP_USER_UDT_UNARY_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1aa9983b01946946553fe90322028540b7.html" title="Macro BOOST_YAP_USER_UDT_UNARY_OPERATOR">BOOST_YAP_USER_UDT_UNARY_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1313,7 +1313,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP__1_3_46_8_2_7_10.html" title="Macro BOOST_YAP_USER_UDT_UDT_BINARY_OPERATOR">BOOST_YAP_USER_UDT_UDT_BINARY_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1aeba73764e8f1f0262d721de067212589.html" title="Macro BOOST_YAP_USER_UDT_UDT_BINARY_OPERATOR">BOOST_YAP_USER_UDT_UDT_BINARY_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1342,7 +1342,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP__1_3_46_8_2_7_11.html" title="Macro BOOST_YAP_USER_UDT_ANY_BINARY_OPERATOR">BOOST_YAP_USER_UDT_ANY_BINARY_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a0e4b0bec43b86ad9dcf945db53154b0f.html" title="Macro BOOST_YAP_USER_UDT_ANY_BINARY_OPERATOR">BOOST_YAP_USER_UDT_ANY_BINARY_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1410,7 +1410,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_3.html" title="Macro BOOST_YAP_USER_ASSIGN_OPERATOR">BOOST_YAP_USER_ASSIGN_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a76c957eb06827a15e68bfb18c8ceffef.html" title="Macro BOOST_YAP_USER_ASSIGN_OPERATOR">BOOST_YAP_USER_ASSIGN_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1432,7 +1432,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_4.html" title="Macro BOOST_YAP_USER_SUBSCRIPT_OPERATOR">BOOST_YAP_USER_SUBSCRIPT_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a4920d9ddb0c72a810b9b2ad0bbf4da01.html" title="Macro BOOST_YAP_USER_SUBSCRIPT_OPERATOR">BOOST_YAP_USER_SUBSCRIPT_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1451,7 +1451,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_5.html" title="Macro BOOST_YAP_USER_CALL_OPERATOR">BOOST_YAP_USER_CALL_OPERATOR</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a354d76c0c6f798907ab22755d86f5007.html" title="Macro BOOST_YAP_USER_CALL_OPERATOR">BOOST_YAP_USER_CALL_OPERATOR</a></code>
                 </p>
               </td>
 <td>
@@ -1470,7 +1470,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_6.html" title="Macro BOOST_YAP_USER_CALL_OPERATOR_N">BOOST_YAP_USER_CALL_OPERATOR_N</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a1d28a3fdbc84354d12b4affcc61ec9e5.html" title="Macro BOOST_YAP_USER_CALL_OPERATOR_N">BOOST_YAP_USER_CALL_OPERATOR_N</a></code>
                 </p>
               </td>
 <td>
@@ -1524,7 +1524,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_7.html" title="Macro BOOST_YAP_USER_EXPR_IF_ELSE">BOOST_YAP_USER_EXPR_IF_ELSE</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1aa0e733297b330471a525bbce2eac1986.html" title="Macro BOOST_YAP_USER_EXPR_IF_ELSE">BOOST_YAP_USER_EXPR_IF_ELSE</a></code>
                 </p>
               </td>
 <td>
@@ -1547,7 +1547,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_8.html" title="Macro BOOST_YAP_USER_UDT_ANY_IF_ELSE">BOOST_YAP_USER_UDT_ANY_IF_ELSE</a></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1ada604555faf074a1860172a39303f713.html" title="Macro BOOST_YAP_USER_UDT_ANY_IF_ELSE">BOOST_YAP_USER_UDT_ANY_IF_ELSE</a></code>
                 </p>
               </td>
 <td>
@@ -1590,7 +1590,7 @@
       Expression Operands Are Treated</a>
 </h3></div></div></div>
 <p>
-        For any <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code> operator overload, or
+        For any <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code> operator overload, or
         any function defined using one of the function definition macros, operands
         are treated in a uniform way.
       </p>
@@ -1616,7 +1616,7 @@
         to be an rvalue, whether wrapped in a terminal or not.
       </p>
 <p>
-        Let's take a quick look at <code class="computeroutput"><a class="link" href="../boost/yap/make_t_1_3_46_8_2_2_1_1_14.html" title="Function template make_terminal">make_terminal()</a></code>.
+        Let's take a quick look at <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa754c76e96fa7eafe3951afa9d256478.html" title="Function template make_terminal">make_terminal()</a></code>.
         If you call it with a <code class="computeroutput"><span class="identifier">T</span></code> rvalue,
         the terminal's value type is a <code class="computeroutput"><span class="identifier">T</span></code>,
         and the rvalue gets moved into it. If you call it with a <code class="computeroutput"><span class="identifier">T</span>
@@ -1656,7 +1656,7 @@
 <p>
         Ok, so since you can build these lazy Boost.YAP expressions up from subexpressions,
         how do we treat the subexpressions? We treat them in exactly the same way
-        as <code class="computeroutput"><a class="link" href="../boost/yap/make_t_1_3_46_8_2_2_1_1_14.html" title="Function template make_terminal">make_terminal()</a></code> treats its parameter. Rvalues
+        as <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1aa754c76e96fa7eafe3951afa9d256478.html" title="Function template make_terminal">make_terminal()</a></code> treats its parameter. Rvalues
         are moved in, and lvalues are captured by (possibly <code class="computeroutput"><span class="keyword">const</span></code>)
         reference.
       </p>
@@ -1673,8 +1673,8 @@
         </p></td></tr>
 </table></div>
 <p>
-        The capture-by-reference behavior is implemented via a special <code class="computeroutput"><a class="link" href="../boost/yap/expr_kind.html" title="Type expr_kind">expr_kind</a></code>,
-        <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>.
+        The capture-by-reference behavior is implemented via a special <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1ad99d2de607e5e1f27d4de9cb4b283228.html" title="Type expr_kind">expr_kind</a></code>,
+        <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a>.
         An <code class="computeroutput"><span class="identifier">expr_ref</span></code> expression has
         a single data element: a (possibly <code class="computeroutput"><span class="keyword">const</span></code>
         (Can I stop saying that every time? You get it, right? Ok, good.)) reference
@@ -1883,13 +1883,13 @@
 <a name="boost_yap.manual.printing"></a><a class="link" href="manual.html#boost_yap.manual.printing" title="Printing">Printing</a>
 </h3></div></div></div>
 <p>
-        Boost.YAP has a convenient <code class="computeroutput"><a class="link" href="../boost/yap/print.html" title="Function template print">print()</a></code>
+        Boost.YAP has a convenient <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a9446e8e01e08cfa00715a1416d17fdbc.html" title="Function template print">print()</a></code>
         function, that prints an expression tree to a stream. It is not intended
         for production work (for instance, it has no formatting options), but it
         is excellent for debugging and instrumentation.
       </p>
 <p>
-        Since it is only a debugging aid, <code class="computeroutput"><a class="link" href="../boost/yap/print.html" title="Function template print">print()</a></code>
+        Since it is only a debugging aid, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a9446e8e01e08cfa00715a1416d17fdbc.html" title="Function template print">print()</a></code>
         is found in a separate header not included when you include Boost.YAP with
       </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">yap</span><span class="special">/</span><span class="identifier">yap</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -1899,7 +1899,7 @@
         explicitly.
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/yap/print.html" title="Function template print">print()</a></code> handles several patterns
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a9446e8e01e08cfa00715a1416d17fdbc.html" title="Function template print">print()</a></code> handles several patterns
         of expression specially, to allow a concise representation of a given expression
         tree. For example, given this definition:
       </p>
@@ -1931,7 +1931,7 @@
 <p>
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/yap/print.html" title="Function template print">print()</a></code> produces this output:
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a9446e8e01e08cfa00715a1416d17fdbc.html" title="Function template print">print()</a></code> produces this output:
       </p>
 <pre class="programlisting">expr&lt;-&gt;
     expr&lt;+&gt;
@@ -1942,7 +1942,7 @@
     term&lt;char const*&gt;[=lvalue terminal] const &amp;
 </pre>
 <p>
-        As you can see, <code class="computeroutput"><a class="link" href="../boost/yap/print.html" title="Function template print">print()</a></code> shows one node per line,
+        As you can see, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a9446e8e01e08cfa00715a1416d17fdbc.html" title="Function template print">print()</a></code> shows one node per line,
         and represents the tree structure with indentation. It abbreviates non-terminal
         nodes in the tree <code class="computeroutput"><span class="identifier">expr</span><span class="special">&lt;</span><span class="identifier">op</span><span class="special">&gt;</span></code>,
         where <code class="computeroutput"><span class="identifier">op</span></code> is an operator symbol.
@@ -1952,8 +1952,8 @@
       </p>
 <p>
         A <code class="computeroutput"><span class="identifier">term</span></code> node may not be a
-        terminal node at all, but an <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a> expression containing a
-        terminal. Such a <a class="link" href="../boost/yap/expr_kind.html#boost.yap.expr_kind.expr_ref"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a> node has a <code class="computeroutput"><span class="special">&amp;</span></code> or <code class="computeroutput"><span class="keyword">const</span>
+        terminal node at all, but an <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a> expression containing a
+        terminal. Such a <a class="link" href="../"><code class="computeroutput"><span class="identifier">expr_kind</span><span class="special">::</span><span class="identifier">expr_ref</span></code></a> node has a <code class="computeroutput"><span class="special">&amp;</span></code> or <code class="computeroutput"><span class="keyword">const</span>
         <span class="special">&amp;</span></code> suffix, to indicate that it
         is a mutable or <code class="computeroutput"><span class="keyword">const</span></code> reference,
         respectively.
@@ -2232,7 +2232,7 @@
 <p>
         </p>
 <p>
-          Or you can use <code class="computeroutput"><a class="link" href="../boost/yap/make_expression_function.html" title="Function template make_expression_function">make_expression_function()</a></code>
+          Or you can use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a30d04ee48096df16ab6c869eb3e78dde.html" title="Function template make_expression_function">make_expression_function()</a></code>
           to make a callable object from your expression:
         </p>
 <p>
@@ -3272,11 +3272,11 @@
 <tr><td align="left" valign="top"><p>
             Though this example only provides overloads for the operations we want
             to define over <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;&gt;</span></code>s,
-            the result of each of those operations is an <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code>,
+            the result of each of those operations is an <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code>,
             which uses <span class="bold"><strong>all</strong></span> the operator overloads.
             If we wanted to restrict the operations on the results too, we could
             have defined a custom expression template with the desired operations,
-            and used that instead of <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code>
+            and used that instead of <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code>
             in the operator macros.
           </p></td></tr>
 </table></div>
@@ -3833,9 +3833,9 @@
 <p>
           We're going to be using a lot of placeholders in our Autodiff expressions,
           and it sure would be nice if they were <code class="computeroutput"><span class="identifier">autodiff_expr</span></code>s
-          and not <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;s</a></code>, so that only our
+          and not <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;s</a></code>, so that only our
           desired operators are in play. To do this, we define an operator that produces
-          placeholder literals, using the <code class="computeroutput"><a class="link" href="../BOOST_YAP__1_3_46_8_2_7_12.html" title="Macro BOOST_YAP_USER_LITERAL_PLACEHOLDER_OPERATOR">BOOST_YAP_USER_LITERAL_PLACEHOLDER_OPERATOR</a></code>
+          placeholder literals, using the <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a41bd0e25eb1c4ebec282e3d444a15e66.html" title="Macro BOOST_YAP_USER_LITERAL_PLACEHOLDER_OPERATOR">BOOST_YAP_USER_LITERAL_PLACEHOLDER_OPERATOR</a></code>
           macro:
         </p>
 <p>
@@ -3890,7 +3890,7 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            Using <code class="computeroutput"><a class="link" href="../BOOST_YAP_U_1_3_46_8_2_7_5.html" title="Macro BOOST_YAP_USER_CALL_OPERATOR">BOOST_YAP_USER_CALL_OPERATOR</a></code>
+            Using <code class="computeroutput"><a class="link" href="../doxygen/headers/user__macros_8hpp_1a354d76c0c6f798907ab22755d86f5007.html" title="Macro BOOST_YAP_USER_CALL_OPERATOR">BOOST_YAP_USER_CALL_OPERATOR</a></code>
             is a bit loose here, because it defines a variadic template. We could
             have written unary call operators to ensure that the user can't write
             call expressions with the wrong number of arguments.
@@ -4469,11 +4469,11 @@
 </h3></div></div></div>
 <p>
         The main header you will always need to use Boost.YAP is the <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">yap</span><span class="special">/</span><span class="identifier">algorithm</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
-        header. If you want to ensure that you don't accidentally use <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code> (which I recommend),
+        header. If you want to ensure that you don't accidentally use <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code> (which I recommend),
         just include this header and nothing else.
       </p>
 <p>
-        If you want to use the <code class="computeroutput"><a class="link" href="../boost/yap/expression.html" title="Struct template expression">expression&lt;&gt;</a></code>
+        If you want to use the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1yap_1_1expression.html" title="Struct template expression">expression&lt;&gt;</a></code>
         reference expression template (great for prototyping, but not recommended
         for production work), include the <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">yap</span><span class="special">/</span><span class="identifier">expression</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
         header.
@@ -4483,7 +4483,7 @@
         header.
       </p>
 <p>
-        If you want to use <code class="computeroutput"><a class="link" href="../boost/yap/print.html" title="Function template print">print()</a></code>, include the <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">yap</span><span class="special">/</span><span class="identifier">print</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
+        If you want to use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1yap_1a9446e8e01e08cfa00715a1416d17fdbc.html" title="Function template print">print()</a></code>, include the <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">yap</span><span class="special">/</span><span class="identifier">print</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
         header; this header is not included in the <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">yap</span><span class="special">/</span><span class="identifier">yap</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
         header.
       </p>
@@ -4493,7 +4493,7 @@
 <a name="boost_yap.manual.configuration"></a><a class="link" href="manual.html#boost_yap.manual.configuration" title="Configuration">Configuration</a>
 </h3></div></div></div>
 <p>
-        <code class="computeroutput"><a class="link" href="../BOOST_NO_CONSTEXPR_IF.html" title="Macro BOOST_NO_CONSTEXPR_IF">BOOST_NO_CONSTEXPR_IF</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/config_8hpp_1af3d42b62a1e1985b56d47ce7f816070e.html" title="Macro BOOST_NO_CONSTEXPR_IF">BOOST_NO_CONSTEXPR_IF</a></code>
         is a macro that indicates whether the compiler has support for constexpr
         if. It defaults to no. Define it to be a nonzero value if your compiler has
         constexpr if support. Note that this is a temporary hack; this should eventually

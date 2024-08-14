@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>Conditional overloading &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/boostbook.css" />
@@ -39,10 +40,10 @@
      Distributed under the Boost Software License, Version 1.0.
      (http://www.boost.org/LICENSE_1_0.txt)
 -->
-<div class="section" id="conditional-overloading">
+<section id="conditional-overloading">
 <h1>Conditional overloading<a class="headerlink" href="#conditional-overloading" title="Permalink to this heading">¶</a></h1>
 <p>Conditional overloading takes a set of functions and calls the first one that is callable. This is one of the ways to resolve ambiguity with overloads, but more importantly it allows an alternative function to be used when the first is not callable.</p>
-<div class="section" id="stringify">
+<section id="stringify">
 <h2>Stringify<a class="headerlink" href="#stringify" title="Permalink to this heading">¶</a></h2>
 <p>Take a look at this example of defining a <code class="docutils literal notranslate"><span class="pre">stringify</span></code> function from
 stackoverflow <a class="reference external" href="http://stackoverflow.com/questions/30189926/metaprograming-failure-of-function-definition-defines-a-separate-function/30515874">here</a>.</p>
@@ -86,8 +87,8 @@ this:</p>
 <span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="static-if">
+</section>
+<section id="static-if">
 <h2>static_if<a class="headerlink" href="#static-if" title="Permalink to this heading">¶</a></h2>
 <p>In addition, this can be used with the <a class="reference internal" href="../../include/boost/hof/if.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">boost::hof::if_</span></code></span></a> decorator to create <code class="docutils literal notranslate"><span class="pre">static_if</span></code>-like
 constructs on pre-C++17 compilers. For example, Baptiste Wicht discusses how one could write <code class="docutils literal notranslate"><span class="pre">static_if</span></code> in C++ <a class="reference external" href="http://baptiste-wicht.com/posts/2015/07/simulate-static_if-with-c11c14.html">here</a>.</p>
@@ -140,8 +141,8 @@ like this:</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="type-traits">
+</section>
+<section id="type-traits">
 <h2>Type traits<a class="headerlink" href="#type-traits" title="Permalink to this heading">¶</a></h2>
 <p>Furthermore, this technique can be used to write type traits as well. Jens
 Weller was looking for a way to define a general purpose detection for pointer
@@ -170,8 +171,8 @@ this:</p>
 <p>Which is much simpler than the other implementations that were written, which were
 about 3 times the amount of code(see <a class="reference external" href="https://gist.github.com/lefticus/6fdccb18084a1a3410d5">here</a>).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">has_pointer_operators</span></code> function works by first trying to call <code class="docutils literal notranslate"><span class="pre">has_pointer_member</span></code> which returns <code class="docutils literal notranslate"><span class="pre">true_type</span></code> if the type has member functions <code class="docutils literal notranslate"><span class="pre">operator*</span></code> and <code class="docutils literal notranslate"><span class="pre">operator-&gt;</span></code>, otherwise the function is not callable. The next function is only callable on pointers, which returns true if it is not a <code class="docutils literal notranslate"><span class="pre">void*</span></code> pointer(because <code class="docutils literal notranslate"><span class="pre">void*</span></code> pointers are not dereferenceable). Finally, if none of those functions matched then the last function will always return <code class="docutils literal notranslate"><span class="pre">false_type</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

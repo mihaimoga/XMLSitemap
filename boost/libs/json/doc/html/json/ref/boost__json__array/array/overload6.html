@@ -29,29 +29,30 @@
           (6 of 11 overloads)</a>
 </h6></div></div></div>
 <p>
-            Copy constructor.
+            Constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload6.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload6.synopsis"></a></span><a class="link" href="overload6.html#json.ref.boost__json__array.array.overload6.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">array</span><span class="special">(</span>
-    <span class="identifier">array</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">other</span><span class="special">);</span>
+    <a href="https://en.cppreference.com/w/cpp/utility/initializer_list" target="_top"><code class="literal">std::initializer_list</code></a><span class="special">&lt;</span> <a class="link" href="../../boost__json__value_ref.html" title="value_ref"><code class="literal">value_ref</code></a> <span class="special">&gt;</span> <span class="identifier">init</span><span class="special">,</span>
+    <a class="link" href="../../boost__json__storage_ptr.html" title="storage_ptr"><code class="literal">storage_ptr</code></a> <span class="identifier">sp</span> <span class="special">=</span> <span class="special">{});</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__array.array.overload6.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload6.description"></a></span><a class="link" href="overload6.html#json.ref.boost__json__array.array.overload6.description">Description</a>
           </h6>
 <p>
-            The array is constructed with a copy of the contents of <code class="computeroutput"><span class="identifier">other</span></code>, using <code class="computeroutput"><span class="identifier">other</span></code>'s
-            memory resource.
+            The array is constructed with a copy of the values in the initializer-list
+            in order, using the specified memory resource.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload6.h2"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload6.complexity"></a></span><a class="link" href="overload6.html#json.ref.boost__json__array.array.overload6.complexity">Complexity</a>
           </h6>
 <p>
-            Linear in <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
+            Linear in <code class="computeroutput"><span class="identifier">init</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload6.h3"></a>
@@ -83,18 +84,34 @@
                     </p>
                   </th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>
                     <p>
-                      <code class="computeroutput"><span class="identifier">other</span></code>
+                      <code class="computeroutput"><span class="identifier">init</span></code>
                     </p>
                   </td>
 <td>
                     <p>
-                      The array to copy
+                      The initializer list to insert
                     </p>
                   </td>
-</tr></tbody>
+</tr>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">sp</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      A pointer to the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
+                      to use. The container will acquire shared ownership of the
+                      memory resource.
+                    </p>
+                  </td>
+</tr>
+</tbody>
 </table></div>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>

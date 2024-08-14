@@ -29,30 +29,29 @@
           (8 of 11 overloads)</a>
 </h6></div></div></div>
 <p>
-            Pilfer constructor.
+            Copy constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload8.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload8.synopsis"></a></span><a class="link" href="overload8.html#json.ref.boost__json__array.array.overload8.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">array</span><span class="special">(</span>
-    <span class="identifier">pilfered</span><span class="special">&lt;</span> <span class="identifier">array</span> <span class="special">&gt;</span> <span class="identifier">other</span><span class="special">);</span>
+    <a class="link" href="../../boost__json__array.html" title="array"><code class="literal">array</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">other</span><span class="special">,</span>
+    <a class="link" href="../../boost__json__storage_ptr.html" title="storage_ptr"><code class="literal">storage_ptr</code></a> <span class="identifier">sp</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__array.array.overload8.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload8.description"></a></span><a class="link" href="overload8.html#json.ref.boost__json__array.array.overload8.description">Description</a>
           </h6>
 <p>
-            The array is constructed by acquiring ownership of the contents of <code class="computeroutput"><span class="identifier">other</span></code> using pilfer semantics. This
-            is more efficient than move construction, when it is known that the moved-from
-            object will be immediately destroyed afterwards.
+            The array is constructed with a copy of the contents of <code class="computeroutput"><span class="identifier">other</span></code>, using the specified memory resource.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload8.h2"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload8.complexity"></a></span><a class="link" href="overload8.html#json.ref.boost__json__array.array.overload8.complexity">Complexity</a>
           </h6>
 <p>
-            Constant.
+            Linear in <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload8.h3"></a>
@@ -60,7 +59,8 @@
             Safety</a>
           </h6>
 <p>
-            No-throw guarantee.
+            Strong guarantee. Calls to <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">::</span><span class="identifier">allocate</span></code>
+            may throw.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload8.h4"></a>
@@ -83,7 +83,8 @@
                     </p>
                   </th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>
                     <p>
                       <code class="computeroutput"><span class="identifier">other</span></code>
@@ -91,21 +92,26 @@
                   </td>
 <td>
                     <p>
-                      The value to pilfer. After pilfer construction, <code class="computeroutput"><span class="identifier">other</span></code> is not in a usable
-                      state and may only be destroyed.
+                      The array to copy
                     </p>
                   </td>
-</tr></tbody>
+</tr>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">sp</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      A pointer to the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
+                      to use. The container will acquire shared ownership of the
+                      memory resource.
+                    </p>
+                  </td>
+</tr>
+</tbody>
 </table></div>
-<h6>
-<a name="json.ref.boost__json__array.array.overload8.h5"></a>
-            <span class="phrase"><a name="json.ref.boost__json__array.array.overload8.see_also"></a></span><a class="link" href="overload8.html#json.ref.boost__json__array.array.overload8.see_also">See Also</a>
-          </h6>
-<p>
-            <a class="link" href="../../boost__json__pilfer.html" title="pilfer"><code class="computeroutput"><span class="identifier">pilfer</span></code></a>,
-            <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0308r0.html" target="_top">Valueless
-            Variants Considered Harmful</a>
-          </p>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

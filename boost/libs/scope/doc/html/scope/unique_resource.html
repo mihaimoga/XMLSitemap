@@ -28,20 +28,20 @@
       with <code class="computeroutput"><span class="identifier">unique_resource</span></code> defined
       in C++ Extensions for Library Fundamentals</a></span></dt>
 </dl></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.unique_resource_hpp" title="Header &lt;boost/scope/unique_resource.hpp&gt;">boost/scope/unique_resource.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.unique__resource_8hpp" title="Header &lt;boost/scope/unique_resource.hpp&gt;">boost/scope/unique_resource.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-      Boost.Scope provides a <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      Boost.Scope provides a <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       class template. This is a wrapper for an arbitrary resource that represents
       exclusive ownership of the resource. The wrapper offers access to the owned
       resource and automatically calls a deleter function object to free the resource
       upon destruction. This is a generalization of <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">unique_ptr</span></code>,
       but while <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">unique_ptr</span></code> is only used to wrap pointers,
-      <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       can wrap other types of resources as well.
     </p>
 <p>
-      A resource type must have the following properties to be compatible with <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>:
+      A resource type must have the following properties to be compatible with <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>:
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -56,10 +56,10 @@
 </ul></div>
 <p>
       Note that if the resource type is a reference, the referenced object must be
-      stored externally to the <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      stored externally to the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       wrapper and must remain valid for the entire duration of ownership by the wrapper.
       Users are not expected to access the resource object other than through the
-      <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       wrapper. For example, it is not allowed to modify the resource object by setting
       it to an invalid state or explicitly freeing the resource circumventing the
       resource wrapper, as the wrapper will still invoke the deleter on the then-invalid
@@ -70,11 +70,11 @@
       the resource type. The deleter must be copy-constructible. Although not strictly
       required, it is generally highly recommended that calling a deleter on a resource
       doesn't throw exceptions and is marked <code class="computeroutput"><span class="keyword">noexcept</span></code>,
-      as the deleter will often be called from the <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      as the deleter will often be called from the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       destructor.
     </p>
 <p>
-      Like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">unique_ptr</span></code>, <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      Like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">unique_ptr</span></code>, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       is not copyable and supports a number of other operations, such as move construction
       and assignment, <code class="computeroutput"><span class="identifier">reset</span></code>, <code class="computeroutput"><span class="identifier">release</span></code> and <code class="computeroutput"><span class="identifier">swap</span></code>
       with the similar semantics. Some of the operations impose additional requirements
@@ -84,7 +84,7 @@
       at least one of those types is nothrow swappable (the last part is necessary
       to implement the <a href="https://en.cppreference.com/w/cpp/language/exceptions" target="_top">strong
       exception guarantee</a> for the <code class="computeroutput"><span class="identifier">swap</span></code>
-      operation). The requirements are listed for each operation in the <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code> class reference.
+      operation). The requirements are listed for each operation in the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code> class reference.
     </p>
 <div class="tip"><table border="0" summary="Tip">
 <tr>
@@ -93,7 +93,7 @@
 </tr>
 <tr><td align="left" valign="top"><p>
         If the resource type is dereferenceable (i.e. supports unary <code class="computeroutput"><span class="keyword">operator</span><span class="special">*</span></code>),
-        <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         also provides <code class="computeroutput"><span class="keyword">operator</span><span class="special">*</span></code>
         and <code class="computeroutput"><span class="keyword">operator</span><span class="special">-&gt;</span></code>,
         making it act more like a smart-pointer.
@@ -210,9 +210,9 @@
       In this example, there are several points to note. First, the <code class="computeroutput"><span class="identifier">fd_deleter</span></code> function object checks if the
       file descriptor is valid before passing it to <code class="computeroutput"><span class="identifier">close</span></code>.
       This is necessary in this piece of code because we unconditionally initialize
-      <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       object with the value returned by <code class="computeroutput"><span class="identifier">open</span></code>,
-      which may be -1 indicating an error. By default, <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      which may be -1 indicating an error. By default, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       doesn't discriminate valid (i.e. allocated) resource values from invalid (i.e.
       unallocated), which means that from its perspective the value of -1 is a file
       descriptor that needs to be freed by calling the deleter on it. Therefore,
@@ -226,25 +226,25 @@
 </tr>
 <tr><td align="left" valign="top"><p>
         Besides the resource value, you can specify the deleter object as the second
-        argument of the <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        argument of the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         constructor. In fact, the second argument is mandatory if the deleter is
         not default-constructible or if its default constructor may throw. This is
         necessary to be able to call the deleter on the passed resource value, should
         the construction of either the resource or the deleter throw. This ensures
-        that the resource doesn't leak in case if <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        that the resource doesn't leak in case if <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         initialization fails.
       </p></td></tr>
 </table></div>
 <p>
       Second, we still need to check if opening the file succeeded before using it.
-      Since <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      Since <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       in this example is always constructed in allocated state, we have to check
       the file descriptor value for being negative. In order to access the resource
       value one can use the <code class="computeroutput"><span class="identifier">get</span></code> method
-      of <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>.
+      of <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>.
     </p>
 <p>
-      We can improve this example by making <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      We can improve this example by making <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       initialization automatically check for the file descriptor validity. This will
       only require modifying <code class="computeroutput"><span class="identifier">fd_deleter</span></code>
       and <code class="computeroutput"><span class="identifier">open_file</span></code>, the rest of
@@ -284,17 +284,17 @@
           If the resource value, which is the first argument - the result of the
           <code class="computeroutput"><span class="identifier">open</span></code> call, is equal to
           the invalid resource value, which is the second argument, creates and returns
-          an unallocated <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+          an unallocated <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
           object.
         </li>
 <li class="listitem">
-          Otherwise, creates and returns an allocated <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+          Otherwise, creates and returns an allocated <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
           object that wraps the result of the <code class="computeroutput"><span class="identifier">open</span></code>
           call.
         </li>
 <li class="listitem">
           In both cases, the third argument is used to initialize the deleter in
-          the returned <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+          the returned <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
           object.
         </li>
 </ol></div>
@@ -302,8 +302,8 @@
       Note that if <code class="computeroutput"><span class="identifier">open</span></code> fails and
       returns -1, the deleter is guaranteed not to be called on this resource value
       - neither by <code class="computeroutput"><span class="identifier">make_unique_resource_checked</span></code>
-      nor by <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>,
-      not even if <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      nor by <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>,
+      not even if <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       construction fails with an exception. This allows us to simplify <code class="computeroutput"><span class="identifier">fd_deleter</span></code> and remove the check for negative
       <code class="computeroutput"><span class="identifier">fd</span></code> values.
     </p>
@@ -320,7 +320,7 @@
       </p></td></tr>
 </table></div>
 <p>
-      Furthermore, since the returned <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+      Furthermore, since the returned <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
       object now properly indicates whether the resource is allocated or not, we
       can use the <code class="computeroutput"><span class="identifier">allocated</span></code> member
       function to test it instead of checking the resource value. This makes the
@@ -332,11 +332,11 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-        In order to avoid confusion with the <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        In order to avoid confusion with the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         object being always allocated after construction with a resource value, it
         is recommended to always use either the <code class="computeroutput"><span class="identifier">make_unique_resource_checked</span></code>
         factory function or, more preferably, resource traits, as described in the
-        next section. Resource traits are the preferred solution as it makes <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code> more efficient
+        next section. Resource traits are the preferred solution as it makes <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code> more efficient
         and less error-prone to use.
       </p></td></tr>
 </table></div>
@@ -345,10 +345,10 @@
 <a name="scope.unique_resource.resource_traits"></a><a class="link" href="unique_resource.html#scope.unique_resource.resource_traits" title="Resource traits">Resource traits</a>
 </h3></div></div></div>
 <p>
-        The <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        The <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         class template also supports an optional third template parameter, which
         can be used to specify a resource traits class. Resource traits provide
-        <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         with additional knowledge about the resource features that allow for a more
         efficient implementation. This is useful when there is one or more resource
         value that is considered unallocated, that is such a value that does not
@@ -359,7 +359,7 @@
       </p>
 <p>
         If <code class="computeroutput"><span class="identifier">Resource</span></code> is the resource
-        type specified in <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        type specified in <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         template parameters then, if specified, resource traits must be a class type
         with the following public static member functions:
       </p>
@@ -378,7 +378,7 @@
             <span class="special">&gt;::</span><span class="identifier">value</span></code>
             is <code class="computeroutput"><span class="keyword">true</span></code> and constructing
             <code class="computeroutput"><span class="identifier">Resource</span></code> from <code class="computeroutput"><span class="identifier">R</span></code> produces an unallocated resource
-            value that can be used to initialize the default-constructed <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code> object.
+            value that can be used to initialize the default-constructed <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code> object.
           </li>
 </ul></div>
 <p>
@@ -388,23 +388,23 @@
         must always return <code class="computeroutput"><span class="keyword">false</span></code>.
       </p>
 <p>
-        When the conforming resource traits are provided, <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        When the conforming resource traits are provided, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         behavior changes as follows:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
             will no longer separately track whether it is in allocated state or not
             and instead will use <code class="computeroutput"><span class="identifier">is_allocated</span></code>
             on the wrapped resource value for this. In particular, this means that
-            constructing <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+            constructing <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
             from a resource value or calling <code class="computeroutput"><span class="identifier">reset</span></code>
             with a resource value may now produce a wrapper in an unallocated state,
             if the resource value is an unallocated value.
           </li>
 <li class="listitem">
             Default constructor, <code class="computeroutput"><span class="identifier">reset</span></code>
-            with no arguments, move constructor and move assignment of <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code> will
+            with no arguments, move constructor and move assignment of <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code> will
             use <code class="computeroutput"><span class="identifier">make_default</span></code> to initialize
             the resource value in the unallocated wrapper (for move operations -
             in the move source).
@@ -464,7 +464,7 @@
         - this information is provided by <code class="computeroutput"><span class="identifier">fd_resource_traits</span></code>
         and conveniently embedded in the <code class="computeroutput"><span class="identifier">unique_fd</span></code>
         type. As before, if <code class="computeroutput"><span class="identifier">open</span></code>
-        fails and returns -1, the constructed <code class="computeroutput"><a class="link" href="../boost/scope/unique_resource.html" title="Class template unique_resource">unique_resource</a></code>
+        fails and returns -1, the constructed <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>
         object will be in an unallocated state, meaning that we can use <code class="computeroutput"><span class="identifier">allocated</span></code> accessor, and that the deleter
         will only be called if <code class="computeroutput"><span class="identifier">open</span></code>
         succeeded.
@@ -477,7 +477,7 @@
 <tr><td align="left" valign="top"><p>
           The <code class="computeroutput"><span class="identifier">fd_deleter</span></code>, <code class="computeroutput"><span class="identifier">fd_resource_traits</span></code> and <code class="computeroutput"><span class="identifier">unique_fd</span></code> types presented in the examples
           above are provided by the library out of the box in [boost_scope_fd_resource_hpp]
-          and <code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.unique_fd_hpp" title="Header &lt;boost/scope/unique_fd.hpp&gt;">boost/scope/unique_fd.hpp</a></code>
+          and <code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.unique__fd_8hpp" title="Header &lt;boost/scope/unique_fd.hpp&gt;">boost/scope/unique_fd.hpp</a></code>
           headers.
         </p></td></tr>
 </table></div>
@@ -729,7 +729,7 @@
 <th align="left">Tip</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            <code class="computeroutput"><a class="link" href="../boost/scope/fd_resource_traits.html" title="Struct fd_resource_traits">fd_resource_traits</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1scope_1_1fd__resource__traits.html" title="Struct fd_resource_traits">fd_resource_traits</a></code>
             is provided by Boost.Scope.
           </p></td></tr>
 </table></div>
@@ -738,7 +738,7 @@
           be different from the value-constructed one. This can be useful if the
           resource type is not default-constructible (for example, if it is a reference
           type) or the value-constructed resource is not an unallocated value. For
-          example, <code class="computeroutput"><a class="link" href="../boost/scope/fd_resource_traits.html" title="Struct fd_resource_traits">fd_resource_traits</a></code>
+          example, <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1scope_1_1fd__resource__traits.html" title="Struct fd_resource_traits">fd_resource_traits</a></code>
           specifies -1 as the default value for POSIX file descriptors because the
           value of 0 is a valid allocated file descriptor.
         </p>
@@ -786,7 +786,7 @@
 <th align="left">Tip</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-            <code class="computeroutput"><a class="link" href="../boost/scope/fd_deleter.html" title="Struct fd_deleter">fd_deleter</a></code> is provided
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1scope_1_1fd__deleter.html" title="Struct fd_deleter">fd_deleter</a></code> is provided
             by Boost.Scope.
           </p></td></tr>
 </table></div>

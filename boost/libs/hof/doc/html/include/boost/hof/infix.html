@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>infix &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/boostbook.css" />
@@ -35,42 +36,42 @@
   <div class="chapter">
       <div class="body" role="main">
         
-  <div class="section" id="infix">
+  <section id="infix">
 <h1>infix<a class="headerlink" href="#infix" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="header">
+<section id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/infix.hpp&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">infix</span></code> function adaptor allows the function to be used as an infix
 operator. The operator must be placed inside the angle brackets(ie <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>
 and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>).</p>
-</div>
-<div class="section" id="synopsis">
+</section>
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">F</span><span class="o">&gt;</span><span class="w"></span>
 <span class="k">constexpr</span><span class="w"> </span><span class="n">infix_adaptor</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infix</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="semantics">
+</section>
+<section id="semantics">
 <h2>Semantics<a class="headerlink" href="#semantics" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">assert</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="n">infix</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="requirements">
+</section>
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
 <p>F must be:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../../doc/src/concepts.html#binaryinvocable"><span class="std std-ref">BinaryInvocable</span></a></p></li>
 <li><p>MoveConstructible</p></li>
 </ul>
-</div>
-<div class="section" id="operator-precedence">
+</section>
+<section id="operator-precedence">
 <h2>Operator precedence<a class="headerlink" href="#operator-precedence" title="Permalink to this heading">¶</a></h2>
 <p>Infix operators have the precedence of relational operators. This means
 operators such as <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">*</span></code> have higher precedence:</p>
@@ -87,8 +88,8 @@ operators such as <code class="docutils literal notranslate"><span class="pre">+
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">assert</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="n">infix</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="n">infix</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="n">infix</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="n">infix</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">z</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
@@ -110,8 +111,8 @@ operators such as <code class="docutils literal notranslate"><span class="pre">+
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

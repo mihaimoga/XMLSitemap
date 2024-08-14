@@ -29,30 +29,34 @@
           (14 of 24 overloads)</a>
 </h6></div></div></div>
 <p>
-            Copy assignment.
+            Assignment.
           </p>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload14.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload14.synopsis"></a></span><a class="link" href="overload14.html#json.ref.boost__json__value.operator_eq_.overload14.synopsis">Synopsis</a>
           </h6>
-<pre class="programlisting"><span class="identifier">value</span><span class="special">&amp;</span>
+<pre class="programlisting"><a class="link" href="../../boost__json__value.html" title="value"><code class="literal">value</code></a><span class="special">&amp;</span>
 <span class="keyword">operator</span><span class="special">=(</span>
-    <span class="identifier">value</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">other</span><span class="special">);</span>
+    <a href="https://en.cppreference.com/w/cpp/utility/initializer_list" target="_top"><code class="literal">std::initializer_list</code></a><span class="special">&lt;</span> <a class="link" href="../../boost__json__value_ref.html" title="value_ref"><code class="literal">value_ref</code></a> <span class="special">&gt;</span> <span class="identifier">init</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload14.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload14.description"></a></span><a class="link" href="overload14.html#json.ref.boost__json__value.operator_eq_.overload14.description">Description</a>
           </h6>
 <p>
-            The contents of the value are replaced with an element-wise copy of the
-            contents of <code class="computeroutput"><span class="identifier">other</span></code>.
+            Replace <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>
+            with the value formed by constructing from <code class="computeroutput"><span class="identifier">init</span></code>
+            and <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">storage</span><span class="special">()</span></code>.
+            If the initializer list consists of key/value pairs, the resulting <a class="link" href="../../boost__json__object.html" title="object"><code class="computeroutput"><span class="identifier">object</span></code></a>
+            is assigned. Otherwise an <a class="link" href="../../boost__json__array.html" title="array"><code class="computeroutput"><span class="identifier">array</span></code></a> is assigned. The contents
+            of the initializer list are moved to <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code> using the existing memory resource.
           </p>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload14.h2"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload14.complexity"></a></span><a class="link" href="overload14.html#json.ref.boost__json__value.operator_eq_.overload14.complexity">Complexity</a>
           </h6>
 <p>
-            Linear in the size of <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code> plus <code class="computeroutput"><span class="identifier">other</span></code>.
+            Linear in <code class="computeroutput"><span class="identifier">init</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
           </p>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload14.h3"></a>
@@ -87,12 +91,12 @@
 <tbody><tr>
 <td>
                     <p>
-                      <code class="computeroutput"><span class="identifier">other</span></code>
+                      <code class="computeroutput"><span class="identifier">init</span></code>
                     </p>
                   </td>
 <td>
                     <p>
-                      The value to copy.
+                      The initializer list to assign from.
                     </p>
                   </td>
 </tr></tbody>

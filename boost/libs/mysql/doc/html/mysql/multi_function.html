@@ -193,8 +193,8 @@
 </ul></div>
 <p>
       <code class="computeroutput"><span class="identifier">read_some_rows</span></code> returns a <a class="link" href="ref/boost__mysql__rows_view.html" title="rows_view"><code class="literal">rows_view</code></a>
-      object pointing into the connection's internal buffers. This view is valid
-      until the connection performs any other operation involving a network transfer.
+      object pointing into the connection's internal buffer. This view is valid until
+      the connection performs any other operation involving a network transfer.
     </p>
 <p>
       Note that there is no need to distinguish between <span class="emphasis"><em>case 1</em></span>
@@ -221,7 +221,7 @@
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">body</span><span class="special">;</span>
 <span class="special">};</span>
 
-<span class="comment">// We must use Boost.Describe to add reflection capabilities to post.</span>
+<span class="comment">// We use BOOST_DESCRIBE_STRUCT to add reflection capabilities to post.</span>
 <span class="comment">// We must list all the fields that should be populated by Boost.MySQL</span>
 <span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">post</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">title</span><span class="special">,</span> <span class="identifier">body</span><span class="special">))</span>
 </pre>
@@ -533,29 +533,29 @@ END
 <p>
       To properly understand <code class="computeroutput"><span class="identifier">read_some_rows</span></code>,
       we need to know that every <a class="link" href="ref/boost__mysql__connection.html" title="connection"><code class="literal">connection</code></a>
-      owns an internal <span class="bold"><strong>read buffer</strong></span>, where packets
-      sent by the server are stored. It is a single, flat buffer, and you can configure
+      owns an <span class="bold"><strong>internal buffer</strong></span>, where packets sent
+      by the server are stored. It is a single, flat buffer, and you can configure
       its initial size when creating a <code class="computeroutput"><span class="identifier">connection</span></code>,
       passing a <a class="link" href="ref/boost__mysql__buffer_params.html" title="buffer_params"><code class="literal">buffer_params</code></a>
       object as the first argument to <code class="computeroutput"><span class="identifier">connection</span></code>'s
-      constructor. The read buffer may be grown under certain circumstances to accomodate
+      constructor. The read buffer may be grown under certain circumstances to accommodate
       large messages.
     </p>
 <p>
       <code class="computeroutput"><span class="identifier">read_some_rows</span></code> gets the maximum
-      number of rows that fit in the read buffer (without growing it) performing
+      number of rows that fit in the internal buffer (without growing it) performing
       a single <code class="computeroutput"><span class="identifier">read_some</span></code> operation
       on the stream (or using cached data). If there are rows to read, <code class="computeroutput"><span class="identifier">read_some_rows</span></code> guarantees to read at least
       one. This means that, if doing what we described yields no rows (e.g. because
-      of a large row that doesn't fit into the read buffer), <code class="computeroutput"><span class="identifier">read_some_rows</span></code>
+      of a large row that doesn't fit into the buffer), <code class="computeroutput"><span class="identifier">read_some_rows</span></code>
       will grow the buffer or perform more reads until at least one row has been
       read. If you're using the static interface, the number of read rows is limited
       by the size of span you passed, too.
     </p>
 <p>
       If you want to get the most of <code class="computeroutput"><span class="identifier">read_some_rows</span></code>,
-      customize the initial read buffer size to maximize the number of rows that
-      each batch retrieves.
+      customize the initial buffer size to maximize the number of rows that each
+      batch retrieves.
     </p>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>

@@ -40,8 +40,7 @@
         This example assumes you have gone through the <a class="link" href="../examples.html#mysql.examples.setup">setup</a>.
       </p>
 <pre class="programlisting"><span class="comment">// Uses client-side SQL formatting to implement batch inserts</span>
-<span class="comment">// for any type T with Boost.Describe metadata. It shows how to</span>
-<span class="comment">// extend format_sql by specializing formatter.</span>
+<span class="comment">// for any type T with Boost.Describe metadata.</span>
 <span class="comment">//</span>
 <span class="comment">// The program reads a JSON file containing a list of employees</span>
 <span class="comment">// and inserts it into the employee table.</span>
@@ -88,141 +87,53 @@
 <span class="special">};</span>
 <span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">employee</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">last_name</span><span class="special">,</span> <span class="identifier">company_id</span><span class="special">,</span> <span class="identifier">salary</span><span class="special">))</span>
 
-<span class="comment">/**
- * Represents a list of objects to be formatted as a list in an INSERT statement.
- * T must be a struct annotated with Boost.Describe metadata.
- * The idea is to make the following work:
- *
- *   std::vector&lt;employee&gt; employees = ... ;
- *   format_sql("INSERT INTO t VALUES {}", opts, insert_list&lt;employee&gt;(employees));
- */</span>
-<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">insert_list</span>
-<span class="special">{</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">span</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="identifier">T</span><span class="special">&gt;</span> <span class="identifier">values</span><span class="special">;</span>
-<span class="special">};</span>
-
-<span class="comment">/**
- * Represents field names for a Boost.Describe struct T.
- * The idea is to make the following work:
- *
- *   format_sql("INSERT INTO t ({}) VALUES ...", opts, field_name_list&lt;employee&gt;());
- *
- * Generating something like: "INSERT INTO t (`first_name`, `last_name`, `company_id`, `salary`) VALUES ..."
- */</span>
-<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">field_name_list</span>
-<span class="special">{</span>
-<span class="special">};</span>
-
-<span class="comment">// Helper to reflect a Boost.Descibe type T.</span>
-<span class="comment">// This retrieves all public data members, including inherited ones.</span>
+<span class="comment">// Retrieves all public data members from a Boost.Describe struct, including inherited ones.</span>
+<span class="comment">// This is a Boost.Mp11 compatible type list.</span>
 <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
 <span class="keyword">using</span> <span class="identifier">public_members</span> <span class="special">=</span> <span class="identifier">describe</span><span class="special">::</span><span class="identifier">describe_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">,</span> <span class="identifier">describe</span><span class="special">::</span><span class="identifier">mod_public</span> <span class="special">|</span> <span class="identifier">describe</span><span class="special">::</span><span class="identifier">mod_inherited</span><span class="special">&gt;;</span>
 
-<span class="comment">// To make a type U formattable, we need to specialize boost::mysql::formatter&lt;U&gt;</span>
-<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
-<span class="keyword">namespace</span> <span class="identifier">mysql</span> <span class="special">{</span>
-
-<span class="comment">// Make insert_list&lt;T&gt; formattable</span>
+<span class="comment">// The number of public members of a Boost.Describe struct</span>
 <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">formatter</span><span class="special">&lt;</span><span class="identifier">insert_list</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span>
+<span class="keyword">constexpr</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">num_public_members</span> <span class="special">=</span> <span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_size</span><span class="special">&lt;</span><span class="identifier">public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;::</span><span class="identifier">value</span><span class="special">;</span>
+
+<span class="comment">// Gets the member names of a struct, as an array of strings.</span>
+<span class="comment">// For employee, generates</span>
+<span class="comment">// {"first_name", "last_name", "company_id", "salary"}</span>
+<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
+<span class="keyword">constexpr</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">,</span> <span class="identifier">num_public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span> <span class="identifier">get_field_names</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="comment">// Helper function. This is not required by Boost.MySQL.</span>
-    <span class="comment">// Adds a single value of type T into the format_context.</span>
-    <span class="comment">// For an employee, it might generate something like:</span>
-    <span class="comment">//   "('John', 'Doe', 'HGS', 35000)"</span>
-    <span class="keyword">static</span> <span class="keyword">void</span> <span class="identifier">format_single</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span><span class="special">&amp;</span> <span class="identifier">value</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span>
+    <span class="keyword">return</span> <span class="identifier">mp11</span><span class="special">::</span><span class="identifier">tuple_apply</span><span class="special">(</span>
+        <span class="special">[](</span><span class="keyword">auto</span><span class="special">...</span> <span class="identifier">descriptors</span><span class="special">)</span> <span class="special">{</span>
+            <span class="keyword">return</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">,</span> <span class="identifier">num_public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;{{</span><span class="identifier">descriptors</span><span class="special">.</span><span class="identifier">name</span><span class="special">...}};</span>
+        <span class="special">},</span>
+        <span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_rename</span><span class="special">&lt;</span><span class="identifier">public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&gt;()</span>
+    <span class="special">);</span>
+<span class="special">}</span>
+
+<span class="comment">// A formatting function that generates an insert field list for any struct T with</span>
+<span class="comment">// Boost.Describe metadata.</span>
+<span class="comment">// For example, employee{"John", "Doe", "HGS", 20000} generates the string</span>
+<span class="comment">// "('John', 'Doe', 'HGS', 20000)"</span>
+<span class="keyword">struct</span> <span class="identifier">insert_struct_format_fn</span>
+<span class="special">{</span>
+    <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
+    <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span><span class="keyword">const</span> <span class="identifier">T</span><span class="special">&amp;</span> <span class="identifier">value</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="keyword">const</span>
     <span class="special">{</span>
-        <span class="comment">// Opening bracket</span>
-        <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">"("</span><span class="special">);</span>
+        <span class="comment">// Convert the struct into a std::array of formattable_ref</span>
+        <span class="comment">// formattable_ref is a view type that can hold any type that can be formatted</span>
+        <span class="keyword">auto</span> <span class="identifier">args</span> <span class="special">=</span> <span class="identifier">mp11</span><span class="special">::</span><span class="identifier">tuple_apply</span><span class="special">(</span>
+            <span class="special">[&amp;</span><span class="identifier">value</span><span class="special">](</span><span class="keyword">auto</span><span class="special">...</span> <span class="identifier">descriptors</span><span class="special">)</span> <span class="special">{</span>
+                <span class="keyword">return</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">formattable_ref</span><span class="special">,</span> <span class="identifier">num_public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;{</span>
+                    <span class="special">{</span><span class="identifier">value</span><span class="special">.*</span><span class="identifier">descriptors</span><span class="special">.</span><span class="identifier">pointer</span><span class="special">...}</span>
+                <span class="special">};</span>
+            <span class="special">},</span>
+            <span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_rename</span><span class="special">&lt;</span><span class="identifier">public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&gt;()</span>
+        <span class="special">);</span>
 
-        <span class="comment">// We must build a comma-separated list. The first member is not preceeded by a comma.</span>
-        <span class="keyword">bool</span> <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
-
-        <span class="comment">// Iterate over all members of T</span>
-        <span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_for_each</span><span class="special">&lt;</span><span class="identifier">public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;([&amp;](</span><span class="keyword">auto</span> <span class="identifier">D</span><span class="special">)</span> <span class="special">{</span>
-            <span class="comment">// Comma separator</span>
-            <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">is_first</span><span class="special">)</span>
-            <span class="special">{</span>
-                <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">", "</span><span class="special">);</span>
-            <span class="special">}</span>
-            <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">false</span><span class="special">;</span>
-
-            <span class="comment">// Insert the actual member. value.*D.pointer will get</span>
-            <span class="comment">// each of the data members of our struct.</span>
-            <span class="comment">// append_value will format the supplied value according to its type,</span>
-            <span class="comment">// as if it was a {} replacement field: strings are escaped and quoted,</span>
-            <span class="comment">// doubles are formatted as number literals, and so on.</span>
-            <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_value</span><span class="special">(</span><span class="identifier">value</span><span class="special">.*</span><span class="identifier">D</span><span class="special">.</span><span class="identifier">pointer</span><span class="special">);</span>
-        <span class="special">});</span>
-
-        <span class="comment">// Closing bracket</span>
-        <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">")"</span><span class="special">);</span>
-    <span class="special">}</span>
-
-    <span class="comment">// Boost.MySQL requires us to define this function. It should take</span>
-    <span class="comment">// our value as first argument, and a format_context_base&amp; as the second.</span>
-    <span class="comment">// It should format the value into the context.</span>
-    <span class="comment">// format_context_base has append_raw and append_value, like format_context.</span>
-    <span class="keyword">static</span> <span class="keyword">void</span> <span class="identifier">format</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">insert_list</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&amp;</span> <span class="identifier">values</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span>
-    <span class="special">{</span>
-        <span class="comment">// We need one record, at least. If this is not the case, we can use</span>
-        <span class="comment">// add_error to report the error and exit. This will cause format_sql to throw.</span>
-        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">values</span><span class="special">.</span><span class="identifier">values</span><span class="special">.</span><span class="identifier">empty</span><span class="special">())</span>
-        <span class="special">{</span>
-            <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">add_error</span><span class="special">(</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
-            <span class="keyword">return</span><span class="special">;</span>
-        <span class="special">}</span>
-
-        <span class="comment">// Build a comma-separated list</span>
-        <span class="keyword">bool</span> <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
-        <span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span><span class="special">&amp;</span> <span class="identifier">val</span> <span class="special">:</span> <span class="identifier">values</span><span class="special">.</span><span class="identifier">values</span><span class="special">)</span>
-        <span class="special">{</span>
-            <span class="comment">// Comma separator</span>
-            <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">is_first</span><span class="special">)</span>
-            <span class="special">{</span>
-                <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">", "</span><span class="special">);</span>
-            <span class="special">}</span>
-            <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">false</span><span class="special">;</span>
-
-            <span class="comment">// Values</span>
-            <span class="identifier">format_single</span><span class="special">(</span><span class="identifier">val</span><span class="special">,</span> <span class="identifier">ctx</span><span class="special">);</span>
-        <span class="special">}</span>
+        <span class="comment">// Format them as a comma-separated sequence</span>
+        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"({})"</span><span class="special">,</span> <span class="identifier">args</span><span class="special">);</span>
     <span class="special">}</span>
 <span class="special">};</span>
-
-<span class="comment">// Make field_name_list&lt;T&gt; formattable</span>
-<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">formatter</span><span class="special">&lt;</span><span class="identifier">field_name_list</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span>
-<span class="special">{</span>
-    <span class="comment">// Recall that given a type like employee, we want to output an identifier list:</span>
-    <span class="comment">//    "`first_name`, `last_name`, `company_id`, `salary`"</span>
-    <span class="keyword">static</span> <span class="keyword">void</span> <span class="identifier">format</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">field_name_list</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&amp;,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span>
-    <span class="special">{</span>
-        <span class="comment">// We must build a comma-separated list. The first member is not preceeded by a comma.</span>
-        <span class="keyword">bool</span> <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
-
-        <span class="comment">// Iterate over all members of T</span>
-        <span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_for_each</span><span class="special">&lt;</span><span class="identifier">public_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;([&amp;](</span><span class="keyword">auto</span> <span class="identifier">D</span><span class="special">)</span> <span class="special">{</span>
-            <span class="comment">// Comma separator</span>
-            <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">is_first</span><span class="special">)</span>
-            <span class="special">{</span>
-                <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">", "</span><span class="special">);</span>
-            <span class="special">}</span>
-            <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">false</span><span class="special">;</span>
-
-            <span class="comment">// Output the field's name.</span>
-            <span class="comment">// D.name is a const char* containing the T's field names.</span>
-            <span class="comment">// identifier wraps a string to be formatted as a SQL identifier</span>
-            <span class="comment">// (i.e. `first_name`, rather than 'first_name').</span>
-            <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_value</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">identifier</span><span class="special">(</span><span class="identifier">D</span><span class="special">.</span><span class="identifier">name</span><span class="special">));</span>
-        <span class="special">});</span>
-    <span class="special">}</span>
-<span class="special">};</span>
-
-<span class="special">}</span>  <span class="comment">// namespace mysql</span>
-<span class="special">}</span>  <span class="comment">// namespace boost</span>
 
 <span class="comment">// Reads a file into memory</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">read_file</span><span class="special">(</span><span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">file_name</span><span class="special">)</span>
@@ -266,16 +177,23 @@
     <span class="comment">// Connect to the server</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">connect</span><span class="special">(</span><span class="identifier">params</span><span class="special">);</span>
 
-    <span class="comment">// Compose the query. We've managed to make all out types formattable,</span>
-    <span class="comment">// so we can use format_sql.</span>
+    <span class="comment">// We need one value to insert, at least</span>
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">values</span><span class="special">.</span><span class="identifier">empty</span><span class="special">())</span>
+    <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cerr</span> <span class="special">&lt;&lt;</span> <span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]</span> <span class="special">&lt;&lt;</span> <span class="string">": the JSON file should contain at least one employee"</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+        <span class="identifier">exit</span><span class="special">(</span><span class="number">1</span><span class="special">);</span>
+    <span class="special">}</span>
+
+    <span class="comment">// Compose the query. We use sequence() to format C++ ranges as</span>
+    <span class="comment">// comma-separated sequences.</span>
     <span class="comment">// Recall that format_opts() returns a system::result&lt;format_options&gt;,</span>
     <span class="comment">// which can contain an error if the connection doesn't know which character set is using.</span>
     <span class="comment">// Use set_character_set if this happens.</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
         <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
-        <span class="string">"INSERT INTO employee ({}) VALUES {}"</span><span class="special">,</span>
-        <span class="identifier">field_name_list</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;(),</span>
-        <span class="identifier">insert_list</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;{</span><span class="identifier">values</span><span class="special">}</span>
+        <span class="string">"INSERT INTO employee ({::i}) VALUES {}"</span><span class="special">,</span>
+        <span class="identifier">get_field_names</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;(),</span>
+        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">sequence</span><span class="special">(</span><span class="identifier">values</span><span class="special">,</span> <span class="identifier">insert_struct_format_fn</span><span class="special">())</span>
     <span class="special">);</span>
 
     <span class="comment">// Execute the query as usual.</span>

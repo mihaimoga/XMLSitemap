@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>Getting started &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/boostbook.css" />
@@ -39,9 +40,9 @@
      Distributed under the Boost Software License, Version 1.0.
      (http://www.boost.org/LICENSE_1_0.txt)
 -->
-<div class="section" id="getting-started">
+<section id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="higher-order-functions">
+<section id="higher-order-functions">
 <h2>Higher-order functions<a class="headerlink" href="#higher-order-functions" title="Permalink to this heading">¶</a></h2>
 <p>A core part of this library is higher-order functions. A higher-order function is a function that either takes a function as its argument or returns a function. To be able to define higher-order functions, we must be able to refer functions as first-class objects. One example of a higher-order function is <code class="docutils literal notranslate"><span class="pre">std::accumulate</span></code>. It takes a custom binary operator as a parameter.</p>
 <p>One way to refer to a function is to use a function pointer(or a member function pointer). So if we had our own custom <code class="docutils literal notranslate"><span class="pre">sum</span></code> function, we could pass it directly to <code class="docutils literal notranslate"><span class="pre">std::accumulate</span></code>:</p>
@@ -70,8 +71,8 @@
 <span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">sum_int</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="function-objects">
+</section>
+<section id="function-objects">
 <h2>Function Objects<a class="headerlink" href="#function-objects" title="Permalink to this heading">¶</a></h2>
 <p>A function object allows the ability to encapsulate an entire overload set into one object. This can be done by defining a class that overrides the call operator like this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// A sum function object</span>
@@ -95,8 +96,8 @@
 </pre></div>
 </div>
 <p>Because the function is templated, it can be called on any type that has the plus <code class="docutils literal notranslate"><span class="pre">+</span></code> operator, not just integers. Futhermore, the <code class="docutils literal notranslate"><span class="pre">sum</span></code> variable can be used to refer to the entire overload set.</p>
-</div>
-<div class="section" id="lifting-functions">
+</section>
+<section id="lifting-functions">
 <h2>Lifting functions<a class="headerlink" href="#lifting-functions" title="Permalink to this heading">¶</a></h2>
 <p>Another alternative to defining a function object, is to lift the templated function using <a class="reference internal" href="../../include/boost/hof/lift.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_LIFT</span></code></span></a>. This will turn the entire overload set into one object like a function object:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span><span class="w"></span>
@@ -111,8 +112,8 @@
 </pre></div>
 </div>
 <p>However, due to limitations in C++14 this will not preserve <code class="docutils literal notranslate"><span class="pre">constexpr</span></code>. In those cases, its better to use a function object.</p>
-</div>
-<div class="section" id="declaring-functions">
+</section>
+<section id="declaring-functions">
 <h2>Declaring functions<a class="headerlink" href="#declaring-functions" title="Permalink to this heading">¶</a></h2>
 <p>Now, this is useful for local functions. However, many times we want to write functions and make them available for others to use. Boost.HigherOrderFunctions provides <a class="reference internal" href="../../include/boost/hof/function.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_STATIC_FUNCTION</span></code></span></a> to declare the function object at the global or namespace scope:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_FUNCTION</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_f</span><span class="p">();</span><span class="w"></span>
@@ -123,8 +124,8 @@
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="../../include/boost/hof/function.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_STATIC_FUNCTION</span></code></span></a> macro provides a portable way to do this that supports pre-C++17 compilers and MSVC.</p>
-</div>
-<div class="section" id="adaptors">
+</section>
+<section id="adaptors">
 <h2>Adaptors<a class="headerlink" href="#adaptors" title="Permalink to this heading">¶</a></h2>
 <p>Now we have defined the function as a function object, we can add new “enhancements” to the function. One enhancement is to write “extension” methods. The proposal <a class="reference external" href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4165.pdf">N4165</a> for Unified Call Syntax(UFCS) would have allowed a function call of <code class="docutils literal notranslate"><span class="pre">x.f(y)</span></code> to become <code class="docutils literal notranslate"><span class="pre">f(x,</span> <span class="pre">y)</span></code>. Without UFCS in C++, we can instead use pipable function which would transform <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">|</span> <span class="pre">f(y)</span></code> into <code class="docutils literal notranslate"><span class="pre">f(x,</span> <span class="pre">y)</span></code>. To make <code class="docutils literal notranslate"><span class="pre">sum_f</span></code> function pipable using the <a class="reference internal" href="../../include/boost/hof/pipable.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">pipable</span></code></span></a> adaptor, we can simply write:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_FUNCTION</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipable</span><span class="p">(</span><span class="n">sum_f</span><span class="p">());</span><span class="w"></span>
@@ -156,8 +157,8 @@
 <span class="k">auto</span><span class="w"> </span><span class="n">three</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_2</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="lambdas">
+</section>
+<section id="lambdas">
 <h2>Lambdas<a class="headerlink" href="#lambdas" title="Permalink to this heading">¶</a></h2>
 <p>Writing function objects can be a little verbose. C++ provides lambdas which have a much terser syntax for defining functions. Of course, lambdas can work with all the adaptors in the library, however, if we want to declare a function using lambdas, <a class="reference internal" href="../../include/boost/hof/function.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_STATIC_FUNCTION</span></code></span></a> won’t work. Instead, <a class="reference internal" href="../../include/boost/hof/lambda.html#boost-hof-static-lambda-function"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span></code></span></a> can be used to the declare the lambda as a function instead, this will initialize the function at compile-time and avoid possible ODR violations:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
@@ -174,8 +175,8 @@
 <span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

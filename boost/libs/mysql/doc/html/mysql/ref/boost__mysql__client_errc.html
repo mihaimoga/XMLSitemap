@@ -28,7 +28,7 @@
 <a name="mysql.ref.boost__mysql__client_errc"></a><a class="link" href="boost__mysql__client_errc.html" title="client_errc">client_errc</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="idm90917"></a>
+        <a class="indexterm" name="idm93074"></a>
       </p>
 <p>
         MySQL client-defined error codes.
@@ -173,7 +173,7 @@
               </td>
 <td>
                 <p>
-                  The connection mandatory SSL, but the server doesn't accept SSL
+                  The connection mandates SSL, but the server doesn't accept SSL
                   connections.
                 </p>
               </td>
@@ -303,7 +303,7 @@
               </td>
 <td>
                 <p>
-                  (EXPERIMENTAL) An format string with invalid syntax was provided
+                  (EXPERIMENTAL) A format string containing invalid syntax was provided
                   to a SQL formatting function.
                 </p>
               </td>
@@ -337,6 +337,19 @@
 <tr>
 <td>
                 <p>
+                  <code class="computeroutput"><span class="identifier">format_string_invalid_specifier</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) The supplied format specifier (e.g. {:i}) is not
+                  supported by the type being formatted.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
                   <code class="computeroutput"><span class="identifier">format_arg_not_found</span></code>
                 </p>
               </td>
@@ -362,6 +375,19 @@
                 </p>
               </td>
 </tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">max_buffer_size_exceeded</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  (EXPERIMENTAL) An operation attempted to read or write a packet
+                  larger than the maximum buffer size. Try increasing <a class="link" href="boost__mysql__any_connection_params/max_buffer_size.html" title="any_connection_params::max_buffer_size"><code class="computeroutput"><span class="identifier">any_connection_params</span><span class="special">::</span><span class="identifier">max_buffer_size</span></code></a>.
+                </p>
+              </td>
+</tr>
 </tbody>
 </table></div>
 <h5>
@@ -370,9 +396,6 @@
       </h5>
 <p>
         These errors are produced by the client itself, rather than the server.
-      </p>
-<p>
-        Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql.hpp" target="_top">boost/mysql.hpp</a>&gt;</code>
       </p>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>

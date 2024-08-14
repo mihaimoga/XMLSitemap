@@ -29,29 +29,54 @@
 </h4></div></div></div>
 <p>
         A <code class="computeroutput"><span class="identifier">StaticRow</span></code> is a C++ type
-        that can be used to model a row within the static interface (i.e. <a class="link" href="boost__mysql__static_results.html" title="static_results"><code class="literal">static_results</code></a>,
-        <a class="link" href="boost__mysql__static_execution_state.html" title="static_execution_state"><code class="literal">static_execution_state</code></a>).
+        that can be used to model a row within the static interface (i.e. can be
+        passed as template parameter to <a class="link" href="boost__mysql__static_results.html" title="static_results"><code class="literal">static_results</code></a>
+        and <a class="link" href="boost__mysql__static_execution_state.html" title="static_execution_state"><code class="literal">static_execution_state</code></a>).
       </p>
 <p>
-        A type <code class="computeroutput"><span class="identifier">T</span></code> is a <code class="computeroutput"><span class="identifier">StaticRow</span></code> if either of the following is
-        true:
+        Formally, a type <code class="computeroutput"><span class="identifier">T</span></code> is a
+        <code class="computeroutput"><span class="identifier">StaticRow</span></code> if either of the
+        following is true:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            It is a <code class="computeroutput"><span class="keyword">struct</span></code> annotated
-            with Boost.Describe data (i.e., having <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">describe</span><span class="special">::</span><span class="identifier">has_describe_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;::</span><span class="identifier">value</span>
+            It is a non-const <code class="computeroutput"><span class="keyword">struct</span></code>
+            annotated with Boost.Describe data (i.e., having <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">describe</span><span class="special">::</span><span class="identifier">has_describe_members</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;::</span><span class="identifier">value</span>
             <span class="special">==</span> <span class="keyword">true</span></code>),
             and all the described members fulfill the <code class="computeroutput"><span class="identifier">ReadableField</span></code>
             exposition-only concept.
           </li>
 <li class="listitem">
-            It is a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code> instantiation, and all of its
-            types fulfill the <code class="computeroutput"><span class="identifier">ReadableField</span></code>
+            It is a non-const <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>
+            instantiation, and all of its types fulfill the <code class="computeroutput"><span class="identifier">ReadableField</span></code>
             exposition-only concept.
+          </li>
+<li class="listitem">
+            It is an instantiation of the <a class="link" href="boost__mysql__pfr_by_name.html" title="pfr_by_name"><code class="literal">pfr_by_name</code></a>
+            or <a class="link" href="boost__mysql__pfr_by_position.html" title="pfr_by_position"><code class="literal">pfr_by_position</code></a>
+            marker types using a type <code class="computeroutput"><span class="identifier">Underlying</span></code>
+            that satisfies the following:
+            <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; ">
+<li class="listitem">
+                  Is reflectable using Boost.PFR. For C++17 and later, this means
+                  satisfying <a href="../../../../../../doc/html/boost_pfr/limitations_and_configuration.html" target="_top"><code class="computeroutput"><span class="identifier">SimpleAggregate</span></code></a>. For
+                  C++14, stricter requirements apply - see <a href="../../../../../../doc/html/boost_pfr/limitations_and_configuration.html" target="_top">the
+                  Boost.PFR docs</a> for more info.
+                </li>
+<li class="listitem">
+                  Is a non-const object type (i.e. not a <code class="computeroutput"><span class="keyword">union</span></code>
+                  or built-in type).
+                </li>
+<li class="listitem">
+                  All of its fields (as given by <code class="computeroutput"><span class="identifier">pfr</span><span class="special">::</span><span class="identifier">structure_to_tuple</span></code>)
+                  satisfy <code class="computeroutput"><span class="identifier">ReadableField</span></code>.
+                </li>
+</ul></div>
           </li>
 </ul></div>
 <p>
-        Note that empty Describe structs and empty tuples are valid <code class="computeroutput"><span class="identifier">StaticRow</span></code>s.
+        Note that row types with no fields (like empty Describe structs and empty
+        tuples) are valid <code class="computeroutput"><span class="identifier">StaticRow</span></code>s.
       </p>
 <p>
         A <code class="computeroutput"><span class="identifier">ReadableField</span></code> is C++ type

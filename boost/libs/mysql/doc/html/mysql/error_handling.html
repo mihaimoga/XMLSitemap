@@ -61,6 +61,12 @@
             and throw an <code class="computeroutput"><span class="identifier">error_with_diagnostics</span></code>
             if the operation failed.
           </p></dd>
+<dt><span class="term"><a class="link" href="ref/boost__mysql__is_fatal_error.html" title="is_fatal_error"><code class="literal">is_fatal_error</code></a></span></dt>
+<dd><p>
+            Checks whether an <code class="computeroutput"><span class="identifier">error_code</span></code>
+            is <a class="link" href="error_handling.html#mysql.error_handling.fatal">fatal</a> and thus requires
+            re-establishing the connection.
+          </p></dd>
 </dl>
 </div>
 <p>
@@ -232,6 +238,34 @@
     </p>
 <h4>
 <a name="mysql.error_handling.h1"></a>
+      <span class="phrase"><a name="mysql.error_handling.fatal"></a></span><a class="link" href="error_handling.html#mysql.error_handling.fatal">Fatal
+      vs. non-fatal errors</a>
+    </h4>
+<p>
+      When an operation on a established connection (like a query execution) results
+      in an error, two situations may happen:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          The connection object is left in a well-known state. You can safely use
+          the object to run further operations without problems. For instance, if
+          a query fails with <code class="computeroutput"><span class="identifier">common_server_errc</span><span class="special">::</span><span class="identifier">er_no_such_table</span></code>
+          because you misspelled a table name, it is safe to run other queries after
+          the failed one. Such errors are called <span class="bold"><strong>non-fatal</strong></span>.
+        </li>
+<li class="listitem">
+          The connection object is left un an unknown state. Further operations will
+          fail with unpredictable results. You should close and re-establish the
+          connection. These are <span class="bold"><strong>fatal</strong></span> errors, and
+          include protocol and network errors.
+        </li>
+</ul></div>
+<p>
+      You can use <a class="link" href="ref/boost__mysql__is_fatal_error.html" title="is_fatal_error"><code class="literal">is_fatal_error</code></a>
+      to distinguish between fatal and non-fatal error codes.
+    </p>
+<h4>
+<a name="mysql.error_handling.h2"></a>
       <span class="phrase"><a name="mysql.error_handling.security_notes_on_diagnostics"></a></span><a class="link" href="error_handling.html#mysql.error_handling.security_notes_on_diagnostics">Security
       notes on diagnostics</a>
     </h4>
@@ -247,7 +281,7 @@
       character set.
     </p>
 <h4>
-<a name="mysql.error_handling.h2"></a>
+<a name="mysql.error_handling.h3"></a>
       <span class="phrase"><a name="mysql.error_handling.system_result"></a></span><a class="link" href="error_handling.html#mysql.error_handling.system_result">Using
       boost::system::result</a>
     </h4>

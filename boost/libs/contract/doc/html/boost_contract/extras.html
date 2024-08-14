@@ -57,10 +57,10 @@
       Value Requirements (Templates)</a>
 </h3></div></div></div>
 <p>
-        Old values require to copy the expression passed to <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OLDOF.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
+        Old values require to copy the expression passed to <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a07326d65350421d14684447dec36d1ba.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
         thus the type of that expression needs to be copyable. More precisely, dereferencing
-        an old value pointer of type <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
-        requires <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;::</span><span class="identifier">value</span></code> to be <code class="computeroutput"><span class="keyword">true</span></code>,
+        an old value pointer of type <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+        requires <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;::</span><span class="identifier">value</span></code> to be <code class="computeroutput"><span class="keyword">true</span></code>,
         otherwise this library will generate a compile-time error.
       </p>
 <p>
@@ -68,18 +68,18 @@
         error when a program uses old value types that are not copyable (because
         it is not possible to fully check the correctness of the program as stated
         by the contract assertions that use these old values). In these cases, programmers
-        can declare old values using <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
+        can declare old values using <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
         as seen so far.
       </p>
 <p>
         However, in some other cases it might be desirable to simply skip assertions
         that use old values when the respective old value types are not copyable,
-        without causing compile-time errors. Programmers can do this using <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
-        instead of <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
+        without causing compile-time errors. Programmers can do this using <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
+        instead of <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
         and checking if the old value pointer is not null before dereferencing it
         in postconditions. For example, consider the following function template
         that could in general be instantiated for types <code class="computeroutput"><span class="identifier">T</span></code>
-        that are not copy constructible (that is for which <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;::</span><span class="identifier">value</span></code> is <code class="computeroutput"><span class="keyword">false</span></code>,
+        that are not copy constructible (that is for which <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;::</span><span class="identifier">value</span></code> is <code class="computeroutput"><span class="keyword">false</span></code>,
         see <a href="../../../example/features/old_if_copyable.cpp" target="_top"><code class="literal">old_if_copyable.cpp</code></a>):
         <a href="#ftn.boost_contract.extras.old_value_requirements__templates_.f0" class="footnote" name="boost_contract.extras.old_value_requirements__templates_.f0"><sup class="footnote">[68]</sup></a>
       </p>
@@ -103,21 +103,21 @@
       </p>
 <p>
         The old value pointer <code class="computeroutput"><span class="identifier">old_x</span></code>
-        is programmed using <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>.
-        When <code class="computeroutput"><span class="identifier">T</span></code> is copyable, <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
-        behaves like <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>.
+        is programmed using <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>.
+        When <code class="computeroutput"><span class="identifier">T</span></code> is copyable, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+        behaves like <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>.
         When <code class="computeroutput"><span class="identifier">T</span></code> is not copyable instead,
-        <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
         will simply not copy <code class="computeroutput"><span class="identifier">x</span></code> at
         run-time and leave <code class="computeroutput"><span class="identifier">old_x</span></code>
-        initialized to a null pointer. Therefore, <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
+        initialized to a null pointer. Therefore, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
         objects like <code class="computeroutput"><span class="identifier">old_x</span></code> must be
         checked to be not null as in <code class="computeroutput"><span class="keyword">if</span><span class="special">(</span><span class="identifier">old_x</span><span class="special">)</span> <span class="special">...</span></code> before
         they are dereferenced in postconditions and exception guarantees (to avoid
         run-time errors of dereferencing null pointers).
       </p>
 <p>
-        If the above example used <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
+        If the above example used <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
         instead then this library would have generated a compile-time error when
         <code class="computeroutput"><span class="identifier">offset</span></code> is instantiated with
         types <code class="computeroutput"><span class="identifier">T</span></code> that are not copy
@@ -128,9 +128,9 @@
       </p>
 <p>
         When C++11 <code class="computeroutput"><span class="keyword">auto</span></code> declarations
-        are used with <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OLDOF.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>,
-        this library always defaults to using the <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
-        type (because its type requirements are more stringent than <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>).
+        are used with <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a07326d65350421d14684447dec36d1ba.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>,
+        this library always defaults to using the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
+        type (because its type requirements are more stringent than <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>).
         For example, the following statements are equivalent:
       </p>
 <pre class="programlisting"><span class="keyword">auto</span> <span class="identifier">old_x</span> <span class="special">=</span> <span class="identifier">BOOST_CONTRACT_OLDOF</span><span class="special">(</span><span class="identifier">x</span><span class="special">);</span> <span class="comment">// C++11 auto declarations always use `old_ptr` (never `old_ptr_if_copyable`).</span>
@@ -138,7 +138,7 @@
 </pre>
 <p>
         If programmers want to relax the copyable type requirement, they must do
-        so explicitly by using the <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
+        so explicitly by using the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
         type instead of using <code class="computeroutput"><span class="keyword">auto</span></code> declarations.
       </p>
 <h5>
@@ -147,14 +147,14 @@
         Value Type Traits</a>
       </h5>
 <p>
-        This library uses <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
-        to determine if an old value type is copyable or not, and then <code class="computeroutput"><a class="link" href="../boost/contract/old_value_copy.html" title="Struct template old_value_copy">boost::contract::old_value_copy</a></code>
+        This library uses <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
+        to determine if an old value type is copyable or not, and then <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1old__value__copy.html" title="Struct template old_value_copy">boost::contract::old_value_copy</a></code>
         to actually copy the old value.
       </p>
 <p>
-        By default, <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+        By default, <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
         is equivalent to <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">is_copy_constructible</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code> and
-        <code class="computeroutput"><a class="link" href="../boost/contract/old_value_copy.html" title="Struct template old_value_copy">boost::contract::old_value_copy</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1old__value__copy.html" title="Struct template old_value_copy">boost::contract::old_value_copy</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
         is implemented using <code class="computeroutput"><span class="identifier">T</span></code>'s
         copy constructor. However, these type traits can be specialized by programmers
         for example to avoid making old value copies of types even when they have
@@ -163,7 +163,7 @@
         or for any other specific need programmers might have for the types in question.
       </p>
 <p>
-        For example, the following specialization of <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
+        For example, the following specialization of <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
         intentionally avoids making old value copies for all expressions of type
         <code class="computeroutput"><span class="identifier">w</span></code> even if that type has a
         copy constructor (see <a href="../../../example/features/old_if_copyable.cpp" target="_top"><code class="literal">old_if_copyable.cpp</code></a>):
@@ -190,8 +190,8 @@
 <p>
       </p>
 <p>
-        On the flip side, the following specializations of <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/contract/old_value_copy.html" title="Struct template old_value_copy">boost::contract::old_value_copy</a></code>
+        On the flip side, the following specializations of <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1old__value__copy.html" title="Struct template old_value_copy">boost::contract::old_value_copy</a></code>
         make old value copies of expressions of type <code class="computeroutput"><span class="identifier">p</span></code>
         even if that type does not actually have a copy constructor (see <a href="../../../example/features/old_if_copyable.cpp" target="_top"><code class="literal">old_if_copyable.cpp</code></a>):
       </p>
@@ -230,12 +230,12 @@
 <p>
       </p>
 <p>
-        In general, <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">is_copy_constructible</span></code> and therefore <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
+        In general, <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">is_copy_constructible</span></code> and therefore <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
         require C++11 <code class="computeroutput"><span class="keyword">decltype</span></code> and SFINAE
         to automatically detect if a given type is copyable or not. On non-C++11
         compilers, it is possible to inherit the old value type from <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">noncopyable</span></code>, or use <code class="computeroutput"><span class="identifier">BOOST_MOVABLE_BUT_NOT_COPYABLE</span></code>,
         or specialize <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">is_copy_constructible</span></code> (see <a href="http://www.boost.org/doc/libs/release/libs/type_traits/doc/html/boost_typetraits/reference/is_copy_constructible.html" target="_top"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">is_copy_constructible</span></code></a> documentation
-        for more information), or just specialize <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>.
+        for more information), or just specialize <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>.
         For example, for a non-copyable type <code class="computeroutput"><span class="identifier">n</span></code>
         the following code will work also on non-C++11 compilers (see <a href="../../../example/features/old_if_copyable.cpp" target="_top"><code class="literal">old_if_copyable.cpp</code></a>):
       </p>
@@ -287,8 +287,8 @@
         skip assertions when user types do not provide all the operations necessary
         to check them, without causing compile-time errors. Programmers can do this
         using <code class="computeroutput"><span class="keyword">if</span> <span class="keyword">constexpr</span></code>
-        on C++17 compilers, and <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
-        (or <code class="computeroutput"><a class="link" href="../boost/contract/condition_if_c.html" title="Function template condition_if_c">boost::contract::condition_if_c</a></code>)
+        on C++17 compilers, and <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        (or <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a2eab22a6f7e96a1fa1e46f2df9773889.html" title="Function template condition_if_c">boost::contract::condition_if_c</a></code>)
         on non-C++17 compilers.
       </p>
 <p>
@@ -376,7 +376,7 @@
       </h5>
 <p>
         On non-C++17 compilers where <code class="computeroutput"><span class="keyword">if</span> <span class="keyword">constexpr</span></code> is not available, it is possible
-        to use <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        to use <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
         to skip assertions based on type requirements (even if this code is less
         readable and more verbose than using <code class="computeroutput"><span class="keyword">if</span>
         <span class="keyword">constexpr</span></code>). For example (see <a href="../../../example/features/condition_if.cpp" target="_top"><code class="literal">condition_if.cpp</code></a>):
@@ -409,7 +409,7 @@
 <p>
       </p>
 <p>
-        More in general, <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        More in general, <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
         is used as follow:
       </p>
 <pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">contract</span><span class="special">::</span><span class="identifier">condition_if</span><span class="special">&lt;</span><span class="identifier">Pred</span><span class="special">&gt;(</span>
@@ -422,10 +422,10 @@
         a nullary boolean functor. If <code class="computeroutput"><span class="identifier">Pred</span><span class="special">::</span><span class="identifier">value</span></code>
         is statically evaluated to be <code class="computeroutput"><span class="keyword">true</span></code>
         at compile-time then <code class="computeroutput"><span class="identifier">cond</span><span class="special">()</span></code> is called at run-time and its boolean result
-        is returned by the enclosing <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        is returned by the enclosing <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
         call. Otherwise, if <code class="computeroutput"><span class="identifier">Pred</span><span class="special">::</span><span class="identifier">value</span></code>
         is statically evaluated to be <code class="computeroutput"><span class="keyword">false</span></code>
-        at compile-time then <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        at compile-time then <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
         trivially returns <code class="computeroutput"><span class="keyword">true</span></code>. Therefore,
         if <code class="computeroutput"><span class="identifier">cond</span></code> is a functor template
         instantiation (not just a functor) then its call that contains the assertion
@@ -437,10 +437,10 @@
         but C++11 lambdas cannot).
       </p>
 <p>
-        The <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
-        function template is a special case of the more general <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code>,
-        specifically <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">Pred</span><span class="special">&gt;(</span><span class="identifier">cond</span><span class="special">)</span></code> is logically equivalent to <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">Pred</span><span class="special">&gt;(</span><span class="identifier">cond</span><span class="special">).</span><span class="identifier">else_</span><span class="special">([]</span> <span class="special">{</span> <span class="keyword">return</span>
-        <span class="keyword">true</span><span class="special">;</span> <span class="special">})</span></code>. <a href="#ftn.boost_contract.extras.assertion_requirements__templates_.f1" class="footnote" name="boost_contract.extras.assertion_requirements__templates_.f1"><sup class="footnote">[71]</sup></a> The <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code>
+        The <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        function template is a special case of the more general <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code>,
+        specifically <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">Pred</span><span class="special">&gt;(</span><span class="identifier">cond</span><span class="special">)</span></code> is logically equivalent to <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">Pred</span><span class="special">&gt;(</span><span class="identifier">cond</span><span class="special">).</span><span class="identifier">else_</span><span class="special">([]</span> <span class="special">{</span> <span class="keyword">return</span>
+        <span class="keyword">true</span><span class="special">;</span> <span class="special">})</span></code>. <a href="#ftn.boost_contract.extras.assertion_requirements__templates_.f1" class="footnote" name="boost_contract.extras.assertion_requirements__templates_.f1"><sup class="footnote">[71]</sup></a> The <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code>
         function template also accepts a number of optional <span class="emphasis"><em>else-if</em></span>
         statements and one optional <span class="emphasis"><em>else</em></span> statement:
       </p>
@@ -460,7 +460,7 @@
         ..., <code class="computeroutput"><span class="identifier">e</span></code> are nullary functors.
         The return types of the functor calls <code class="computeroutput"><span class="identifier">t1</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">t2</span><span class="special">()</span></code>, ..., <code class="computeroutput"><span class="identifier">e</span><span class="special">()</span></code> must either be all the same (including
         possibly all <code class="computeroutput"><span class="keyword">void</span></code>) or be of
-        types implicitly convertible into one another. At run-time <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code> will
+        types implicitly convertible into one another. At run-time <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code> will
         call the functor <code class="computeroutput"><span class="identifier">t1</span><span class="special">()</span></code>,
         or <code class="computeroutput"><span class="identifier">t2</span><span class="special">()</span></code>,
         ..., or <code class="computeroutput"><span class="identifier">e</span><span class="special">()</span></code>
@@ -480,13 +480,13 @@
         otherwise it is required.
       </p>
 <p>
-        In general, <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code>
+        In general, <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code>
         can be used to program contract assertions that compile and check different
         functor templates depending on related predicates being statically evaluated
         to be <code class="computeroutput"><span class="keyword">true</span></code> or <code class="computeroutput"><span class="keyword">false</span></code> at compile-time (but in most cases
-        <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
-        should be sufficient and less verbose to use). The <code class="computeroutput"><a class="link" href="../boost/contract/condition_if_c.html" title="Function template condition_if_c">boost::contract::condition_if_c</a></code>,
-        <code class="computeroutput"><a class="link" href="../boost/contract/call_if_c.html" title="Function template call_if_c">boost::contract::call_if_c</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        should be sufficient and less verbose to use). The <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a2eab22a6f7e96a1fa1e46f2df9773889.html" title="Function template condition_if_c">boost::contract::condition_if_c</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a3336b7effe0970fe1eead502c9bf77cf.html" title="Function template call_if_c">boost::contract::call_if_c</a></code>,
         and <code class="computeroutput"><span class="special">.</span><span class="identifier">else_if_c</span></code>
         function templates work similarly to their counterparts without the <code class="computeroutput"><span class="special">...</span><span class="identifier">_c</span></code> postfix
         seen so far, but they take their predicate template parameters as static
@@ -495,8 +495,8 @@
 <p>
         On compilers that support C++17 <code class="computeroutput"><span class="keyword">if</span>
         <span class="keyword">constexpr</span></code> there should be no need
-        to use <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
-        or <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code>
+        to use <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+        or <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code>
         because <code class="computeroutput"><span class="keyword">if</span> <span class="keyword">constexpr</span></code>
         can be used instead (making the code more readable and easier to program).
         <a href="#ftn.boost_contract.extras.assertion_requirements__templates_.f2" class="footnote" name="boost_contract.extras.assertion_requirements__templates_.f2"><sup class="footnote">[72]</sup></a>
@@ -512,7 +512,7 @@
         for volatile public functions. These <span class="emphasis"><em>volatile class invariants</em></span>
         are programmed in a public <code class="computeroutput"><span class="keyword">const</span> <span class="keyword">volatile</span></code> function, named <code class="computeroutput"><span class="identifier">invariant</span></code>,
         taking no argument, and returning <code class="computeroutput"><span class="keyword">void</span></code>
-        (see <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_IN_idm34689.html" title="Macro BOOST_CONTRACT_INVARIANT_FUNC">BOOST_CONTRACT_INVARIANT_FUNC</a></code>
+        (see <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1acd802a317f21884f29421d0ca22674c3.html" title="Macro BOOST_CONTRACT_INVARIANT_FUNC">BOOST_CONTRACT_INVARIANT_FUNC</a></code>
         to name the invariant function differently from <code class="computeroutput"><span class="identifier">invariant</span></code>
         and <a class="link" href="advanced.html#boost_contract.advanced.access_specifiers" title="Access Specifiers">Access Specifiers</a>
         to not have to declare it <code class="computeroutput"><span class="keyword">public</span></code>).
@@ -670,8 +670,8 @@
 <p>
         Therefore, both the move constructor and the move assignment operator need
         to maintain the class invariants of the moved-from object so their contracts
-        can be programmed using <code class="computeroutput"><a class="link" href="../boost/contract/constructor.html" title="Function template constructor">boost::contract::constructor</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/contract/public_function_idm36717.html" title="Function template public_function">boost::contract::public_function</a></code>
+        can be programmed using <code class="computeroutput"><a class="link" href="../doxygen/reference/constructor_8hpp_1af4aef97442a6fd8ad0cc954a1caed7f4.html" title="Function template constructor">boost::contract::constructor</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d.html" title="Function template public_function">boost::contract::public_function</a></code>
         as usual. For example (see <a href="../../../example/features/move.cpp" target="_top"><code class="literal">move.cpp</code></a>):
       </p>
 <p>
@@ -750,9 +750,9 @@
           C++ will not automatically check contracts. Therefore, unless the move
           operations are not public or they have no preconditions, no postconditions,
           and their class has no invariants, programmers should manually define them
-          using <code class="computeroutput"><a class="link" href="../boost/contract/constructor.html" title="Function template constructor">boost::contract::constructor</a></code>,
-          <code class="computeroutput"><a class="link" href="../boost/contract/constructor_precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>,
-          and <code class="computeroutput"><a class="link" href="../boost/contract/public_function_idm36717.html" title="Function template public_function">boost::contract::public_function</a></code>
+          using <code class="computeroutput"><a class="link" href="../doxygen/reference/constructor_8hpp_1af4aef97442a6fd8ad0cc954a1caed7f4.html" title="Function template constructor">boost::contract::constructor</a></code>,
+          <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1constructor__precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>,
+          and <code class="computeroutput"><a class="link" href="../doxygen/reference/public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d.html" title="Function template public_function">boost::contract::public_function</a></code>
           instead of relying on their default implementations generated by C++. (Same
           as for all other operations automatically implemented by C++.)
         </p></td></tr>
@@ -772,11 +772,11 @@
 <p>
         A C++ <code class="computeroutput"><span class="keyword">union</span></code> cannot have virtual
         functions, base classes, and cannot be used as a base class thus subcontracting
-        (<code class="computeroutput"><a class="link" href="../boost/contract/virtual_.html" title="Class virtual_">boost::contract::virtual_</a></code>,
-        <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OVERRIDE.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>,
+        (<code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1virtual__.html" title="Class virtual_">boost::contract::virtual_</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1a125e503b1a6512c79cc56047a902e732.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>,
         etc.) do not apply to unions. Also a <code class="computeroutput"><span class="keyword">union</span></code>
-        cannot inherit from <code class="computeroutput"><a class="link" href="../boost/contract/constructor_precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
-        (because it cannot have base classes), instead <code class="computeroutput"><a class="link" href="../boost/contract/constructor_precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
+        cannot inherit from <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1constructor__precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
+        (because it cannot have base classes), instead <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1constructor__precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
         is used to declare a local object that checks constructor preconditions (at
         the very beginning of the constructor before old value copies and other contracts,
         see declaration of <code class="computeroutput"><span class="identifier">pre</span></code> in
@@ -865,23 +865,23 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_ASSERT.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
             is used to assert conditions that are not computationally expensive,
             at least compared to the cost of executing the function body. These assertions
             are the ones we have seen so far, they are always checked at run-time
             and they cannot be disabled.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33643.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ac08ee32869ac639e5e433c295a57db1f.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
             is used to assert conditions that are computationally expensive compared
             to the cost of executing the function body. These assertions are not
-            checked at run-time unless programmers explicitly define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AUDITS.html" title="Macro BOOST_CONTRACT_AUDITS">BOOST_CONTRACT_AUDITS</a></code>
+            checked at run-time unless programmers explicitly define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a4622a4aade6f9a4e83cf9af8982276ce.html" title="Macro BOOST_CONTRACT_AUDITS">BOOST_CONTRACT_AUDITS</a></code>
             (undefined by default), but the asserted conditions are always compiled
             and therefore validated syntactically (even when they are not actually
             evaluated and checked at run-time).
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33668.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1a7307c58ac849a68b216a876a60f9aabc.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
             is used to assert conditions that are computationally prohibitive, at
             least compared to the cost of executing the function body. These assertions
             are never evaluated or checked at run-time, but the asserted conditions
@@ -890,16 +890,16 @@
           </li>
 </ul></div>
 <p>
-        In addition, <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_CHECK_AUDIT.html" title="Macro BOOST_CONTRACT_CHECK_AUDIT">BOOST_CONTRACT_CHECK_AUDIT</a></code>
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_CHECK_AXIOM.html" title="Macro BOOST_CONTRACT_CHECK_AXIOM">BOOST_CONTRACT_CHECK_AXIOM</a></code>
-        are similar to <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33643.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33668.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
+        In addition, <code class="computeroutput"><a class="link" href="../doxygen/reference/check__macro_8hpp_1a7598becf0009a46a02a441f3b1c1c524.html" title="Macro BOOST_CONTRACT_CHECK_AUDIT">BOOST_CONTRACT_CHECK_AUDIT</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/check__macro_8hpp_1af45e583aea740cd33c0efe3fe609987f.html" title="Macro BOOST_CONTRACT_CHECK_AXIOM">BOOST_CONTRACT_CHECK_AXIOM</a></code>
+        are similar to <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ac08ee32869ac639e5e433c295a57db1f.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1a7307c58ac849a68b216a876a60f9aabc.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
         but they are used to program audit and axiom levels for implementation checks
         instead of assertions (see <a class="link" href="advanced.html#boost_contract.advanced.implementation_checks" title="Implementation Checks">Implementation
         Checks</a>).
       </p>
 <p>
-        For example, <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33643.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
+        For example, <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ac08ee32869ac639e5e433c295a57db1f.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
         can be used to program computationally expensive assertions (see <a href="../../../example/features/assertion_level.cpp" target="_top"><code class="literal">assertion_level.cpp</code></a>):
       </p>
 <p>
@@ -924,7 +924,7 @@
 <p>
       </p>
 <p>
-        Similarly, <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AUDITS.html" title="Macro BOOST_CONTRACT_AUDITS">BOOST_CONTRACT_AUDITS</a></code>
+        Similarly, <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a4622a4aade6f9a4e83cf9af8982276ce.html" title="Macro BOOST_CONTRACT_AUDITS">BOOST_CONTRACT_AUDITS</a></code>
         can be used to disable expensive old value copies and related assertions
         that use them (see <a href="../../../example/features/assertion_level.cpp" target="_top"><code class="literal">assertion_level.cpp</code></a>):
       </p>
@@ -968,7 +968,7 @@
 <p>
       </p>
 <p>
-        The condition passed to <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33668.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
+        The condition passed to <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1a7307c58ac849a68b216a876a60f9aabc.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
         is compiled but not actually evaluated at run-time so this macro can be used
         to program computationally prohibitive assertions but also assertions that
         cannot actually be programmed in C++ using functions that are declared but
@@ -1057,33 +1057,33 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            Define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34830.html" title="Macro BOOST_CONTRACT_NO_PRECONDITIONS">BOOST_CONTRACT_NO_PRECONDITIONS</a></code>
+            Define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1ade6b6bf8b2b1cbeec7750d1f09e8c62e.html" title="Macro BOOST_CONTRACT_NO_PRECONDITIONS">BOOST_CONTRACT_NO_PRECONDITIONS</a></code>
             to not check preconditions.
           </li>
 <li class="listitem">
-            Define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34843.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>
+            Define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a0c8a2c13bf3571be1f583914ba670992.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>
             to not check postconditions.
           </li>
 <li class="listitem">
-            Define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_EXCEPTS.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>
+            Define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a30fc93945c54011425d85b0dd688a46d.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>
             to not check exception guarantees.
           </li>
 <li class="listitem">
-            Define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34883.html" title="Macro BOOST_CONTRACT_NO_ENTRY_INVARIANTS">BOOST_CONTRACT_NO_ENTRY_INVARIANTS</a></code>
+            Define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a50e421d06711e45e1143e3fb46b08efa.html" title="Macro BOOST_CONTRACT_NO_ENTRY_INVARIANTS">BOOST_CONTRACT_NO_ENTRY_INVARIANTS</a></code>
             to not check class invariants at call entry.
           </li>
 <li class="listitem">
-            Define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34899.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>
+            Define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a7aef17f1f7f4a2af5ecb547cc42ffd1d.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>
             to not check class invariants at call exit.
           </li>
 <li class="listitem">
-            Or, define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34915.html" title="Macro BOOST_CONTRACT_NO_INVARIANTS">BOOST_CONTRACT_NO_INVARIANTS</a></code>
+            Or, define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a1b67f7aa046f5d3cfbec5636c78fa2a0.html" title="Macro BOOST_CONTRACT_NO_INVARIANTS">BOOST_CONTRACT_NO_INVARIANTS</a></code>
             to not check class invariants at both call entry and exit. (This is provided
-            for convenience, it is equivalent to defining both <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34883.html" title="Macro BOOST_CONTRACT_NO_ENTRY_INVARIANTS">BOOST_CONTRACT_NO_ENTRY_INVARIANTS</a></code>
-            and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34899.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>.)
+            for convenience, it is equivalent to defining both <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a50e421d06711e45e1143e3fb46b08efa.html" title="Macro BOOST_CONTRACT_NO_ENTRY_INVARIANTS">BOOST_CONTRACT_NO_ENTRY_INVARIANTS</a></code>
+            and <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a7aef17f1f7f4a2af5ecb547cc42ffd1d.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>.)
           </li>
 <li class="listitem">
-            Define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_CHECKS.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>
+            Define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a972f1ee4b1dbd017799ed4c9f1d88048.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>
             to not evaluate implementation checks.
           </li>
 </ul></div>
@@ -1094,8 +1094,8 @@
 </tr>
 <tr><td align="left" valign="top"><p>
           Old values can be used by both postconditions and exception guarantees
-          so it is necessary to define both <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34843.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>
-          and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_EXCEPTS.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>
+          so it is necessary to define both <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a0c8a2c13bf3571be1f583914ba670992.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>
+          and <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a30fc93945c54011425d85b0dd688a46d.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>
           to disable old value copies.
         </p></td></tr>
 </table></div>
@@ -1111,10 +1111,10 @@
 <p>
         For example, programmers could decide to check all contracts during early
         development builds, but later check only preconditions and maybe entry invariants
-        for release builds by defining <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34843.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>,
-        <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_EXCEPTS.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>,
-        <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34899.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>,
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_CHECKS.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>.
+        for release builds by defining <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a0c8a2c13bf3571be1f583914ba670992.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a30fc93945c54011425d85b0dd688a46d.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a7aef17f1f7f4a2af5ecb547cc42ffd1d.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>,
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a972f1ee4b1dbd017799ed4c9f1d88048.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>.
       </p>
 </div>
 <div class="section">
@@ -1129,28 +1129,28 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            This library defines <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34950.html" title="Macro BOOST_CONTRACT_NO_CONSTRUCTORS">BOOST_CONTRACT_NO_CONSTRUCTORS</a></code>
+            This library defines <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a3f23f0f76c0977db0778b5a0756a8769.html" title="Macro BOOST_CONTRACT_NO_CONSTRUCTORS">BOOST_CONTRACT_NO_CONSTRUCTORS</a></code>
             when contract checking is disabled for constructors.
           </li>
 <li class="listitem">
-            This library defines <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34974.html" title="Macro BOOST_CONTRACT_NO_DESTRUCTORS">BOOST_CONTRACT_NO_DESTRUCTORS</a></code>
+            This library defines <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a3a4f80a5eaed9d13384e1f4df2b7c456.html" title="Macro BOOST_CONTRACT_NO_DESTRUCTORS">BOOST_CONTRACT_NO_DESTRUCTORS</a></code>
             when contract checking is disabled for destructors.
           </li>
 <li class="listitem">
-            This library defines <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34992.html" title="Macro BOOST_CONTRACT_NO_PUBLIC_FUNCTIONS">BOOST_CONTRACT_NO_PUBLIC_FUNCTIONS</a></code>
+            This library defines <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1aa88070f1035170dd62fa0ff3ff46ad57.html" title="Macro BOOST_CONTRACT_NO_PUBLIC_FUNCTIONS">BOOST_CONTRACT_NO_PUBLIC_FUNCTIONS</a></code>
             when contract checking is disabled for public functions.
           </li>
 <li class="listitem">
-            This library defines <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm35012.html" title="Macro BOOST_CONTRACT_NO_FUNCTIONS">BOOST_CONTRACT_NO_FUNCTIONS</a></code>
+            This library defines <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a5acbc152f924da6922b3f8a13b609486.html" title="Macro BOOST_CONTRACT_NO_FUNCTIONS">BOOST_CONTRACT_NO_FUNCTIONS</a></code>
             when contract checking is disabled for (non-public and non-member) functions.
           </li>
 <li class="listitem">
-            This library defines <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_OLDS.html" title="Macro BOOST_CONTRACT_NO_OLDS">BOOST_CONTRACT_NO_OLDS</a></code>
+            This library defines <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1af9623b580ef4d78557bae1ef07524542.html" title="Macro BOOST_CONTRACT_NO_OLDS">BOOST_CONTRACT_NO_OLDS</a></code>
             when old value copies are disabled.
           </li>
 <li class="listitem">
-            This library defines <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_ALL.html" title="Macro BOOST_CONTRACT_NO_ALL">BOOST_CONTRACT_NO_ALL</a></code>
-            when all contracts above and also implementation checks (see <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_CHECKS.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>)
+            This library defines <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1ad5b12d3113233e05dd03e73b4f2d03c6.html" title="Macro BOOST_CONTRACT_NO_ALL">BOOST_CONTRACT_NO_ALL</a></code>
+            when all contracts above and also implementation checks (see <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a972f1ee4b1dbd017799ed4c9f1d88048.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>)
             are disabled.
           </li>
 </ul></div>
@@ -1158,22 +1158,22 @@
         These macros are not configuration macros and they should not be defined
         directly by programmers (otherwise this library will generate compile-time
         errors). Instead, these macros are automatically defined by this library
-        when programmers define <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34830.html" title="Macro BOOST_CONTRACT_NO_PRECONDITIONS">BOOST_CONTRACT_NO_PRECONDITIONS</a></code>,
-        <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34843.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>,
-        <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_EXCEPTS.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>,
-        <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34915.html" title="Macro BOOST_CONTRACT_NO_INVARIANTS">BOOST_CONTRACT_NO_INVARIANTS</a></code>
-        (or <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34883.html" title="Macro BOOST_CONTRACT_NO_ENTRY_INVARIANTS">BOOST_CONTRACT_NO_ENTRY_INVARIANTS</a></code>
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34899.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>),
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_CHECKS.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>
+        when programmers define <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1ade6b6bf8b2b1cbeec7750d1f09e8c62e.html" title="Macro BOOST_CONTRACT_NO_PRECONDITIONS">BOOST_CONTRACT_NO_PRECONDITIONS</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a0c8a2c13bf3571be1f583914ba670992.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a30fc93945c54011425d85b0dd688a46d.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a1b67f7aa046f5d3cfbec5636c78fa2a0.html" title="Macro BOOST_CONTRACT_NO_INVARIANTS">BOOST_CONTRACT_NO_INVARIANTS</a></code>
+        (or <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a50e421d06711e45e1143e3fb46b08efa.html" title="Macro BOOST_CONTRACT_NO_ENTRY_INVARIANTS">BOOST_CONTRACT_NO_ENTRY_INVARIANTS</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a7aef17f1f7f4a2af5ecb547cc42ffd1d.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>),
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a972f1ee4b1dbd017799ed4c9f1d88048.html" title="Macro BOOST_CONTRACT_NO_CHECKS">BOOST_CONTRACT_NO_CHECKS</a></code>
         (see <a class="link" href="extras.html#boost_contract.extras.disable_contract_checking" title="Disable Contract Checking">Disable
         Contract Checking</a>).
       </p>
 <p>
         Alternatively, this library provides a macro-based interface defined in
-        <code class="computeroutput"><a class="link" href="../reference.html#header.boost.contract_macro_hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
+        <code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.contract__macro_8hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
         that can also be used to completely disable compile-time and run-time overheads
         introduced by contracts but without the burden of manually writing the <code class="computeroutput"><span class="preprocessor">#ifndef</span> <span class="identifier">BOOST_CONTRACT_NO_</span><span class="special">...</span></code> statements. For example, the following
-        code shows how to use both the <code class="computeroutput"><a class="link" href="../reference.html#header.boost.contract_macro_hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
+        code shows how to use both the <code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.contract__macro_8hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
         macro interface and the <code class="computeroutput"><span class="preprocessor">#ifndef</span>
         <span class="identifier">BOOST_CONTRACT_NO_</span><span class="special">...</span></code>
         statements to completely disable compile-time and run-time overheads for
@@ -1263,11 +1263,11 @@
 </table></div>
 <p>
         The same can be done to disable contract code complication for private and
-        protected functions. The <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OL_idm37239.html" title="Macro BOOST_CONTRACT_OLD_PTR_IF_COPYABLE">BOOST_CONTRACT_OLD_PTR_IF_COPYABLE</a></code>
-        macro is provided to handle non-copyable old value types (similar to <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>).
+        protected functions. The <code class="computeroutput"><a class="link" href="../doxygen/reference/contract__macro_8hpp_1ad7d5d96cf273ae00839c2e90efd979d4.html" title="Macro BOOST_CONTRACT_OLD_PTR_IF_COPYABLE">BOOST_CONTRACT_OLD_PTR_IF_COPYABLE</a></code>
+        macro is provided to handle non-copyable old value types (similar to <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>).
       </p>
 <p>
-        For constructors, destructors, and public functions the <code class="computeroutput"><a class="link" href="../reference.html#header.boost.contract_macro_hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
+        For constructors, destructors, and public functions the <code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.contract__macro_8hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
         macro interface and the <code class="computeroutput"><span class="preprocessor">#ifndef</span>
         <span class="identifier">BOOST_CONTRACT_NO_</span><span class="special">...</span></code>
         statements can be used as follow (see <a href="../../../example/features/ifdef_macro.cpp" target="_top"><code class="literal">ifdef_macro.cpp</code></a>
@@ -1470,8 +1470,8 @@
 </tr></tbody>
 </table></div>
 <p>
-        Static and volatile class invariants can be programmed using <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_ST_idm37356.html" title="Macro BOOST_CONTRACT_STATIC_INVARIANT">BOOST_CONTRACT_STATIC_INVARIANT</a></code>
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_IN_idm37325.html" title="Macro BOOST_CONTRACT_INVARIANT_VOLATILE">BOOST_CONTRACT_INVARIANT_VOLATILE</a></code>
+        Static and volatile class invariants can be programmed using <code class="computeroutput"><a class="link" href="../doxygen/reference/contract__macro_8hpp_1aa2cd5c99a0379ee16f1903031cbd8b87.html" title="Macro BOOST_CONTRACT_STATIC_INVARIANT">BOOST_CONTRACT_STATIC_INVARIANT</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/contract__macro_8hpp_1afb95261134b0c30c018ec33f96612f98.html" title="Macro BOOST_CONTRACT_INVARIANT_VOLATILE">BOOST_CONTRACT_INVARIANT_VOLATILE</a></code>
         respectively (these macros expand code equivalent to the <code class="computeroutput"><span class="keyword">static</span>
         <span class="keyword">void</span> <span class="identifier">BOOST_CONTRACT_STATIC_INVARIANT_FUNC</span><span class="special">()</span></code> and <code class="computeroutput"><span class="keyword">void</span>
         <span class="identifier">BOOST_CONTRACT_INVARIANT_FUNC</span><span class="special">()</span>
@@ -1479,7 +1479,7 @@
         functions).
       </p>
 <p>
-        The <code class="computeroutput"><a class="link" href="../reference.html#header.boost.contract_macro_hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
+        The <code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.contract__macro_8hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
         macro interface is usually preferred because more concise and easier to use
         than programming <code class="computeroutput"><span class="preprocessor">#ifndef</span> <span class="identifier">BOOST_CONTRACT_NO_</span><span class="special">...</span></code>
         statements by hand. However, C++ macros expand on a single line of code and
@@ -1490,9 +1490,9 @@
         list the assertion code and that should still allow programmers to identify
         the specific assertion that failed). Finally, the macro interface leaves
         a bit of contract decorations in the code but that should add no measurable
-        compile-time or run-time overhead (specifically, extra <code class="computeroutput"><a class="link" href="../boost/contract/virtual_.html" title="Class virtual_">boost::contract::virtual_</a></code><code class="computeroutput"><span class="special">*</span></code> parameters, calls to <code class="computeroutput"><a class="link" href="../boost/contract/constructor_precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
-        default constructor which does nothing, <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_BASE_TYPES.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
-        <code class="computeroutput"><span class="keyword">typedef</span></code>s, and <code class="computeroutput"><a class="link" href="../boost/contract/access.html" title="Class access">boost::contract::access</a></code>
+        compile-time or run-time overhead (specifically, extra <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1virtual__.html" title="Class virtual_">boost::contract::virtual_</a></code><code class="computeroutput"><span class="special">*</span></code> parameters, calls to <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1constructor__precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
+        default constructor which does nothing, <code class="computeroutput"><a class="link" href="../doxygen/reference/base__types_8hpp_1a084692eafa31120a150c79bd0178383f.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
+        <code class="computeroutput"><span class="keyword">typedef</span></code>s, and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1access.html" title="Class access">boost::contract::access</a></code>
         friendships are left in user code even when contracts are disabled unless
         <code class="computeroutput"><span class="preprocessor">#ifndef</span> <span class="identifier">BOOST_CONTRACT_NO_</span><span class="special">...</span></code> statements are used).
       </p>
@@ -1501,8 +1501,8 @@
         Contract Checking</a> leaves the overhead of compiling contract code plus
         some small run-time overhead due to the initialization of old value pointers
         (even if those will be all null and no old value will be actually copied),
-        the calls to the contract functions used to initialize <code class="computeroutput"><a class="link" href="../boost/contract/check.html" title="Class check">boost::contract::check</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/contract/constructor_precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
+        the calls to the contract functions used to initialize <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1check.html" title="Class check">boost::contract::check</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1constructor__precondition.html" title="Class template constructor_precondition">boost::contract::constructor_precondition</a></code>
         (even if those calls will be internally optimized by this library to essentially
         do nothing), etc. For truly performance critical code for which even such
         small run-time overhead might not be acceptable, the macro interface (or
@@ -1516,7 +1516,7 @@
         already considered acceptable for an application then the compile-time overhead
         of contracts should not represent an issue and it should be sufficient to
         disable contract checking at run-time as indicated in <a class="link" href="extras.html#boost_contract.extras.disable_contract_checking" title="Disable Contract Checking">Disable
-        Contract Checking</a> (without a real need to use the <code class="computeroutput"><a class="link" href="../reference.html#header.boost.contract_macro_hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
+        Contract Checking</a> (without a real need to use the <code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.contract__macro_8hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
         macro interface or the <code class="computeroutput"><span class="preprocessor">#ifndef</span>
         <span class="identifier">BOOST_CONTRACT_NO_</span><span class="special">...</span></code>
         statements in most cases).
@@ -1657,9 +1657,9 @@
           also all this library headers are <code class="computeroutput"><span class="preprocessor">#include</span></code>d
           only from <code class="literal">.cpp</code> files, then these <code class="literal">.cpp</code>
           files can be compiled disabling specific contract checking (for example,
-          <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34843.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>,
-          <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_EXCEPTS.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>,
-          and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NO_idm34899.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>,
+          <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a0c8a2c13bf3571be1f583914ba670992.html" title="Macro BOOST_CONTRACT_NO_POSTCONDITIONS">BOOST_CONTRACT_NO_POSTCONDITIONS</a></code>,
+          <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a30fc93945c54011425d85b0dd688a46d.html" title="Macro BOOST_CONTRACT_NO_EXCEPTS">BOOST_CONTRACT_NO_EXCEPTS</a></code>,
+          and <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a7aef17f1f7f4a2af5ecb547cc42ffd1d.html" title="Macro BOOST_CONTRACT_NO_EXIT_INVARIANTS">BOOST_CONTRACT_NO_EXIT_INVARIANTS</a></code>,
           see <a class="link" href="extras.html#boost_contract.extras.disable_contract_checking" title="Disable Contract Checking">Disable
           Contract Checking</a>). Then the code in these <code class="literal">.cpp</code>
           files will always have such contract checking disabled even when linked
@@ -1934,9 +1934,9 @@
 <p>
         It is possible to specify contracts without using most of the macros provided
         by this library and programming the related code manually instead (the only
-        macros that cannot be programmed manually are <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OVERRIDE.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>,
-        <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OVERRIDES.html" title="Macro BOOST_CONTRACT_OVERRIDES">BOOST_CONTRACT_OVERRIDES</a></code>,
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NA_idm36651.html" title="Macro BOOST_CONTRACT_NAMED_OVERRIDE">BOOST_CONTRACT_NAMED_OVERRIDE</a></code>).
+        macros that cannot be programmed manually are <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1a125e503b1a6512c79cc56047a902e732.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1a22769e3cf1ab60ebee1e1caa730b70df.html" title="Macro BOOST_CONTRACT_OVERRIDES">BOOST_CONTRACT_OVERRIDES</a></code>,
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1abce9471683cf762dee90186646091265.html" title="Macro BOOST_CONTRACT_NAMED_OVERRIDE">BOOST_CONTRACT_NAMED_OVERRIDE</a></code>).
       </p>
 <div class="note"><table border="0" summary="Note">
 <tr>
@@ -1962,14 +1962,14 @@
 <p>
         As shown in <a class="link" href="tutorial.html#boost_contract.tutorial.public_function_overrides__subcontracting_" title="Public Function Overrides (Subcontracting)">Public
         Function Overrides</a> and <a class="link" href="advanced.html#boost_contract.advanced.named_overrides" title="Named Overrides">Named
-        Overrides</a>, this library provides the <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OVERRIDE.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_NA_idm36651.html" title="Macro BOOST_CONTRACT_NAMED_OVERRIDE">BOOST_CONTRACT_NAMED_OVERRIDE</a></code>
-        macros to program contracts for overriding public functions (see <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_MAX_ARGS.html" title="Macro BOOST_CONTRACT_MAX_ARGS">BOOST_CONTRACT_MAX_ARGS</a></code> for compilers
+        Overrides</a>, this library provides the <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1a125e503b1a6512c79cc56047a902e732.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1abce9471683cf762dee90186646091265.html" title="Macro BOOST_CONTRACT_NAMED_OVERRIDE">BOOST_CONTRACT_NAMED_OVERRIDE</a></code>
+        macros to program contracts for overriding public functions (see <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a24be2fcacc0d0c3bf8f497648292d2f4.html" title="Macro BOOST_CONTRACT_MAX_ARGS">BOOST_CONTRACT_MAX_ARGS</a></code> for compilers
         that do not support variadic templates). <a href="#ftn.boost_contract.extras.no_macros__and_no_variadic_macros_.f1" class="footnote" name="boost_contract.extras.no_macros__and_no_variadic_macros_.f1"><sup class="footnote">[82]</sup></a> These macro cannot be programmed manually but they are not variadic
         macros (so programmers should be able to use them on any C++ compiler with
-        a sound support for SFINAE). <a href="#ftn.boost_contract.extras.no_macros__and_no_variadic_macros_.f2" class="footnote" name="boost_contract.extras.no_macros__and_no_variadic_macros_.f2"><sup class="footnote">[83]</sup></a> The <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OVERRIDES.html" title="Macro BOOST_CONTRACT_OVERRIDES">BOOST_CONTRACT_OVERRIDES</a></code>
+        a sound support for SFINAE). <a href="#ftn.boost_contract.extras.no_macros__and_no_variadic_macros_.f2" class="footnote" name="boost_contract.extras.no_macros__and_no_variadic_macros_.f2"><sup class="footnote">[83]</sup></a> The <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1a22769e3cf1ab60ebee1e1caa730b70df.html" title="Macro BOOST_CONTRACT_OVERRIDES">BOOST_CONTRACT_OVERRIDES</a></code>
         macro is a variadic macro instead but programmes can manually repeat the
-        non-variadic macro <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OVERRIDE.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>
+        non-variadic macro <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1a125e503b1a6512c79cc56047a902e732.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>
         for each overriding public function name on compilers that do not support
         variadic macros.
       </p>
@@ -1983,7 +1983,7 @@
         <a class="link" href="tutorial.html#boost_contract.tutorial.postconditions" title="Postconditions">Postconditions</a>,
         <a class="link" href="tutorial.html#boost_contract.tutorial.exception_guarantees" title="Exception Guarantees">Exception Guarantees</a>,
         <a class="link" href="tutorial.html#boost_contract.tutorial.class_invariants" title="Class Invariants">Class Invariants</a>,
-        etc. this library provides the <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_ASSERT.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
+        etc. this library provides the <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
         macro to assert contract conditions. This is not a variadic macro and programmers
         should be able to use it on all C++ compilers. In any case, the invocation
         <code class="computeroutput"><span class="identifier">BOOST_CONTRACT_ASSERT</span><span class="special">(</span></code><code class="literal"><span class="emphasis"><em>cond</em></span></code><code class="computeroutput"><span class="special">)</span></code> simply expands to code equivalent to the
@@ -1997,7 +1997,7 @@
 <p>
         In fact, this library considers any exception thrown from within preconditions,
         postconditions, exception guarantees, and class invariants as a contract
-        failure and reports it calling the related contract failure handler (<code class="computeroutput"><a class="link" href="../boost/contract/precondition_failure.html" title="Function precondition_failure">boost::contract::precondition_failure</a></code>,
+        failure and reports it calling the related contract failure handler (<code class="computeroutput"><a class="link" href="../doxygen/reference/exception_8hpp_1a878bccce08e2b7a9ade57827982533a3.html" title="Function precondition_failure">boost::contract::precondition_failure</a></code>,
         etc.). If there is a need for it, programmers can always program contract
         assertions that throw specific user-defined exceptions as follow (see <a class="link" href="advanced.html#boost_contract.advanced.throw_on_failures__and__noexcept__" title="Throw on Failures (and noexcept)">Throw
         on Failures</a>):
@@ -2005,15 +2005,15 @@
 <pre class="programlisting"><span class="keyword">if</span><span class="special">(!</span><code class="literal"><span class="emphasis"><em>cond</em></span></code><span class="special">)</span> <span class="keyword">throw</span> <code class="literal"><span class="emphasis"><em>exception-object</em></span></code><span class="special">;</span>
 </pre>
 <p>
-        However, using <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_ASSERT.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
+        However, using <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
         is convenient because it always allows this library to show an informative
         message in case of assertion failure containing the assertion code, file
         name, line number, etc.
       </p>
 <p>
         As shown in <a class="link" href="extras.html#boost_contract.extras.assertion_levels" title="Assertion Levels">Assertion
-        Levels</a>, this library pre-defines <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33643.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
-        and <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_AS_idm33668.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
+        Levels</a>, this library pre-defines <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ac08ee32869ac639e5e433c295a57db1f.html" title="Macro BOOST_CONTRACT_ASSERT_AUDIT">BOOST_CONTRACT_ASSERT_AUDIT</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1a7307c58ac849a68b216a876a60f9aabc.html" title="Macro BOOST_CONTRACT_ASSERT_AXIOM">BOOST_CONTRACT_ASSERT_AXIOM</a></code>
         assertion levels. These macros are not variadic macros and programmers should
         be able to use them on all C++ compilers. In any case, their implementations
         are equivalent to the following:
@@ -2036,11 +2036,11 @@
       </h5>
 <p>
         As shown in <a class="link" href="tutorial.html#boost_contract.tutorial.base_classes__subcontracting_" title="Base Classes (Subcontracting)">Base
-        Classes</a>, this library provides the <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_BASE_TYPES.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
+        Classes</a>, this library provides the <code class="computeroutput"><a class="link" href="../doxygen/reference/base__types_8hpp_1a084692eafa31120a150c79bd0178383f.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
         variadic macro to declare the <code class="computeroutput"><span class="identifier">base_types</span></code>
         member type that will expand to the list of all public bases for a derived
         class. Programmers can also declare <code class="computeroutput"><span class="identifier">base_types</span></code>
-        without using <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_BASE_TYPES.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
+        without using <code class="computeroutput"><a class="link" href="../doxygen/reference/base__types_8hpp_1a084692eafa31120a150c79bd0178383f.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
         at the cost of writing a bit more code and increase maintenance efforts.
         For example (see <a href="../../../example/features/base_types_no_macro.cpp" target="_top"><code class="literal">base_types_no_macro.cpp</code></a>):
       </p>
@@ -2069,13 +2069,13 @@
         which must list <span class="emphasis"><em>all and only</em></span> <code class="computeroutput"><span class="keyword">public</span></code>
         base classes (because only public bases subcontract, see <a class="link" href="contract_programming_overview.html#boost_contract.contract_programming_overview.function_calls" title="Function Calls">Function
         Calls</a>), and in the same order these public base classes appear in
-        the derived class inheritance list. If the <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_BASE_TYPES.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
+        the derived class inheritance list. If the <code class="computeroutput"><a class="link" href="../doxygen/reference/base__types_8hpp_1a084692eafa31120a150c79bd0178383f.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
         macro is not used, it is the responsibility of the programmers to maintain
         the correct list of bases in the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mpl</span><span class="special">::</span><span class="identifier">vector</span></code> each time the derived class inheritance
         list changes (this might significantly complicate maintenance).
       </p>
 <p>
-        In general, it is recommended to use the <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_BASE_TYPES.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
+        In general, it is recommended to use the <code class="computeroutput"><a class="link" href="../doxygen/reference/base__types_8hpp_1a084692eafa31120a150c79bd0178383f.html" title="Macro BOOST_CONTRACT_BASE_TYPES">BOOST_CONTRACT_BASE_TYPES</a></code>
         macro whenever possible.
       </p>
 <h5>
@@ -2085,9 +2085,9 @@
       </h5>
 <p>
         As shown in <a class="link" href="tutorial.html#boost_contract.tutorial.old_values" title="Old Values">Old Values</a>,
-        this library provides the <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OLDOF.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
+        this library provides the <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a07326d65350421d14684447dec36d1ba.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
         variadic macro to assign old value copies. Programmers can also assign old
-        values without using <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OLDOF.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
+        values without using <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a07326d65350421d14684447dec36d1ba.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
         at the cost of writing a bit more code manually. For example (see <a href="../../../example/features/old_no_macro.cpp" target="_top"><code class="literal">old_no_macro.cpp</code></a>):
       </p>
 <p>
@@ -2118,28 +2118,28 @@
 <p>
         The ternary operator <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">contract</span><span class="special">::</span><span class="identifier">copy_old</span><span class="special">(</span><span class="identifier">v</span><span class="special">)</span>
         <span class="special">?</span> <span class="identifier">size</span><span class="special">()</span> <span class="special">:</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">contract</span><span class="special">::</span><span class="identifier">null_old</span><span class="special">()</span></code> must be used here to avoid evaluating and
-        copying the old value expression <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> when <code class="computeroutput"><a class="link" href="../boost/contract/copy_old_idm36571.html" title="Function copy_old">boost::contract::copy_old</a></code>
+        copying the old value expression <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> when <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a67a705321c3509e497c8a131375caa31.html" title="Function copy_old">boost::contract::copy_old</a></code>
         returns <code class="computeroutput"><span class="keyword">false</span></code> (because old values
         are not being copied when postcondition and exception guarantee checking
         is disabled at run-time, an overridden virtual function call is not checking
-        postconditions or exception guarantees yet, etc.). The enclosing <code class="computeroutput"><a class="link" href="../boost/contract/make_old_idm36506.html" title="Function make_old">boost::contract::make_old</a></code>
+        postconditions or exception guarantees yet, etc.). The enclosing <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2.html" title="Function make_old">boost::contract::make_old</a></code>
         copies the old value expression and creates an old value pointer. Otherwise,
-        <code class="computeroutput"><a class="link" href="../boost/contract/null_old.html" title="Function null_old">boost::contract::null_old</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a729f8e824d9ff1e0c285ad7a854f0042.html" title="Function null_old">boost::contract::null_old</a></code>
         indicates that a null old value pointer should be created.
       </p>
 <p>
-        The <code class="computeroutput"><a class="link" href="../boost/contract/make_old_idm36506.html" title="Function make_old">boost::contract::make_old</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/contract/copy_old_idm36571.html" title="Function copy_old">boost::contract::copy_old</a></code>
+        The <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2.html" title="Function make_old">boost::contract::make_old</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a67a705321c3509e497c8a131375caa31.html" title="Function copy_old">boost::contract::copy_old</a></code>
         functions are used exactly as shown above but without the extra <code class="computeroutput"><span class="identifier">v</span></code> parameter when they are called from within
         non-virtual functions (see <a class="link" href="tutorial.html#boost_contract.tutorial.public_function_overrides__subcontracting_" title="Public Function Overrides (Subcontracting)">Public
-        Function Overrides</a>). The old value pointer returned by <code class="computeroutput"><a class="link" href="../boost/contract/make_old_idm36506.html" title="Function make_old">boost::contract::make_old</a></code>
-        can be assigned to either <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
-        or <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
+        Function Overrides</a>). The old value pointer returned by <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2.html" title="Function make_old">boost::contract::make_old</a></code>
+        can be assigned to either <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
+        or <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>
         (see <a class="link" href="extras.html#boost_contract.extras.old_value_requirements__templates_" title="Old Value Requirements (Templates)">Old
         Value Requirements</a>).
       </p>
 <p>
-        In general, it is recommended to use the <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OLDOF.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
+        In general, it is recommended to use the <code class="computeroutput"><a class="link" href="../doxygen/reference/old_8hpp_1a07326d65350421d14684447dec36d1ba.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code>
         macro whenever possible.
       </p>
 <h5>
@@ -2148,7 +2148,7 @@
         Interface (Variadic)</a>
       </h5>
 <p>
-        Almost all macros defined in <code class="computeroutput"><a class="link" href="../reference.html#header.boost.contract_macro_hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
+        Almost all macros defined in <code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.contract__macro_8hpp" title="Header &lt;boost/contract_macro.hpp&gt;">boost/contract_macro.hpp</a></code>
         are variadic macros. On compilers that do not support variadic macros, programmers
         can manually disable contract code compilation using <code class="computeroutput"><span class="preprocessor">#ifndef</span>
         <span class="identifier">BOOST_CONTRACT_NO_</span><span class="special">...</span></code>
@@ -2189,9 +2189,9 @@
 </div>
 <div id="ftn.boost_contract.extras.old_value_requirements__templates_.f1" class="footnote">
 <p><a href="#boost_contract.extras.old_value_requirements__templates_.f1" class="para"><sup class="para">[69] </sup></a>
-          Technically, on C++17 it is possible to use <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
+          Technically, on C++17 it is possible to use <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">boost::contract::old_ptr</a></code>
           together with <code class="computeroutput"><span class="keyword">if</span> <span class="keyword">constexpr</span></code>
-          instead of using <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>,
+          instead of using <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>,
           for example:
 </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">T</span><span class="special">&gt;</span>
@@ -2209,10 +2209,10 @@
 </pre>
 <p>
           However, the authors find this code less readable and more verbose than
-          its equivalent that uses <code class="computeroutput"><a class="link" href="../boost/contract/old_ptr_if_copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>.
+          its equivalent that uses <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1contract_1_1old__ptr__if__copyable.html" title="Class template old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</a></code>.
           Guarding old value copies and related assertions with <code class="computeroutput"><span class="keyword">if</span>
           <span class="keyword">constexpr</span></code> is useful instead when
-          the guard condition checks type requirements more complex than just <code class="computeroutput"><a class="link" href="../boost/contract/is_old_value_copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
+          the guard condition checks type requirements more complex than just <code class="computeroutput"><a class="link" href="../doxygen/reference/structboost_1_1contract_1_1is__old__value__copyable.html" title="Struct template is_old_value_copyable">boost::contract::is_old_value_copyable</a></code>
           (as shown later in this documentation).
         </p>
 </div>
@@ -2249,14 +2249,14 @@
         </p>
 </div>
 <div id="ftn.boost_contract.extras.assertion_requirements__templates_.f1" class="footnote"><p><a href="#boost_contract.extras.assertion_requirements__templates_.f1" class="para"><sup class="para">[71] </sup></a>
-          The internal implementation of <code class="computeroutput"><a class="link" href="../boost/contract/condition_if.html" title="Function template condition_if">boost::contract::condition_if</a></code>
-          is optimized and it does not actually use <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code>.
+          The internal implementation of <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1a8a584bd0f704cf1f74964db8fd225f4a.html" title="Function template condition_if">boost::contract::condition_if</a></code>
+          is optimized and it does not actually use <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code>.
         </p></div>
 <div id="ftn.boost_contract.extras.assertion_requirements__templates_.f2" class="footnote">
 <p><a href="#boost_contract.extras.assertion_requirements__templates_.f2" class="para"><sup class="para">[72] </sup></a>
           </p>
 <p>
-            A part from its use within contracts, <code class="computeroutput"><a class="link" href="../boost/contract/call_if.html" title="Function template call_if">boost::contract::call_if</a></code>
+            A part from its use within contracts, <code class="computeroutput"><a class="link" href="../doxygen/reference/call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389.html" title="Function template call_if">boost::contract::call_if</a></code>
             can be used together with C++14 generic lambdas to emulate C++17 <code class="computeroutput"><span class="keyword">if</span> <span class="keyword">constexpr</span></code>
             (<code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">hana</span><span class="special">::</span><span class="identifier">if_</span></code> and probably other approaches can
             also be used together with generic lambdas to emulate C++17 <code class="computeroutput"><span class="keyword">if</span> <span class="keyword">constexpr</span></code>
@@ -2371,8 +2371,8 @@
         </p></div>
 <div id="ftn.boost_contract.extras.move_operations.f0" class="footnote"><p><a href="#boost_contract.extras.move_operations.f0" class="para"><sup class="para">[75] </sup></a>
           In this example, the <code class="computeroutput"><span class="identifier">moved</span><span class="special">()</span></code> function is simple enough that programmers
-          could decide to not even call <code class="computeroutput"><a class="link" href="../boost/contract/public_function_idm36717.html" title="Function template public_function">boost::contract::public_function</a></code>
-          from it for optimization reasons. However, calling <code class="computeroutput"><a class="link" href="../boost/contract/public_function_idm36717.html" title="Function template public_function">boost::contract::public_function</a></code>
+          could decide to not even call <code class="computeroutput"><a class="link" href="../doxygen/reference/public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d.html" title="Function template public_function">boost::contract::public_function</a></code>
+          from it for optimization reasons. However, calling <code class="computeroutput"><a class="link" href="../doxygen/reference/public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d.html" title="Function template public_function">boost::contract::public_function</a></code>
           from <code class="computeroutput"><span class="identifier">moved</span><span class="special">()</span></code>
           has no negative impact, a part from run-time overhead, because this library
           automatically disables contract checking while checking other contracts
@@ -2478,7 +2478,7 @@
             compilers that support variadic macros and compilers that do not.
           </p></div>
 <div id="ftn.boost_contract.extras.no_macros__and_no_variadic_macros_.f1" class="footnote"><p><a href="#boost_contract.extras.no_macros__and_no_variadic_macros_.f1" class="para"><sup class="para">[82] </sup></a>
-          <span class="bold"><strong>Rationale:</strong></span> The <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_MAX_ARGS.html" title="Macro BOOST_CONTRACT_MAX_ARGS">BOOST_CONTRACT_MAX_ARGS</a></code>
+          <span class="bold"><strong>Rationale:</strong></span> The <code class="computeroutput"><a class="link" href="../doxygen/reference/config_8hpp_1a24be2fcacc0d0c3bf8f497648292d2f4.html" title="Macro BOOST_CONTRACT_MAX_ARGS">BOOST_CONTRACT_MAX_ARGS</a></code>
           macro is named after <code class="computeroutput"><span class="identifier">BOOST_FUNCTION_MAX_ARGS</span></code>.
         </p></div>
 <div id="ftn.boost_contract.extras.no_macros__and_no_variadic_macros_.f2" class="footnote"><p><a href="#boost_contract.extras.no_macros__and_no_variadic_macros_.f2" class="para"><sup class="para">[83] </sup></a>
@@ -2486,13 +2486,13 @@
           introspection template code that are too complex to be programmed manually
           by users (that remains the case even if C++14 generic lambdas were to be
           used here). On a related note, in theory using C++14 generic lambdas, the
-          <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_OVERRIDE.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>
+          <code class="computeroutput"><a class="link" href="../doxygen/reference/override_8hpp_1a125e503b1a6512c79cc56047a902e732.html" title="Macro BOOST_CONTRACT_OVERRIDE">BOOST_CONTRACT_OVERRIDE</a></code>
           macro could be re-implemented in a way that can be expanded at function
           scope, instead of class scope (but there is not really a need to do that).
         </p></div>
 <div id="ftn.boost_contract.extras.no_macros__and_no_variadic_macros_.f3" class="footnote"><p><a href="#boost_contract.extras.no_macros__and_no_variadic_macros_.f3" class="para"><sup class="para">[84] </sup></a>
           <span class="bold"><strong>Rationale:</strong></span> There is no need for the code
-          expanded by <code class="computeroutput"><a class="link" href="../BOOST_CONTRACT_ASSERT.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
+          expanded by <code class="computeroutput"><a class="link" href="../doxygen/reference/assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82.html" title="Macro BOOST_CONTRACT_ASSERT">BOOST_CONTRACT_ASSERT</a></code>
           to also use C++11 <code class="computeroutput"><span class="identifier">__func__</span></code>.
           That is because <code class="computeroutput"><span class="identifier">__func__</span></code>
           will always expand to the name <code class="computeroutput"><span class="keyword">operator</span><span class="special">()</span></code> of the functor used to program the contract

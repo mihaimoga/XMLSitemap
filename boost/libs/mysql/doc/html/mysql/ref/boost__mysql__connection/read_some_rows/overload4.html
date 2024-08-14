@@ -36,12 +36,12 @@
             <span class="phrase"><a name="mysql.ref.boost__mysql__connection.read_some_rows.overload4.synopsis"></a></span><a class="link" href="overload4.html#mysql.ref.boost__mysql__connection.read_some_rows.overload4.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">class</span> <span class="identifier">SpanStaticRow</span><span class="special">,</span>
+    <span class="keyword">class</span> <span class="identifier">SpanElementType</span><span class="special">,</span>
     <span class="keyword">class</span><span class="special">...</span> <a class="link" href="../../boost__mysql__StaticRow.html" title="StaticRow concept"><code class="literal"><span class="emphasis"><em>StaticRow</em></span></code></a><span class="special">&gt;</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span>
 <span class="identifier">read_some_rows</span><span class="special">(</span>
     <span class="identifier">static_execution_state</span><span class="special">&lt;</span> <span class="identifier">StaticRow</span><span class="special">...</span> <span class="special">&gt;&amp;</span> <span class="identifier">st</span><span class="special">,</span>
-    <span class="identifier">span</span><span class="special">&lt;</span> <span class="identifier">SpanStaticRow</span> <span class="special">&gt;</span> <span class="identifier">output</span><span class="special">);</span>
+    <span class="identifier">span</span><span class="special">&lt;</span> <span class="identifier">SpanElementType</span> <span class="special">&gt;</span> <span class="identifier">output</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__connection.read_some_rows.overload4.h1"></a>
@@ -61,8 +61,8 @@
             zero.
           </p>
 <p>
-            The number of rows that will be read depends on the input buffer size.
-            The bigger the buffer, the greater the batch size (up to a maximum).
+            The number of rows that will be read depends on the connection's buffer
+            size. The bigger the buffer, the greater the batch size (up to a maximum).
             You can set the initial buffer size in <code class="computeroutput"><span class="identifier">connection</span></code>'s
             constructor, using <a class="link" href="../../boost__mysql__buffer_params/initial_read_size.html" title="buffer_params::initial_read_size"><code class="computeroutput"><span class="identifier">buffer_params</span><span class="special">::</span><span class="identifier">initial_read_size</span></code></a>. The buffer
             may be grown bigger by other read operations, if required.
@@ -73,14 +73,14 @@
             dynamic interface's counterpart).
           </p>
 <p>
-            <code class="computeroutput"><span class="identifier">SpanStaticRow</span></code>must exactly
-            be one of the types in the <code class="computeroutput"><span class="identifier">StaticRow</span></code>
-            parameter pack. The type must match the resultset that is currently being
-            processed by <code class="computeroutput"><span class="identifier">st</span></code>. For
-            instance, given <code class="computeroutput"><span class="identifier">static_execution_state</span><span class="special">&lt;</span><span class="identifier">T1</span><span class="special">,</span> <span class="identifier">T2</span><span class="special">&gt;</span></code>, when reading rows for the second
-            resultset, <code class="computeroutput"><span class="identifier">SpanStaticRow</span></code>
-            must exactly be <code class="computeroutput"><span class="identifier">T2</span></code>. If
-            this is not the case, a runtime error will be issued.
+            The type <code class="computeroutput"><span class="identifier">SpanElementType</span></code>
+            must be the underlying row type for one of the types in the <code class="computeroutput"><span class="identifier">StaticRow</span></code> parameter pack (i.e., one
+            of the types in <code class="computeroutput"><span class="identifier">underlying_row_t</span><span class="special">&lt;</span><span class="identifier">StaticRow</span><span class="special">&gt;...</span></code>). The type must match the resultset
+            that is currently being processed by <code class="computeroutput"><span class="identifier">st</span></code>.
+            For instance, given <code class="computeroutput"><span class="identifier">static_execution_state</span><span class="special">&lt;</span><span class="identifier">T1</span><span class="special">,</span> <span class="identifier">T2</span><span class="special">&gt;</span></code>, when reading rows for the second
+            resultset, <code class="computeroutput"><span class="identifier">SpanElementType</span></code>
+            must exactly be <code class="computeroutput"><span class="identifier">underlying_row_t</span><span class="special">&lt;</span><span class="identifier">T2</span><span class="special">&gt;</span></code>. If this is not the case, a runtime
+            error will be issued.
           </p>
 <p>
             This function can report schema mismatches.

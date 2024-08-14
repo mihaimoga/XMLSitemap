@@ -374,7 +374,11 @@
       - have a look at the definition of <a class="link" href="ref/boost__mysql__utf8mb4_charset.html" title="utf8mb4_charset"><code class="literal">utf8mb4_charset</code></a>
       for a full implementation.
     </p>
-<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">utf8mb4_next_char</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">span</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">&gt;</span> <span class="identifier">input</span><span class="special">)</span> <span class="keyword">noexcept</span>
+<pre class="programlisting"><span class="comment">// next_char must interpret input as a string encoded according to the</span>
+<span class="comment">// utf8mb4 character set and return the size of the first character,</span>
+<span class="comment">// or 0 if the byte sequence does not represent a valid character.</span>
+<span class="comment">// It must not throw exceptions.</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">utf8mb4_next_char</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">span</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">&gt;</span> <span class="identifier">input</span><span class="special">)</span>
 <span class="special">{</span>
     <span class="comment">// Input strings are never empty - they always have 1 byte, at least.</span>
     <span class="identifier">assert</span><span class="special">(!</span><span class="identifier">input</span><span class="special">.</span><span class="identifier">empty</span><span class="special">());</span>

@@ -7,7 +7,7 @@
 <link rel="home" href="../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="prev" href="sql_formatting.html" title="(Experimental) Client-side SQL query formatting">
-<link rel="next" href="examples.html" title="Examples">
+<link rel="next" href="pipeline.html" title="(Experimental) Pipelines">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="sql_formatting.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="examples.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="sql_formatting.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="pipeline.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -30,16 +30,15 @@
 </h2></div></div></div>
 <h4>
 <a name="mysql.sql_formatting_advanced.h0"></a>
-      <span class="phrase"><a name="mysql.sql_formatting_advanced.extending_format_sql_and_format_"></a></span><a class="link" href="sql_formatting_advanced.html#mysql.sql_formatting_advanced.extending_format_sql_and_format_">Extending
-      format_sql and format_context</a>
+      <span class="phrase"><a name="mysql.sql_formatting_advanced.extending_format_sql"></a></span><a class="link" href="sql_formatting_advanced.html#mysql.sql_formatting_advanced.extending_format_sql">Extending
+      format_sql</a>
     </h4>
 <p>
       You can specialize <a class="link" href="ref/boost__mysql__formatter.html" title="formatter"><code class="literal">formatter</code></a>
-      to add formatting support to your types. The notation resembles <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">format</span></code>
-      but is much simpler, since format specs are not supported.
+      to add formatting support to your types:
     </p>
-<pre class="programlisting"><span class="comment">// We want to add formatting support for employee_t</span>
-<span class="keyword">struct</span> <span class="identifier">employee_t</span>
+<pre class="programlisting"><span class="comment">// We want to add formatting support for employee</span>
+<span class="keyword">struct</span> <span class="identifier">employee</span>
 <span class="special">{</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
@@ -50,15 +49,26 @@
 <span class="keyword">namespace</span> <span class="identifier">mysql</span> <span class="special">{</span>
 
 <span class="keyword">template</span> <span class="special">&lt;&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">formatter</span><span class="special">&lt;</span><span class="identifier">employee_t</span><span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">formatter</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;</span>
 <span class="special">{</span>
-    <span class="comment">// formatter&lt;T&gt; should define, at least, a function with signature:</span>
-    <span class="comment">//    static void format(const T&amp;, format_context_base&amp;)</span>
-    <span class="comment">// This function must use format_sql_to, format_context_base::append_raw</span>
-    <span class="comment">// or format_context_base::append_value to format the passed value.</span>
-    <span class="comment">// We will make this suitable for INSERT statements</span>
-    <span class="keyword">static</span> <span class="keyword">void</span> <span class="identifier">format</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">employee_t</span><span class="special">&amp;</span> <span class="identifier">emp</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span>
+    <span class="comment">// formatter&lt;T&gt; should define the following functions:</span>
+    <span class="comment">//    const char* parse(const char* first, const char*);</span>
+    <span class="comment">//    void format(const T&amp;, format_context_base&amp;) const;</span>
+
+    <span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">parse</span><span class="special">(</span><span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">begin</span><span class="special">,</span> <span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="comment">/* end */</span><span class="special">)</span>
     <span class="special">{</span>
+        <span class="comment">// Parse any format specifiers for this type.</span>
+        <span class="comment">// [begin, end) points to the range of characters holding the format specifier string</span>
+        <span class="comment">// We should return a pointer to the first unparsed character.</span>
+        <span class="comment">// We don't support any specifiers for this type, so we return the begin pointer.</span>
+        <span class="keyword">return</span> <span class="identifier">begin</span><span class="special">;</span>
+    <span class="special">}</span>
+
+    <span class="keyword">void</span> <span class="identifier">format</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">employee</span><span class="special">&amp;</span> <span class="identifier">emp</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>
+        <span class="comment">// Perform the actual formatting by appending characters to ctx.</span>
+        <span class="comment">// We usually use format_sql_to to achieve this.</span>
+        <span class="comment">// We will make this suitable for INSERT statements</span>
         <span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"{}, {}, {}"</span><span class="special">,</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">last_name</span><span class="special">,</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">company_id</span><span class="special">);</span>
     <span class="special">}</span>
 <span class="special">};</span>
@@ -67,24 +77,111 @@
 <span class="special">}</span>  <span class="comment">// namespace boost</span>
 </pre>
 <p>
-      The type can now be used in <a class="link" href="ref/boost__mysql__format_sql.html" title="format_sql"><code class="literal">format_sql</code></a>,
-      <a class="link" href="ref/boost__mysql__format_sql_to.html" title="format_sql_to"><code class="literal">format_sql_to</code></a>
-      and <a class="link" href="ref/boost__mysql__basic_format_context/append_value.html" title="basic_format_context::append_value"><code class="literal">basic_format_context::append_value</code></a>:
+      The type can now be used in <a class="link" href="ref/boost__mysql__format_sql.html" title="format_sql"><code class="literal">format_sql</code></a>
+      and <a class="link" href="ref/boost__mysql__format_sql_to.html" title="format_sql_to"><code class="literal">format_sql_to</code></a>:
     </p>
 <pre class="programlisting"><span class="comment">// We can now use employee as a built-in value</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"INSERT INTO employee (first_name, last_name, company_id) VALUES ({}), ({})"</span><span class="special">,</span>
-    <span class="identifier">employee_t</span><span class="special">{</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">},</span>
-    <span class="identifier">employee_t</span><span class="special">{</span><span class="string">"Rick"</span><span class="special">,</span> <span class="string">"Johnson"</span><span class="special">,</span> <span class="string">"AWC"</span><span class="special">}</span>
+    <span class="identifier">employee</span><span class="special">{</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">},</span>
+    <span class="identifier">employee</span><span class="special">{</span><span class="string">"Rick"</span><span class="special">,</span> <span class="string">"Johnson"</span><span class="special">,</span> <span class="string">"AWC"</span><span class="special">}</span>
 <span class="special">);</span>
 
-<span class="identifier">ASSERT</span><span class="special">(</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span>
     <span class="identifier">query</span> <span class="special">==</span>
     <span class="string">"INSERT INTO employee (first_name, last_name, company_id) VALUES "</span>
     <span class="string">"('John', 'Doe', 'HGS'), ('Rick', 'Johnson', 'AWC')"</span>
 <span class="special">);</span>
 </pre>
+<p>
+      You can add support for format specifiers for your type by modifying the <code class="computeroutput"><span class="identifier">parse</span></code> function in <code class="computeroutput"><span class="identifier">formatter</span></code>.
+      For example, an <code class="computeroutput"><span class="identifier">employee</span></code> can
+      be formatted differently depending on whether we're using it in an <code class="computeroutput"><span class="identifier">INSERT</span></code> or an <code class="computeroutput"><span class="identifier">UPDATE</span></code>:
+    </p>
+<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">formatter</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;</span>
+<span class="special">{</span>
+    <span class="comment">// Should we format our employee as an INSERT or an UPDATE?</span>
+    <span class="comment">// This flag is set by parse and used by format</span>
+    <span class="keyword">bool</span> <span class="identifier">format_as_update</span><span class="special">{</span><span class="keyword">false</span><span class="special">};</span>
+
+    <span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">parse</span><span class="special">(</span><span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">it</span><span class="special">,</span> <span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">end</span><span class="special">)</span>
+    <span class="special">{</span>
+        <span class="comment">// Parse any format specifiers for this type.</span>
+        <span class="comment">// We recognize the 'u' specifier, which means that we should</span>
+        <span class="comment">// format the type for an UPDATE statement, instead of an INSERT</span>
+        <span class="comment">// If no specifier is found, default to INSERT</span>
+        <span class="comment">// Note that the range may be empty, so we must check for this condition</span>
+        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">it</span> <span class="special">!=</span> <span class="identifier">end</span> <span class="special">&amp;&amp;</span> <span class="special">*</span><span class="identifier">it</span> <span class="special">==</span> <span class="char">'u'</span><span class="special">)</span>
+        <span class="special">{</span>
+            <span class="comment">// The 'u' specifier is present, record it</span>
+            <span class="identifier">format_as_update</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
+
+            <span class="comment">// Mark the current character as parsed</span>
+            <span class="special">++</span><span class="identifier">it</span><span class="special">;</span>
+        <span class="special">}</span>
+
+        <span class="comment">// Return a pointer to the first unparsed character.</span>
+        <span class="comment">// If we didn't manage to parse the entire character range, an error will be emitted.</span>
+        <span class="comment">// The library already takes care of this.</span>
+        <span class="keyword">return</span> <span class="identifier">it</span><span class="special">;</span>
+    <span class="special">}</span>
+
+    <span class="keyword">void</span> <span class="identifier">format</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">employee</span><span class="special">&amp;</span> <span class="identifier">emp</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>
+        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">format_as_update</span><span class="special">)</span>
+        <span class="special">{</span>
+            <span class="comment">// This should be suitable to be placed in an UPDATE ... SET statement</span>
+            <span class="identifier">format_sql_to</span><span class="special">(</span>
+                <span class="identifier">ctx</span><span class="special">,</span>
+                <span class="string">"first_name={}, last_name={}, company_id={}"</span><span class="special">,</span>
+                <span class="identifier">emp</span><span class="special">.</span><span class="identifier">first_name</span><span class="special">,</span>
+                <span class="identifier">emp</span><span class="special">.</span><span class="identifier">last_name</span><span class="special">,</span>
+                <span class="identifier">emp</span><span class="special">.</span><span class="identifier">company_id</span>
+            <span class="special">);</span>
+        <span class="special">}</span>
+        <span class="keyword">else</span>
+        <span class="special">{</span>
+            <span class="comment">// Format only the values, as in INSERT statements</span>
+            <span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"{}, {}, {}"</span><span class="special">,</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">last_name</span><span class="special">,</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">company_id</span><span class="special">);</span>
+        <span class="special">}</span>
+    <span class="special">}</span>
+<span class="special">};</span>
+</pre>
+<p>
+      We can now use it like this:
+    </p>
+<pre class="programlisting"><span class="comment">// We can now use the 'u' specifier with employee</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
+    <span class="string">"UPDATE employee SET {:u} WHERE id = {}"</span><span class="special">,</span>
+    <span class="identifier">employee</span><span class="special">{</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">},</span>
+    <span class="number">42</span>
+<span class="special">);</span>
+
+<span class="identifier">BOOST_TEST</span><span class="special">(</span>
+    <span class="identifier">query</span> <span class="special">==</span> <span class="string">"UPDATE employee SET first_name='John', last_name='Doe', company_id='HGS' WHERE id = 42"</span>
+<span class="special">);</span>
+
+<span class="comment">// If no format specifier is provided, we get the old behavior</span>
+<span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
+    <span class="string">"INSERT INTO employee (first_name, last_name, company_id) VALUES ({}), ({})"</span><span class="special">,</span>
+    <span class="identifier">employee</span><span class="special">{</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">},</span>
+    <span class="identifier">employee</span><span class="special">{</span><span class="string">"Rick"</span><span class="special">,</span> <span class="string">"Johnson"</span><span class="special">,</span> <span class="string">"AWC"</span><span class="special">}</span>
+<span class="special">);</span>
+
+<span class="identifier">BOOST_TEST</span><span class="special">(</span>
+    <span class="identifier">query</span> <span class="special">==</span>
+    <span class="string">"INSERT INTO employee (first_name, last_name, company_id) VALUES "</span>
+    <span class="string">"('John', 'Doe', 'HGS'), ('Rick', 'Johnson', 'AWC')"</span>
+<span class="special">);</span>
+</pre>
+<p>
+      See the <a class="link" href="ref/boost__mysql__formatter.html" title="formatter"><code class="literal">formatter</code></a>
+      reference docs for more info.
+    </p>
 <h4>
 <a name="mysql.sql_formatting_advanced.h1"></a>
       <span class="phrase"><a name="mysql.sql_formatting_advanced.format_string_syntax"></a></span><a class="link" href="sql_formatting_advanced.html#mysql.sql_formatting_advanced.format_string_syntax">Format
@@ -108,7 +205,7 @@
       indexing</strong></span> replacement field. Arguments are replaced in the order
       they were provided to the format function. For instance:
     </p>
-<pre class="programlisting"><span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}, {}, {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">,</span> <span class="string">"abc"</span><span class="special">,</span> <span class="keyword">nullptr</span><span class="special">)</span> <span class="special">==</span> <span class="string">"SELECT 42, 'abc', NULL"</span><span class="special">);</span>
+<pre class="programlisting"><span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}, {}, {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">,</span> <span class="string">"abc"</span><span class="special">,</span> <span class="keyword">nullptr</span><span class="special">)</span> <span class="special">==</span> <span class="string">"SELECT 42, 'abc', NULL"</span><span class="special">);</span>
 </pre>
 <p>
       A field index can be included within the braces. This is called <span class="bold"><strong>manual
@@ -123,7 +220,7 @@
     <span class="string">"John"</span>
 <span class="special">);</span>
 
-<span class="identifier">ASSERT</span><span class="special">(</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span>
     <span class="identifier">query</span> <span class="special">==</span>
     <span class="string">"UPDATE employee SET first_name = 'John' WHERE id = 42; SELECT * FROM employee WHERE id = 42"</span>
 <span class="special">);</span>
@@ -142,7 +239,7 @@
     <span class="special">}</span>
 <span class="special">);</span>
 
-<span class="identifier">ASSERT</span><span class="special">(</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span>
     <span class="identifier">query</span> <span class="special">==</span>
     <span class="string">"UPDATE employee SET first_name = 'John' WHERE id = 42; SELECT * FROM employee WHERE id = 42"</span>
 <span class="special">);</span>
@@ -162,7 +259,7 @@
 <span class="special">}</span>
 <span class="keyword">catch</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span><span class="special">&amp;</span> <span class="identifier">err</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">format_string_manual_auto_mix</span><span class="special">);</span>
+    <span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">format_string_manual_auto_mix</span><span class="special">);</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -178,13 +275,23 @@
 <p>
       You can output a brace literal by doubling it:
     </p>
-<pre class="programlisting"><span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT 'Brace literals: {{ and }}'"</span><span class="special">)</span> <span class="special">==</span> <span class="string">"SELECT 'Brace literals: { and }'"</span><span class="special">);</span>
+<pre class="programlisting"><span class="identifier">BOOST_TEST</span><span class="special">(</span>
+    <span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT 'Brace literals: {{ and }}'"</span><span class="special">)</span> <span class="special">==</span> <span class="string">"SELECT 'Brace literals: { and }'"</span>
+<span class="special">);</span>
 </pre>
 <p>
-      Format specifiers (e.g. <code class="computeroutput"><span class="special">{:</span><span class="identifier">g</span><span class="special">}</span></code>), common in <code class="computeroutput"><span class="identifier">fmtlib</span></code>,
-      are not allowed. There is usually a single, canonical representation for each
-      type in MySQL, so there is no need to format types with different formats.
-      This makes the implementation simpler.
+      Format specifiers (e.g. <code class="computeroutput"><span class="special">{:</span><span class="identifier">i</span><span class="special">}</span></code>) are supported for some types, but are far
+      less common than in fmtlib, since most types have a single, canonical representation.
+    </p>
+<p>
+      Specifiers can appear when doing automatic indexing (e.g. <code class="computeroutput"><span class="special">{:</span><span class="identifier">i</span><span class="special">}</span></code>), manual
+      indexing (e.g. <code class="computeroutput"><span class="special">{</span><span class="number">0</span><span class="special">:</span><span class="identifier">i</span><span class="special">}</span></code>)
+      and named arguments (e.g. <code class="computeroutput"><span class="special">{</span><span class="identifier">name</span><span class="special">:</span><span class="identifier">i</span><span class="special">}</span></code>).
+    </p>
+<p>
+      Types specializing formatters can define custom specifiers. Only printable
+      ASCII characters that are not <code class="computeroutput"><span class="special">{</span></code>
+      or <code class="computeroutput"><span class="special">}</span></code> can be used as specifiers.
     </p>
 <p>
       Format strings must be encoded according to <a class="link" href="ref/boost__mysql__format_options/charset.html" title="format_options::charset"><code class="literal">format_options::charset</code></a>.
@@ -215,7 +322,7 @@
 <span class="special">}</span>
 <span class="keyword">catch</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span><span class="special">&amp;</span> <span class="identifier">err</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
+    <span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -244,9 +351,9 @@
 <span class="comment">// The error state gets checked at this point. Since it is set,</span>
 <span class="comment">// res will contain an error.</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">res</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">).</span><span class="identifier">get</span><span class="special">();</span>
-<span class="identifier">ASSERT</span><span class="special">(!</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">has_value</span><span class="special">());</span>
-<span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">has_error</span><span class="special">());</span>
-<span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">error</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(!</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">has_value</span><span class="special">());</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">has_error</span><span class="special">());</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">error</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
 <span class="comment">// res.value() would throw an error, like format_sql would</span>
 </pre>
 <p>
@@ -374,7 +481,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="sql_formatting.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="examples.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="sql_formatting.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="pipeline.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

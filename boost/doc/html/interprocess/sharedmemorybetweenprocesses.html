@@ -217,7 +217,7 @@
 </pre>
 <p>
           For more details regarding <code class="computeroutput"><span class="identifier">shared_memory_object</span></code>
-          see the <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_memory_object.html" title="Class shared_memory_object">boost::interprocess::shared_memory_object</a></code>
+          see the <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__memory__object.html" title="Class shared_memory_object">boost::interprocess::shared_memory_object</a></code>
           class reference.
         </p>
 </div>
@@ -262,7 +262,7 @@
         </p>
 <p>
           For more details regarding <code class="computeroutput"><span class="identifier">mapped_region</span></code>
-          see the <code class="computeroutput"><a class="link" href="../boost/interprocess/mapped_region.html" title="Class mapped_region">boost::interprocess::mapped_region</a></code>
+          see the <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1mapped__region.html" title="Class mapped_region">boost::interprocess::mapped_region</a></code>
           class reference.
         </p>
 </div>
@@ -277,8 +277,6 @@
           After that, a client process opens the shared memory, maps it, and checks
           that the data is correctly initialized:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">shared_memory_object</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">mapped_region</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstring</span><span class="special">&gt;</span>
@@ -330,8 +328,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -376,7 +372,7 @@
         shared memory</a>
 </h4></div></div></div>
 <p>
-          <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_memory_object.html" title="Class shared_memory_object">shared_memory_object</a></code>
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__memory__object.html" title="Class shared_memory_object">shared_memory_object</a></code>
           provides a static <code class="computeroutput"><span class="identifier">remove</span></code>
           function to remove a shared memory objects.
         </p>
@@ -399,7 +395,7 @@
             </li>
 <li class="listitem">
               Even if the object continues to exist after the last function call,
-              reuse of the name will subsequently cause the creation of a <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_memory_object.html" title="Class shared_memory_object">boost::interprocess::shared_memory_object</a></code>
+              reuse of the name will subsequently cause the creation of a <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__memory__object.html" title="Class shared_memory_object">boost::interprocess::shared_memory_object</a></code>
               instance to behave as if no shared memory object of this name exists
               (that is, trying to open an object with that name will fail and an
               object of the same name can be created again).
@@ -437,8 +433,6 @@
 <p>
           Here is an example:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">anonymous_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">mapped_region</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
@@ -463,8 +457,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 <p>
           Once the segment is created, a <code class="computeroutput"><span class="identifier">fork</span><span class="special">()</span></code> call can be used so that <code class="computeroutput"><span class="identifier">region</span></code> is used to communicate two related
           processes.
@@ -493,7 +485,7 @@
           want to access to shared memory created with other process that don't use
           <span class="bold"><strong>Boost.Interprocess</strong></span>. In order to manage
           the native windows shared memory <span class="bold"><strong>Boost.Interprocess</strong></span>
-          offers the <code class="computeroutput"><a class="link" href="../boost/interprocess/windows_shared_memory.html" title="Class windows_shared_memory">windows_shared_memory</a></code>
+          offers the <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1windows__shared__memory.html" title="Class windows_shared_memory">windows_shared_memory</a></code>
           class.
         </p>
 <p>
@@ -531,8 +523,6 @@
 <p>
           This is the server process:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">windows_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">mapped_region</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstring</span><span class="special">&gt;</span>
@@ -577,8 +567,6 @@
 <span class="special">}</span>
 </pre>
 <p>
-        </p>
-<p>
           As we can see, native windows shared memory needs synchronization to make
           sure that the shared memory won't be destroyed before the client is launched.
         </p>
@@ -604,10 +592,10 @@
           memory mapping but it supports anonymous shared memory.
         </p>
 <p>
-          <span class="bold"><strong>Boost.Interprocess</strong></span> offers simple (<code class="computeroutput"><a class="link" href="../boost/interprocess/xsi_shared_memory.html" title="Class xsi_shared_memory">xsi_shared_memory</a></code>)
-          and managed (<code class="computeroutput"><a class="link" href="../boost/interprocess/managed_xsi_shared_memory.html" title="Type definition managed_xsi_shared_memory">managed_xsi_shared_memory</a></code>)
+          <span class="bold"><strong>Boost.Interprocess</strong></span> offers simple (<code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1xsi__shared__memory.html" title="Class xsi_shared_memory">xsi_shared_memory</a></code>)
+          and managed (<code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/managed__xsi__shared__memory_8hpp_1a9411fb9c80c0ffa2186b96d7234b6e6e.html" title="Type definition managed_xsi_shared_memory">managed_xsi_shared_memory</a></code>)
           shared memory classes to ease the use of XSI shared memory. It also wraps
-          key creation with the simple <code class="computeroutput"><a class="link" href="../boost/interprocess/xsi_key.html" title="Class xsi_key">xsi_key</a></code>
+          key creation with the simple <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1xsi__key.html" title="Class xsi_key">xsi_key</a></code>
           class.
         </p>
 <p>
@@ -619,8 +607,6 @@
 <p>
           This is the server process:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">xsi_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">mapped_region</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstring</span><span class="special">&gt;</span>
@@ -690,8 +676,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 </div>
 <div class="section">
@@ -830,7 +814,7 @@
 </pre>
 <p>
           Now we can use the newly created object to create mapped regions. For more
-          details regarding this class see the <code class="computeroutput"><a class="link" href="../boost/interprocess/file_mapping.html" title="Class file_mapping">boost::interprocess::file_mapping</a></code>
+          details regarding this class see the <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1file__mapping.html" title="Class file_mapping">boost::interprocess::file_mapping</a></code>
           class reference.
         </p>
 </div>
@@ -897,7 +881,7 @@
         </p>
 <p>
           For more details regarding <code class="computeroutput"><span class="identifier">mapped_region</span></code>
-          see the <code class="computeroutput"><a class="link" href="../boost/interprocess/mapped_region.html" title="Class mapped_region">boost::interprocess::mapped_region</a></code>
+          see the <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1mapped__region.html" title="Class mapped_region">boost::interprocess::mapped_region</a></code>
           class reference.
         </p>
 </div>
@@ -913,8 +897,6 @@
           process opens the shared memory, maps it, and checks that the data is correctly
           initialized::
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">file_mapping</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">mapped_region</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
@@ -1006,8 +988,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 </div>
 <div class="section">
@@ -1077,7 +1057,7 @@
           offsets between data or relative pointers to obtain pointer functionality
           when an object placed in a mapped region wants to point to an object placed
           in the same mapped region. <span class="bold"><strong>Boost.Interprocess</strong></span>
-          offers a smart pointer called <code class="computeroutput"><a class="link" href="../boost/interprocess/offset_ptr.html" title="Class template offset_ptr">boost::interprocess::offset_ptr</a></code>
+          offers a smart pointer called <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1offset__ptr.html" title="Class template offset_ptr">boost::interprocess::offset_ptr</a></code>
           that can be safely placed in shared memory and that can be used to point
           to another object placed in the same shared memory / memory mapped file.
         </p>

@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>Print function &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/boostbook.css" />
@@ -39,7 +40,7 @@
      Distributed under the Boost Software License, Version 1.0.
      (http://www.boost.org/LICENSE_1_0.txt)
 -->
-<div class="section" id="print-function">
+<section id="print-function">
 <h1>Print function<a class="headerlink" href="#print-function" title="Permalink to this heading">¶</a></h1>
 <p>Say, for example, we would like to write a print function. We could start by writing the function that prints using <code class="docutils literal notranslate"><span class="pre">std::cout</span></code>, like this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">print</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
@@ -49,7 +50,7 @@
 </pre></div>
 </div>
 <p>However, there is lot of things that don’t print directly to <code class="docutils literal notranslate"><span class="pre">std::cout</span></code> such as <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> or <code class="docutils literal notranslate"><span class="pre">std::tuple</span></code>. Instead, we want to iterate over these data structures and print each element in them.</p>
-<div class="section" id="overloading">
+<section id="overloading">
 <h2>Overloading<a class="headerlink" href="#overloading" title="Permalink to this heading">¶</a></h2>
 <p>Boost.HigherOrderFunctions provides several ways to do overloading. One of the ways is with the <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">first_of</span></code></span> adaptor which will pick the first function that is callable. This allows ordering the functions based on which one is more important. So then the first function will print to <code class="docutils literal notranslate"><span class="pre">std::cout</span></code> if possible otherwise we will add an overload to print a range:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">print</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_of</span><span class="p">(</span><span class="w"></span>
@@ -105,8 +106,8 @@
 4
 </pre></div>
 </div>
-</div>
-<div class="section" id="tuples">
+</section>
+<section id="tuples">
 <h2>Tuples<a class="headerlink" href="#tuples" title="Permalink to this heading">¶</a></h2>
 <p>We could extend this to printing tuples as well. We will need to combine a couple of functions to make a <code class="docutils literal notranslate"><span class="pre">for_each_tuple</span></code>, which lets us call a function for each element. First, the <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">proj</span></code></span> adaptor will let us apply a function to each argument passed in, and the <a class="reference internal" href="../../include/boost/hof/unpack.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">unpack</span></code></span></a> adaptor will unpack the elements of a tuple and apply them to the function:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">for_each_tuple</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sequence</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w"></span>
@@ -158,8 +159,8 @@
 3
 </pre></div>
 </div>
-</div>
-<div class="section" id="recursive">
+</section>
+<section id="recursive">
 <h2>Recursive<a class="headerlink" href="#recursive" title="Permalink to this heading">¶</a></h2>
 <p>Even though this will print for ranges and tuples, if we were to nest a range into a tuple this would not work. What we need to do is make the function call itself recursively. Even though we are using lambdas, we can easily make this recursive using the <a class="reference internal" href="../../include/boost/hof/fix.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">fix</span></code></span></a> adaptor. This implements a fix point combinator, which passes the function(i.e. itself) in as the first argument.</p>
 <p>So now we add an additional arguments called <code class="docutils literal notranslate"><span class="pre">self</span></code> which is the <code class="docutils literal notranslate"><span class="pre">print</span></code> function itself. This extra argument is called by the <a class="reference internal" href="../../include/boost/hof/fix.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">fix</span></code></span></a> adaptor, and so the user would still call this function with a single argument:</p>
@@ -198,8 +199,8 @@
 4 
 </pre></div>
 </div>
-</div>
-<div class="section" id="variadic">
+</section>
+<section id="variadic">
 <h2>Variadic<a class="headerlink" href="#variadic" title="Permalink to this heading">¶</a></h2>
 <p>We can also make this <code class="docutils literal notranslate"><span class="pre">print</span></code> function variadic, so it prints every argument passed into it. We can use the <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">proj</span></code></span> adaptor, which already calls the function on every argument passed in. First, we just rename our original <code class="docutils literal notranslate"><span class="pre">print</span></code> function to <code class="docutils literal notranslate"><span class="pre">simple_print</span></code>:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">simple_print</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fix</span><span class="p">(</span><span class="n">first_of</span><span class="p">(</span><span class="w"></span>
@@ -231,8 +232,8 @@
 Hello world
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

@@ -298,10 +298,10 @@
           Coroutines Implementing Asynchonous Operations</a>
         </h6>
 <p>
-          The <code class="computeroutput"><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">co_composed</span></code> template facilitates a lightweight
-          implementation of user-defined asynchronous operations using C++20 coroutines.
-          The following example illustrates a simple asynchronous operation that
-          implements an echo protocol in terms of a coroutine:
+          The <code class="computeroutput"><span class="identifier">co_composed</span></code> template
+          facilitates a lightweight implementation of user-defined asynchronous operations
+          using C++20 coroutines. The following example illustrates a simple asynchronous
+          operation that implements an echo protocol in terms of a coroutine:
         </p>
 <pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">CompletionToken</span><span class="special">&gt;</span>
 <span class="keyword">auto</span> <span class="identifier">async_echo</span><span class="special">(</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">socket</span><span class="special">&amp;</span> <span class="identifier">socket</span><span class="special">,</span>
@@ -309,7 +309,7 @@
 <span class="special">{</span>
   <span class="keyword">return</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">async_initiate</span><span class="special">&lt;</span>
     <span class="identifier">CompletionToken</span><span class="special">,</span> <span class="keyword">void</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">)&gt;(</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">co_composed</span><span class="special">&lt;</span>
+      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">co_composed</span><span class="special">&lt;</span>
         <span class="keyword">void</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">)&gt;(</span>
           <span class="special">[](</span><span class="keyword">auto</span> <span class="identifier">state</span><span class="special">,</span> <span class="identifier">tcp</span><span class="special">::</span><span class="identifier">socket</span><span class="special">&amp;</span> <span class="identifier">socket</span><span class="special">)</span> <span class="special">-&gt;</span> <span class="keyword">void</span>
           <span class="special">{</span>
@@ -348,8 +348,7 @@
           <a class="link" href="../../reference/awaitable.html" title="awaitable">awaitable</a>, <a class="link" href="../../reference/use_awaitable_t.html" title="use_awaitable_t">use_awaitable_t</a>,
           <a class="link" href="../../reference/use_awaitable.html" title="use_awaitable">use_awaitable</a>,
           <a class="link" href="../../reference/this_coro__executor.html" title="this_coro::executor">this_coro::executor</a>,
-          <a class="link" href="../../reference/experimental__co_composed.html" title="experimental::co_composed">experimental::co_composed</a>,
-          <a class="link" href="../../examples/cpp17_examples.html#boost_asio.examples.cpp17_examples.coroutines_ts_support">Coroutines
+          <a class="link" href="../../reference/co_composed.html" title="co_composed">co_composed</a>, <a class="link" href="../../examples/cpp17_examples.html#boost_asio.examples.cpp17_examples.coroutines_ts_support">Coroutines
           examples</a>, <a class="link" href="coro.html" title="Resumable C++ 20 Coroutines">Resumable
           C++20 Coroutines</a>, <a class="link" href="spawn.html" title="Stackful Coroutines">Stackful
           Coroutines</a>, <a class="link" href="coroutine.html" title="Stackless Coroutines">Stackless

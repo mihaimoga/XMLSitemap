@@ -29,6 +29,264 @@
 </h2></div></div></div>
 <h4>
 <a name="boost_asio.history.h0"></a>
+      <span class="phrase"><a name="boost_asio.history.asio_1_31_0___boost_1_86_beta"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_31_0___boost_1_86_beta">Asio
+      1.31.0 / Boost 1.86 beta</a>
+    </h4>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+<p class="simpara">
+          Changed the <code class="computeroutput"><span class="identifier">default_completion_token</span></code>
+          trait's primary template to select <code class="computeroutput"><span class="identifier">deferred</span></code>
+          as the default completion token. As a result, most asynchronous operations'
+          initiating functions will return a deferred asynchronous operation by default.
+          For example, the completion token can be omitted when calling asynchronous
+          operations from an <code class="computeroutput"><span class="identifier">awaitable</span></code>
+          coroutine:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">awaitable</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;</span> <span class="identifier">echo</span><span class="special">(</span><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">socket</span><span class="special">&amp;</span> <span class="identifier">my_socket</span><span class="special">)</span>
+<span class="special">{</span>
+  <span class="keyword">char</span> <span class="identifier">data</span><span class="special">[</span><span class="number">1024</span><span class="special">];</span>
+  <span class="keyword">for</span> <span class="special">(;;)</span>
+  <span class="special">{</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">n</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data</span><span class="special">));</span>
+    <span class="identifier">co_await</span> <span class="identifier">async_write</span><span class="special">(</span><span class="identifier">my_socket</span><span class="special">,</span> <span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data</span><span class="special">,</span> <span class="identifier">n</span><span class="special">));</span>
+  <span class="special">}</span>
+<span class="special">}</span>
+</pre>
+<p class="simpara">
+          or when using an operation that accepts asynchronous operations as function
+          objects, such as <code class="computeroutput"><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">make_parallel_group</span></code>:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">make_parallel_group</span><span class="special">(</span>
+    <span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data</span><span class="special">)),</span>
+    <span class="identifier">my_timer</span><span class="special">.</span><span class="identifier">async_wait</span><span class="special">()</span>
+  <span class="special">).</span><span class="identifier">async_wait</span><span class="special">(/*</span> <span class="special">...</span> <span class="special">*/);</span>
+</pre>
+</li>
+<li class="listitem">
+          Added the <code class="computeroutput"><span class="identifier">is_completion_condition</span></code>
+          trait and used it to add the missing default completion tokens to overloads
+          of <code class="computeroutput"><span class="identifier">async_read</span></code>, <code class="computeroutput"><span class="identifier">async_read_at</span></code>, <code class="computeroutput"><span class="identifier">async_write</span></code>,
+          and <code class="computeroutput"><span class="identifier">async_write_at</span></code>.
+        </li>
+<li class="listitem">
+          Added the <code class="computeroutput"><span class="identifier">is_connect_condition</span></code>
+          trait and used it disambiguate overloads of <code class="computeroutput"><span class="identifier">async_connect</span></code>
+          when the completion token is defaulted.
+        </li>
+<li class="listitem">
+<p class="simpara">
+          Extended the completion token adapters <code class="computeroutput"><span class="identifier">as_tuple</span></code>,
+          <code class="computeroutput"><span class="identifier">bind_allocator</span></code>, <code class="computeroutput"><span class="identifier">bind_cancellation_slot</span></code>, <code class="computeroutput"><span class="identifier">bind_executor</span></code>, <code class="computeroutput"><span class="identifier">bind_immediate_executor</span></code>,
+          and <code class="computeroutput"><span class="identifier">redirect_error</span></code> to allow
+          them to be used as <span class="emphasis"><em>partial completion token adapters</em></span>.
+          This means that they can be created without explicitly supplying a completion
+          token. Instead, when the adapter is passed to an asynchronous operation,
+          it will automatically determine the operation's default completion token
+          and adapt it. For example, the expression:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span> <span class="identifier">as_tuple</span><span class="special">)</span>
+</pre>
+<p class="simpara">
+          will return a deferred asynchronous operation with the completion arguments
+          packaged in a tuple. They may also be applied using the <code class="computeroutput"><span class="identifier">deferred</span></code>
+          operations' pipe operator:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">error_code</span> <span class="identifier">e</span><span class="special">;</span>
+<span class="identifier">co_await</span> <span class="special">(</span><span class="identifier">async_write</span><span class="special">(</span><span class="identifier">my_socket</span><span class="special">,</span> <span class="identifier">my_buffer</span><span class="special">)</span> <span class="special">|</span> <span class="identifier">redirect_error</span><span class="special">(</span><span class="identifier">e</span><span class="special">));</span>
+</pre>
+</li>
+<li class="listitem">
+<p class="simpara">
+          Added the <code class="computeroutput"><span class="identifier">cancel_after</span></code>
+          and <code class="computeroutput"><span class="identifier">cancel_at</span></code> completion
+          token adapters. These may be used to adapt any asynchronous operation to
+          emit a cancellation signal after a specified duration or at an absolute
+          time point. For example:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span>
+    <span class="identifier">cancel_after</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="number">10</span><span class="special">),</span>
+      <span class="special">[](</span><span class="identifier">error_code</span> <span class="identifier">e</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">n</span><span class="special">)</span>
+      <span class="special">{</span>
+        <span class="comment">// ...</span>
+      <span class="special">}));</span>
+</pre>
+<p class="simpara">
+          This cancellation is implemented internally using a <code class="computeroutput"><span class="identifier">basic_waitable_timer</span></code>.
+          By default, this timer is created using the asynchronous operation's I/O
+          executor. If the operation does specify its I/O executor, a timer may be
+          explicitly supplied:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span>
+    <span class="identifier">cancel_after</span><span class="special">(</span><span class="identifier">my_timer</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="number">10</span><span class="special">),</span>
+      <span class="special">[](</span><span class="identifier">error_code</span> <span class="identifier">e</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">n</span><span class="special">)</span>
+      <span class="special">{</span>
+        <span class="comment">// ...</span>
+      <span class="special">}));</span>
+</pre>
+<p class="simpara">
+          These adapters may also be used as partial completion token adapters, as
+          in:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">co_await</span> <span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span> <span class="identifier">cancel_after</span><span class="special">(</span><span class="number">5</span><span class="identifier">s</span><span class="special">));</span>
+</pre>
+<p class="simpara">
+          or:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">co_await</span> <span class="special">(</span>
+    <span class="identifier">async_write</span><span class="special">(</span><span class="identifier">my_socket</span><span class="special">,</span> <span class="identifier">my_buffer</span><span class="special">)</span> <span class="special">|</span> <span class="identifier">as_tuple</span>
+      <span class="special">|</span> <span class="identifier">cancel_after</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">chronos</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="number">10</span><span class="special">)</span>
+  <span class="special">);</span>
+</pre>
+<p class="simpara">
+          or to adapt other partial completion token adapters:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">co_await</span> <span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span> <span class="identifier">cancel_after</span><span class="special">(</span><span class="number">5</span><span class="identifier">s</span><span class="special">,</span> <span class="identifier">as_tuple</span><span class="special">));</span>
+</pre>
+<p class="simpara">
+          Note that, since the implementation in terms of a timer introduces a parallel
+          <code class="computeroutput"><span class="identifier">async_wait</span></code> operation, it
+          is the responsibility of the caller to ensure that the asynchronous operation
+          is performed in an implicit or explicit strand.
+        </p>
+</li>
+<li class="listitem">
+          Changed all completion token adapters to ensure they correctly propagate
+          the asynchronous operation's I/O executor during adaptation.
+        </li>
+<li class="listitem">
+          Fixed <code class="computeroutput"><span class="identifier">async_compose</span></code> and
+          <code class="computeroutput"><span class="identifier">co_composed</span></code> to correctly
+          indicate if they have an I/O executor.
+        </li>
+<li class="listitem">
+          Moved <code class="computeroutput"><span class="identifier">co_composed</span></code> out of
+          the <code class="computeroutput"><span class="identifier">experimental</span></code> namespace.
+        </li>
+<li class="listitem">
+<p class="simpara">
+          Added <code class="computeroutput"><span class="identifier">composed</span></code>, which creates
+          an initiation function object from a stateful implementation. It is similar
+          to <code class="computeroutput"><span class="identifier">co_composed</span></code>, but for
+          regular function objects rather than C++20 coroutines. For example:
+        </p>
+<pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">async_echo_implementation</span>
+<span class="special">{</span>
+  <span class="identifier">tcp</span><span class="special">::</span><span class="identifier">socket</span><span class="special">&amp;</span> <span class="identifier">socket_</span><span class="special">;</span>
+  <span class="identifier">mutable_buffer</span> <span class="identifier">buffer_</span><span class="special">;</span>
+  <span class="keyword">enum</span> <span class="special">{</span> <span class="identifier">starting</span><span class="special">,</span> <span class="identifier">reading</span><span class="special">,</span> <span class="identifier">writing</span> <span class="special">}</span> <span class="identifier">state_</span><span class="special">;</span>
+
+  <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Self</span><span class="special">&gt;</span>
+  <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span><span class="identifier">Self</span><span class="special">&amp;</span> <span class="identifier">self</span><span class="special">,</span>
+      <span class="identifier">error_code</span> <span class="identifier">error</span><span class="special">,</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">n</span><span class="special">)</span>
+  <span class="special">{</span>
+    <span class="keyword">switch</span> <span class="special">(</span><span class="identifier">state_</span><span class="special">)</span>
+    <span class="special">{</span>
+      <span class="comment">// ...</span>
+    <span class="special">}</span>
+  <span class="special">}</span>
+<span class="special">};</span>
+
+<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">CompletionToken</span><span class="special">&gt;</span>
+<span class="keyword">auto</span> <span class="identifier">async_echo</span><span class="special">(</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">socket</span><span class="special">&amp;</span> <span class="identifier">socket</span><span class="special">,</span>
+    <span class="identifier">mutable_buffer</span> <span class="identifier">buffer</span><span class="special">,</span>
+    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span><span class="special">)</span>
+<span class="special">{</span>
+  <span class="keyword">return</span> <span class="identifier">async_initiate</span><span class="special">&lt;</span><span class="identifier">CompletionToken</span><span class="special">,</span>
+    <span class="keyword">void</span><span class="special">(</span><span class="identifier">error_code</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span><span class="special">)&gt;(</span>
+      <span class="identifier">composed</span><span class="special">(</span>
+        <span class="identifier">async_echo_implementation</span><span class="special">{</span><span class="identifier">socket</span><span class="special">,</span> <span class="identifier">buffer</span><span class="special">,</span>
+          <span class="identifier">async_echo_implementation</span><span class="special">::</span><span class="identifier">starting</span><span class="special">},</span> <span class="identifier">socket</span><span class="special">),</span>
+      <span class="identifier">token</span><span class="special">,</span> <span class="identifier">error_code</span><span class="special">{},</span> <span class="number">0</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<p class="simpara">
+          The <code class="computeroutput"><span class="identifier">async_compose</span></code> function
+          has been changed to be a thin wrapper around <code class="computeroutput"><span class="identifier">composed</span></code>.
+          However, unlike <code class="computeroutput"><span class="identifier">async_compose</span></code>,
+          <code class="computeroutput"><span class="identifier">composed</span></code> allows arguments
+          to be passed to the stateful implementation when the operation is initiated.
+        </p>
+</li>
+<li class="listitem">
+          Changed the <code class="computeroutput"><span class="identifier">detached</span></code> completion
+          token to work with asynchronous operations that have multiple completion
+          signatures.
+        </li>
+<li class="listitem">
+          Changed <code class="computeroutput"><span class="identifier">async_initiate</span></code>
+          to allow an empty variadic list of completion signatures, which would indicate
+          that an asynchronous operation never completes.
+        </li>
+<li class="listitem">
+<p class="simpara">
+          Added overloads of <code class="computeroutput"><span class="identifier">async_initiate</span></code>
+          that automatically deduce the type of the completion token. For example:<br>
+        </p>
+<pre class="programlisting"><span class="identifier">async_initiate</span><span class="special">(</span><span class="identifier">co_composed</span><span class="special">(/*</span> <span class="special">...</span> <span class="special">*/),</span> <span class="identifier">detached</span><span class="special">,</span> <span class="identifier">arg_1</span><span class="special">,</span> <span class="identifier">arg_2</span><span class="special">);</span>
+</pre>
+<p class="simpara">
+          will deduce the token type from the argument <code class="computeroutput"><span class="identifier">detached</span></code>.
+        </p>
+</li>
+<li class="listitem">
+          Added <code class="computeroutput"><span class="identifier">async_immediate</span></code> which
+          implements a trivial asynchronous operation that completes immediately,
+          using an associated immediate executor if available. It is intended for
+          use within asynchronous compositions to make it easier to provide optimised
+          immediate completion.
+        </li>
+<li class="listitem">
+          Updated the documentation for various asynchronous operations to specify
+          immediate completion in terms of <code class="computeroutput"><span class="identifier">async_immediate</span></code>.
+        </li>
+<li class="listitem">
+          Enabled SFINAE-based partial specialisation of the <code class="computeroutput"><span class="identifier">associator</span></code>
+          trait.
+        </li>
+<li class="listitem">
+          Changed to use the recycling allocator as the fallback for all operations,
+          rather than calling the underlying recycling allocation helper functions
+          directly.
+        </li>
+<li class="listitem">
+          Fixed the <code class="computeroutput"><span class="identifier">deferred</span></code> implementation
+          to ensure that the wrapped initiation function object's copyability is
+          correctly propagated.
+        </li>
+<li class="listitem">
+          Fixed <code class="computeroutput"><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">coro</span></code> compatibility with clang 15.
+        </li>
+<li class="listitem">
+          Fixed deduction of a completion handler's default immediate executor type.
+        </li>
+<li class="listitem">
+          Don't use <code class="computeroutput"><span class="identifier">ioctl</span></code> to modify
+          the non-blocking mode on socket or descriptors that have been assigned,
+          as they may originate from an external source.
+        </li>
+<li class="listitem">
+          Don't call <code class="computeroutput"><span class="identifier">fcntl</span></code> with
+          <code class="computeroutput"><span class="identifier">F_SETFL</span></code> if the flags aren't
+          changing.
+        </li>
+<li class="listitem">
+          Don't enable non-blocking mode when performing an <code class="computeroutput"><span class="identifier">async_wait</span></code>
+          operation on sockets or descriptors.
+        </li>
+<li class="listitem">
+          Update some composed operation examples to destroy the timer object before
+          calling the completion handler.
+        </li>
+<li class="listitem">
+          Fix <code class="computeroutput"><span class="identifier">read_until</span></code> regex support
+          when <code class="computeroutput"><span class="identifier">BOOST_ASIO_NO_DYNAMIC_BUFFER_V1</span></code>
+          is defined.
+        </li>
+</ul></div>
+<h4>
+<a name="boost_asio.history.h1"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_30_2___boost_1_85"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_30_2___boost_1_85">Asio
       1.30.2 / Boost 1.85</a>
     </h4>
@@ -63,7 +321,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h1"></a>
+<a name="boost_asio.history.h2"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_30_1"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_30_1">Asio
       1.30.1</a>
     </h4>
@@ -101,7 +359,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h2"></a>
+<a name="boost_asio.history.h3"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_30_0___boost_1_84"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_30_0___boost_1_84">Asio
       1.30.0 / Boost 1.84</a>
     </h4>
@@ -125,7 +383,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h3"></a>
+<a name="boost_asio.history.h4"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_29_0"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_29_0">Asio
       1.29.0</a>
     </h4>
@@ -165,7 +423,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h4"></a>
+<a name="boost_asio.history.h5"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_28_2___boost_1_83"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_28_2___boost_1_83">Asio
       1.28.2 / Boost 1.83</a>
     </h4>
@@ -209,7 +467,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h5"></a>
+<a name="boost_asio.history.h6"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_28_1"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_28_1">Asio
       1.28.1</a>
     </h4>
@@ -263,7 +521,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h6"></a>
+<a name="boost_asio.history.h7"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_28_0___boost_1_82"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_28_0___boost_1_82">Asio
       1.28.0 / Boost 1.82</a>
     </h4>
@@ -362,7 +620,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h7"></a>
+<a name="boost_asio.history.h8"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_27_0"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_27_0">Asio
       1.27.0</a>
     </h4>
@@ -516,7 +774,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h8"></a>
+<a name="boost_asio.history.h9"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_26_0___boost_1_81"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_26_0___boost_1_81">Asio
       1.26.0 / Boost 1.81</a>
     </h4>
@@ -572,7 +830,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h9"></a>
+<a name="boost_asio.history.h10"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_25_0"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_25_0">Asio
       1.25.0</a>
     </h4>
@@ -826,7 +1084,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h10"></a>
+<a name="boost_asio.history.h11"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_24_0___boost_1_80"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_24_0___boost_1_80">Asio
       1.24.0 / Boost 1.80</a>
     </h4>
@@ -1074,7 +1332,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h11"></a>
+<a name="boost_asio.history.h12"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_22_2___boost_1_79"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_22_2___boost_1_79">Asio
       1.22.2 / Boost 1.79</a>
     </h4>
@@ -1129,7 +1387,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h12"></a>
+<a name="boost_asio.history.h13"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_22_1"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_22_1">Asio
       1.22.1</a>
     </h4>
@@ -1319,7 +1577,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h13"></a>
+<a name="boost_asio.history.h14"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_22_0___boost_1_78"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_22_0___boost_1_78">Asio
       1.22.0 / Boost 1.78</a>
     </h4>
@@ -1562,7 +1820,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h14"></a>
+<a name="boost_asio.history.h15"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_20_0___boost_1_77"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_20_0___boost_1_77">Asio
       1.20.0 / Boost 1.77</a>
     </h4>
@@ -2116,7 +2374,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h15"></a>
+<a name="boost_asio.history.h16"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_18_2___boost_1_76"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_18_2___boost_1_76">Asio
       1.18.2 / Boost 1.76</a>
     </h4>
@@ -2185,7 +2443,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h16"></a>
+<a name="boost_asio.history.h17"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_18_1___boost_1_75"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_18_1___boost_1_75">Asio
       1.18.1 / Boost 1.75</a>
     </h4>
@@ -2315,7 +2573,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h17"></a>
+<a name="boost_asio.history.h18"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_18_0___boost_1_74"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_18_0___boost_1_74">Asio
       1.18.0 / Boost 1.74</a>
     </h4>
@@ -2588,7 +2846,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h18"></a>
+<a name="boost_asio.history.h19"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_16_1___boost_1_73"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_16_1___boost_1_73">Asio
       1.16.1 / Boost 1.73</a>
     </h4>
@@ -2681,7 +2939,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h19"></a>
+<a name="boost_asio.history.h20"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_16_0___boost_1_72"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_16_0___boost_1_72">Asio
       1.16.0 / Boost 1.72</a>
     </h4>
@@ -2853,7 +3111,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h20"></a>
+<a name="boost_asio.history.h21"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_14_1___boost_1_71"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_14_1___boost_1_71">Asio
       1.14.1 / Boost 1.71</a>
     </h4>
@@ -2906,7 +3164,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h21"></a>
+<a name="boost_asio.history.h22"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_14_0___boost_1_70"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_14_0___boost_1_70">Asio
       1.14.0 / Boost 1.70</a>
     </h4>
@@ -3229,7 +3487,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h22"></a>
+<a name="boost_asio.history.h23"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_12_2___boost_1_69"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_12_2___boost_1_69">Asio
       1.12.2 / Boost 1.69</a>
     </h4>
@@ -3302,7 +3560,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h23"></a>
+<a name="boost_asio.history.h24"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_12_1___boost_1_67"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_12_1___boost_1_67">Asio
       1.12.1 / Boost 1.67</a>
     </h4>
@@ -3432,7 +3690,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h24"></a>
+<a name="boost_asio.history.h25"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_12_0___boost_1_66"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_12_0___boost_1_66">Asio
       1.12.0 / Boost 1.66</a>
     </h4>
@@ -3475,7 +3733,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h25"></a>
+<a name="boost_asio.history.h26"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_10___boost_1_65"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_10___boost_1_65">Asio
       1.10.10 / Boost 1.65</a>
     </h4>
@@ -3513,7 +3771,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h26"></a>
+<a name="boost_asio.history.h27"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_9___boost_1_64"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_9___boost_1_64">Asio
       1.10.9 / Boost 1.64</a>
     </h4>
@@ -3566,7 +3824,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h27"></a>
+<a name="boost_asio.history.h28"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_8___boost_1_62"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_8___boost_1_62">Asio
       1.10.8 / Boost 1.62</a>
     </h4>
@@ -3603,7 +3861,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h28"></a>
+<a name="boost_asio.history.h29"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_7___boost_1_60"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_7___boost_1_60">Asio
       1.10.7 / Boost 1.60</a>
     </h4>
@@ -3641,7 +3899,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h29"></a>
+<a name="boost_asio.history.h30"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_6___boost_1_58"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_6___boost_1_58">Asio
       1.10.6 / Boost 1.58</a>
     </h4>
@@ -3722,7 +3980,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h30"></a>
+<a name="boost_asio.history.h31"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_5___boost_1_57"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_5___boost_1_57">Asio
       1.10.5 / Boost 1.57</a>
     </h4>
@@ -3768,7 +4026,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h31"></a>
+<a name="boost_asio.history.h32"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_4___boost_1_56"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_4___boost_1_56">Asio
       1.10.4 / Boost 1.56</a>
     </h4>
@@ -3790,7 +4048,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h32"></a>
+<a name="boost_asio.history.h33"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_3"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_3">Asio
       1.10.3</a>
     </h4>
@@ -3825,7 +4083,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h33"></a>
+<a name="boost_asio.history.h34"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_2"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_2">Asio
       1.10.2</a>
     </h4>
@@ -3900,7 +4158,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h34"></a>
+<a name="boost_asio.history.h35"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_1___boost_1_55"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_1___boost_1_55">Asio
       1.10.1 / Boost 1.55</a>
     </h4>
@@ -4018,7 +4276,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h35"></a>
+<a name="boost_asio.history.h36"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_10_0___boost_1_54"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_10_0___boost_1_54">Asio
       1.10.0 / Boost 1.54</a>
     </h4>
@@ -4170,7 +4428,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h36"></a>
+<a name="boost_asio.history.h37"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_8_3___boost_1_53"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_8_3___boost_1_53">Asio
       1.8.3 / Boost 1.53</a>
     </h4>
@@ -4214,7 +4472,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h37"></a>
+<a name="boost_asio.history.h38"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_8_2___boost_1_51"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_8_2___boost_1_51">Asio
       1.8.2 / Boost 1.51</a>
     </h4>
@@ -4258,7 +4516,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h38"></a>
+<a name="boost_asio.history.h39"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_8_1___boost_1_50"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_8_1___boost_1_50">Asio
       1.8.1 / Boost 1.50</a>
     </h4>
@@ -4297,7 +4555,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h39"></a>
+<a name="boost_asio.history.h40"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_8_0___boost_1_49"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_8_0___boost_1_49">Asio
       1.8.0 / Boost 1.49</a>
     </h4>
@@ -4346,7 +4604,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h40"></a>
+<a name="boost_asio.history.h41"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_6_1___boost_1_48"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_6_1___boost_1_48">Asio
       1.6.1 / Boost 1.48</a>
     </h4>
@@ -4440,7 +4698,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h41"></a>
+<a name="boost_asio.history.h42"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_6_0___boost_1_47"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_6_0___boost_1_47">Asio
       1.6.0 / Boost 1.47</a>
     </h4>
@@ -4671,7 +4929,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h42"></a>
+<a name="boost_asio.history.h43"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_9___boost_1_46_1"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_9___boost_1_46_1">Asio
       1.4.9 / Boost 1.46.1</a>
     </h4>
@@ -4703,7 +4961,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h43"></a>
+<a name="boost_asio.history.h44"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_8___boost_1_46"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_8___boost_1_46">Asio
       1.4.8 / Boost 1.46</a>
     </h4>
@@ -4718,7 +4976,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h44"></a>
+<a name="boost_asio.history.h45"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_7___boost_1_45"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_7___boost_1_45">Asio
       1.4.7 / Boost 1.45</a>
     </h4>
@@ -4800,7 +5058,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h45"></a>
+<a name="boost_asio.history.h46"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_6___boost_1_44"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_6___boost_1_44">Asio
       1.4.6 / Boost 1.44</a>
     </h4>
@@ -4876,7 +5134,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h46"></a>
+<a name="boost_asio.history.h47"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_5___boost_1_43"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_5___boost_1_43">Asio
       1.4.5 / Boost 1.43</a>
     </h4>
@@ -4943,7 +5201,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h47"></a>
+<a name="boost_asio.history.h48"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_4___boost_1_42"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_4___boost_1_42">Asio
       1.4.4 / Boost 1.42</a>
     </h4>
@@ -5008,7 +5266,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h48"></a>
+<a name="boost_asio.history.h49"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_3___boost_1_40"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_3___boost_1_40">Asio
       1.4.3 / Boost 1.40</a>
     </h4>
@@ -5065,7 +5323,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h49"></a>
+<a name="boost_asio.history.h50"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_2___boost_1_39"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_2___boost_1_39">Asio
       1.4.2 / Boost 1.39</a>
     </h4>
@@ -5117,7 +5375,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h50"></a>
+<a name="boost_asio.history.h51"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_1___boost_1_38"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_1___boost_1_38">Asio
       1.4.1 / Boost 1.38</a>
     </h4>
@@ -5149,7 +5407,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h51"></a>
+<a name="boost_asio.history.h52"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_4_0___boost_1_37"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_4_0___boost_1_37">Asio
       1.4.0 / Boost 1.37</a>
     </h4>
@@ -5184,7 +5442,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h52"></a>
+<a name="boost_asio.history.h53"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_2_0___boost_1_36"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_2_0___boost_1_36">Asio
       1.2.0 / Boost 1.36</a>
     </h4>
@@ -5237,7 +5495,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="boost_asio.history.h53"></a>
+<a name="boost_asio.history.h54"></a>
       <span class="phrase"><a name="boost_asio.history.asio_1_0_0___boost_1_35"></a></span><a class="link" href="history.html#boost_asio.history.asio_1_0_0___boost_1_35">Asio
       1.0.0 / Boost 1.35</a>
     </h4>

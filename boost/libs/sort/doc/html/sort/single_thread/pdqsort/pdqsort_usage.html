@@ -28,27 +28,27 @@
 <a name="sort.single_thread.pdqsort.pdqsort_usage"></a><a class="link" href="pdqsort_usage.html" title="Usage">Usage</a>
 </h4></div></div></div>
 <p>
-          Pattern-defeating quicksort is available through two calls, <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_idm1756.html" title="Function template pdqsort">pdqsort</a></code></code> and <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_branchless_idm1820.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>.
+          Pattern-defeating quicksort is available through two calls, <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1adddfff1361acf7a3f2ef939d94d8ac5b.html" title="Function template pdqsort">pdqsort</a></code></code> and <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1a352cf5d780ed4c4183362e3101f85a1d.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>.
           Both have identical guarantees, behavior and overloads as <a href="http://en.cppreference.com/w/cpp/algorithm/sort" target="_top">std::sort</a>,
           with the exception of the C++17 parallel execution policy argument. Thus
           you can replace a call to <a href="http://en.cppreference.com/w/cpp/algorithm/sort" target="_top">std::sort</a>
           with boost::sort::pdqsort, available from boost/sort/pdqsort/pdqsort.hpp,
           it is simply a faster implementation. It is almost always appropriate to
-          simply call <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_idm1756.html" title="Function template pdqsort">pdqsort</a></code></code>
-          and ignore <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_branchless_idm1820.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>.
+          simply call <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1adddfff1361acf7a3f2ef939d94d8ac5b.html" title="Function template pdqsort">pdqsort</a></code></code>
+          and ignore <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1a352cf5d780ed4c4183362e3101f85a1d.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>.
         </p>
 <p>
-          <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_branchless_idm1820.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>
-          runs significantly faster than <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_idm1756.html" title="Function template pdqsort">pdqsort</a></code></code>
+          <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1a352cf5d780ed4c4183362e3101f85a1d.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>
+          runs significantly faster than <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1adddfff1361acf7a3f2ef939d94d8ac5b.html" title="Function template pdqsort">pdqsort</a></code></code>
           for comparison functions that are branchless (for an explanation why see
           'The Average Case' below), such as simple integer or float comparison,
           and slightly slower when the comparison function contains branches. When
           using an arithmetic type and a default comparison function (<a href="http://en.cppreference.com/w/cpp/utility/functional/less" target="_top">std::less</a>
           or <a href="http://en.cppreference.com/w/cpp/utility/functional/greater" target="_top">std::greater</a>)
-          <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_idm1756.html" title="Function template pdqsort">pdqsort</a></code></code>
-          automatically delegates to <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_branchless_idm1820.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>.
+          <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1adddfff1361acf7a3f2ef939d94d8ac5b.html" title="Function template pdqsort">pdqsort</a></code></code>
+          automatically delegates to <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1a352cf5d780ed4c4183362e3101f85a1d.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>.
           If you know that your custom comparison function is branchless and wish
-          to make use of this speedup call <code class="literal"><code class="computeroutput"><a class="link" href="../../../boost/sort/pdqsort_branchless_idm1820.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>
+          to make use of this speedup call <code class="literal"><code class="computeroutput"><a class="link" href="../../../doxygen/boost_sort_c___reference/pdqsort_8hpp_1a352cf5d780ed4c4183362e3101f85a1d.html" title="Function template pdqsort_branchless">pdqsort_branchless</a></code></code>
           explicitly.
         </p>
 </div>

@@ -266,12 +266,12 @@
                 </td>
 <td>
                   <p>
-                    <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">true_type</span></code> or <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">false_type</span></code>
+                    <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">true_type</span></code> or <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">false_type</span></code>
                   </p>
                 </td>
 <td>
                   <p>
-                    Determines resizeability of the state type, returns <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">true_type</span></code> if the state is resizeable.
+                    Determines resizeability of the state type, returns <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">true_type</span></code> if the state is resizeable.
                   </p>
                 </td>
 </tr>
@@ -443,7 +443,7 @@
 <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
 <span class="keyword">struct</span> <span class="identifier">is_resizeable</span><span class="special">&lt;</span> <span class="identifier">my_vector</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">&gt;</span> <span class="special">&gt;</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">true_type</span> <span class="identifier">type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">true_type</span> <span class="identifier">type</span><span class="special">;</span>
     <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">bool</span> <span class="identifier">value</span> <span class="special">=</span> <span class="identifier">type</span><span class="special">::</span><span class="identifier">value</span><span class="special">;</span>
 <span class="special">};</span>
 
@@ -562,7 +562,7 @@
 <span class="keyword">template</span><span class="special">&lt;</span> <span class="special">&gt;</span>
 <span class="keyword">struct</span> <span class="identifier">is_resizeable</span><span class="special">&lt;</span> <span class="identifier">state_type</span> <span class="special">&gt;</span>
 <span class="special">{</span> <span class="comment">// declare resizeability</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">true_type</span> <span class="identifier">type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">true_type</span> <span class="identifier">type</span><span class="special">;</span>
     <span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="identifier">value</span> <span class="special">=</span> <span class="identifier">type</span><span class="special">::</span><span class="identifier">value</span><span class="special">;</span>
 <span class="special">};</span>
 
@@ -717,7 +717,7 @@
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;&gt;</span>
 <span class="keyword">struct</span> <span class="identifier">is_resizeable</span><span class="special">&lt;</span> <span class="identifier">gsl_vector</span><span class="special">*</span> <span class="special">&gt;</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">true_type</span> <span class="identifier">type</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">true_type</span> <span class="identifier">type</span><span class="special">;</span>
     <span class="keyword">const</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="identifier">value</span> <span class="special">=</span> <span class="identifier">type</span><span class="special">::</span><span class="identifier">value</span><span class="special">;</span>
 <span class="special">};</span>
 

@@ -73,7 +73,7 @@
         data structure upon which to base the design of a stable vector:
       </p>
 <p>
-        <span class="inlinemediaobject"><img src="../../../libs/container/doc/images/stable_vector.png" align="middle" width="50%" alt="stable_vector"></span>
+        <span class="inlinemediaobject"><img src="../../../libs/container/doc/images/stable_vector.png" align="middle" width="50%"></span>
       </p>
 <p>
         Each element is stored in its own separate node. All the nodes are referenced
@@ -393,7 +393,7 @@
             If elements are inserted near one extreme and the free space on that
             extreme is exhausted, all existing elements are relocated (moved) to
             the center of the internal memory buffer. This makes room in the exhausted
-            extreme to insert more elements whihout allocating a new buffer.
+            extreme to insert more elements without allocating a new buffer.
           </li>
 <li class="listitem">
             Potentially, the maximum number of possible relocations (movements) reusing
@@ -402,8 +402,8 @@
             must be limited ('relocation limit') and a reallocation (allocation of
             a new memory buffer) will be performed if the load-factor of the container
             defined as (size()/length_of_buffer) surpasses the relocation limit (see
-            Lars Greger Nordland Hagen's [href http://larshagencpp.github.io/blog/2016/05/22/devector"Double-ended
-            vector - is it useful?"] article for more details.
+            Lars Greger Nordland Hagen's <a href="http://larshagencpp.github.io/blog/2016/05/22/devector" target="_top">"Double-ended
+            vector - is it useful?"</a> article for more details.
           </li>
 <li class="listitem">
             This approach offers a reasonable balance between a reasonable memory
@@ -430,7 +430,7 @@
                 </li></ul></div>
           </li>
 <li class="listitem">
-            Instead of removing the <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> member or renaming it to "minimum_capacity()",
+            Instead of removing the <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> member or renaming it to "<code class="computeroutput"><span class="identifier">minimum_capacity</span><span class="special">()</span></code>",
             the definition has been changed to tell the <span class="bold"><strong>minimum</strong></span>
             number of elements that can be inserted without reallocating. This allows
             the typical pattern where:
@@ -453,7 +453,7 @@
             However the usual container invariant where <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span> <span class="special">&lt;=</span> <span class="identifier">capacity</span><span class="special">()</span></code>
             does not hold. <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code>
             can be bigger than <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> because elements can be always inserted
-            at a extreme with free capacity without reallocation.
+            at an extreme with free capacity without reallocation.
           </li>
 </ul></div>
 </div>

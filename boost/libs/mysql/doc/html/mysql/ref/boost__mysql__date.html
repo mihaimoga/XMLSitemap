@@ -101,6 +101,19 @@
 <tr>
 <td>
                 <p>
+                  <span class="bold"><strong><a class="link" href="boost__mysql__date/as_local_time_point.html" title="date::as_local_time_point">as_local_time_point</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>
+                  into a local time point (checked access).
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
                   <span class="bold"><strong><a class="link" href="boost__mysql__date/as_time_point.html" title="date::as_time_point">as_time_point</a></strong></span>
                 </p>
               </td>
@@ -123,6 +136,8 @@
                   Constructs a zero date. <br><span class="silver">—</span><br>Constructs
                   a date from its year, month and date components. <br><span class="silver">—</span><br>Constructs
                   a date from a <code class="computeroutput"><span class="identifier">time_point</span></code>.
+                  <br><span class="silver">—</span><br>Constructs a date from a local
+                  time point.
                 </p>
               </td>
 </tr>
@@ -134,7 +149,20 @@
               </td>
 <td>
                 <p>
-                  Retrieves the day component.
+                  Retrieves the day component (1-based).
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__mysql__date/get_local_time_point.html" title="date::get_local_time_point">get_local_time_point</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Converts <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>
+                  into a local time point (unchecked access).
                 </p>
               </td>
 </tr>
@@ -160,7 +188,7 @@
               </td>
 <td>
                 <p>
-                  Retrieves the month component.
+                  Retrieves the month component (1-based).
                 </p>
               </td>
 </tr>
@@ -290,16 +318,33 @@
         <span class="phrase"><a name="mysql.ref.boost__mysql__date.description"></a></span><a class="link" href="boost__mysql__date.html#mysql.ref.boost__mysql__date.description">Description</a>
       </h5>
 <p>
-        Represents a broken date by its year, month and day components. This type
-        is close to the protocol and should not be used as a vocabulary type. Instead,
-        cast it to a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span></code> by calling <a class="link" href="boost__mysql__date/as_time_point.html" title="date::as_time_point"><code class="computeroutput"><span class="identifier">as_time_point</span></code></a> or <a class="link" href="boost__mysql__date/get_time_point.html" title="date::get_time_point"><code class="computeroutput"><span class="identifier">get_time_point</span></code></a>.
+        Represents a Gregorian date broken by its year, month and day components,
+        without a time zone.
+      </p>
+<p>
+        This type is close to the protocol and should not be used as a vocabulary
+        type. Instead, cast it to a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span></code>
+        by calling <a class="link" href="boost__mysql__date/as_time_point.html" title="date::as_time_point"><code class="computeroutput"><span class="identifier">as_time_point</span></code></a>, <a class="link" href="boost__mysql__date/get_time_point.html" title="date::get_time_point"><code class="computeroutput"><span class="identifier">get_time_point</span></code></a>, <a class="link" href="boost__mysql__date/as_local_time_point.html" title="date::as_local_time_point"><code class="computeroutput"><span class="identifier">as_local_time_point</span></code></a> or <a class="link" href="boost__mysql__date/get_local_time_point.html" title="date::get_local_time_point"><code class="computeroutput"><span class="identifier">get_local_time_point</span></code></a>.
+      </p>
+<p>
+        Dates retrieved from MySQL don't include any time zone information. Determining
+        the time zone is left to the application. Thus, any time point obtained from
+        this class should be interpreted as a local time in an unspecified time zone,
+        like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">local_time</span></code>. For compatibility with older
+        compilers, <a class="link" href="boost__mysql__date/as_time_point.html" title="date::as_time_point"><code class="computeroutput"><span class="identifier">as_time_point</span></code></a> and <a class="link" href="boost__mysql__date/get_time_point.html" title="date::get_time_point"><code class="computeroutput"><span class="identifier">get_time_point</span></code></a> return <code class="computeroutput"><span class="identifier">system_clock</span></code> time points. These should
+        be interpreted as local times rather than UTC. Prefer using <a class="link" href="boost__mysql__date/as_local_time_point.html" title="date::as_local_time_point"><code class="computeroutput"><span class="identifier">as_local_time_point</span></code></a> or <a class="link" href="boost__mysql__date/get_local_time_point.html" title="date::get_local_time_point"><code class="computeroutput"><span class="identifier">get_local_time_point</span></code></a> if your compiler
+        supports them, as they provide more accurate semantics.
       </p>
 <p>
         As opposed to <code class="computeroutput"><span class="identifier">time_point</span></code>,
-        this type allows representing invalid and zero dates.
+        this type allows representing MySQL invalid and zero dates. These values
+        are allowed by MySQL but don't represent real dates.
       </p>
 <p>
-        Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql.hpp" target="_top">boost/mysql.hpp</a>&gt;</code>
+        Note: using <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span></code> time zone functionality under MSVC
+        may cause memory leaks to be reported. See <a href="https://github.com/microsoft/STL/issues/2047" target="_top">this
+        issue</a> for an explanation and <a href="https://github.com/microsoft/STL/issues/2504" target="_top">this
+        other issue</a> for a workaround.
       </p>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>

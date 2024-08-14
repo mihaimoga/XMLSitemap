@@ -29,43 +29,28 @@
           (11 of 12 overloads)</a>
 </h6></div></div></div>
 <p>
-            Constructor.
+            Copy constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__string.string.overload11.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload11.synopsis"></a></span><a class="link" href="overload11.html#json.ref.boost__json__string.string.overload11.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">string</span><span class="special">(</span>
-    <span class="identifier">string</span><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">,</span>
-    <span class="identifier">storage_ptr</span> <span class="identifier">sp</span><span class="special">);</span>
+    <a class="link" href="../../boost__json__string.html" title="string"><code class="literal">string</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">other</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__string.string.overload11.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload11.description"></a></span><a class="link" href="overload11.html#json.ref.boost__json__string.string.overload11.description">Description</a>
           </h6>
 <p>
-            Construct the contents with those of <code class="computeroutput"><span class="identifier">other</span></code>
-            using move semantics.
+            Construct the contents with a copy of <code class="computeroutput"><span class="identifier">other</span></code>.
           </p>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">==</span> <span class="special">*</span><span class="identifier">sp</span></code>,
-                ownership of the underlying memory is transferred in constant time,
-                with no possibility of exceptions. After construction, the moved-from
-                string behaves as if newly constructed with its current <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>. Otherwise,
-              </li>
-<li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">!=</span> <span class="special">*</span><span class="identifier">sp</span></code>,
-                a copy of the characters in <code class="computeroutput"><span class="identifier">other</span></code>
-                is made. In this case, the moved-from string is not changed.
-              </li>
-</ul></div>
 <h6>
 <a name="json.ref.boost__json__string.string.overload11.h2"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload11.complexity"></a></span><a class="link" href="overload11.html#json.ref.boost__json__string.string.overload11.complexity">Complexity</a>
           </h6>
 <p>
-            Constant or linear in <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
+            Linear in <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
           </p>
 <h6>
 <a name="json.ref.boost__json__string.string.overload11.h3"></a>
@@ -97,8 +82,7 @@
                     </p>
                   </th>
 </tr></thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>
                     <p>
                       <code class="computeroutput"><span class="identifier">other</span></code>
@@ -106,26 +90,10 @@
                   </td>
 <td>
                     <p>
-                      The string to assign from.
+                      The string to use as a source to copy from.
                     </p>
                   </td>
-</tr>
-<tr>
-<td>
-                    <p>
-                      <code class="computeroutput"><span class="identifier">sp</span></code>
-                    </p>
-                  </td>
-<td>
-                    <p>
-                      An optional pointer to the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
-                      to use. The container will acquire shared ownership of the
-                      memory resource. The default argument for this parameter is
-                      <code class="computeroutput"><span class="special">{}</span></code>.
-                    </p>
-                  </td>
-</tr>
-</tbody>
+</tr></tbody>
 </table></div>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>

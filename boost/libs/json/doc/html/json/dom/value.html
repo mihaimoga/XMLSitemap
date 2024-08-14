@@ -136,6 +136,7 @@
 <col>
 <col>
 <col>
+<col>
 </colgroup>
 <thead><tr>
 <th>
@@ -161,6 +162,11 @@
 <th>
                 <p>
                   Pointer Access
+                </p>
+              </th>
+<th>
+                <p>
+                  <code class="computeroutput"><span class="identifier">result</span></code> Access
                 </p>
               </th>
 <th>
@@ -203,6 +209,11 @@
               </td>
 <td>
                 <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_array.html" title="value::try_as_array"><code class="computeroutput"><span class="identifier">try_as_array</span></code></a>
+                </p>
+              </td>
+<td>
+                <p>
                   <a class="link" href="../ref/boost__json__value/as_array.html" title="value::as_array"><code class="computeroutput"><span class="identifier">as_array</span></code></a>
                 </p>
               </td>
@@ -236,6 +247,11 @@
 <td>
                 <p>
                   <a class="link" href="../ref/boost__json__value/if_object.html" title="value::if_object"><code class="computeroutput"><span class="identifier">if_object</span></code></a>
+                </p>
+              </td>
+<td>
+                <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_object.html" title="value::try_as_object"><code class="computeroutput"><span class="identifier">try_as_object</span></code></a>
                 </p>
               </td>
 <td>
@@ -277,6 +293,11 @@
               </td>
 <td>
                 <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_string.html" title="value::try_as_string"><code class="computeroutput"><span class="identifier">try_as_string</span></code></a>
+                </p>
+              </td>
+<td>
+                <p>
                   <a class="link" href="../ref/boost__json__value/as_string.html" title="value::as_string"><code class="computeroutput"><span class="identifier">as_string</span></code></a>
                 </p>
               </td>
@@ -310,6 +331,11 @@
 <td>
                 <p>
                   <a class="link" href="../ref/boost__json__value/if_int64.html" title="value::if_int64"><code class="computeroutput"><span class="identifier">if_int64</span></code></a>
+                </p>
+              </td>
+<td>
+                <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_int64.html" title="value::try_as_int64"><code class="computeroutput"><span class="identifier">try_as_int64</span></code></a>
                 </p>
               </td>
 <td>
@@ -351,6 +377,11 @@
               </td>
 <td>
                 <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_uint64.html" title="value::try_as_uint64"><code class="computeroutput"><span class="identifier">try_as_uint64</span></code></a>
+                </p>
+              </td>
+<td>
+                <p>
                   <a class="link" href="../ref/boost__json__value/as_uint64.html" title="value::as_uint64"><code class="computeroutput"><span class="identifier">as_uint64</span></code></a>
                 </p>
               </td>
@@ -384,6 +415,11 @@
 <td>
                 <p>
                   <a class="link" href="../ref/boost__json__value/if_double.html" title="value::if_double"><code class="computeroutput"><span class="identifier">if_double</span></code></a>
+                </p>
+              </td>
+<td>
+                <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_double.html" title="value::try_as_double"><code class="computeroutput"><span class="identifier">try_as_double</span></code></a>
                 </p>
               </td>
 <td>
@@ -425,6 +461,11 @@
               </td>
 <td>
                 <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_bool.html" title="value::try_as_bool"><code class="computeroutput"><span class="identifier">try_as_bool</span></code></a>
+                </p>
+              </td>
+<td>
+                <p>
                   <a class="link" href="../ref/boost__json__value/as_bool.html" title="value::as_bool"><code class="computeroutput"><span class="identifier">as_bool</span></code></a>
                 </p>
               </td>
@@ -458,6 +499,11 @@
 <td>
                 <p>
                   <span class="emphasis"><em>---</em></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  <a class="link" href="../ref/boost__json__value/try_as_null.html" title="value::try_as_null"><code class="computeroutput"><span class="identifier">try_as_null</span></code></a>
                 </p>
               </td>
 <td>
@@ -711,6 +757,22 @@
 </pre>
 </td></tr>
 </table></div>
+<p>
+        Functions returning <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">result</span></code>
+        allow you to use both approaches:
+      </p>
+<pre class="programlisting"><span class="identifier">value</span> <span class="identifier">jv</span><span class="special">(</span> <span class="identifier">string_kind</span> <span class="special">);</span>
+<span class="keyword">if</span><span class="special">(</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">string</span><span class="special">&amp;&gt;</span> <span class="identifier">str</span> <span class="special">=</span> <span class="identifier">jv</span><span class="special">.</span><span class="identifier">try_as_string</span><span class="special">()</span> <span class="special">)</span>
+    <span class="special">*</span><span class="identifier">str</span> <span class="special">=</span> <span class="string">"Hello, world!"</span><span class="special">;</span>
+
+<span class="keyword">try</span>
+<span class="special">{</span>
+    <span class="identifier">jv</span><span class="special">.</span><span class="identifier">try_as_bool</span><span class="special">().</span><span class="identifier">value</span><span class="special">()</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
+<span class="special">}</span>
+<span class="keyword">catch</span><span class="special">(...)</span>
+<span class="special">{</span>
+<span class="special">}</span>
+</pre>
 <h5>
 <a name="json.dom.value.h1"></a>
         <span class="phrase"><a name="json.dom.value.formatted_output"></a></span><a class="link" href="value.html#json.dom.value.formatted_output">Formatted

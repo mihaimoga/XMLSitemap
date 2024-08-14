@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>Point-free style programming &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/boostbook.css" />
@@ -39,10 +40,10 @@
      Distributed under the Boost Software License, Version 1.0.
      (http://www.boost.org/LICENSE_1_0.txt)
 -->
-<div class="section" id="point-free-style-programming">
+<section id="point-free-style-programming">
 <h1>Point-free style programming<a class="headerlink" href="#point-free-style-programming" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Tacit_programming">Point-free style</a> programing(or tacit programming) is a style where the arguments to the function are not explicity defined. Rather, the function is defined as the composition of other functions where function adaptors manipulate the function arguments. The advantage of using point-free style in C++ is the template machinery involved with function arguments can be avoided.</p>
-<div class="section" id="variadic-print">
+<section id="variadic-print">
 <h2>Variadic print<a class="headerlink" href="#variadic-print" title="Permalink to this heading">¶</a></h2>
 <p>For example, if we want to write a variadic print function that prints each argument, like this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">print</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;World&quot;</span><span class="p">);</span><span class="w"></span>
@@ -92,8 +93,8 @@
 </pre></div>
 </div>
 <p>With each argument on its own line.</p>
-</div>
-<div class="section" id="variadic-sum">
+</section>
+<section id="variadic-sum">
 <h2>Variadic sum<a class="headerlink" href="#variadic-sum" title="Permalink to this heading">¶</a></h2>
 <p>Another example, say we would like to write a varidiac version of <code class="docutils literal notranslate"><span class="pre">max</span></code>. We could implement it like this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Base case</span>
@@ -120,8 +121,8 @@
 </pre></div>
 </div>
 <p>By using <a class="reference internal" href="../../include/boost/hof/fold.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">fold</span></code></span></a>, <code class="docutils literal notranslate"><span class="pre">max(1,</span> <span class="pre">2,</span> <span class="pre">4,</span> <span class="pre">3)</span></code> will call <code class="docutils literal notranslate"><span class="pre">std::max</span></code> like <code class="docutils literal notranslate"><span class="pre">std::max(std::max(std::max(1,</span> <span class="pre">2),</span> <span class="pre">4),</span> <span class="pre">3)</span></code> and <code class="docutils literal notranslate"><span class="pre">max(0.1,</span> <span class="pre">0.2,</span> <span class="pre">0.5,</span> <span class="pre">0.4)</span></code> will be called like <code class="docutils literal notranslate"><span class="pre">std::max(std::max(std::max(0.1,</span> <span class="pre">0.2),</span> <span class="pre">0.5),</span> <span class="pre">0.4)</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

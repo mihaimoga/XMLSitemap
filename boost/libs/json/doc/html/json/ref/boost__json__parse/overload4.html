@@ -1,13 +1,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>parse (4 of 6 overloads)</title>
+<title>parse (4 of 4 overloads)</title>
 <link rel="stylesheet" href="../../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../../index.html" title="Chapter 1. Boost.JSON">
 <link rel="up" href="../boost__json__parse.html" title="parse">
-<link rel="prev" href="overload3.html" title="parse (3 of 6 overloads)">
-<link rel="next" href="overload5.html" title="parse (5 of 6 overloads)">
+<link rel="prev" href="overload3.html" title="parse (3 of 4 overloads)">
+<link rel="next" href="../boost__json__parse_into.html" title="parse_into">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,12 +21,12 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="overload3.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../boost__json__parse.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="overload5.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="overload3.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../boost__json__parse.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../boost__json__parse_into.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h5 class="title">
-<a name="json.ref.boost__json__parse.overload4"></a><a class="link" href="overload4.html" title="parse (4 of 6 overloads)">parse (4 of
-        6 overloads)</a>
+<a name="json.ref.boost__json__parse.overload4"></a><a class="link" href="overload4.html" title="parse (4 of 4 overloads)">parse (4 of
+        4 overloads)</a>
 </h5></div></div></div>
 <p>
           Return parsed JSON as a <a class="link" href="../boost__json__value.html" title="value"><code class="computeroutput"><span class="identifier">value</span></code></a>.
@@ -38,12 +38,11 @@
 <p>
           Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json/parse.hpp" target="_top">boost/json/parse.hpp</a>&gt;</code>
         </p>
-<pre class="programlisting"><span class="identifier">value</span>
+<pre class="programlisting"><a class="link" href="../boost__json__value.html" title="value"><code class="literal">value</code></a>
 <span class="identifier">parse</span><span class="special">(</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">istream</span><span class="special">&amp;</span> <span class="identifier">is</span><span class="special">,</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
-    <span class="identifier">storage_ptr</span> <span class="identifier">sp</span> <span class="special">=</span> <span class="special">{},</span>
-    <span class="identifier">parse_options</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">opt</span> <span class="special">=</span> <span class="special">{});</span>
+    <a href="https://en.cppreference.com/w/cpp/io/basic_istream" target="_top"><code class="literal">std::istream</code></a><span class="special">&amp;</span> <span class="identifier">is</span><span class="special">,</span>
+    <a class="link" href="../boost__json__storage_ptr.html" title="storage_ptr"><code class="literal">storage_ptr</code></a> <span class="identifier">sp</span> <span class="special">=</span> <span class="special">{},</span>
+    <a class="link" href="../boost__json__parse_options.html" title="parse_options"><code class="literal">parse_options</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">opt</span> <span class="special">=</span> <span class="special">{});</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__parse.overload4.h1"></a>
@@ -53,8 +52,7 @@
           This function reads data from an input stream and parses it to produce
           a complete JSON entity, returned as a <a class="link" href="../boost__json__value.html" title="value"><code class="computeroutput"><span class="identifier">value</span></code></a>. If the stream does not
           contain a complete serialized JSON, or contains extra non-whitespace data,
-          an error occurs. In this case the returned value will be <code class="computeroutput"><span class="identifier">null</span></code>, using the <a href="../../allocators/storage_ptr.html#json.allocators.storage_ptr.default_memory_resource" target="_top">default
-          memory resource</a>.
+          an exception is thrown.
         </p>
 <h6>
 <a name="json.ref.boost__json__parse.overload4.h2"></a>
@@ -69,7 +67,8 @@
           Safety</a>
         </h6>
 <p>
-          Basic guarantee. Calls to <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">::</span><span class="identifier">allocate</span></code>
+          Basic guarantee. Throws <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span></code>
+          on failed parse. Calls to <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">::</span><span class="identifier">allocate</span></code>
           may throw. The stream may throw as described by <a href="https://en.cppreference.com/w/cpp/io/basic_ios/exceptions" target="_top"><code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">ios</span><span class="special">::</span><span class="identifier">exceptions</span></code></a>.
         </p>
 <h6>
@@ -77,8 +76,7 @@
           <span class="phrase"><a name="json.ref.boost__json__parse.overload4.return_value"></a></span><a class="link" href="overload4.html#json.ref.boost__json__parse.overload4.return_value">Return Value</a>
         </h6>
 <p>
-          A value representing the parsed JSON, or a <code class="computeroutput"><span class="identifier">null</span></code>
-          if any error occurred.
+          A value representing the parsed JSON upon success.
         </p>
 <h6>
 <a name="json.ref.boost__json__parse.overload4.h5"></a>
@@ -111,18 +109,6 @@
 <td>
                   <p>
                     The stream to read from.
-                  </p>
-                </td>
-</tr>
-<tr>
-<td>
-                  <p>
-                    <code class="computeroutput"><span class="identifier">ec</span></code>
-                  </p>
-                </td>
-<td>
-                  <p>
-                    Set to the error, if any occurred.
                   </p>
                 </td>
 </tr>
@@ -163,7 +149,7 @@
 <p>
           <a class="link" href="../boost__json__parse_options.html" title="parse_options"><code class="computeroutput"><span class="identifier">parse_options</span></code></a>,
           <a class="link" href="../boost__json__stream_parser.html" title="stream_parser"><code class="computeroutput"><span class="identifier">stream_parser</span></code></a>,
-          <a class="link" href="../boost__json__value/operator__gt__gt_.html" title="value::operator&gt;&gt;"><code class="computeroutput"><span class="identifier">value</span><span class="special">::</span><span class="keyword">operator</span><span class="special">&gt;&gt;</span></code></a>.
+          <a class="link" href="../boost__json__value/operator__gt__gt__fr.html" title="value::operator&gt;&gt;"><code class="computeroutput"><span class="identifier">value</span><span class="special">::</span><span class="keyword">operator</span><span class="special">&gt;&gt;</span></code></a>.
         </p>
 <p>
           Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json.hpp" target="_top">boost/json.hpp</a>&gt;</code>
@@ -176,7 +162,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="overload3.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../boost__json__parse.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="overload5.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="overload3.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../boost__json__parse.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../boost__json__parse_into.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

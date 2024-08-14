@@ -36,48 +36,40 @@
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload10.synopsis"></a></span><a class="link" href="overload10.html#json.ref.boost__json__array.array.overload10.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">array</span><span class="special">(</span>
-    <span class="identifier">array</span><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">,</span>
-    <span class="identifier">storage_ptr</span> <span class="identifier">sp</span><span class="special">);</span>
+    <a class="link" href="../../boost__json__array.html" title="array"><code class="literal">array</code></a><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__array.array.overload10.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload10.description"></a></span><a class="link" href="overload10.html#json.ref.boost__json__array.array.overload10.description">Description</a>
           </h6>
 <p>
-            The array is constructed with the contents of <code class="computeroutput"><span class="identifier">other</span></code>
-            by move semantics, using the specified memory resource:
+            The array is constructed by acquiring ownership of the contents of <code class="computeroutput"><span class="identifier">other</span></code> and shared ownership of <code class="computeroutput"><span class="identifier">other</span></code>'s memory resource.
           </p>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">==</span> <span class="special">*</span><span class="identifier">sp</span></code>,
-                ownership of the underlying memory is transferred in constant time,
-                with no possibility of exceptions. After construction, the moved-from
-                array behaves as if newly constructed with its current storage pointer.
-              </li>
-<li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">!=</span> <span class="special">*</span><span class="identifier">sp</span></code>,
-                an element-wise copy is performed, which may throw. In this case,
-                the moved-from array is not changed.
-              </li>
-</ul></div>
 <h6>
 <a name="json.ref.boost__json__array.array.overload10.h2"></a>
-            <span class="phrase"><a name="json.ref.boost__json__array.array.overload10.complexity"></a></span><a class="link" href="overload10.html#json.ref.boost__json__array.array.overload10.complexity">Complexity</a>
+            <span class="phrase"><a name="json.ref.boost__json__array.array.overload10.remarks"></a></span><a class="link" href="overload10.html#json.ref.boost__json__array.array.overload10.remarks">Remarks</a>
           </h6>
 <p>
-            At most, linear in <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
+            After construction, the moved-from array behaves as if newly constructed
+            with its current storage pointer.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload10.h3"></a>
+            <span class="phrase"><a name="json.ref.boost__json__array.array.overload10.complexity"></a></span><a class="link" href="overload10.html#json.ref.boost__json__array.array.overload10.complexity">Complexity</a>
+          </h6>
+<p>
+            Constant.
+          </p>
+<h6>
+<a name="json.ref.boost__json__array.array.overload10.h4"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload10.exception_safety"></a></span><a class="link" href="overload10.html#json.ref.boost__json__array.array.overload10.exception_safety">Exception
             Safety</a>
           </h6>
 <p>
-            Strong guarantee. Calls to <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">::</span><span class="identifier">allocate</span></code>
-            may throw.
+            No-throw guarantee.
           </p>
 <h6>
-<a name="json.ref.boost__json__array.array.overload10.h4"></a>
+<a name="json.ref.boost__json__array.array.overload10.h5"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload10.parameters"></a></span><a class="link" href="overload10.html#json.ref.boost__json__array.array.overload10.parameters">Parameters</a>
           </h6>
 <div class="informaltable"><table class="table">
@@ -97,8 +89,7 @@
                     </p>
                   </th>
 </tr></thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>
                     <p>
                       <code class="computeroutput"><span class="identifier">other</span></code>
@@ -109,22 +100,7 @@
                       The container to move
                     </p>
                   </td>
-</tr>
-<tr>
-<td>
-                    <p>
-                      <code class="computeroutput"><span class="identifier">sp</span></code>
-                    </p>
-                  </td>
-<td>
-                    <p>
-                      A pointer to the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
-                      to use. The container will acquire shared ownership of the
-                      memory resource.
-                    </p>
-                  </td>
-</tr>
-</tbody>
+</tr></tbody>
 </table></div>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>

@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>IO extensions - Boost.GIL  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/style.css" type="text/css" />
@@ -23,6 +24,9 @@
     <script type="text/javascript" src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sphinx_highlight.js"></script>
+    <script data-url_root="./" id="documentation_options" src="./_static/documentation_options.js"></script>
+    <script src="./_static/searchtools.js"></script>
+    <script src="./_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="Boost.GIL  documentation" href="index.html" />
@@ -66,9 +70,9 @@
       
     </div>
       
-  <div class="section" id="io-extensions">
+  <section id="io-extensions">
 <h1>IO extensions</h1>
-<div class="section" id="overview">
+<section id="overview">
 <h2>Overview</h2>
 <p>This extension to boost::gil provides an easy to use interface for reading and
 writing various image formats. It also includes a framework for adding
@@ -79,8 +83,8 @@ Also, this extension requires Boost version 1.42 and up.
 Furthermore the GIL extension Toolbox is used.</p>
 <p>For adding new image formats please refer to section
 [link gil.io.using_io.extending_gil__io_with_new_formats Extending GIL::IO with new Formats].</p>
-</div>
-<div class="section" id="supported-platforms">
+</section>
+<section id="supported-platforms">
 <h2>Supported Platforms</h2>
 <p>All platforms supported by Boost which have a decent C++ compiler.
 Depending on the image format one or more of the following image
@@ -98,8 +102,8 @@ dependencies are required.</p>
 <p>There are more details available in this documentation on the image format
 dependencies. Please see section
 [link gil.io.using_io.supported_image_formats Supported Image Formats].</p>
-</div>
-<div class="section" id="tutorial">
+</section>
+<section id="tutorial">
 <h2>Tutorial</h2>
 <p>Thanks to modern C++ programming techniques the interface for this library
 is rather small and easy to use. In this tutorial I’ll give you a short
@@ -108,7 +112,7 @@ For more details please refer to section 3.</p>
 <p>For each supported IO format a single top-level header file is provided.
 For instance, include <cite>boost/gil/extension/io/tiff.hpp</cite> to be able
 to read or write TIFF files.</p>
-<div class="section" id="reading-an-image">
+<section id="reading-an-image">
 <h3>Reading An Image</h3>
 <p>Probably the most common case to read a tiff image can be done as follows:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filename</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;image.tif&quot;</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
@@ -138,8 +142,8 @@ dependent settings.
 Please see the specific image format sections
 [link gil.io.using_io.supported_image_formats Supported Image Formats]
 for more details.</p>
-</div>
-<div class="section" id="writing-an-image">
+</section>
+<section id="writing-an-image">
 <h3>Writing An Image</h3>
 <p>Besides reading the information also writing is the second part of this
 Boost.GIL extension. Writing is a lot simpler than reading since an existing
@@ -172,8 +176,8 @@ For instance, a user can specify the JPEG quality when writing like this:</p>
 </div>
 <p>The above example will write an image where the jpeg quality is
 set to 95 percent.</p>
-</div>
-<div class="section" id="reading-and-writing-in-memory-buffers">
+</section>
+<section id="reading-and-writing-in-memory-buffers">
 <h3>Reading And Writing In-Memory Buffers</h3>
 <p>Reading and writing in-memory buffers are supported as well. See as follows:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// 1. Read an image.</span>
@@ -204,11 +208,11 @@ set to 95 percent.</p>
 </div>
 <p>In case the user is using his own stream classes he has to make sure it
 has the common interface read, write, seek, close, etc. Interface.</p>
-</div>
-</div>
-<div class="section" id="using-io">
+</section>
+</section>
+<section id="using-io">
 <h2>Using IO</h2>
-<div class="section" id="general-overview">
+<section id="general-overview">
 <h3>General Overview</h3>
 <p>The tutorial pointed out some use cases for reading and writing images in
 various image formats. This section will provide a more thorough overview.</p>
@@ -219,7 +223,9 @@ interface is rather small and hopefully easy to understand.</p>
 directly with the underlying image format. For that each reader or writer
 provides access to the so-called backend.</p>
 <p>For instance:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">get_reader_backend</span><span class="o">&lt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">bmp_tag</span><span class="w"> </span><span class="n">tag_t</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">get_reader_backend</span><span class="o">&lt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"></span>
 <span class="w">                          </span><span class="p">,</span><span class="w"> </span><span class="n">tag_t</span><span class="w"></span>
 <span class="w">                          </span><span class="o">&gt;::</span><span class="n">type</span><span class="w"> </span><span class="n">backend_t</span><span class="p">;</span><span class="w"></span>
 
@@ -232,8 +238,8 @@ provides access to the so-called backend.</p>
 </pre></div>
 </div>
 <p>Of course, the typedef can be removed when using c++11’s auto feature.</p>
-</div>
-<div class="section" id="read-interface">
+</section>
+<section id="read-interface">
 <h3>Read Interface</h3>
 <p>As the Tutorial demonstrated there are a few ways to read images.
 Here is an enumeration of all read functions with a short description:</p>
@@ -288,7 +294,7 @@ The following example shows this feature:</p>
 <span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="n">gray16_image_t</span><span class="w"></span>
 <span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="n">rgb8_image_t</span><span class="w"></span>
 <span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="n">rgba8_image_t</span><span class="w"></span>
-<span class="w">         </span><span class="o">&gt;</span><span class="w"> </span><span class="n">my_img_types</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">runtime_image</span><span class="p">;</span><span class="w"></span>
+<span class="w">         </span><span class="o">&gt;</span><span class="w"> </span><span class="n">runtime_image</span><span class="p">;</span><span class="w"></span>
 
 <span class="n">read_image</span><span class="p">(</span><span class="w"> </span><span class="n">filename</span><span class="w"></span>
 <span class="w">          </span><span class="p">,</span><span class="w"> </span><span class="n">runtime_image</span><span class="w"></span>
@@ -340,8 +346,8 @@ The following code sample shows the usage:</p>
 </div>
 <p>There are many ways to traverse an image but for as of now only by
 scanline is supported.</p>
-</div>
-<div class="section" id="write-interface">
+</section>
+<section id="write-interface">
 <h3>Write Interface</h3>
 <p>There is only one function for writing out images, write_view.
 Similar to reading the first parameter is either a filename or a device.
@@ -362,7 +368,7 @@ the possible settings.</p>
 <span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="n">gray16_image_t</span><span class="w"></span>
 <span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="n">rgb8_image_t</span><span class="w"></span>
 <span class="w">         </span><span class="p">,</span><span class="w"> </span><span class="n">rgba8_image_t</span><span class="w"></span>
-<span class="w">         </span><span class="o">&gt;</span><span class="w"> </span><span class="n">my_img_types</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">runtime_image</span><span class="p">;</span><span class="w"></span>
+<span class="w">         </span><span class="o">&gt;</span><span class="w"> </span><span class="n">runtime_image</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// fill any_image</span>
 
@@ -372,16 +378,12 @@ the possible settings.</p>
 <span class="w">          </span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="compiler-symbols">
+</section>
+<section id="compiler-symbols">
 <h3>Compiler Symbols</h3>
 <p>The following table gives an overview of all supported compiler symbols
 that can be set by the user:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 34%" />
-<col style="width: 66%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Symbol</p></th>
 <th class="head"><p>Description</p></th>
@@ -438,10 +440,10 @@ that can be set by the user:</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="supported-image-formats">
+</section>
+<section id="supported-image-formats">
 <h3>Supported Image Formats</h3>
-<div class="section" id="bmp">
+<section id="bmp">
 <h4>BMP</h4>
 <p>For a general overview of the BMP image file format go to the
 following <a class="reference external" href="http://en.wikipedia.org/wiki/BMP_file_format">BMP_Wiki</a>.</p>
@@ -450,18 +452,18 @@ of the BMP format which are usually referred to XBM and XPM formats.</p>
 <p>Here, only the MS Windows and OS/2 format is relevant.</p>
 <p>Currently the code is able to read and write the following image types:</p>
 <dl class="field-list simple">
-<dt class="field-odd">Read</dt>
+<dt class="field-odd">Read<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">gray1_image_t</span></code>, <code class="docutils literal notranslate"><span class="pre">gray4_image_t</span></code>, <code class="docutils literal notranslate"><span class="pre">gray8_image_t</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb8_image_t</span></code> and, <code class="docutils literal notranslate"><span class="pre">rgba8_image_t</span></code></p>
 </dd>
-<dt class="field-even">Write</dt>
+<dt class="field-even">Write<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">rgb8_image_t</span></code> and, <code class="docutils literal notranslate"><span class="pre">rgba8_image_t</span></code></p>
 </dd>
 </dl>
 <p>The lack of having an indexed image type in gil restricts the current
 interface to only write out non-indexed images.
 This is subject to change soon.</p>
-</div>
-<div class="section" id="jpeg">
+</section>
+<section id="jpeg">
 <h4>JPEG</h4>
 <p>For a general overview of the JPEG image file format go to the
 following <a class="reference external" href="http://en.wikipedia.org/wiki/JPEG">JPEG_Wiki</a>.</p>
@@ -473,10 +475,10 @@ I strongly recommend the user to build the library yourself.
 It could potentially save you a lot of trouble.</p>
 <p>Currently the code is able to read and write the following image types:</p>
 <dl class="field-list simple">
-<dt class="field-odd">Read</dt>
+<dt class="field-odd">Read<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">gray8_image_t</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb8_image_t</span></code>, <code class="docutils literal notranslate"><span class="pre">cmyk8_image_t</span></code></p>
 </dd>
-<dt class="field-even">Write</dt>
+<dt class="field-even">Write<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">gray8_image_t</span></code>, <code class="docutils literal notranslate"><span class="pre">rgb8_image_t</span></code>, <code class="docutils literal notranslate"><span class="pre">cmyk8_image_t</span></code></p>
 </dd>
 </dl>
@@ -484,8 +486,8 @@ It could potentially save you a lot of trouble.</p>
 both color spaces aren’t available yet for gil.
 For now these color space are read as rgb images.
 This is subject to change soon.</p>
-</div>
-<div class="section" id="png">
+</section>
+<section id="png">
 <h4>PNG</h4>
 <p>For a general overview of the PNG image file format go to the
 following <a class="reference external" href="http://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG_Wiki</a>.</p>
@@ -497,17 +499,17 @@ I strongly recommend the user to build the library yourself.
 It could potentially save you a lot of trouble.</p>
 <p>Currently the code is able to read and write the following image types:</p>
 <dl class="field-list simple">
-<dt class="field-odd">Read</dt>
+<dt class="field-odd">Read<span class="colon">:</span></dt>
 <dd class="field-odd"><p>gray1, gray2, gray4, gray8, gray16, gray_alpha_8, gray_alpha_16, rgb8, rgb16, rgba8, rgba16</p>
 </dd>
-<dt class="field-even">Write</dt>
+<dt class="field-even">Write<span class="colon">:</span></dt>
 <dd class="field-even"><p>gray1, gray2, gray4, gray8, gray16, gray_alpha_8, gray_alpha_16, rgb8, rgb16, rgba8, rgba16</p>
 </dd>
 </dl>
 <p>For reading gray_alpha images the user has to compile application with <code class="docutils literal notranslate"><span class="pre">BOOST_GIL_IO_ENABLE_GRAY_ALPHA</span></code>
 macro  defined. This color space is defined in the toolbox by using <code class="docutils literal notranslate"><span class="pre">gray_alpha.hpp</span></code>.</p>
-</div>
-<div class="section" id="pnm">
+</section>
+<section id="pnm">
 <h4>PNM</h4>
 <p>For a general overview of the PNM image file format go to the
 following <a class="reference external" href="http://en.wikipedia.org/wiki/Portable_anymap">PNM_Wiki</a>. No external library is needed for the pnm format.</p>
@@ -515,38 +517,38 @@ following <a class="reference external" href="http://en.wikipedia.org/wiki/Porta
 that is types from P1 through P6; can write only binary formats.</p>
 <p>Currently the code is able to read and write the following image types:</p>
 <dl class="field-list simple">
-<dt class="field-odd">Read</dt>
+<dt class="field-odd">Read<span class="colon">:</span></dt>
 <dd class="field-odd"><p>gray1, gray8, rgb8</p>
 </dd>
-<dt class="field-even">Write</dt>
+<dt class="field-even">Write<span class="colon">:</span></dt>
 <dd class="field-even"><p>gray1, gray8, rgb8</p>
 </dd>
 </dl>
 <p>When reading a mono text image the data is read as a gray8 image.</p>
-</div>
-<div class="section" id="raw">
+</section>
+<section id="raw">
 <h4>RAW</h4>
 <p>For a general overview see <a class="reference external" href="http://en.wikipedia.org/wiki/Raw_image_format">RAW_Wiki</a>.</p>
 <p>Currently the extension is only able to read rgb8 images.</p>
-</div>
-<div class="section" id="targa">
+</section>
+<section id="targa">
 <h4>TARGA</h4>
 <p>For a general overview of the BMP image file format go to the
 following <a class="reference external" href="http://en.wikipedia.org/wiki/Truevision_TGA">TARGA_Wiki</a>.</p>
 <p>Currently the code is able to read and write the following image types:</p>
 <dl class="field-list simple">
-<dt class="field-odd">Read</dt>
+<dt class="field-odd">Read<span class="colon">:</span></dt>
 <dd class="field-odd"><p>rgb8_image_t and rgba8_image_t</p>
 </dd>
-<dt class="field-even">Write</dt>
+<dt class="field-even">Write<span class="colon">:</span></dt>
 <dd class="field-even"><p>rgb8_image_t and rgba8_image_t</p>
 </dd>
 </dl>
 <p>The lack of having an indexed image type in gil restricts the current
 interface to only write out non-indexed images.
 This is subject to change soon.</p>
-</div>
-<div class="section" id="tiff">
+</section>
+<section id="tiff">
 <h4>TIFF</h4>
 <p>For a general overview of the TIFF image file format go to the
 following <a class="reference external" href="http://en.wikipedia.org/wiki/Tagged_Image_File_Format">TIFF_Wiki</a>.</p>
@@ -579,9 +581,9 @@ new milestone. Here is an incomplete lists:</p>
 <p>This gil extension uses two different test image suites to test read and
 write capabilities. See <code class="docutils literal notranslate"><span class="pre">test_image</span></code> folder.
 It’s advisable to use ImageMagick test viewer to display images.</p>
-</div>
-</div>
-<div class="section" id="extending-gil-io-with-new-formats">
+</section>
+</section>
+<section id="extending-gil-io-with-new-formats">
 <h3>Extending GIL::IO with new Formats</h3>
 <p>Extending the gil::io with new formats is meant to be simple and
 straightforward. Before adding I would recommend to have a look at existing
@@ -689,9 +691,9 @@ information that are necessary to write an image:</p>
 </div>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="running-gil-io-tests">
+</section>
+</section>
+<section id="running-gil-io-tests">
 <h2>Running gil::io tests</h2>
 <p>gil::io comes with a large suite of test cases which reads and writes various
 file formats. It uses some test image suites which can be found online or
@@ -703,24 +705,24 @@ To enable unit tests which make use of them set the following compiler options
 <p>The following list provides all links to the image suites the compiler symbol
 to enable the tests:</p>
 <dl class="field-list simple">
-<dt class="field-odd">BMP</dt>
+<dt class="field-odd">BMP<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="http://entropymine.com/jason/bmpsuite/">BMP_TEST_FILES</a>                 – BOOST_GIL_IO_USE_BMP_TEST_SUITE_IMAGES</p>
 </dd>
-<dt class="field-even">PNG</dt>
+<dt class="field-even">PNG<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="http://www.schaik.com/pngsuite/pngsuite.html">PNG_TEST_FILES</a>                 – BOOST_GIL_IO_USE_PNG_TEST_SUITE_IMAGES</p>
 </dd>
-<dt class="field-odd">PNM</dt>
+<dt class="field-odd">PNM<span class="colon">:</span></dt>
 <dd class="field-odd"><p>request files from me           – BOOST_GIL_IO_USE_PNM_TEST_SUITE_IMAGES</p>
 </dd>
-<dt class="field-even">TIFF</dt>
+<dt class="field-even">TIFF<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="http://www.remotesensing.org/libtiff/images.html">TIFF_LIB_TIFF_TEST_FILES</a>       – BOOST_GIL_IO_USE_TIFF_LIBTIFF_TEST_SUITE_IMAGES</p>
 </dd>
-<dt class="field-odd">TIFF</dt>
+<dt class="field-odd">TIFF<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="ftp://ftp.graphicsmagick.org/pub/tiff-samples/tiff-sample-images-be.tar.gz">TIFF_GRAPHICSMAGICK_TEST_FILES</a> – BOOST_GIL_IO_USE_TIFF_GRAPHICSMAGICK_TEST_SUITE_IMAGES</p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
     <div class="navbar" style="text-align:right;">
@@ -732,7 +734,7 @@ to enable the tests:</p>
     </div>
     </div>
     <div class="footer" role="contentinfo">
-      Last updated on 2024-04-11 18:04:44.
+      Last updated on 2024-07-24 04:07:44.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>

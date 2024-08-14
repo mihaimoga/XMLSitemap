@@ -93,7 +93,7 @@
 <pre class="programlisting"><span class="comment">// description, price and show_in_store are not trusted, since they may</span>
 <span class="comment">// have been read from a file or an HTTP endpoint</span>
 <span class="keyword">void</span> <span class="identifier">insert_product</span><span class="special">(</span>
-    <span class="identifier">tcp_ssl_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
+    <span class="identifier">tcp_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
     <span class="keyword">const</span> <span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span>
     <span class="identifier">string_view</span> <span class="identifier">description</span><span class="special">,</span>
     <span class="keyword">int</span> <span class="identifier">price</span><span class="special">,</span>
@@ -141,7 +141,7 @@
 <pre class="programlisting"><span class="comment">// description, price and show_in_store are not trusted, since they may</span>
 <span class="comment">// have been read from a file or an HTTP endpoint</span>
 <span class="keyword">void</span> <span class="identifier">insert_product</span><span class="special">(</span>
-    <span class="identifier">tcp_ssl_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
+    <span class="identifier">tcp_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
     <span class="keyword">const</span> <span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">&gt;</span> <span class="identifier">description</span><span class="special">,</span>
     <span class="keyword">int</span> <span class="identifier">price</span><span class="special">,</span>
@@ -192,7 +192,7 @@
       a statement to a <code class="computeroutput"><span class="identifier">field</span></code> or
       <code class="computeroutput"><span class="identifier">field_view</span></code> iterator range:
     </p>
-<pre class="programlisting"><span class="keyword">void</span> <span class="identifier">exec_statement</span><span class="special">(</span><span class="identifier">tcp_ssl_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">field</span><span class="special">&gt;&amp;</span> <span class="identifier">params</span><span class="special">)</span>
+<pre class="programlisting"><span class="keyword">void</span> <span class="identifier">exec_statement</span><span class="special">(</span><span class="identifier">tcp_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">field</span><span class="special">&gt;&amp;</span> <span class="identifier">params</span><span class="special">)</span>
 <span class="special">{</span>
     <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">params</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">params</span><span class="special">.</span><span class="identifier">end</span><span class="special">()),</span> <span class="identifier">result</span><span class="special">);</span>

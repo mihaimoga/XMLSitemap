@@ -37,20 +37,20 @@
       <span class="phrase"><a name="circular_buffer.implementation.thread_safety"></a></span><a class="link" href="implementation.html#circular_buffer.implementation.thread_safety">Thread-Safety</a>
     </h4>
 <p>
-      The thread-safety of the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      The thread-safety of the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       is the same as the thread-safety of containers in most STL implementations.
-      This means the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      This means the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       is not fully thread-safe. The thread-safety is guaranteed only in the sense
-      that simultaneous accesses to distinct instances of the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
-      are safe, and simultaneous read accesses to a shared <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      that simultaneous accesses to distinct instances of the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      are safe, and simultaneous read accesses to a shared <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       are safe.
     </p>
 <p>
-      If multiple threads access a single <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>,
+      If multiple threads access a single <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>,
       and at least one of the threads may potentially write, then the user is responsible
       for ensuring mutual exclusion between the threads during the container accesses.
       The mutual exclusion between the threads can be achieved by wrapping operations
-      of the underlying <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      of the underlying <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       with a lock acquisition and release. (See the Bounded Buffer example code at
       <a href="../../../libs/circular_buffer/example/circular_buffer_bound_example.cpp" target="_top">circular_buffer_bound_example.cpp</a>)
     </p>
@@ -60,11 +60,11 @@
       Operation</a>
     </h4>
 <p>
-      Overwrite operation occurs when an element is inserted into a full <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> - the old element
+      Overwrite operation occurs when an element is inserted into a full <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> - the old element
       is being overwritten by the new one. There was a discussion what exactly "overwriting
       of an element" means during the formal review. It may be either a destruction
       of the original element and a consequent inplace construction of a new element
-      or it may be an assignment of a new element into an old one. The <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> implements assignment
+      or it may be an assignment of a new element into an old one. The <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> implements assignment
       because it is more effective.
     </p>
 <p>
@@ -105,25 +105,25 @@
         </li>
 </ul></div>
 <p>
-      It is apparent that the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      It is apparent that the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       implements the third option. But it may be less apparent it does not implement
       any other option - especially the first two. One can get an impression that
-      the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> should
+      the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> should
       implement first three options and offer a mechanism of choosing among them.
       This impression is wrong.
     </p>
 <p>
-      The <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> was
+      The <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> was
       designed and optimized to be circular (which means overwriting the oldest data
       when full). If such a controlling mechanism had been enabled, it would just
-      complicate the matters and the usage of the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      complicate the matters and the usage of the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       would be probably less straightforward.
     </p>
 <p>
       Moreover, the first two options (and the fourth option as well) do not require
       the buffer to be circular at all. If there is a need for the first or second
       option, consider implementing an adaptor of e.g. std::vector. In this case
-      the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> is
+      the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> is
       not suitable for adapting, because, contrary to std::vector, it bears an overhead
       for its circular behaviour.
     </p>
@@ -135,7 +135,7 @@
 <p>
       When reading or removing an element from an empty buffer, the buffer should
       be able to notify the data consumer (e.g. by throwing underflow exception)
-      that there are no elements stored in it. The <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      that there are no elements stored in it. The <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       does not implement such a behaviour for two reasons:
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -148,13 +148,13 @@
 </ul></div>
 <p>
       It is considered to be a bug to read or remove an element (e.g. by calling
-      <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html#idm2066-bb">front()</a></code> or
-      <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html#idm3438-bb">pop_back()</a></code>)
-      from an empty std container and from an empty <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html#doxygen.boost_circular_buffer_c___reference.classboost_1_1circular__buffer_1a0d5fdeabeb352f47d1f7bb1ea8d9819f">front()</a></code> or
+      <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html#doxygen.boost_circular_buffer_c___reference.classboost_1_1circular__buffer_1adf0da00cb501bea75afbbfab9f546a07">pop_back()</a></code>)
+      from an empty std container and from an empty <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       as well. The data consumer has to test if the container is not empty before
-      reading/removing from it by testing <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html#idm2572-bb">empty()</a></code>.
-      However, when reading from the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>,
-      there is an option to rely on the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html#idm2000-bb">at()</a></code>
+      reading/removing from it by testing <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html#doxygen.boost_circular_buffer_c___reference.classboost_1_1circular__buffer_1a12c932f15d9028d99dd87ae890e60088">empty()</a></code>.
+      However, when reading from the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>,
+      there is an option to rely on the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html#doxygen.boost_circular_buffer_c___reference.classboost_1_1circular__buffer_1acd84838cb4fffb6c113fd0297e502edc">at()</a></code>
       method which throws an exception when the index is out of range.
     </p>
 <h4>
@@ -166,7 +166,7 @@
       An iterator is usually considered to be invalidated if an element, the iterator
       pointed to, had been removed or overwritten by an another element. This definition
       is enforced by the Debug Support and is documented for every method. However,
-      some applications utilizing <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      some applications utilizing <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       may require less strict definition: an iterator is invalid only if it points
       to an uninitialized memory.
     </p>
@@ -203,7 +203,7 @@
       The iterator does not point to the original element any more (and is considered
       to be invalid from the "strict" point of view) but it still points
       to the same valid place in the memory. This "soft" definition of
-      iterator invalidation is supported by the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      iterator invalidation is supported by the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       but should be considered as an implementation detail rather than a full-fledged
       feature. The rules when the iterator is still valid can be inferred from the
       code in <a href="../../../libs/circular_buffer/test/soft_iterator_invalidation.cpp" target="_top">soft_iterator_invalidation.cpp</a>.
@@ -215,7 +215,7 @@
     </h4>
 <p>
       Since Boost 1.54.0 support for move semantics was implemented using the <a href="../../../libs/move/index.html" target="_top">Boost.Move</a> library. If rvalue references
-      are available <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      are available <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       will use them, but if not it uses a close, but imperfect emulation. On such
       compilers:
     </p>
@@ -233,7 +233,7 @@
         </li>
 </ul></div>
 <p>
-      <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> will use
+      <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> will use
       rvalues and move emulations for value types only if move constructor and move
       assignment operator of the value type do not throw; or if the value type has
       no copy constructor.
@@ -241,7 +241,7 @@
 <p>
       Some methods won't use move constructor for the value type at all, if the constructor
       throws. This is required for data consistency and avoidance of situations,
-      when aftrer an exception <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      when aftrer an exception <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       contains moved away objects along with the good ones.
     </p>
 <p>
@@ -250,7 +250,7 @@
       noexcept and how to make a non-copyable class in C++03 and C++98.
     </p>
 <p>
-      Performance of <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      Performance of <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       will <span class="bold"><strong>greatly improve</strong></span> if value type has noexcept
       move constructor and noexcept move assignment.
     </p>
@@ -260,7 +260,7 @@
       of move_if_noexcept(T&amp;)</a>
     </h4>
 <p>
-      Reference documentation of the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      Reference documentation of the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       contains notes like "Throws: See Exceptions of <code class="computeroutput"><span class="identifier">move_if_noexcept</span><span class="special">(</span><span class="identifier">T</span><span class="special">&amp;)</span></code>".
       That note means the following: <code class="computeroutput"><span class="identifier">move_if_noexcept</span><span class="special">(</span><span class="identifier">T</span><span class="special">&amp;</span>
       <span class="identifier">value</span><span class="special">)</span></code>
@@ -300,7 +300,7 @@
       <span class="phrase"><a name="circular_buffer.implementation.caveats"></a></span><a class="link" href="implementation.html#circular_buffer.implementation.caveats">Caveats</a>
     </h4>
 <p>
-      The <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> should
+      The <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> should
       not be used for storing pointers to dynamically allocated objects. When a circular
       buffer becomes full, further insertion will overwrite the stored pointers -
       resulting in a <span class="bold"><strong>memory leak</strong></span>. One recommend
@@ -332,9 +332,9 @@
       </p></td></tr>
 </table></div>
 <p>
-      While internals of a <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      While internals of a <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       are circular, <span class="bold"><strong>iterators are not</strong></span>. Iterators
-      of a <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> are
+      of a <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> are
       only valid for the range <code class="computeroutput"><span class="special">\[</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">end</span><span class="special">()\]</span></code>,
       so for example: iterators <code class="computeroutput"><span class="special">(</span><span class="identifier">begin</span><span class="special">()</span> <span class="special">-</span> <span class="number">1</span><span class="special">)</span></code> and <code class="computeroutput"><span class="special">(</span><span class="identifier">end</span><span class="special">()</span> <span class="special">+</span>
       <span class="number">1</span><span class="special">)</span></code> are
@@ -346,23 +346,23 @@
       Support</a>
     </h4>
 <p>
-      In order to help a programmer to avoid and find common bugs, the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> can be enabled to
+      In order to help a programmer to avoid and find common bugs, the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> can be enabled to
       provide a kind of debug support.
     </p>
 <p>
-      When the debugging functionality is enabled, the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      When the debugging functionality is enabled, the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       maintains a list of valid iterators. As soon as any element gets destroyed
       all iterators pointing to this element are removed from this list and explicitly
       invalidated (an invalidation flag is set). The debug support also consists
       of many assertions (<code class="computeroutput"><span class="identifier">BOOST_ASSERT</span></code>
-      macros) which ensure the <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      macros) which ensure the <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       and its iterators are used in the correct manner at runtime. In case an invalid
       iterator is used, the assertion will report an error. The connection of explicit
       iterator invalidation and assertions makes a very robust debug technique which
       catches most of the errors.
     </p>
 <p>
-      Moreover, the uninitialized memory allocated by <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+      Moreover, the uninitialized memory allocated by <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
       is filled with the value <code class="computeroutput"><span class="number">0xcc</span></code> in
       the debug mode. When debugging the code, this can help the programmer to recognize
       the initialized memory from the uninitialized. For details refer the source
@@ -374,8 +374,8 @@
 <th align="left">Caution</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-        Since the debugging code makes <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
-        and its iterators more interconnected, thread safety guarantees of <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> are different when
+        Since the debugging code makes <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>
+        and its iterators more interconnected, thread safety guarantees of <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> are different when
         debug support is enabled. In addition to the container itself, all iterators
         tracked by the container (including any copies thereof) must be protected
         from concurrent access. In particular, this includes copying, destroying
@@ -385,7 +385,7 @@
 <p>
       The debug support is disabled by default. To enable it, one has to define
       <code class="computeroutput"><span class="identifier">BOOST_CB_ENABLE_DEBUG</span></code> macro
-      with the value of 1 while compiling the code using <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code>.
+      with the value of 1 while compiling the code using <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code>.
     </p>
 <h4>
 <a name="circular_buffer.implementation.h9"></a>
@@ -393,7 +393,7 @@
       with Interprocess library</a>
     </h4>
 <p>
-      The <code class="computeroutput"><a class="link" href="../boost/circular_buffer.html" title="Class template circular_buffer">circular_buffer</a></code> is
+      The <code class="computeroutput"><a class="link" href="../doxygen/boost_circular_buffer_c___reference/classboost_1_1circular__buffer.html" title="Class template circular_buffer">circular_buffer</a></code> is
       compatible with the <a href="../../../libs/interprocess/index.html" target="_top">Boost.Interprocess</a>
       library used for interprocess communication. Considering that the circular_buffer's
       debug support relies on 'raw' pointers (which is not permitted by the Interprocess

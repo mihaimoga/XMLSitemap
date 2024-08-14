@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>Examples - Boost.GIL  documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -23,6 +24,9 @@
     <script type="text/javascript" src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Boost.GIL  documentation" href="../index.html" />
@@ -68,18 +72,18 @@
       
     </div>
       
-  <div class="section" id="examples">
+  <section id="examples">
 <h1>Examples</h1>
-<div class="contents local topic" id="contents">
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#pixel-level-operations" id="id1">Pixel-level Operations</a></p></li>
 <li><p><a class="reference internal" href="#resizing-image-canvas" id="id2">Resizing image canvas</a></p></li>
 <li><p><a class="reference internal" href="#histogram" id="id3">Histogram</a></p></li>
 <li><p><a class="reference internal" href="#using-image-views" id="id4">Using image views</a></p></li>
 </ul>
-</div>
-<div class="section" id="pixel-level-operations">
-<h2><a class="toc-backref" href="#id1">Pixel-level Operations</a></h2>
+</nav>
+<section id="pixel-level-operations">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Pixel-level Operations</a></h2>
 <p>Here are some operations you can do with pixel values, pixel pointers and
 pixel references:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">rgb8_pixel_t</span><span class="w"> </span><span class="nf">p1</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span><span class="w">     </span><span class="c1">// make a red RGB pixel</span>
@@ -141,9 +145,9 @@ pixel references:</p>
 <p>As the example shows, both the source and the destination can be references or
 values, planar or interleaved, as long as they model <code class="docutils literal notranslate"><span class="pre">PixelConcept</span></code> and
 <code class="docutils literal notranslate"><span class="pre">MutablePixelConcept</span></code> respectively.</p>
-</div>
-<div class="section" id="resizing-image-canvas">
-<h2><a class="toc-backref" href="#id2">Resizing image canvas</a></h2>
+</section>
+<section id="resizing-image-canvas">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Resizing image canvas</a></h2>
 <p>Resizing an image canvas means adding a buffer of pixels around existing
 pixels. Size of canvas of an image can never be smaller than the image itself.</p>
 <p>Suppose we want to convolve an image with multiple kernels, the largest of
@@ -187,9 +191,9 @@ If one of the images has padding, (as in our case) it will try to do
 lightweight horizontal iterator (as opposed to the more complex 1D image
 iterator that has to check for the end of rows). It choses the fastest method,
 taking into account both static and run-time parameters.</p>
-</div>
-<div class="section" id="histogram">
-<h2><a class="toc-backref" href="#id3">Histogram</a></h2>
+</section>
+<section id="histogram">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Histogram</a></h2>
 <p>The histogram can be computed by counting the number of pixel values that fall
 in each bin. The following method takes a grayscale (one-dimensional) image
 view, since only grayscale pixels are convertible to integers:</p>
@@ -234,9 +238,9 @@ left 100x100 area, we call:</p>
 <p>No pixels are copied and no extra memory is allocated - the code operates
 directly on the source pixels, which could be in any supported color space and
 channel depth. They could be either planar or interleaved.</p>
-</div>
-<div class="section" id="using-image-views">
-<h2><a class="toc-backref" href="#id4">Using image views</a></h2>
+</section>
+<section id="using-image-views">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Using image views</a></h2>
 <p>The following code illustrates the power of using image views:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">jpeg_read_image</span><span class="p">(</span><span class="s">&quot;monkey.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">img</span><span class="p">);</span><span class="w"></span>
 <span class="n">step1</span><span class="o">=</span><span class="n">view</span><span class="p">(</span><span class="n">img</span><span class="p">);</span><span class="w"></span>
@@ -252,8 +256,8 @@ channel depth. They could be either planar or interleaved.</p>
 <p>Notice that no pixels are ever copied. All the work is done inside
 <code class="docutils literal notranslate"><span class="pre">jpeg_write_view</span></code>. If we call our <code class="docutils literal notranslate"><span class="pre">luminosity_histogram</span></code> with
 <code class="docutils literal notranslate"><span class="pre">step5</span></code> it will do the right thing.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     <div class="navbar" style="text-align:right;">
@@ -266,7 +270,7 @@ channel depth. They could be either planar or interleaved.</p>
     </div>
     </div>
     <div class="footer" role="contentinfo">
-      Last updated on 2024-04-11 18:04:44.
+      Last updated on 2024-07-24 04:07:44.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>

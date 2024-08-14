@@ -41,7 +41,8 @@
     <span class="identifier">Iterator</span> <span class="identifier">begin</span><span class="special">,</span>
     <span class="identifier">Iterator</span> <span class="identifier">end</span><span class="special">,</span>
     <span class="identifier">ConnectCondition</span> <span class="identifier">connect_condition</span><span class="special">,</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_connect_condition</span><span class="special">&lt;</span> <span class="identifier">ConnectCondition</span><span class="special">,</span> <span class="identifier">Iterator</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
 </pre>
 <p>
           This function attempts to connect a socket to one of a sequence of endpoints.

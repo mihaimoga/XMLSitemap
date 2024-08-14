@@ -48,8 +48,8 @@
 </pre>
 <p>
       which is convertible to the movable base class (usual C++ derived to base conversion).
-      When users mark their classes as <code class="computeroutput"><a class="link" href="../BOOST_MOVABL_1_3_24_20_7_3.html" title="Macro BOOST_MOVABLE_BUT_NOT_COPYABLE">BOOST_MOVABLE_BUT_NOT_COPYABLE</a></code>
-      or <code class="computeroutput"><a class="link" href="../BOOST_COPYABLE_AND_MOVABLE.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE</a></code>,
+      When users mark their classes as <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a358a85a0713b80c331742612dae0367f.html" title="Macro BOOST_MOVABLE_BUT_NOT_COPYABLE">BOOST_MOVABLE_BUT_NOT_COPYABLE</a></code>
+      or <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a2a021821de2147094b325d6849767f1c.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE</a></code>,
       these macros define conversion operators to references to <code class="computeroutput"><span class="special">::</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">rv</span></code>:
     </p>
 <pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">BOOST_MOVABLE_BUT_NOT_COPYABLE</span><span class="special">(</span><span class="identifier">TYPE</span><span class="special">)\</span>
@@ -62,8 +62,8 @@
    <span class="comment">//More stuff...</span>
 </pre>
 <p>
-      <code class="computeroutput"><a class="link" href="../BOOST_MOVABL_1_3_24_20_7_3.html" title="Macro BOOST_MOVABLE_BUT_NOT_COPYABLE">BOOST_MOVABLE_BUT_NOT_COPYABLE</a></code>
-      also declares a private copy constructor and assignment. <code class="computeroutput"><a class="link" href="../BOOST_COPYABLE_AND_MOVABLE.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE</a></code>
+      <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a358a85a0713b80c331742612dae0367f.html" title="Macro BOOST_MOVABLE_BUT_NOT_COPYABLE">BOOST_MOVABLE_BUT_NOT_COPYABLE</a></code>
+      also declares a private copy constructor and assignment. <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a2a021821de2147094b325d6849767f1c.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE</a></code>
       defines a non-const copy constructor <code class="computeroutput"><span class="identifier">TYPE</span>
       <span class="special">&amp;</span><span class="keyword">operator</span><span class="special">=(</span><span class="identifier">TYPE</span><span class="special">&amp;)</span></code>
       that forwards to a const version:
@@ -80,7 +80,7 @@
       declares copy constructor and assigment operator private.
     </p>
 <p>
-      When users define the <code class="computeroutput"><a class="link" href="../BOOST_RV_REF.html" title="Macro BOOST_RV_REF">BOOST_RV_REF</a></code>
+      When users define the <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a41dbf698e587e2adc7f518a2b8625436.html" title="Macro BOOST_RV_REF">BOOST_RV_REF</a></code>
       overload of a copy constructor/assignment, in C++0x compilers it is expanded
       to a rvalue reference (<code class="computeroutput"><span class="identifier">T</span><span class="special">&amp;&amp;</span></code>)
       overload and in C++03 compilers it is expanded to a <code class="computeroutput"><span class="special">::</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">rv</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span>
@@ -89,7 +89,7 @@
 <pre class="programlisting"><span class="preprocessor">#define</span> <span class="identifier">BOOST_RV_REF</span><span class="special">(</span><span class="identifier">TYPE</span><span class="special">)</span> <span class="special">::</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">rv</span><span class="special">&lt;</span> <span class="identifier">TYPE</span> <span class="special">&gt;&amp;</span> <span class="special">\</span>
 </pre>
 <p>
-      When users define the <code class="computeroutput"><a class="link" href="../BOOST_COPY_ASSIGN_REF.html" title="Macro BOOST_COPY_ASSIGN_REF">BOOST_COPY_ASSIGN_REF</a></code>
+      When users define the <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a37936e2bbaac51d9868f9274fb648d32.html" title="Macro BOOST_COPY_ASSIGN_REF">BOOST_COPY_ASSIGN_REF</a></code>
       overload, it is expanded to a usual copy assignment (<code class="computeroutput"><span class="keyword">const</span>
       <span class="identifier">T</span> <span class="special">&amp;</span></code>)
       overload in C++0x compilers and to a <code class="computeroutput"><span class="keyword">const</span>
@@ -116,10 +116,10 @@
         </li>
 </ul></div>
 <p>
-      The library does not define the equivalent of <code class="computeroutput"><a class="link" href="../BOOST_COPY_ASSIGN_REF.html" title="Macro BOOST_COPY_ASSIGN_REF">BOOST_COPY_ASSIGN_REF</a></code>
+      The library does not define the equivalent of <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a37936e2bbaac51d9868f9274fb648d32.html" title="Macro BOOST_COPY_ASSIGN_REF">BOOST_COPY_ASSIGN_REF</a></code>
       for copy construction (say, <code class="computeroutput"><span class="identifier">BOOST_COPY_CTOR_REF</span></code>)
       because nearly all modern compilers implement RVO and this is much more efficient
-      than any move emulation. <code class="computeroutput"><a class="link" href="../boost/move_1_3_24_20_11_1_1.html" title="Function template move">move</a></code>
+      than any move emulation. <code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1aa745d64b580e12d06b1a28c9ff09a81d.html" title="Function template move">move</a></code>
       just casts <code class="computeroutput"><span class="identifier">TYPE</span> <span class="special">&amp;</span></code>
       into <code class="computeroutput"><span class="special">::</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">rv</span><span class="special">&lt;</span><span class="identifier">TYPE</span><span class="special">&gt;</span> <span class="special">&amp;</span></code>.
     </p>
@@ -127,8 +127,6 @@
       Here's an example that demostrates how different rlvalue objects bind to <code class="computeroutput"><span class="special">::</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">rv</span></code> references in the presence of three overloads
       and the conversion operators in C++03 compilers:
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">core</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
 
@@ -163,10 +161,8 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-    </p>
 </div>
-<div class="copyright-footer">Copyright © 2008-2014 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2008-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

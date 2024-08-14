@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>reveal &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/boostbook.css" />
@@ -35,15 +36,15 @@
   <div class="chapter">
       <div class="body" role="main">
         
-  <div class="section" id="reveal">
+  <section id="reveal">
 <h1>reveal<a class="headerlink" href="#reveal" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="header">
+<section id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/reveal.hpp&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">reveal</span></code> function adaptor helps shows the error messages that get
 masked on some compilers. Sometimes an error in a function that causes a
@@ -51,8 +52,8 @@ substitution failure, will remove the function from valid overloads. On
 compilers without a backtrace for substitution failure, this will mask the
 error inside the function. The <code class="docutils literal notranslate"><span class="pre">reveal</span></code> adaptor will expose these error
 messages while still keeping the function SFINAE-friendly.</p>
-</div>
-<div class="section" id="sample">
+</section>
+<section id="sample">
 <h2>Sample<a class="headerlink" href="#sample" title="Permalink to this heading">¶</a></h2>
 <p>If we take the <code class="docutils literal notranslate"><span class="pre">print</span></code> example from the quick start guide like this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">adl</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -131,23 +132,23 @@ fix.hpp:158:5: note: candidate template ignored: substitution failure [with Ts =
 <p>So now the error has a note for each of the lambda overloads it tried. Of
 course this can be improved even further by providing custom reporting of
 failures.</p>
-</div>
-<div class="section" id="synopsis">
+</section>
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">F</span><span class="o">&gt;</span><span class="w"></span>
 <span class="n">reveal_adaptor</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="w"> </span><span class="n">reveal</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="requirements">
+</section>
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
 <p>F must be:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../../doc/src/concepts.html#constinvocable"><span class="std std-ref">ConstInvocable</span></a></p></li>
 <li><p>MoveConstructible</p></li>
 </ul>
-</div>
-<div class="section" id="reporting-failures">
+</section>
+<section id="reporting-failures">
 <h2>Reporting Failures<a class="headerlink" href="#reporting-failures" title="Permalink to this heading">¶</a></h2>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">reveal</span></code> reports the substitution failure by trying to call
 the function. However, more detail expressions can be be reported from a
@@ -155,8 +156,8 @@ template alias by using <code class="docutils literal notranslate"><span class="
 <code class="docutils literal notranslate"><span class="pre">failure</span></code> struct in the function object and then inheriting from
 <code class="docutils literal notranslate"><span class="pre">as_failure</span></code>. Also multiple failures can be reported by using
 <code class="docutils literal notranslate"><span class="pre">with_failures</span></code>.</p>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h2>Synopsis<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Report failure by instantiating the Template</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Template</span><span class="o">&gt;</span><span class="w"></span>
@@ -175,8 +176,8 @@ template alias by using <code class="docutils literal notranslate"><span class="
 <span class="k">struct</span><span class="w"> </span><span class="nc">get_failure</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
@@ -199,8 +200,8 @@ template alias by using <code class="docutils literal notranslate"><span class="
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

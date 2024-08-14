@@ -46,7 +46,7 @@
 <span class="identifier">value_from</span><span class="special">(</span>
     <span class="identifier">T</span><span class="special">&amp;&amp;</span> <span class="identifier">t</span><span class="special">,</span>
     <span class="identifier">Context</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">,</span>
-    <span class="identifier">value</span><span class="special">&amp;</span> <span class="identifier">jv</span><span class="special">);</span>
+    <a class="link" href="../boost__json__value.html" title="value"><code class="literal">value</code></a><span class="special">&amp;</span> <span class="identifier">jv</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__value_from.overload1.h1"></a>
@@ -75,10 +75,12 @@
           <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span></code>,
           <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span></code>, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span></code>,
           <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">monostate</span></code>, and <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">nullopt_t</span></code>.
+        </p>
+<p>
           Conversion of other types is done by calling an overload of <code class="computeroutput"><span class="identifier">tag_invoke</span></code> found by argument-dependent
           lookup. Its signature should be similar to:
         </p>
-<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">FullContext</span> <span class="special">&gt;</span>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span> <span class="keyword">class</span> <span class="identifier">FullContext</span> <span class="special">&gt;</span>
 <span class="keyword">void</span> <span class="identifier">tag_invoke</span><span class="special">(</span> <span class="identifier">value_from_tag</span><span class="special">,</span> <span class="identifier">value</span><span class="special">&amp;,</span> <span class="identifier">T</span><span class="special">,</span>  <span class="keyword">const</span> <span class="identifier">Context</span><span class="special">&amp;</span> <span class="special">,</span> <span class="keyword">const</span> <span class="identifier">FullContext</span><span class="special">&amp;</span> <span class="special">);</span>
 </pre>
 <p>

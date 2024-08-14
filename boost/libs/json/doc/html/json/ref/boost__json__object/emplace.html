@@ -28,10 +28,8 @@
 <a name="json.ref.boost__json__object.emplace"></a><a class="link" href="emplace.html" title="object::emplace">object::emplace</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm30775"></a>
-        </p>
-<p>
-          Construct an element in-place.
+          <a class="indexterm" name="idm29680"></a>
+Construct an element in-place.
         </p>
 <h6>
 <a name="json.ref.boost__json__object.emplace.h0"></a>
@@ -39,9 +37,9 @@
         </h6>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">class</span> <span class="identifier">Arg</span><span class="special">&gt;</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">&gt;</span>
+<a href="https://en.cppreference.com/w/cpp/utility/pair" target="_top"><code class="literal">std::pair</code></a><span class="special">&lt;</span> <a class="link" href="iterator.html" title="object::iterator"><code class="literal">object::iterator</code></a><span class="special">,</span> <span class="keyword">bool</span> <span class="special">&gt;</span>
 <span class="identifier">emplace</span><span class="special">(</span>
-    <span class="identifier">string_view</span> <span class="identifier">key</span><span class="special">,</span>
+    <a class="link" href="../boost__json__string_view.html" title="string_view"><code class="literal">string_view</code></a> <span class="identifier">key</span><span class="special">,</span>
     <span class="identifier">Arg</span><span class="special">&amp;&amp;</span> <span class="identifier">arg</span><span class="special">);</span>
 </pre>
 <h6>
@@ -51,10 +49,12 @@
 <p>
           Inserts a new element into the container constructed in-place with the
           given argument if there is no element with the <code class="computeroutput"><span class="identifier">key</span></code>
-          in the container. If the insertion occurs and results in a rehashing of
-          the container, all iterators and references are invalidated. Otherwise,
-          they are not affected. Rehashing occurs only if the new number of elements
-          is greater than <a class="link" href="capacity.html" title="object::capacity"><code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code></a>.
+          in the container.
+        </p>
+<p>
+          If the insertion occurs and results in a rehashing of the container, all
+          iterators and references are invalidated. Otherwise, they are not affected.
+          Rehashing occurs only if the new number of elements is greater than <a class="link" href="capacity.html" title="object::capacity"><code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code></a>.
         </p>
 <h6>
 <a name="json.ref.boost__json__object.emplace.h2"></a>

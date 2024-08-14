@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>More examples &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/boostbook.css" />
@@ -39,14 +40,14 @@
      Distributed under the Boost Software License, Version 1.0.
      (http://www.boost.org/LICENSE_1_0.txt)
 -->
-<div class="section" id="more-examples">
+<section id="more-examples">
 <h1>More examples<a class="headerlink" href="#more-examples" title="Permalink to this heading">¶</a></h1>
 <p>As Boost.HigherOrderFunctions is a collection of generic utilities
 related to functions, there is many useful cases with the library, but a key
 point of many of these utilities is that they can solve these problems with
 much simpler constructs than whats traditionally been done with
 metaprogramming. Lets take look at some of the use cases for using Boost.HigherOrderFunctions.</p>
-<div class="section" id="initialization">
+<section id="initialization">
 <h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this heading">¶</a></h2>
 <p>The <a class="reference internal" href="../../include/boost/hof/function.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_STATIC_FUNCTION</span></code></span></a> will help initialize function objects at
 global scope, and will ensure that it is initialized at compile-time and (on
@@ -57,8 +58,8 @@ in the same manner. This allows for simple and compact function definitions
 when working with generic lambdas and function adaptors.</p>
 <p>Of course, the library can still be used without requiring global function
 objects for those who prefer to avoid them will still find the library useful.</p>
-</div>
-<div class="section" id="projections">
+</section>
+<section id="projections">
 <h2>Projections<a class="headerlink" href="#projections" title="Permalink to this heading">¶</a></h2>
 <p>Instead of writing the projection multiple times in algorithms:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">begin</span><span class="p">(</span><span class="n">people</span><span class="p">),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">end</span><span class="p">(</span><span class="n">people</span><span class="p">),</span><span class="w"></span>
@@ -73,8 +74,8 @@ operator:</p>
 <span class="w">        </span><span class="n">proj</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Person</span><span class="o">::</span><span class="n">year_of_birth</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="ordering-evaluation-of-arguments">
+</section>
+<section id="ordering-evaluation-of-arguments">
 <h2>Ordering evaluation of arguments<a class="headerlink" href="#ordering-evaluation-of-arguments" title="Permalink to this heading">¶</a></h2>
 <p>When we write <code class="docutils literal notranslate"><span class="pre">f(foo(),</span> <span class="pre">bar())</span></code>, the standard does not guarantee the order in
 which the <code class="docutils literal notranslate"><span class="pre">foo()</span></code> and <code class="docutils literal notranslate"><span class="pre">bar()</span></code> arguments are evaluated. So with <code class="docutils literal notranslate"><span class="pre">apply_eval</span></code> we
@@ -82,8 +83,8 @@ can order them from left-to-right:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">apply_eval</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">foo</span><span class="p">();</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">bar</span><span class="p">();</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="extension-methods">
+</section>
+<section id="extension-methods">
 <h2>Extension methods<a class="headerlink" href="#extension-methods" title="Permalink to this heading">¶</a></h2>
 <p>Chaining many functions together, like what is done for range based libraries,
 can make things hard to read:</p>
@@ -121,8 +122,8 @@ operator, pipable functions can also be used with <a class="reference internal" 
 </div>
 <p>No fancy or confusing operating overloading and everything is still quite
 readable.</p>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

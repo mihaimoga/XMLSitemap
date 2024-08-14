@@ -7,7 +7,7 @@
 <link rel="home" href="../../../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../boost__mysql__date.html" title="date">
 <link rel="prev" href="time_point.html" title="date::time_point">
-<link rel="next" href="date/overload1.html" title="date::date (1 of 3 overloads)">
+<link rel="next" href="date/overload1.html" title="date::date (1 of 4 overloads)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -28,33 +28,42 @@
 <a name="mysql.ref.boost__mysql__date.date"></a><a class="link" href="date.html" title="date::date">date::date</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm51535"></a>
+          <a class="indexterm" name="idm51549"></a>
         </p>
 <p>
           Constructs a zero date.
         </p>
 <pre class="programlisting"><span class="keyword">constexpr</span>
-<a class="link" href="date/overload1.html" title="date::date (1 of 3 overloads)">date</a><span class="special">();</span>
-  <span class="emphasis"><em>» <a class="link" href="date/overload1.html" title="date::date (1 of 3 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
+<a class="link" href="date/overload1.html" title="date::date (1 of 4 overloads)">date</a><span class="special">();</span>
+  <span class="emphasis"><em>» <a class="link" href="date/overload1.html" title="date::date (1 of 4 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
 </pre>
 <p>
           Constructs a date from its year, month and date components.
         </p>
 <pre class="programlisting"><span class="keyword">constexpr</span>
-<a class="link" href="date/overload2.html" title="date::date (2 of 3 overloads)">date</a><span class="special">(</span>
+<a class="link" href="date/overload2.html" title="date::date (2 of 4 overloads)">date</a><span class="special">(</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">uint16_t</span> <span class="identifier">year</span><span class="special">,</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">uint8_t</span> <span class="identifier">month</span><span class="special">,</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">uint8_t</span> <span class="identifier">day</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="date/overload2.html" title="date::date (2 of 3 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
+  <span class="emphasis"><em>» <a class="link" href="date/overload2.html" title="date::date (2 of 4 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
 </pre>
 <p>
           Constructs a date from a <code class="computeroutput"><span class="identifier">time_point</span></code>.
         </p>
 <pre class="programlisting"><span class="keyword">explicit</span>
 <span class="keyword">constexpr</span>
-<a class="link" href="date/overload3.html" title="date::date (3 of 3 overloads)">date</a><span class="special">(</span>
+<a class="link" href="date/overload3.html" title="date::date (3 of 4 overloads)">date</a><span class="special">(</span>
     <span class="identifier">time_point</span> <span class="identifier">tp</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="date/overload3.html" title="date::date (3 of 3 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
+  <span class="emphasis"><em>» <a class="link" href="date/overload3.html" title="date::date (3 of 4 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
+</pre>
+<p>
+          Constructs a date from a local time point.
+        </p>
+<pre class="programlisting"><span class="keyword">explicit</span>
+<span class="keyword">constexpr</span>
+<a class="link" href="date/overload4.html" title="date::date (4 of 4 overloads)">date</a><span class="special">(</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">local_days</span> <span class="identifier">tp</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="date/overload4.html" title="date::date (4 of 4 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
 </pre>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>

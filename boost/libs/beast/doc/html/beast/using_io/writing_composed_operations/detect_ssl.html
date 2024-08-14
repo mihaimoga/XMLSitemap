@@ -7,7 +7,7 @@
 <link rel="home" href="../../../index.html" title="Chapter 1. Boost.Beast">
 <link rel="up" href="../writing_composed_operations.html" title="Writing Composed Operations">
 <link rel="prev" href="echo.html" title="Echo 💡">
-<link rel="next" href="../../config.html" title="Configuration">
+<link rel="next" href="../ssl_tls_shutdown.html" title="SSL/TLS Shutdown">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="echo.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../writing_composed_operations.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../config.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="echo.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../writing_composed_operations.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../ssl_tls_shutdown.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -396,6 +396,7 @@
 <span class="comment">// authors of composed operations need to write it this way to get the</span>
 <span class="comment">// very best performance, for example when using Coroutines TS (`co_await`).</span>
 
+<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">AsyncReadStream</span><span class="special">&gt;</span>
 <span class="keyword">struct</span> <span class="identifier">run_detect_ssl_op</span>
 <span class="special">{</span>
     <span class="comment">// The implementation of `net::async_initiate` captures the</span>
@@ -409,20 +410,29 @@
     <span class="comment">// token into the "real handler" which must have the correct</span>
     <span class="comment">// signature, in this case `void(error_code, boost::tri_bool)`.</span>
 
+    <span class="identifier">AsyncReadStream</span><span class="special">*</span> <span class="identifier">stream</span><span class="special">;</span>
+
+    <span class="keyword">using</span> <span class="identifier">executor_type</span> <span class="special">=</span> <span class="keyword">typename</span> <span class="identifier">AsyncReadStream</span><span class="special">::</span><span class="identifier">executor_type</span><span class="special">;</span>
+
+    <span class="identifier">executor_type</span>
+    <span class="identifier">get_executor</span><span class="special">()</span> <span class="keyword">const</span> <span class="keyword">noexcept</span>
+    <span class="special">{</span>
+        <span class="keyword">return</span> <span class="identifier">stream</span><span class="special">-&gt;</span><span class="identifier">get_executor</span><span class="special">();</span>
+    <span class="special">}</span>
+
     <span class="keyword">template</span><span class="special">&lt;</span>
         <span class="keyword">class</span> <span class="identifier">DetectHandler</span><span class="special">,</span>
-        <span class="keyword">class</span> <span class="identifier">AsyncReadStream</span><span class="special">,</span>
         <span class="keyword">class</span> <span class="identifier">DynamicBuffer</span><span class="special">&gt;</span>
-    <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span>
+    <span class="keyword">void</span>
+    <span class="keyword">operator</span><span class="special">()(</span>
         <span class="identifier">DetectHandler</span><span class="special">&amp;&amp;</span> <span class="identifier">h</span><span class="special">,</span>
-        <span class="identifier">AsyncReadStream</span><span class="special">*</span> <span class="identifier">s</span><span class="special">,</span> <span class="comment">// references are passed as pointers</span>
         <span class="identifier">DynamicBuffer</span><span class="special">*</span> <span class="identifier">b</span><span class="special">)</span>
     <span class="special">{</span>
         <span class="identifier">detect_ssl_op</span><span class="special">&lt;</span>
             <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">decay</span><span class="special">&lt;</span><span class="identifier">DetectHandler</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">,</span>
             <span class="identifier">AsyncReadStream</span><span class="special">,</span>
             <span class="identifier">DynamicBuffer</span><span class="special">&gt;(</span>
-                <span class="identifier">std</span><span class="special">::</span><span class="identifier">forward</span><span class="special">&lt;</span><span class="identifier">DetectHandler</span><span class="special">&gt;(</span><span class="identifier">h</span><span class="special">),</span> <span class="special">*</span><span class="identifier">s</span><span class="special">,</span> <span class="special">*</span><span class="identifier">b</span><span class="special">);</span>
+                <span class="identifier">std</span><span class="special">::</span><span class="identifier">forward</span><span class="special">&lt;</span><span class="identifier">DetectHandler</span><span class="special">&gt;(</span><span class="identifier">h</span><span class="special">),</span> <span class="special">*</span><span class="identifier">stream</span><span class="special">,</span> <span class="special">*</span><span class="identifier">b</span><span class="special">);</span>
     <span class="special">}</span>
 <span class="special">};</span>
 
@@ -478,9 +488,8 @@
     <span class="keyword">return</span> <span class="identifier">net</span><span class="special">::</span><span class="identifier">async_initiate</span><span class="special">&lt;</span>
         <span class="identifier">CompletionToken</span><span class="special">,</span>
         <span class="keyword">void</span><span class="special">(</span><span class="identifier">error_code</span><span class="special">,</span> <span class="keyword">bool</span><span class="special">)&gt;(</span>
-            <span class="identifier">detail</span><span class="special">::</span><span class="identifier">run_detect_ssl_op</span><span class="special">{},</span>
+            <span class="identifier">detail</span><span class="special">::</span><span class="identifier">run_detect_ssl_op</span><span class="special">&lt;</span><span class="identifier">AsyncReadStream</span><span class="special">&gt;{&amp;</span><span class="identifier">stream</span><span class="special">},</span>
             <span class="identifier">token</span><span class="special">,</span>
-            <span class="special">&amp;</span><span class="identifier">stream</span><span class="special">,</span> <span class="comment">// pass the reference by pointer</span>
             <span class="special">&amp;</span><span class="identifier">buffer</span><span class="special">);</span>
 <span class="special">}</span>
 </pre>
@@ -726,7 +735,7 @@ use
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="echo.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../writing_composed_operations.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../config.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="echo.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../writing_composed_operations.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../ssl_tls_shutdown.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

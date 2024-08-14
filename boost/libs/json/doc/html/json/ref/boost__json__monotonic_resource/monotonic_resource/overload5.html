@@ -29,15 +29,96 @@
           (5 of 6 overloads)</a>
 </h6></div></div></div>
 <p>
-            Copy constructor (deleted)
+            Constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.synopsis"></a></span><a class="link" href="overload5.html#json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.synopsis">Synopsis</a>
           </h6>
-<pre class="programlisting"><span class="identifier">monotonic_resource</span><span class="special">(</span>
-    <span class="identifier">monotonic_resource</span> <span class="keyword">const</span><span class="special">&amp;)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">explicit</span>
+<span class="identifier">monotonic_resource</span><span class="special">(</span>
+    <a href="https://en.cppreference.com/w/cpp/types/size_t" target="_top"><code class="literal">std::size_t</code></a> <span class="identifier">initial_size</span> <span class="special">=</span> <span class="number">1024</span><span class="special">,</span>
+    <a class="link" href="../../boost__json__storage_ptr.html" title="storage_ptr"><code class="literal">storage_ptr</code></a> <span class="identifier">upstream</span> <span class="special">=</span> <span class="special">{})</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
+<h6>
+<a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.h1"></a>
+            <span class="phrase"><a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.description"></a></span><a class="link" href="overload5.html#json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.description">Description</a>
+          </h6>
+<p>
+            This constructs the resource and indicates that the first internal dynamic
+            allocation shall be at least <code class="computeroutput"><span class="identifier">initial_size</span></code>
+            bytes.
+          </p>
+<p>
+            This constructor is guaranteed not to perform any dynamic allocations.
+          </p>
+<h6>
+<a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.h2"></a>
+            <span class="phrase"><a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.complexity"></a></span><a class="link" href="overload5.html#json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.complexity">Complexity</a>
+          </h6>
+<p>
+            Constant.
+          </p>
+<h6>
+<a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.h3"></a>
+            <span class="phrase"><a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.exception_safety"></a></span><a class="link" href="overload5.html#json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.exception_safety">Exception
+            Safety</a>
+          </h6>
+<p>
+            No-throw guarantee.
+          </p>
+<h6>
+<a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.h4"></a>
+            <span class="phrase"><a name="json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.parameters"></a></span><a class="link" href="overload5.html#json.ref.boost__json__monotonic_resource.monotonic_resource.overload5.parameters">Parameters</a>
+          </h6>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                    <p>
+                      Name
+                    </p>
+                  </th>
+<th>
+                    <p>
+                      Description
+                    </p>
+                  </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">initial_size</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      The size of the first internal dynamic allocation. If this
+                      is lower than the implementation-defined lower limit, then
+                      the lower limit is used instead.
+                    </p>
+                  </td>
+</tr>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">upstream</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      An optional upstream memory resource to use for performing
+                      internal dynamic allocations. If this parameter is omitted,
+                      the default resource is used.
+                    </p>
+                  </td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

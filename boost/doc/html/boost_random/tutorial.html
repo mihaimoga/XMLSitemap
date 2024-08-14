@@ -45,8 +45,8 @@
 </h3></div></div></div>
 <p>
         For the source of this example see <a href="../../..//libs/random/example/die.cpp" target="_top">die.cpp</a>.
-        First we include the headers we need for <code class="computeroutput"><a class="link" href="../boost/random/mt19937.html" title="Type definition mt19937">mt19937</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/random/uniform_int_distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>.
+        First we include the headers we need for <code class="computeroutput"><a class="link" href="../doxygen/headers/mersenne__twister_8hpp_1a313d63e0721b6a6bba3a1be507e9e6a2.html" title="Type definition mt19937">mt19937</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1uniform__int__distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>.
       </p>
 <p>
 </p>
@@ -56,7 +56,7 @@
 <p>
       </p>
 <p>
-        We use <code class="computeroutput"><a class="link" href="../boost/random/mt19937.html" title="Type definition mt19937">mt19937</a></code> with the
+        We use <code class="computeroutput"><a class="link" href="../doxygen/headers/mersenne__twister_8hpp_1a313d63e0721b6a6bba3a1be507e9e6a2.html" title="Type definition mt19937">mt19937</a></code> with the
         default seed as a source of randomness. The numbers produced will be the
         same every time the program is run. One common method to change this is to
         seed with the current time (<code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">time</span><span class="special">(</span><span class="number">0</span><span class="special">)</span></code>
@@ -96,9 +96,9 @@
 <td width="5%" valign="top" align="left"><p><a name="boost_random.tutorial.generating_integers_in_a_range.c1"></a><a href="#boost_random.tutorial.generating_integers_in_a_range.c0"><img src="../../../doc/src/images/callouts/1.png" alt="1" border="0"></a> </p></td>
 <td valign="top" align="left">
 <p>
-            <code class="computeroutput"><a class="link" href="../boost/random/mt19937.html" title="Type definition mt19937">mt19937</a></code> produces
+            <code class="computeroutput"><a class="link" href="../doxygen/headers/mersenne__twister_8hpp_1a313d63e0721b6a6bba3a1be507e9e6a2.html" title="Type definition mt19937">mt19937</a></code> produces
             integers in the range [0, 2<sup>32</sup>-1]. However, we want numbers in the range
-            [1, 6]. The distribution <code class="computeroutput"><a class="link" href="../boost/random/uniform_int_distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>
+            [1, 6]. The distribution <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1uniform__int__distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>
             performs this transformation.
           </p>
 <div class="warning"><table border="0" summary="Warning">
@@ -107,10 +107,10 @@
 <th align="left">Warning</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-              Contrary to common C++ usage <code class="computeroutput"><a class="link" href="../boost/random/uniform_int_distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>
+              Contrary to common C++ usage <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1uniform__int__distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>
               does not take a <span class="emphasis"><em>half-open range</em></span>. Instead it takes
               a <span class="emphasis"><em>closed range</em></span>. Given the parameters 1 and 6,
-              <code class="computeroutput"><a class="link" href="../boost/random/uniform_int_distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>
+              <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1uniform__int__distribution.html" title="Class template uniform_int_distribution">uniform_int_distribution</a></code>
               can produce any of the values 1, 2, 3, 4, 5, or 6.
             </p></td></tr>
 </table></div>
@@ -147,7 +147,7 @@
         The other five faces are all equally likely.
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/random/discrete_distribution.html" title="Class template discrete_distribution">discrete_distribution</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1discrete__distribution.html" title="Class template discrete_distribution">discrete_distribution</a></code>
         works nicely here by allowing us to assign weights to each of the possible
         outcomes.
       </p>
@@ -158,7 +158,7 @@
 </tr>
 <tr><td align="left" valign="top"><p>
           If your compiler supports <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span></code>,
-          you can initialize <code class="computeroutput"><a class="link" href="../boost/random/discrete_distribution.html" title="Class template discrete_distribution">discrete_distribution</a></code>
+          you can initialize <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1discrete__distribution.html" title="Class template discrete_distribution">discrete_distribution</a></code>
           directly with the weights.
         </p></td></tr>
 </table></div>
@@ -234,7 +234,7 @@
 <tr>
 <td width="5%" valign="top" align="left"><p><a name="boost_random.tutorial.generating_a_random_password.c3"></a><a href="#boost_random.tutorial.generating_a_random_password.c2"><img src="../../../doc/src/images/callouts/2.png" alt="2" border="0"></a> </p></td>
 <td valign="top" align="left"><p>
-            We use <code class="computeroutput"><a class="link" href="../boost/random/random_device.html" title="Class random_device">random_device</a></code>
+            We use <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1random__device.html" title="Class random_device">random_device</a></code>
             as a source of entropy, since we want passwords that are not predictable.
           </p></td>
 </tr>
@@ -260,8 +260,8 @@
         and exit points on an S<sup>2</sup> sphere.
       </p>
 <p>
-        First we include the headers we need for <code class="computeroutput"><a class="link" href="../boost/random/niederreiter_base2.html" title="Type definition niederreiter_base2">niederreiter_base2</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/random/uniform_01.html" title="Class template uniform_01">uniform_01</a></code> distribution.
+        First we include the headers we need for <code class="computeroutput"><a class="link" href="../doxygen/headers/niederreiter__base2_8hpp_1a3772b4064e1b25e840878144df3951b2.html" title="Type definition niederreiter_base2">niederreiter_base2</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1uniform__01.html" title="Class template uniform_01">uniform_01</a></code> distribution.
       </p>
 <p>
 </p>
@@ -275,7 +275,7 @@
 <p>
       </p>
 <p>
-        We use 4-dimensional <code class="computeroutput"><a class="link" href="../boost/random/niederreiter_base2.html" title="Type definition niederreiter_base2">niederreiter_base2</a></code>
+        We use 4-dimensional <code class="computeroutput"><a class="link" href="../doxygen/headers/niederreiter__base2_8hpp_1a3772b4064e1b25e840878144df3951b2.html" title="Type definition niederreiter_base2">niederreiter_base2</a></code>
         as a source of randomness.
       </p>
 <p>
@@ -340,9 +340,9 @@
 <div class="calloutlist"><table border="0" summary="Callout list"><tr>
 <td width="5%" valign="top" align="left"><p><a name="boost_random.tutorial.generating_quasi_random_line_sphere_intersections.c1"></a><a href="#boost_random.tutorial.generating_quasi_random_line_sphere_intersections.c0"><img src="../../../doc/src/images/callouts/1.png" alt="1" border="0"></a> </p></td>
 <td valign="top" align="left"><p>
-            <code class="computeroutput"><a class="link" href="../boost/random/niederreiter_base2.html" title="Type definition niederreiter_base2">niederreiter_base2</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/headers/niederreiter__base2_8hpp_1a3772b4064e1b25e840878144df3951b2.html" title="Type definition niederreiter_base2">niederreiter_base2</a></code>
             produces integers in the range [0, 2<sup>64</sup>-1]. However, we want numbers in
-            the range [0, 1). The distribution <code class="computeroutput"><a class="link" href="../boost/random/uniform_01.html" title="Class template uniform_01">uniform_01</a></code>
+            the range [0, 1). The distribution <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1uniform__01.html" title="Class template uniform_01">uniform_01</a></code>
             performs this transformation.
           </p></td>
 </tr></table></div>

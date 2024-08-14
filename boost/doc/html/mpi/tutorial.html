@@ -42,13 +42,13 @@
       A Boost.MPI program consists of many cooperating processes (possibly running
       on different computers) that communicate among themselves by passing messages.
       Boost.MPI is a library (as is the lower-level MPI), not a language, so the
-      first step in a Boost.MPI is to create an <code class="computeroutput"><a class="link" href="../boost/mpi/environment.html" title="Class environment">mpi::environment</a></code>
+      first step in a Boost.MPI is to create an <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1environment.html" title="Class environment">mpi::environment</a></code>
       object that initializes the MPI environment and enables communication among
-      the processes. The <code class="computeroutput"><a class="link" href="../boost/mpi/environment.html" title="Class environment">mpi::environment</a></code>
+      the processes. The <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1environment.html" title="Class environment">mpi::environment</a></code>
       object is initialized with the program arguments (which it may modify) in your
       main program. The creation of this object initializes MPI, and its destruction
       will finalize MPI. In the vast majority of Boost.MPI programs, an instance
-      of <code class="computeroutput"><a class="link" href="../boost/mpi/environment.html" title="Class environment">mpi::environment</a></code> will
+      of <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1environment.html" title="Class environment">mpi::environment</a></code> will
       be declared in <code class="computeroutput"><span class="identifier">main</span></code> at the
       very beginning of the program.
     </p>
@@ -58,13 +58,13 @@
 <th align="left">Warning</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-        Declaring an <code class="computeroutput"><a class="link" href="../boost/mpi/environment.html" title="Class environment">mpi::environment</a></code>
+        Declaring an <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1environment.html" title="Class environment">mpi::environment</a></code>
         at global scope is undefined behavior. <a href="#ftn.mpi.tutorial.f0" class="footnote" name="mpi.tutorial.f0"><sup class="footnote">[10]</sup></a>
       </p></td></tr>
 </table></div>
 <p>
       Communication with MPI always occurs over a <span class="bold"><strong>communicator</strong></span>,
-      which can be created by simply default-constructing an object of type <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html" title="Class communicator">mpi::communicator</a></code>. This communicator
+      which can be created by simply default-constructing an object of type <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html" title="Class communicator">mpi::communicator</a></code>. This communicator
       can then be queried to determine how many processes are running (the "size"
       of the communicator) and to give a unique number to each process, from zero
       to the size of the communicator (i.e., the "rank" of the process):
@@ -180,8 +180,8 @@ I am process 3 of 7.
           string it receives, along with a comma, then passes the message "world"
           back to processor 0 with a different tag. The first processor then writes
           this message with the "!" and exits. All sends are accomplished
-          with the <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_4-bb">communicator::send</a></code>
-          method and all receives use a corresponding <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_9-bb">communicator::recv</a></code>
+          with the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1ad47396d6738a12ea994e9e988c6d9118">communicator::send</a></code>
+          method and all receives use a corresponding <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1aaf93e4a538b75cb6769cdb04bcf14f91">communicator::recv</a></code>
           call.
         </p>
 </div>
@@ -256,17 +256,17 @@ I am process 3 of 7.
 <span class="special">}</span>
 </pre>
 <p>
-          We have replaced calls to the <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_4-bb">communicator::send</a></code>
-          and <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_9-bb">communicator::recv</a></code>
-          members with similar calls to their non-blocking counterparts, <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_16-bb">communicator::isend</a></code>
-          and <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_21-bb">communicator::irecv</a></code>.
+          We have replaced calls to the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1ad47396d6738a12ea994e9e988c6d9118">communicator::send</a></code>
+          and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1aaf93e4a538b75cb6769cdb04bcf14f91">communicator::recv</a></code>
+          members with similar calls to their non-blocking counterparts, <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1ac0cebe740191f4a544b84d08339ed99b">communicator::isend</a></code>
+          and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1ac2ce47d13b654e2ccdb9f07068fb5c8b">communicator::irecv</a></code>.
           The prefix <span class="bold"><strong>i</strong></span> indicates that the operations
-          return immediately with a <code class="computeroutput"><a class="link" href="../boost/mpi/request.html" title="Class request">mpi::request</a></code>
+          return immediately with a <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1request.html" title="Class request">mpi::request</a></code>
           object, which allows one to query the status of a communication request
-          (see the <code class="computeroutput"><a class="link" href="../boost/mpi/request.html#id-1_3_25_7_21_2_1_1_7_2-bb">test</a></code>
-          method) or wait until it has completed (see the <code class="computeroutput"><a class="link" href="../boost/mpi/request.html#id-1_3_25_7_21_2_1_1_7_1-bb">wait</a></code>
+          (see the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1request.html#doxygen.classboost_1_1mpi_1_1request_1a2d67a09ffe38e25b7fdd3d218aefdbd2">test</a></code>
+          method) or wait until it has completed (see the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1request.html#doxygen.classboost_1_1mpi_1_1request_1a5d71dbb0297d4cbae9a3acb5a4cefbe0">wait</a></code>
           method). Multiple requests can be completed at the same time with the
-          <code class="computeroutput"><a class="link" href="../boost/mpi/wait_all.html" title="Function wait_all">wait_all</a></code> operation.
+          <code class="computeroutput"><a class="link" href="../doxygen/nonblocking_8hpp_1a9ae4fe30462579100b0b4946eae6085a.html" title="Function wait_all">wait_all</a></code> operation.
         </p>
 <div class="important"><table border="0" summary="Important">
 <tr>
@@ -338,9 +338,9 @@ I am process 3 of 7.
 <a name="mpi.tutorial.collectives.broadcast"></a><a class="link" href="tutorial.html#mpi.tutorial.collectives.broadcast" title="Broadcast">Broadcast</a>
 </h4></div></div></div>
 <p>
-          The <code class="computeroutput"><a class="link" href="../boost/mpi/broadcast.html" title="Function broadcast">broadcast</a></code>
+          The <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1a5b0e8df33bda5df0dfc27371b3345982.html" title="Function broadcast">broadcast</a></code>
           algorithm is by far the simplest collective operation. It broadcasts a
-          value from a single process to all other processes within a <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html" title="Class communicator">communicator</a></code>. For instance,
+          value from a single process to all other processes within a <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html" title="Class communicator">communicator</a></code>. For instance,
           the following program broadcasts "Hello, World!" from process
           0 to every other process. (<code class="computeroutput"><span class="identifier">hello_world_broadcast</span><span class="special">.</span><span class="identifier">cpp</span></code>)
         </p>
@@ -384,7 +384,7 @@ Process #6 says Hello, World!
 <a name="mpi.tutorial.collectives.gather"></a><a class="link" href="tutorial.html#mpi.tutorial.collectives.gather" title="Gather">Gather</a>
 </h4></div></div></div>
 <p>
-          The <code class="computeroutput"><a class="link" href="../boost/mpi/gather.html" title="Function gather">gather</a></code>
+          The <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1a37b487f942bdcb918a05c31e24f25573.html" title="Function gather">gather</a></code>
           collective gathers the values produced by every process in a communicator
           into a vector of values on the "root" process (specified by an
           argument to <code class="computeroutput"><span class="identifier">gather</span></code>). The
@@ -438,7 +438,7 @@ Process #6 thought of 650073868
           The <code class="computeroutput"><span class="identifier">gather</span></code> operation collects
           values from every process into a vector at one process. If instead the
           values from every process need to be collected into identical vectors on
-          every process, use the <code class="computeroutput"><a class="link" href="../boost/mpi/all_gather.html" title="Function all_gather">all_gather</a></code> algorithm,
+          every process, use the <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1ad5faf629c8c1736a377776d0b8688179.html" title="Function all_gather">all_gather</a></code> algorithm,
           which is semantically equivalent to calling <code class="computeroutput"><span class="identifier">gather</span></code>
           followed by a <code class="computeroutput"><span class="identifier">broadcast</span></code>
           of the resulting vector.
@@ -449,7 +449,7 @@ Process #6 thought of 650073868
 <a name="mpi.tutorial.collectives.scatter"></a><a class="link" href="tutorial.html#mpi.tutorial.collectives.scatter" title="Scatter">Scatter</a>
 </h4></div></div></div>
 <p>
-          The <code class="computeroutput"><a class="link" href="../boost/mpi/scatter.html" title="Function scatter">scatter</a></code>
+          The <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1ac71bca73cb6ff28a1b202d1a90ce2782.html" title="Function scatter">scatter</a></code>
           collective scatters the values from a vector in the "root" process
           in a communicator into values in all the processes of the communicator.
           The /i/th element in the vector will correspond to the value received by
@@ -507,14 +507,14 @@ Rank 6 got 2117359639
 <a name="mpi.tutorial.collectives.reduce"></a><a class="link" href="tutorial.html#mpi.tutorial.collectives.reduce" title="Reduce">Reduce</a>
 </h4></div></div></div>
 <p>
-          The <code class="computeroutput"><a class="link" href="../boost/mpi/reduce.html" title="Function reduce">reduce</a></code>
+          The <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1a1f25ce70bef33771218a8d47036b1ff5.html" title="Function reduce">reduce</a></code>
           collective summarizes the values from each process into a single value
           at the user-specified "root" process. The Boost.MPI <code class="computeroutput"><span class="identifier">reduce</span></code> operation is similar in spirit
           to the STL <a href="http://www.sgi.com/tech/stl/accumulate.html" target="_top"><code class="computeroutput"><span class="identifier">accumulate</span></code></a> operation, because
           it takes a sequence of values (one per process) and combines them via a
           function object. For instance, we can randomly generate values in each
           process and the compute the minimum value over all processes via a call
-          to <code class="computeroutput"><a class="link" href="../boost/mpi/reduce.html" title="Function reduce">reduce</a></code>
+          to <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1a1f25ce70bef33771218a8d47036b1ff5.html" title="Function reduce">reduce</a></code>
           (<code class="computeroutput"><span class="identifier">random_min</span><span class="special">.</span><span class="identifier">cpp</span></code>):
         </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mpi</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -602,7 +602,7 @@ Rank 6 got 2117359639
           <span class="identifier">x</span><span class="special">)</span></code>),
           Boost.MPI can use a more efficient implementation of <code class="computeroutput"><span class="identifier">reduce</span></code>.
           To state that a function object is commutative, you will need to specialize
-          the class <code class="computeroutput"><a class="link" href="../boost/mpi/is_commutative.html" title="Struct template is_commutative">is_commutative</a></code>.
+          the class <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1mpi_1_1is__commutative.html" title="Struct template is_commutative">is_commutative</a></code>.
           For instance, we could modify the previous example by telling Boost.MPI
           that string concatenation is commutative:
         </p>
@@ -637,7 +637,7 @@ Rank 6 got 2117359639
           by MPI (e.g., <code class="computeroutput"><span class="identifier">MPI_SUM</span></code>,
           <code class="computeroutput"><span class="identifier">MPI_MAX</span></code>); if you have your
           own function objects that can take advantage of this mapping, see the class
-          template <code class="computeroutput"><a class="link" href="../boost/mpi/is_mpi_op.html" title="Struct template is_mpi_op">is_mpi_op</a></code>.
+          template <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1mpi_1_1is__mpi__op.html" title="Struct template is_mpi_op">is_mpi_op</a></code>.
         </p>
 <div class="warning"><table border="0" summary="Warning">
 <tr>
@@ -657,7 +657,7 @@ Rank 6 got 2117359639
 <p>
           Like <a class="link" href="tutorial.html#mpi.tutorial.collectives.gather" title="Gather"><code class="computeroutput"><span class="identifier">gather</span></code></a>,
           <code class="computeroutput"><span class="identifier">reduce</span></code> has an "all"
-          variant called <code class="computeroutput"><a class="link" href="../boost/mpi/all_reduce.html" title="Function all_reduce">all_reduce</a></code> that performs
+          variant called <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1a25fa041b1642691c8a9b622aa51f004d.html" title="Function all_reduce">all_reduce</a></code> that performs
           the reduction operation and broadcasts the result to all processes. This
           variant is useful, for instance, in establishing global minimum or maximum
           values.
@@ -790,7 +790,7 @@ Rank 6 got 2117359639
         of their data member (most POD with no pointers are a good example). When
         this is the case, Boost.MPI can optimize their serialization and transmission
         by avoiding extraneous copy operations. To enable this optimization, users
-        must specialize the type trait <code class="computeroutput"><a class="link" href="../boost/mpi/is_mpi_datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code>, e.g.:
+        must specialize the type trait <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1mpi_1_1is__mpi__datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code>, e.g.:
       </p>
 <pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">mpi</span> <span class="special">{</span>
   <span class="keyword">template</span> <span class="special">&lt;&gt;</span>
@@ -804,7 +804,7 @@ Rank 6 got 2117359639
 <pre class="programlisting"><span class="identifier">BOOST_IS_MPI_DATATYPE</span><span class="special">(</span><span class="identifier">gps_position</span><span class="special">)</span>
 </pre>
 <p>
-        For composite traits, the specialization of <code class="computeroutput"><a class="link" href="../boost/mpi/is_mpi_datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code> may depend
+        For composite traits, the specialization of <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1mpi_1_1is__mpi__datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code> may depend
         on <code class="computeroutput"><span class="identifier">is_mpi_datatype</span></code> itself.
         For instance, a <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">array</span></code> object is fixed only when the type
         of the parameter it stores is fixed:
@@ -828,7 +828,7 @@ Rank 6 got 2117359639
         Built-in types can be transmitted without any extra effort; library-defined
         types require the inclusion of a serialization header; and user-defined types
         will require the addition of serialization code. Fixed data types can be
-        optimized for transmission using the <code class="computeroutput"><a class="link" href="../boost/mpi/is_mpi_datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code> type trait.
+        optimized for transmission using the <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1mpi_1_1is__mpi__datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code> type trait.
       </p>
 </div>
 <div class="section">
@@ -855,7 +855,7 @@ Rank 6 got 2117359639
           When the MPI environment is initialized, only the "world" communicator
           (called <code class="computeroutput"><span class="identifier">MPI_COMM_WORLD</span></code>
           in the MPI C and Fortran bindings) is available. The "world"
-          communicator, accessed by default-constructing a <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html" title="Class communicator">mpi::communicator</a></code>
+          communicator, accessed by default-constructing a <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html" title="Class communicator">mpi::communicator</a></code>
           object, contains all of the MPI processes present when the program begins
           execution. Other communicators can then be constructed by duplicating or
           building subsets of the "world" communicator. For instance, in
@@ -926,7 +926,7 @@ Rank 6 got 2117359639
         </p>
 <p>
           For more control in the creation of communicators for subgroups of processes,
-          the Boost.MPI <code class="computeroutput"><a class="link" href="../boost/mpi/group.html" title="Class group">group</a></code>
+          the Boost.MPI <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1group.html" title="Class group">group</a></code>
           provides facilities to compute the union (<code class="computeroutput"><span class="special">|</span></code>),
           intersection (<code class="computeroutput"><span class="special">&amp;</span></code>), and
           difference (<code class="computeroutput"><span class="special">-</span></code>) of two groups,
@@ -981,7 +981,7 @@ Rank 6 got 2117359639
         There are an increasing number of hybrid parallel applications that mix distributed
         and shared memory parallelism. To know how to support that model, one need
         to know what level of threading support is guaranteed by the MPI implementation.
-        There are 4 ordered level of possible threading support described by <code class="computeroutput"><a class="link" href="../boost/mpi/threading/level.html" title="Type level">mpi::threading::level</a></code>. At the
+        There are 4 ordered level of possible threading support described by <code class="computeroutput"><a class="link" href="../doxygen/environment_8hpp_1aac09784551aa32fd7f71ada1a5c5f850.html" title="Type level">mpi::threading::level</a></code>. At the
         lowest level, you should not use threads at all, at the highest level, any
         thread can perform MPI call.
       </p>
@@ -1021,7 +1021,7 @@ Rank 6 got 2117359639
         these data types into a buffer and then communicate them; the receiver then
         copies the results into a buffer before deserializing into an object on the
         other end. For some data types, this overhead can be eliminated by using
-        <code class="computeroutput"><a class="link" href="../boost/mpi/is_mpi_datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1mpi_1_1is__mpi__datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code>.
         However, variable-length data types such as strings and lists cannot be MPI
         data types.
       </p>
@@ -1047,7 +1047,7 @@ Rank 6 got 2117359639
         the current sequence of numbers) can be transmitted efficiently. The complete
         example is available in <code class="computeroutput"><span class="identifier">example</span><span class="special">/</span><span class="identifier">random_content</span><span class="special">.</span><span class="identifier">cpp</span></code>. We
         being with the master process (rank 0), which builds a list, communicates
-        its structure via a <code class="computeroutput"><a class="link" href="reference.html#boost.mpi.skeleton">skeleton</a></code>, then repeatedly
+        its structure via a <code class="computeroutput"><a class="link" href="reference.html#doxygen.skeleton__and__content__fwd_8hpp_1a025a4d152649ba9d259635650cee5205">skeleton</a></code>, then repeatedly
         generates random number sequences to be broadcast to the slave processes
         via <code class="computeroutput">content</code>:
       </p>
@@ -1071,7 +1071,7 @@ Rank 6 got 2117359639
 </pre>
 <p>
         The slave processes have a very similar structure to the master. They receive
-        (via the <code class="computeroutput"><a class="link" href="../boost/mpi/broadcast.html" title="Function broadcast">broadcast()</a></code> call) the skeleton of the
+        (via the <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1a5b0e8df33bda5df0dfc27371b3345982.html" title="Function broadcast">broadcast()</a></code> call) the skeleton of the
         data structure, then use it to build their own lists of integers. In each
         iteration, they receive via another <code class="computeroutput"><span class="identifier">broadcast</span><span class="special">()</span></code> the new content in the data structure and
         compute some property of the data:
@@ -1097,8 +1097,8 @@ Rank 6 got 2117359639
 </pre>
 <p>
         The skeletons and content of any Serializable data type can be transmitted
-        either via the <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_4-bb">send</a></code> and <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html#id-1_3_25_7_6_2_1_1_3_9-bb">recv</a></code> members of the <code class="computeroutput"><a class="link" href="../boost/mpi/communicator.html" title="Class communicator">communicator</a></code>
-        class (for point-to-point communicators) or broadcast via the <code class="computeroutput"><a class="link" href="../boost/mpi/broadcast.html" title="Function broadcast">broadcast()</a></code> collective. When separating
+        either via the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1ad47396d6738a12ea994e9e988c6d9118">send</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html#doxygen.classboost_1_1mpi_1_1communicator_1aaf93e4a538b75cb6769cdb04bcf14f91">recv</a></code> members of the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1mpi_1_1communicator.html" title="Class communicator">communicator</a></code>
+        class (for point-to-point communicators) or broadcast via the <code class="computeroutput"><a class="link" href="../doxygen/collectives_8hpp_1a5b0e8df33bda5df0dfc27371b3345982.html" title="Function broadcast">broadcast()</a></code> collective. When separating
         a data structure into a skeleton and content, be careful not to modify the
         data structure (either on the sender side or the receiver side) without transmitting
         the skeleton again. Boost.MPI can not detect these accidental modifications
@@ -1128,7 +1128,7 @@ Rank 6 got 2117359639
         </p>
 <p>
           It was already discussed that fixed length types containing no pointers
-          can be using as <code class="computeroutput"><a class="link" href="../boost/mpi/is_mpi_datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code>, e.g.:
+          can be using as <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1mpi_1_1is__mpi__datatype.html" title="Struct template is_mpi_datatype">is_mpi_datatype</a></code>, e.g.:
         </p>
 <pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">mpi</span> <span class="special">{</span>
   <span class="keyword">template</span> <span class="special">&lt;&gt;</span>
@@ -1157,7 +1157,7 @@ Rank 6 got 2117359639
 <p>
           More optimizations are possible on homogeneous machines, by avoiding MPI_Pack/MPI_Unpack
           calls but using direct bitwise copy. This feature is enabled by default
-          by defining the macro <code class="computeroutput"><a class="link" href="../BOOST_MPI_HOMOGENEOUS.html" title="Macro BOOST_MPI_HOMOGENEOUS">BOOST_MPI_HOMOGENEOUS</a></code>
+          by defining the macro <code class="computeroutput"><a class="link" href="../doxygen/config_8hpp_1a8c997e629f4a758ed4752865c60a0fd1.html" title="Macro BOOST_MPI_HOMOGENEOUS">BOOST_MPI_HOMOGENEOUS</a></code>
           in the include file <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mpi</span><span class="special">/</span><span class="identifier">config</span><span class="special">.</span><span class="identifier">hpp</span></code>.
           That definition must be consistent when building Boost.MPI and when building
           the application.

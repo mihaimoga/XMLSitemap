@@ -670,8 +670,7 @@ pre.rouge {
 <li><a href="#overview_getting_started">Getting Started</a>
 <ul class="sectlevel2">
 <li><a href="#build_b2">B2</a></li>
-<li><a href="#build_vcpkg">vcpkg</a></li>
-<li><a href="#build_conan">Conan</a></li>
+<li><a href="#build_float128_and_stdfloat128_t_support"><code>__float128</code> and <code>std::float128_t</code> Support</a></li>
 <li><a href="#build_dependencies">Dependencies</a></li>
 </ul>
 </li>
@@ -898,67 +897,28 @@ git submodule update <span class="nt">--init</span>
 </div>
 </div>
 <div class="sect2">
-<h3 id="build_vcpkg">vcpkg</h3>
+<h3 id="build_float128_and_stdfloat128_t_support"><code>__float128</code> and <code>std::float128_t</code> Support</h3>
 <div class="paragraph">
-<p>Run the following commands to clone the latest version of Charconv and install it using vcpkg:</p>
+<p>If using B2 or CMake the build system will automatically define <code>BOOST_CHARCONV_HAS_QUADMATH</code> and link against it if the build system can successfully run a small test case.
+If you are using another build system and you want support for these types you will have to define <code>BOOST_CHARCONV_HAS_QUADMATH</code>, and link against <a href="https://gcc.gnu.org/onlinedocs/libquadmath/">libquadmath</a>.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash">git clone https://github.com/boostorg/charconv
-<span class="nb">cd </span>charconv
-vcpkg <span class="nb">install </span>charconv <span class="nt">--overlay-ports</span><span class="o">=</span>ports/charconv</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Any required Boost packages not currently installed in your development environment will be installed automatically.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="build_conan">Conan</h3>
-<div class="paragraph">
-<p>Run the following commands to clone the latest version of Charconv and build a boost_charconv package using your default profile:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash">git clone https://github.com/boostorg/charconv
-conan create charconv/conan <span class="nt">--build</span> missing</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The package will be put in the local Conan cache along with all direct and transitive dependencies.</p>
-</div>
-<div class="admonitionblock tip">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<div class="title">Important</div>
 </td>
 <td class="content">
-Since Charconv only depends on a few header-only Boost libraries, you can save time by requesting header-only Boost:
+libquadmath is only available on supported platforms (e.g. Linux with x86, x86_64, PPC64, and IA64).
 </td>
 </tr>
 </table>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash">conan create charconv/conan <span class="nt">-o</span> <span class="s1">'boost*:header_only=True'</span> <span class="nt">--build</span> missing</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After the package is built, you can use it in your own projects.
-For example, using a <code>conanfile.txt</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="o">[</span>requires]
-boost_charconv/1.0.0</code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="build_dependencies">Dependencies</h3>
 <div class="paragraph">
-<p>This library depends on: Boost.Assert, Boost.Config, Boost.Core, and  <a href="https://gcc.gnu.org/onlinedocs/libquadmath/">libquadmath</a> on supported platforms (e.g. Linux with x86, x86_64, PPC64, and IA64).</p>
+<p>This library depends on: Boost.Assert, Boost.Config, Boost.Core, and optionally libquadmath (see above).</p>
 </div>
 </div>
 </div>
@@ -2419,7 +2379,7 @@ the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License, Versi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-04-11 18:48:01 UTC
+Last updated 2024-07-24 04:36:49 UTC
 </div>
 </div>
 <style>

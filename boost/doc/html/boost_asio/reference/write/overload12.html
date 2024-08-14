@@ -39,7 +39,8 @@
     <span class="identifier">SyncWriteStream</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span>
     <span class="identifier">basic_streambuf</span><span class="special">&lt;</span> <span class="identifier">Allocator</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <span class="identifier">b</span><span class="special">,</span>
     <span class="identifier">CompletionCondition</span> <span class="identifier">completion_condition</span><span class="special">,</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_completion_condition</span><span class="special">&lt;</span> <span class="identifier">CompletionCondition</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
 </pre>
 <p>
           This function is used to write a certain number of bytes of data to a stream.

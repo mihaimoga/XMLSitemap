@@ -37,7 +37,7 @@
           </h6>
 <pre class="programlisting"><span class="keyword">void</span>
 <span class="identifier">insert</span><span class="special">(</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span> <span class="identifier">string_view</span><span class="special">,</span> <span class="identifier">value_ref</span> <span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">init</span><span class="special">);</span>
+    <a href="https://en.cppreference.com/w/cpp/utility/initializer_list" target="_top"><code class="literal">std::initializer_list</code></a><span class="special">&lt;</span> <a href="https://en.cppreference.com/w/cpp/utility/pair" target="_top"><code class="literal">std::pair</code></a><span class="special">&lt;</span> <a class="link" href="../../boost__json__string_view.html" title="string_view"><code class="literal">string_view</code></a><span class="special">,</span> <a class="link" href="../../boost__json__value_ref.html" title="value_ref"><code class="literal">value_ref</code></a> <span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">init</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__object.insert.overload3.h1"></a>
@@ -48,9 +48,11 @@
             Any element with key that is a duplicate of a key already present in
             container will be skipped. This also means, that if there are two keys
             within the initializer list that are equal to each other, only the first
-            will be inserted. Insertion may result in rehashing of the container.
-            In that case all iterators and references are invalidated. Otherwise,
-            they are not affected.
+            will be inserted.
+          </p>
+<p>
+            Insertion may result in rehashing of the container. In that case all
+            iterators and references are invalidated. Otherwise, they are not affected.
           </p>
 <h6>
 <a name="json.ref.boost__json__object.insert.overload3.h2"></a>

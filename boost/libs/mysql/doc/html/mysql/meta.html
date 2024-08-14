@@ -74,13 +74,13 @@
 <span class="identifier">string_view</span> <span class="identifier">colname</span> <span class="special">=</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">meta</span><span class="special">()[</span><span class="number">0</span><span class="special">].</span><span class="identifier">column_name</span><span class="special">();</span>
 
 <span class="comment">// colname will be empty because conn.meta_mode() == metadata_mode::minimal</span>
-<span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">colname</span> <span class="special">==</span> <span class="string">""</span><span class="special">);</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">colname</span> <span class="special">==</span> <span class="string">""</span><span class="special">);</span>
 
 <span class="comment">// If you are using metadata names, set the connection's metadata_mode</span>
 <span class="identifier">conn</span><span class="special">.</span><span class="identifier">set_meta_mode</span><span class="special">(</span><span class="identifier">metadata_mode</span><span class="special">::</span><span class="identifier">full</span><span class="special">);</span>
 <span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT 1 AS my_field"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 <span class="identifier">colname</span> <span class="special">=</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">meta</span><span class="special">()[</span><span class="number">0</span><span class="special">].</span><span class="identifier">column_name</span><span class="special">();</span>
-<span class="identifier">ASSERT</span><span class="special">(</span><span class="identifier">colname</span> <span class="special">==</span> <span class="string">"my_field"</span><span class="special">);</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">colname</span> <span class="special">==</span> <span class="string">"my_field"</span><span class="special">);</span>
 </pre>
 </div>
 <div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>

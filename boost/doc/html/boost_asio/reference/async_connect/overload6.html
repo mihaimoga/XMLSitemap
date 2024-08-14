@@ -7,7 +7,7 @@
 <link rel="home" href="../../../boost_asio.html" title="Boost.Asio">
 <link rel="up" href="../async_connect.html" title="async_connect">
 <link rel="prev" href="overload5.html" title="async_connect (5 of 6 overloads)">
-<link rel="next" href="../async_initiate.html" title="async_initiate">
+<link rel="next" href="../async_immediate.html" title="async_immediate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="overload5.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../async_connect.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../async_initiate.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="overload5.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../async_connect.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../async_immediate.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -43,7 +43,8 @@
     <span class="identifier">Iterator</span> <span class="identifier">begin</span><span class="special">,</span>
     <span class="identifier">Iterator</span> <span class="identifier">end</span><span class="special">,</span>
     <span class="identifier">ConnectCondition</span> <span class="identifier">connect_condition</span><span class="special">,</span>
-    <span class="identifier">IteratorConnectToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;());</span>
+    <span class="identifier">IteratorConnectToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_connect_condition</span><span class="special">&lt;</span> <span class="identifier">ConnectCondition</span><span class="special">,</span> <span class="identifier">Iterator</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
 </pre>
 <p>
           This function attempts to connect a socket to one of a sequence of endpoints.
@@ -117,7 +118,7 @@
                 Regardless of whether the asynchronous operation completes immediately
                 or not, the completion handler will not be invoked from within this
                 function. On immediate completion, invocation of the handler will
-                be performed in a manner equivalent to using <a class="link" href="../post.html" title="post"><code class="computeroutput"><span class="identifier">post</span></code></a>.
+                be performed in a manner equivalent to using <a class="link" href="../async_immediate.html" title="async_immediate"><code class="computeroutput"><span class="identifier">async_immediate</span></code></a>.
               </p>
 </dd>
 </dl>
@@ -220,7 +221,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="overload5.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../async_connect.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../async_initiate.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="overload5.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../async_connect.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../async_immediate.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

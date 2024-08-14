@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.JSON">
-<link rel="up" href="../ref.html" title="This Page Intentionally Left Blank 2/2">
+<link rel="up" href="../../json_hidden.html" title="This Page Intentionally Left Blank">
 <link rel="prev" href="boost__json__stream_parser/release.html" title="stream_parser::release">
-<link rel="next" href="boost__json__string/at.html" title="string::at">
+<link rel="next" href="boost__json__string/allocator_type.html" title="string::allocator_type">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__json__stream_parser/release.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../ref.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__string/at.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__json__stream_parser/release.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../json_hidden.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__string/allocator_type.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -37,7 +37,7 @@
 <p>
         Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json/string.hpp" target="_top">boost/json/string.hpp</a>&gt;</code>
       </p>
-<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">string</span>
+<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">string</span><span class="special">;</span>
 </pre>
 <h5>
 <a name="json.ref.boost__json__string.h1"></a>
@@ -513,8 +513,8 @@
 <td>
                 <p>
                   Find the last occurrence of a character not within the string.
-                  <br><span class="silver">—</span><br>Find the last occurrence of a
-                  character not equal to <code class="computeroutput"><span class="identifier">ch</span></code>.
+                  <br><span class="silver">—</span><br>Find the last occurrence
+                  of a character not equal to <code class="computeroutput"><span class="identifier">ch</span></code>.
                 </p>
               </td>
 </tr>
@@ -574,46 +574,9 @@
               </td>
 <td>
                 <p>
-                  Insert a string. <br><span class="silver">—</span><br>Insert a character.
-                  <br><span class="silver">—</span><br>Insert a range of characters.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__string/operator_eq_.html" title="string::operator=">operator=</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Copy assignment. <br><span class="silver">—</span><br>Move assignment.
-                  <br><span class="silver">—</span><br>Assign a value to the string.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__string/operator__lb__rb_.html" title="string::operator[]">operator[]</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Return a character without bounds checking.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__string/operator_plus__eq_.html" title="string::operator+=">operator+=</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Append characters from a string. <br><span class="silver">—</span><br>Append
-                  a character.
+                  Insert a string. <br><span class="silver">—</span><br>Insert
+                  a character. <br><span class="silver">—</span><br>Insert a range
+                  of characters.
                 </p>
               </td>
 </tr>
@@ -640,8 +603,46 @@
               </td>
 <td>
                 <p>
-                  Convert to a <code class="computeroutput"><span class="identifier">string_view</span></code>
-                  referring to the string.
+                  Convert to a <a class="link" href="boost__json__string/operator_std__string_view.html" title="string::operator std::string_view"><code class="computeroutput"><span class="identifier">string_view</span></code></a> referring
+                  to the string.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__string/operator_plus__eq_.html" title="string::operator+=">operator+=</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Append characters from a string. <br><span class="silver">—</span><br>Append
+                  a character.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__string/operator_eq_.html" title="string::operator=">operator=</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Copy assignment. <br><span class="silver">—</span><br>Move assignment.
+                  <br><span class="silver">—</span><br>Assign a value to the string.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__string/operator__lb__rb_.html" title="string::operator[]">operator[]</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return a character without bounds checking.
                 </p>
               </td>
 </tr>
@@ -805,9 +806,9 @@
               </td>
 <td>
                 <p>
-                  Default constructor. <br><span class="silver">—</span><br>Pilfer constructor.
-                  <br><span class="silver">—</span><br>Constructor. <br><span class="silver">—</span><br>Copy
-                  constructor. <br><span class="silver">—</span><br>Move constructor.
+                  Default constructor. <br><span class="silver">—</span><br>Pilfer
+                  constructor. <br><span class="silver">—</span><br>Constructor.
+                  <br><span class="silver">—</span><br>Copy constructor. <br><span class="silver">—</span><br>Move constructor.
                 </p>
               </td>
 </tr>
@@ -832,6 +833,18 @@
 <td>
                 <p>
                   Swap the contents.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__string/try_at.html" title="string::try_at">try_at</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return a character with bounds checking.
                 </p>
               </td>
 </tr>
@@ -871,20 +884,7 @@
                 </p>
               </th>
 </tr></thead>
-<tbody>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__string/at.html" title="string::at">at</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Return a character with bounds checking.
-                </p>
-              </td>
-</tr>
-<tr>
+<tbody><tr>
 <td>
                 <p>
                   <span class="bold"><strong><a class="link" href="boost__json__string/max_size.html" title="string::max_size">max_size</a></strong></span>
@@ -895,8 +895,7 @@
                   Return the maximum number of characters any string can hold.
                 </p>
               </td>
-</tr>
-</tbody>
+</tr></tbody>
 </table></div>
 <h5>
 <a name="json.ref.boost__json__string.h4"></a>
@@ -920,20 +919,7 @@
                 </p>
               </th>
 </tr></thead>
-<tbody>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__string/at.html" title="string::at">at</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Return a character with bounds checking.
-                </p>
-              </td>
-</tr>
-<tr>
+<tbody><tr>
 <td>
                 <p>
                   <span class="bold"><strong><a class="link" href="boost__json__string/npos.html" title="string::npos">npos</a></strong></span>
@@ -944,8 +930,7 @@
                   A special index.
                 </p>
               </td>
-</tr>
-</tbody>
+</tr></tbody>
 </table></div>
 <h5>
 <a name="json.ref.boost__json__string.h5"></a>
@@ -972,7 +957,7 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__string/operator_lt__lt_.html" title="string::operator&lt;&lt;">operator&lt;&lt;</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__json__string/operator_lt__lt__fr.html" title="string::operator&lt;&lt;">operator&lt;&lt;</a></strong></span>
                 </p>
               </td>
 <td>
@@ -984,7 +969,7 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__string/swap.html" title="string::swap">swap</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__json__string/swap_fr.html" title="string::swap">swap</a></strong></span>
                 </p>
               </td>
 <td>
@@ -1005,7 +990,10 @@
         A pointer to any character in a string may be passed to functions that expect
         a pointer to the first element of a null-terminated <code class="computeroutput"><span class="keyword">char</span></code>
         array. The type uses small buffer optimisation to avoid allocations for small
-        strings. String iterators are regular <code class="computeroutput"><span class="keyword">char</span></code>
+        strings.
+      </p>
+<p>
+        String iterators are regular <code class="computeroutput"><span class="keyword">char</span></code>
         pointers.
       </p>
 <h5>
@@ -1045,7 +1033,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__json__stream_parser/release.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../ref.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__string/at.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__json__stream_parser/release.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../json_hidden.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__string/allocator_type.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

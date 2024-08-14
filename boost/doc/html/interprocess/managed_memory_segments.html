@@ -380,14 +380,14 @@
 </h4></div></div></div>
 <p>
           Windows users might also want to use native windows shared memory instead
-          of the portable <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_memory_object.html" title="Class shared_memory_object">shared_memory_object</a></code>
-          managed memory. This is achieved through the <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_win_idm27342.html" title="Class template basic_managed_windows_shared_memory">basic_managed_windows_shared_memory</a></code>
+          of the portable <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__memory__object.html" title="Class shared_memory_object">shared_memory_object</a></code>
+          managed memory. This is achieved through the <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__windows__shared__memory.html" title="Class template basic_managed_windows_shared_memory">basic_managed_windows_shared_memory</a></code>
           class. To use it just include:
         </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_windows_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
-          This class has the same interface as <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_sha_idm27088.html" title="Class template basic_managed_shared_memory">basic_managed_shared_memory</a></code>
+          This class has the same interface as <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__shared__memory.html" title="Class template basic_managed_shared_memory">basic_managed_shared_memory</a></code>
           but uses native windows shared memory. Note that this managed class has
           the same lifetime issues as the windows shared memory: when the last process
           attached to the windows shared memory is detached from the memory (or ends/crashes)
@@ -407,19 +407,19 @@
 </h4></div></div></div>
 <p>
           Unix users might also want to use XSI (system V) instead of the portable
-          <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_memory_object.html" title="Class shared_memory_object">shared_memory_object</a></code>
-          managed memory. This is achieved through the <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_xsi_idm27527.html" title="Class template basic_managed_xsi_shared_memory">basic_managed_xsi_shared_memory</a></code>
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__memory__object.html" title="Class shared_memory_object">shared_memory_object</a></code>
+          managed memory. This is achieved through the <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__xsi__shared__memory.html" title="Class template basic_managed_xsi_shared_memory">basic_managed_xsi_shared_memory</a></code>
           class. To use it just include:
         </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_xsi_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
-          This class has nearly the same interface as <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_sha_idm27088.html" title="Class template basic_managed_shared_memory">basic_managed_shared_memory</a></code>
+          This class has nearly the same interface as <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__shared__memory.html" title="Class template basic_managed_shared_memory">basic_managed_shared_memory</a></code>
           but uses XSI shared memory as backend.
         </p>
 </div>
 <p>
-        For more information about managed XSI shared memory capabilities, see <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_xsi_idm27527.html" title="Class template basic_managed_xsi_shared_memory">basic_managed_xsi_shared_memory</a></code>
+        For more information about managed XSI shared memory capabilities, see <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__xsi__shared__memory.html" title="Class template basic_managed_xsi_shared_memory">basic_managed_xsi_shared_memory</a></code>
         class reference.
       </p>
 </div>
@@ -565,7 +565,7 @@
         </p>
 </div>
 <p>
-        For more information about managed mapped file capabilities, see <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_mapped_file.html" title="Class template basic_managed_mapped_file">basic_managed_mapped_file</a></code>
+        For more information about managed mapped file capabilities, see <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__mapped__file.html" title="Class template basic_managed_mapped_file">basic_managed_mapped_file</a></code>
         class reference.
       </p>
 </div>
@@ -615,8 +615,6 @@
           throws boost::interprocess::bad_alloc (which derives from <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">bad_alloc</span></code>) if there is no more memory
           and the non-throwing version returns 0 pointer.
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
@@ -648,8 +646,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -816,7 +812,7 @@
           That is, the mutex type used to synchronize named/unique allocations is
           defined by the <code class="computeroutput"><span class="identifier">MemoryAlgorithm</span><span class="special">::</span><span class="identifier">mutex_family</span><span class="special">::</span><span class="identifier">recursive_mutex_type</span></code>
           type. For shared memory, and memory mapped file based managed segments
-          this recursive mutex is defined as <code class="computeroutput"><a class="link" href="../boost/interprocess/interprocess_recu_idm30850.html" title="Class interprocess_recursive_mutex">interprocess_recursive_mutex</a></code>.
+          this recursive mutex is defined as <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1interprocess__recursive__mutex.html" title="Class interprocess_recursive_mutex">interprocess_recursive_mutex</a></code>.
         </p>
 <p>
           If two processes can call:
@@ -965,8 +961,6 @@
 <p>
           Here is an example showing this functionality:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstring</span><span class="special">&gt;</span>
@@ -1015,8 +1009,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -1134,10 +1126,8 @@
           fit the managed segment.
         </p>
 <p>
-          Here we have an example showing how to grow and shrink to fit <code class="computeroutput"><a class="link" href="../boost/interprocess/managed_shared_memory.html" title="Type definition managed_shared_memory">managed_shared_memory</a></code>:
+          Here we have an example showing how to grow and shrink to fit <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/managed__shared__memory_8hpp_1a49fc68e77e17ab77d91f1005c99023d9.html" title="Type definition managed_shared_memory">managed_shared_memory</a></code>:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_mapped_file</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
@@ -1197,9 +1187,7 @@
 <span class="special">}</span>
 </pre>
 <p>
-        </p>
-<p>
-          <code class="computeroutput"><a class="link" href="../boost/interprocess/managed_mapped_file.html" title="Type definition managed_mapped_file">managed_mapped_file</a></code>
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/managed__mapped__file_8hpp_1a0d4da159703df101158c50948bb69156.html" title="Type definition managed_mapped_file">managed_mapped_file</a></code>
           also offers a similar function to grow or shrink_to_fit the managed file.
           Please, remember that <span class="bold"><strong>no process should be modifying
           the file/shared memory while the growing/shrinking process is performed</strong></span>.
@@ -1317,8 +1305,6 @@
 <p>
           Here is a small example showing how aligned allocation is used:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
 
@@ -1375,8 +1361,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -1446,8 +1430,6 @@
 <p>
           Here is a small example showing all this functionality:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">utility_core</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span> <span class="comment">//boost::move</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;//</span><span class="identifier">assert</span>
@@ -1504,8 +1486,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 <p>
           Allocating N buffers of the same size improves the performance of pools
           and node containers (for example STL-like lists): when inserting a range
@@ -1765,8 +1745,6 @@
 <p>
           Here is a small example that shows the use of <code class="computeroutput"><span class="identifier">allocation_command</span></code>:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
 
@@ -1845,8 +1823,6 @@
 <span class="special">}</span>
 </pre>
 <p>
-        </p>
-<p>
           <code class="computeroutput"><span class="identifier">allocation_command</span></code> is a
           very powerful function that can lead to important performance gains. It's
           specially useful when programming vector-like data structures where the
@@ -1903,8 +1879,6 @@
 <p>
           Here is an example that shows the use of these two open modes:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_mapped_file</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">fstream</span><span class="special">&gt;</span> <span class="comment">//std::fstream</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iterator</span><span class="special">&gt;//</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">distance</span>
@@ -1973,8 +1947,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 </div>
 <div class="section">
@@ -2107,8 +2079,6 @@
 <p>
           Let's see an example of the use of managed_external_buffer:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_external_buffer</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">allocators</span><span class="special">/</span><span class="identifier">allocator</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">containers</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -2167,13 +2137,11 @@
 <span class="special">}</span>
 </pre>
 <p>
-        </p>
-<p>
           <span class="bold"><strong>Boost.Interprocess</strong></span> STL compatible allocators
           can also be used to place STL compatible containers in the user segment.
         </p>
 <p>
-          <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_ext_idm26693.html" title="Class template basic_managed_external_buffer">basic_managed_external_buffer</a></code>
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__external__buffer.html" title="Class template basic_managed_external_buffer">basic_managed_external_buffer</a></code>
           can be also useful to build small databases for embedded systems limiting
           the size of the used memory to a predefined memory chunk, instead of letting
           the database fragment the heap memory.
@@ -2236,7 +2204,7 @@
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_heap_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
-          The use is exactly the same as <code class="computeroutput"><a class="link" href="../boost/interprocess/basic_managed_ext_idm26693.html" title="Class template basic_managed_external_buffer">basic_managed_external_buffer</a></code>,
+          The use is exactly the same as <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1basic__managed__external__buffer.html" title="Class template basic_managed_external_buffer">basic_managed_external_buffer</a></code>,
           except that memory is created by the managed memory segment itself using
           dynamic (new/delete) memory.
         </p>
@@ -2251,8 +2219,6 @@
           example <code class="computeroutput"><span class="identifier">offset_ptr</span></code>). Otherwise,
           the result is undefined. Here is an example:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">containers</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_heap_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">allocators</span><span class="special">/</span><span class="identifier">allocator</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -2316,8 +2282,6 @@
 <span class="special">}</span>
 </pre>
 <p>
-        </p>
-<p>
           <span class="bold"><strong>Note:</strong></span> Heap memory is not guaranteed to
           be compatible with over-aligned types so it is not supported to use memory
           allocation algorithms or construct objects that need over-aligned memory:
@@ -2371,8 +2335,6 @@
           a whole database constructed in a memory buffer using <span class="bold"><strong>Boost.Interprocess</strong></span>,
           send the database through a message queue and duplicated in another buffer:
         </p>
-<p>
-</p>
 <pre class="programlisting"><span class="comment">//This test creates a in memory data-base using Interprocess machinery and</span>
 <span class="comment">//serializes it through a message queue. Then rebuilds the data-base in</span>
 <span class="comment">//another buffer and checks it against the original data-base</span>
@@ -2492,8 +2454,6 @@
    <span class="keyword">return</span> <span class="keyword">true</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-        </p>
 </div>
 </div>
 </div>

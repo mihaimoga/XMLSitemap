@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>BOOST_HOF_LIFT &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/boostbook.css" />
@@ -35,15 +36,15 @@
   <div class="chapter">
       <div class="body" role="main">
         
-  <div class="section" id="boost-hof-lift">
+  <section id="boost-hof-lift">
 <h1>BOOST_HOF_LIFT<a class="headerlink" href="#boost-hof-lift" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="header">
+<section id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/lift.hpp&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>The macros <code class="docutils literal notranslate"><span class="pre">BOOST_HOF_LIFT</span></code> and <code class="docutils literal notranslate"><span class="pre">BOOST_HOF_LIFT_CLASS</span></code> provide a lift operator that
 will wrap a template function in a function object so it can be passed to
@@ -52,14 +53,14 @@ a generic lambda. As such, it will not preserve <code class="docutils literal no
 <code class="docutils literal notranslate"><span class="pre">BOOST_HOF_LIFT_CLASS</span></code> can be used to declare a class that will wrap function.
 This will preserve <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> and it can be used on older compilers that
 don’t support generic lambdas yet.</p>
-</div>
-<div class="section" id="limitation">
+</section>
+<section id="limitation">
 <h2>Limitation<a class="headerlink" href="#limitation" title="Permalink to this heading">¶</a></h2>
 <p>In C++14, <code class="docutils literal notranslate"><span class="pre">BOOST_HOF_LIFT</span></code> doesn’t support <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> due to using a generic
 lambda. Instead, <code class="docutils literal notranslate"><span class="pre">BOOST_HOF_LIFT_CLASS</span></code> can be used. In C++17, there is no such
 limitation.</p>
-</div>
-<div class="section" id="synopsis">
+</section>
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Wrap the function in a generic lambda</span>
 <span class="cp">#define BOOST_HOF_LIFT(...)</span>
@@ -68,8 +69,8 @@ limitation.</p>
 <span class="cp">#define BOOST_HOF_LIFT_CLASS(name, ...)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
@@ -85,8 +86,8 @@ limitation.</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

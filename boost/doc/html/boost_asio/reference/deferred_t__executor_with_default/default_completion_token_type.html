@@ -176,8 +176,13 @@ Specify
           The <a class="link" href="../deferred_t.html" title="deferred_t"><code class="computeroutput"><span class="identifier">deferred_t</span></code></a>
           class is used to indicate that an asynchronous operation should return
           a function object which is itself an initiation function. A <a class="link" href="../deferred_t.html" title="deferred_t"><code class="computeroutput"><span class="identifier">deferred_t</span></code></a> object may be passed
-          as a completion token to an asynchronous operation, typically using the
-          special value <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span></code>. For example:
+          as a completion token to an asynchronous operation, typically as the default
+          completion token:
+        </p>
+<pre class="programlisting"><span class="keyword">auto</span> <span class="identifier">my_deferred_op</span> <span class="special">=</span> <span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">);</span>
+</pre>
+<p>
+          or by explicitly passing the special value <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span></code>:
         </p>
 <pre class="programlisting"><span class="keyword">auto</span> <span class="identifier">my_deferred_op</span>
  <span class="special">=</span> <span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span>

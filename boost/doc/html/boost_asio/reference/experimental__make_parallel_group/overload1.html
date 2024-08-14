@@ -40,6 +40,37 @@
           For example:
         </p>
 <pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">make_parallel_group</span><span class="special">(</span>
+  <span class="identifier">in</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data</span><span class="special">)),</span>
+  <span class="identifier">timer</span><span class="special">.</span><span class="identifier">async_wait</span><span class="special">()</span>
+<span class="special">).</span><span class="identifier">async_wait</span><span class="special">(</span>
+  <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">wait_for_all</span><span class="special">(),</span>
+  <span class="special">[](</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">array</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span><span class="special">,</span> <span class="number">2</span><span class="special">&gt;</span> <span class="identifier">completion_order</span><span class="special">,</span>
+      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec1</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">n1</span><span class="special">,</span>
+      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec2</span>
+  <span class="special">)</span>
+  <span class="special">{</span>
+    <span class="keyword">switch</span> <span class="special">(</span><span class="identifier">completion_order</span><span class="special">[</span><span class="number">0</span><span class="special">])</span>
+    <span class="special">{</span>
+    <span class="keyword">case</span> <span class="number">0</span><span class="special">:</span>
+      <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"descriptor finished: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">ec1</span> <span class="special">&lt;&lt;</span> <span class="string">", "</span> <span class="special">&lt;&lt;</span> <span class="identifier">n1</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
+      <span class="special">}</span>
+      <span class="keyword">break</span><span class="special">;</span>
+    <span class="keyword">case</span> <span class="number">1</span><span class="special">:</span>
+      <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"timer finished: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">ec2</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
+      <span class="special">}</span>
+      <span class="keyword">break</span><span class="special">;</span>
+    <span class="special">}</span>
+  <span class="special">}</span>
+<span class="special">);</span>
+</pre>
+<p>
+          If preferred, the asynchronous operations may be explicitly packaged as
+          function objects:
+        </p>
+<pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">make_parallel_group</span><span class="special">(</span>
   <span class="special">[&amp;](</span><span class="keyword">auto</span> <span class="identifier">token</span><span class="special">)</span>
   <span class="special">{</span>
     <span class="keyword">return</span> <span class="identifier">in</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data</span><span class="special">),</span> <span class="identifier">token</span><span class="special">);</span>

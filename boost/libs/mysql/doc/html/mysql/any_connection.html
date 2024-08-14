@@ -222,7 +222,7 @@
       TLS options beyond defaults, you can pass your own context to <code class="computeroutput"><span class="identifier">any_connection</span></code>'s constructor, and it will
       be used:
     </p>
-<pre class="programlisting"><span class="comment">// The I/O context requied to run network operations</span>
+<pre class="programlisting"><span class="comment">// The I/O context required to run network operations</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">io_context</span> <span class="identifier">ctx</span><span class="special">;</span>
 
 <span class="comment">// Create a SSL context</span>
@@ -244,8 +244,8 @@
 <span class="comment">// Connect params</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connect_params</span> <span class="identifier">params</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">server_address</span><span class="special">.</span><span class="identifier">emplace_host_and_port</span><span class="special">(</span><span class="identifier">server_hostname</span><span class="special">);</span>  <span class="comment">// server host</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">username</span><span class="special">;</span>                                    <span class="comment">// username to log in as</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">password</span><span class="special">;</span>                                    <span class="comment">// password to use</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">mysql_username</span><span class="special">;</span>                              <span class="comment">// username to log in as</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">mysql_password</span><span class="special">;</span>                              <span class="comment">// password to use</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">ssl</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">ssl_mode</span><span class="special">::</span><span class="identifier">require</span><span class="special">;</span>                  <span class="comment">// fail if TLS is not available</span>
 
 <span class="comment">// Connect</span>

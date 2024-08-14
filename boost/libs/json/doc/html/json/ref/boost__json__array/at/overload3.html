@@ -28,14 +28,117 @@
 <a name="json.ref.boost__json__array.at.overload3"></a><a class="link" href="overload3.html" title="array::at (3 of 3 overloads)">array::at
           (3 of 3 overloads)</a>
 </h6></div></div></div>
+<p>
+            Access an element, with bounds checking.
+          </p>
 <h6>
 <a name="json.ref.boost__json__array.at.overload3.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.at.overload3.synopsis"></a></span><a class="link" href="overload3.html#json.ref.boost__json__array.at.overload3.synopsis">Synopsis</a>
           </h6>
-<pre class="programlisting"><span class="identifier">value</span> <span class="keyword">const</span><span class="special">&amp;</span>
+<pre class="programlisting"><a class="link" href="../../boost__json__value.html" title="value"><code class="literal">value</code></a> <span class="keyword">const</span><span class="special">&amp;</span>
 <span class="identifier">at</span><span class="special">(</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">pos</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+    <a href="https://en.cppreference.com/w/cpp/types/size_t" target="_top"><code class="literal">std::size_t</code></a> <span class="identifier">pos</span><span class="special">,</span>
+    <a href="https://www.boost.org/doc/libs/release/libs/assert/doc/html/assert.html#source_location" target="_top"><code class="literal">boost::source_location</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">loc</span> <span class="special">=</span> <span class="identifier">BOOST_CURRENT_LOCATION</span><span class="special">)</span> <span class="keyword">const</span><span class="special">&amp;;</span>
 </pre>
+<h6>
+<a name="json.ref.boost__json__array.at.overload3.h1"></a>
+            <span class="phrase"><a name="json.ref.boost__json__array.at.overload3.description"></a></span><a class="link" href="overload3.html#json.ref.boost__json__array.at.overload3.description">Description</a>
+          </h6>
+<p>
+            Returns a reference to the element specified at location <code class="computeroutput"><span class="identifier">pos</span></code>, with bounds checking. If <code class="computeroutput"><span class="identifier">pos</span></code> is not within the range of the
+            container, an exception of type <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span></code>
+            is thrown.
+          </p>
+<h6>
+<a name="json.ref.boost__json__array.at.overload3.h2"></a>
+            <span class="phrase"><a name="json.ref.boost__json__array.at.overload3.complexity"></a></span><a class="link" href="overload3.html#json.ref.boost__json__array.at.overload3.complexity">Complexity</a>
+          </h6>
+<p>
+            Constant.
+          </p>
+<h6>
+<a name="json.ref.boost__json__array.at.overload3.h3"></a>
+            <span class="phrase"><a name="json.ref.boost__json__array.at.overload3.parameters"></a></span><a class="link" href="overload3.html#json.ref.boost__json__array.at.overload3.parameters">Parameters</a>
+          </h6>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                    <p>
+                      Name
+                    </p>
+                  </th>
+<th>
+                    <p>
+                      Description
+                    </p>
+                  </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">pos</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      A zero-based index.
+                    </p>
+                  </td>
+</tr>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">loc</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">source_location</span></code>
+                      to use in thrown exception; the source location of the call
+                      site by default.
+                    </p>
+                  </td>
+</tr>
+</tbody>
+</table></div>
+<h6>
+<a name="json.ref.boost__json__array.at.overload3.h4"></a>
+            <span class="phrase"><a name="json.ref.boost__json__array.at.overload3.exceptions"></a></span><a class="link" href="overload3.html#json.ref.boost__json__array.at.overload3.exceptions">Exceptions</a>
+          </h6>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                    <p>
+                      Type
+                    </p>
+                  </th>
+<th>
+                    <p>
+                      Thrown On
+                    </p>
+                  </th>
+</tr></thead>
+<tbody><tr>
+<td>
+<pre class="table-programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span></pre>
+                  </td>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">pos</span> <span class="special">&gt;=</span>
+                      <span class="identifier">size</span><span class="special">()</span></code>.
+                    </p>
+                  </td>
+</tr></tbody>
+</table></div>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

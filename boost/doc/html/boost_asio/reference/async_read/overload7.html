@@ -40,7 +40,8 @@
     <span class="identifier">AsyncReadStream</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span>
     <span class="identifier">DynamicBuffer_v2</span> <span class="identifier">buffers</span><span class="special">,</span>
     <span class="identifier">ReadToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">AsyncReadStream</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
-    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_dynamic_buffer_v2</span><span class="special">&lt;</span> <span class="identifier">DynamicBuffer_v2</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_dynamic_buffer_v2</span><span class="special">&lt;</span> <span class="identifier">DynamicBuffer_v2</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">is_completion_condition</span><span class="special">&lt;</span> <span class="identifier">ReadToken</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
 </pre>
 <p>
           This function is used to asynchronously read a certain number of bytes
@@ -107,7 +108,7 @@
                 Regardless of whether the asynchronous operation completes immediately
                 or not, the completion handler will not be invoked from within this
                 function. On immediate completion, invocation of the handler will
-                be performed in a manner equivalent to using <a class="link" href="../post.html" title="post"><code class="computeroutput"><span class="identifier">post</span></code></a>.
+                be performed in a manner equivalent to using <a class="link" href="../async_immediate.html" title="async_immediate"><code class="computeroutput"><span class="identifier">async_immediate</span></code></a>.
               </p>
 </dd>
 </dl>

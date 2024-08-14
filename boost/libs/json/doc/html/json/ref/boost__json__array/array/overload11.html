@@ -29,30 +29,43 @@
           (11 of 11 overloads)</a>
 </h6></div></div></div>
 <p>
-            Constructor.
+            Move constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload11.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload11.synopsis"></a></span><a class="link" href="overload11.html#json.ref.boost__json__array.array.overload11.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">array</span><span class="special">(</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_ref</span> <span class="special">&gt;</span> <span class="identifier">init</span><span class="special">,</span>
-    <span class="identifier">storage_ptr</span> <span class="identifier">sp</span> <span class="special">=</span> <span class="special">{});</span>
+    <a class="link" href="../../boost__json__array.html" title="array"><code class="literal">array</code></a><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">,</span>
+    <a class="link" href="../../boost__json__storage_ptr.html" title="storage_ptr"><code class="literal">storage_ptr</code></a> <span class="identifier">sp</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__array.array.overload11.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload11.description"></a></span><a class="link" href="overload11.html#json.ref.boost__json__array.array.overload11.description">Description</a>
           </h6>
 <p>
-            The array is constructed with a copy of the values in the initializer-list
-            in order, using the specified memory resource.
+            The array is constructed with the contents of <code class="computeroutput"><span class="identifier">other</span></code>
+            by move semantics, using the specified memory resource:
           </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">==</span> <span class="special">*</span><span class="identifier">sp</span></code>,
+                ownership of the underlying memory is transferred in constant time,
+                with no possibility of exceptions. After construction, the moved-from
+                array behaves as if newly constructed with its current storage pointer.
+              </li>
+<li class="listitem">
+                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">!=</span> <span class="special">*</span><span class="identifier">sp</span></code>,
+                an element-wise copy is performed, which may throw. In this case,
+                the moved-from array is not changed.
+              </li>
+</ul></div>
 <h6>
 <a name="json.ref.boost__json__array.array.overload11.h2"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload11.complexity"></a></span><a class="link" href="overload11.html#json.ref.boost__json__array.array.overload11.complexity">Complexity</a>
           </h6>
 <p>
-            Linear in <code class="computeroutput"><span class="identifier">init</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
+            At most, linear in <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload11.h3"></a>
@@ -88,12 +101,12 @@
 <tr>
 <td>
                     <p>
-                      <code class="computeroutput"><span class="identifier">init</span></code>
+                      <code class="computeroutput"><span class="identifier">other</span></code>
                     </p>
                   </td>
 <td>
                     <p>
-                      The initializer list to insert
+                      The container to move
                     </p>
                   </td>
 </tr>

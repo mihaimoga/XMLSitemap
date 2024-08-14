@@ -37,7 +37,7 @@
           </h6>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">class</span> <span class="identifier">P</span><span class="special">&gt;</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">&gt;</span>
+<a href="https://en.cppreference.com/w/cpp/utility/pair" target="_top"><code class="literal">std::pair</code></a><span class="special">&lt;</span> <a class="link" href="../iterator.html" title="object::iterator"><code class="literal">object::iterator</code></a><span class="special">,</span> <span class="keyword">bool</span> <span class="special">&gt;</span>
 <span class="identifier">insert</span><span class="special">(</span>
     <span class="identifier">P</span><span class="special">&amp;&amp;</span> <span class="identifier">p</span><span class="special">);</span>
 </pre>
@@ -48,10 +48,13 @@
 <p>
             Inserts <code class="computeroutput"><span class="identifier">p</span></code> if <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">contains</span><span class="special">(</span><span class="identifier">value_type</span><span class="special">(</span><span class="identifier">p</span><span class="special">).</span><span class="identifier">key</span><span class="special">())</span></code>
             is <code class="computeroutput"><span class="keyword">false</span></code>. <a class="link" href="../value_type.html" title="object::value_type"><code class="computeroutput"><span class="identifier">value_type</span></code></a> must be constructible
-            from <code class="computeroutput"><span class="identifier">p</span></code>. If the insertion
-            occurs and results in a rehashing of the container, all iterators and
-            references are invalidated. Otherwise, they are not affected. Rehashing
-            occurs only if the new number of elements is greater than <a class="link" href="../capacity.html" title="object::capacity"><code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code></a>.
+            from <code class="computeroutput"><span class="identifier">p</span></code>.
+          </p>
+<p>
+            If the insertion occurs and results in a rehashing of the container,
+            all iterators and references are invalidated. Otherwise, they are not
+            affected. Rehashing occurs only if the new number of elements is greater
+            than <a class="link" href="../capacity.html" title="object::capacity"><code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code></a>.
           </p>
 <h6>
 <a name="json.ref.boost__json__object.insert.overload1.h2"></a>

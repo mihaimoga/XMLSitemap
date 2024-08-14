@@ -109,15 +109,18 @@
             <a class="link" href="connparams.html" title="Handshake parameters">this section</a> for more info.
           </li>
 </ul></div>
-<pre class="programlisting"><span class="comment">// Resolve the hostname to get a collection of endpoints</span>
+<pre class="programlisting"><span class="comment">// Obtain the hostname to connect to - replace get_hostname by your code</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">server_hostname</span> <span class="special">=</span> <span class="identifier">get_hostname</span><span class="special">();</span>
+
+<span class="comment">// Resolve the hostname to get a collection of endpoints</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span> <span class="identifier">resolver</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">.</span><span class="identifier">get_executor</span><span class="special">());</span>
-<span class="keyword">auto</span> <span class="identifier">endpoints</span> <span class="special">=</span> <span class="identifier">resolver</span><span class="special">.</span><span class="identifier">resolve</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">3</span><span class="special">],</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">default_port_string</span><span class="special">);</span>
+<span class="keyword">auto</span> <span class="identifier">endpoints</span> <span class="special">=</span> <span class="identifier">resolver</span><span class="special">.</span><span class="identifier">resolve</span><span class="special">(</span><span class="identifier">server_hostname</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">default_port_string</span><span class="special">);</span>
 
 <span class="comment">// The username and password to use</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">handshake_params</span> <span class="identifier">params</span><span class="special">(</span>
-    <span class="identifier">argv</span><span class="special">[</span><span class="number">1</span><span class="special">],</span>                <span class="comment">// username</span>
-    <span class="identifier">argv</span><span class="special">[</span><span class="number">2</span><span class="special">],</span>                <span class="comment">// password</span>
-    <span class="string">"boost_mysql_examples"</span>  <span class="comment">// database</span>
+    <span class="identifier">mysql_username</span><span class="special">,</span>         <span class="comment">// username, as a string</span>
+    <span class="identifier">mysql_password</span><span class="special">,</span>         <span class="comment">// password, as a string - don't hardcode this into your code!</span>
+    <span class="string">"boost_mysql_examples"</span>  <span class="comment">// database to use</span>
 <span class="special">);</span>
 
 <span class="comment">// Connect to the server using the first endpoint returned by the resolver</span>
@@ -322,7 +325,7 @@
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">body</span><span class="special">;</span>
 <span class="special">};</span>
 
-<span class="comment">// We must use Boost.Describe to add reflection capabilities to post.</span>
+<span class="comment">// We use BOOST_DESCRIBE_STRUCT to add reflection capabilities to post.</span>
 <span class="comment">// We must list all the fields that should be populated by Boost.MySQL</span>
 <span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">post</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">title</span><span class="special">,</span> <span class="identifier">body</span><span class="special">))</span>
 </pre>
@@ -605,7 +608,7 @@
         case in an ETL process:
       </p>
 <pre class="programlisting"><span class="comment">// Create the table and some sample data</span>
-<span class="comment">// In a real system, body may be megabaytes long.</span>
+<span class="comment">// In a real system, body may be megabytes long.</span>
 <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
 <span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span>
     <span class="identifier">R</span><span class="string">"%(

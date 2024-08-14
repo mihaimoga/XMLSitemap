@@ -31,15 +31,16 @@
         <a class="indexterm" name="boost_asio.indexterm.as_tuple"></a>
       </p>
 <p>
-        Adapt a <a class="link" href="../overview/model/completion_tokens.html" title="Completion Tokens">completion
+        A function object that adapts a <a class="link" href="../overview/model/completion_tokens.html" title="Completion Tokens">completion
         token</a> to specify that the completion handler arguments should be combined
         into a single tuple argument.
       </p>
-<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">typename</span> <span class="identifier">CompletionToken</span><span class="special">&gt;</span>
-<span class="keyword">constexpr</span> <span class="identifier">as_tuple_t</span><span class="special">&lt;</span> <span class="identifier">decay_t</span><span class="special">&lt;</span> <span class="identifier">CompletionToken</span> <span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">as_tuple</span><span class="special">(</span>
-    <span class="identifier">CompletionToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">completion_token</span><span class="special">);</span>
+<pre class="programlisting"><span class="keyword">constexpr</span> <span class="identifier">partial_as_tuple</span> <span class="identifier">as_tuple</span><span class="special">;</span>
 </pre>
+<p>
+        May also be used directly as a completion token, in which case it adapts
+        the asynchronous operation's default completion token (or <a class="link" href="deferred.html" title="deferred"><code class="computeroutput"><span class="identifier">deferred</span></code></a> if no default is available).
+      </p>
 <h5>
 <a name="boost_asio.reference.as_tuple.h0"></a>
         <span class="phrase"><a name="boost_asio.reference.as_tuple.requirements"></a></span><a class="link" href="as_tuple.html#boost_asio.reference.as_tuple.requirements">Requirements</a>

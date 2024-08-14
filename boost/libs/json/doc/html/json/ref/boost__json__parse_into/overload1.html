@@ -1,13 +1,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>parse_into (1 of 6 overloads)</title>
+<title>parse_into (1 of 4 overloads)</title>
 <link rel="stylesheet" href="../../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../../index.html" title="Chapter 1. Boost.JSON">
 <link rel="up" href="../boost__json__parse_into.html" title="parse_into">
 <link rel="prev" href="../boost__json__parse_into.html" title="parse_into">
-<link rel="next" href="overload2.html" title="parse_into (2 of 6 overloads)">
+<link rel="next" href="overload2.html" title="parse_into (2 of 4 overloads)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -25,8 +25,8 @@
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h5 class="title">
-<a name="json.ref.boost__json__parse_into.overload1"></a><a class="link" href="overload1.html" title="parse_into (1 of 6 overloads)">parse_into
-        (1 of 6 overloads)</a>
+<a name="json.ref.boost__json__parse_into.overload1"></a><a class="link" href="overload1.html" title="parse_into (1 of 4 overloads)">parse_into
+        (1 of 4 overloads)</a>
 </h5></div></div></div>
 <p>
           Parse a JSON text into a user-defined object.
@@ -43,9 +43,9 @@
 <span class="keyword">void</span>
 <span class="identifier">parse_into</span><span class="special">(</span>
     <span class="identifier">V</span><span class="special">&amp;</span> <span class="identifier">v</span><span class="special">,</span>
-    <span class="identifier">string_view</span> <span class="identifier">sv</span><span class="special">,</span>
-    <span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
-    <span class="identifier">parse_options</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">opt</span> <span class="special">=</span> <span class="special">{});</span>
+    <a class="link" href="../boost__json__string_view.html" title="string_view"><code class="literal">string_view</code></a> <span class="identifier">sv</span><span class="special">,</span>
+    <a href="https://www.boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_code" target="_top"><code class="literal">boost::system::error_code</code></a><span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
+    <a class="link" href="../boost__json__parse_options.html" title="parse_options"><code class="literal">parse_options</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">opt</span> <span class="special">=</span> <span class="special">{});</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__parse_into.overload1.h1"></a>
@@ -55,8 +55,10 @@
           This function parses an entire string in one step and fills an object provided
           by the user. If the buffer does not contain a complete serialized JSON
           text, an error occurs. In this case <code class="computeroutput"><span class="identifier">v</span></code>
-          may be partially filled. The function supports default constructible types
-          satisfying <a href="https://en.cppreference.com/w/cpp/named_req/SequenceContainer" target="_top"><span class="emphasis"><em>SequenceContainer</em></span></a>,
+          may be partially filled.
+        </p>
+<p>
+          The function supports default constructible types satisfying <a href="https://en.cppreference.com/w/cpp/named_req/SequenceContainer" target="_top"><span class="emphasis"><em>SequenceContainer</em></span></a>,
           arrays, arithmetic types, <code class="computeroutput"><span class="keyword">bool</span></code>,
           <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span></code>,
           <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span></code>, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">nullptr_t</span></code>,

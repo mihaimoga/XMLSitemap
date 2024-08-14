@@ -42,22 +42,23 @@
 <p>
       <a class="link" href="ref/boost__mysql__date.html" title="date"><code class="literal">date</code></a>
       represents MySQL <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_top"><code class="computeroutput"><span class="identifier">DATE</span></code></a> in C++. <code class="computeroutput"><span class="identifier">date</span></code>
-      holds the year, month and day components of a date. It is a type close to the
-      protocol, rather than a vocabulary type. The main reason for using <code class="computeroutput"><span class="identifier">date</span></code> instead of a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span></code>
-      type is that, under certain configurations, MySQL allows storing invalid dates,
-      such as <code class="computeroutput"><span class="number">2020</span><span class="special">-</span><span class="number">00</span><span class="special">-</span><span class="number">01</span></code>.
-      These are not representable as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span></code>.
+      holds the year, month and day components of a date, without any time zone information.
+      It is a type close to the protocol, rather than a vocabulary type. The main
+      reason for using <code class="computeroutput"><span class="identifier">date</span></code> instead
+      of a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span></code> type is that, under certain configurations,
+      MySQL allows storing invalid dates, such as <code class="computeroutput"><span class="number">2020</span><span class="special">-</span><span class="number">00</span><span class="special">-</span><span class="number">01</span></code>. These are not representable as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span></code>.
+      Unless dealing with these special values, we recommend converting <code class="computeroutput"><span class="identifier">date</span></code>s to a <code class="computeroutput"><span class="identifier">time_point</span></code>
+      before using them.
     </p>
 <p>
-      Unless dealing with these special values, we recommend converting <code class="computeroutput"><span class="identifier">date</span></code>s to a <code class="computeroutput"><span class="identifier">time_point</span></code>
-      before using them. The member type <a class="link" href="ref/boost__mysql__date/time_point.html" title="date::time_point"><code class="literal">date::time_point</code></a>
-      is a system-clock <code class="computeroutput"><span class="identifier">time_point</span></code>
-      that can represent the entire MySQL <code class="computeroutput"><span class="identifier">DATE</span></code>
-      range without problems. You can use <a class="link" href="ref/boost__mysql__date/as_time_point.html" title="date::as_time_point"><code class="literal">date::as_time_point</code></a>
+      Since <code class="computeroutput"><span class="identifier">date</span></code> represents a local
+      time point, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">local_time</span></code> is the most accurate representation
+      for it. If your compiler supports C++20 calendar types (as per <code class="computeroutput"><span class="identifier">__cpp_lib_chrono</span> <span class="special">&gt;=</span>
+      <span class="number">201907L</span></code>), you can use <a class="link" href="ref/boost__mysql__date/as_local_time_point.html" title="date::as_local_time_point"><code class="literal">date::as_local_time_point</code></a>
       to perform the cast:
     </p>
-<pre class="programlisting"><span class="identifier">date</span> <span class="identifier">d</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">19</span><span class="special">);</span>                      <span class="comment">// d holds "2020-02-19"</span>
-<span class="identifier">date</span><span class="special">::</span><span class="identifier">time_point</span> <span class="identifier">tp</span> <span class="special">=</span> <span class="identifier">d</span><span class="special">.</span><span class="identifier">as_time_point</span><span class="special">();</span>  <span class="comment">// now use tp normally</span>
+<pre class="programlisting"><span class="identifier">date</span> <span class="identifier">d</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">19</span><span class="special">);</span>                                   <span class="comment">// d holds "2020-02-19"</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">local_days</span> <span class="identifier">tp</span> <span class="special">=</span> <span class="identifier">d</span><span class="special">.</span><span class="identifier">as_local_time_point</span><span class="special">();</span>  <span class="comment">// now use tp normally</span>
 </pre>
 <p>
       If the date is not valid, <code class="computeroutput"><span class="identifier">as_time_point</span></code>
@@ -73,7 +74,7 @@
 <span class="keyword">bool</span> <span class="identifier">v2</span> <span class="special">=</span> <span class="identifier">d2</span><span class="special">.</span><span class="identifier">valid</span><span class="special">();</span>  <span class="comment">// false</span>
 </pre>
 <p>
-      You can combine it with <a class="link" href="ref/boost__mysql__date/get_time_point.html" title="date::get_time_point"><code class="literal">date::get_time_point</code></a>,
+      You can combine it with <a class="link" href="ref/boost__mysql__date/get_local_time_point.html" title="date::get_local_time_point"><code class="literal">date::get_local_time_point</code></a>,
       which performs an unchecked conversion:
     </p>
 <pre class="programlisting"><span class="identifier">date</span> <span class="identifier">d</span> <span class="special">=</span> <span class="comment">/* obtain a date somehow */</span> <span class="identifier">date</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">29</span><span class="special">);</span>
@@ -82,7 +83,7 @@
     <span class="comment">// Same as as_time_point, but doesn't check for validity</span>
     <span class="comment">// Caution: be sure to check for validity.</span>
     <span class="comment">// If d is not valid, get_time_point results in undefined behavior</span>
-    <span class="identifier">date</span><span class="special">::</span><span class="identifier">time_point</span> <span class="identifier">tp</span> <span class="special">=</span> <span class="identifier">d</span><span class="special">.</span><span class="identifier">get_time_point</span><span class="special">();</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">local_days</span> <span class="identifier">tp</span> <span class="special">=</span> <span class="identifier">d</span><span class="special">.</span><span class="identifier">get_local_time_point</span><span class="special">();</span>
 
     <span class="comment">// Use tp as required</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">tp</span><span class="special">.</span><span class="identifier">time_since_epoch</span><span class="special">().</span><span class="identifier">count</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
@@ -93,12 +94,33 @@
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Invalid date"</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Using <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span></code> time zone functionality under MSVC
+        can cause your tooling to report memory leaks. This is <a href="https://github.com/microsoft/STL/issues/2047" target="_top">an
+        issue in MSVC's standard library</a>. See <a href="https://github.com/microsoft/STL/issues/2504" target="_top">this
+        suggestion</a> for a possible workaround.
+      </p></td></tr>
+</table></div>
 <p>
-      You can also construct a <code class="computeroutput"><span class="identifier">date</span></code>
-      from a <code class="computeroutput"><span class="identifier">time_point</span></code>. If the
-      <code class="computeroutput"><span class="identifier">time_point</span></code> is out of range,
-      an exception is thrown.
+      If your compiler doesn't support local times, you can use <a class="link" href="ref/boost__mysql__date/get_time_point.html" title="date::get_time_point"><code class="literal">date::get_time_point</code></a>
+      or <a class="link" href="ref/boost__mysql__date/as_time_point.html" title="date::as_time_point"><code class="literal">date::as_time_point</code></a>,
+      instead. These return <a class="link" href="ref/boost__mysql__date/time_point.html" title="date::time_point"><code class="literal">date::time_point</code></a>
+      objects, which are <code class="computeroutput"><span class="identifier">time_points</span></code>
+      that use the system clock. These time points should be interpreted as local
+      times, rather than UTC:
     </p>
+<pre class="programlisting"><span class="identifier">date</span> <span class="identifier">d</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">19</span><span class="special">);</span>  <span class="comment">// d holds "2020-02-19"</span>
+
+<span class="comment">// date::time_point is a std::chrono::time_point that uses std::chrono::system_clock</span>
+<span class="comment">// tp is a local time, rather than UTC</span>
+<span class="comment">// tp holds the same time_since_epoch() than d.as_local_time_point()</span>
+<span class="identifier">date</span><span class="special">::</span><span class="identifier">time_point</span> <span class="identifier">tp</span> <span class="special">=</span> <span class="identifier">d</span><span class="special">.</span><span class="identifier">as_time_point</span><span class="special">();</span>
+</pre>
 <h4>
 <a name="mysql.time_types.h1"></a>
       <span class="phrase"><a name="mysql.time_types.the_datetime_type"></a></span><a class="link" href="time_types.html#mysql.time_types.the_datetime_type">The
@@ -108,20 +130,8 @@
       <a class="link" href="ref/boost__mysql__datetime.html" title="datetime"><code class="literal">datetime</code></a>
       represents MySQL <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_top"><code class="computeroutput"><span class="identifier">DATETIME</span></code></a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html" target="_top"><code class="computeroutput"><span class="identifier">TIMESTAMP</span></code></a> in C++. <code class="computeroutput"><span class="identifier">datetime</span></code>
       represents a broken time point, having year, month, day, hour, minute, second
-      and microseconds.
+      and microsecond.
     </p>
-<p>
-      MySQL also accepts invalid datetimes (like <code class="computeroutput"><span class="number">2020</span><span class="special">-</span><span class="number">00</span><span class="special">-</span><span class="number">10</span> <span class="number">10</span><span class="special">:</span><span class="number">20</span><span class="special">:</span><span class="number">59.000000</span></code>).
-      The same considerations for <code class="computeroutput"><span class="identifier">date</span></code>
-      apply:
-    </p>
-<pre class="programlisting"><span class="identifier">datetime</span> <span class="identifier">dt1</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="number">11</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="number">20</span><span class="special">,</span> <span class="number">59</span><span class="special">,</span> <span class="number">123456</span><span class="special">);</span>  <span class="comment">// regular datetime 2020-10-11 10:20:59.123456</span>
-<span class="keyword">bool</span> <span class="identifier">v1</span> <span class="special">=</span> <span class="identifier">dt1</span><span class="special">.</span><span class="identifier">valid</span><span class="special">();</span>                           <span class="comment">// true</span>
-<span class="identifier">datetime</span> <span class="identifier">dt2</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">0</span><span class="special">,</span> <span class="number">11</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="number">20</span><span class="special">,</span> <span class="number">59</span><span class="special">);</span>           <span class="comment">// invalid datetime 2020-00-10 10:20:59.000000</span>
-<span class="keyword">bool</span> <span class="identifier">v2</span> <span class="special">=</span> <span class="identifier">dt2</span><span class="special">.</span><span class="identifier">valid</span><span class="special">();</span>                           <span class="comment">// false</span>
-
-<span class="identifier">datetime</span><span class="special">::</span><span class="identifier">time_point</span> <span class="identifier">tp</span> <span class="special">=</span> <span class="identifier">dt1</span><span class="special">.</span><span class="identifier">as_time_point</span><span class="special">();</span>  <span class="comment">// convert to time_point</span>
-</pre>
 <p>
       The <code class="computeroutput"><span class="identifier">datetime</span></code> object doesn't
       carry any time zone information with it. The time zone semantics depend on
@@ -149,9 +159,42 @@
         </li>
 </ul></div>
 <p>
+      MySQL also accepts invalid datetimes (like <code class="computeroutput"><span class="number">2020</span><span class="special">-</span><span class="number">00</span><span class="special">-</span><span class="number">10</span> <span class="number">10</span><span class="special">:</span><span class="number">20</span><span class="special">:</span><span class="number">59.000000</span></code>).
+    </p>
+<p>
+      As with <code class="computeroutput"><span class="identifier">date</span></code>, you can use
+      <a class="link" href="ref/boost__mysql__datetime/as_local_time_point.html" title="datetime::as_local_time_point"><code class="literal">datetime::as_local_time_point</code></a>,
+      <a class="link" href="ref/boost__mysql__datetime/get_local_time_point.html" title="datetime::get_local_time_point"><code class="literal">get_local_time_point</code></a>
+      and <a class="link" href="ref/boost__mysql__datetime/valid.html" title="datetime::valid"><code class="literal">valid</code></a>
+      (or <a class="link" href="ref/boost__mysql__datetime/as_time_point.html" title="datetime::as_time_point"><code class="literal">as_time_point</code></a>
+      and <a class="link" href="ref/boost__mysql__datetime/get_time_point.html" title="datetime::get_time_point"><code class="literal">get_time_point</code></a>,
+      if your compiler doesn't support C++20 calendar types):
+    </p>
+<pre class="programlisting"><span class="identifier">datetime</span> <span class="identifier">dt1</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="number">11</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="number">20</span><span class="special">,</span> <span class="number">59</span><span class="special">,</span> <span class="number">123456</span><span class="special">);</span>  <span class="comment">// regular datetime 2020-10-11 10:20:59.123456</span>
+<span class="keyword">bool</span> <span class="identifier">v1</span> <span class="special">=</span> <span class="identifier">dt1</span><span class="special">.</span><span class="identifier">valid</span><span class="special">();</span>                           <span class="comment">// true</span>
+<span class="identifier">datetime</span> <span class="identifier">dt2</span><span class="special">(</span><span class="number">2020</span><span class="special">,</span> <span class="number">0</span><span class="special">,</span> <span class="number">11</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="number">20</span><span class="special">,</span> <span class="number">59</span><span class="special">);</span>           <span class="comment">// invalid datetime 2020-00-10 10:20:59.000000</span>
+<span class="keyword">bool</span> <span class="identifier">v2</span> <span class="special">=</span> <span class="identifier">dt2</span><span class="special">.</span><span class="identifier">valid</span><span class="special">();</span>                           <span class="comment">// false</span>
+
+
+<span class="comment">// local_time_point is a std::chrono::local_time with microsecond resolution</span>
+<span class="comment">// Only available if your compiler supports C++20 calendar types</span>
+<span class="identifier">datetime</span><span class="special">::</span><span class="identifier">local_time_point</span> <span class="identifier">tp</span> <span class="special">=</span> <span class="identifier">dt1</span><span class="special">.</span><span class="identifier">as_local_time_point</span><span class="special">();</span>
+
+<span class="comment">// If you're using an older compiler, use as_time_point.</span>
+<span class="comment">// tp2 uses std::chrono::system_clock and microsecond resolution.</span>
+<span class="comment">// tp2 should be interpreted as a local time, rather than UTC</span>
+<span class="identifier">datetime</span><span class="special">::</span><span class="identifier">time_point</span> <span class="identifier">tp2</span> <span class="special">=</span> <span class="identifier">dt1</span><span class="special">.</span><span class="identifier">as_time_point</span><span class="special">();</span>
+</pre>
+<h4>
+<a name="mysql.time_types.h2"></a>
+      <span class="phrase"><a name="mysql.time_types.timestamp_considerations"></a></span><a class="link" href="time_types.html#mysql.time_types.timestamp_considerations">TIMESTAMP
+      considerations</a>
+    </h4>
+<p>
       When using <code class="computeroutput"><span class="identifier">TIMESTAMP</span></code>, we recommend
-      setting the <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_time_zone" target="_top"><code class="computeroutput"><span class="identifier">time_zone</span></code></a> to a known value. To illustrate
-      this, consider an event-logging system with the following table definition:
+      setting the <a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_time_zone" target="_top"><code class="computeroutput"><span class="identifier">time_zone</span></code></a> session variable to a known
+      value. To illustrate this, consider an event-logging system with the following
+      table definition:
     </p>
 <pre class="programlisting"><span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
 <span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span>
@@ -200,7 +243,7 @@
       The querying code would be:
     </p>
 <pre class="programlisting"><span class="comment">// Get the timestamp threshold from the user. We will use a constant for the sake of example</span>
-<span class="identifier">datetime</span> <span class="identifier">threshold</span> <span class="special">=</span> <span class="identifier">datetime</span><span class="special">(</span><span class="number">2022</span><span class="special">,</span> <span class="number">1</span><span class="special">,</span> <span class="number">1</span><span class="special">);</span>  <span class="comment">// get events that happened after 2022-01-01</span>
+<span class="identifier">datetime</span> <span class="identifier">threshold</span> <span class="special">=</span> <span class="identifier">datetime</span><span class="special">(</span><span class="number">2022</span><span class="special">,</span> <span class="number">1</span><span class="special">,</span> <span class="number">1</span><span class="special">);</span>  <span class="comment">// get events that happened after 2022-01-01 UTC</span>
 
 <span class="comment">// threshold will be interpreted as UTC. The retrieved events will have their</span>
 <span class="comment">// `t` column in UTC</span>
@@ -214,7 +257,7 @@
       your applications brittle, so we don't recommend it.
     </p>
 <h4>
-<a name="mysql.time_types.h2"></a>
+<a name="mysql.time_types.h3"></a>
       <span class="phrase"><a name="mysql.time_types.the_time_type"></a></span><a class="link" href="time_types.html#mysql.time_types.the_time_type">The
       TIME type</a>
     </h4>

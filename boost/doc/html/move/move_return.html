@@ -62,7 +62,7 @@
     </p>
 <p>
       <span class="bold"><strong>Boost.Move</strong></span> offers an additional macro called
-      <code class="computeroutput"><a class="link" href="../BOOST_MOVE_RET.html" title="Macro BOOST_MOVE_RET">BOOST_MOVE_RET</a></code> that can be used
+      <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1ab582644b3621ae7776dfb96e9f1d9748.html" title="Macro BOOST_MOVE_RET">BOOST_MOVE_RET</a></code> that can be used
       to alleviate this problem obtaining portable move-on-return semantics. Let's
       use the previously presented movable-only <code class="computeroutput"><span class="identifier">movable</span></code>
       class with classes <code class="computeroutput"><span class="identifier">copyable</span></code>
@@ -70,8 +70,6 @@
       (can be copied and moved) and <code class="computeroutput"><span class="identifier">non_copy_movable</span></code>
       (non-copyable and non-movable):
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="comment">//header file "copymovable.hpp"</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">core</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
@@ -116,13 +114,9 @@
 <span class="special">};</span>
 </pre>
 <p>
-    </p>
-<p>
       and build a generic factory function that returns a newly constructed value
       or a reference to an already constructed object.
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="string">"movable.hpp"</span>
 <span class="preprocessor">#include</span> <span class="string">"copymovable.hpp"</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">core</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -175,8 +169,6 @@
 <span class="special">}</span>
 </pre>
 <p>
-    </p>
-<p>
       <span class="bold"><strong>Caution</strong></span>: When using this macro in a non-conforming
       or C++03 compilers, a move will be performed even if the C++11 standard does
       not allow it (e.g. returning a static variable). The user is responsible for
@@ -213,7 +205,7 @@
 <span class="special">{</span>  <span class="keyword">return</span> <span class="identifier">copyable</span><span class="special">();</span>  <span class="special">}</span>
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2008-2014 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2008-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

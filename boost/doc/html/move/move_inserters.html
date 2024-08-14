@@ -37,11 +37,12 @@
 <pre class="programlisting"><span class="keyword">while</span> <span class="special">(</span><span class="identifier">first</span> <span class="special">!=</span> <span class="identifier">last</span><span class="special">)</span> <span class="special">*</span><span class="identifier">result</span><span class="special">++</span> <span class="special">=</span> <span class="special">*</span><span class="identifier">first</span><span class="special">++;</span>
 </pre>
 <p>
-      causes a range [first,last) to be copied into a range starting with result.
-      The same code with result being a move insert iterator will move insert corresponding
-      elements into the container. This device allows all of the copying algorithms
-      in the library to work in the move insert mode instead of the regular overwrite
-      mode. This library offers 3 move insert iterators and their helper functions:
+      causes a range <code class="computeroutput"><span class="special">[</span><span class="identifier">first</span><span class="special">,</span><span class="identifier">last</span><span class="special">)</span></code>
+      to be copied into a range starting with result. The same code with result being
+      a move insert iterator will move insert corresponding elements into the container.
+      This device allows all of the copying algorithms in the library to work in
+      the move insert mode instead of the regular overwrite mode. This library offers
+      3 move insert iterators and their helper functions:
     </p>
 <pre class="programlisting"><span class="comment">// Note: C models Container</span>
 <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">C</span><span class="special">&gt;</span>
@@ -78,8 +79,6 @@
       functions making the insert iterators out of a container. Here's an example
       of how to use them:
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">iterator</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="string">"movable.hpp"</span>
@@ -117,10 +116,8 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-    </p>
 </div>
-<div class="copyright-footer">Copyright © 2008-2014 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2008-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

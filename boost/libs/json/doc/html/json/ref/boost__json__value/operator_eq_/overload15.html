@@ -29,86 +29,39 @@
           (15 of 24 overloads)</a>
 </h6></div></div></div>
 <p>
-            Move assignment.
+            Assignment.
           </p>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload15.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload15.synopsis"></a></span><a class="link" href="overload15.html#json.ref.boost__json__value.operator_eq_.overload15.synopsis">Synopsis</a>
           </h6>
-<pre class="programlisting"><span class="identifier">value</span><span class="special">&amp;</span>
+<pre class="programlisting"><a class="link" href="../../boost__json__value.html" title="value"><code class="literal">value</code></a><span class="special">&amp;</span>
 <span class="keyword">operator</span><span class="special">=(</span>
-    <span class="identifier">value</span><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">);</span>
+    <a href="https://en.cppreference.com/w/cpp/types/nullptr_t" target="_top"><code class="literal">std::nullptr_t</code></a><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload15.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload15.description"></a></span><a class="link" href="overload15.html#json.ref.boost__json__value.operator_eq_.overload15.description">Description</a>
           </h6>
 <p>
-            The contents of the value are replaced with the contents of <code class="computeroutput"><span class="identifier">other</span></code> using move semantics:
+            Replace <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>
+            with null.
           </p>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">==</span> <span class="special">*</span><span class="identifier">sp</span></code>,
-                ownership of the underlying memory is transferred in constant time,
-                with no possibility of exceptions. After assignment, the moved-from
-                value becomes a null with its current storage pointer.
-              </li>
-<li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">other</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">!=</span> <span class="special">*</span><span class="identifier">sp</span></code>,
-                an element-wise copy is performed if <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">is_structured</span><span class="special">()</span> <span class="special">==</span> <span class="keyword">true</span></code>, which may throw. In this case,
-                the moved-from value is not changed.
-              </li>
-</ul></div>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload15.h2"></a>
-            <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload15.complexity"></a></span><a class="link" href="overload15.html#json.ref.boost__json__value.operator_eq_.overload15.complexity">Complexity</a>
-          </h6>
-<p>
-            Constant, or linear in <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">size</span><span class="special">()</span></code> plus <code class="computeroutput"><span class="identifier">other</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
-          </p>
-<h6>
-<a name="json.ref.boost__json__value.operator_eq_.overload15.h3"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload15.exception_safety"></a></span><a class="link" href="overload15.html#json.ref.boost__json__value.operator_eq_.overload15.exception_safety">Exception
             Safety</a>
           </h6>
 <p>
-            Strong guarantee. Calls to <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">::</span><span class="identifier">allocate</span></code>
-            may throw.
+            No-throw guarantee.
           </p>
 <h6>
-<a name="json.ref.boost__json__value.operator_eq_.overload15.h4"></a>
-            <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload15.parameters"></a></span><a class="link" href="overload15.html#json.ref.boost__json__value.operator_eq_.overload15.parameters">Parameters</a>
+<a name="json.ref.boost__json__value.operator_eq_.overload15.h3"></a>
+            <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload15.complexity"></a></span><a class="link" href="overload15.html#json.ref.boost__json__value.operator_eq_.overload15.complexity">Complexity</a>
           </h6>
-<div class="informaltable"><table class="table">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<thead><tr>
-<th>
-                    <p>
-                      Name
-                    </p>
-                  </th>
-<th>
-                    <p>
-                      Description
-                    </p>
-                  </th>
-</tr></thead>
-<tbody><tr>
-<td>
-                    <p>
-                      <code class="computeroutput"><span class="identifier">other</span></code>
-                    </p>
-                  </td>
-<td>
-                    <p>
-                      The value to assign from.
-                    </p>
-                  </td>
-</tr></tbody>
-</table></div>
+<p>
+            Linear in the size of <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>.
+          </p>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

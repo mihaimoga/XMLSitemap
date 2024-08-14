@@ -734,10 +734,6 @@ pre.rouge {
 <li><a href="#memory_resource_2">Memory Resource</a></li>
 <li><a href="#promise-outline">Outline</a></li>
 <li><a href="#promise-promise">Promise</a></li>
-</ul>
-</li>
-<li><a href="#generator">cobalt/generator.hpp</a>
-<ul class="sectlevel3">
 <li><a href="#initial">Lazy</a></li>
 <li><a href="#generator-executor">Executor</a></li>
 <li><a href="#generator-allocator">Memory Resource</a></li>
@@ -760,10 +756,6 @@ pre.rouge {
 <li><a href="#memory_resource_4">Memory Resource</a></li>
 <li><a href="#detached-outline">Outline</a></li>
 <li><a href="#detached-detached">Promise</a></li>
-</ul>
-</li>
-<li><a href="#cobalt_operation">cobalt/op.hpp</a>
-<ul class="sectlevel3">
 <li><a href="#use_op">use_op</a></li>
 <li><a href="#op">Hand coded Operations</a></li>
 </ul>
@@ -778,6 +770,7 @@ pre.rouge {
 <ul class="sectlevel3">
 <li><a href="#enable_await_allocator">Await Allocator</a></li>
 <li><a href="#enable_await_executor">Await Executor</a></li>
+<li><a href="#enable_await_deferred">Await deferred</a></li>
 <li><a href="#promise_memory_resource_base">Memory resource base</a></li>
 <li><a href="#promise_throw_if_cancelled_base">Throw if cancelled</a></li>
 <li><a href="#promise_cancellation_base">Cancellation state</a></li>
@@ -839,6 +832,11 @@ pre.rouge {
 </ul>
 </li>
 <li><a href="#leaf">cobalt/leaf.hpp</a></li>
+<li><a href="#context">cobalt/experimental/context.hpp</a>
+<ul class="sectlevel3">
+<li><a href="#reference_2">Reference</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#in_depth">In-Depth</a>
@@ -1298,29 +1296,9 @@ and "actual_awaitable" to refer to type conforming to the above prototype.
 </tr>
 </table>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: mmdc failed:
-Error: Failed to launch the browser process!
-/root/.cache/puppeteer/chrome/linux-1108766/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-
-    at Interface.onClose (file:///root/.nvm/versions/node/v18.18.1/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
-    at Interface.emit (node:events:529:35)
-    at Interface.close (node:internal/readline/interface:534:10)
-    at Socket.onend (node:internal/readline/interface:260:10)
-    at Socket.emit (node:events:529:35)
-    at endReadableNT (node:internal/streams/readable:1368:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
-
-
-flowchart TD
-    aw{await_ready?}
-    aw ----&gt;|true| ar[await_resume]
-    aw --&gt;|false| as[await_suspend]
-    as --&gt;|Resume| ar</pre>
+<img src="/root/project/libs/cobalt/doc/images/awaitables.png" alt="awaitables">
 </div>
 </div>
 <div class="paragraph">
@@ -3268,6 +3246,10 @@ unless a <code>std::allocator_arg</code> is used in any position followed by a <
     <span class="kt">bool</span> <span class="n">attached</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
     <span class="kt">void</span> <span class="n">detach</span><span class="p">();</span>
     <span class="kt">void</span> <span class="n">attach</span><span class="p">();</span>
+    <span class="c1">// Create an already completed promimse</span>
+
+    <span class="k">static</span> <span class="n">promise</span>
+
     <span class="c1">// Get the return value. If !ready() this function has undefined behaviour.</span>
     <span class="n">Return</span> <span class="n">get</span><span class="p">();</span>
 <span class="p">};</span></code></pre>
@@ -3315,12 +3297,12 @@ unless a <code>std::allocator_arg</code> is used in any position followed by a <
 <li>
 <p><a href="#enable_await_executor">Await Executor</a></p>
 </li>
+<li>
+<p><a href="#enable_await_deferred">Await deferred</a>
+== cobalt/generator.hpp</p>
+</li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="generator">cobalt/generator.hpp</h3>
 <div class="paragraph">
 <p>A generator is an eager coroutine that can <code>co_await</code> and <code>co_yield</code> values to the caller.</p>
 </div>
@@ -3358,35 +3340,9 @@ In coro 3
 In main 4</pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: mmdc failed:
-Error: Failed to launch the browser process!
-/root/.cache/puppeteer/chrome/linux-1108766/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-
-    at Interface.onClose (file:///root/.nvm/versions/node/v18.18.1/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
-    at Interface.emit (node:events:529:35)
-    at Interface.close (node:internal/readline/interface:534:10)
-    at Socket.onend (node:internal/readline/interface:260:10)
-    at Socket.emit (node:events:529:35)
-    at endReadableNT (node:internal/streams/readable:1368:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
-
-
-sequenceDiagram
-    participant main;
-    Note left of main: "In main 0"
-    main-&gt;&gt;+example: example()
-    Note right of example: "In coro 1"
-    example--&gt;&gt;main: co_yield 2
-    Note left of main: "In main 2"
-    main--&gt;&gt;+example: co_await f
-    Note right of example: "In coro 3"
-    example-&gt;&gt;main: co_return 3
-    Note left of main: "In main 4"</pre>
+<img src="/root/project/libs/cobalt/doc/images/generators1.png" alt="generators1">
 </div>
 </div>
 <div class="paragraph">
@@ -3428,6 +3384,7 @@ sequenceDiagram
 In coro 1
 In main 2
 In coro 3</pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -3473,35 +3430,9 @@ In coro 3
 In main 4</pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: mmdc failed:
-Error: Failed to launch the browser process!
-/root/.cache/puppeteer/chrome/linux-1108766/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-
-    at Interface.onClose (file:///root/.nvm/versions/node/v18.18.1/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
-    at Interface.emit (node:events:529:35)
-    at Interface.close (node:internal/readline/interface:534:10)
-    at Socket.onend (node:internal/readline/interface:260:10)
-    at Socket.emit (node:events:529:35)
-    at endReadableNT (node:internal/streams/readable:1368:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
-
-
-sequenceDiagram
-    participant main;
-    Note left of main: "In main 0"
-    main-&gt;&gt;+example: example()
-    Note right of example: "In coro 1"
-    example--&gt;&gt;main: co_yield 2
-    Note left of main: "In main 2"
-    main--&gt;&gt;+example: co_await f
-    Note right of example: "In coro 3"
-    example-&gt;&gt;main: co_return 3
-    Note left of main: "In main 4"</pre>
+<img src="/root/project/libs/cobalt/doc/images/generators2.png" alt="generators2">
 </div>
 </div>
 </div>
@@ -3539,7 +3470,7 @@ unless a <code>std::allocator_arg</code> is used in any position followed by a <
   <span class="c1">// Movable</span>
 
   <span class="n">generator</span><span class="p">(</span><span class="n">generator</span> <span class="o">&amp;&amp;</span><span class="n">lhs</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-  <span class="n">generator</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">generator</span> <span class="o">&amp;&amp;</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">generator</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">generator</span> <span class="o">&amp;&amp;</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
 
   <span class="c1">// True until it co_returns &amp; is co_awaited after </span><i class="conum" data-value="1"></i><b>(1)</b>
   <span class="k">explicit</span> <span class="k">operator</span> <span class="kt">bool</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
@@ -3713,6 +3644,9 @@ Tasks can be used synchronously from a sync function by calling <code>run(my_tas
 <li>
 <p><a href="#enable_await_executor">Await Executor</a></p>
 </li>
+<li>
+<p><a href="#enable_await_deferred">Await deferred</a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -3856,14 +3790,15 @@ unless a <code>std::allocator_arg</code> is used in any position followed by a <
 <li>
 <p><a href="#enable_await_executor">Await Executor</a></p>
 </li>
+<li>
+<p><a href="#enable_await_deferred">Await deferred</a>
+== cobalt/op.hpp</p>
+</li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="cobalt_operation">cobalt/op.hpp</h3>
 <div class="paragraph">
 <p>An operation in <code>cobalt</code> is an <a href="#awaitable">awaitable</a> wrapping an <code>asio</code> operation.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="use_op">use_op</h4>
@@ -3947,7 +3882,7 @@ i.e. using <code>cobalt::use_op</code> as the completion token will create the r
 <div class="sect3">
 <h4 id="op">Hand coded Operations</h4>
 <div class="paragraph">
-<p>Operations are a more advanced implementation of the <a href="#cobalt_operation">cobalt/op.hpp</a> feature.</p>
+<p>Operations are a more advanced implementation of the <a href="#cobalt_operation">[cobalt_operation]</a> feature.</p>
 </div>
 <div class="paragraph">
 <p>This library makes it easy to create asynchronous operations with an early completion condition,
@@ -4158,6 +4093,23 @@ If available the executor gets used by <a href="#use_op">use_op</a>
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="enable_await_deferred">Await deferred</h4>
+<div class="paragraph">
+<p>Your coroutine promises can inherit <code>enable_await_deferred</code> so that
+a single signature <code>asio::deferred</code> in a <code>co_await</code> expression.</p>
+</div>
+<div class="paragraph">
+<p>Since <code>asio::deferred</code> is now the default completion token,
+this allows below code without specifying any completion token or other specialization.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">steady_timer</span> <span class="n">t</span><span class="p">{</span><span class="k">co_await</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">this_coro</span><span class="o">::</span><span class="n">executor</span><span class="p">};</span>
+<span class="k">co_await</span> <span class="n">t</span><span class="p">.</span><span class="n">async_wait</span><span class="p">();</span></code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -5140,6 +5092,9 @@ It will be assigned to the <code>thread_local</code> to the  <code>cobalt::this_
 <li>
 <p><a href="#enable_await_executor">Await Executor</a></p>
 </li>
+<li>
+<p><a href="#enable_await_deferred">Await deferred</a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -5340,6 +5295,87 @@ instead of a function object and return an <a href="#awaitable">awaitable</a>.</
 <p><a href="https://www.boost.org/doc/libs/master/libs/leaf/doc/html/index.html#try_handle_some">try_handle_some</a></p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="context">cobalt/experimental/context.hpp</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This is (most likely) undefined behaviour, since the violates a precondition in the standard. A paper to address this can be found here (<a href="https://isocpp.org/files/papers/P3203R0.html" class="bare">https://isocpp.org/files/papers/P3203R0.html</a>).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This header provides <code>experimental</code> support for using <code>boost.fiber</code> based stackful coroutines
+as if they were C20 coroutines. That is, they can use `awaitables` by being able to be put into a `coroutine_handle`.
+Likewise the implementation uses a C20 coroutine promise and runs is as if it was a C++20 coroutine.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="c1">//</span>
+<span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="n">experimental</span><span class="o">::</span><span class="n">context</span><span class="o">&lt;</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;&gt;</span> <span class="n">h</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span> <span class="n">ms</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">asio</span><span class="o">::</span><span class="n">steady_timer</span> <span class="n">tim</span><span class="p">{</span><span class="k">co_await</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">this_coro</span><span class="o">::</span><span class="n">executor</span><span class="p">,</span> <span class="n">ms</span><span class="p">};</span>
+  <span class="n">h</span><span class="p">.</span><span class="n">await</span><span class="p">(</span><span class="n">tim</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">use_op</span><span class="p">));</span> <span class="c1">// instead of co_await.</span>
+<span class="p">}</span>
+
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="n">cobalt</span><span class="o">::</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">dl</span> <span class="o">=</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">make_context</span><span class="p">(</span><span class="o">&amp;</span><span class="n">delay</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+  <span class="k">co_await</span> <span class="n">dl</span><span class="p">;</span>
+  <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reference_2">Reference</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="c1">// The internal coroutine context.</span>
+<span class="c1">/// Args are the function arguments after the handle.</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Return</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">context</span>
+<span class="p">{</span>
+  <span class="c1">// Get a handle to the promise</span>
+        <span class="n">promise_type</span> <span class="o">&amp;</span> <span class="n">promise</span><span class="p">();</span>
+  <span class="k">const</span> <span class="n">promise_type</span> <span class="o">&amp;</span> <span class="n">promise</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="c1">// Convert it to any context if the underlying promise is the same</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Return_</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">Args_</span><span class="p">&gt;</span>
+  <span class="k">constexpr</span> <span class="k">operator</span> <span class="n">context</span><span class="o">&lt;</span><span class="n">Return_</span><span class="p">,</span> <span class="n">Args_</span><span class="p">...</span><span class="o">&gt;</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="c1">// Await something. Uses await_transform automatically.</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Awaitable</span><span class="p">&gt;</span>
+  <span class="k">auto</span> <span class="n">await</span><span class="p">(</span><span class="n">Awaitable</span> <span class="o">&amp;&amp;</span> <span class="n">aw</span><span class="p">);</span>
+  <span class="c1">// Yield a value, if supported by the promise.</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Yield</span><span class="p">&gt;</span>
+  <span class="k">auto</span> <span class="n">yield</span><span class="p">(</span><span class="n">Yield</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+<span class="c1">// Create a fiber with a custom stack allocator (see boost.fiber for details) and explicit result (e.g. `promise&lt;void&gt;`)</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Return</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">invocable</span><span class="o">&lt;</span><span class="n">context</span><span class="o">&lt;</span><span class="n">Return</span><span class="p">,</span> <span class="n">Args</span><span class="p">...&gt;,</span> <span class="n">Args</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="n">StackAlloc</span><span class="o">&gt;</span>
+<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator_arg_t</span><span class="p">,</span> <span class="n">StackAlloc</span>  <span class="o">&amp;&amp;</span> <span class="n">salloc</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+
+<span class="c1">// Create a fiber with the default allocator and explicit result (e.g. `promise&lt;void&gt;`)</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Return</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">invocable</span><span class="o">&lt;</span><span class="n">context</span><span class="o">&lt;</span><span class="n">Return</span><span class="p">,</span> <span class="n">Args</span><span class="p">...&gt;,</span> <span class="n">Args</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">Func</span><span class="o">&gt;</span>
+<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+
+<span class="c1">// Create a fiber with a custom stack allocator and implicit result (deduced from the first argument to func).</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">StackAlloc</span><span class="p">&gt;</span>
+<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator_arg_t</span><span class="p">,</span> <span class="n">StackAlloc</span>  <span class="o">&amp;&amp;</span> <span class="n">salloc</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+
+<span class="c1">// Create a fiber with the default stack allocator and implicit result (deduced from the first argument to func).</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Func</span><span class="p">&gt;</span>
+<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span></code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -5709,29 +5745,9 @@ The size of a function frame is known at compile time, but not outside the compi
     <span class="n">bar</span><span class="p">()</span></code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: mmdc failed:
-Error: Failed to launch the browser process!
-/root/.cache/puppeteer/chrome/linux-1108766/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-
-    at Interface.onClose (file:///root/.nvm/versions/node/v18.18.1/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
-    at Interface.emit (node:events:529:35)
-    at Interface.close (node:internal/readline/interface:534:10)
-    at Socket.onend (node:internal/readline/interface:260:10)
-    at Socket.emit (node:events:529:35)
-    at endReadableNT (node:internal/streams/readable:1368:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
-
-
-sequenceDiagram
-    main-&gt;&gt;+foo: call
-    foo-&gt;&gt;+bar: call
-    bar-&gt;&gt;-foo: return
-    foo-&gt;&gt;-main: return</pre>
+<img src="/root/project/libs/cobalt/doc/images/stackless1.png" alt="stackless1">
 </div>
 </div>
 <div class="paragraph">
@@ -5772,35 +5788,9 @@ C++20 coroutines are stackless, i.e. they only allocate their own frame and use 
   <span class="n">f</span><span class="err">$</span><span class="n">example</span><span class="p">()</span></code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: mmdc failed:
-Error: Failed to launch the browser process!
-/root/.cache/puppeteer/chrome/linux-1108766/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-
-    at Interface.onClose (file:///root/.nvm/versions/node/v18.18.1/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
-    at Interface.emit (node:events:529:35)
-    at Interface.close (node:internal/readline/interface:534:10)
-    at Socket.onend (node:internal/readline/interface:260:10)
-    at Socket.emit (node:events:529:35)
-    at endReadableNT (node:internal/streams/readable:1368:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
-
-
-sequenceDiagram
-    participant main
-    participant nested_resume
-    main-&gt;&gt;+example: create &amp; call
-    example--&gt;&gt;main: co_yield
-    main-&gt;&gt;+nested_resume: call
-    nested_resume--&gt;&gt;example: resume
-    example--&gt;&gt;nested_resume: co_yield
-    nested_resume-&gt;&gt;-main: return
-    main--&gt;&gt;example: resume
-    example-&gt;&gt;-main: co_return</pre>
+<img src="/root/project/libs/cobalt/doc/images/stackless2.png" alt="stackless2">
 </div>
 </div>
 <div class="paragraph">
@@ -5847,37 +5837,9 @@ sequenceDiagram
 <span class="n">resumed</span> <span class="n">twice</span></code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: mmdc failed:
-Error: Failed to launch the browser process!
-/root/.cache/puppeteer/chrome/linux-1108766/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-
-    at Interface.onClose (file:///root/.nvm/versions/node/v18.18.1/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
-    at Interface.emit (node:events:529:35)
-    at Interface.close (node:internal/readline/interface:534:10)
-    at Socket.onend (node:internal/readline/interface:260:10)
-    at Socket.emit (node:events:529:35)
-    at endReadableNT (node:internal/streams/readable:1368:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
-
-
-sequenceDiagram
-    participant main;
-    Note left of main: "enter main"
-    main--&gt;&gt;+lazy: co_example()
-    Note left of main: "constructed coro"
-    main-&gt;&gt;lazy: resume()
-    Note right of lazy: "Entered coro
-    lazy--&gt;&gt;main: co_yield 0
-    Note left of main: "resumed once"
-    main--&gt;&gt;+lazy: resume()
-    Note right of lazy: "Coro done"
-    lazy-&gt;&gt;main: co_return
-    Note left of main: "resumed twice"</pre>
+<img src="/root/project/libs/cobalt/doc/images/lazy_eager1.png" alt="lazy eager1">
 </div>
 </div>
 <div class="paragraph">
@@ -5915,35 +5877,9 @@ sequenceDiagram
 <span class="n">Coro</span> <span class="n">Done</span></code></pre>
 </div>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>Failed to generate image: mmdc failed:
-Error: Failed to launch the browser process!
-/root/.cache/puppeteer/chrome/linux-1108766/chrome-linux/chrome: error while loading shared libraries: libatk-1.0.so.0: cannot open shared object file: No such file or directory
-
-
-TROUBLESHOOTING: https://pptr.dev/troubleshooting
-
-    at Interface.onClose (file:///root/.nvm/versions/node/v18.18.1/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
-    at Interface.emit (node:events:529:35)
-    at Interface.close (node:internal/readline/interface:534:10)
-    at Socket.onend (node:internal/readline/interface:260:10)
-    at Socket.emit (node:events:529:35)
-    at endReadableNT (node:internal/streams/readable:1368:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
-
-
-sequenceDiagram
-    participant main;
-    Note left of main: "enter main"
-    main-&gt;&gt;lazy: co_example()
-    Note right of lazy: "Entered coro
-    lazy--&gt;&gt;main: co_yield 0
-    Note left of main: "constructed coro"
-    main--&gt;&gt;+lazy: resume()
-    Note right of lazy: "Coro done"
-    lazy-&gt;&gt;main: co_return
-    Note left of main: "resumed once"</pre>
+<img src="/root/project/libs/cobalt/doc/images/lazy_eager2.png" alt="lazy eager2">
 </div>
 </div>
 </div>
@@ -6327,7 +6263,7 @@ Vinnie trusted me enough to let me work on this project, while himself having ve
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2024-04-11 18:48:01 UTC
+Last updated 2024-07-24 04:36:49 UTC
 </div>
 </div>
 </body>

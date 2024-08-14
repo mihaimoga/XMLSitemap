@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>FAQ &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/boostbook.css" />
@@ -39,9 +40,9 @@
      Distributed under the Boost Software License, Version 1.0.
      (http://www.boost.org/LICENSE_1_0.txt)
 -->
-<div class="section" id="faq">
+<section id="faq">
 <h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="q-why-is-const-required-for-the-call-operator-on-function-objects">
+<section id="q-why-is-const-required-for-the-call-operator-on-function-objects">
 <h2>Q: Why is <code class="docutils literal notranslate"><span class="pre">const</span></code> required for the call operator on function objects?<a class="headerlink" href="#q-why-is-const-required-for-the-call-operator-on-function-objects" title="Permalink to this heading">¶</a></h2>
 <p>Mutable function objects are not prohibited, they just need to be explicit by
 using the adaptor <a class="reference internal" href="../../include/boost/hof/mutable.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">mutable_</span></code></span></a>. The main reason for this, is that it can lead to
@@ -82,8 +83,8 @@ impossible to provide a non-const overload for functions that is <code class="do
 Instead, <code class="docutils literal notranslate"><span class="pre">constexpr</span></code> would have to be made explicit. Considering the pitfalls
 of mutable function objects, it would be better to make mutability explicit
 rather than <code class="docutils literal notranslate"><span class="pre">constexpr</span></code>.</p>
-</div>
-<div class="section" id="q-is-the-reinterpret-cast-in-boost-hof-static-lambda-undefined-behaviour">
+</section>
+<section id="q-is-the-reinterpret-cast-in-boost-hof-static-lambda-undefined-behaviour">
 <h2>Q: Is the reinterpret cast in BOOST_HOF_STATIC_LAMBDA undefined behaviour?<a class="headerlink" href="#q-is-the-reinterpret-cast-in-boost-hof-static-lambda-undefined-behaviour" title="Permalink to this heading">¶</a></h2>
 <p>Not really, since the objects are empty, there is no data access. There is a
 static assert to guard against this restriction.</p>
@@ -108,8 +109,8 @@ variables in the future.</p>
 <span class="n">BOOST_HOF_STATIC_FUNCTION</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">hof</span><span class="o">::</span><span class="n">indirect</span><span class="p">(</span><span class="n">sum_factory</span><span class="p">{});</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

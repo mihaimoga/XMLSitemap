@@ -60,28 +60,12 @@
 <p>
           For example:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">op_type</span> <span class="special">=</span> <span class="keyword">decltype</span><span class="special">(</span>
-    <span class="identifier">socket1</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data1</span><span class="special">),</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span>
-    <span class="special">)</span>
-  <span class="special">);</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">op_type</span> <span class="special">=</span>
+  <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">socket1</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data1</span><span class="special">)));</span>
 
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">op_type</span><span class="special">&gt;</span> <span class="identifier">ops</span><span class="special">;</span>
-
-<span class="identifier">ops</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span>
-    <span class="identifier">socket1</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data1</span><span class="special">),</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span>
-    <span class="special">)</span>
-  <span class="special">);</span>
-
-<span class="identifier">ops</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span>
-    <span class="identifier">socket2</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data2</span><span class="special">),</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span>
-    <span class="special">)</span>
-  <span class="special">);</span>
+<span class="identifier">ops</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">socket1</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data1</span><span class="special">)));</span>
+<span class="identifier">ops</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">socket2</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">data2</span><span class="special">)));</span>
 
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">make_parallel_group</span><span class="special">(</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">allocator_arg_t</span><span class="special">,</span>

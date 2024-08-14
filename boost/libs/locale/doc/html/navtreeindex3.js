@@ -1,5 +1,10 @@
 var NAVTREEINDEX3 =
 {
+"locale_gen.html#locale_gen_variant":[3,0,1],
+"locale_gen.html#locale_gen_variant_icu":[3,0,1,1],
+"locale_gen.html#locale_gen_variant_non_icu":[3,0,1,0],
+"locale_information.html":[3,9],
+"localization__backend_8hpp_source.html":[12,0,0,0,19],
 "localized_text_formatting.html":[3,7],
 "message_8hpp_source.html":[12,0,0,0,20],
 "messages_formatting.html":[3,4],

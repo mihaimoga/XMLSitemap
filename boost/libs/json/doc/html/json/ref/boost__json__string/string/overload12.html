@@ -29,42 +29,36 @@
           (12 of 12 overloads)</a>
 </h6></div></div></div>
 <p>
-            Constructor.
+            Move constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__string.string.overload12.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload12.synopsis"></a></span><a class="link" href="overload12.html#json.ref.boost__json__string.string.overload12.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">string</span><span class="special">(</span>
-    <span class="identifier">string_view</span> <span class="identifier">s</span><span class="special">,</span>
-    <span class="identifier">storage_ptr</span> <span class="identifier">sp</span> <span class="special">=</span> <span class="special">{});</span>
+    <a class="link" href="../../boost__json__string.html" title="string"><code class="literal">string</code></a><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__string.string.overload12.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload12.description"></a></span><a class="link" href="overload12.html#json.ref.boost__json__string.string.overload12.description">Description</a>
           </h6>
 <p>
-            Construct the contents with those of a string view. This view can contain
-            null characters.
+            Constructs the string with the contents of <code class="computeroutput"><span class="identifier">other</span></code>
+            using move semantics. Ownership of the underlying memory is transferred.
+            The container acquires shared ownership of the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
+            used by <code class="computeroutput"><span class="identifier">other</span></code>. After
+            construction, the moved-from string behaves as if newly constructed with
+            its current memory resource.
           </p>
 <h6>
 <a name="json.ref.boost__json__string.string.overload12.h2"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload12.complexity"></a></span><a class="link" href="overload12.html#json.ref.boost__json__string.string.overload12.complexity">Complexity</a>
           </h6>
 <p>
-            Linear in <code class="computeroutput"><span class="identifier">s</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
+            Constant.
           </p>
 <h6>
 <a name="json.ref.boost__json__string.string.overload12.h3"></a>
-            <span class="phrase"><a name="json.ref.boost__json__string.string.overload12.exception_safety"></a></span><a class="link" href="overload12.html#json.ref.boost__json__string.string.overload12.exception_safety">Exception
-            Safety</a>
-          </h6>
-<p>
-            Strong guarantee. Calls to <code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">::</span><span class="identifier">allocate</span></code>
-            may throw.
-          </p>
-<h6>
-<a name="json.ref.boost__json__string.string.overload12.h4"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload12.parameters"></a></span><a class="link" href="overload12.html#json.ref.boost__json__string.string.overload12.parameters">Parameters</a>
           </h6>
 <div class="informaltable"><table class="table">
@@ -84,66 +78,15 @@
                     </p>
                   </th>
 </tr></thead>
-<tbody>
-<tr>
-<td>
-                    <p>
-                      <code class="computeroutput"><span class="identifier">s</span></code>
-                    </p>
-                  </td>
-<td>
-                    <p>
-                      The string view to copy from.
-                    </p>
-                  </td>
-</tr>
-<tr>
-<td>
-                    <p>
-                      <code class="computeroutput"><span class="identifier">sp</span></code>
-                    </p>
-                  </td>
-<td>
-                    <p>
-                      An optional pointer to the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
-                      to use. The container will acquire shared ownership of the
-                      memory resource. The default argument for this parameter is
-                      <code class="computeroutput"><span class="special">{}</span></code>.
-                    </p>
-                  </td>
-</tr>
-</tbody>
-</table></div>
-<h6>
-<a name="json.ref.boost__json__string.string.overload12.h5"></a>
-            <span class="phrase"><a name="json.ref.boost__json__string.string.overload12.exceptions"></a></span><a class="link" href="overload12.html#json.ref.boost__json__string.string.overload12.exceptions">Exceptions</a>
-          </h6>
-<div class="informaltable"><table class="table">
-<colgroup>
-<col>
-<col>
-</colgroup>
-<thead><tr>
-<th>
-                    <p>
-                      Type
-                    </p>
-                  </th>
-<th>
-                    <p>
-                      Thrown On
-                    </p>
-                  </th>
-</tr></thead>
 <tbody><tr>
 <td>
-<pre class="table-programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span></pre>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">other</span></code>
+                    </p>
                   </td>
 <td>
                     <p>
-                      <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">distance</span><span class="special">(</span><span class="identifier">first</span><span class="special">,</span>
-                      <span class="identifier">last</span><span class="special">)</span>
-                      <span class="special">&gt;</span> <span class="identifier">max_size</span><span class="special">()</span></code>.
+                      The string to move
                     </p>
                   </td>
 </tr></tbody>

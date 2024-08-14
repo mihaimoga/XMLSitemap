@@ -32,23 +32,23 @@
 <p>
       Property tree resembles (almost is) a standard container with value type of
       <code class="computeroutput"><span class="identifier">pair</span><span class="special">&lt;</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">ptree</span><span class="special">&gt;</span></code>.
-      It has the usual member functions, such as <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_17-bb">insert</a></code>,
-      <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_22-bb">push_back</a></code>,
-      <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_34-bb">find</a></code>,
-      <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_19-bb">erase</a></code>,
+      It has the usual member functions, such as <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1ab1f32d903e64ec84111c4ac46eb949d3">insert</a></code>,
+      <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a286d96ceddecf0270c1779b9f6bfb7fe">push_back</a></code>,
+      <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1ac4306a61333101a4e5b50b03d0e2d645">find</a></code>,
+      <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a4db9bc7731e85e54cc02e1930d9f5576">erase</a></code>,
       etc. These can of course be used to populate and access the tree. For example
       the following code adds key <code class="computeroutput"><span class="string">"pi"</span></code>
       with data (almost) equal to mathematical <span class="emphasis"><em>pi</em></span> value:
     </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
-<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_22-bb">push_back</a></code><span class="special">(</span><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code><span class="special">::</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#boost.property_tree.basic_ptree.value_type">value_type</a></code><span class="special">(</span><span class="string">"pi"</span><span class="special">,</span> <code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code><span class="special">(</span><span class="string">"3.14159"</span><span class="special">)));</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
+<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a286d96ceddecf0270c1779b9f6bfb7fe">push_back</a></code><span class="special">(</span><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code><span class="special">::</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a12a2eca5c2e1f10eed5d2bc9692184ab">value_type</a></code><span class="special">(</span><span class="string">"pi"</span><span class="special">,</span> <code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code><span class="special">(</span><span class="string">"3.14159"</span><span class="special">)));</span>
 </pre>
 <p>
       To find the value of <code class="computeroutput"><span class="identifier">pi</span></code> we
       might do the following:
     </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code><span class="special">::</span><code class="computeroutput">const_assoc_iterator</code> <span class="identifier">it</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_34-bb">find</a></code><span class="special">(</span><span class="string">"pi"</span><span class="special">);</span>
-<span class="keyword">double</span> <span class="identifier">pi</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="identifier">it</span><span class="special">-&gt;</span><span class="identifier">second</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_42-bb">data</a></code><span class="special">());</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code><span class="special">::</span><code class="computeroutput">const_assoc_iterator</code> <span class="identifier">it</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1ac4306a61333101a4e5b50b03d0e2d645">find</a></code><span class="special">(</span><span class="string">"pi"</span><span class="special">);</span>
+<span class="keyword">double</span> <span class="identifier">pi</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="identifier">it</span><span class="special">-&gt;</span><span class="identifier">second</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a909b71a6c517872a216dacb0f19791ba">data</a></code><span class="special">());</span>
 </pre>
 <p>
       This looks quite cumbersome, and would be even more so if <code class="computeroutput"><span class="identifier">pi</span></code>
@@ -57,13 +57,13 @@
       it:
     </p>
 <pre class="programlisting"><span class="identifier">ptree</span> <span class="identifier">pt</span><span class="special">;</span>
-<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code><span class="special">(</span><span class="string">"pi"</span><span class="special">,</span> <span class="number">3.14159</span><span class="special">);</span>                <span class="comment">// put double</span>
-<span class="keyword">double</span> <span class="identifier">pi</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="string">"pi"</span><span class="special">);</span>     <span class="comment">// get double</span>
+<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code><span class="special">(</span><span class="string">"pi"</span><span class="special">,</span> <span class="number">3.14159</span><span class="special">);</span>                <span class="comment">// put double</span>
+<span class="keyword">double</span> <span class="identifier">pi</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="string">"pi"</span><span class="special">);</span>     <span class="comment">// get double</span>
 </pre>
 <p>
       It doesn't get simpler than that. Basically, there are 2 families of member
-      functions, <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>
-      and <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code>,
+      functions, <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>
+      and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code>,
       which allow intuitive access to data stored in the tree (direct children or
       not).
     </p>
@@ -83,28 +83,28 @@
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <p class="simpara">
-          The throwing version (<code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>):
+          The throwing version (<code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>):
         </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
 <span class="comment">/* ... */</span>
-<span class="keyword">float</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code><span class="special">&lt;</span><span class="keyword">float</span><span class="special">&gt;(</span><span class="string">"a.path.to.float.value"</span><span class="special">);</span>
+<span class="keyword">float</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code><span class="special">&lt;</span><span class="keyword">float</span><span class="special">&gt;(</span><span class="string">"a.path.to.float.value"</span><span class="special">);</span>
 </pre>
 <p class="simpara">
           This call locates the proper node in the tree and tries to translate its
           data string to a float value. If that fails, exception is thrown. If path
-          does not exist, it will be <code class="computeroutput"><a class="link" href="../boost/property_tree/ptree_bad_path.html" title="Class ptree_bad_path">ptree_bad_path</a></code>
-          exception. If value could not be translated, it will be <code class="computeroutput"><a class="link" href="../boost/property_tree/ptree_bad_data.html" title="Class ptree_bad_data">ptree_bad_data</a></code>.
-          Both of them derive from <code class="computeroutput"><a class="link" href="../boost/property_tree/ptree_error.html" title="Class ptree_error">ptree_error</a></code>
+          does not exist, it will be <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1ptree__bad__path.html" title="Class ptree_bad_path">ptree_bad_path</a></code>
+          exception. If value could not be translated, it will be <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1ptree__bad__data.html" title="Class ptree_bad_data">ptree_bad_data</a></code>.
+          Both of them derive from <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1ptree__error.html" title="Class ptree_error">ptree_error</a></code>
           to make common handling possible.
         </p>
 </li>
 <li class="listitem">
 <p class="simpara">
-          The default-value version (<code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>):
+          The default-value version (<code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>):
         </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
 <span class="comment">/* ... */</span>
-<span class="keyword">float</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="special">-</span><span class="number">1.f</span><span class="special">);</span>
+<span class="keyword">float</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="special">-</span><span class="number">1.f</span><span class="special">);</span>
 </pre>
 <p class="simpara">
           It will do the same as above, but if it fails, it will return the default
@@ -116,11 +116,11 @@
 </li>
 <li class="listitem">
 <p class="simpara">
-          The optional version (<code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_70-bb">get_optional</a></code>):
+          The optional version (<code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a6aa25be019cf4eac81730d55623422e2">get_optional</a></code>):
         </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
 <span class="comment">/* ... */</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="keyword">float</span><span class="special">&gt;</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_70-bb">get_optional</a></code><span class="special">&lt;</span><span class="keyword">float</span><span class="special">&gt;(</span><span class="string">"a.path.to.float.value"</span><span class="special">);</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="keyword">float</span><span class="special">&gt;</span> <span class="identifier">v</span> <span class="special">=</span> <span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a6aa25be019cf4eac81730d55623422e2">get_optional</a></code><span class="special">&lt;</span><span class="keyword">float</span><span class="special">&gt;(</span><span class="string">"a.path.to.float.value"</span><span class="special">);</span>
 </pre>
 <p class="simpara">
           This version uses boost::optional class to handle extraction failure. On
@@ -130,19 +130,19 @@
 </li>
 </ol></div>
 <p>
-      To retrieve a value from this tree (not some subkey), use <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_54-bb">get_value</a></code>,
-      <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_54-bb">get_value</a></code>
-      (default-value version), and <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_60-bb">get_value_optional</a></code>.
-      They have identical semantics to <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>
-      functions, except they don't take the <code class="computeroutput"><a class="link" href="../boost/property_tree/string_path.html" title="Class template string_path">path</a></code>
-      parameter. Don't call <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>
-      with and empty <code class="computeroutput"><a class="link" href="../boost/property_tree/string_path.html" title="Class template string_path">path</a></code>
+      To retrieve a value from this tree (not some subkey), use <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a2be8e39d3b23f68f6e338c0d020dbc5b">get_value</a></code>,
+      <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a2be8e39d3b23f68f6e338c0d020dbc5b">get_value</a></code>
+      (default-value version), and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a19dbd9979ae83c75e1dab73a24ec9027">get_value_optional</a></code>.
+      They have identical semantics to <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>
+      functions, except they don't take the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1string__path.html" title="Class template string_path">path</a></code>
+      parameter. Don't call <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>
+      with and empty <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1string__path.html" title="Class template string_path">path</a></code>
       to do this as it will try to extract contents of subkey with empty name.
     </p>
 <p>
       To use a separator character other than default '<code class="literal">.</code>', you
-      need to construct a path object explicitly. The path type for a <code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code> is a string_path instantiation,
-      so the easiest way to refer to it is <code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code>::path_type.
+      need to construct a path object explicitly. The path type for a <code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code> is a string_path instantiation,
+      so the easiest way to refer to it is <code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code>::path_type.
       This way you can use trees that have dots in their keys:
     </p>
 <pre class="programlisting"><span class="keyword">typedef</span> <span class="identifier">ptree</span><span class="special">::</span><span class="identifier">path_type</span> <span class="identifier">path</span><span class="special">;</span>
@@ -151,8 +151,8 @@
 <span class="identifier">pt</span><span class="special">.</span><span class="identifier">get_optional</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;(</span><span class="identifier">path</span><span class="special">(</span><span class="string">"p.a.t.h/t.o/v.a.l.u.e"</span><span class="special">,</span> <span class="char">'/'</span><span class="special">));</span>
 </pre>
 <p>
-      Note: the special overloads of <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>
-      and <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_70-bb">get_optional</a></code>
+      Note: the special overloads of <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>
+      and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a6aa25be019cf4eac81730d55623422e2">get_optional</a></code>
       taking a separator character that existed in pre-release versions of PropertyTree
       have been removed. This is because the overloads conflicted with using per-call
       data translators.
@@ -163,46 +163,46 @@
       Ways of Putting Data</a>
     </h4>
 <p>
-      To complement <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>,
-      there are <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code>
-      and <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_74-bb">add</a></code>.
-      Contrary to <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>,
+      To complement <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>,
+      there are <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code>
+      and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1ad80ba2daa72416713da418e2bb05db0b">add</a></code>.
+      Contrary to <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>,
       they have only one variant each. This is because there is no need to deal with
       missing values when adding data. If the supplied value cannot be converted
-      to the tree's data type, the functions will throw <code class="computeroutput"><a class="link" href="../boost/property_tree/ptree_bad_data.html" title="Class ptree_bad_data">ptree_bad_data</a></code>.
+      to the tree's data type, the functions will throw <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1ptree__bad__data.html" title="Class ptree_bad_data">ptree_bad_data</a></code>.
     </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
-<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="number">3.14f</span><span class="special">);</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
+<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="number">3.14f</span><span class="special">);</span>
 <span class="comment">// Overwrites the value</span>
-<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="number">2.72f</span><span class="special">);</span>
+<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="number">2.72f</span><span class="special">);</span>
 <span class="comment">// Adds a second node with the new value.</span>
-<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_74-bb">add</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="number">3.14f</span><span class="special">);</span>
+<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1ad80ba2daa72416713da418e2bb05db0b">add</a></code><span class="special">(</span><span class="string">"a.path.to.float.value"</span><span class="special">,</span> <span class="number">3.14f</span><span class="special">);</span>
 </pre>
 <p>
-      Calling <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code>
-      will insert a new value at specified path, so that a call to <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_64-bb">get</a></code>
-      specifying the same path will retrieve it. Further, <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code>
+      Calling <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code>
+      will insert a new value at specified path, so that a call to <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a96d2c472acb55007b36e93131ecee67e">get</a></code>
+      specifying the same path will retrieve it. Further, <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code>
       will insert any missing path elements during path traversal. For example, calling
-      <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a><span class="special">(</span><span class="string">"key1.key2.key3"</span><span class="special">,</span> <span class="number">3.14f</span><span class="special">)</span></code>
+      <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a><span class="special">(</span><span class="string">"key1.key2.key3"</span><span class="special">,</span> <span class="number">3.14f</span><span class="special">)</span></code>
       on an empty tree will insert three new children: <code class="computeroutput"><span class="identifier">key1</span></code>,
       <code class="computeroutput"><span class="identifier">key1</span><span class="special">.</span><span class="identifier">key2</span></code> and <code class="computeroutput"><span class="identifier">key1</span><span class="special">.</span><span class="identifier">key2</span><span class="special">.</span><span class="identifier">key3</span></code>. The last one will receive a string
       <code class="computeroutput"><span class="string">"3.14"</span></code> as data, while
-      the two former ones will have empty data strings. <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code>
+      the two former ones will have empty data strings. <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code>
       always inserts new keys at the back of the existing sequences. The difference
-      between <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code>
-      and <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_74-bb">add</a></code>
+      between <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code>
+      and <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1ad80ba2daa72416713da418e2bb05db0b">add</a></code>
       is that put will overwrite existing values if there are any, while add will
       create a new node to hold the value even if the specified path references an
       existing node.
     </p>
 <p>
-      Similar to <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_54-bb">get_value</a></code>,
-      there is also a <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_62-bb">put_value</a></code>
-      function. It does the same for this property tree what <code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_72-bb">put</a></code>
-      does for its children. Thus, it does not receive a <code class="computeroutput"><a class="link" href="../boost/property_tree/string_path.html" title="Class template string_path">path</a></code>:
+      Similar to <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a2be8e39d3b23f68f6e338c0d020dbc5b">get_value</a></code>,
+      there is also a <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a06067eeada01a32051088a92f266181f">put_value</a></code>
+      function. It does the same for this property tree what <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a26c9f5391a75e4f7941898a8f930a78c">put</a></code>
+      does for its children. Thus, it does not receive a <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1string__path.html" title="Class template string_path">path</a></code>:
     </p>
-<pre class="programlisting"><code class="computeroutput"><a class="link" href="../boost/property_tree/ptree.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
-<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../boost/property_tree/basic_ptree.html#id-1_3_31_10_6_1_1_1_10_62-bb">put_value</a></code><span class="special">(</span><span class="number">3.14f</span><span class="special">);</span>
+<pre class="programlisting"><code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1property__tree_1a7d9711ff8ada3a8267795b0f3f349300.html" title="Type definition ptree">ptree</a></code> <span class="identifier">pt</span><span class="special">;</span>
+<span class="identifier">pt</span><span class="special">.</span><code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1property__tree_1_1basic__ptree.html#doxygen.classboost_1_1property__tree_1_1basic__ptree_1a06067eeada01a32051088a92f266181f">put_value</a></code><span class="special">(</span><span class="number">3.14f</span><span class="special">);</span>
 </pre>
 <p>
       There is no add_value function.

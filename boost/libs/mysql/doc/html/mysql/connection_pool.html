@@ -60,8 +60,8 @@
 <span class="comment">// You can configure a lot of other things, like pool limits</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pool_params</span> <span class="identifier">params</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">server_address</span><span class="special">.</span><span class="identifier">emplace_host_and_port</span><span class="special">(</span><span class="identifier">server_hostname</span><span class="special">);</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">username</span><span class="special">;</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">password</span><span class="special">;</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">mysql_username</span><span class="special">;</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">mysql_password</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">database</span> <span class="special">=</span> <span class="string">"boost_mysql_examples"</span><span class="special">;</span>
 
 <span class="comment">// The I/O context, required by all I/O operations</span>
@@ -189,8 +189,8 @@
 
 <span class="comment">// Set the usual params</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">server_address</span><span class="special">.</span><span class="identifier">emplace_host_and_port</span><span class="special">(</span><span class="identifier">server_hostname</span><span class="special">);</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">username</span><span class="special">;</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">password</span><span class="special">;</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">mysql_username</span><span class="special">;</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">mysql_password</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">database</span> <span class="special">=</span> <span class="string">"boost_mysql_examples"</span><span class="special">;</span>
 
 <span class="comment">// Create 10 connections at startup, and allow up to 1000 connections</span>
@@ -339,8 +339,8 @@
 <span class="comment">// The usual pool configuration params</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pool_params</span> <span class="identifier">params</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">server_address</span><span class="special">.</span><span class="identifier">emplace_host_and_port</span><span class="special">(</span><span class="identifier">server_hostname</span><span class="special">);</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">username</span><span class="special">;</span>
-<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">password</span><span class="special">;</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">mysql_username</span><span class="special">;</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">mysql_password</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">database</span> <span class="special">=</span> <span class="string">"boost_mysql_examples"</span><span class="special">;</span>
 
 <span class="comment">// By passing pool_executor_params::thread_safe to connection_pool,</span>
@@ -353,7 +353,7 @@
 
 <span class="comment">// We can now pass a reference to pool to other threads,</span>
 <span class="comment">// and call async_get_connection concurrently without problem.</span>
-<span class="comment">// Inidivudal connections are still not thread-safe.</span>
+<span class="comment">// Individual connections are still not thread-safe.</span>
 </pre>
 <p>
       This works by using strands. Recall that a <a href="../../../../../doc/html/boost_asio/reference/strand.html" target="_top"><code class="literal">boost::asio::strand</code></a>

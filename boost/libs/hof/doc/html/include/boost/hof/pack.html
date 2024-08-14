@@ -4,7 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>pack &#8212; Boost.HigherOrderFunctions 0.6 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/boostbook.css" />
@@ -35,22 +36,22 @@
   <div class="chapter">
       <div class="body" role="main">
         
-  <div class="section" id="pack">
+  <section id="pack">
 <h1>pack<a class="headerlink" href="#pack" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="header">
+<section id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/pack.hpp&gt;</span><span class="cp"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="description">
+</section>
+<section id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">pack</span></code> function returns a higher order function object that takes a
 function that will be passed the initial elements. The function object is
 a sequence that can be unpacked with <code class="docutils literal notranslate"><span class="pre">unpack_adaptor</span></code> as well. Also,
 <code class="docutils literal notranslate"><span class="pre">pack_join</span></code> can be used to join multiple packs together.</p>
-</div>
-<div class="section" id="synopsis">
+</section>
+<section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Decay everything before capturing</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="w"> </span><span class="n">Ts</span><span class="o">&gt;</span><span class="w"></span>
@@ -69,8 +70,8 @@ a sequence that can be unpacked with <code class="docutils literal notranslate">
 <span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">pack_join</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span><span class="w"> </span><span class="n">xs</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="semantics">
+</section>
+<section id="semantics">
 <h2>Semantics<a class="headerlink" href="#semantics" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">assert</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="n">xs</span><span class="p">...)(</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span><span class="w"></span>
 <span class="n">assert</span><span class="p">(</span><span class="n">unpack</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">pack</span><span class="p">(</span><span class="n">xs</span><span class="p">...))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span><span class="w"></span>
@@ -78,8 +79,8 @@ a sequence that can be unpacked with <code class="docutils literal notranslate">
 <span class="n">assert</span><span class="p">(</span><span class="n">pack_join</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="n">xs</span><span class="p">...),</span><span class="w"> </span><span class="n">pack</span><span class="p">(</span><span class="n">ys</span><span class="p">...))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pack</span><span class="p">(</span><span class="n">xs</span><span class="p">...,</span><span class="w"> </span><span class="n">ys</span><span class="p">...));</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="example">
+</section>
+<section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
@@ -100,14 +101,14 @@ a sequence that can be unpacked with <code class="docutils literal notranslate">
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="see-also">
+</section>
+<section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="unpack.html#unpack"><span class="std std-ref">unpack</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
       </div>

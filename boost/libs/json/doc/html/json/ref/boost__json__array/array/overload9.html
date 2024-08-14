@@ -29,39 +29,33 @@
           (9 of 11 overloads)</a>
 </h6></div></div></div>
 <p>
-            Move constructor.
+            Pilfer constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload9.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload9.synopsis"></a></span><a class="link" href="overload9.html#json.ref.boost__json__array.array.overload9.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">array</span><span class="special">(</span>
-    <span class="identifier">array</span><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">);</span>
+    <a class="link" href="../../boost__json__pilfered.html" title="pilfered"><code class="literal">pilfered</code></a><span class="special">&lt;</span> <a class="link" href="../../boost__json__array.html" title="array"><code class="literal">array</code></a> <span class="special">&gt;</span> <span class="identifier">other</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__array.array.overload9.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload9.description"></a></span><a class="link" href="overload9.html#json.ref.boost__json__array.array.overload9.description">Description</a>
           </h6>
 <p>
-            The array is constructed by acquiring ownership of the contents of <code class="computeroutput"><span class="identifier">other</span></code> and shared ownership of <code class="computeroutput"><span class="identifier">other</span></code>'s memory resource.
+            The array is constructed by acquiring ownership of the contents of <code class="computeroutput"><span class="identifier">other</span></code> using pilfer semantics. This
+            is more efficient than move construction, when it is known that the moved-from
+            object will be immediately destroyed afterwards.
           </p>
 <h6>
 <a name="json.ref.boost__json__array.array.overload9.h2"></a>
-            <span class="phrase"><a name="json.ref.boost__json__array.array.overload9.remarks"></a></span><a class="link" href="overload9.html#json.ref.boost__json__array.array.overload9.remarks">Remarks</a>
-          </h6>
-<p>
-            After construction, the moved-from array behaves as if newly constructed
-            with its current storage pointer.
-          </p>
-<h6>
-<a name="json.ref.boost__json__array.array.overload9.h3"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload9.complexity"></a></span><a class="link" href="overload9.html#json.ref.boost__json__array.array.overload9.complexity">Complexity</a>
           </h6>
 <p>
             Constant.
           </p>
 <h6>
-<a name="json.ref.boost__json__array.array.overload9.h4"></a>
+<a name="json.ref.boost__json__array.array.overload9.h3"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload9.exception_safety"></a></span><a class="link" href="overload9.html#json.ref.boost__json__array.array.overload9.exception_safety">Exception
             Safety</a>
           </h6>
@@ -69,7 +63,7 @@
             No-throw guarantee.
           </p>
 <h6>
-<a name="json.ref.boost__json__array.array.overload9.h5"></a>
+<a name="json.ref.boost__json__array.array.overload9.h4"></a>
             <span class="phrase"><a name="json.ref.boost__json__array.array.overload9.parameters"></a></span><a class="link" href="overload9.html#json.ref.boost__json__array.array.overload9.parameters">Parameters</a>
           </h6>
 <div class="informaltable"><table class="table">
@@ -97,11 +91,21 @@
                   </td>
 <td>
                     <p>
-                      The container to move
+                      The value to pilfer. After pilfer construction, <code class="computeroutput"><span class="identifier">other</span></code> is not in a usable
+                      state and may only be destroyed.
                     </p>
                   </td>
 </tr></tbody>
 </table></div>
+<h6>
+<a name="json.ref.boost__json__array.array.overload9.h5"></a>
+            <span class="phrase"><a name="json.ref.boost__json__array.array.overload9.see_also"></a></span><a class="link" href="overload9.html#json.ref.boost__json__array.array.overload9.see_also">See Also</a>
+          </h6>
+<p>
+            <a class="link" href="../../boost__json__pilfer.html" title="pilfer"><code class="computeroutput"><span class="identifier">pilfer</span></code></a>,
+            <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0308r0.html" target="_top">Valueless
+            Variants Considered Harmful</a>
+          </p>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

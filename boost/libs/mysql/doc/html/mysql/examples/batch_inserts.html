@@ -41,7 +41,7 @@
         This example assumes you have gone through the <a class="link" href="../examples.html#mysql.examples.setup">setup</a>.
       </p>
 <pre class="programlisting"><span class="comment">// Uses client-side SQL formatting to implement batch inserts</span>
-<span class="comment">// for a specific type. It makes use of format_context and format_sql_to.</span>
+<span class="comment">// for a specific type.</span>
 <span class="comment">// The program reads a JSON file containing a list of employees</span>
 <span class="comment">// and inserts it into the employee table.</span>
 <span class="comment">//</span>
@@ -120,21 +120,12 @@
     <span class="comment">// We need at least one employee to insert</span>
     <span class="identifier">assert</span><span class="special">(!</span><span class="identifier">employees</span><span class="special">.</span><span class="identifier">empty</span><span class="special">());</span>
 
-    <span class="comment">// A format_context accumulates our query as we build it</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">opts</span><span class="special">);</span>
-
-    <span class="comment">// format_context::append_raw adds raw SQL to the output</span>
-    <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">"INSERT INTO employee (first_name, last_name, company_id, salary) VALUES "</span><span class="special">);</span>
-
-    <span class="comment">// Iterate over all employees, building a comma-separated list of values to insert</span>
-    <span class="keyword">bool</span> <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
-    <span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">emp</span> <span class="special">:</span> <span class="identifier">employees</span><span class="special">)</span>
-    <span class="special">{</span>
-        <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">is_first</span><span class="special">)</span>
-            <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">", "</span><span class="special">);</span>
-
+    <span class="comment">// A function describing how to format a single employee object. Used with mysql::sequence.</span>
+    <span class="keyword">auto</span> <span class="identifier">format_employee_fn</span> <span class="special">=</span> <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">employee</span><span class="special">&amp;</span> <span class="identifier">emp</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
+        <span class="comment">// format_context_base can be used to build query strings incrementally.</span>
+        <span class="comment">// Used internally by the sequence() formatter</span>
         <span class="comment">// format_sql_to expands a format string, replacing {} fields,</span>
-        <span class="comment">// and appends the result to our context.</span>
+        <span class="comment">// and appends the result to the passed context.</span>
         <span class="comment">// When formatted, strings are quoted and escaped as string literals.</span>
         <span class="comment">// Doubles are formatted as number literals.</span>
         <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span>
@@ -145,18 +136,16 @@
             <span class="identifier">emp</span><span class="special">.</span><span class="identifier">company_id</span><span class="special">,</span>
             <span class="identifier">emp</span><span class="special">.</span><span class="identifier">salary</span>
         <span class="special">);</span>
-        <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">false</span><span class="special">;</span>
+    <span class="special">};</span>
 
-        <span class="comment">// If you find yourself repeating the formatting logic for a type</span>
-        <span class="comment">// like employee over and over, you can specialize boost::mysql::formatter&lt;employee&gt;</span>
-        <span class="comment">// employee objects usable as format arguments. See batch_inserts_generic for an example.</span>
-    <span class="special">}</span>
-
-    <span class="comment">// fomat_context::get() returns the result of our formatting operation.</span>
-    <span class="comment">// Formatting can fail (e.g. if you supply strings with invalid UTF-8),</span>
-    <span class="comment">// so get() returns a boost::system::result&lt;std::string&gt;.</span>
-    <span class="comment">// Calling value() will retrieve the string or throw an exception on failure.</span>
-    <span class="keyword">return</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">).</span><span class="identifier">get</span><span class="special">().</span><span class="identifier">value</span><span class="special">();</span>
+    <span class="comment">// sequence() takes a range and a formatter function.</span>
+    <span class="comment">// It will call the formatter function for each object in the sequence,</span>
+    <span class="comment">// adding commas between invocations.</span>
+    <span class="keyword">return</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+        <span class="identifier">opts</span><span class="special">,</span>
+        <span class="string">"INSERT INTO employee (first_name, last_name, company_id, salary) VALUES {}"</span><span class="special">,</span>
+        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">sequence</span><span class="special">(</span><span class="identifier">employees</span><span class="special">,</span> <span class="identifier">format_employee_fn</span><span class="special">)</span>
+    <span class="special">);</span>
 <span class="special">}</span>
 
 <span class="keyword">void</span> <span class="identifier">main_impl</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span><span class="special">**</span> <span class="identifier">argv</span><span class="special">)</span>

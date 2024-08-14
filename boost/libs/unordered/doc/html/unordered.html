@@ -683,6 +683,12 @@ pre.rouge {
 <li><a href="#concurrent_interoperability_with_non_concurrent_containers">Interoperability with non-concurrent containers</a></li>
 </ul>
 </li>
+<li><a href="#hash_quality">Hash Quality</a>
+<ul class="sectlevel2">
+<li><a href="#hash_quality_hash_post_mixing_and_the_avalanching_property">Hash Post-mixing and the Avalanching Property</a></li>
+<li><a href="#hash_quality_container_statistics">Container Statistics</a></li>
+</ul>
+</li>
 <li><a href="#compliance">Standard Compliance</a>
 <ul class="sectlevel2">
 <li><a href="#compliance_closed_addressing_containers">Closed-addressing Containers</a>
@@ -701,6 +707,11 @@ pre.rouge {
 <li><a href="#structures_closed_addressing_containers">Closed-addressing Containers</a></li>
 <li><a href="#structures_open_addressing_containers">Open-addressing Containers</a></li>
 <li><a href="#structures_concurrent_containers">Concurrent Containers</a></li>
+</ul>
+</li>
+<li><a href="#debuggability">Debuggability</a>
+<ul class="sectlevel2">
+<li><a href="#debuggability_visual_studio_natvis">Visual Studio Natvis</a></li>
 </ul>
 </li>
 <li><a href="#benchmarks">Benchmarks</a>
@@ -857,10 +868,16 @@ pre.rouge {
 <li><a href="#hash_traits_hash_is_avalanching">hash_is_avalanching</a></li>
 </ul>
 </li>
+<li><a href="#stats">Statistics</a>
+<ul class="sectlevel3">
+<li><a href="#stats_synopsis">Synopsis</a></li>
+</ul>
+</li>
 <li><a href="#unordered_flat_map">Class Template unordered_flat_map</a>
 <ul class="sectlevel3">
 <li><a href="#unordered_flat_map_synopsis">Synopsis</a></li>
 <li><a href="#unordered_flat_map_description">Description</a></li>
+<li><a href="#unordered_flat_map_configuration_macros">Configuration Macros</a></li>
 <li><a href="#unordered_flat_map_typedefs">Typedefs</a></li>
 <li><a href="#unordered_flat_map_constructors">Constructors</a></li>
 <li><a href="#unordered_flat_map_destructor">Destructor</a></li>
@@ -872,6 +889,7 @@ pre.rouge {
 <li><a href="#unordered_flat_map_lookup">Lookup</a></li>
 <li><a href="#unordered_flat_map_bucket_interface">Bucket Interface</a></li>
 <li><a href="#unordered_flat_map_hash_policy">Hash Policy</a></li>
+<li><a href="#unordered_flat_map_statistics">Statistics</a></li>
 <li><a href="#unordered_flat_map_deduction_guides">Deduction Guides</a></li>
 <li><a href="#unordered_flat_map_equality_comparisons">Equality Comparisons</a></li>
 <li><a href="#unordered_flat_map_swap_2">Swap</a></li>
@@ -883,6 +901,7 @@ pre.rouge {
 <ul class="sectlevel3">
 <li><a href="#unordered_flat_set_synopsis">Synopsis</a></li>
 <li><a href="#unordered_flat_set_description">Description</a></li>
+<li><a href="#unordered_flat_set_configuration_macros">Configuration Macros</a></li>
 <li><a href="#unordered_flat_set_typedefs">Typedefs</a></li>
 <li><a href="#unordered_flat_set_constructors">Constructors</a></li>
 <li><a href="#unordered_flat_set_destructor">Destructor</a></li>
@@ -894,6 +913,7 @@ pre.rouge {
 <li><a href="#unordered_flat_set_lookup">Lookup</a></li>
 <li><a href="#unordered_flat_set_bucket_interface">Bucket Interface</a></li>
 <li><a href="#unordered_flat_set_hash_policy">Hash Policy</a></li>
+<li><a href="#unordered_flat_set_statistics">Statistics</a></li>
 <li><a href="#unordered_flat_set_deduction_guides">Deduction Guides</a></li>
 <li><a href="#unordered_flat_set_equality_comparisons">Equality Comparisons</a></li>
 <li><a href="#unordered_flat_set_swap_2">Swap</a></li>
@@ -905,6 +925,7 @@ pre.rouge {
 <ul class="sectlevel3">
 <li><a href="#unordered_node_map_synopsis">Synopsis</a></li>
 <li><a href="#unordered_node_map_description">Description</a></li>
+<li><a href="#unordered_node_map_configuration_macros">Configuration Macros</a></li>
 <li><a href="#unordered_node_map_typedefs">Typedefs</a></li>
 <li><a href="#unordered_node_map_constructors">Constructors</a></li>
 <li><a href="#unordered_node_map_destructor">Destructor</a></li>
@@ -916,6 +937,7 @@ pre.rouge {
 <li><a href="#unordered_node_map_lookup">Lookup</a></li>
 <li><a href="#unordered_node_map_bucket_interface">Bucket Interface</a></li>
 <li><a href="#unordered_node_map_hash_policy">Hash Policy</a></li>
+<li><a href="#unordered_node_map_statistics">Statistics</a></li>
 <li><a href="#unordered_node_map_deduction_guides">Deduction Guides</a></li>
 <li><a href="#unordered_node_map_equality_comparisons">Equality Comparisons</a></li>
 <li><a href="#unordered_node_map_swap_2">Swap</a></li>
@@ -927,6 +949,7 @@ pre.rouge {
 <ul class="sectlevel3">
 <li><a href="#unordered_node_set_synopsis">Synopsis</a></li>
 <li><a href="#unordered_node_set_description">Description</a></li>
+<li><a href="#unordered_node_set_configuration_macros">Configuration Macros</a></li>
 <li><a href="#unordered_node_set_typedefs">Typedefs</a></li>
 <li><a href="#unordered_node_set_constructors">Constructors</a></li>
 <li><a href="#unordered_node_set_destructor">Destructor</a></li>
@@ -938,6 +961,7 @@ pre.rouge {
 <li><a href="#unordered_node_set_lookup">Lookup</a></li>
 <li><a href="#unordered_node_set_bucket_interface">Bucket Interface</a></li>
 <li><a href="#unordered_node_set_hash_policy">Hash Policy</a></li>
+<li><a href="#unordered_node_set_statistics">Statistics</a></li>
 <li><a href="#unordered_node_set_deduction_guides">Deduction Guides</a></li>
 <li><a href="#unordered_node_set_equality_comparisons">Equality Comparisons</a></li>
 <li><a href="#unordered_node_set_swap_2">Swap</a></li>
@@ -962,6 +986,7 @@ pre.rouge {
 <li><a href="#concurrent_flat_map_map_operations">Map Operations</a></li>
 <li><a href="#concurrent_flat_map_bucket_interface">Bucket Interface</a></li>
 <li><a href="#concurrent_flat_map_hash_policy">Hash Policy</a></li>
+<li><a href="#concurrent_flat_map_statistics">Statistics</a></li>
 <li><a href="#concurrent_flat_map_deduction_guides">Deduction Guides</a></li>
 <li><a href="#concurrent_flat_map_equality_comparisons">Equality Comparisons</a></li>
 <li><a href="#concurrent_flat_map_swap_2">Swap</a></li>
@@ -986,6 +1011,7 @@ pre.rouge {
 <li><a href="#concurrent_flat_set_set_operations">Set Operations</a></li>
 <li><a href="#concurrent_flat_set_bucket_interface">Bucket Interface</a></li>
 <li><a href="#concurrent_flat_set_hash_policy">Hash Policy</a></li>
+<li><a href="#concurrent_flat_set_statistics">Statistics</a></li>
 <li><a href="#concurrent_flat_set_deduction_guides">Deduction Guides</a></li>
 <li><a href="#concurrent_flat_set_equality_comparisons">Equality Comparisons</a></li>
 <li><a href="#concurrent_flat_set_swap_2">Swap</a></li>
@@ -997,6 +1023,7 @@ pre.rouge {
 </li>
 <li><a href="#changes">Change Log</a>
 <ul class="sectlevel2">
+<li><a href="#changes_release_1_86_0">Release 1.86.0</a></li>
 <li><a href="#changes_release_1_85_0">Release 1.85.0</a></li>
 <li><a href="#changes_release_1_84_0_major_update">Release 1.84.0 - Major update</a></li>
 <li><a href="#changes_release_1_83_0_major_update">Release 1.83.0 - Major update</a></li>
@@ -2136,6 +2163,172 @@ then transferred to the final container.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="hash_quality"><a class="link" href="#hash_quality">Hash Quality</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to work properly, hash tables require that the supplied hash function
+be of <em>good quality</em>, roughly meaning that it uses its <code>std::size_t</code> output
+space as uniformly as possible, much like a random number generator would do
+—except, of course, that the value of a hash function is not random but strictly determined
+by its input argument.</p>
+</div>
+<div class="paragraph">
+<p>Closed-addressing containers in Boost.Unordered are fairly robust against
+hash functions with less-than-ideal quality, but open-addressing and concurrent
+containers are much more sensitive to this factor, and their performance can
+degrade dramatically if the hash function is not appropriate. In general, if
+you&#8217;re using functions provided by or generated with <a href="../../../container_hash/index.html" target="_blank" rel="noopener">Boost.Hash</a>,
+the quality will be adequate, but you have to be careful when using alternative
+hash algorithms.</p>
+</div>
+<div class="paragraph">
+<p>The rest of this section applies only to open-addressing and concurrent containers.</p>
+</div>
+<div class="sect2">
+<h3 id="hash_quality_hash_post_mixing_and_the_avalanching_property"><a class="link" href="#hash_quality_hash_post_mixing_and_the_avalanching_property">Hash Post-mixing and the Avalanching Property</a></h3>
+<div class="paragraph">
+<p>Even if your supplied hash function does not conform to the uniform behavior
+required by open addressing, chances are that
+the performance of Boost.Unordered containers will be acceptable, because the library
+executes an internal <em>post-mixing</em> step that improves the statistical
+properties of the calculated hash values. This comes with an extra computational
+cost; if you&#8217;d like to opt out of post-mixing, annotate your hash function as
+follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">my_string_hash_function</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">is_avalanching</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">true_type</span><span class="p">;</span> <span class="c1">// instruct Boost.Unordered to not use post-mixing</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="k">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="k">const</span>
+  <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By setting the
+<a href="#hash_traits_hash_is_avalanching">hash_is_avalanching</a> trait, we inform Boost.Unordered
+that <code>my_string_hash_function</code> is of sufficient quality to be used directly without
+any post-mixing safety net. This comes at the risk of degraded performance in the
+cases where the hash function is not as well-behaved as we&#8217;ve declared.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hash_quality_container_statistics"><a class="link" href="#hash_quality_container_statistics">Container Statistics</a></h3>
+<div class="paragraph">
+<p>If we globally define the macro <code>BOOST_UNORDERED_ENABLE_STATS</code>, open-addressing and
+concurrent containers will calculate some internal statistics directly correlated to the
+quality of the hash function:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#define BOOST_UNORDERED_ENABLE_STATS
+#include</span> <span class="cpf">&lt;boost/unordered/unordered_map.hpp&gt;</span><span class="cp">
+</span>
+<span class="p">...</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">unordered_flat_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="n">my_string_hash</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+  <span class="p">...</span> <span class="c1">// use m</span>
+
+  <span class="k">auto</span> <span class="n">stats</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">get_stats</span><span class="p">();</span>
+  <span class="p">...</span> <span class="c1">// inspect stats</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>stats</code> object provides the following information:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">stats</span>
+     <span class="p">.</span><span class="n">insertion</span>                                     <span class="c1">// <strong>Insertion operations</strong></span>
+               <span class="p">.</span><span class="n">count</span>                               <span class="c1">// Number of operations</span>
+               <span class="p">.</span><span class="n">probe_length</span>                        <span class="c1">// Probe length per operation</span>
+                            <span class="p">.</span><span class="n">average</span>
+                            <span class="p">.</span><span class="n">variance</span>
+                            <span class="p">.</span><span class="n">deviation</span>
+	 <span class="p">.</span><span class="n">successful_lookup</span>                             <span class="c1">// <strong>Lookup operations (element found)</strong></span>
+                       <span class="p">.</span><span class="n">count</span>                       <span class="c1">// Number of operations</span>
+                       <span class="p">.</span><span class="n">probe_length</span>                <span class="c1">// Probe length per operation</span>
+                                    <span class="p">.</span><span class="n">average</span>
+                                    <span class="p">.</span><span class="n">variance</span>
+                                    <span class="p">.</span><span class="n">deviation</span>
+                       <span class="p">.</span><span class="n">num_comparisons</span>             <span class="c1">// Elements compared per operation</span>
+			                           <span class="p">.</span><span class="n">average</span>
+                                       <span class="p">.</span><span class="n">variance</span>
+                                       <span class="p">.</span><span class="n">deviation</span>
+	 <span class="p">.</span><span class="n">unsuccessful_lookup</span>                           <span class="c1">// <strong>Lookup operations (element not found)</strong></span>
+                         <span class="p">.</span><span class="n">count</span>                     <span class="c1">// Number of operations</span>
+                         <span class="p">.</span><span class="n">probe_length</span>              <span class="c1">// Probe length per operation</span>
+                                      <span class="p">.</span><span class="n">average</span>
+                                      <span class="p">.</span><span class="n">variance</span>
+                                      <span class="p">.</span><span class="n">deviation</span>
+                         <span class="p">.</span><span class="n">num_comparisons</span>           <span class="c1">// Elements compared per operation</span>
+			                             <span class="p">.</span><span class="n">average</span>
+                                         <span class="p">.</span><span class="n">variance</span>
+                                         <span class="p">.</span><span class="n">deviation</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Statistics for three internal operations are maintained: insertions (without considering
+the previous lookup to determine that the key is not present yet), successful lookups,
+and unsuccessful lookups (including those issued internally when inserting elements).
+<em>Probe length</em> is  the number of
+<a href="#structures_open_addressing_containers">bucket groups</a> accessed per operation.
+If the hash function behaves properly:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Average probe lengths should be close to 1.0.</p>
+</li>
+<li>
+<p>The average number of comparisons per successful lookup should be close to 1.0 (that is,
+just the element found is checked).</p>
+</li>
+<li>
+<p>The average number of comparisons per unsuccessful lookup should be close to 0.0.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>An <a href="../../benchmark/string_stats.cpp" target="_blank" rel="noopener">example</a> is provided that displays container
+statistics for <code>boost::hash&lt;std::string&gt;</code>, an implementation of the
+<a href="https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1a_hash" target="_blank" rel="noopener">FNV-1a hash</a>
+and two ill-behaved custom hash functions that have been incorrectly marked as avalanching:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>                   boost::unordered_flat_map:   319 ms
+                                   insertion: probe length 1.08771
+                           successful lookup: probe length 1.06206, num comparisons 1.02121
+                         unsuccessful lookup: probe length 1.12301, num comparisons 0.0388251
+
+           boost::unordered_flat_map, FNV-1a:   301 ms
+                                   insertion: probe length 1.09567
+                           successful lookup: probe length 1.06202, num comparisons 1.0227
+                         unsuccessful lookup: probe length 1.12195, num comparisons 0.040527
+
+boost::unordered_flat_map, slightly_bad_hash:   654 ms
+                                   insertion: probe length 1.03443
+                           successful lookup: probe length 1.04137, num comparisons 6.22152
+                         unsuccessful lookup: probe length 1.29334, num comparisons 11.0335
+
+         boost::unordered_flat_map, bad_hash: 12216 ms
+                                   insertion: probe length 699.218
+                           successful lookup: probe length 590.183, num comparisons 43.4886
+                         unsuccessful lookup: probe length 1361.65, num comparisons 75.238</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="compliance"><a class="link" href="#compliance">Standard Compliance</a></h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -2590,6 +2783,29 @@ of parts per million for some of our benchmarks.</p>
 <div class="paragraph">
 <p>For more information on implementation rationale, read the
 <a href="#rationale_concurrent_containers">corresponding section</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="debuggability"><a class="link" href="#debuggability">Debuggability</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="debuggability_visual_studio_natvis"><a class="link" href="#debuggability_visual_studio_natvis">Visual Studio Natvis</a></h3>
+<div class="paragraph">
+<p>All containers and iterators have custom visualizations in the Natvis framework, as long as their allocator uses regular raw pointers. Any container or iterator with an allocator using fancy pointers does not have a custom visualization right now.</p>
+</div>
+<div class="paragraph">
+<p>The visualizations mirror those for the standard unordered containers. A container has a maximum of 100 elements displayed at once. Each set element has its item name listed as <code>[i]</code>, where <code>i</code> is the index in the display, starting at <code>0</code>. Each map element has its item name listed as <code>[{key-display}]</code> by default. For example, if the first element is the pair <code>("abc", 1)</code>, the item name will be <code>["abc"]</code>. This behaviour can be overridden by using the view "ShowElementsByIndex", which switches the map display behaviour to name the elements by index. This same view name is used in the standard unordered containers.</p>
+</div>
+<div class="paragraph">
+<p>By default, the closed-addressing containers will show the <code>[hash_function]</code> and <code>[key_eq]</code>, the <code>[spare_hash_function]</code> and <code>[spare_key_eq]</code> if applicable, the <code>[allocator]</code>, and the elements. Using the view "detailed" adds the <code>[bucket_count]</code> and <code>[max_load_factor]</code>. Conversely, using the view "simple" shows only the elements, with no other items present.</p>
+</div>
+<div class="paragraph">
+<p>By default, the open-addressing containers will show the <code>[hash_function]</code>, <code>[key_eq]</code>, <code>[allocator]</code>, and the elements. Using the view "simple" shows only the elements, with no other items present. Both the SIMD and the non-SIMD implementations are viewable through the Natvis framework.</p>
+</div>
+<div class="paragraph">
+<p>Iterators are displayed similarly to their standard counterparts. An iterator is displayed as though it were the element that it points to. An end iterator is simply displayed as <code>\{ end iterator }</code>.</p>
 </div>
 </div>
 </div>
@@ -4195,7 +4411,7 @@ In 64-bit architectures, <em>C</em> is the integer part of 2<sup>64</sup>&#8725;
 whereas in 32 bits <em>C</em> = 0xE817FB2Du has been obtained from <a href="https://arxiv.org/abs/2001.05304" target="_blank" rel="noopener">Steele and Vigna (2021)</a>.</p>
 </div>
 <div class="paragraph">
-<p>When using a hash function directly suitable for open addressing, post-mixing can be opted out by via a dedicated <a href="#hash_traits_hash_is_avalanching"><code>hash_is_avalanching</code></a>trait.
+<p>When using a hash function directly suitable for open addressing, post-mixing can be opted out of via a dedicated <a href="#hash_traits_hash_is_avalanching"><code>hash_is_avalanching</code></a>trait.
 <code>boost::hash</code> specializations for string types are marked as avalanching.</p>
 </div>
 </div>
@@ -4546,6 +4762,17 @@ namespace boost {
   template&lt;class K, class T, class H, class P, class A, class Predicate&gt;
     typename unordered_map&lt;K, T, H, P, A&gt;::size_type
        <a href="#unordered_map_erase_if">erase_if</a>(unordered_map&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class T,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_map =
+      boost::unordered_map&lt;Key, T, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -7974,6 +8201,17 @@ namespace boost {
   template&lt;class K, class T, class H, class P, class A, class Predicate&gt;
     typename unordered_multimap&lt;K, T, H, P, A&gt;::size_type
       <a href="#unordered_multimap_erase_if">erase_if</a>(unordered_multimap&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class T,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_multimap =
+      boost::unordered_multimap&lt;Key, T, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -10939,6 +11177,16 @@ namespace boost {
   template&lt;class K, class H, class P, class A, class Predicate&gt;
     typename unordered_set&lt;K, H, P, A&gt;::size_type
       <a href="#unordered_set_erase_if">erase_if</a>(unordered_set&lt;K, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_set =
+      boost::unordered_set&lt;Key, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;Key&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -13956,6 +14204,16 @@ namespace boost {
   template&lt;class K, class H, class P, class A, class Predicate&gt;
     typename unordered_multiset&lt;K, H, P, A&gt;::size_type
       <a href="#unordered_multiset_erase_if">erase_if</a>(unordered_multiset&lt;K, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_multiset =
+      boost::unordered_multiset&lt;Key, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;Key&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -16601,9 +16859,26 @@ the input value results in each bit of the hash code flipping with probability 5
 this property is critical for the proper behavior of open-addressing hash containers.</p>
 </div>
 <div class="paragraph">
-<p><code>hash_is_avalanching&lt;Hash&gt;::value</code> is <code>true</code> if <code>Hash::is_avalanching</code> is a valid type,
-and <code>false</code> otherwise.
-Users can then declare a hash function <code>Hash</code> as avalanching either by embedding an <code>is_avalanching</code> typedef
+<p><code>hash_is_avalanching&lt;Hash&gt;::value</code> is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>false</code> if <code>Hash::is_avalanching</code> is not present,</p>
+</li>
+<li>
+<p><code>Hash::is_avalanching::value</code> if this is present and convertible at compile time to a <code>bool</code>,</p>
+</li>
+<li>
+<p><code>true</code> if <code>Hash::is_avalanching</code> is <code>void</code> (this usage is deprecated),</p>
+</li>
+<li>
+<p>ill-formed otherwise.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Users can then declare a hash function <code>Hash</code> as avalanching either by embedding an appropriate <code>is_avalanching</code> typedef
 into the definition of <code>Hash</code>, or directly by specializing <code>hash_is_avalanching&lt;Hash&gt;</code> to a class with
 an embedded compile-time constant <code>value</code> set to <code>true</code>.</p>
 </div>
@@ -16614,6 +16889,95 @@ implement a bit-mixing post-processing stage to increase the quality of hashing 
 extra computational cost.</p>
 </div>
 <hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stats"><a class="link" href="#stats">Statistics</a></h3>
+<div class="paragraph">
+<p>Open-addressing and concurrent containers can be configured to keep running statistics
+of some internal operations affected by the quality of the supplied hash function.</p>
+</div>
+<div class="sect3">
+<h4 id="stats_synopsis"><a class="link" href="#stats_synopsis">Synopsis</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre>struct <a href="#stats_stats_summary_type"><em>stats-summary-type</em></a>
+{
+  double average;
+  double variance;
+  double deviation;
+};
+
+struct <a href="#stats_insertion_stats_type"><em>insertion-stats-type</em></a>
+{
+  std::size_t        count;
+  <a href="#stats_stats_summary_type"><em>stats-summary-type</em></a> probe_length;
+};
+
+struct <a href="#stats_lookup_stats_type"><em>lookup-stats-type</em></a>
+{
+  std::size_t        count;
+  <a href="#stats_stats_summary_type"><em>stats-summary-type</em></a> probe_length;
+  <a href="#stats_stats_summary_type"><em>stats-summary-type</em></a> num_comparisons;
+};
+
+struct <a href="#stats_stats_type"><em>stats-type</em></a>
+{
+  <a href="#stats_insertion_stats_type"><em>insertion-stats-type</em></a> insertion;
+  <a href="#stats_lookup_stats_type"><em>lookup-stats-type</em></a>    successful_lookup,
+                       unsuccessful_lookup;
+};</pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="stats_stats_summary_type"><a class="link" href="#stats_stats_summary_type"><em>stats-summary-type</em></a></h5>
+<div class="paragraph">
+<p>Provides the average value, variance and standard deviation of a sequence of numerical values.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="stats_insertion_stats_type"><a class="link" href="#stats_insertion_stats_type"><em>insertion-stats-type</em></a></h5>
+<div class="paragraph">
+<p>Provides the number of insertion operations performed by a container and
+statistics on the associated <em>probe length</em> (number of
+<a href="#structures_open_addressing_containers">bucket groups</a> accessed per operation).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="stats_lookup_stats_type"><a class="link" href="#stats_lookup_stats_type"><em>lookup-stats-type</em></a></h5>
+<div class="paragraph">
+<p>For successful (element found) or unsuccessful (not found) lookup,
+provides the number of operations performed by a container and
+statistics on the associated <em>probe length</em> (number of
+<a href="#structures_open_addressing_containers">bucket groups</a> accessed)
+and number of element comparisons per operation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="stats_stats_type"><a class="link" href="#stats_stats_type"><em>stats-type</em></a></h5>
+<div class="paragraph">
+<p>Provides statistics on insertion, successful and unsuccessful lookups performed by a container.
+If the supplied hash function has good quality, then:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Average probe lenghts should be close to 1.0.</p>
+</li>
+<li>
+<p>For successful lookups, the average number of element comparisons should be close to 1.0.</p>
+</li>
+<li>
+<p>For unsuccessful lookups, the average number of element comparisons should be close to 0.0.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These statistics can be used to determine if a given hash function
+can be marked as <a href="#hash_traits_hash_is_avalanching"><em>avalanching</em></a>.</p>
+</div>
+<hr>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -16630,7 +16994,7 @@ vicinity of the original position. This type of data layout is known as <em>open
 </div>
 <div class="paragraph">
 <p>As a result of its using open addressing, the interface of <code>boost::unordered_flat_map</code> deviates in
-a number of aspects from that of <code>boost::unordered_flat_map</code>/<code>std::unordered_flat_map</code>:</p>
+a number of aspects from that of <code>boost::unordered_map</code>/<code>std::unordered_map</code>:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -16689,6 +17053,8 @@ namespace boost {
 
     using iterator             = <em>implementation-defined</em>;
     using const_iterator       = <em>implementation-defined</em>;
+
+    using stats                = <a href="#stats_stats_type"><em>stats-type</em></a>; // if statistics are <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>
 
     // construct/copy/destroy
     <a href="#unordered_flat_map_default_constructor">unordered_flat_map</a>();
@@ -16846,6 +17212,10 @@ namespace boost {
     size_type <a href="#unordered_flat_map_max_load">max_load</a>() const noexcept;
     void <a href="#unordered_flat_map_rehash">rehash</a>(size_type n);
     void <a href="#unordered_flat_map_reserve">reserve</a>(size_type n);
+
+    // statistics (if <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>)
+    stats <a href="#unordered_flat_map_get_stats">get_stats</a>() const;
+    void <a href="#unordered_flat_map_reset_stats">reset_stats</a>() noexcept;
   };
 
   // Deduction Guides
@@ -16917,6 +17287,17 @@ namespace boost {
   template&lt;class K, class T, class H, class P, class A, class Predicate&gt;
     typename unordered_flat_map&lt;K, T, H, P, A&gt;::size_type
        <a href="#unordered_flat_map_erase_if">erase_if</a>(unordered_flat_map&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class T,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_flat_map =
+      boost::unordered_flat_map&lt;Key, T, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -16975,6 +17356,17 @@ is used as-is; otherwise, a bit-mixing post-processing stage is added to increas
 at the expense of extra computational cost.</p>
 </div>
 <hr>
+</div>
+<div class="sect3">
+<h4 id="unordered_flat_map_configuration_macros"><a class="link" href="#unordered_flat_map_configuration_macros">Configuration Macros</a></h4>
+<div class="sect4">
+<h5 id="unordered_flat_map_boost_unordered_enable_stats"><a class="link" href="#unordered_flat_map_boost_unordered_enable_stats"><code>BOOST_UNORDERED_ENABLE_STATS</code></a></h5>
+<div class="paragraph">
+<p>Globally define this macro to enable <a href="#stats">statistics calculation</a> for the container. Note
+that this option decreases the overall performance of many operations.</p>
+</div>
+<hr>
+</div>
 </div>
 <div class="sect3">
 <h4 id="unordered_flat_map_typedefs"><a class="link" href="#unordered_flat_map_typedefs">Typedefs</a></h4>
@@ -17141,7 +17533,9 @@ Requires:
 </div>
 <div class="paragraph">
 <p>The move constructor. The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -17204,7 +17598,10 @@ Requires:
 <div class="paragraph">
 <p>If <code>a == other.get_allocator()</code>, the elements of <code>other</code> are transferred directly to the new container;
 otherwise, elements are moved-constructed from those of <code>other</code>. The hash function and predicate are moved-constructed
-from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.</p>
+from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.
+If statistics are <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff <code>a == other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -17218,7 +17615,9 @@ from <code>other</code>, and the allocator is copy-constructed from <code>a</cod
 <div class="paragraph">
 <p>Move construction from a <a href="#concurrent_flat_map"><code>concurrent_flat_map</code></a>.
 The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -17522,7 +17921,10 @@ Requires:
 <p>The move assignment operator. Destroys previously existing elements, swaps the hash function and predicate from <code>other</code>,
 and move-assigns the allocator from <code>other</code> if <code>Alloc::propagate_on_container_move_assignment</code> exists and <code>Alloc::propagate_on_container_move_assignment::value</code> is <code>true</code>.
 If at this point the allocator is equal to <code>other.get_allocator()</code>, the internal bucket array of <code>other</code> is transferred directly to the new container;
-otherwise, inserts move-constructed copies of the elements of <code>other</code>.</p>
+otherwise, inserts move-constructed copies of the elements of <code>other</code>.
+If statistics are <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff the final allocator is equal to <code>other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -19084,6 +19486,68 @@ Throws:
 </tr>
 </table>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unordered_flat_map_statistics"><a class="link" href="#unordered_flat_map_statistics">Statistics</a></h4>
+<div class="sect4">
+<h5 id="unordered_flat_map_get_stats"><a class="link" href="#unordered_flat_map_get_stats">get_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">stats</span> <span class="n">get_stats</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Returns:
+</td>
+<td class="hdlist2">
+<p>A statistical description of the insertion and lookup operations performed by the container so far.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="unordered_flat_map_reset_stats"><a class="link" href="#unordered_flat_map_reset_stats">reset_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="n">reset_stats</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Sets to zero the internal statistics kept by the container.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_flat_map_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect3">
@@ -19457,6 +19921,8 @@ namespace boost {
     using iterator             = <em>implementation-defined</em>;
     using const_iterator       = <em>implementation-defined</em>;
 
+    using stats                = <a href="#stats_stats_type"><em>stats-type</em></a>; // if statistics are <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>
+
     // construct/copy/destroy
     <a href="#unordered_flat_set_default_constructor">unordered_flat_set</a>();
     explicit <a href="#unordered_flat_set_bucket_count_constructor">unordered_flat_set</a>(size_type n,
@@ -19576,6 +20042,10 @@ namespace boost {
     size_type <a href="#unordered_flat_set_max_load">max_load</a>() const noexcept;
     void <a href="#unordered_flat_set_rehash">rehash</a>(size_type n);
     void <a href="#unordered_flat_set_reserve">reserve</a>(size_type n);
+
+    // statistics (if <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>)
+    stats <a href="#unordered_flat_set_get_stats">get_stats</a>() const;
+    void <a href="#unordered_flat_set_reset_stats">reset_stats</a>() noexcept;
   };
 
   // Deduction Guides
@@ -19642,6 +20112,16 @@ namespace boost {
   template&lt;class K, class T, class H, class P, class A, class Predicate&gt;
     typename unordered_flat_set&lt;K, T, H, P, A&gt;::size_type
        <a href="#unordered_flat_set_erase_if">erase_if</a>(unordered_flat_set&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_flat_set =
+      boost::unordered_flat_set&lt;Key, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;Key&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -19695,6 +20175,17 @@ is used as-is; otherwise, a bit-mixing post-processing stage is added to increas
 at the expense of extra computational cost.</p>
 </div>
 <hr>
+</div>
+<div class="sect3">
+<h4 id="unordered_flat_set_configuration_macros"><a class="link" href="#unordered_flat_set_configuration_macros">Configuration Macros</a></h4>
+<div class="sect4">
+<h5 id="unordered_flat_set_boost_unordered_enable_stats"><a class="link" href="#unordered_flat_set_boost_unordered_enable_stats"><code>BOOST_UNORDERED_ENABLE_STATS</code></a></h5>
+<div class="paragraph">
+<p>Globally define this macro to enable <a href="#stats">statistics calculation</a> for the container. Note
+that this option decreases the overall performance of many operations.</p>
+</div>
+<hr>
+</div>
 </div>
 <div class="sect3">
 <h4 id="unordered_flat_set_typedefs"><a class="link" href="#unordered_flat_set_typedefs">Typedefs</a></h4>
@@ -19861,7 +20352,9 @@ Requires:
 </div>
 <div class="paragraph">
 <p>The move constructor. The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -19924,7 +20417,10 @@ Requires:
 <div class="paragraph">
 <p>If <code>a == other.get_allocator()</code>, the elements of <code>other</code> are transferred directly to the new container;
 otherwise, elements are moved-constructed from those of <code>other</code>. The hash function and predicate are moved-constructed
-from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.</p>
+from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.
+If statistics are <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff <code>a == other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -19938,7 +20434,9 @@ from <code>other</code>, and the allocator is copy-constructed from <code>a</cod
 <div class="paragraph">
 <p>Move construction from a <a href="#concurrent_flat_set"><code>concurrent_flat_set</code></a>.
 The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -20242,7 +20740,10 @@ Requires:
 <p>The move assignment operator. Destroys previously existing elements, swaps the hash function and predicate from <code>other</code>,
 and move-assigns the allocator from <code>other</code> if <code>Alloc::propagate_on_container_move_assignment</code> exists and <code>Alloc::propagate_on_container_move_assignment::value</code> is <code>true</code>.
 If at this point the allocator is equal to <code>other.get_allocator()</code>, the internal bucket array of <code>other</code> is transferred directly to the new container;
-otherwise, inserts move-constructed copies of the elements of <code>other</code>.</p>
+otherwise, inserts move-constructed copies of the elements of <code>other</code>.
+If statistics are <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff the final allocator is equal to <code>other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -21507,6 +22008,68 @@ Throws:
 </tr>
 </table>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unordered_flat_set_statistics"><a class="link" href="#unordered_flat_set_statistics">Statistics</a></h4>
+<div class="sect4">
+<h5 id="unordered_flat_set_get_stats"><a class="link" href="#unordered_flat_set_get_stats">get_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">stats</span> <span class="n">get_stats</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Returns:
+</td>
+<td class="hdlist2">
+<p>A statistical description of the insertion and lookup operations performed by the container so far.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="unordered_flat_set_reset_stats"><a class="link" href="#unordered_flat_set_reset_stats">reset_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="n">reset_stats</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Sets to zero the internal statistics kept by the container.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_flat_set_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect3">
@@ -21787,7 +22350,7 @@ have been issued on <code>x</code> between loading of <code>x</code> and loading
 </div>
 <div class="paragraph">
 <p><code>boost::unordered_node_map</code> uses an open-addressing layout like <code>boost::unordered_flat_map</code>, but,
-being node-based, it provides pointer/iterator stability and node handling functionalities.
+being node-based, it provides pointer stability and node handling functionalities.
 Its performance lies between those of <code>boost::unordered_map</code> and <code>boost::unordered_flat_map</code>.</p>
 </div>
 <div class="paragraph">
@@ -21848,6 +22411,8 @@ namespace boost {
 
     using node_type            = <em>implementation-defined</em>;
     using insert_return_type   = <em>implementation-defined</em>;
+
+    using stats                = <a href="#stats_stats_type"><em>stats-type</em></a>; // if statistics are <a href="#unordered_node_map_boost_unordered_enable_stats">enabled</a>
 
     // construct/copy/destroy
     <a href="#unordered_node_map_default_constructor">unordered_node_map</a>();
@@ -22009,6 +22574,10 @@ namespace boost {
     size_type <a href="#unordered_node_map_max_load">max_load</a>() const noexcept;
     void <a href="#unordered_node_map_rehash">rehash</a>(size_type n);
     void <a href="#unordered_node_map_reserve">reserve</a>(size_type n);
+
+    // statistics (if <a href="#unordered_node_map_boost_unordered_enable_stats">enabled</a>)
+    stats <a href="#unordered_node_map_get_stats">get_stats</a>() const;
+    void <a href="#unordered_node_map_reset_stats">reset_stats</a>() noexcept;
   };
 
   // Deduction Guides
@@ -22080,6 +22649,17 @@ namespace boost {
   template&lt;class K, class T, class H, class P, class A, class Predicate&gt;
     typename unordered_node_map&lt;K, T, H, P, A&gt;::size_type
        <a href="#unordered_node_map_erase_if">erase_if</a>(unordered_node_map&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class T,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_node_map =
+      boost::unordered_node_map&lt;Key, T, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -22137,6 +22717,17 @@ is used as-is; otherwise, a bit-mixing post-processing stage is added to increas
 at the expense of extra computational cost.</p>
 </div>
 <hr>
+</div>
+<div class="sect3">
+<h4 id="unordered_node_map_configuration_macros"><a class="link" href="#unordered_node_map_configuration_macros">Configuration Macros</a></h4>
+<div class="sect4">
+<h5 id="unordered_node_map_boost_unordered_enable_stats"><a class="link" href="#unordered_node_map_boost_unordered_enable_stats"><code>BOOST_UNORDERED_ENABLE_STATS</code></a></h5>
+<div class="paragraph">
+<p>Globally define this macro to enable <a href="#stats">statistics calculation</a> for the container. Note
+that this option decreases the overall performance of many operations.</p>
+</div>
+<hr>
+</div>
 </div>
 <div class="sect3">
 <h4 id="unordered_node_map_typedefs"><a class="link" href="#unordered_node_map_typedefs">Typedefs</a></h4>
@@ -22325,7 +22916,9 @@ Requires:
 </div>
 <div class="paragraph">
 <p>The move constructor. The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#unordered_node_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -22388,7 +22981,10 @@ Requires:
 <div class="paragraph">
 <p>If <code>a == other.get_allocator()</code>, the element nodes of <code>other</code> are transferred directly to the new container;
 otherwise, elements are moved-constructed from those of <code>other</code>. The hash function and predicate are moved-constructed
-from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.</p>
+from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.
+If statistics are <a href="#unordered_node_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff <code>a == other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -22672,7 +23268,10 @@ Requires:
 <p>The move assignment operator. Destroys previously existing elements, swaps the hash function and predicate from <code>other</code>,
 and move-assigns the allocator from <code>other</code> if <code>Alloc::propagate_on_container_move_assignment</code> exists and <code>Alloc::propagate_on_container_move_assignment::value</code> is <code>true</code>.
 If at this point the allocator is equal to <code>other.get_allocator()</code>, the internal bucket array of <code>other</code> is transferred directly to the new container;
-otherwise, inserts move-constructed copies of the elements of <code>other</code>.</p>
+otherwise, inserts move-constructed copies of the elements of <code>other</code>.
+If statistics are <a href="#unordered_node_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff the final allocator is equal to <code>other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -24428,6 +25027,68 @@ Throws:
 </tr>
 </table>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unordered_node_map_statistics"><a class="link" href="#unordered_node_map_statistics">Statistics</a></h4>
+<div class="sect4">
+<h5 id="unordered_node_map_get_stats"><a class="link" href="#unordered_node_map_get_stats">get_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">stats</span> <span class="n">get_stats</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Returns:
+</td>
+<td class="hdlist2">
+<p>A statistical description of the insertion and lookup operations performed by the container so far.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_node_map_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="unordered_node_map_reset_stats"><a class="link" href="#unordered_node_map_reset_stats">reset_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="n">reset_stats</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Sets to zero the internal statistics kept by the container.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_node_map_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect3">
@@ -24742,7 +25403,7 @@ have been issued on <code>x</code> between loading of <code>x</code> and loading
 </div>
 <div class="paragraph">
 <p><code>boost::unordered_node_set</code> uses an open-addressing layout like <code>boost::unordered_flat_set</code>, but,
-being node-based, it provides pointer/iterator stability and node handling functionalities.
+being node-based, it provides pointer stability and node handling functionalities.
 Its performance lies between those of <code>boost::unordered_set</code> and <code>boost::unordered_flat_set</code>.</p>
 </div>
 <div class="paragraph">
@@ -24798,6 +25459,8 @@ namespace boost {
 
     using node_type            = <em>implementation-defined</em>;
     using insert_return_type   = <em>implementation-defined</em>;
+
+    using stats                = <a href="#stats_stats_type"><em>stats-type</em></a>; // if statistics are <a href="#unordered_node_set_boost_unordered_enable_stats">enabled</a>
 
     // construct/copy/destroy
     <a href="#unordered_node_set_default_constructor">unordered_node_set</a>();
@@ -24923,6 +25586,10 @@ namespace boost {
     size_type <a href="#unordered_node_set_max_load">max_load</a>() const noexcept;
     void <a href="#unordered_node_set_rehash">rehash</a>(size_type n);
     void <a href="#unordered_node_set_reserve">reserve</a>(size_type n);
+
+    // statistics (if <a href="#unordered_node_set_boost_unordered_enable_stats">enabled</a>)
+    stats <a href="#unordered_node_set_get_stats">get_stats</a>() const;
+    void <a href="#unordered_node_set_reset_stats">reset_stats</a>() noexcept;
   };
 
   // Deduction Guides
@@ -24989,6 +25656,16 @@ namespace boost {
   template&lt;class K, class T, class H, class P, class A, class Predicate&gt;
     typename unordered_node_set&lt;K, T, H, P, A&gt;::size_type
        <a href="#unordered_node_set_erase_if">erase_if</a>(unordered_node_set&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using unordered_node_set =
+      boost::unordered_node_set&lt;Key, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;Key&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -25041,6 +25718,17 @@ is used as-is; otherwise, a bit-mixing post-processing stage is added to increas
 at the expense of extra computational cost.</p>
 </div>
 <hr>
+</div>
+<div class="sect3">
+<h4 id="unordered_node_set_configuration_macros"><a class="link" href="#unordered_node_set_configuration_macros">Configuration Macros</a></h4>
+<div class="sect4">
+<h5 id="unordered_node_set_boost_unordered_enable_stats"><a class="link" href="#unordered_node_set_boost_unordered_enable_stats"><code>BOOST_UNORDERED_ENABLE_STATS</code></a></h5>
+<div class="paragraph">
+<p>Globally define this macro to enable <a href="#stats">statistics calculation</a> for the container. Note
+that this option decreases the overall performance of many operations.</p>
+</div>
+<hr>
+</div>
 </div>
 <div class="sect3">
 <h4 id="unordered_node_set_typedefs"><a class="link" href="#unordered_node_set_typedefs">Typedefs</a></h4>
@@ -25241,7 +25929,9 @@ Requires:
 </div>
 <div class="paragraph">
 <p>The move constructor. The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#unordered_node_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -25304,7 +25994,10 @@ Requires:
 <div class="paragraph">
 <p>If <code>a == other.get_allocator()</code>, the element nodes of <code>other</code> are transferred directly to the new container;
 otherwise, elements are moved-constructed from those of <code>other</code>. The hash function and predicate are moved-constructed
-from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.</p>
+from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.
+If statistics are <a href="#unordered_node_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff <code>a == other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -25588,7 +26281,10 @@ Requires:
 <p>The move assignment operator. Destroys previously existing elements, swaps the hash function and predicate from <code>other</code>,
 and move-assigns the allocator from <code>other</code> if <code>Alloc::propagate_on_container_move_assignment</code> exists and <code>Alloc::propagate_on_container_move_assignment::value</code> is <code>true</code>.
 If at this point the allocator is equal to <code>other.get_allocator()</code>, the internal bucket array of <code>other</code> is transferred directly to the new container;
-otherwise, inserts move-constructed copies of the elements of <code>other</code>.</p>
+otherwise, inserts move-constructed copies of the elements of <code>other</code>.
+If statistics are <a href="#unordered_node_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff the final allocator is equal to <code>other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <hr>
 </div>
@@ -27047,6 +27743,68 @@ Throws:
 </tr>
 </table>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unordered_node_set_statistics"><a class="link" href="#unordered_node_set_statistics">Statistics</a></h4>
+<div class="sect4">
+<h5 id="unordered_node_set_get_stats"><a class="link" href="#unordered_node_set_get_stats">get_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">stats</span> <span class="n">get_stats</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Returns:
+</td>
+<td class="hdlist2">
+<p>A statistical description of the insertion and lookup operations performed by the container so far.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_node_set_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="unordered_node_set_reset_stats"><a class="link" href="#unordered_node_set_reset_stats">reset_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="n">reset_stats</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Sets to zero the internal statistics kept by the container.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#unordered_node_set_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect3">
@@ -27373,6 +28131,8 @@ namespace boost {
     using size_type            = std::size_t;
     using difference_type      = std::ptrdiff_t;
 
+    using stats                = <a href="#stats_stats_type"><em>stats-type</em></a>; // if statistics are <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>
+
     // constants
     static constexpr size_type <a href="#concurrent_flat_map_constants">bulk_visit_size</a> = <em>implementation-defined</em>;
 
@@ -27551,6 +28311,10 @@ namespace boost {
     size_type <a href="#concurrent_flat_map_max_load">max_load</a>() const noexcept;
     void <a href="#concurrent_flat_map_rehash">rehash</a>(size_type n);
     void <a href="#concurrent_flat_map_reserve">reserve</a>(size_type n);
+
+    // statistics (if <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>)
+    stats <a href="#concurrent_flat_map_get_stats">get_stats</a>() const;
+    void <a href="#concurrent_flat_map_reset_stats">reset_stats</a>() noexcept;
   };
 
   // Deduction Guides
@@ -27622,6 +28386,17 @@ namespace boost {
   template&lt;class K, class T, class H, class P, class A, class Predicate&gt;
     typename concurrent_flat_map&lt;K, T, H, P, A&gt;::size_type
        <a href="#concurrent_flat_map_erase_if_2">erase_if</a>(concurrent_flat_map&lt;K, T, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class T,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using concurrent_flat_map =
+      boost::concurrent_flat_map&lt;Key, T, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;std::pair&lt;const Key, T&gt;&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -27753,6 +28528,15 @@ a function visiting elements of <code>m</code>) are detected and signalled throu
 When run-time speed is a concern, the feature can be disabled by globally defining
 this macro.</p>
 </div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="concurrent_flat_map_boost_unordered_enable_stats"><a class="link" href="#concurrent_flat_map_boost_unordered_enable_stats"><code>BOOST_UNORDERED_ENABLE_STATS</code></a></h5>
+<div class="paragraph">
+<p>Globally define this macro to enable <a href="#stats">statistics calculation</a> for the table. Note
+that this option decreases the overall performance of many operations.</p>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect3">
@@ -27910,7 +28694,9 @@ Concurrency:
 </div>
 <div class="paragraph">
 <p>The move constructor. The internal bucket array of <code>other</code> is transferred directly to the new table.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -27997,7 +28783,10 @@ Concurrency:
 <div class="paragraph">
 <p>If <code>a == other.get_allocator()</code>, the elements of <code>other</code> are transferred directly to the new table;
 otherwise, elements are moved-constructed from those of <code>other</code>. The hash function and predicate are moved-constructed
-from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.</p>
+from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.
+If statistics are <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff <code>a == other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -28023,7 +28812,9 @@ Concurrency:
 <div class="paragraph">
 <p>Move construction from a <a href="#unordered_flat_map"><code>unordered_flat_map</code></a>.
 The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -28327,7 +29118,10 @@ Concurrency:
 <p>The move assignment operator. Destroys previously existing elements, swaps the hash function and predicate from <code>other</code>,
 and move-assigns the allocator from <code>other</code> if <code>Alloc::propagate_on_container_move_assignment</code> exists and <code>Alloc::propagate_on_container_move_assignment::value</code> is <code>true</code>.
 If at this point the allocator is equal to <code>other.get_allocator()</code>, the internal bucket array of <code>other</code> is transferred directly to <code>*this</code>;
-otherwise, inserts move-constructed copies of the elements of <code>other</code>.</p>
+otherwise, inserts move-constructed copies of the elements of <code>other</code>.
+If statistics are <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff the final allocator is equal to <code>other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -29957,6 +30751,67 @@ Concurrency:
 </div>
 </div>
 <div class="sect3">
+<h4 id="concurrent_flat_map_statistics"><a class="link" href="#concurrent_flat_map_statistics">Statistics</a></h4>
+<div class="sect4">
+<h5 id="concurrent_flat_map_get_stats"><a class="link" href="#concurrent_flat_map_get_stats">get_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">stats</span> <span class="n">get_stats</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Returns:
+</td>
+<td class="hdlist2">
+<p>A statistical description of the insertion and lookup operations performed by the table so far.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="concurrent_flat_map_reset_stats"><a class="link" href="#concurrent_flat_map_reset_stats">reset_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="n">reset_stats</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Sets to zero the internal statistics kept by the table.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#concurrent_flat_map_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect3">
 <h4 id="concurrent_flat_map_deduction_guides"><a class="link" href="#concurrent_flat_map_deduction_guides">Deduction Guides</a></h4>
 <div class="paragraph">
 <p>A deduction guide will not participate in overload resolution if any of the following are true:</p>
@@ -30248,6 +31103,8 @@ namespace boost {
     using size_type            = std::size_t;
     using difference_type      = std::ptrdiff_t;
 
+    using stats                = <a href="#stats_stats_type"><em>stats-type</em></a>; // if statistics are <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>
+
     // constants
     static constexpr size_type <a href="#concurrent_flat_set_constants">bulk_visit_size</a> = <em>implementation-defined</em>;
 
@@ -30391,6 +31248,10 @@ namespace boost {
     size_type <a href="#concurrent_flat_set_max_load">max_load</a>() const noexcept;
     void <a href="#concurrent_flat_set_rehash">rehash</a>(size_type n);
     void <a href="#concurrent_flat_set_reserve">reserve</a>(size_type n);
+
+    // statistics (if <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>)
+    stats <a href="#concurrent_flat_set_get_stats">get_stats</a>() const;
+    void <a href="#concurrent_flat_set_reset_stats">reset_stats</a>() noexcept;
   };
 
   // Deduction Guides
@@ -30457,6 +31318,16 @@ namespace boost {
   template&lt;class K, class H, class P, class A, class Predicate&gt;
     typename concurrent_flat_set&lt;K, H, P, A&gt;::size_type
        <a href="#concurrent_flat_set_erase_if_2">erase_if</a>(concurrent_flat_set&lt;K, H, P, A&gt;&amp; c, Predicate pred);
+
+  // Pmr aliases (C++17 and up)
+  namespace unordered::pmr {
+    template&lt;class Key,
+             class Hash = boost::hash&lt;Key&gt;,
+             class Pred = std::equal_to&lt;Key&gt;&gt;
+    using concurrent_flat_set =
+      boost::concurrent_flat_set&lt;Key, Hash, Pred,
+        std::pmr::polymorphic_allocator&lt;Key&gt;&gt;;
+  }
 }</pre>
 </div>
 </div>
@@ -30584,6 +31455,15 @@ a function visiting elements of <code>m</code>) are detected and signalled throu
 When run-time speed is a concern, the feature can be disabled by globally defining
 this macro.</p>
 </div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="concurrent_flat_set_boost_unordered_enable_stats"><a class="link" href="#concurrent_flat_set_boost_unordered_enable_stats"><code>BOOST_UNORDERED_ENABLE_STATS</code></a></h5>
+<div class="paragraph">
+<p>Globally define this macro to enable <a href="#stats">statistics calculation</a> for the table. Note
+that this option decreases the overall performance of many operations.</p>
+</div>
+<hr>
 </div>
 </div>
 <div class="sect3">
@@ -30741,7 +31621,9 @@ Concurrency:
 </div>
 <div class="paragraph">
 <p>The move constructor. The internal bucket array of <code>other</code> is transferred directly to the new table.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -30828,7 +31710,10 @@ Concurrency:
 <div class="paragraph">
 <p>If <code>a == other.get_allocator()</code>, the elements of <code>other</code> are transferred directly to the new table;
 otherwise, elements are moved-constructed from those of <code>other</code>. The hash function and predicate are moved-constructed
-from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.</p>
+from <code>other</code>, and the allocator is copy-constructed from <code>a</code>.
+If statistics are <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff <code>a == other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -30854,7 +31739,9 @@ Concurrency:
 <div class="paragraph">
 <p>Move construction from a <a href="#unordered_flat_set"><code>unordered_flat_set</code></a>.
 The internal bucket array of <code>other</code> is transferred directly to the new container.
-The hash function, predicate and allocator are moved-constructed from <code>other</code>.</p>
+The hash function, predicate and allocator are moved-constructed from <code>other</code>.
+If statistics are <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> and calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -31157,7 +32044,10 @@ Concurrency:
 <p>The move assignment operator. Destroys previously existing elements, swaps the hash function and predicate from <code>other</code>,
 and move-assigns the allocator from <code>other</code> if <code>Alloc::propagate_on_container_move_assignment</code> exists and <code>Alloc::propagate_on_container_move_assignment::value</code> is <code>true</code>.
 If at this point the allocator is equal to <code>other.get_allocator()</code>, the internal bucket array of <code>other</code> is transferred directly to <code>*this</code>;
-otherwise, inserts move-constructed copies of the elements of <code>other</code>.</p>
+otherwise, inserts move-constructed copies of the elements of <code>other</code>.
+If statistics are <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>,
+transfers the internal statistical information from <code>other</code> iff the final allocator is equal to <code>other.get_allocator()</code>,
+and always calls <code>other.reset_stats()</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -32643,6 +33533,67 @@ Concurrency:
 </div>
 </div>
 <div class="sect3">
+<h4 id="concurrent_flat_set_statistics"><a class="link" href="#concurrent_flat_set_statistics">Statistics</a></h4>
+<div class="sect4">
+<h5 id="concurrent_flat_set_get_stats"><a class="link" href="#concurrent_flat_set_get_stats">get_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">stats</span> <span class="n">get_stats</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Returns:
+</td>
+<td class="hdlist2">
+<p>A statistical description of the insertion and lookup operations performed by the table so far.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+<div class="sect4">
+<h5 id="concurrent_flat_set_reset_stats"><a class="link" href="#concurrent_flat_set_reset_stats">reset_stats</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="n">reset_stats</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Sets to zero the internal statistics kept by the table.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Notes:
+</td>
+<td class="hdlist2">
+<p>Only available if <a href="#stats">statistics calculation</a> is <a href="#concurrent_flat_set_boost_unordered_enable_stats">enabled</a>.</p>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect3">
 <h4 id="concurrent_flat_set_deduction_guides"><a class="link" href="#concurrent_flat_set_deduction_guides">Deduction Guides</a></h4>
 <div class="paragraph">
 <p>A deduction guide will not participate in overload resolution if any of the following are true:</p>
@@ -32860,6 +33811,25 @@ Concurrency:
 <div class="sect1">
 <h2 id="changes"><a class="link" href="#changes">Change Log</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changes_release_1_86_0"><a class="link" href="#changes_release_1_86_0">Release 1.86.0</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added container <code>pmr</code> aliases when header <code>&lt;memory_resource&gt;</code> is available. The alias <code>boost::unordered::pmr::[container]</code> refers to <code>boost::unordered::[container]</code> with a <code>std::pmr::polymorphic_allocator</code> allocator type.</p>
+</li>
+<li>
+<p>Equipped open-addressing and concurrent containers to internally calculate and provide statistical metrics affected by the quality of the hash function. This functionality is enabled by the global macro <code>BOOST_UNORDERED_ENABLE_STATS</code>.</p>
+</li>
+<li>
+<p>Avalanching hash functions must now be marked via an <code>is_avalanching</code> typedef with an embedded <code>value</code> constant set to <code>true</code> (typically, defining <code>is_avalanching</code> as <code>std::true_type</code>). <code>using is_avalanching = void</code> is deprecated but allowed for backwards compatibility.</p>
+</li>
+<li>
+<p>Added Visual Studio Natvis framework custom visualizations for containers and iterators. This works for all containers with an allocator using raw pointers. In this release, containers and iterators are not supported if their allocator uses fancy pointers. This may be addressed in later releases.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changes_release_1_85_0"><a class="link" href="#changes_release_1_85_0">Release 1.85.0</a></h3>
 <div class="ulist">

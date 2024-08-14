@@ -50,8 +50,6 @@
         to that buffer, send the offset of that portion of shared memory to another
         process, and you are done. Let's see the example:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstdlib</span><span class="special">&gt;</span> <span class="comment">//std::system</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">sstream</span><span class="special">&gt;</span>
@@ -111,8 +109,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -124,8 +120,6 @@
         to them so that any other process can find, use and delete them from the
         segment when the objects are not needed anymore. Example:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstdlib</span><span class="special">&gt;</span> <span class="comment">//std::system</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstddef</span><span class="special">&gt;</span>
@@ -211,8 +205,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -231,8 +223,6 @@
         This allows placing objects with pointer members in shared memory. For example,
         if we want to create a linked list in shared memory:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">offset_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
@@ -286,8 +276,6 @@
 <span class="special">}</span>
 </pre>
 <p>
-      </p>
-<p>
         To help with basic data structures, <span class="bold"><strong>Boost.Interprocess</strong></span>
         offers containers like vector, list, map, so you can avoid these manual data
         structures just like with standard containers.
@@ -308,11 +296,9 @@
       </p>
 <p>
         The class that allows this complex structures in shared memory is called
-        <code class="computeroutput"><a class="link" href="../boost/interprocess/managed_shared_memory.html" title="Type definition managed_shared_memory">boost::interprocess::managed_shared_memory</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/managed__shared__memory_8hpp_1a49fc68e77e17ab77d91f1005c99023d9.html" title="Type definition managed_shared_memory">boost::interprocess::managed_shared_memory</a></code>
         and it's easy to use. Just execute this example without arguments:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">containers</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">allocators</span><span class="special">/</span><span class="identifier">allocator</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -379,8 +365,6 @@
 <span class="special">}</span>
 </pre>
 <p>
-      </p>
-<p>
         The parent process will create an special shared memory class that allows
         easy construction of many complex data structures associated with a name.
         The parent process executes the same program with an additional argument
@@ -400,8 +384,6 @@
         map needs also the comparison functor when an allocator is passed in the
         constructor:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">containers</span><span class="special">/</span><span class="identifier">map</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">allocators</span><span class="special">/</span><span class="identifier">allocator</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -463,8 +445,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 <p>
         For a more advanced example including containers of containers, see the section
         <a class="link" href="allocators_containers.html#interprocess.allocators_containers.containers_explained.containers_of_containers" title="Containers of containers">Containers

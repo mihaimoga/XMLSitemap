@@ -29,14 +29,16 @@
           (8 of 12 overloads)</a>
 </h6></div></div></div>
 <p>
-            Copy constructor.
+            Constructor.
           </p>
 <h6>
 <a name="json.ref.boost__json__string.string.overload8.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__string.string.overload8.synopsis"></a></span><a class="link" href="overload8.html#json.ref.boost__json__string.string.overload8.synopsis">Synopsis</a>
           </h6>
-<pre class="programlisting"><span class="identifier">string</span><span class="special">(</span>
-    <span class="identifier">string</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">other</span><span class="special">);</span>
+<pre class="programlisting"><span class="keyword">explicit</span>
+<span class="identifier">string</span><span class="special">(</span>
+    <a class="link" href="../../boost__json__string.html" title="string"><code class="literal">string</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">other</span><span class="special">,</span>
+    <a class="link" href="../../boost__json__storage_ptr.html" title="storage_ptr"><code class="literal">storage_ptr</code></a> <span class="identifier">sp</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__string.string.overload8.h1"></a>
@@ -82,7 +84,8 @@
                     </p>
                   </th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>
                     <p>
                       <code class="computeroutput"><span class="identifier">other</span></code>
@@ -93,7 +96,23 @@
                       The string to use as a source to copy from.
                     </p>
                   </td>
-</tr></tbody>
+</tr>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">sp</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      An optional pointer to the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span></code>
+                      to use. The container will acquire shared ownership of the
+                      memory resource. The default argument for this parameter is
+                      <code class="computeroutput"><span class="special">{}</span></code>.
+                    </p>
+                  </td>
+</tr>
+</tbody>
 </table></div>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>

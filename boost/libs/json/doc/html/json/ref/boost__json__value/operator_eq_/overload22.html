@@ -35,27 +35,27 @@
 <a name="json.ref.boost__json__value.operator_eq_.overload22.h0"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload22.synopsis"></a></span><a class="link" href="overload22.html#json.ref.boost__json__value.operator_eq_.overload22.synopsis">Synopsis</a>
           </h6>
-<pre class="programlisting"><span class="identifier">value</span><span class="special">&amp;</span>
+<pre class="programlisting"><a class="link" href="../../boost__json__value.html" title="value"><code class="literal">value</code></a><span class="special">&amp;</span>
 <span class="keyword">operator</span><span class="special">=(</span>
-    <span class="identifier">array</span><span class="special">&amp;&amp;</span> <span class="identifier">arr</span><span class="special">);</span>
+    <a class="link" href="../../boost__json__object.html" title="object"><code class="literal">object</code></a><span class="special">&amp;&amp;</span> <span class="identifier">obj</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload22.h1"></a>
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload22.description"></a></span><a class="link" href="overload22.html#json.ref.boost__json__value.operator_eq_.overload22.description">Description</a>
           </h6>
 <p>
-            The contents of the value are replaced with the contents of <code class="computeroutput"><span class="identifier">arr</span></code> using move semantics:
+            The contents of the value are replaced with the contents of <code class="computeroutput"><span class="identifier">obj</span></code> using move semantics:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">arr</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">==</span> <span class="special">*</span><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">storage</span><span class="special">()</span></code>, ownership of the underlying memory
+                If <code class="computeroutput"><span class="special">*</span><span class="identifier">obj</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">==</span> <span class="special">*</span><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">storage</span><span class="special">()</span></code>, ownership of the underlying memory
                 is transferred in constant time, with no possibility of exceptions.
-                After assignment, the moved-from array becomes empty with its current
+                After assignment, the moved-from object becomes empty with its current
                 storage pointer.
               </li>
 <li class="listitem">
-                If <code class="computeroutput"><span class="special">*</span><span class="identifier">arr</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">!=</span> <span class="special">*</span><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">storage</span><span class="special">()</span></code>, an element-wise copy is performed,
-                which may throw. In this case, the moved-from array is not changed.
+                If <code class="computeroutput"><span class="special">*</span><span class="identifier">obj</span><span class="special">.</span><span class="identifier">storage</span><span class="special">()</span> <span class="special">!=</span> <span class="special">*</span><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">storage</span><span class="special">()</span></code>, an element-wise copy is performed,
+                which may throw. In this case, the moved-from object is not changed.
               </li>
 </ul></div>
 <h6>
@@ -63,7 +63,7 @@
             <span class="phrase"><a name="json.ref.boost__json__value.operator_eq_.overload22.complexity"></a></span><a class="link" href="overload22.html#json.ref.boost__json__value.operator_eq_.overload22.complexity">Complexity</a>
           </h6>
 <p>
-            Constant, or linear in the size of <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code> plus <code class="computeroutput"><span class="identifier">arr</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
+            Constant, or linear in the size of <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code> plus <code class="computeroutput"><span class="identifier">obj</span><span class="special">.</span><span class="identifier">size</span><span class="special">()</span></code>.
           </p>
 <h6>
 <a name="json.ref.boost__json__value.operator_eq_.overload22.h3"></a>
@@ -98,12 +98,12 @@
 <tbody><tr>
 <td>
                     <p>
-                      <code class="computeroutput"><span class="identifier">arr</span></code>
+                      <code class="computeroutput"><span class="identifier">obj</span></code>
                     </p>
                   </td>
 <td>
                     <p>
-                      The array to move-assign from.
+                      The object to move-assign from.
                     </p>
                   </td>
 </tr></tbody>

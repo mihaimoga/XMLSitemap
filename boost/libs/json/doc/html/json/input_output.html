@@ -210,6 +210,7 @@
 <span class="identifier">opt</span><span class="special">.</span><span class="identifier">allow_comments</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>                          <span class="comment">// permit C and C++ style comments to appear in whitespace</span>
 <span class="identifier">opt</span><span class="special">.</span><span class="identifier">allow_trailing_commas</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>                   <span class="comment">// allow an additional trailing comma in object and array element lists</span>
 <span class="identifier">opt</span><span class="special">.</span><span class="identifier">allow_invalid_utf8</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>                      <span class="comment">// skip utf-8 validation of keys and strings</span>
+<span class="identifier">opt</span><span class="special">.</span><span class="identifier">allow_invalid_utf16</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>                     <span class="comment">// replace invalid surrogate pair UTF-16 code point(s) with the Unicode replacement character</span>
 
 <span class="identifier">value</span> <span class="identifier">jv</span> <span class="special">=</span> <span class="identifier">parse</span><span class="special">(</span> <span class="string">"[1,2,3,] // comment "</span><span class="special">,</span> <span class="identifier">storage_ptr</span><span class="special">(),</span> <span class="identifier">opt</span> <span class="special">);</span>
 </pre>
@@ -222,6 +223,17 @@
         <span class="special">.</span><span class="identifier">allow_comments</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">,</span>             <span class="comment">// permit C and C++ style comments to appear in whitespace</span>
         <span class="special">.</span><span class="identifier">allow_trailing_commas</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">,</span>      <span class="comment">// allow a trailing comma in object and array lists</span>
         <span class="special">.</span><span class="identifier">allow_invalid_utf8</span> <span class="special">=</span> <span class="keyword">true</span>          <span class="comment">// skip utf-8 validation of keys and strings</span>
+    <span class="special">});</span>
+</pre>
+<p>
+        When 'allow_invalid_utf16' is enabled, the parser will not throw an error
+        in the case of illegal leading, trailing, or half a surrogate. Instead, it
+        will replace the invalid UTF-16 code point(s) with the Unicode replacement
+        character.
+      </p>
+<pre class="programlisting"><span class="identifier">value</span> <span class="identifier">jv</span> <span class="special">=</span> <span class="identifier">parse</span><span class="special">(</span> <span class="string">"{\"command\":\"\\uDF3E\\uDEC2\"}"</span><span class="special">,</span> <span class="identifier">storage_ptr</span><span class="special">(),</span>
+    <span class="special">{</span>
+        <span class="special">.</span><span class="identifier">allow_invalid_utf16</span> <span class="special">=</span> <span class="keyword">true</span>       <span class="comment">// replace illegal leading surrogate pair with ��</span>
     <span class="special">});</span>
 </pre>
 <div class="caution"><table border="0" summary="Caution">
@@ -406,7 +418,7 @@
 <span class="special">}</span>
 </pre>
 <p>
-        We can complicate the example further by excracting <span class="emphasis"><em>several</em></span>
+        We can complicate the example further by extracting <span class="emphasis"><em>several</em></span>
         JSON values from the sequence of lines.
       </p>
 <pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">value</span><span class="special">&gt;</span> <span class="identifier">read_jsons</span><span class="special">(</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">istream</span><span class="special">&amp;</span> <span class="identifier">is</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">&amp;</span> <span class="identifier">ec</span> <span class="special">)</span>

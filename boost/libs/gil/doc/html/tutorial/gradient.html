@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>Tutorial: Image Gradient - Boost.GIL  documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -23,6 +24,9 @@
     <script type="text/javascript" src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Boost.GIL  documentation" href="../index.html" />
@@ -66,9 +70,9 @@
       
     </div>
       
-  <div class="section" id="tutorial-image-gradient">
+  <section id="tutorial-image-gradient">
 <h1>Tutorial: Image Gradient</h1>
-<div class="contents local topic" id="contents">
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#interface-and-glue-code" id="id1">Interface and Glue Code</a></p></li>
 <li><p><a class="reference internal" href="#first-implementation" id="id2">First Implementation</a></p></li>
@@ -83,7 +87,7 @@
 <li><p><a class="reference internal" href="#run-time-specified-images-and-image-views" id="id11">Run-Time Specified Images and Image Views</a></p></li>
 <li><p><a class="reference internal" href="#conclusion" id="id12">Conclusion</a></p></li>
 </ul>
-</div>
+</nav>
 <p>This comprehensive (and long) tutorial will walk you through an example of
 using GIL to compute the image gradients.</p>
 <p>We will start with some very simple and non-generic code and make it more
@@ -98,8 +102,8 @@ two neighboring pixels:</p>
 edges of the image for which one of the neighbors is not defined. The focus of
 this document is how to use GIL, not how to create a good gradient generation
 algorithm.</p>
-<div class="section" id="interface-and-glue-code">
-<h2><a class="toc-backref" href="#id1">Interface and Glue Code</a></h2>
+<section id="interface-and-glue-code">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Interface and Glue Code</a></h2>
 <p>Let us first start with 8-bit unsigned grayscale image as the input and 8-bit
 signed grayscale image as the output.</p>
 <p>Here is how the interface to our algorithm looks like:</p>
@@ -156,9 +160,9 @@ your code and GIL:</p>
 <p>This glue code is very fast and views are lightweight - in the above example
 the views have a size of 16 bytes. They consist of a pointer to the top left
 pixel and three integers - the width, height, and number of bytes per row.</p>
-</div>
-<div class="section" id="first-implementation">
-<h2><a class="toc-backref" href="#id2">First Implementation</a></h2>
+</section>
+<section id="first-implementation">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">First Implementation</a></h2>
 <p>Focusing on simplicity at the expense of speed, we can compute the horizontal
 gradient like this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">x_gradient</span><span class="p">(</span><span class="n">gray8c_view_t</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">gray8s_view_t</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dst</span><span class="p">)</span><span class="w"></span>
@@ -245,9 +249,9 @@ loop:</p>
 </div>
 <p>This sample code also shows an alternative way of using pixel iterators -
 instead of <code class="docutils literal notranslate"><span class="pre">operator[]</span></code> one could use increments and dereferences.</p>
-</div>
-<div class="section" id="using-locators">
-<h2><a class="toc-backref" href="#id3">Using Locators</a></h2>
+</section>
+<section id="using-locators">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Using Locators</a></h2>
 <p>Unfortunately this cache-friendly version requires the extra hassle of
 maintaining two separate iterators in the source view. For every pixel, we
 want to access its neighbors above and below it. Such relative access can be
@@ -314,9 +318,9 @@ reuse this offset:</p>
 </div>
 <p>In this example <code class="docutils literal notranslate"><span class="pre">src_loc[above]</span></code> corresponds to a fast pointer indexing
 operation and the code is efficient.</p>
-</div>
-<div class="section" id="creating-a-generic-version-of-gil-algorithms">
-<h2><a class="toc-backref" href="#id4">Creating a Generic Version of GIL Algorithms</a></h2>
+</section>
+<section id="creating-a-generic-version-of-gil-algorithms">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Creating a Generic Version of GIL Algorithms</a></h2>
 <p>Let us make our <code class="docutils literal notranslate"><span class="pre">x_gradient</span></code> more generic. It should work with any image
 views, as long as they have the same number of channels. The gradient
 operation is to be computed for each channel independently.</p>
@@ -470,9 +474,9 @@ is assignable to the source), and of any compatible color spaces.</p>
 byte-aligned, such as 6-bit RGB222 image or a 1-bit Gray1 image.
 GIL algorithms apply to these images natively. See the design guide or sample
 files for more on using such images.</p>
-</div>
-<div class="section" id="image-view-transformations">
-<h2><a class="toc-backref" href="#id5">Image View Transformations</a></h2>
+</section>
+<section id="image-view-transformations">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Image View Transformations</a></h2>
 <p>One way to compute the y-gradient is to rotate the image by 90 degrees,
 compute the x-gradient and rotate the result back.
 Here is how to do this in GIL:</p>
@@ -521,9 +525,9 @@ pixels in the view, use:</p>
 subsampled views (views that skip over pixels in X and in Y) can be
 represented as a single subsampled view whose step is the product of
 the steps of the two views.</p>
-</div>
-<div class="section" id="d-pixel-iterators">
-<h2><a class="toc-backref" href="#id6">1D pixel iterators</a></h2>
+</section>
+<section id="d-pixel-iterators">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">1D pixel iterators</a></h2>
 <p>Let’s go back to <code class="docutils literal notranslate"><span class="pre">x_gradient</span></code> one more time. Many image view
 algorithms apply the same operation for each pixel and GIL provides an
 abstraction to handle them. However, our algorithm has an unusual
@@ -582,9 +586,9 @@ no notion of the end of rows. In this case, the horizontal iterators
 are raw C pointers. In our example, we must use the horizontal
 iterators to access the two neighbors properly, since they could
 reside outside the image view.</p>
-</div>
-<div class="section" id="stl-equivalent-algorithms">
-<h2><a class="toc-backref" href="#id7">STL Equivalent Algorithms</a></h2>
+</section>
+<section id="stl-equivalent-algorithms">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">STL Equivalent Algorithms</a></h2>
 <p>GIL provides STL equivalents of many algorithms. For example,
 <code class="docutils literal notranslate"><span class="pre">std::transform</span></code> is an STL algorithm that sets each element in a
 destination range the result of a generic function taking the
@@ -616,9 +620,9 @@ locators. This allows for more powerful functions that can use the
 pixel neighbors through the passed locators. GIL algorithms iterate
 through the pixels using the more efficient two nested loops (as
 opposed to the single loop using 1-D iterators)</p>
-</div>
-<div class="section" id="color-conversion">
-<h2><a class="toc-backref" href="#id8">Color Conversion</a></h2>
+</section>
+<section id="color-conversion">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Color Conversion</a></h2>
 <p>Instead of computing the gradient of each color plane of an image, we
 often want to compute the gradient of the luminosity. In other words,
 we want to convert the color image to grayscale and compute the
@@ -654,9 +658,9 @@ channel as the source, and color convert to that pixel type:</p>
 same as the source one, color conversion is unnecessary. GIL detects
 this case and avoids calling the color conversion code at all -
 i.e. <code class="docutils literal notranslate"><span class="pre">color_converted_view</span></code> returns back the source view unchanged.</p>
-</div>
-<div class="section" id="image">
-<h2><a class="toc-backref" href="#id9">Image</a></h2>
+</section>
+<section id="image">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Image</a></h2>
 <p>The above example has a performance problem - <code class="docutils literal notranslate"><span class="pre">x_gradient</span></code>
 dereferences most source pixels twice, which will cause the above code
 to perform color conversion twice. Sometimes it may be more efficient
@@ -745,9 +749,9 @@ the pixel and a reference to the pixel. If you have a pixel iterator,
 you can get these types from its <code class="docutils literal notranslate"><span class="pre">iterator_traits</span></code>. Note also the
 algorithm <code class="docutils literal notranslate"><span class="pre">copy_and_convert_pixels</span></code>, which is an abbreviated version
 of <code class="docutils literal notranslate"><span class="pre">copy_pixels</span></code> with a color converted source view.</p>
-</div>
-<div class="section" id="virtual-image-views">
-<h2><a class="toc-backref" href="#id10">Virtual Image Views</a></h2>
+</section>
+<section id="virtual-image-views">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Virtual Image Views</a></h2>
 <p>So far we have been dealing with images that have pixels stored in
 memory. GIL allows you to create an image view of an arbitrary image,
 including a synthetic function. To demonstrate this, let us create a
@@ -835,9 +839,9 @@ and the result:</p>
 </div>
 <p>Here is what the two files look like:</p>
 <img alt="../_images/mandel.jpg" src="../_images/mandel.jpg" />
-</div>
-<div class="section" id="run-time-specified-images-and-image-views">
-<h2><a class="toc-backref" href="#id11">Run-Time Specified Images and Image Views</a></h2>
+</section>
+<section id="run-time-specified-images-and-image-views">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Run-Time Specified Images and Image Views</a></h2>
 <p>So far we have created a generic function that computes the image
 gradient of an image view template specialization. Sometimes,
 however, the properties of an image view, such as its color space and
@@ -934,9 +938,9 @@ variant effectively instantiates it with every possible type the
 variant can take. For binary algorithms, the algorithm is
 instantiated with every possible combination of the two input types!
 This can take a toll on both the compile time and the executable size.</p>
-</div>
-<div class="section" id="conclusion">
-<h2><a class="toc-backref" href="#id12">Conclusion</a></h2>
+</section>
+<section id="conclusion">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Conclusion</a></h2>
 <p>This tutorial provides a glimpse at the challenges associated with
 writing generic and efficient image processing algorithms in GIL. We
 have taken a simple algorithm and shown how to make it work with image
@@ -977,8 +981,8 @@ still failing to fully optimize generic code in some cases, such as
 failing to inline some functions or put some variables into
 registers. If performance is an issue, it might be worth trying your
 code with different compilers.</p>
-</div>
-</div>
+</section>
+</section>
 
 
     <div class="navbar" style="text-align:right;">
@@ -990,7 +994,7 @@ code with different compilers.</p>
     </div>
     </div>
     <div class="footer" role="contentinfo">
-      Last updated on 2024-04-11 18:04:44.
+      Last updated on 2024-07-24 04:07:44.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>

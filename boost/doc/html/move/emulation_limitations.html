@@ -142,7 +142,7 @@
       operator in classes derived from or holding copyable and movable types</a>
 </h3></div></div></div>
 <p>
-        The macro <code class="computeroutput"><a class="link" href="../BOOST_COPYABLE_AND_MOVABLE.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE</a></code>
+        The macro <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a2a021821de2147094b325d6849767f1c.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE</a></code>
         needs to define a copy constructor for <code class="computeroutput"><span class="identifier">copyable_and_movable</span></code>
         taking a non-const parameter in C++03 compilers:
       </p>
@@ -200,8 +200,6 @@
         Given a movable and copyable class, if a templated assignment operator (*)
         is added:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="keyword">class</span> <span class="identifier">Foo</span>
 <span class="special">{</span>
    <span class="identifier">BOOST_COPYABLE_AND_MOVABLE</span><span class="special">(</span><span class="identifier">Foo</span><span class="special">)</span>
@@ -224,21 +222,15 @@
 <span class="special">};</span>
 </pre>
 <p>
-      </p>
-<p>
         C++98 and C++11 compilers will behave different when assigning from a <code class="computeroutput"><span class="special">[</span><span class="keyword">const</span><span class="special">]</span>
         <span class="identifier">Foo</span></code> lvalue:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="identifier">Foo</span> <span class="identifier">foo1</span><span class="special">(</span><span class="number">1</span><span class="special">);</span>
 <span class="identifier">Foo</span> <span class="identifier">foo2</span><span class="special">(</span><span class="number">2</span><span class="special">);</span>
 <span class="identifier">foo2</span> <span class="special">=</span> <span class="identifier">foo1</span><span class="special">;</span> <span class="comment">// Calls (1) in C++11 but (2) in C++98</span>
 <span class="keyword">const</span> <span class="identifier">Foo</span> <span class="identifier">foo5</span><span class="special">(</span><span class="number">5</span><span class="special">);</span>
 <span class="identifier">foo2</span> <span class="special">=</span> <span class="identifier">foo5</span><span class="special">;</span> <span class="comment">// Calls (1) in C++11 but (2) in C++98</span>
 </pre>
-<p>
-      </p>
 <p>
         This different behaviour is a side-effect of the move emulation that can't
         be easily avoided by <span class="bold"><strong>Boost.Move</strong></span>. One workaround
@@ -251,7 +243,7 @@
 </pre>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2008-2014 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2008-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -52,7 +52,6 @@
         declarations are in effect:
       </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">beast</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">beast</span><span class="special">/</span><span class="identifier">ssl</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">asio</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">asio</span><span class="special">/</span><span class="identifier">ssl</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
@@ -218,7 +217,7 @@
       arguments are forwarded to the wrapped stream's constructor:
     </p>
 <pre class="programlisting"><span class="comment">// The WebSocket stream will use SSL and a new strand</span>
-<span class="identifier">stream</span><span class="special">&lt;</span><span class="identifier">ssl_stream</span><span class="special">&lt;</span><span class="identifier">tcp_stream</span><span class="special">&gt;&gt;</span> <span class="identifier">wss</span><span class="special">(</span><span class="identifier">net</span><span class="special">::</span><span class="identifier">make_strand</span><span class="special">(</span><span class="identifier">ioc</span><span class="special">),</span> <span class="identifier">ctx</span><span class="special">);</span>
+<span class="identifier">stream</span><span class="special">&lt;</span><span class="identifier">net</span><span class="special">::</span><span class="identifier">ssl</span><span class="special">::</span><span class="identifier">stream</span><span class="special">&lt;</span><span class="identifier">tcp_stream</span><span class="special">&gt;&gt;</span> <span class="identifier">wss</span><span class="special">(</span><span class="identifier">net</span><span class="special">::</span><span class="identifier">make_strand</span><span class="special">(</span><span class="identifier">ioc</span><span class="special">),</span> <span class="identifier">ctx</span><span class="special">);</span>
 </pre>
 <div class="important"><table border="0" summary="Important">
 <tr>

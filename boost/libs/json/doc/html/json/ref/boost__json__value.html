@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.JSON">
-<link rel="up" href="../ref.html" title="This Page Intentionally Left Blank 2/2">
+<link rel="up" href="../../json_hidden.html" title="This Page Intentionally Left Blank">
 <link rel="prev" href="boost__json__try_value_to_tag.html" title="try_value_to_tag">
-<link rel="next" href="boost__json__value/operator_eq_.html" title="value::operator=">
+<link rel="next" href="boost__json__value/allocator_type.html" title="value::allocator_type">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__json__try_value_to_tag.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../ref.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__value/operator_eq_.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__json__try_value_to_tag.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../json_hidden.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__value/allocator_type.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -37,7 +37,7 @@
 <p>
         Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json/value.hpp" target="_top">boost/json/value.hpp</a>&gt;</code>
       </p>
-<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">value</span>
+<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">value</span><span class="special">;</span>
 </pre>
 <h5>
 <a name="json.ref.boost__json__value.h1"></a>
@@ -105,8 +105,6 @@
 <td>
                 <p>
                   Return a reference to the underlying <a class="link" href="boost__json__array.html" title="array"><code class="computeroutput"><span class="identifier">array</span></code></a>, or throw an exception.
-                  <br><span class="silver">—</span><br>
-
                 </p>
               </td>
 </tr>
@@ -148,7 +146,7 @@
               </td>
 <td>
                 <p>
-                  Return a reference to the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>,
+                  Return a reference to the underlying <code class="computeroutput"><span class="identifier">string</span></code>,
                   or throw an exception. <br><span class="silver">—</span><br>Return
                   the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>,
                   or throw an exception.
@@ -164,8 +162,7 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="identifier">object</span></code>,
-                  or throw an exception. <br><span class="silver">—</span><br>
-
+                  or throw an exception.
                 </p>
               </td>
 </tr>
@@ -178,8 +175,7 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="identifier">string</span></code>,
-                  or throw an exception. <br><span class="silver">—</span><br>
-
+                  or throw an exception.
                 </p>
               </td>
 </tr>
@@ -358,8 +354,7 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="identifier">array</span></code>,
-                  without checking. <br><span class="silver">—</span><br>
-
+                  without checking.
                 </p>
               </td>
 </tr>
@@ -372,9 +367,9 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="keyword">bool</span></code>,
-                  without checking. <br><span class="silver">—</span><br>Return the
-                  underlying <code class="computeroutput"><span class="keyword">bool</span></code>, without
-                  checking.
+                  without checking. <br><span class="silver">—</span><br>Return
+                  the underlying <code class="computeroutput"><span class="keyword">bool</span></code>,
+                  without checking.
                 </p>
               </td>
 </tr>
@@ -387,8 +382,8 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="keyword">double</span></code>,
-                  without checking. <br><span class="silver">—</span><br>Return the
-                  underlying <code class="computeroutput"><span class="keyword">double</span></code>,
+                  without checking. <br><span class="silver">—</span><br>Return
+                  the underlying <code class="computeroutput"><span class="keyword">double</span></code>,
                   without checking.
                 </p>
               </td>
@@ -402,8 +397,8 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>,
-                  without checking. <br><span class="silver">—</span><br>Return the
-                  underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>,
+                  without checking. <br><span class="silver">—</span><br>Return
+                  the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>,
                   without checking.
                 </p>
               </td>
@@ -417,8 +412,7 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="identifier">object</span></code>,
-                  without checking. <br><span class="silver">—</span><br>
-
+                  without checking.
                 </p>
               </td>
 </tr>
@@ -431,8 +425,7 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="identifier">string</span></code>,
-                  without checking. <br><span class="silver">—</span><br>
-
+                  without checking.
                 </p>
               </td>
 </tr>
@@ -445,8 +438,8 @@
 <td>
                 <p>
                   Return a reference to the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span></code>,
-                  without checking. <br><span class="silver">—</span><br>Return the
-                  underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span></code>,
+                  without checking. <br><span class="silver">—</span><br>Return
+                  the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span></code>,
                   without checking.
                 </p>
               </td>
@@ -757,16 +750,177 @@
 <tr>
 <td>
                 <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_array.html" title="value::try_as_array">try_as_array</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="identifier">result</span></code> with
+                  a reference to the underlying <a class="link" href="boost__json__array.html" title="array"><code class="computeroutput"><span class="identifier">array</span></code></a>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_bool.html" title="value::try_as_bool">try_as_bool</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="identifier">result</span></code> with
+                  a reference to the underlying <code class="computeroutput"><span class="keyword">bool</span></code>
+                  <br><span class="silver">—</span><br>Return <code class="computeroutput"><span class="identifier">result</span></code>
+                  with the underlying <code class="computeroutput"><span class="keyword">bool</span></code>
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_double.html" title="value::try_as_double">try_as_double</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="identifier">result</span></code> with
+                  a reference to the underlying <code class="computeroutput"><span class="keyword">double</span></code>
+                  <br><span class="silver">—</span><br>Return <code class="computeroutput"><span class="identifier">result</span></code>
+                  with the underlying <code class="computeroutput"><span class="keyword">double</span></code>
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_int64.html" title="value::try_as_int64">try_as_int64</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="identifier">result</span></code> with
+                  a reference to the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>
+                  <br><span class="silver">—</span><br>Return <code class="computeroutput"><span class="identifier">result</span></code>
+                  with the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_null.html" title="value::try_as_null">try_as_null</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return engaged <code class="computeroutput"><span class="identifier">result</span></code>
+                  if the <code class="computeroutput"><span class="identifier">value</span></code> is
+                  null.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_object.html" title="value::try_as_object">try_as_object</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="identifier">result</span></code> with
+                  a reference to the underlying <a class="link" href="boost__json__object.html" title="object"><code class="computeroutput"><span class="identifier">object</span></code></a>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_string.html" title="value::try_as_string">try_as_string</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="identifier">result</span></code> with
+                  a reference to the underlying <a class="link" href="boost__json__string.html" title="string"><code class="computeroutput"><span class="identifier">string</span></code></a>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_as_uint64.html" title="value::try_as_uint64">try_as_uint64</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="identifier">result</span></code> with
+                  a reference to the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span></code>
+                  <br><span class="silver">—</span><br>Return <code class="computeroutput"><span class="identifier">result</span></code>
+                  with the underlying <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span></code>
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_at.html" title="value::try_at">try_at</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Access an element, with bounds checking.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_at_pointer.html" title="value::try_at_pointer">try_at_pointer</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Access an element via JSON Pointer.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_set_at_pointer.html" title="value::try_set_at_pointer">try_set_at_pointer</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Set an element via JSON Pointer.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/try_to_number.html" title="value::try_to_number">try_to_number</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return the stored number as <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
                   <span class="bold"><strong><a class="link" href="boost__json__value/value.html" title="value::value">value</a> <span class="silver">[constructor]</span></strong></span>
                 </p>
               </td>
 <td>
                 <p>
                   Default constructor. <br><span class="silver">—</span><br>Constructor.
-                  <br><span class="silver">—</span><br>Pilfer constructor. <br><span class="silver">—</span><br>Copy
-                  constructor. <br><span class="silver">—</span><br>Move constructor.
-                  <br><span class="silver">—</span><br>Construct a null. <br><span class="silver">—</span><br>Construct
-                  a bool. <br><span class="silver">—</span><br>Construct a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>. <br><span class="silver">—</span><br>Construct
+                  <br><span class="silver">—</span><br>Pilfer constructor. <br><span class="silver">—</span><br>Copy constructor. <br><span class="silver">—</span><br>Move
+                  constructor. <br><span class="silver">—</span><br>Construct a
+                  null. <br><span class="silver">—</span><br>Construct a bool.
+                  <br><span class="silver">—</span><br>Construct a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span></code>. <br><span class="silver">—</span><br>Construct
                   a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span></code>. <br><span class="silver">—</span><br>Construct
                   a <code class="computeroutput"><span class="keyword">double</span></code>. <br><span class="silver">—</span><br>Construct a <a class="link" href="boost__json__string.html" title="string"><code class="computeroutput"><span class="identifier">string</span></code></a>. <br><span class="silver">—</span><br>Construct
                   an <a class="link" href="boost__json__array.html" title="array"><code class="computeroutput"><span class="identifier">array</span></code></a>.
@@ -814,7 +968,7 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__value/hash_value.html" title="value::hash_value">hash_value</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/hash_value_fr.html" title="value::hash_value">hash_value</a></strong></span>
                 </p>
               </td>
 <td>
@@ -827,20 +981,7 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__value/operator_eq__eq_.html" title="value::operator==">operator==</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Return <code class="computeroutput"><span class="keyword">true</span></code> if two
-                  values are equal.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__value/operator__not__eq_.html" title="value::operator!=">operator!=</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/operator__not__eq__fr.html" title="value::operator!=">operator!=</a></strong></span>
                 </p>
               </td>
 <td>
@@ -853,7 +994,7 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__value/operator_lt__lt_.html" title="value::operator&lt;&lt;">operator&lt;&lt;</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/operator_lt__lt__fr.html" title="value::operator&lt;&lt;">operator&lt;&lt;</a></strong></span>
                 </p>
               </td>
 <td>
@@ -865,7 +1006,20 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__value/operator__gt__gt_.html" title="value::operator&gt;&gt;">operator&gt;&gt;</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/operator_eq__eq__fr.html" title="value::operator==">operator==</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Return <code class="computeroutput"><span class="keyword">true</span></code> if two
+                  values are equal.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/operator__gt__gt__fr.html" title="value::operator&gt;&gt;">operator&gt;&gt;</a></strong></span>
                 </p>
               </td>
 <td>
@@ -877,7 +1031,7 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__json__value/swap.html" title="value::swap">swap</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__json__value/swap_fr.html" title="value::swap">swap</a></strong></span>
                 </p>
               </td>
 <td>
@@ -918,7 +1072,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__json__try_value_to_tag.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../ref.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__value/operator_eq_.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__json__try_value_to_tag.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../json_hidden.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__json__value/allocator_type.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

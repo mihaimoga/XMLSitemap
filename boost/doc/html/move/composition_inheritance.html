@@ -33,8 +33,6 @@
       the move constructor and move assignment can be easily coded using the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">move</span></code>
       function:
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="keyword">class</span> <span class="identifier">Base</span>
 <span class="special">{</span>
    <span class="identifier">BOOST_COPYABLE_AND_MOVABLE</span><span class="special">(</span><span class="identifier">Base</span><span class="special">)</span>
@@ -106,8 +104,6 @@
    <span class="comment">// ...</span>
 <span class="special">};</span>
 </pre>
-<p>
-    </p>
 <div class="important"><table border="0" summary="Important">
 <tr>
 <td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="../../../doc/src/images/important.png"></td>
@@ -126,14 +122,10 @@
       our earlier <code class="computeroutput"><span class="identifier">clone_ptr</span></code> example)
       which will completely avoid the tremendously more expensive copy operations:
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="identifier">Derived</span> <span class="identifier">d</span><span class="special">;</span>
 <span class="identifier">Derived</span> <span class="identifier">d2</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">d</span><span class="special">));</span>
 <span class="identifier">d2</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">d</span><span class="special">);</span>
 </pre>
-<p>
-    </p>
 <p>
       Note above that the argument x is treated as a lvalue reference. That's why
       it is necessary to say <code class="computeroutput"><span class="identifier">move</span><span class="special">(</span><span class="identifier">x</span><span class="special">)</span></code>
@@ -142,7 +134,7 @@
       some named variable. All moves from lvalues occur explicitly.
     </p>
 </div>
-<div class="copyright-footer">Copyright © 2008-2014 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2008-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

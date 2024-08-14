@@ -56,8 +56,8 @@
       tree-based associative ordered containers</a>
 </h3></div></div></div>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/container/set.html" title="Class template set">set</a></code>, <code class="computeroutput"><a class="link" href="../boost/container/multiset.html" title="Class template multiset">multiset</a></code>,
-        <code class="computeroutput"><a class="link" href="../boost/container/map.html" title="Class template map">map</a></code> and <code class="computeroutput"><a class="link" href="../boost/container/multimap.html" title="Class template multimap">multimap</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1set.html" title="Class template set">set</a></code>, <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1multiset.html" title="Class template multiset">multiset</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1map.html" title="Class template map">map</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1multimap.html" title="Class template multimap">multimap</a></code>
         associative containers are implemented as binary search trees which offer
         the needed complexity and stability guarantees required by the C++ standard
         for associative containers.
@@ -66,13 +66,13 @@
         <span class="bold"><strong>Boost.Container</strong></span> offers the possibility to
         configure at compile time some parameters of the binary search tree implementation.
         This configuration is passed as the last template parameter and defined using
-        the utility class <code class="computeroutput"><a class="link" href="../boost/container/tree_assoc_options.html" title="Struct template tree_assoc_options">tree_assoc_options</a></code>.
+        the utility class <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1tree__assoc__options.html" title="Struct template tree_assoc_options">tree_assoc_options</a></code>.
         The following parameters can be configured:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
             The underlying <span class="bold"><strong>tree implementation</strong></span> type
-            (<code class="computeroutput"><a class="link" href="../boost/container/tree_type.html" title="Struct template tree_type">tree_type</a></code>).
+            (<code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1tree__type.html" title="Struct template tree_type">tree_type</a></code>).
             By default these containers use a red-black tree but the user can use
             other tree types:
             <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; ">
@@ -97,7 +97,7 @@
           </li>
 <li class="listitem">
             Whether the <span class="bold"><strong>size saving</strong></span> mechanisms are
-            used to implement the tree nodes (<code class="computeroutput"><a class="link" href="../boost/container/optimize_size.html" title="Struct template optimize_size">optimize_size</a></code>).
+            used to implement the tree nodes (<code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1optimize__size.html" title="Struct template optimize_size">optimize_size</a></code>).
             By default this option is activated and is only meaningful to red-black
             and avl trees (in other cases, this option will be ignored). This option
             will try to put rebalancing metadata inside the "parent" pointer
@@ -111,11 +111,9 @@
           </li>
 </ul></div>
 <p>
-        See the following example to see how <code class="computeroutput"><a class="link" href="../boost/container/tree_assoc_options.html" title="Struct template tree_assoc_options">tree_assoc_options</a></code>
+        See the following example to see how <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1tree__assoc__options.html" title="Struct template tree_assoc_options">tree_assoc_options</a></code>
         can be used to customize these containers:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
@@ -172,8 +170,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -181,41 +177,39 @@
       vector</a>
 </h3></div></div></div>
 <p>
-        The configuration for <code class="computeroutput"><a class="link" href="../boost/container/vector.html" title="Class template vector">vector</a></code>
+        The configuration for <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1vector.html" title="Class template vector">vector</a></code>
         is passed as the last template parameter and defined using the utility class
-        <code class="computeroutput"><a class="link" href="../boost/container/vector_options.html" title="Struct template vector_options">vector_options</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1vector__options.html" title="Struct template vector_options">vector_options</a></code>.
         The following parameters can be configured:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/growth_factor.html" title="Struct template growth_factor">growth_factor</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor.html" title="Struct template growth_factor">growth_factor</a></code>:
             the growth policy of the vector. The rate at which the capacity of a
             vector grows is implementation dependent and implementations choose exponential
             growth in order to meet the amortized constant time requirement for push_back.
             A higher growth factor will make it faster as it will require less data
             movement, but it will have a greater memory impact (on average, more
             memory will be unused). A user can provide a custom implementation of
-            the growth factor and some predefined policies are available: <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_50.html" title="Struct growth_factor_50">growth_factor_50</a></code>,
-            <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_60.html" title="Struct growth_factor_60">growth_factor_60</a></code>
-            (usually the default) and <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_100.html" title="Struct growth_factor_100">growth_factor_100</a></code>.
+            the growth factor and some predefined policies are available: <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__50.html" title="Struct growth_factor_50">growth_factor_50</a></code>,
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__60.html" title="Struct growth_factor_60">growth_factor_60</a></code>
+            (usually the default) and <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__100.html" title="Struct growth_factor_100">growth_factor_100</a></code>.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/stored_size.html" title="Struct template stored_size">stored_size</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>:
             the type that will be used to store size-related parameters inside of
             the vector. Sometimes, when the maximum capacity to be used is much less
             than the theoretical maximum that a vector can hold, it's interesting
             to use smaller unsigned integer types to represent <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> inside vector, so that the size of
             an empty vector is minimized and cache performance might be improved.
-            See <code class="computeroutput"><a class="link" href="../boost/container/stored_size.html" title="Struct template stored_size">stored_size</a></code>
+            See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>
             for more details.
           </li>
 </ul></div>
 <p>
-        See the following example to see how <code class="computeroutput"><a class="link" href="../boost/container/vector_options.html" title="Struct template vector_options">vector_options</a></code>
+        See the following example to see how <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1vector__options.html" title="Struct template vector_options">vector_options</a></code>
         can be used to customize <code class="computeroutput"><span class="identifier">vector</span></code>:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
@@ -261,8 +255,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -270,20 +262,20 @@
       static vector</a>
 </h3></div></div></div>
 <p>
-        The configuration for <code class="computeroutput"><a class="link" href="../boost/container/static_vector.html" title="Class template static_vector">static_vector</a></code>
+        The configuration for <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a></code>
         is passed as the last template parameter and defined using the utility class
-        <code class="computeroutput"><a class="link" href="../boost/container/static_vector_options.html" title="Struct template static_vector_options">static_vector_options</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1static__vector__options.html" title="Struct template static_vector_options">static_vector_options</a></code>.
         The following parameters can be configured:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/inplace_alignment.html" title="Struct template inplace_alignment">inplace_alignment</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1inplace__alignment.html" title="Struct template inplace_alignment">inplace_alignment</a></code>:
             the minimum alignment (in bytes) that the stored value type needs. This
             option allows static vectors that need non-default alignments, e.g.,
             to be used in SIMD operations.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/throw_on_overflow.html" title="Struct template throw_on_overflow">throw_on_overflow</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow</a></code>:
             A boolean that specifies if the container should throw an exception when
             the compile-time capacity is not enough to hold the requesteed number
             of objects. When "false", if the capacit is overflowed, the
@@ -292,11 +284,9 @@
           </li>
 </ul></div>
 <p>
-        See the following example to see how <code class="computeroutput"><a class="link" href="../boost/container/static_vector_options.html" title="Struct template static_vector_options">static_vector_options</a></code>
+        See the following example to see how <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1static__vector__options.html" title="Struct template static_vector_options">static_vector_options</a></code>
         can be used to customize <code class="computeroutput"><span class="identifier">static_vector</span></code>:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">static_vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
@@ -325,8 +315,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -334,38 +322,36 @@
       small vector</a>
 </h3></div></div></div>
 <p>
-        The configuration for <code class="computeroutput"><a class="link" href="../boost/container/small_vector.html" title="Class template small_vector">small_vector</a></code>
+        The configuration for <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1small__vector.html" title="Class template small_vector">small_vector</a></code>
         is passed as the last template parameter and defined using the utility class
-        <code class="computeroutput"><a class="link" href="../boost/container/small_vector_options.html" title="Struct template small_vector_options">small_vector_options</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1small__vector__options.html" title="Struct template small_vector_options">small_vector_options</a></code>.
         The following parameters can be configured:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/inplace_alignment.html" title="Struct template inplace_alignment">inplace_alignment</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1inplace__alignment.html" title="Struct template inplace_alignment">inplace_alignment</a></code>:
             the minimum alignment (in bytes) for the in-place storage used to build
             the "small" number of elements. <span class="bold"><strong>The alignment
             of the dynamic memory must be provided by the allocator and it is not
             affected by this option</strong></span>.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/growth_factor.html" title="Struct template growth_factor">growth_factor</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor.html" title="Struct template growth_factor">growth_factor</a></code>:
             the growth policy of the vector. The rate at which the capacity of a
             vector grows is implementation dependent and implementations choose exponential
             growth in order to meet the amortized constant time requirement for push_back.
             A higher growth factor will make it faster as it will require less data
             movement, but it will have a greater memory impact (on average, more
             memory will be unused). A user can provide a custom implementation of
-            the growth factor and some predefined policies are available: <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_50.html" title="Struct growth_factor_50">growth_factor_50</a></code>,
-            <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_60.html" title="Struct growth_factor_60">growth_factor_60</a></code>
-            and <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_50.html" title="Struct growth_factor_50">growth_factor_100</a></code>.
+            the growth factor and some predefined policies are available: <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__50.html" title="Struct growth_factor_50">growth_factor_50</a></code>,
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__60.html" title="Struct growth_factor_60">growth_factor_60</a></code>
+            and <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__50.html" title="Struct growth_factor_50">growth_factor_100</a></code>.
           </li>
 </ul></div>
 <p>
-        See the following example to see how <code class="computeroutput"><a class="link" href="../boost/container/small_vector_options.html" title="Struct template small_vector_options">small_vector_options</a></code>
+        See the following example to see how <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1small__vector__options.html" title="Struct template small_vector_options">small_vector_options</a></code>
         can be used to customize <code class="computeroutput"><span class="identifier">small_vector</span></code>:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">small_vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
@@ -402,8 +388,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -411,9 +395,9 @@
       deques</a>
 </h3></div></div></div>
 <p>
-        The configuration for <code class="computeroutput"><a class="link" href="../boost/container/deque.html" title="Class template deque">deque</a></code>
+        The configuration for <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1deque.html" title="Class template deque">deque</a></code>
         is passed as the last template parameter and defined using the utility class
-        <code class="computeroutput"><a class="link" href="../boost/container/deque_options.html" title="Struct template deque_options">deque_options</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1deque__options.html" title="Struct template deque_options">deque_options</a></code>.
         The following parameters can be configured:
       </p>
 <p>
@@ -423,13 +407,13 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/block_bytes.html" title="Struct template block_bytes">block_bytes</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1block__bytes.html" title="Struct template block_bytes">block_bytes</a></code>:
             the number of bytes deque will allocate for store elements contiguously:
             <code class="computeroutput"><span class="identifier">deque</span><span class="special">::</span><span class="identifier">get_block_size</span><span class="special">()</span></code>
             will return aproximately <code class="computeroutput"><span class="identifier">block_bytes</span><span class="special">/</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">value_type</span><span class="special">)</span></code>. A value of zero means the default value.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/block_size.html" title="Struct template block_size">block_size</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1block__size.html" title="Struct template block_size">block_size</a></code>:
             the number of elements deque will allocate contiguously. If this option
             is specified, <code class="computeroutput"><span class="identifier">deque</span><span class="special">::</span><span class="identifier">get_block_size</span><span class="special">()</span></code>
             will return the specified <code class="computeroutput"><span class="identifier">block_size</span></code>.
@@ -437,11 +421,9 @@
           </li>
 </ul></div>
 <p>
-        See the following example to see how <code class="computeroutput"><a class="link" href="../boost/container/deque_options.html" title="Struct template deque_options">deque_options</a></code>
+        See the following example to see how <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1deque__options.html" title="Struct template deque_options">deque_options</a></code>
         can be used to customize <code class="computeroutput"><span class="identifier">deque</span></code>:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">deque</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
@@ -472,8 +454,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -481,14 +461,14 @@
       devector</a>
 </h3></div></div></div>
 <p>
-        The configuration for <code class="computeroutput"><a class="link" href="../boost/container/devector.html" title="Class template devector">devector</a></code>
+        The configuration for <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1devector.html" title="Class template devector">devector</a></code>
         is passed as the last template parameter and defined using the utility class
-        <code class="computeroutput"><a class="link" href="../boost/container/devector_options.html" title="Struct template devector_options">devector_options</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1devector__options.html" title="Struct template devector_options">devector_options</a></code>.
         The following parameters can be configured:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/growth_factor.html" title="Struct template growth_factor">growth_factor</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor.html" title="Struct template growth_factor">growth_factor</a></code>:
             the growth policy of the devector. The rate at which the capacity of
             a devector grows is implementation dependent and implementations choose
             exponential growth in order to meet the amortized constant time requirement
@@ -496,18 +476,18 @@
             require less data movement, but it will have a greater memory impact
             (on average, more memory will be unused). A user can provide a custom
             implementation of the growth factor and some predefined policies are
-            available: <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_50.html" title="Struct growth_factor_50">growth_factor_50</a></code>,
-            <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_60.html" title="Struct growth_factor_60">growth_factor_60</a></code>
-            (usually the default) and <code class="computeroutput"><a class="link" href="../boost/container/growth_factor_100.html" title="Struct growth_factor_100">growth_factor_100</a></code>.
+            available: <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__50.html" title="Struct growth_factor_50">growth_factor_50</a></code>,
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__60.html" title="Struct growth_factor_60">growth_factor_60</a></code>
+            (usually the default) and <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__100.html" title="Struct growth_factor_100">growth_factor_100</a></code>.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/container/stored_size.html" title="Struct template stored_size">stored_size</a></code>:
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>:
             the type that will be used to store size-related parameters inside of
             the devector. Sometimes, when the maximum capacity to be used is much
             less than the theoretical maximum that a devector can hold, it's interesting
             to use smaller unsigned integer types to represent <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> inside devector, so that the size of
             an empty devector is minimized and cache performance might be improved.
-            See <code class="computeroutput"><a class="link" href="../boost/container/stored_size.html" title="Struct template stored_size">stored_size</a></code>
+            See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>
             for more details.
           </li>
 <li class="listitem">
@@ -518,11 +498,9 @@
           </li>
 </ul></div>
 <p>
-        See the following example to see how <code class="computeroutput"><a class="link" href="../boost/container/devector_options.html" title="Struct template devector_options">devector_options</a></code>
+        See the following example to see how <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1devector__options.html" title="Struct template devector_options">devector_options</a></code>
         can be used to customize <code class="computeroutput"><span class="identifier">devector</span></code>:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">devector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="comment">//Make sure assertions are active</span>
@@ -605,8 +583,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 </div>
 <div class="copyright-footer">Copyright © 2009-2018 Ion Gaztanaga<p>

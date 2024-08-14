@@ -117,15 +117,15 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>Use a fully templated implementation: given a string of a
-            certain type, a parser will return a <code class="computeroutput"><a class="link" href="reference.html#boost.program_options.parsed_options">parsed_options</a></code> instance
-            with strings of the same type (i.e. the <code class="computeroutput"><a class="link" href="reference.html#boost.program_options.parsed_options">parsed_options</a></code> class
+            certain type, a parser will return a <code class="computeroutput"><a class="link" href="reference.html#doxygen.namespaceboost_1_1program__options_1a2e7af46378fd3d9652706ff728ea68cd">parsed_options</a></code> instance
+            with strings of the same type (i.e. the <code class="computeroutput"><a class="link" href="reference.html#doxygen.namespaceboost_1_1program__options_1a2e7af46378fd3d9652706ff728ea68cd">parsed_options</a></code> class
             will be templated).</p></li>
 <li class="listitem"><p>Use internal encoding: same as above, but strings will be converted to and
             from the internal encoding.</p></li>
 <li class="listitem"><p>Use and partly expose the internal encoding: same as above,
-            but the strings in the <code class="computeroutput"><a class="link" href="reference.html#boost.program_options.parsed_options">parsed_options</a></code> instance will be in the
+            but the strings in the <code class="computeroutput"><a class="link" href="reference.html#doxygen.namespaceboost_1_1program__options_1a2e7af46378fd3d9652706ff728ea68cd">parsed_options</a></code> instance will be in the
             internal encoding. This might avoid a conversion if
-            <code class="computeroutput"><a class="link" href="reference.html#boost.program_options.parsed_options">parsed_options</a></code> instance is passed directly to other components,
+            <code class="computeroutput"><a class="link" href="reference.html#doxygen.namespaceboost_1_1program__options_1a2e7af46378fd3d9652706ff728ea68cd">parsed_options</a></code> instance is passed directly to other components,
             but can be also dangerous or confusing for a user.
           </p></li>
 </ul></div>
@@ -133,20 +133,20 @@
     </p>
 <p>The second solution appears to be the best -- it does not increase
     the code size much and is cleaner than the third. To avoid extra
-    conversions, the Unicode version of <code class="computeroutput"><a class="link" href="reference.html#boost.program_options.parsed_options">parsed_options</a></code> can also store
+    conversions, the Unicode version of <code class="computeroutput"><a class="link" href="reference.html#doxygen.namespaceboost_1_1program__options_1a2e7af46378fd3d9652706ff728ea68cd">parsed_options</a></code> can also store
     strings in internal encoding.
     </p>
 <p>For the options descriptions component, we don't have much
       choice. Since it's not desirable to have either all options use ascii or all
       of them use Unicode, but rather have some ascii and some Unicode options, the
-      interface of the <code class="computeroutput"><a class="link" href="../boost/program_options/value_semantic.html" title="Class value_semantic">value_semantic</a></code> must work with both. The only way is
+      interface of the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1program__options_1_1value__semantic.html" title="Class value_semantic">value_semantic</a></code> must work with both. The only way is
       to pass an additional flag telling if strings use ascii or internal encoding.
-      The instance of <code class="computeroutput"><a class="link" href="../boost/program_options/value_semantic.html" title="Class value_semantic">value_semantic</a></code> can then convert into some
+      The instance of <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1program__options_1_1value__semantic.html" title="Class value_semantic">value_semantic</a></code> can then convert into some
       other encoding if needed.
     </p>
-<p>For the storage component, the only affected function is <code class="computeroutput"><a class="link" href="../boost/program_options/store_1_3_30_9_11_1_1_4.html" title="Function store">store</a></code>.
-      For Unicode input, the <code class="computeroutput"><a class="link" href="../boost/program_options/store_1_3_30_9_11_1_1_4.html" title="Function store">store</a></code> function should convert the value to the
-      internal encoding.  It should also inform the <code class="computeroutput"><a class="link" href="../boost/program_options/value_semantic.html" title="Class value_semantic">value_semantic</a></code> class
+<p>For the storage component, the only affected function is <code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1program__options_1a6a5230fb4900bc878875a28d97df0cbf.html" title="Function store">store</a></code>.
+      For Unicode input, the <code class="computeroutput"><a class="link" href="../doxygen/namespaceboost_1_1program__options_1a6a5230fb4900bc878875a28d97df0cbf.html" title="Function store">store</a></code> function should convert the value to the
+      internal encoding.  It should also inform the <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1program__options_1_1value__semantic.html" title="Class value_semantic">value_semantic</a></code> class
       about the used encoding.
     </p>
 <p>Finally, what internal encoding should we use? The

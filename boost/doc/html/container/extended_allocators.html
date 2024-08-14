@@ -31,11 +31,11 @@
 </h2></div></div></div>
 <p>
       Many C++ programmers have ever wondered where does good old realloc fit in
-      C++. And that's a good question. Could we improve <code class="computeroutput"><a class="link" href="../boost/container/vector.html" title="Class template vector">vector</a></code>
+      C++. And that's a good question. Could we improve <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1vector.html" title="Class template vector">vector</a></code>
       performance using memory expansion mechanisms to avoid too many copies? But
-      <code class="computeroutput"><a class="link" href="../boost/container/vector.html" title="Class template vector">vector</a></code> is not the only
+      <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1vector.html" title="Class template vector">vector</a></code> is not the only
       container that could benefit from an improved allocator interface: we could
-      take advantage of the insertion of multiple elements in <code class="computeroutput"><a class="link" href="../boost/container/list.html" title="Class template list">list</a></code>
+      take advantage of the insertion of multiple elements in <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1list.html" title="Class template list">list</a></code>
       using a burst allocation mechanism that could amortize costs (mutex locks,
       free memory searches...) that can't be amortized when using single node allocation
       strategies.
@@ -52,9 +52,9 @@
           Upgrading the Interface of Allocators using API Versioning</a>, <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2045.html" target="_top">N2045:
           Improving STL allocators</a> and the article <a href="../../allocplus/index.html" target="_top">Applying
           classic memory allocation strategies to C++ containers</a>. The extended
-          allocator interface is implemented by <code class="computeroutput"><a class="link" href="../boost/container/allocator.html" title="Class template allocator">allocator</a></code>,
-          <code class="computeroutput"><a class="link" href="../boost/container/adaptive_pool.html" title="Class template adaptive_pool">adaptive_pool</a></code>
-          and <code class="computeroutput"><a class="link" href="../boost/container/node_allocator.html" title="Class template node_allocator">node_allocator</a></code>
+          allocator interface is implemented by <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1allocator.html" title="Class template allocator">allocator</a></code>,
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1adaptive__pool.html" title="Class template adaptive_pool">adaptive_pool</a></code>
+          and <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1node__allocator.html" title="Class template node_allocator">node_allocator</a></code>
           classes.
         </li>
 <li class="listitem">
@@ -69,14 +69,14 @@
           and the following extended allocators depend on the library:
         </li>
 <li class="listitem">
-          <code class="computeroutput"><a class="link" href="../boost/container/allocator.html" title="Class template allocator">allocator</a></code>: This
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1allocator.html" title="Class template allocator">allocator</a></code>: This
           extended allocator offers expansion, shrink-in place and burst allocation
           capabilities implemented as a thin wrapper around the modified DLMalloc.
           It can be used with all containers and it should be the default choice
           when the programmer wants to use extended allocator capabilities.
         </li>
 <li class="listitem">
-          <code class="computeroutput"><a class="link" href="../boost/container/node_allocator.html" title="Class template node_allocator">node_allocator</a></code>:
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1node__allocator.html" title="Class template node_allocator">node_allocator</a></code>:
           It's a <a href="http://www.boost.org/doc/libs/1_55_0/libs/pool/doc/html/boost_pool/pool/pooling.html#boost_pool.pool.pooling.simple" target="_top">Simple
           Segregated Storage</a> allocator, similar to <span class="bold"><strong>Boost.Pool</strong></span>
           that takes advantage of the modified DLMalloc burst interface. It does
@@ -84,13 +84,13 @@
           unless explicitly requested. It does offer a very small memory overhead
           so it's suitable for node containers ([boost::container::list list], [boost::container::slist
           slist] [boost::container::set set]...) that allocate very small <code class="computeroutput"><span class="identifier">value_type</span></code>s and it offers improved node
-          allocation times for single node allocations with respecto to <code class="computeroutput"><a class="link" href="../boost/container/allocator.html" title="Class template allocator">allocator</a></code>.
+          allocation times for single node allocations with respecto to <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1allocator.html" title="Class template allocator">allocator</a></code>.
         </li>
 <li class="listitem">
-          <code class="computeroutput"><a class="link" href="../boost/container/adaptive_pool.html" title="Class template adaptive_pool">adaptive_pool</a></code>:
+          <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1adaptive__pool.html" title="Class template adaptive_pool">adaptive_pool</a></code>:
           It's a low-overhead node allocator that can return memory to the system.
           The overhead can be very low (&lt; 5% for small nodes) and it's nearly
-          as fast as <code class="computeroutput"><a class="link" href="../boost/container/node_allocator.html" title="Class template node_allocator">node_allocator</a></code>.
+          as fast as <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/classboost_1_1container_1_1node__allocator.html" title="Class template node_allocator">node_allocator</a></code>.
           It's also suitable for node containers.
         </li>
 </ul></div>
@@ -98,8 +98,6 @@
       Use them simply specifying the new allocator in the corresponding template
       argument of your favourite container:
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">flat_set</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -141,8 +139,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-    </p>
 </div>
 <div class="copyright-footer">Copyright © 2009-2018 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

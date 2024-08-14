@@ -37,7 +37,8 @@
           </h6>
 <pre class="programlisting"><span class="keyword">char</span><span class="special">&amp;</span>
 <span class="identifier">at</span><span class="special">(</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">pos</span><span class="special">);</span>
+    <a href="https://en.cppreference.com/w/cpp/types/size_t" target="_top"><code class="literal">std::size_t</code></a> <span class="identifier">pos</span><span class="special">,</span>
+    <a href="https://www.boost.org/doc/libs/release/libs/assert/doc/html/assert.html#source_location" target="_top"><code class="literal">boost::source_location</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">loc</span> <span class="special">=</span> <span class="identifier">BOOST_CURRENT_LOCATION</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="json.ref.boost__json__string.at.overload1.h1"></a>
@@ -82,7 +83,8 @@
                     </p>
                   </th>
 </tr></thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>
                     <p>
                       <code class="computeroutput"><span class="identifier">pos</span></code>
@@ -93,7 +95,22 @@
                       A zero-based index to access.
                     </p>
                   </td>
-</tr></tbody>
+</tr>
+<tr>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">loc</span></code>
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      <code class="computeroutput"><span class="identifier">source_location</span></code>
+                      to use in thrown exception; the source location of the call
+                      site by default.
+                    </p>
+                  </td>
+</tr>
+</tbody>
 </table></div>
 <h6>
 <a name="json.ref.boost__json__string.at.overload1.h5"></a>

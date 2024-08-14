@@ -35,7 +35,7 @@
 <span class="identifier">move_iterator</span><span class="special">&lt;</span><span class="identifier">It</span><span class="special">&gt;</span> <span class="identifier">make_move_iterator</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">It</span> <span class="special">&amp;</span><span class="identifier">it</span><span class="special">);</span>
 </pre>
 <p>
-      <code class="computeroutput"><a class="link" href="../boost/move_iterator.html" title="Class template move_iterator">move_iterator</a></code> is an iterator
+      <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1move__iterator.html" title="Class template move_iterator">move_iterator</a></code> is an iterator
       adaptor with the same behavior as the underlying iterator except that its dereference
       operator implicitly converts the value returned by the underlying iterator's
       dereference operator to a rvalue reference: <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">move</span><span class="special">(*</span><span class="identifier">underlying_iterator</span><span class="special">)</span></code>
@@ -46,8 +46,6 @@
       because some generic algorithms and container insertion functions can be called
       with move iterators to replace copying with moving. For example:
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="comment">//header file "movable.hpp"</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">core</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">traits</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -86,14 +84,10 @@
 <span class="special">}</span>  <span class="comment">//namespace boost{</span>
 </pre>
 <p>
-    </p>
-<p>
       <code class="computeroutput"><span class="identifier">movable</span></code> objects can be moved
       from one container to another using move iterators and insertion and assignment
       operations.w
     </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="string">"movable.hpp"</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
@@ -121,10 +115,8 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-    </p>
 </div>
-<div class="copyright-footer">Copyright © 2008-2014 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2008-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

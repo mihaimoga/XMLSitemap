@@ -146,7 +146,7 @@
                   can't use at all. This extra bytes will be used to store additional
                   data that should not be overwritten. So, <span class="bold"><strong>my_algorithm</strong></span>
                   will be placed at address XXX of the memory segment, and will manage
-                  the <span class="bold"><strong>[XXX + sizeof(my_algorithm) + extra_hdr_bytes,
+                  the <span class="bold"><strong>(XXX + sizeof(my_algorithm) + extra_hdr_bytes,
                   XXX + size)</strong></span> range of the segment.
                 </li>
 </ul></div>
@@ -185,7 +185,7 @@
             managed memory by <span class="bold"><strong>my_algorithm</strong></span> in <span class="bold"><strong>extra_size</strong></span> bytes. So <span class="bold"><strong>size()</strong></span>
             function should return the updated size, and the new managed memory range
             will be (if the address where the algorithm is constructed is XXX):
-            <span class="bold"><strong>[XXX + sizeof(my_algorithm) + extra_hdr_bytes,
+            <span class="bold"><strong>(XXX + sizeof(my_algorithm) + extra_hdr_bytes,
             XXX + old_size + extra_size)</strong></span>. This function should offer the
             same synchronization as <code class="computeroutput"><span class="identifier">allocate</span><span class="special">()</span></code>.
           </li>
@@ -364,8 +364,6 @@
         For example, the index type <code class="computeroutput"><span class="identifier">flat_map_index</span></code>
         based in <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">::</span><span class="identifier">flat_map</span></code> is just defined as:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span> <span class="keyword">namespace</span> <span class="identifier">interprocess</span> <span class="special">{</span>
 
 <span class="preprocessor">#ifndef</span> <span class="identifier">BOOST_INTERPROCESS_DOXYGEN_INVOKED</span>
@@ -420,8 +418,6 @@
 
 <span class="special">}}</span>   <span class="comment">//namespace boost { namespace interprocess</span>
 </pre>
-<p>
-      </p>
 <p>
         If the user is defining a node container based index (a container whose iterators
         are not invalidated when inserting or erasing other elements), <span class="bold"><strong>Boost.Interprocess</strong></span> can optimize named object destruction

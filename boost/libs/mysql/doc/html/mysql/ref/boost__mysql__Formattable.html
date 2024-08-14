@@ -29,25 +29,53 @@
 </h4></div></div></div>
 <p>
         A type <code class="computeroutput"><span class="identifier">T</span></code> is <code class="computeroutput"><span class="identifier">Formattable</span></code> if it can be passed as a format
-        argument to SQL formatting functions, like <a class="link" href="boost__mysql__format_sql.html" title="format_sql"><code class="literal">format_sql</code></a>
-        or <a class="link" href="boost__mysql__format_context_base/append_value.html" title="format_context_base::append_value"><code class="literal">format_context_base::append_value</code></a>.
+        argument to SQL formatting functions, like <a class="link" href="boost__mysql__format_sql.html" title="format_sql"><code class="literal">format_sql</code></a>.
       </p>
 <p>
-        Formally, a type <code class="computeroutput"><span class="identifier">T</span></code> satisfies
-        <code class="computeroutput"><span class="identifier">Formattable</span></code> if any of the
-        following are true:
+        Formally, let <code class="computeroutput"><span class="identifier">T</span></code> be any type,
+        and <code class="computeroutput"><span class="identifier">U</span></code> the result of stripping
+        cv-qualifiers and references from <code class="computeroutput"><span class="identifier">T</span></code>.
+        <code class="computeroutput"><span class="identifier">T</span></code> satisfies <code class="computeroutput"><span class="identifier">Formattable</span></code> if any of the following are
+        true:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            It satisfies <a class="link" href="boost__mysql__WritableFieldTuple.html" title="WritableField and WritableFieldTuple concepts"><code class="literal">WritableField</code></a>.
+            <code class="computeroutput"><span class="identifier">U</span></code> satisfies <a class="link" href="boost__mysql__WritableFieldTuple.html" title="WritableField and WritableFieldTuple concepts"><code class="literal">WritableField</code></a>.
             This includes scalar types and optionals.
           </li>
 <li class="listitem">
-            It is <a class="link" href="boost__mysql__identifier.html" title="identifier"><code class="literal">identifier</code></a>.
+            The class <a class="link" href="boost__mysql__formatter.html" title="formatter"><code class="literal">formatter</code></a>
+            has been specialized for <code class="computeroutput"><span class="identifier">U</span></code>.
           </li>
 <li class="listitem">
-            The class <a class="link" href="boost__mysql__formatter.html" title="formatter"><code class="literal">formatter</code></a>
-            has been specialized for <code class="computeroutput"><span class="identifier">T</span></code>.
+            <code class="computeroutput"><span class="identifier">T</span></code> is a formattable range,
+            or a reference to one. Formally, given a variable <code class="computeroutput"><span class="identifier">t</span></code>
+            of type <code class="computeroutput"><span class="identifier">T</span></code> (that might
+            be a reference), <code class="computeroutput"><span class="identifier">T</span></code> is
+            a formattable range if:
+            <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; ">
+<li class="listitem">
+                  <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span><span class="identifier">t</span><span class="special">)</span></code>
+                  and <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">end</span><span class="special">(</span><span class="identifier">t</span><span class="special">)</span></code>
+                  return an iterator/sentinel pair that can be compared for (in)equality.
+                </li>
+<li class="listitem">
+                  The type <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">decay_t</span><span class="special">&lt;</span><span class="keyword">decltype</span><span class="special">(*</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">begin</span><span class="special">(</span><span class="identifier">t</span><span class="special">))&gt;</span></code>
+                  is a <a class="link" href="boost__mysql__WritableFieldTuple.html" title="WritableField and WritableFieldTuple concepts"><code class="literal">WritableField</code></a>
+                  or has a specialized formatter. In other words, the range's element
+                  type must be either an elemental type or have a custom formatted
+                  defined, but must not be a range.
+                </li>
+<li class="listitem">
+                  <code class="computeroutput"><span class="identifier">U</span></code> does not satisfy
+                  <a class="link" href="boost__mysql__WritableFieldTuple.html" title="WritableField and WritableFieldTuple concepts"><code class="literal">WritableField</code></a>
+                  (i.e. <code class="computeroutput"><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">&gt;</span></code> is formatted as a blob, not
+                  as a sequence).
+                </li>
+</ul></div>
+          </li>
+<li class="listitem">
+            <code class="computeroutput"><span class="identifier">U</span></code> is <a class="link" href="boost__mysql__formattable_ref.html" title="formattable_ref"><code class="literal">formattable_ref</code></a>.
           </li>
 </ul></div>
 <p>

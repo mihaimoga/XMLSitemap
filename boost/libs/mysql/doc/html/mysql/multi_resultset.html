@@ -89,7 +89,7 @@
 <pre class="programlisting"><span class="comment">// We're using the dynamic interface. results can stored multiple resultsets</span>
 <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
 
-<span class="comment">// The procedure parameter, employe_id, will likely be obtained from an untrusted source,</span>
+<span class="comment">// The procedure parameter, employee_id, will likely be obtained from an untrusted source,</span>
 <span class="comment">// so we will use a prepared statement</span>
 <span class="identifier">statement</span> <span class="identifier">get_employee_stmt</span> <span class="special">=</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">prepare_statement</span><span class="special">(</span><span class="string">"CALL get_employees(?)"</span><span class="special">);</span>
 
@@ -130,7 +130,7 @@
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">resultset_view</span> <span class="identifier">select_result</span> <span class="special">=</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">at</span><span class="special">(</span><span class="number">2</span><span class="special">);</span>
 
 <span class="comment">// select_result is a view that points into result.</span>
-<span class="comment">// We can take ownership of it using the resultse class:</span>
+<span class="comment">// We can take ownership of it using the resultset class:</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">resultset</span> <span class="identifier">owning_select_result</span><span class="special">(</span><span class="identifier">select_result</span><span class="special">);</span>  <span class="comment">// valid even after result is destroyed</span>
 
 <span class="comment">// We can access rows of resultset objects as usual:</span>
@@ -339,8 +339,8 @@ END
     </p>
 <pre class="programlisting"><span class="comment">// The username and password to use</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">handshake_params</span> <span class="identifier">params</span><span class="special">(</span>
-    <span class="identifier">argv</span><span class="special">[</span><span class="number">1</span><span class="special">],</span>                <span class="comment">// username</span>
-    <span class="identifier">argv</span><span class="special">[</span><span class="number">2</span><span class="special">],</span>                <span class="comment">// password</span>
+    <span class="identifier">mysql_username</span><span class="special">,</span>         <span class="comment">// username, as a string</span>
+    <span class="identifier">mysql_password</span><span class="special">,</span>         <span class="comment">// password, as a string</span>
     <span class="string">"boost_mysql_examples"</span>  <span class="comment">// database</span>
 <span class="special">);</span>
 

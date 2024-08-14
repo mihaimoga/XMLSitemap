@@ -42,7 +42,7 @@
         (For the source of the examples in this section see <a href="../../../libs/type_erasure/example/custom.cpp" target="_top">custom.cpp</a>)
       </p>
 <p>
-        Earlier, we used <code class="computeroutput"><a class="link" href="../BOOST_TYPE_ERASURE_MEMBER.html" title="Macro BOOST_TYPE_ERASURE_MEMBER">BOOST_TYPE_ERASURE_MEMBER</a></code>
+        Earlier, we used <code class="computeroutput"><a class="link" href="../doxygen/member_8hpp_1a771e65c5691af968398c9c6c5842475a.html" title="Macro BOOST_TYPE_ERASURE_MEMBER">BOOST_TYPE_ERASURE_MEMBER</a></code>
         to define a concept for containers that support <code class="computeroutput"><span class="identifier">push_back</span></code>.
         Sometimes this interface isn't flexible enough, however. The library also
         provides a lower level interface that gives full control of the behavior.
@@ -63,8 +63,8 @@
 <p>
       </p>
 <p>
-        Now, we can use this in an <code class="computeroutput"><a class="link" href="../boost/type_erasure/any.html" title="Class template any">any</a></code>
-        using <code class="computeroutput"><a class="link" href="../boost/type_erasure/call.html" title="Function call">call</a></code> to
+        Now, we can use this in an <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a></code>
+        using <code class="computeroutput"><a class="link" href="../doxygen/call_8hpp_1ada936200580091243a2b990891c80739.html" title="Function call">call</a></code> to
         dispatch the operation.
       </p>
 <p>
@@ -78,23 +78,23 @@
 <p>
       </p>
 <p>
-        Our second task is to customize <code class="computeroutput"><a class="link" href="../boost/type_erasure/any.html" title="Class template any">any</a></code>
+        Our second task is to customize <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a></code>
         so that we can call <code class="computeroutput"><span class="identifier">c</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span><span class="number">10</span><span class="special">)</span></code>. We do
-        this by specializing <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>.
+        this by specializing <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>.
         The first argument is <code class="computeroutput"><span class="identifier">has_push_back</span></code>,
-        since we want to inject a member into every <code class="computeroutput"><a class="link" href="../boost/type_erasure/any.html" title="Class template any">any</a></code>
+        since we want to inject a member into every <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a></code>
         that uses the <code class="computeroutput"><span class="identifier">has_push_back</span></code>
         concept. The second argument, <code class="computeroutput"><span class="identifier">Base</span></code>,
-        is used by the library to chain multiple uses of <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>
+        is used by the library to chain multiple uses of <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>
         together. We have to inherit from it publicly. <code class="computeroutput"><span class="identifier">Base</span></code>
-        is also used to get access to the full <code class="computeroutput"><a class="link" href="../boost/type_erasure/any.html" title="Class template any">any</a></code>
+        is also used to get access to the full <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a></code>
         type. The third argument is the placeholder that represents this any. If
         someone used <code class="computeroutput"><span class="identifier">push_back</span><span class="special">&lt;</span><span class="identifier">_c</span><span class="special">,</span> <span class="identifier">_b</span><span class="special">&gt;</span></code>, we only want to insert a <code class="computeroutput"><span class="identifier">push_back</span></code> member in the container, not
         the value type. Thus, the third argument is the container placeholder.
       </p>
 <p>
         When we define <code class="computeroutput"><span class="identifier">push_back</span></code>
-        the argument type uses the metafunction <code class="computeroutput"><a class="link" href="../boost/type_erasure/as_param.html" title="Struct template as_param">as_param</a></code>.
+        the argument type uses the metafunction <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1as__param.html" title="Struct template as_param">as_param</a></code>.
         This is just to handle the case where <code class="computeroutput"><span class="identifier">T</span></code>
         is a placeholder. If <code class="computeroutput"><span class="identifier">T</span></code> is
         not a placeholder, then the metafunction just returns its argument, <code class="computeroutput"><span class="keyword">const</span> <span class="identifier">T</span><span class="special">&amp;</span></code>, unchanged.
@@ -137,11 +137,11 @@
         (For the source of the examples in this section see <a href="../../../libs/type_erasure/example/overload.cpp" target="_top">overload.cpp</a>)
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>
-        allows us to inject arbitrary declarations into an <code class="computeroutput"><a class="link" href="../boost/type_erasure/any.html" title="Class template any">any</a></code>.
+        <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>
+        allows us to inject arbitrary declarations into an <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a></code>.
         This is very flexible, but there are some pitfalls to watch out for. Sometimes
         we want to use the same concept several times with different parameters.
-        Specializing <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>
+        Specializing <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>
         in a way that handles overloads correctly is a bit tricky. Given a concept
         foo, we'd like the following to work:
       </p>
@@ -160,7 +160,7 @@
 <p>
       </p>
 <p>
-        Because <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>
+        Because <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>
         creates a linear inheritance chain, without some extra work, one overload
         of foo will hide the other.
       </p>
@@ -208,7 +208,7 @@
       </p>
 <p>
         This uses SFINAE to detect whether a using declaration is needed. Note that
-        the fourth argument of <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>
+        the fourth argument of <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>
         is a dummy parameter which is always void and is intended to be used for
         SFINAE. Another solution to the problem that I've used in the past is to
         inject a dummy declaration of <code class="computeroutput"><span class="identifier">fun</span></code>
@@ -221,7 +221,7 @@
 <p>
         Note that while using SFINAE requires some code to be duplicated, the amount
         of code that has to be duplicated is relatively small, since the implementation
-        of <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>
+        of <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>
         is usually a one liner. It's a bit annoying, but I believe it's an acceptable
         cost in lieu of a better solution.
       </p>
@@ -264,13 +264,13 @@
 <p>
       </p>
 <p>
-        Basically we have to specialize <code class="computeroutput"><a class="link" href="../boost/type_erasure/concept_interface.html" title="Struct template concept_interface">concept_interface</a></code>
+        Basically we have to specialize <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__interface.html" title="Struct template concept_interface">concept_interface</a></code>
         once for each argument to make sure that an overload is injected into the
         first argument that's a placeholder. As you might have noticed, the argument
         types are a bit tricky. In the first specialization, the first argument uses
-        <code class="computeroutput"><a class="link" href="../boost/type_erasure/derived.html" title="Struct template derived">derived</a></code> instead
-        of <code class="computeroutput"><a class="link" href="../boost/type_erasure/as_param.html" title="Struct template as_param">as_param</a></code>. The
-        reason for this is that if we used <code class="computeroutput"><a class="link" href="../boost/type_erasure/as_param.html" title="Struct template as_param">as_param</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1derived.html" title="Struct template derived">derived</a></code> instead
+        of <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1as__param.html" title="Struct template as_param">as_param</a></code>. The
+        reason for this is that if we used <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1as__param.html" title="Struct template as_param">as_param</a></code>,
         then we could end up violating the one definition rule by defining the same
         function twice. Similarly, we use SFINAE in the second specialization to
         make sure that bar is only defined once when both arguments are placeholders.
@@ -288,7 +288,7 @@
 <p>
         Sometimes it is useful to non-intrusively adapt a type to model a concept.
         For example, suppose that we want to make <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">type_info</span></code>
-        model <code class="computeroutput"><a class="link" href="../boost/type_erasure/less_than_comparable.html" title="Struct template less_than_comparable">less_than_comparable</a></code>.
+        model <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1less__than__comparable.html" title="Struct template less_than_comparable">less_than_comparable</a></code>.
         To do this, we simply specialize the concept definition.
       </p>
 <p>
@@ -332,9 +332,9 @@
         Associated types such as <code class="computeroutput"><span class="keyword">typename</span>
         <span class="identifier">T</span><span class="special">::</span><span class="identifier">value_type</span></code> or <code class="computeroutput"><span class="keyword">typename</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">iterator_traits</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;::</span><span class="identifier">reference</span></code> are quite common in template
-        programming. Boost.TypeErasure handles them using the <code class="computeroutput"><a class="link" href="../boost/type_erasure/deduced.html" title="Struct template deduced">deduced</a></code>
-        template. <code class="computeroutput"><a class="link" href="../boost/type_erasure/deduced.html" title="Struct template deduced">deduced</a></code>
-        is just like an ordinary <code class="computeroutput"><a class="link" href="../boost/type_erasure/placeholder.html" title="Struct placeholder">placeholder</a></code>,
+        programming. Boost.TypeErasure handles them using the <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1deduced.html" title="Struct template deduced">deduced</a></code>
+        template. <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1deduced.html" title="Struct template deduced">deduced</a></code>
+        is just like an ordinary <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1placeholder.html" title="Struct placeholder">placeholder</a></code>,
         except that the type that it binds to is determined by calling a metafunction
         and does not need to be specified explicitly.
       </p>
@@ -383,7 +383,7 @@
         <code class="computeroutput"><span class="identifier">pointer</span><span class="special">&lt;&gt;::</span><span class="identifier">element_type</span></code>. When we construct <code class="computeroutput"><span class="identifier">x</span></code>, with an <code class="computeroutput"><span class="keyword">int</span><span class="special">*</span></code>, <code class="computeroutput"><span class="identifier">pointer</span><span class="special">&lt;&gt;::</span><span class="identifier">element_type</span></code>
         is deduced as <code class="computeroutput"><span class="identifier">pointee</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">*&gt;::</span><span class="identifier">type</span></code> which is <code class="computeroutput"><span class="keyword">int</span></code>.
         Thus, dereferencing <code class="computeroutput"><span class="identifier">x</span></code> returns
-        an <code class="computeroutput"><a class="link" href="../boost/type_erasure/any.html" title="Class template any">any</a></code> that contains
+        an <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a></code> that contains
         an <code class="computeroutput"><span class="keyword">int</span></code>.
       </p>
 <p>
@@ -401,7 +401,7 @@
       </p>
 <p>
         Sometimes we want to require that the associated type be a specific type.
-        This can be solved using the <code class="computeroutput"><a class="link" href="../boost/type_erasure/same_type.html" title="Struct template same_type">same_type</a></code>
+        This can be solved using the <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1same__type.html" title="Struct template same_type">same_type</a></code>
         concept. Here we create an any that can hold any pointer whose element type
         is <code class="computeroutput"><span class="keyword">int</span></code>.
       </p>
@@ -419,14 +419,14 @@
 <p>
       </p>
 <p>
-        Using <code class="computeroutput"><a class="link" href="../boost/type_erasure/same_type.html" title="Struct template same_type">same_type</a></code>
+        Using <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1same__type.html" title="Struct template same_type">same_type</a></code>
         like this effectively causes the library to replace all uses of <code class="computeroutput"><span class="identifier">pointer</span><span class="special">&lt;&gt;::</span><span class="identifier">element_type</span></code> with <code class="computeroutput"><span class="keyword">int</span></code>
         and validate that it is always bound to <code class="computeroutput"><span class="keyword">int</span></code>.
         Thus, dereferencing <code class="computeroutput"><span class="identifier">x</span></code> now
         returns an <code class="computeroutput"><span class="keyword">int</span></code>.
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/type_erasure/same_type.html" title="Struct template same_type">same_type</a></code> can
+        <code class="computeroutput"><a class="link" href="../doxygen/structboost_1_1type__erasure_1_1same__type.html" title="Struct template same_type">same_type</a></code> can
         also be used for two placeholders. This allows us to use a simple name instead
         of writing out an associated type over and over.
       </p>

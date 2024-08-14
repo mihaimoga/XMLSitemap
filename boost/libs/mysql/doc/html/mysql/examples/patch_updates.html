@@ -7,7 +7,7 @@
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../examples.html" title="Examples">
 <link rel="prev" href="dynamic_filters.html" title="(Experimental) Dynamic filters using client-side query formatting">
-<link rel="next" href="connection_pool.html" title="(Experimental) Connection pools">
+<link rel="next" href="pipeline.html" title="(Experimental) Pipelines">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="dynamic_filters.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="connection_pool.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="dynamic_filters.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="pipeline.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -45,10 +45,6 @@
 <span class="comment">// The program updates an employee by ID, modifying fields</span>
 <span class="comment">// as provided by command-line arguments, and leaving all other</span>
 <span class="comment">// fields unmodified.</span>
-<span class="comment">//</span>
-<span class="comment">// This example specializes formatter to make custom types</span>
-<span class="comment">// compatible with format_sql. It also uses multi-queries</span>
-<span class="comment">// to execute several queries at once.</span>
 <span class="comment">//</span>
 <span class="comment">// Note: client-side SQL formatting is an experimental feature.</span>
 
@@ -77,15 +73,7 @@
  * Represents a single update as a name, value pair.
  * The idea is to use command-line arguments to compose
  * a std::vector&lt;update_field&gt; with the fields to be updated,
- * and make the following work:
- *
- *    std::vector&lt;update_field&gt; updates {
- *       { "fist_name", field_view("John") },
- *       { "salary", field_view(35000)     },
- *    };
- *    format_sql("UPDATE employee SET {} WHERE id = {}", opts, updates, 42);
- *
- * "UPDATE employee SET `first_name` = 'John', `salary` = 35000 WHERE id = 42"
+ * and use mysql::sequence() to join these with commas
  */</span>
 <span class="keyword">struct</span> <span class="identifier">update_field</span>
 <span class="special">{</span>
@@ -96,51 +84,6 @@
     <span class="comment">// a variant-like type that can hold all types that MySQL supports.</span>
     <span class="identifier">field_view</span> <span class="identifier">field_value</span><span class="special">;</span>
 <span class="special">};</span>
-
-<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
-<span class="keyword">namespace</span> <span class="identifier">mysql</span> <span class="special">{</span>
-
-<span class="comment">// Specialize formatter so that format_sql accepts a std::vector&lt;update_field&gt;</span>
-<span class="keyword">template</span> <span class="special">&lt;&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">formatter</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">update_field</span><span class="special">&gt;&gt;</span>
-<span class="special">{</span>
-    <span class="comment">// Boost.MySQL requires us to define this function. It should take</span>
-    <span class="comment">// our value as first argument, and a format_context_base&amp; as the second.</span>
-    <span class="comment">// It should format the value into the context.</span>
-    <span class="comment">// format_context_base has append_raw and append_value, like format_context.</span>
-    <span class="keyword">static</span> <span class="keyword">void</span> <span class="identifier">format</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">update_field</span><span class="special">&gt;&amp;</span> <span class="identifier">value</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span>
-    <span class="special">{</span>
-        <span class="comment">// We need one update field, at least. If this is not the case, we can use</span>
-        <span class="comment">// add_error to report the error and exit. This will cause format_sql to throw.</span>
-        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">value</span><span class="special">.</span><span class="identifier">empty</span><span class="special">())</span>
-        <span class="special">{</span>
-            <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">add_error</span><span class="special">(</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
-            <span class="keyword">return</span><span class="special">;</span>
-        <span class="special">}</span>
-
-        <span class="comment">// Build a comma-separated list</span>
-        <span class="keyword">bool</span> <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
-        <span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">update</span> <span class="special">:</span> <span class="identifier">value</span><span class="special">)</span>
-        <span class="special">{</span>
-            <span class="comment">// Comma separator</span>
-            <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">is_first</span><span class="special">)</span>
-            <span class="special">{</span>
-                <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">", "</span><span class="special">);</span>
-            <span class="special">}</span>
-            <span class="identifier">is_first</span> <span class="special">=</span> <span class="keyword">false</span><span class="special">;</span>
-
-            <span class="comment">// Output the field's name, an equal sign, and the field's value.</span>
-            <span class="comment">// identifier wraps a string to be formatted as a SQL identifier</span>
-            <span class="comment">// (i.e. `first_name`, rather than 'first_name').</span>
-            <span class="identifier">ctx</span><span class="special">.</span><span class="identifier">append_value</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">identifier</span><span class="special">(</span><span class="identifier">update</span><span class="special">.</span><span class="identifier">field_name</span><span class="special">))</span>
-                <span class="special">.</span><span class="identifier">append_raw</span><span class="special">(</span><span class="string">" = "</span><span class="special">)</span>
-                <span class="special">.</span><span class="identifier">append_value</span><span class="special">(</span><span class="identifier">update</span><span class="special">.</span><span class="identifier">field_value</span><span class="special">);</span>
-        <span class="special">}</span>
-    <span class="special">}</span>
-<span class="special">};</span>
-
-<span class="special">}</span>  <span class="comment">// namespace mysql</span>
-<span class="special">}</span>  <span class="comment">// namespace boost</span>
 
 <span class="comment">// Contains the parsed command-line arguments</span>
 <span class="keyword">struct</span> <span class="identifier">cmdline_args</span>
@@ -222,6 +165,13 @@
         <span class="special">}</span>
     <span class="special">}</span>
 
+    <span class="comment">// There should be one update, at least</span>
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">updates</span><span class="special">.</span><span class="identifier">empty</span><span class="special">())</span>
+    <span class="special">{</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cerr</span> <span class="special">&lt;&lt;</span> <span class="string">"There should be one update, at least\n"</span><span class="special">;</span>
+        <span class="identifier">print_usage_and_exit</span><span class="special">();</span>
+    <span class="special">}</span>
+
     <span class="keyword">return</span> <span class="identifier">res</span><span class="special">;</span>
 <span class="special">}</span>
 
@@ -245,13 +195,19 @@
     <span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">args</span><span class="special">.</span><span class="identifier">username</span><span class="special">;</span>
     <span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">args</span><span class="special">.</span><span class="identifier">password</span><span class="special">;</span>
     <span class="identifier">params</span><span class="special">.</span><span class="identifier">database</span> <span class="special">=</span> <span class="string">"boost_mysql_examples"</span><span class="special">;</span>
-    <span class="identifier">params</span><span class="special">.</span><span class="identifier">multi_queries</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>  <span class="comment">// TODO</span>
+    <span class="identifier">params</span><span class="special">.</span><span class="identifier">multi_queries</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
 
     <span class="comment">// Connect to the server</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">connect</span><span class="special">(</span><span class="identifier">params</span><span class="special">);</span>
 
-    <span class="comment">// Compose the query. We've managed to make all out types formattable,</span>
-    <span class="comment">// so we can use format_sql.</span>
+    <span class="comment">// Formats an individual update. Used by sequence().</span>
+    <span class="comment">// For update_field{"first_name", "John"}, it generates the string</span>
+    <span class="comment">// "`first_name` = 'John'"</span>
+    <span class="keyword">auto</span> <span class="identifier">update_format_fn</span> <span class="special">=</span> <span class="special">[](</span><span class="identifier">update_field</span> <span class="identifier">upd</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
+        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"{:i} = {}"</span><span class="special">,</span> <span class="identifier">upd</span><span class="special">.</span><span class="identifier">field_name</span><span class="special">,</span> <span class="identifier">upd</span><span class="special">.</span><span class="identifier">field_value</span><span class="special">);</span>
+    <span class="special">};</span>
+
+    <span class="comment">// Compose the query. We use sequence() to output the update list separated by commas.</span>
     <span class="comment">// We want to update the employee and then retrieve it. MySQL doesn't support</span>
     <span class="comment">// the UPDATE ... RETURNING statement to update and retrieve data atomically,</span>
     <span class="comment">// so we will use a transaction to guarantee consistency.</span>
@@ -264,7 +220,7 @@
         <span class="string">"UPDATE employee SET {0} WHERE id = {1}; "</span>
         <span class="string">"SELECT first_name, last_name, salary, company_id FROM employee WHERE id = {1}; "</span>
         <span class="string">"COMMIT"</span><span class="special">,</span>
-        <span class="identifier">args</span><span class="special">.</span><span class="identifier">updates</span><span class="special">,</span>
+        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">sequence</span><span class="special">(</span><span class="identifier">args</span><span class="special">.</span><span class="identifier">updates</span><span class="special">,</span> <span class="identifier">update_format_fn</span><span class="special">),</span>
         <span class="identifier">args</span><span class="special">.</span><span class="identifier">employee_id</span>
     <span class="special">);</span>
 
@@ -325,7 +281,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="dynamic_filters.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="connection_pool.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="dynamic_filters.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="pipeline.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

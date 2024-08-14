@@ -98,14 +98,10 @@
         Note that copy constructing or assigning a <code class="computeroutput"><span class="identifier">clone_ptr</span></code>
         is a relatively expensive operation:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="identifier">clone_ptr</span><span class="special">&lt;</span><span class="identifier">Base</span><span class="special">&gt;</span> <span class="identifier">p1</span><span class="special">(</span><span class="keyword">new</span> <span class="identifier">Derived</span><span class="special">());</span>
 <span class="comment">// ...</span>
 <span class="identifier">clone_ptr</span><span class="special">&lt;</span><span class="identifier">Base</span><span class="special">&gt;</span> <span class="identifier">p2</span> <span class="special">=</span> <span class="identifier">p1</span><span class="special">;</span>  <span class="comment">// p2 and p1 each own their own pointer</span>
 </pre>
-<p>
-      </p>
 <p>
         <code class="computeroutput"><span class="identifier">clone_ptr</span></code> is code that you
         might find in today's books on C++, except for the part marked as <code class="computeroutput"><span class="identifier">move</span> <span class="identifier">semantics</span></code>.
@@ -136,16 +132,12 @@
         copy a rvalue (using <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">move</span></code>),
         the operation will execute much faster.
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="identifier">clone_ptr</span><span class="special">&lt;</span><span class="identifier">Base</span><span class="special">&gt;</span> <span class="identifier">p1</span><span class="special">(</span><span class="keyword">new</span> <span class="identifier">Derived</span><span class="special">());</span>
 <span class="comment">// ...</span>
 <span class="identifier">clone_ptr</span><span class="special">&lt;</span><span class="identifier">Base</span><span class="special">&gt;</span> <span class="identifier">p2</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">p1</span><span class="special">);</span>  <span class="comment">// p2 now owns the pointer instead of p1</span>
 <span class="identifier">p2</span> <span class="special">=</span> <span class="identifier">clone_ptr</span><span class="special">&lt;</span><span class="identifier">Base</span><span class="special">&gt;(</span><span class="keyword">new</span> <span class="identifier">Derived</span><span class="special">());</span>   <span class="comment">// temporary is moved to p2</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -163,24 +155,22 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
             Put the following macro in the <span class="bold"><strong>private</strong></span>
-            section: <code class="computeroutput"><a class="link" href="../BOOST_COPYABLE_AND_MOVABLE.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE(classname)</a></code>
+            section: <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a2a021821de2147094b325d6849767f1c.html" title="Macro BOOST_COPYABLE_AND_MOVABLE">BOOST_COPYABLE_AND_MOVABLE(classname)</a></code>
           </li>
 <li class="listitem">
             Leave copy constructor as is.
           </li>
 <li class="listitem">
-            Write a copy assignment taking the parameter as <code class="computeroutput"><a class="link" href="../BOOST_COPY_ASSIGN_REF.html" title="Macro BOOST_COPY_ASSIGN_REF">BOOST_COPY_ASSIGN_REF(classname)</a></code>
+            Write a copy assignment taking the parameter as <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a37936e2bbaac51d9868f9274fb648d32.html" title="Macro BOOST_COPY_ASSIGN_REF">BOOST_COPY_ASSIGN_REF(classname)</a></code>
           </li>
 <li class="listitem">
             Write a move constructor and a move assignment taking the parameter as
-            <code class="computeroutput"><a class="link" href="../BOOST_RV_REF.html" title="Macro BOOST_RV_REF">BOOST_RV_REF(classname)</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/core_8hpp_1a41dbf698e587e2adc7f518a2b8625436.html" title="Macro BOOST_RV_REF">BOOST_RV_REF(classname)</a></code>
           </li>
 </ul></div>
 <p>
         Let's see how are applied to <code class="computeroutput"><span class="identifier">clone_ptr</span></code>:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
 <span class="keyword">class</span> <span class="identifier">clone_ptr</span>
 <span class="special">{</span>
@@ -224,8 +214,6 @@
    <span class="special">}</span>
 <span class="special">};</span>
 </pre>
-<p>
-      </p>
 </div>
 <p>
       <span class="bold"><strong>Question</strong></span>: What about types that don't own
@@ -235,7 +223,7 @@
       No work needs to be done in that case. The copy constructor is already optimal.
     </p>
 </div>
-<div class="copyright-footer">Copyright © 2008-2014 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2008-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

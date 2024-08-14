@@ -94,22 +94,22 @@
             </th>
 <th>
               <p>
-                <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
               </p>
             </th>
 <th>
               <p>
-                <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
               </p>
             </th>
 <th>
               <p>
-                <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
               </p>
             </th>
 <th>
               <p>
-                <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code>
               </p>
             </th>
 </tr></thead>
@@ -314,7 +314,7 @@
       that is being returned from the enclosing function.
     </p>
 <p>
-      For <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>, there
+      For <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>, there
       is no notion of "success" or "failure". Rather, the scope
       guard invokes the action function object if the condition returns <code class="computeroutput"><span class="keyword">true</span></code>. By default, if the condition function
       object is not specified by user, the scope guard operates as if the condition
@@ -324,14 +324,14 @@
     </p>
 <p>
       Although it is possible to specify arbitrary condition function objects, the
-      intended use case for <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
+      intended use case for <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
       is to invoke its action when the scope is left normally (i.e. not because of
-      a failure) and for <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
+      a failure) and for <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
       - to invoke its action to handle errors, including exceptions. For this reason,
-      action functions that are used with <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
+      action functions that are used with <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
       are typically not allowed to throw, as this may cause the program to terminate.
-      This is also a concern with other scope guards, such as <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
-      and <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code>, which
+      This is also a concern with other scope guards, such as <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
+      and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code>, which
       also may invoke their actions due to an exception. It is user's responsibility
       to ensure that scope guard actions don't throw if another exception is being
       propagated. Generally, it is recommended to use scope guards to implement actions
@@ -344,18 +344,18 @@
       <code class="computeroutput"><span class="identifier">scope_exit</span></code>, <code class="computeroutput"><span class="identifier">scope_success</span></code>
       and <code class="computeroutput"><span class="identifier">scope_fail</span></code></a>
 </h3></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.scope_exit_hpp" title="Header &lt;boost/scope/scope_exit.hpp&gt;">boost/scope/scope_exit.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.scope_success_hpp" title="Header &lt;boost/scope/scope_success.hpp&gt;">boost/scope/scope_success.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.scope_fail_hpp" title="Header &lt;boost/scope/scope_fail.hpp&gt;">boost/scope/scope_fail.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.scope__exit_8hpp" title="Header &lt;boost/scope/scope_exit.hpp&gt;">boost/scope/scope_exit.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.scope__success_8hpp" title="Header &lt;boost/scope/scope_success.hpp&gt;">boost/scope/scope_success.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.scope__fail_8hpp" title="Header &lt;boost/scope/scope_fail.hpp&gt;">boost/scope/scope_fail.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-        The <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>, <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>, and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> scope guards have a
+        The <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>, and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> scope guards have a
         lot of similarities in interfaces and capabilities and differ in conditions
         when they invoke the action function object. As shown in the table above,
         these scope guards support specifying an additional condition function object.
-        By default, <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
-        will invoke its action if it is destroyed normally, <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
-        - if it is destroyed due to an exception being thrown. <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+        By default, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
+        will invoke its action if it is destroyed normally, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
+        - if it is destroyed due to an exception being thrown. <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
         by default operates as if the condition always allows executing the action.
       </p>
 <div class="tip"><table border="0" summary="Tip">
@@ -375,17 +375,17 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code> is useful
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code> is useful
             for general cleanup tasks, which need to be performed regardless of success
             or failure of the enclosing function.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
             can be used for common finalization code that needs to be performed on
             successful completion of the function.
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> is intended
+            <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> is intended
             for handling errors, for example, to revert a partially complete operation
             to the previous valid state.
           </li>
@@ -581,13 +581,13 @@
 <a name="scope.scope_guards.condition_functions"></a><a class="link" href="scope_guards.html#scope.scope_guards.condition_functions" title="Scope guard condition functions">Scope guard condition
       functions</a>
 </h3></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.exception_checker_hpp" title="Header &lt;boost/scope/exception_checker.hpp&gt;">boost/scope/exception_checker.hpp</a></code><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.error_code_checker_hpp" title="Header &lt;boost/scope/error_code_checker.hpp&gt;">boost/scope/error_code_checker.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.exception__checker_8hpp" title="Header &lt;boost/scope/exception_checker.hpp&gt;">boost/scope/exception_checker.hpp</a></code><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.error__code__checker_8hpp" title="Header &lt;boost/scope/error_code_checker.hpp&gt;">boost/scope/error_code_checker.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-        As discussed before, <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>,
-        <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code> and
-        <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> support
+        As discussed before, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>,
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code> and
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> support
         specifying an additional condition function object that will be called to
         decide whether the scope guard should invoke the action. A condition function
         object must satisfy the following requirements:
@@ -617,15 +617,15 @@
 </ul></div>
 <p>
         For all the three scope guards, the condition function object is optional.
-        If not specified, <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+        If not specified, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
         operates as if the condition function object always returns <code class="computeroutput"><span class="keyword">true</span></code> and will invoke its action function object
         as long as the scope guard is active. Otherwise, the scope guard only invokes
         its action if the condition returns <code class="computeroutput"><span class="keyword">true</span></code>.
       </p>
 <p>
-        For <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>, the
-        <code class="computeroutput"><a class="link" href="../boost/scope/exception_checker.html" title="Class exception_checker">exception_checker</a></code>
+        For <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>, the
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1exception__checker.html" title="Class exception_checker">exception_checker</a></code>
         condition function is used by default. It works by capturing the number of
         uncaught exceptions on construction (which happens at the point of construction
         of the scope guard) and then comparing the captured value with the number
@@ -640,7 +640,7 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-          By design, <code class="computeroutput"><a class="link" href="../boost/scope/exception_checker.html" title="Class exception_checker">exception_checker</a></code>
+          By design, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1exception__checker.html" title="Class exception_checker">exception_checker</a></code>
           is intended for a specific use case with scope guards created on the stack.
           It is incompatible with C++20 coroutines and similar facilities (e.g. fibers
           and userspace context switching), where the thread of execution may be
@@ -654,30 +654,30 @@
         </p></td></tr>
 </table></div>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code> invokes
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code> invokes
         its action when the condition returns <code class="computeroutput"><span class="keyword">false</span></code>
-        (i.e. when the failure is not detected) and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
+        (i.e. when the failure is not detected) and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
         - when the condition returns <code class="computeroutput"><span class="keyword">true</span></code>
         (i.e. when the failure is detected). In relation to these two scope guard
         types, the condition function object is sometimes called the failure condition
         because it indicates whether a failure has happened.
       </p>
 <p>
-        You may notice that <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+        You may notice that <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
         behavior (with a user-specified condition function object) is similar to
-        <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> and opposite
-        to <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> and opposite
+        to <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
         in terms of their usage of condition function objects. The main difference
-        is a semantic one: <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+        is a semantic one: <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
         does not have a success/failure connotation and may be used with arbitrary
-        condition functions. On the other hand, <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> typically
+        condition functions. On the other hand, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> typically
         correspond to their respective intended use cases, and the default condition
         function makes them equivalent to the scope guards defined in <a href="https://cplusplus.github.io/fundamentals-ts/v3.html#scope.syn" target="_top"><code class="computeroutput"><span class="special">&lt;</span><span class="identifier">experimental</span><span class="special">/</span><span class="identifier">scope</span><span class="special">&gt;</span></code></a>.
       </p>
 <p>
         It is possible to emulate each of the scope guards described in this section
-        by using <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>,
+        by using <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>,
         either with a custom condition function object, with the condition function
         embedded into the action function, or by activating or deactivating the scope
         guard after construction. For example, the following four pieces of code
@@ -796,7 +796,7 @@
 </table></div>
 </div>
 <br class="table-break"><p>
-        The main benefit of using <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
+        The main benefit of using <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
         in this example is reducing code size and complexity. You can see that adding
         the check for the number of uncaught exceptions to the scope guard action
         makes it notably more verbose, and if such a check needs to be performed
@@ -810,30 +810,30 @@
         scope.
       </p>
 <p>
-        Another benefit of <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
-        is improved code readability. For a reader, <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
-        immediately indicates an error handler, whereas <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+        Another benefit of <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
+        is improved code readability. For a reader, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
+        immediately indicates an error handler, whereas <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
         does not have such connotation and may contain a general cleanup code.
       </p>
 <p>
         That being said, there may be reasons to still use one of the techniques
-        demonstrated above instead of <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>/<code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>, especially when paired
-        with <code class="computeroutput"><a class="link" href="../boost/scope/exception_checker.html" title="Class exception_checker">exception_checker</a></code>.
-        As noted above, <code class="computeroutput"><a class="link" href="../boost/scope/exception_checker.html" title="Class exception_checker">exception_checker</a></code>
+        demonstrated above instead of <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>/<code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>, especially when paired
+        with <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1exception__checker.html" title="Class exception_checker">exception_checker</a></code>.
+        As noted above, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1exception__checker.html" title="Class exception_checker">exception_checker</a></code>
         is incompatible with coroutines and similar facilities, so using a manually
-        managed <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+        managed <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
         can be a solution. Another consideration is performance, specifically in
-        relation with <code class="computeroutput"><a class="link" href="../boost/scope/exception_checker.html" title="Class exception_checker">exception_checker</a></code>.
+        relation with <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1exception__checker.html" title="Class exception_checker">exception_checker</a></code>.
         This predicate has to invoke runtime functions to obtain the number of uncaught
         exceptions, and has to do this twice - on scope guard construction and destruction.
         Although these functions are usually cheap, these calls are typically not
         optimized away by the compiler, even if no exception is thrown, and deactivating
         a scope guard is cheaper still. So, if a scope guard is used in a tight loop
-        where its performance overhead may be significant, preferring <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code> with manual deactivation
+        where its performance overhead may be significant, preferring <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code> with manual deactivation
         may be a reasonable choice.
       </p>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>, <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code> and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> accept the condition
+        <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> accept the condition
         function object as the second argument for the constructor or factory function,
         after the action function object. If the condition function object is default-constructible
         and the default constructor doesn't throw, the function object may be omitted
@@ -898,12 +898,12 @@
 <span class="special">}</span>
 </pre>
 <p>
-        Besides <code class="computeroutput"><a class="link" href="../boost/scope/exception_checker.html" title="Class exception_checker">exception_checker</a></code>,
-        the library also provides <code class="computeroutput"><a class="link" href="../boost/scope/error_code_checker.html" title="Class template error_code_checker">error_code_checker</a></code>
-        that can be used as a condition function object. On construction, <code class="computeroutput"><a class="link" href="../boost/scope/error_code_checker.html" title="Class template error_code_checker">error_code_checker</a></code> captures
+        Besides <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1exception__checker.html" title="Class exception_checker">exception_checker</a></code>,
+        the library also provides <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1error__code__checker.html" title="Class template error_code_checker">error_code_checker</a></code>
+        that can be used as a condition function object. On construction, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1error__code__checker.html" title="Class template error_code_checker">error_code_checker</a></code> captures
         a reference to an external error code object and checks it for an error indication
         when being called. This implies that the error code object must remain valid
-        for the entire lifetime duration of the <code class="computeroutput"><a class="link" href="../boost/scope/error_code_checker.html" title="Class template error_code_checker">error_code_checker</a></code>
+        for the entire lifetime duration of the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1error__code__checker.html" title="Class template error_code_checker">error_code_checker</a></code>
         predicate.
       </p>
 <p>
@@ -925,8 +925,8 @@
 </ul></div>
 <p>
         That is, for an error code object <code class="computeroutput"><span class="identifier">ec</span></code>,
-        invoking <code class="computeroutput"><a class="link" href="../boost/scope/error_code_checker.html" title="Class template error_code_checker">error_code_checker</a></code>
-        results in a value equivalent to <code class="computeroutput"><span class="special">!!</span><span class="identifier">ec</span></code>. This makes <code class="computeroutput"><a class="link" href="../boost/scope/error_code_checker.html" title="Class template error_code_checker">error_code_checker</a></code>
+        invoking <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1error__code__checker.html" title="Class template error_code_checker">error_code_checker</a></code>
+        results in a value equivalent to <code class="computeroutput"><span class="special">!!</span><span class="identifier">ec</span></code>. This makes <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1error__code__checker.html" title="Class template error_code_checker">error_code_checker</a></code>
         compatible with a wide variety of error code types, including:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -979,11 +979,11 @@
 <a name="scope.scope_guards.unconditional"></a><a class="link" href="scope_guards.html#scope.scope_guards.unconditional" title="Unconditional scope guard: defer_guard">Unconditional scope
       guard: <code class="computeroutput"><span class="identifier">defer_guard</span></code></a>
 </h3></div></div></div>
-<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#header.boost.scope.defer_hpp" title="Header &lt;boost/scope/defer.hpp&gt;">boost/scope/defer.hpp</a></code><span class="special">&gt;</span>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><code class="computeroutput"><a class="link" href="../reference.html#doxygen.reference.defer_8hpp" title="Header &lt;boost/scope/defer.hpp&gt;">boost/scope/defer.hpp</a></code><span class="special">&gt;</span>
 </pre>
 <p>
-        The <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code> scope
-        guard is similar to <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>
+        The <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code> scope
+        guard is similar to <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>
         without a user-specified condition function object in terms of when it invokes
         the action function. But it does not support custom condition functions and
         lacks support for moveability and activation/deactivation - this scope guard
@@ -996,18 +996,18 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-          <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code> is a
-          more lightweight version of <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>,
+          <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code> is a
+          more lightweight version of <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>,
           similar to how <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">lock_guard</span></code> is a more lightweight version
           of <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">unique_lock</span></code>.
         </p></td></tr>
 </table></div>
 <p>
-        Since <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code>
+        Since <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code>
         effectively provides no interface to interact with after construction, it
         is better suited for anonymous "set up and forget" kind of scope
         guards. To emphasize this affinity, the library provides a <code class="computeroutput"><span class="identifier">BOOST_SCOPE_DEFER</span></code> macro, which acts as
-        a keyword defining a uniquely named <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code>
+        a keyword defining a uniquely named <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code>
         scope guard. The macro should be followed by the function object to be invoked
         on scope exit.
       </p>
@@ -1024,7 +1024,7 @@
 <tr><td align="left" valign="top"><p>
           <code class="computeroutput"><span class="identifier">BOOST_SCOPE_DEFER</span></code> requires
           support for C++17 <a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction" target="_top">CTAD</a>.
-          The <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code>
+          The <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code>
           class itself is compatible with C++11, but given that there is no factory
           function for it, C++17 support is very much desired.
         </p></td></tr>
@@ -1048,7 +1048,7 @@
 </ul></div>
 <p>
         However, it should be noted that the use of the <code class="computeroutput"><span class="identifier">BOOST_SCOPE_DEFER</span></code>
-        macro is entirely optional. Users are free to use <code class="computeroutput"><a class="link" href="../boost/scope/defer_guard.html" title="Class template defer_guard">defer_guard</a></code>
+        macro is entirely optional. Users are free to use <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1defer__guard.html" title="Class template defer_guard">defer_guard</a></code>
         directly.
       </p>
 <pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">scope</span><span class="special">::</span><span class="identifier">defer_guard</span> <span class="identifier">guard</span><span class="special">{[]</span>
@@ -1133,24 +1133,28 @@
         together with the scope guard to schedule the function call. For example:
       </p>
 <pre class="programlisting"><span class="keyword">using</span> <span class="identifier">cleanup_func_t</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">function</span><span class="special">&lt;</span> <span class="keyword">void</span><span class="special">()</span> <span class="special">&gt;;</span>
+<span class="identifier">cleanup_func_t</span> <span class="identifier">cleanup_func</span><span class="special">;</span>
 <span class="comment">// Create an inactive scope guard first, since the cleanup function is not set yet</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">scope</span><span class="special">::</span><span class="identifier">scope_exit</span><span class="special">&lt;</span> <span class="identifier">cleanup_func_t</span> <span class="special">&gt;</span> <span class="identifier">cleanup</span><span class="special">(</span><span class="identifier">cleanup_func_t</span><span class="special">(),</span> <span class="keyword">false</span><span class="special">);</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">scope</span><span class="special">::</span><span class="identifier">scope_exit</span><span class="special">&lt;</span> <span class="identifier">cleanup_func_t</span><span class="special">&amp;</span> <span class="special">&gt;</span> <span class="identifier">cleanup</span><span class="special">(</span><span class="identifier">cleanup_func</span><span class="special">,</span> <span class="keyword">false</span><span class="special">);</span>
 
-<span class="comment">// Later in the program, initialize the scope guard with the function selected at run time</span>
+<span class="comment">// Later in the program, initialize the cleanup function with the function selected at run time</span>
 <span class="keyword">if</span> <span class="special">(</span><span class="identifier">cond</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">cleanup</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">scope</span><span class="special">::</span><span class="identifier">scope_exit</span><span class="special">&lt;</span> <span class="identifier">cleanup_func_t</span> <span class="special">&gt;([]</span>
+    <span class="identifier">cleanup_func</span> <span class="special">=</span> <span class="special">[]</span>
     <span class="special">{</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"cond is true"</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
-    <span class="special">});</span>
+    <span class="special">};</span>
 <span class="special">}</span>
 <span class="keyword">else</span>
 <span class="special">{</span>
-    <span class="identifier">cleanup</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">scope</span><span class="special">::</span><span class="identifier">scope_exit</span><span class="special">&lt;</span> <span class="identifier">cleanup_func_t</span> <span class="special">&gt;([]</span>
+    <span class="identifier">cleanup_func</span> <span class="special">=</span> <span class="special">[]</span>
     <span class="special">{</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"cond is false"</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
-    <span class="special">});</span>
+    <span class="special">};</span>
 <span class="special">}</span>
+
+<span class="comment">// Activate the scope guard once the cleanup function is initialized</span>
+<span class="identifier">cleanup</span><span class="special">.</span><span class="identifier">set_active</span><span class="special">(</span><span class="keyword">true</span><span class="special">);</span>
 </pre>
 <p>
         It is also possible to do this with <code class="computeroutput"><span class="identifier">BOOST_SCOPE_DEFER</span></code>,
@@ -1658,9 +1662,9 @@
               </td>
 <td>
                 <p>
-                  Yes, with <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>,
-                  <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
-                  and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>.
+                  Yes, with <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>,
+                  <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
+                  and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>.
                   This includes the ability to delay activation of the initially
                   inactive scope guards.
                 </p>
@@ -1695,9 +1699,9 @@
               </td>
 <td>
                 <p>
-                  Yes, with <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>,
-                  <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
-                  and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>.
+                  Yes, with <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>,
+                  <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
+                  and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>.
                 </p>
 <pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">scope</span><span class="special">::</span><span class="identifier">scope_exit</span> <span class="identifier">guard</span><span class="special">(</span>
 <span class="special">[]</span>
@@ -1752,8 +1756,8 @@
               </td>
 <td>
                 <p>
-                  Yes, <code class="computeroutput"><a class="link" href="../boost/scope/exception_checker.html" title="Class exception_checker">exception_checker</a></code>
-                  and <code class="computeroutput"><a class="link" href="../boost/scope/error_code_checker.html" title="Class template error_code_checker">error_code_checker</a></code>.
+                  Yes, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1exception__checker.html" title="Class exception_checker">exception_checker</a></code>
+                  and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1error__code__checker.html" title="Class template error_code_checker">error_code_checker</a></code>.
                 </p>
 <pre class="programlisting"><span class="comment">// scope_fail by default checks for an exception</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">scope</span><span class="special">::</span><span class="identifier">scope_fail</span> <span class="identifier">guard</span><span class="special">([]</span>
@@ -1788,9 +1792,9 @@
               </td>
 <td>
                 <p>
-                  Yes, scope guards are defined as objects. Also, <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>,
-                  <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
-                  and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>
+                  Yes, scope guards are defined as objects. Also, <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>,
+                  <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
+                  and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>
                   are move-constructible and can be returned from functions.
                 </p>
               </td>
@@ -1901,9 +1905,9 @@
         functions</a>
 </h4></div></div></div>
 <p>
-          All three of the <code class="computeroutput"><a class="link" href="../boost/scope/scope_exit.html" title="Class template scope_exit">scope_exit</a></code>,
-          <code class="computeroutput"><a class="link" href="../boost/scope/scope_success.html" title="Class template scope_success">scope_success</a></code>
-          and <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> scope
+          All three of the <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__exit.html" title="Class template scope_exit">scope_exit</a></code>,
+          <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__success.html" title="Class template scope_success">scope_success</a></code>
+          and <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> scope
           guards provided by Boost.Scope support an optional <a class="link" href="scope_guards.html#scope.scope_guards.condition_functions" title="Scope guard condition functions">condition
           function</a> that is used to decide whether the scope guard should invoke
           its wrapped action function. The scope guards defined by the TS do not
@@ -1916,7 +1920,7 @@
           functions, the scope guard usage is equivalent between the two. If custom
           condition functions are used, those can be emulated in TS scope guards
           by embedding the condition function into the action called by <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">scope_exit</span></code>. For example, if the user's
-          code uses error codes as the failure indication with <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code>,
+          code uses error codes as the failure indication with <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code>,
           the equivalent TS code could look like this:
         </p>
 <div class="table">
@@ -2128,7 +2132,7 @@
           Boost.Scope takes a different approach. Since all three scope guards support
           custom condition functions, each of them may invoke its action whether
           or not an exception is propagating through the stack. The notion of "failure"
-          is no longer equivalent to "exception", so even for a <code class="computeroutput"><a class="link" href="../boost/scope/scope_fail.html" title="Class template scope_fail">scope_fail</a></code> scope guard with
+          is no longer equivalent to "exception", so even for a <code class="computeroutput"><a class="link" href="../doxygen/reference/classboost_1_1scope_1_1scope__fail.html" title="Class template scope_fail">scope_fail</a></code> scope guard with
           a custom failure condition it may make sense to allow throwing exceptions.
           Therefore, for all scope guards provided by Boost.Scope, their destructors
           are <code class="computeroutput"><span class="keyword">noexcept</span></code> only if their

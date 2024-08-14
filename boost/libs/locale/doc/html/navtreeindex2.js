@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"group__boundary.html#ga25e193c81052ef1795f1b53b46bc2095":[9,0,16],
 "group__boundary.html#ga2c354f4cc03677b58c97038cd84dc465":[9,0,98],
 "group__boundary.html#ga315e4baac1059256cd9009a765670554":[9,0,103],
 "group__boundary.html#ga363232d255dad62cc163a1dcd8e34144":[9,0,73],
@@ -100,10 +101,14 @@ var NAVTREEINDEX2 =
 "group__boundary.html#gga15de9963ce9bb6037c8525901dfbf641a99aad8b8a5e25baa9f695abe5e574bb6":[9,0,43,1],
 "group__boundary.html#gga15de9963ce9bb6037c8525901dfbf641ae80c964112541d88af9b875dafb6605d":[9,0,43,0],
 "group__codepage.html":[9,7],
-"group__codepage.html#ga2c328980c359d321c058cbba536bdbc7":[9,7,3],
-"group__codepage.html#ga4f6a239391075c448d73705125efa173":[9,7,5],
+"group__codepage.html#ga0ed2b32399e0c4baecbb69881ce92ef6":[9,7,5],
+"group__codepage.html#ga12b4593d61464a6582f43fb08fc6d594":[9,7,8],
+"group__codepage.html#ga2f63f4d34ec0c301c4190ad493b0ba38":[9,7,4],
+"group__codepage.html#ga58d21a9c7423400f4a5b1790dbdb1b4d":[9,7,3],
 "group__codepage.html#ga8e3c5a274f57107ec5745e227c26ba84":[9,7,2],
-"group__codepage.html#gab8cce3d460368e5f1423619df0ca5ecc":[9,7,4],
+"group__codepage.html#gaa31d256548edbdc2cb53d71f81943fdf":[9,7,7],
+"group__codepage.html#gaba3c4b1d6271984b26feac2d8cd0ea6f":[9,7,9],
+"group__codepage.html#gace228aa36220010ff92a4bc4fb7b0619":[9,7,6],
 "group__codepage.html#gga8e3c5a274f57107ec5745e227c26ba84aab08f9ee241c405ef40bd3cedb43b383":[9,7,2,1],
 "group__codepage.html#gga8e3c5a274f57107ec5745e227c26ba84adcdc34a57dd2a3ca917f73c13f18b559":[9,7,2,2],
 "group__codepage.html#gga8e3c5a274f57107ec5745e227c26ba84ae9b554a2955deddf714757788819edf9":[9,7,2,0],
@@ -241,13 +246,8 @@ var NAVTREEINDEX2 =
 "index.html#main_tutorial":[1],
 "index_8hpp_source.html":[12,0,0,0,0,2],
 "info_8hpp_source.html":[12,0,0,0,18],
-"is__supported__char_8hpp_source.html":[12,0,0,0,1,3],
+"is__supported__char_8hpp_source.html":[12,0,0,0,1,4],
 "locale__data_8hpp_source.html":[12,0,0,0,2,0],
 "locale_gen.html":[3,0],
-"locale_gen.html#locale_gen_basics":[3,0,0],
-"locale_gen.html#locale_gen_variant":[3,0,1],
-"locale_gen.html#locale_gen_variant_icu":[3,0,1,1],
-"locale_gen.html#locale_gen_variant_non_icu":[3,0,1,0],
-"locale_information.html":[3,9],
-"localization__backend_8hpp_source.html":[12,0,0,0,19]
+"locale_gen.html#locale_gen_basics":[3,0,0]
 };

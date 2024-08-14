@@ -63,7 +63,7 @@
       pointer</a>
 </h3></div></div></div>
 <p>
-        <code class="computeroutput"><a class="link" href="../boost/interprocess/intrusive_ptr.html" title="Class template intrusive_ptr">boost::interprocess::intrusive_ptr</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1intrusive__ptr.html" title="Class template intrusive_ptr">boost::interprocess::intrusive_ptr</a></code>
         is the generalization of <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive_ptr</span><span class="special">&lt;&gt;</span></code> to allow non-raw pointers as intrusive
         pointer members. As the well-known <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive_ptr</span></code>
         we must specify the pointee type but we also must also specify the pointer
@@ -93,8 +93,6 @@
         a relative pointer type like <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">::</span><span class="identifier">intrusive_ptr</span><span class="special">&lt;</span><span class="identifier">MyClass</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">::</span><span class="identifier">offset_ptr</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;</span>
         <span class="special">&gt;</span></code>
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">intrusive_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
@@ -191,8 +189,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -227,8 +223,6 @@
         the <code class="computeroutput"><span class="identifier">scoped_ptr</span></code> goes out of
         scope.
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">scoped_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
@@ -322,8 +316,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -337,21 +329,21 @@
       </p>
 <p>
         Unlike <a href="http://www.boost.org/libs/smart_ptr/shared_ptr.htm" target="_top">boost::shared_ptr</a>,
-        due to limitations of mapped segments <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">boost::interprocess::shared_ptr</a></code>
+        due to limitations of mapped segments <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">boost::interprocess::shared_ptr</a></code>
         cannot take advantage of virtual functions to maintain the same shared pointer
         type while providing user-defined allocators and deleters. The allocator
         and the deleter are template parameters of the shared pointer.
       </p>
 <p>
-        Since the reference count and other auxiliary data needed by <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code>
+        Since the reference count and other auxiliary data needed by <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>
         must be created also in the managed segment, and the deleter has to delete
         the object from the segment, the user must specify an allocator object and
-        a deleter object when constructing a non-empty instance of <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code>,
+        a deleter object when constructing a non-empty instance of <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>,
         just like <span class="bold"><strong>Boost.Interprocess</strong></span> containers
         need to pass allocators in their constructors.
       </p>
 <p>
-        Here is the declaration of <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code>:
+        Here is the declaration of <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>:
       </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">VoidAllocator</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Deleter</span><span class="special">&gt;</span>
 <span class="keyword">class</span> <span class="identifier">shared_ptr</span><span class="special">;</span>
@@ -367,7 +359,7 @@
             allocators defining <code class="computeroutput"><span class="identifier">pointer</span></code>
             as <code class="computeroutput"><span class="identifier">offset_ptr</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;</span></code>
             will make all internal pointers used by <code class="computeroutput"><span class="identifier">shared_ptr</span></code>
-            to be also relative pointers. See <code class="computeroutput"><a class="link" href="../boost/interprocess/allocator.html" title="Class template allocator">boost::interprocess::allocator</a></code>
+            to be also relative pointers. See <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1allocator.html" title="Class template allocator">boost::interprocess::allocator</a></code>
             for a working allocator.
           </li>
 <li class="listitem">
@@ -375,7 +367,7 @@
             object when the last reference to the object is destroyed. The deleter
             functor will take a pointer to T of the same category as the void pointer
             defined by <code class="computeroutput"><span class="identifier">VoidAllocator</span><span class="special">::</span><span class="identifier">pointer</span></code>.
-            See <code class="computeroutput"><a class="link" href="../boost/interprocess/deleter.html" title="Class template deleter">boost::interprocess::deleter</a></code>
+            See <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1deleter.html" title="Class template deleter">boost::interprocess::deleter</a></code>
             for a generic deleter that erases a object from a managed segment.
           </li>
 </ul></div>
@@ -385,8 +377,6 @@
         to other objects also in shared memory, obtaining the benefits of reference
         counting. Let's see how to create a shared pointer in a managed shared memory:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_shared_memory</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">shared_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">allocators</span><span class="special">/</span><span class="identifier">allocator</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -433,25 +423,23 @@
 <span class="special">}</span>
 </pre>
 <p>
-      </p>
-<p>
-        <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">boost::interprocess::shared_ptr</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">boost::interprocess::shared_ptr</a></code>
         is very flexible and configurable (we can specify the allocator and the deleter,
         for example), but as shown the creation of a shared pointer in managed segments
         need too much typing.
       </p>
 <p>
-        To simplify this usage, <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">boost::interprocess::shared_ptr</a></code>
-        header offers a shared pointer definition helper class (<code class="computeroutput"><a class="link" href="../boost/interprocess/managed_shared_ptr.html" title="Struct template managed_shared_ptr">managed_shared_ptr</a></code>)
-        and a function (<code class="computeroutput"><a class="link" href="../boost/interprocess/make_managed_shar_idm29675.html" title="Function template make_managed_shared_ptr">make_managed_shared_ptr</a></code>)
+        To simplify this usage, <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">boost::interprocess::shared_ptr</a></code>
+        header offers a shared pointer definition helper class (<code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/structboost_1_1interprocess_1_1managed__shared__ptr.html" title="Struct template managed_shared_ptr">managed_shared_ptr</a></code>)
+        and a function (<code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/shared__ptr_8hpp_1a946d9135de9f10bec397e4972c3160ac.html" title="Function template make_managed_shared_ptr">make_managed_shared_ptr</a></code>)
         to easily construct a shared pointer from a type allocated in a managed segment
         with an allocator that will allocate the reference count also in the managed
         segment and a deleter that will erase the object from the segment.
       </p>
 <p>
         These utilities will use a <span class="bold"><strong>Boost.Interprocess</strong></span>
-        allocator (<code class="computeroutput"><a class="link" href="../boost/interprocess/allocator.html" title="Class template allocator">boost::interprocess::allocator</a></code>)
-        and deleter (<code class="computeroutput"><a class="link" href="../boost/interprocess/deleter.html" title="Class template deleter">boost::interprocess::deleter</a></code>)
+        allocator (<code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1allocator.html" title="Class template allocator">boost::interprocess::allocator</a></code>)
+        and deleter (<code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1deleter.html" title="Class template deleter">boost::interprocess::deleter</a></code>)
         to do their job. The definition of the previous shared pointer could be simplified
         to the following:
       </p>
@@ -465,17 +453,15 @@
 </pre>
 <p>
         <span class="bold"><strong>Boost.Interprocess</strong></span> also offers a weak pointer
-        named <code class="computeroutput"><a class="link" href="../boost/interprocess/weak_ptr.html" title="Class template weak_ptr">weak_ptr</a></code>
-        (with its corresponding <code class="computeroutput"><a class="link" href="../boost/interprocess/managed_weak_ptr.html" title="Struct template managed_weak_ptr">managed_weak_ptr</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/interprocess/make_managed_weak_ptr.html" title="Function template make_managed_weak_ptr">make_managed_weak_ptr</a></code>
-        utilities) to implement non-owning observers of an object owned by <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code>.
+        named <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1weak__ptr.html" title="Class template weak_ptr">weak_ptr</a></code>
+        (with its corresponding <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/structboost_1_1interprocess_1_1managed__weak__ptr.html" title="Struct template managed_weak_ptr">managed_weak_ptr</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/weak__ptr_8hpp_1a60fce6fe96124b684d113a427273e57d.html" title="Function template make_managed_weak_ptr">make_managed_weak_ptr</a></code>
+        utilities) to implement non-owning observers of an object owned by <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>.
       </p>
 <p>
-        Now let's see a detailed example of the use of <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code>:
-        and <code class="computeroutput"><a class="link" href="../boost/interprocess/weak_ptr.html" title="Class template weak_ptr">weak_ptr</a></code>
+        Now let's see a detailed example of the use of <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>:
+        and <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1weak__ptr.html" title="Class template weak_ptr">weak_ptr</a></code>
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_mapped_file</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">shared_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">weak_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -590,9 +576,7 @@
 <span class="special">}</span>
 </pre>
 <p>
-      </p>
-<p>
-        In general, using <span class="bold"><strong>Boost.Interprocess</strong></span>' <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code> and <code class="computeroutput"><a class="link" href="../boost/interprocess/weak_ptr.html" title="Class template weak_ptr">weak_ptr</a></code> is very similar
+        In general, using <span class="bold"><strong>Boost.Interprocess</strong></span>' <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1weak__ptr.html" title="Class template weak_ptr">weak_ptr</a></code> is very similar
         to their counterparts <a href="http://www.boost.org/libs/smart_ptr/shared_ptr.htm" target="_top">boost::shared_ptr</a>
         and <a href="http://www.boost.org/libs/smart_ptr/weak_ptr.htm" target="_top">boost::weak_ptr</a>,
         but they need more template parameters and more run-time parameters in their
@@ -600,15 +584,15 @@
       </p>
 <p>
         Just like <a href="http://www.boost.org/libs/smart_ptr/shared_ptr.htm" target="_top">boost::shared_ptr</a>
-        can be stored in a STL container, <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code>
+        can be stored in a STL container, <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>
         can also be stored in <span class="bold"><strong>Boost.Interprocess</strong></span>
         containers.
       </p>
 <p>
-        If a programmer just uses <code class="computeroutput"><a class="link" href="../boost/interprocess/shared_ptr.html" title="Class template shared_ptr">shared_ptr</a></code>
+        If a programmer just uses <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>
         to be able to insert dynamically constructed objects into a container constructed
         in the managed segment, but he does not need to share the ownership of that
-        object with other objects <code class="computeroutput"><a class="link" href="../boost/interprocess/managed_unique_ptr.html" title="Struct template managed_unique_ptr">managed_unique_ptr</a></code>
+        object with other objects <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/structboost_1_1interprocess_1_1managed__unique__ptr.html" title="Struct template managed_unique_ptr">managed_unique_ptr</a></code>
         is a much faster and easier to use alternative.
       </p>
 </div>
@@ -621,7 +605,7 @@
         Unique ownership smart pointers are really useful to free programmers from
         manual resource liberation of non-shared objects. <span class="bold"><strong>Boost.Interprocess</strong></span>'
         <code class="computeroutput"><span class="identifier">unique_ptr</span></code> is much like
-        <code class="computeroutput"><a class="link" href="../boost/interprocess/scoped_ptr.html" title="Class template scoped_ptr">scoped_ptr</a></code> but
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/classboost_1_1interprocess_1_1scoped__ptr.html" title="Class template scoped_ptr">scoped_ptr</a></code> but
         it's <span class="bold"><strong>moveable</strong></span> and can be easily inserted
         in <span class="bold"><strong>Boost.Interprocess</strong></span> containers. Interprocess
         had its own <code class="computeroutput"><span class="identifier">unique_ptr</span></code> implementation
@@ -640,7 +624,7 @@
             D is the deleter that will erase the object type of the object pointed
             by the unique_ptr when the unique pointer is destroyed (and if still
             has the ownership of the object). If the deleter defines an internal
-            <code class="computeroutput"><span class="identifier">pointer</span></code> typedef, <code class="computeroutput"><span class="identifier">unique_ptr</span></code>] will use an internal pointer
+            <code class="computeroutput"><span class="identifier">pointer</span></code> typedef, <code class="computeroutput"><span class="identifier">unique_ptr</span></code> will use an internal pointer
             of the same type. So if <code class="computeroutput"><span class="identifier">D</span><span class="special">::</span><span class="identifier">pointer</span></code>
             is <code class="computeroutput"><span class="identifier">offset_ptr</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
             the unique pointer will store a relative pointer instead of a raw one.
@@ -662,16 +646,14 @@
         <span class="bold"><strong>Boost.Interprocess</strong></span> also offers auxiliary
         types to easily define and construct unique pointers that can be placed in
         managed segments and will correctly delete owned object from the segment:
-        <code class="computeroutput"><a class="link" href="../boost/interprocess/managed_unique_ptr.html" title="Struct template managed_unique_ptr">managed_unique_ptr</a></code>
-        and <code class="computeroutput"><a class="link" href="../boost/interprocess/make_managed_unique_ptr.html" title="Function template make_managed_unique_ptr">make_managed_unique_ptr</a></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/structboost_1_1interprocess_1_1managed__unique__ptr.html" title="Struct template managed_unique_ptr">managed_unique_ptr</a></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/boost_interprocess_header_reference/unique__ptr_8hpp_1a754f4149b2f08b6e2a50327bb6083585.html" title="Function template make_managed_unique_ptr">make_managed_unique_ptr</a></code>
         utilities.
       </p>
 <p>
         Here we see an example of the use <code class="computeroutput"><span class="identifier">unique_ptr</span></code>
         including creating containers of such objects:
       </p>
-<p>
-</p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_mapped_file</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">unique_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">containers</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -785,8 +767,6 @@
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
-<p>
-      </p>
 </div>
 </div>
 <div class="copyright-footer">Copyright © 2005-2015 Ion Gaztanaga<p>
