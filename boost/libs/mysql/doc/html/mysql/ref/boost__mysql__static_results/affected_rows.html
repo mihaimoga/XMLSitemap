@@ -28,10 +28,9 @@
 <a name="mysql.ref.boost__mysql__static_results.affected_rows"></a><a class="link" href="affected_rows.html" title="static_results::affected_rows">static_results::affected_rows</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm85362"></a>
-        </p>
-<p>
-          Returns the number of rows affected by the executed SQL statement.
+          <a class="indexterm" name="id92165"></a>
+Returns the number of rows affected by the executed
+          SQL statement.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__static_results.affected_rows.h0"></a>
@@ -40,10 +39,18 @@
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">I</span> <span class="special">=</span> <span class="number">0</span><span class="special">&gt;</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span>
-<span class="identifier">affected_rows</span><span class="special">()</span> <span class="keyword">const</span><span class="special">;</span>
+<span class="identifier">affected_rows</span><span class="special">()</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__static_results.affected_rows.h1"></a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__static_results.affected_rows.description"></a></span><a class="link" href="affected_rows.html#mysql.ref.boost__mysql__static_results.affected_rows.description">Description</a>
+        </h6>
+<p>
+          Note that this is NOT the number of matched rows. If a row is matched but
+          not affected, it won't be accounted for here.
+        </p>
+<h6>
+<a name="mysql.ref.boost__mysql__static_results.affected_rows.h2"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__static_results.affected_rows.template_parameters"></a></span><a class="link" href="affected_rows.html#mysql.ref.boost__mysql__static_results.affected_rows.template_parameters">Template
           Parameters</a>
         </h6>
@@ -81,7 +88,7 @@
 </tr></tbody>
 </table></div>
 <h6>
-<a name="mysql.ref.boost__mysql__static_results.affected_rows.h2"></a>
+<a name="mysql.ref.boost__mysql__static_results.affected_rows.h3"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__static_results.affected_rows.preconditions"></a></span><a class="link" href="affected_rows.html#mysql.ref.boost__mysql__static_results.affected_rows.preconditions">Preconditions</a>
         </h6>
 <p>
@@ -89,7 +96,7 @@
           <span class="special">==</span> <span class="keyword">true</span></code>
         </p>
 <h6>
-<a name="mysql.ref.boost__mysql__static_results.affected_rows.h3"></a>
+<a name="mysql.ref.boost__mysql__static_results.affected_rows.h4"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__static_results.affected_rows.exception_safety"></a></span><a class="link" href="affected_rows.html#mysql.ref.boost__mysql__static_results.affected_rows.exception_safety">Exception
           safety</a>
         </h6>
@@ -97,14 +104,14 @@
           No-throw guarantee.
         </p>
 <h6>
-<a name="mysql.ref.boost__mysql__static_results.affected_rows.h4"></a>
+<a name="mysql.ref.boost__mysql__static_results.affected_rows.h5"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__static_results.affected_rows.complexity"></a></span><a class="link" href="affected_rows.html#mysql.ref.boost__mysql__static_results.affected_rows.complexity">Complexity</a>
         </h6>
 <p>
           Constant.
         </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

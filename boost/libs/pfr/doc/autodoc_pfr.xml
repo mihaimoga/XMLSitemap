@@ -14,9 +14,11 @@
 <macro id="doxygen.reference_section_of_pfr.config_8hpp_1a54badc94e9b9c63b70761268b26f174f" name="BOOST_PFR_CORE_NAME_PARSING"/>
 <macro id="doxygen.reference_section_of_pfr.config_8hpp_1a962c4e7b5ac0bee28da7d2d3232d438c" name="BOOST_PFR_MAYBE_UNUSED"/>
 <macro id="doxygen.reference_section_of_pfr.config_8hpp_1a74ed49cd074a1d75a8a2509048b38959" name="BOOST_PFR_ENABLED"/>
+<macro id="doxygen.reference_section_of_pfr.config_8hpp_1a3c7cd5cfc12f1ff4e8460fb942c3f149" name="BOOST_PFR_BEGIN_MODULE_EXPORT"/>
+<macro id="doxygen.reference_section_of_pfr.config_8hpp_1a74d5e4dd907704001b59aaff1f99425b" name="BOOST_PFR_END_MODULE_EXPORT"/>
 </header>
 <header id="doxygen.reference_section_of_pfr.core_8hpp" name="boost/pfr/core.hpp">
-<para>Contains all the basic tuple-like interfaces  <link linkend="boost.pfr.get"> <link linkend="doxygen.reference_section_of_pfr.core_8hpp_1a63c9163742578c204bb51632f4bb5abd">boost::pfr::get</link> </link>,  <link linkend="boost.pfr.tuple_size"> <link linkend="doxygen.reference_section_of_pfr.tuple__size_8hpp_1af7496cad034935dab8fa6ba5c0fdf5de">boost::pfr::tuple_size</link> </link>,  <link linkend="boost.pfr.tuple_element_t"> <link linkend="doxygen.reference_section_of_pfr.core_8hpp_1ac57b9aa86e4209be8b04b605a24d6397">boost::pfr::tuple_element_t</link> </link>, and others.</para><para><emphasis role="bold">Synopsis:</emphasis> </para><namespace name="boost">
+<para>Contains all the basic tuple-like interfaces  <link linkend="boost.pfr.get"> <link linkend="doxygen.reference_section_of_pfr.core_8hpp_1a07b17ed2eaa9115346f5b14899ec53e4">boost::pfr::get</link> </link>,  <link linkend="boost.pfr.tuple_size"> <link linkend="doxygen.reference_section_of_pfr.tuple__size_8hpp_1af7496cad034935dab8fa6ba5c0fdf5de">boost::pfr::tuple_size</link> </link>,  <link linkend="boost.pfr.tuple_element_t"> <link linkend="doxygen.reference_section_of_pfr.core_8hpp_1ac57b9aa86e4209be8b04b605a24d6397">boost::pfr::tuple_element_t</link> </link>, and others.</para><para><emphasis role="bold">Synopsis:</emphasis> </para><namespace name="boost">
 <namespace name="pfr">
 <typedef id="doxygen.reference_section_of_pfr.core_8hpp_1ad319da2b804143549e1fac282e613215" name="tuple_element"><purpose><computeroutput>tuple_element</computeroutput> has a member typedef <computeroutput>type</computeroutput> that returns the type of a field with index I in  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> T. </purpose><description><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">std::vector&lt; boost::pfr::tuple_element&lt;0, my_structure&gt;::type &gt; v;
 </programlisting> </para></description><type><emphasis>unspecified</emphasis></type></typedef>
@@ -47,7 +49,8 @@
 
 
 
-<function id="doxygen.reference_section_of_pfr.core_8hpp_1a63c9163742578c204bb51632f4bb5abd" name="get"><type>constexpr decltype(auto)</type><template>
+
+<function id="doxygen.reference_section_of_pfr.core_8hpp_1a07b17ed2eaa9115346f5b14899ec53e4" name="get"><type>BOOST_PFR_BEGIN_MODULE_EXPORT constexpr decltype(auto)</type><template>
           <template-nontype-parameter name="I"><type>std::size_t</type></template-nontype-parameter>
           <template-type-parameter name="T"/>
         </template><parameter name="val"><paramtype>const T &amp;</paramtype></parameter><purpose>Returns reference or const reference to a field with index <computeroutput>I</computeroutput> in  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> <computeroutput>val</computeroutput>. Overload taking the type <computeroutput>U</computeroutput> returns reference or const reference to a field with provided type <computeroutput>U</computeroutput> in  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> <computeroutput>val</computeroutput> if there's only one field of such type in <computeroutput>val</computeroutput>. </purpose><description><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct { int i, short s; };
@@ -146,7 +149,7 @@ auto [p, s] = f();
 </namespace>
 </header>
 <header id="doxygen.reference_section_of_pfr.core__name_8hpp" name="boost/pfr/core_name.hpp">
-<para>Contains functions  <link linkend="boost.pfr.get_name"> <link linkend="doxygen.reference_section_of_pfr.core__name_8hpp_1a91192c31359dec26299af54b05566d3e">boost::pfr::get_name</link> </link> and  <link linkend="boost.pfr.names_as_array"> <link linkend="doxygen.reference_section_of_pfr.core__name_8hpp_1adefd2900157dc0c909a5df8a5a0e18bc">boost::pfr::names_as_array</link> </link> to know which names each field of any  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> has.</para><para><emphasis role="bold">See</emphasis> <emphasis role="bold">Also</emphasis> :  <link linkend="boost_pfr.tutorial.reflection_of_field_name"> 'Reflection of field names'  </link> for details.</para><para><emphasis role="bold">Synopsis:</emphasis> </para><namespace name="boost">
+<para>Contains functions  <link linkend="boost.pfr.get_name"> <link linkend="doxygen.reference_section_of_pfr.core__name_8hpp_1ad820b865b5817b15c21faca3f470e511">boost::pfr::get_name</link> </link> and  <link linkend="boost.pfr.names_as_array"> <link linkend="doxygen.reference_section_of_pfr.core__name_8hpp_1adefd2900157dc0c909a5df8a5a0e18bc">boost::pfr::names_as_array</link> </link> to know which names each field of any  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> has.</para><para><emphasis role="bold">See</emphasis> <emphasis role="bold">Also</emphasis> :  <link linkend="boost_pfr.tutorial.reflection_of_field_name"> 'Reflection of field names'  </link> for details.</para><para><emphasis role="bold">Synopsis:</emphasis> </para><namespace name="boost">
 <namespace name="pfr">
 
 
@@ -171,7 +174,7 @@ auto [p, s] = f();
 
 
 
-<function id="doxygen.reference_section_of_pfr.core__name_8hpp_1a91192c31359dec26299af54b05566d3e" name="get_name"><type>constexpr std::string_view</type><template>
+<function id="doxygen.reference_section_of_pfr.core__name_8hpp_1ad820b865b5817b15c21faca3f470e511" name="get_name"><type>BOOST_PFR_BEGIN_MODULE_EXPORT constexpr std::string_view</type><template>
           <template-nontype-parameter name="I"><type>std::size_t</type></template-nontype-parameter>
           <template-type-parameter name="T"/>
         </template><purpose>Returns name of a field with index <computeroutput>I</computeroutput> in  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> <computeroutput>T</computeroutput>. </purpose><description><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct { int i, short s; };
@@ -184,6 +187,20 @@ assert(boost::pfr::get_name&lt;1, my_struct&gt;() == "s");
         </template><purpose>Creates a <computeroutput>std::array</computeroutput> from names of fields of an  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> <computeroutput>T</computeroutput>. </purpose><description><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct { int i, short s; };
 std::array&lt;std::string_view, 2&gt; a = boost::pfr::names_as_array&lt;my_struct&gt;();
 assert(a[0] == "i");
+</programlisting> </para></description></function>
+<function id="doxygen.reference_section_of_pfr.core__name_8hpp_1a8c6c718187b9f6e884e6fc9f53c5d7e6" name="for_each_field_with_name"><type>constexpr void</type><template>
+          <template-type-parameter name="T"/>
+          <template-type-parameter name="F"/>
+        </template><parameter name="value"><paramtype>T &amp;&amp;</paramtype><description><para>To each field of this variable will be the <computeroutput>func</computeroutput> applied.</para></description></parameter><parameter name="func"><paramtype>F &amp;&amp;</paramtype><description><para>must have one of the following signatures:<itemizedlist>
+<listitem><para>any_return_type func(std::string_view name, U&amp;&amp; field) // field of value is perfect forwarded to function</para>
+</listitem><listitem><para>any_return_type func(std::string_view name, U&amp;&amp; field, std::size_t i)</para>
+</listitem><listitem><para>any_return_type func(std::string_view name, U&amp;&amp; value, I i) // Here I is an <computeroutput>std::integral_constant&lt;size_t, field_index&gt;</computeroutput></para>
+</listitem></itemizedlist>
+</para></description></parameter><description><para>Calls <computeroutput>func</computeroutput> for each field with its name of a <computeroutput>value</computeroutput></para><para>
+<emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct Toto { int a; char c; };
+Toto t {5, 'c'};
+auto print = [](std::string_view name, const auto&amp; value){ std::cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; " Value: " &lt;&lt; value &lt;&lt; std::endl; };
+<link linkend="doxygen.reference_section_of_pfr.core__name_8hpp_1a8c6c718187b9f6e884e6fc9f53c5d7e6">for_each_field_with_name</link>(t, print);
 </programlisting> </para></description></function>
 
 
@@ -256,7 +273,7 @@ std::unordered_set&lt;
 <namespace name="pfr">
 <struct id="doxygen.reference_section_of_pfr.structboost_1_1pfr_1_1equal__to" name="equal_to"><template>
       <template-type-parameter name="T"><default>void</default></template-type-parameter>
-    </template><purpose>std::equal_to like comparator that returns  <link linkend="boost.pfr.eq"> <link linkend="doxygen.reference_section_of_pfr.ops_8hpp_1aa543ccb9ec6da2cd866988e786884bba">boost::pfr::eq</link> </link>(x, y) </purpose><typedef id="doxygen.reference_section_of_pfr.structboost_1_1pfr_1_1equal__to_1aaabe1dc7fde38ae82a7d8d39a5d8485e" name="is_transparent"><purpose>This typedef exists only if T <emphasis role="bold">is</emphasis> void. </purpose><type>std::true_type</type></typedef>
+    </template><purpose>std::equal_to like comparator that returns  <link linkend="boost.pfr.eq"> <link linkend="doxygen.reference_section_of_pfr.ops_8hpp_1a8d231fd562e78a07a9942d6b55fa9e16">boost::pfr::eq</link> </link>(x, y) </purpose><typedef id="doxygen.reference_section_of_pfr.structboost_1_1pfr_1_1equal__to_1aaabe1dc7fde38ae82a7d8d39a5d8485e" name="is_transparent"><purpose>This typedef exists only if T <emphasis role="bold">is</emphasis> void. </purpose><type>std::true_type</type></typedef>
 <method-group name="public member functions">
 <method id="doxygen.reference_section_of_pfr.structboost_1_1pfr_1_1equal__to_1abfed1f444cc5b0549bd97d2f9225a526" name="operator()" cv="const"><type>bool</type><parameter name="x"><paramtype>const T &amp;</paramtype></parameter><parameter name="y"><paramtype>const T &amp;</paramtype></parameter><description><para>
 </para></description><returns><para><emphasis role="bold">true</emphasis> if each field of <emphasis role="bold">x</emphasis> equals the field with same index of <emphasis role="bold">y</emphasis>. </para>
@@ -385,18 +402,19 @@ std::unordered_set&lt;
 
 
 
+
 </namespace>
 </namespace>
 </header>
 <header id="doxygen.reference_section_of_pfr.io_8hpp" name="boost/pfr/io.hpp">
-<para>Contains IO stream manipulator  <link linkend="boost.pfr.io"> <link linkend="doxygen.reference_section_of_pfr.io_8hpp_1af4a08e54d8910ff9c751470addfc6248">boost::pfr::io</link> </link> for types. If type is streamable using its own operator or its conversion operator, then the types operator is used.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">#include &lt;<link linkend="doxygen.reference_section_of_pfr.io_8hpp">boost/pfr/io.hpp</link>&gt;
+<para>Contains IO stream manipulator  <link linkend="boost.pfr.io"> <link linkend="doxygen.reference_section_of_pfr.io_8hpp_1adcb0ad73dc25ac01d68cf0e7fb98d506">boost::pfr::io</link> </link> for types. If type is streamable using its own operator or its conversion operator, then the types operator is used.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">#include &lt;<link linkend="doxygen.reference_section_of_pfr.io_8hpp">boost/pfr/io.hpp</link>&gt;
 struct comparable_struct {      // No operators defined for that structure
     int i; short s; char data[7]; bool bl; int a,b,c,d,e,f;
 };
 // ...
 
 comparable_struct s1 {0, 1, "Hello", false, 6,7,8,9,10,11};
-std::cout &lt;&lt; <link linkend="doxygen.reference_section_of_pfr.io_8hpp_1af4a08e54d8910ff9c751470addfc6248">boost::pfr::io</link>(s1);  // Outputs: {0, 1, H, e, l, l, o, , , 0, 6, 7, 8, 9, 10, 11}
+std::cout &lt;&lt; <link linkend="doxygen.reference_section_of_pfr.io_8hpp_1adcb0ad73dc25ac01d68cf0e7fb98d506">boost::pfr::io</link>(s1);  // Outputs: {0, 1, H, e, l, l, o, , , 0, 6, 7, 8, 9, 10, 11}
 </programlisting></para><para><emphasis role="bold">See</emphasis> <emphasis role="bold">Also</emphasis> :  <link linkend="boost_pfr.tutorial.three_ways_of_getting_operators"> 'Three ways of getting operators'  </link> for other ways to define operators and more details.</para><para><emphasis role="bold">Synopsis:</emphasis> </para><namespace name="boost">
 <namespace name="pfr">
 
@@ -421,9 +439,9 @@ std::cout &lt;&lt; <link linkend="doxygen.reference_section_of_pfr.io_8hpp_1af4a
 
 
 
-<function id="doxygen.reference_section_of_pfr.io_8hpp_1af4a08e54d8910ff9c751470addfc6248" name="io"><type>auto</type><template>
+<function id="doxygen.reference_section_of_pfr.io_8hpp_1adcb0ad73dc25ac01d68cf0e7fb98d506" name="io"><type>BOOST_PFR_BEGIN_MODULE_EXPORT auto</type><template>
           <template-type-parameter name="T"/>
-        </template><parameter name="value"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>IO manipulator to read/write  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> <computeroutput>value</computeroutput> using its IO stream operators or using  <link linkend="boost.pfr.io_fields"> <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a704fe5a251cc1e58e81560de0cf17648">boost::pfr::io_fields</link> </link> if operators are not available.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct { int i; short s; };
+        </template><parameter name="value"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>IO manipulator to read/write  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> <computeroutput>value</computeroutput> using its IO stream operators or using  <link linkend="boost.pfr.io_fields"> <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a443c5a5adc536e5a94c732f76c673d20">boost::pfr::io_fields</link> </link> if operators are not available.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct { int i; short s; };
 my_struct x;
 std::stringstream ss;
 ss &lt;&lt; "{ 12, 13 }";
@@ -448,21 +466,22 @@ assert(x.s == 13);
 
 
 
+
 </namespace>
 </namespace>
 </header>
 <header id="doxygen.reference_section_of_pfr.io__fields_8hpp" name="boost/pfr/io_fields.hpp">
-<para>Contains IO manipulator  <link linkend="boost.pfr.io_fields"> <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a704fe5a251cc1e58e81560de0cf17648">boost::pfr::io_fields</link> </link> to read/write any  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> field-by-field.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct {
+<para>Contains IO manipulator  <link linkend="boost.pfr.io_fields"> <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a443c5a5adc536e5a94c732f76c673d20">boost::pfr::io_fields</link> </link> to read/write any  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> field-by-field.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct {
     int i;
     short s;
 };
 
 std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const my_struct&amp; x) {
-    return os &lt;&lt; <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a704fe5a251cc1e58e81560de0cf17648">boost::pfr::io_fields</link>(x);  // Equivalent to: os &lt;&lt; "{ " &lt;&lt; x.i &lt;&lt; " ," &lt;&lt;  x.s &lt;&lt; " }"
+    return os &lt;&lt; <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a443c5a5adc536e5a94c732f76c673d20">boost::pfr::io_fields</link>(x);  // Equivalent to: os &lt;&lt; "{ " &lt;&lt; x.i &lt;&lt; " ," &lt;&lt;  x.s &lt;&lt; " }"
 }
 
 std::istream&amp; operator&gt;&gt;(std::istream&amp; is, my_struct&amp; x) {
-    return is &gt;&gt; <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a704fe5a251cc1e58e81560de0cf17648">boost::pfr::io_fields</link>(x);  // Equivalent to: is &gt;&gt; "{ " &gt;&gt; x.i &gt;&gt; " ," &gt;&gt;  x.s &gt;&gt; " }"
+    return is &gt;&gt; <link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a443c5a5adc536e5a94c732f76c673d20">boost::pfr::io_fields</link>(x);  // Equivalent to: is &gt;&gt; "{ " &gt;&gt; x.i &gt;&gt; " ," &gt;&gt;  x.s &gt;&gt; " }"
 }
 </programlisting></para><para><emphasis role="bold">See</emphasis> <emphasis role="bold">Also</emphasis> :  <link linkend="boost_pfr.tutorial.three_ways_of_getting_operators"> 'Three ways of getting operators'  </link> for other ways to define operators and more details.</para><para><emphasis role="bold">Synopsis:</emphasis> </para><namespace name="boost">
 <namespace name="pfr">
@@ -487,7 +506,7 @@ std::istream&amp; operator&gt;&gt;(std::istream&amp; is, my_struct&amp; x) {
 
 
 
-<function id="doxygen.reference_section_of_pfr.io__fields_8hpp_1a704fe5a251cc1e58e81560de0cf17648" name="io_fields"><type>auto</type><template>
+<function id="doxygen.reference_section_of_pfr.io__fields_8hpp_1a443c5a5adc536e5a94c732f76c673d20" name="io_fields"><type>BOOST_PFR_BEGIN_MODULE_EXPORT auto</type><template>
           <template-type-parameter name="T"/>
         </template><parameter name="value"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>IO manipulator to read/write  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link> <computeroutput>value</computeroutput> field-by-field.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">struct my_struct {
     int i;
@@ -501,7 +520,8 @@ std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const my_struct&amp; x)
 std::istream&amp; operator&gt;&gt;(std::istream&amp; is, my_struct&amp; x) {
     return is &gt;&gt; boost::pfr::io_fields(x);  // Equivalent to: is &gt;&gt; "{ " &gt;&gt; x.i &gt;&gt; " ," &gt;&gt;  x.s &gt;&gt; " }"
 }
-</programlisting></para><para>Input and output streaming operators for <computeroutput><link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a704fe5a251cc1e58e81560de0cf17648">boost::pfr::io_fields</link></computeroutput> are symmetric, meaning that you get the original value by streaming it and reading back if each fields streaming operator is symmetric.</para><para><emphasis role="bold">See</emphasis> <emphasis role="bold">Also</emphasis> :  <link linkend="boost_pfr.tutorial.custom_printing_of_aggregates"> 'Custom printing of aggregates'  </link> for info on how to implement your own manipulator with custom format. </para></description></function>
+</programlisting></para><para>Input and output streaming operators for <computeroutput><link linkend="doxygen.reference_section_of_pfr.io__fields_8hpp_1a443c5a5adc536e5a94c732f76c673d20">boost::pfr::io_fields</link></computeroutput> are symmetric, meaning that you get the original value by streaming it and reading back if each fields streaming operator is symmetric.</para><para><emphasis role="bold">See</emphasis> <emphasis role="bold">Also</emphasis> :  <link linkend="boost_pfr.tutorial.custom_printing_of_aggregates"> 'Custom printing of aggregates'  </link> for info on how to implement your own manipulator with custom format. </para></description></function>
+
 
 
 
@@ -542,10 +562,10 @@ assert(boost::pfr::lt(s1, s2));
 
 
 
-<function id="doxygen.reference_section_of_pfr.ops_8hpp_1aa543ccb9ec6da2cd866988e786884bba" name="eq"><type><emphasis>unspecified</emphasis></type><template>
+<function id="doxygen.reference_section_of_pfr.ops_8hpp_1a8d231fd562e78a07a9942d6b55fa9e16" name="eq"><type><emphasis>unspecified</emphasis></type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="U"/>
-        </template><parameter name="lhs"><paramtype>const T &amp;</paramtype></parameter><parameter name="rhs"><paramtype>const U &amp;</paramtype></parameter><purpose>Compares lhs and rhs for equality using their own comparison and conversion operators; if no operators available returns  <link linkend="boost.pfr.eq_fields"> <link linkend="doxygen.reference_section_of_pfr.ops__fields_8hpp_1a30edb57037dab6cba70cdbfb6a127947">boost::pfr::eq_fields</link> </link>(lhs, rhs). </purpose><description><para>
+        </template><parameter name="lhs"><paramtype>const T &amp;</paramtype></parameter><parameter name="rhs"><paramtype>const U &amp;</paramtype></parameter><purpose>Compares lhs and rhs for equality using their own comparison and conversion operators; if no operators available returns  <link linkend="boost.pfr.eq_fields"> <link linkend="doxygen.reference_section_of_pfr.ops__fields_8hpp_1a0296971dd9810d022b3b8ec7f43cbaed">boost::pfr::eq_fields</link> </link>(lhs, rhs). </purpose><description><para>
 </para></description><returns><para>true if lhs is equal to rhs; false otherwise </para>
 </returns></function>
 <function id="doxygen.reference_section_of_pfr.ops_8hpp_1a0feb96c8d5ea39837216b08b945977cb" name="eq"><type><emphasis>unspecified</emphasis></type><template>
@@ -629,6 +649,7 @@ assert(boost::pfr::lt(s1, s2));
 
 
 
+
 </namespace>
 </namespace>
 </header>
@@ -644,7 +665,7 @@ comparable_struct s2 {0, 2};
 assert(boost::pfr::lt_fields(s1, s2));
 </programlisting></para><para><emphasis role="bold">See</emphasis> <emphasis role="bold">Also</emphasis> :  <link linkend="boost_pfr.tutorial.three_ways_of_getting_operators"> 'Three ways of getting operators'  </link> for other ways to define operators and more details.</para><para><emphasis role="bold">Synopsis:</emphasis> </para><namespace name="boost">
 <namespace name="pfr">
-<function id="doxygen.reference_section_of_pfr.ops__fields_8hpp_1a30edb57037dab6cba70cdbfb6a127947" name="eq_fields"><type>constexpr bool</type><template>
+<function id="doxygen.reference_section_of_pfr.ops__fields_8hpp_1a0296971dd9810d022b3b8ec7f43cbaed" name="eq_fields"><type>BOOST_PFR_BEGIN_MODULE_EXPORT constexpr bool</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="U"/>
         </template><parameter name="lhs"><paramtype>const T &amp;</paramtype></parameter><parameter name="rhs"><paramtype>const U &amp;</paramtype></parameter><description><para>Does a field-by-field equality comparison.</para><para>
@@ -685,6 +706,7 @@ assert(boost::pfr::lt_fields(s1, s2));
         </template><parameter name="x"><paramtype>const T &amp;</paramtype></parameter><description><para>Does a field-by-field hashing.</para><para>
 </para></description><returns><para>combined hash of all the fields </para>
 </returns></function>
+
 
 
 
@@ -784,12 +806,14 @@ assert(boost::pfr::lt_fields(s1, s2));
 
 
 
+
 </namespace>
 </namespace>
 </header>
 <header id="doxygen.reference_section_of_pfr.traits__fwd_8hpp" name="boost/pfr/traits_fwd.hpp">
 <namespace name="boost">
 <namespace name="pfr">
+
 
 
 
@@ -840,6 +864,7 @@ assert(boost::pfr::lt_fields(s1, s2));
 </programlisting> </para></description><type><emphasis>unspecified</emphasis></type></typedef>
 <data-member id="doxygen.reference_section_of_pfr.tuple__size_8hpp_1a2ab10e2a62a6ddfb579bdd45399c0b2d" name="tuple_size_v"><type>constexpr std::size_t</type><description><para><computeroutput>tuple_size_v</computeroutput> is a template variable that contains fields count in a T and works for any T that satisfies  <link linkend="boost_pfr.limitations_and_configuration"> simple aggregate  </link>.</para><para><emphasis role="bold">Example:</emphasis> <programlisting language="c++">std::array&lt;int, boost::pfr::tuple_size_v&lt;my_structure&gt; &gt; a;
 </programlisting> </para></description></data-member>
+
 
 
 

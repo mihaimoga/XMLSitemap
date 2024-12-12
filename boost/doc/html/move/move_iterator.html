@@ -47,8 +47,17 @@
       with move iterators to replace copying with moving. For example:
     </p>
 <pre class="programlisting"><span class="comment">//header file "movable.hpp"</span>
+
+<span class="comment">//This devinition should only include a single, minimal move header</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">core</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">move</span><span class="special">/</span><span class="identifier">traits</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="comment">//Forward declaration of </span>
+<span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">{</span>
+
+<span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">T</span><span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">has_nothrow_move</span><span class="special">;</span>
+
+<span class="special">}</span>  <span class="comment">//namespace boost{</span>
 
 <span class="comment">//A movable class</span>
 <span class="keyword">class</span> <span class="identifier">movable</span>

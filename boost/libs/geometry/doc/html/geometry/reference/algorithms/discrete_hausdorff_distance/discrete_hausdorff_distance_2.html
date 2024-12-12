@@ -28,13 +28,19 @@
 <a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2"></a><a class="link" href="discrete_hausdorff_distance_2.html" title="discrete_hausdorff_distance">discrete_hausdorff_distance</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm37561"></a>
-Calculate discrete Hausdorff distance between two geometries (currently
-            works for LineString-LineString, MultiPoint-MultiPoint, Point-MultiPoint,
-            MultiLineString-MultiLineString).
+            <a class="indexterm" name="id39180"></a>
+Calculate the discrete Hausdorff distance between two geometries.
           </p>
 <h6>
 <a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h0"></a>
+            <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.description"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.description">Description</a>
+          </h6>
+<p>
+            The free function <code class="literal">discrete_hausdorff_distance</code> calculates
+            the discrete Hausdorff distance between two geometries.
+          </p>
+<h6>
+<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h1"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.synopsis"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.synopsis">Synopsis</a>
           </h6>
 <p>
@@ -44,7 +50,7 @@ Calculate discrete Hausdorff distance between two geometries (currently
 <p>
           </p>
 <h6>
-<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h1"></a>
+<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h2"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.parameters"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.parameters">Parameters</a>
           </h6>
 <div class="informaltable"><table class="table">
@@ -95,7 +101,7 @@ Calculate discrete Hausdorff distance between two geometries (currently
                   </td>
 <td>
                     <p>
-                      Input geometry
+                      A model of the specified concept
                     </p>
                   </td>
 </tr>
@@ -117,14 +123,14 @@ Calculate discrete Hausdorff distance between two geometries (currently
                   </td>
 <td>
                     <p>
-                      Input geometry
+                      A model of the specified concept
                     </p>
                   </td>
 </tr>
 </tbody>
 </table></div>
 <h6>
-<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h2"></a>
+<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h3"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.header"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.header">Header</a>
           </h6>
 <p>
@@ -140,12 +146,97 @@ Calculate discrete Hausdorff distance between two geometries (currently
             <code class="computeroutput"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">algorithms</span><span class="special">/</span><span class="identifier">discrete_hausdorff_distance</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
           </p>
 <h6>
-<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h3"></a>
-            <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.behavior"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.behavior">Behavior</a>
+<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h4"></a>
+            <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.conformance"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.conformance">Conformance</a>
           </h6>
 <p>
-            The algorithm calculate discrete hausdorff distance between two geometries.
+            The function <code class="literal">discrete_hausdorff_distance</code> is not defined
+            by OGC.
           </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+              PostGIS contains an algorithm ST_HausdorffDistance with similar functionality.
+              See the <a href="https://postgis.net/docs/ST_HausdorffDistance.html" target="_top">PostGIS
+              documentation</a>.
+            </p></td></tr>
+</table></div>
+<h6>
+<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h5"></a>
+            <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.supported_geometries"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.supported_geometries">Supported
+            geometries</a>
+          </h6>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                    <p>
+                      Geometries
+                    </p>
+                  </th>
+<th>
+                    <p>
+                      Status
+                    </p>
+                  </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                    <p>
+                      Linestring-Linestring
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      <span class="inlinemediaobject"><img src="../../../../img/ok.png" alt="ok"></span>
+                    </p>
+                  </td>
+</tr>
+<tr>
+<td>
+                    <p>
+                      MultiPoint-MultiPoint
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      <span class="inlinemediaobject"><img src="../../../../img/ok.png" alt="ok"></span>
+                    </p>
+                  </td>
+</tr>
+<tr>
+<td>
+                    <p>
+                      Point-MultiPoint
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      <span class="inlinemediaobject"><img src="../../../../img/ok.png" alt="ok"></span>
+                    </p>
+                  </td>
+</tr>
+<tr>
+<td>
+                    <p>
+                      MultiLineString-MultiLinestring
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      <span class="inlinemediaobject"><img src="../../../../img/ok.png" alt="ok"></span>
+                    </p>
+                  </td>
+</tr>
+</tbody>
+</table></div>
 <div class="note"><table border="0" summary="Note">
 <tr>
 <td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../../../../doc/src/images/note.png"></td>
@@ -158,7 +249,7 @@ Calculate discrete Hausdorff distance between two geometries (currently
             </p></td></tr>
 </table></div>
 <h6>
-<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h4"></a>
+<a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.h6"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.example"></a></span><a class="link" href="discrete_hausdorff_distance_2.html#geometry.reference.algorithms.discrete_hausdorff_distance.discrete_hausdorff_distance_2.example">Example</a>
           </h6>
 <p>
@@ -175,8 +266,8 @@ Calculate discrete Hausdorff distance between two geometries (currently
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">point_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;</span> <span class="identifier">linestring_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">linestring_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;;</span>
 
     <span class="identifier">linestring_type</span> <span class="identifier">ls1</span><span class="special">,</span> <span class="identifier">ls2</span><span class="special">;</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">read_wkt</span><span class="special">(</span><span class="string">"LINESTRING(0 0,1 1,1 2,2 1,2 2)"</span><span class="special">,</span> <span class="identifier">ls1</span><span class="special">);</span>
@@ -197,8 +288,8 @@ Calculate discrete Hausdorff distance between two geometries (currently
 <pre class="programlisting">Discrete Hausdorff Distance: 1.0
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

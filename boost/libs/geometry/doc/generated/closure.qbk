@@ -21,6 +21,7 @@ Metafunction defining [*value] as the closure (clockwise, counterclockwise) of t
 [heading Synopsis]
 ``template<typename Geometry>
 struct closure
+      : public std::integral_constant< closure_selector, core_dispatch::closure< tag_t< Geometry >, util::remove_cptrref_t< Geometry > >::value >
 {
   // ...
 };

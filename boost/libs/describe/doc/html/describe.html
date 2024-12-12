@@ -1924,11 +1924,27 @@ to all annotated classes also defined in <code>app</code>.</p>
 a universal conversion is not suitable, so the overload is
 disabled in this case using <code>std::enable_if_t</code>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Since release 1.81.0, Boost.JSON provides its
+own, built-in, support for described classes. Consequently,
+when using Boost 1.81.0 or later, you don&#8217;t need the below
+<code>tag_invoke</code> function.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;boost/describe.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/mp11.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/json.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;boost/version.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
@@ -1936,6 +1952,8 @@ disabled in this case using <code>std::enable_if_t</code>.</p>
 <span class="k">namespace</span> <span class="n">app</span>
 <span class="p">{</span>
 
+<span class="cp">#if BOOST_VERSION &lt; 108100
+</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span>
     <span class="k">class</span> <span class="nc">D1</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span>
         <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_public</span> <span class="o">|</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_protected</span><span class="p">&gt;,</span>
@@ -1953,6 +1971,8 @@ disabled in this case using <code>std::enable_if_t</code>.</p>
     <span class="p">});</span>
 <span class="p">}</span>
 
+<span class="cp">#endif
+</span>
 <span class="k">struct</span> <span class="nc">A</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
@@ -1997,16 +2017,34 @@ disabled in this case using <code>std::enable_if_t</code>.</p>
 a <code>tag_invoke</code> overload that converts a <code>boost::json::value</code> to
 an annotated struct.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Since release 1.81.0, Boost.JSON provides its
+own, built-in, support for described classes. Consequently,
+when using Boost 1.81.0 or later, you don&#8217;t need the below
+<code>tag_invoke</code> function.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;boost/describe.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/mp11.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/json.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;boost/version.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp">
 </span>
 <span class="k">namespace</span> <span class="n">app</span>
 <span class="p">{</span>
 
+<span class="cp">#if BOOST_VERSION &lt; 108100
+</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="kt">void</span> <span class="n">extract</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">object</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">obj</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="n">T</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_to</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">obj</span><span class="p">.</span><span class="n">at</span><span class="p">(</span> <span class="n">name</span> <span class="p">)</span> <span class="p">);</span>
@@ -2033,6 +2071,8 @@ an annotated struct.</p>
     <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="cp">#endif
+</span>
 <span class="k">struct</span> <span class="nc">A</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
@@ -3621,7 +3661,7 @@ the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License, Versi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-24 04:36:49 UTC
+Last updated 2024-12-05 00:53:12 UTC
 </div>
 </div>
 <style>

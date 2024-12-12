@@ -28,7 +28,7 @@
 <a name="geometry.reference.algorithms.clear"></a><a class="link" href="clear.html" title="clear">clear</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="idm27392"></a>
+          <a class="indexterm" name="id28963"></a>
 Clears a linestring, ring or polygon (exterior+interiors) or multi*.
         </p>
 <h6>
@@ -437,28 +437,21 @@ Clears a linestring, ring or polygon (exterior+interiors) or multi*.
 
 <span class="identifier">BOOST_GEOMETRY_REGISTER_BOOST_TUPLE_CS</span><span class="special">(</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">cartesian</span><span class="special">)</span>
 
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">tuple_list_of</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">float</span><span class="special">,</span> <span class="keyword">float</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">polygon</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">ring</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">ring</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;;</span>
 
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">float</span><span class="special">,</span> <span class="keyword">float</span><span class="special">&gt;</span> <span class="identifier">point</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span> <span class="identifier">polygon</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">ring</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span> <span class="identifier">ring</span><span class="special">;</span>
-
-    <span class="identifier">polygon</span> <span class="identifier">poly</span><span class="special">;</span>
-
-    <span class="comment">// Fill the polygon (using its own methods + Boost.Assign)</span>
-    <span class="identifier">poly</span><span class="special">.</span><span class="identifier">outer</span><span class="special">()</span> <span class="special">=</span> <span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">9</span><span class="special">)(</span><span class="number">10</span><span class="special">,</span> <span class="number">10</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">);</span>
-    <span class="identifier">poly</span><span class="special">.</span><span class="identifier">inners</span><span class="special">().</span><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">)(</span><span class="number">4</span><span class="special">,</span> <span class="number">6</span><span class="special">)(</span><span class="number">2</span><span class="special">,</span> <span class="number">8</span><span class="special">)(</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">));</span>
+    <span class="comment">// Create a square as exterior ring, with a triangle as interior ring</span>
+    <span class="identifier">polygon</span> <span class="identifier">poly</span><span class="special">{{{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">10</span><span class="special">},</span> <span class="special">{</span><span class="number">10</span><span class="special">,</span> <span class="number">10</span><span class="special">},</span> <span class="special">{</span><span class="number">10</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">}},</span> <span class="special">{{{</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">},</span> <span class="special">{</span><span class="number">8</span><span class="special">,</span> <span class="number">2</span><span class="special">},</span> <span class="special">{</span><span class="number">4</span><span class="special">,</span> <span class="number">6</span><span class="special">},</span> <span class="special">{</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">}}}};</span>
 
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">poly</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">clear</span><span class="special">(</span><span class="identifier">poly</span><span class="special">);</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">poly</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 
-    <span class="comment">// Create a ring using Boost.Assign</span>
-    <span class="identifier">ring</span> <span class="identifier">r</span> <span class="special">=</span> <span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">9</span><span class="special">)(</span><span class="number">8</span><span class="special">,</span> <span class="number">8</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">);</span>
+    <span class="comment">// Create a triangle</span>
+    <span class="identifier">ring</span> <span class="identifier">r</span><span class="special">{{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">9</span><span class="special">},</span> <span class="special">{</span><span class="number">8</span><span class="special">,</span> <span class="number">8</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">}};</span>
 
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">r</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">clear</span><span class="special">(</span><span class="identifier">r</span><span class="special">);</span>
@@ -472,14 +465,14 @@ Clears a linestring, ring or polygon (exterior+interiors) or multi*.
 <p>
           Output:
         </p>
-<pre class="programlisting">(((0, 0), (0, 10), (11, 11), (0, 0)), ((0, 0), (0, 10), (11, 11), (0, 0)))
+<pre class="programlisting">(((0, 0), (0, 10), (10, 10), (10, 0), (0, 0)), ((1, 2), (8, 2), (4, 6), (1, 2)))
 (())
 ((0, 0), (0, 9), (8, 8), (0, 0))
 ()
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -16,7 +16,10 @@
 [section:discrete_frechet_distance_2 discrete_frechet_distance]
 
 '''<indexterm><primary>discrete_frechet_distance</primary></indexterm>'''
-Calculate discrete Frechet distance between two geometries (currently work for LineString-LineString). 
+Calculate the discrete Frechet distance between two geometries. 
+
+[heading Description]
+The free function [^discrete_frechet_distance] calculates the discrete Frechet distance between two geometries.
 
 [heading Synopsis]
 ``template<typename Geometry1, typename Geometry2>
@@ -26,8 +29,8 @@ auto discrete_frechet_distance(Geometry1 const & geometry1, Geometry2 const & ge
 
 [table
 [[Type] [Concept] [Name] [Description] ]
-[[Geometry1 const &] [Any type fulfilling a Geometry Concept ] [geometry1] [Input geometry ]]
-[[Geometry2 const &] [Any type fulfilling a Geometry Concept ] [geometry2] [Input geometry]]
+[[Geometry1 const &] [Any type fulfilling a Geometry Concept ] [geometry1] [A model of the specified concept ]]
+[[Geometry2 const &] [Any type fulfilling a Geometry Concept ] [geometry2] [A model of the specified concept]]
 ]
 
 
@@ -52,7 +55,10 @@ Or
 [section:discrete_frechet_distance_3_with_strategy discrete_frechet_distance (with strategy)]
 
 '''<indexterm><primary>discrete_frechet_distance</primary></indexterm>'''
-Calculate discrete Frechet distance between two geometries (currently works for LineString-LineString) using specified strategy. 
+Calculate the discrete Frechet distance between two geometries using the specified strategy. 
+
+[heading Description]
+The free function [^discrete_frechet_distance] calculates the discrete Frechet distance between two geometries.
 
 [heading Synopsis]
 ``template<typename Geometry1, typename Geometry2, typename Strategy>
@@ -62,9 +68,9 @@ auto discrete_frechet_distance(Geometry1 const & geometry1, Geometry2 const & ge
 
 [table
 [[Type] [Concept] [Name] [Description] ]
-[[Geometry1 const &] [Any type fulfilling a Geometry Concept ] [geometry1] [Input geometry ]]
-[[Geometry2 const &] [Any type fulfilling a Geometry Concept ] [geometry2] [Input geometry ]]
-[[Strategy const &] [A type fulfilling a DistanceStrategy concept ] [strategy] [Distance strategy to be used to calculate Pt-Pt distance]]
+[[Geometry1 const &] [Any type fulfilling a Geometry Concept ] [geometry1] [A model of the specified concept ]]
+[[Geometry2 const &] [Any type fulfilling a Geometry Concept ] [geometry2] [A model of the specified concept ]]
+[[Strategy const &] [Any type fulfilling a Distance Strategy Concept ] [strategy] [The strategy which will be used for point to point distance calculations]]
 ]
 
 
@@ -82,7 +88,8 @@ Or
 [heading Available Strategies]
 * [link geometry.reference.strategies.strategy_distance_pythagoras Pythagoras (cartesian)]
 * [link geometry.reference.strategies.strategy_distance_haversine Haversine (spherical)]
-[/ * more (currently extensions): Vincenty, Andoyer (geographic) ]
+* One of the geographic point to point strategies
+
 
 [heading Example]
 [discrete_frechet_distance_strategy]

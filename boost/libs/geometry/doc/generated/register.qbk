@@ -350,7 +350,7 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fMULTI\u005fPOLYGON\u005fTEMPLAT
 Macro to register a 2D point type. 
 
 [heading Description]
-The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D registers a two-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type. 
+The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D registers a two-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type. For geographic coordinate systems, be sure to specify first longitude and then latitude, to be able to use the strategies included in the library. 
 
 [heading Synopsis]
 ``#define BOOST_GEOMETRY_REGISTER_POINT_2D(Point, CoordinateType, CoordinateSystem,
@@ -363,8 +363,8 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D registers a two-d
 [[Point] [Point type to be registered ]]
 [[CoordinateType] [Type of the coordinates of the point (e.g. double) ]]
 [[CoordinateSystem] [Coordinate system (e.g. cs::cartesian) ]]
-[[Field0] [Member containing first (usually x) coordinate ]]
-[[Field1] [Member containing second (usually y) coordinate]]
+[[Field0] [Member containing first (usually x, or longitude) coordinate ]]
+[[Field1] [Member containing second (usually y, or latitude) coordinate]]
 ]
 
 
@@ -382,7 +382,7 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D registers a two-d
 Macro to register a 2D point type (const version) 
 
 [heading Description]
-The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D\u005fCONST registers a two-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type.. The const version registers only read access to the fields, the point type is therefore read-only 
+The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D\u005fCONST registers a two-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type. The const version registers only read access to the fields, the point type is therefore read-only. For geographic coordinate systems, be sure to specify first longitude and then latitude, to be able to use the strategies included in the library. 
 
 [heading Synopsis]
 ``#define BOOST_GEOMETRY_REGISTER_POINT_2D_CONST(Point, CoordinateType, CoordinateSystem,
@@ -395,8 +395,8 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D\u005fCONST regist
 [[Point] [Point type to be registered ]]
 [[CoordinateType] [Type of the coordinates of the point (e.g. double) ]]
 [[CoordinateSystem] [Coordinate system (e.g. cs::cartesian) ]]
-[[Field0] [Member containing first (usually x) coordinate ]]
-[[Field1] [Member containing second (usually y) coordinate ]]
+[[Field0] [Member containing first (usually x, or longitude) coordinate ]]
+[[Field1] [Member containing second (usually y, or latitude) coordinate ]]
 ]
 
 
@@ -412,7 +412,7 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D\u005fCONST regist
 Macro to register a 2D point type (having separate get/set methods) 
 
 [heading Description]
-The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D\u005fGET\u005fSET registers a two-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type.. The get/set version registers get and set methods separately and can be used for classes with protected member variables and get/set methods to change coordinates 
+The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D\u005fGET\u005fSET registers a two-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type. The get/set version registers get and set methods separately and can be used for classes with protected member variables and get/set methods to change coordinates. For geographic coordinate systems, be sure to specify first longitude and then latitude, to be able to use the strategies included in the library. 
 
 [heading Synopsis]
 ``#define BOOST_GEOMETRY_REGISTER_POINT_2D_GET_SET(Point, CoordinateType, CoordinateSystem,
@@ -426,10 +426,10 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f2D\u005fGET\u005fSET
 [[Point] [Point type to be registered ]]
 [[CoordinateType] [Type of the coordinates of the point (e.g. double) ]]
 [[CoordinateSystem] [Coordinate system (e.g. cs::cartesian) ]]
-[[Get0] [Method to get the first (usually x) coordinate ]]
-[[Get1] [Method to get the second (usually y) coordinate ]]
-[[Set0] [Method to set the first (usually x) coordinate ]]
-[[Set1] [Method to set the second (usually y) coordinate ]]
+[[Get0] [Method to get the first (usually x, or longitude) coordinate ]]
+[[Get1] [Method to get the second (usually y, or latitude) coordinate ]]
+[[Set0] [Method to set the first (usually x, or longitude) coordinate ]]
+[[Set1] [Method to set the second (usually y, or latitude) coordinate ]]
 ]
 
 
@@ -476,7 +476,7 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f3D registers a three
 Macro to register a 3D point type (const version) 
 
 [heading Description]
-The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f3D\u005fCONST registers a three-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type.. The const version registers only read access to the fields, the point type is therefore read-only 
+The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f3D\u005fCONST registers a three-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type. The const version registers only read access to the fields, the point type is therefore read-only. 
 
 [heading Synopsis]
 ``#define BOOST_GEOMETRY_REGISTER_POINT_3D_CONST(Point, CoordinateType, CoordinateSystem,
@@ -507,7 +507,7 @@ The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f3D\u005fCONST regist
 Macro to register a 3D point type (having separate get/set methods) 
 
 [heading Description]
-The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f3D\u005fGET\u005fSET registers a three-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type.. The get/set version registers get and set methods separately and can be used for classes with protected member variables and get/set methods to change coordinates 
+The macro BOOST\u005fGEOMETRY\u005fREGISTER\u005fPOINT\u005f3D\u005fGET\u005fSET registers a three-dimensional point type such that it is recognized by Boost.Geometry and that Boost.Geometry functionality can used with the specified type. The get/set version registers get and set methods separately and can be used for classes with protected member variables and get/set methods to change coordinates. 
 
 [heading Synopsis]
 ``#define BOOST_GEOMETRY_REGISTER_POINT_3D_GET_SET(Point, CoordinateType, CoordinateSystem,

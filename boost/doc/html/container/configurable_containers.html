@@ -197,12 +197,12 @@
           </li>
 <li class="listitem">
             <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>:
-            the type that will be used to store size-related parameters inside of
-            the vector. Sometimes, when the maximum capacity to be used is much less
-            than the theoretical maximum that a vector can hold, it's interesting
-            to use smaller unsigned integer types to represent <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> inside vector, so that the size of
-            an empty vector is minimized and cache performance might be improved.
-            See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>
+            the type that will be used to store size-related parameters inside the
+            vector. Sometimes, when the maximum vector capacity to be used is much
+            less than <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span></code> capacity, it may be beneficial
+            to use a smaller unsigned integer type to represent <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> values inside the vector, so that the
+            size of an empty vector object is minimized and cache performance is
+            possibly improved. See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>
             for more details.
           </li>
 </ul></div>
@@ -279,8 +279,20 @@
             A boolean that specifies if the container should throw an exception when
             the compile-time capacity is not enough to hold the requesteed number
             of objects. When "false", if the capacit is overflowed, the
-            implementation calls to BOOST_ASSERT and if that assertion does not throw
-            or abort, undefined behavior is triggered.
+            implementation calls to <code class="computeroutput"><span class="identifier">BOOST_ASSERT</span></code>
+            and if that assertion does not throw or abort, undefined behavior is
+            triggered.
+          </li>
+<li class="listitem">
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>:
+            the type that will be used to store size-related parameters inside the
+            vector. Sometimes, when the static size to be used is much less than
+            <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span></code> capacity, it may be beneficial
+            to use a smaller unsigned integer type to represent the <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code>
+            value inside <code class="computeroutput"><span class="identifier">static_vector</span></code>,
+            so that the object size of an empty vector is minimized and cache performance
+            is possibly improved. See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>
+            for more details.
           </li>
 </ul></div>
 <p>
@@ -311,6 +323,14 @@
 
    <span class="comment">//Create static_vector with no throw on overflow</span>
    <span class="identifier">static_vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="identifier">no_throw_options_t</span> <span class="special">&gt;</span> <span class="identifier">sv2</span><span class="special">;</span>
+
+   <span class="comment">//This options specifies that internal `size()` can be represented by an unsigned char</span>
+   <span class="comment">//instead of the default `std::size_t`.</span>
+   <span class="keyword">typedef</span> <span class="identifier">static_vector_options</span><span class="special">&lt;</span> <span class="identifier">stored_size</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">&gt;</span> <span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">stored_size_uchar_t</span><span class="special">;</span>
+
+   <span class="comment">//Create static_vector that internally stores `size()` in an unsigned char</span>
+   <span class="comment">//because `capacity()` will be less thatn 256.</span>
+   <span class="identifier">static_vector</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="identifier">stored_size_uchar_t</span><span class="special">&gt;</span> <span class="identifier">sv3</span><span class="special">;</span>
 
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
@@ -346,6 +366,16 @@
             the growth factor and some predefined policies are available: <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__50.html" title="Struct growth_factor_50">growth_factor_50</a></code>,
             <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__60.html" title="Struct growth_factor_60">growth_factor_60</a></code>
             and <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1growth__factor__50.html" title="Struct growth_factor_50">growth_factor_100</a></code>.
+          </li>
+<li class="listitem">
+            <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>:
+            the type that will be used to store size-related parameters inside the
+            vector. Sometimes, when the maximum vector capacity to be used is much
+            less than <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span></code> capacity, it may be beneficial
+            to use a smaller unsigned integer type to represent <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> values inside the vector, so that the
+            size of an empty vector object is minimized and cache performance is
+            possibly improved. See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>
+            for more details.
           </li>
 </ul></div>
 <p>
@@ -384,6 +414,14 @@
    <span class="comment">//Now insert an additional item and check the new buffer is 50% bigger</span>
    <span class="identifier">growth_50_vector</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span><span class="number">1</span><span class="special">);</span>
    <span class="identifier">assert</span><span class="special">(</span><span class="identifier">growth_50_vector</span><span class="special">.</span><span class="identifier">capacity</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">old_cap</span><span class="special">*</span><span class="number">3</span><span class="special">/</span><span class="number">2</span><span class="special">);</span>
+
+   <span class="comment">//This option specifies that a vector that will use "unsigned char" as</span>
+   <span class="comment">//the type to store capacity or size internally.</span>
+   <span class="keyword">typedef</span> <span class="identifier">small_vector_options</span><span class="special">&lt;</span> <span class="identifier">stored_size</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">&gt;</span> <span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">size_option_t</span><span class="special">;</span>
+
+   <span class="comment">//Size-optimized vector is smaller than the default one.</span>
+   <span class="keyword">typedef</span> <span class="identifier">small_vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="number">10</span><span class="special">,</span> <span class="identifier">new_allocator</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;,</span> <span class="identifier">size_option_t</span> <span class="special">&gt;</span> <span class="identifier">size_optimized_vector_t</span><span class="special">;</span>
+   <span class="identifier">assert</span><span class="special">((</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">size_optimized_vector_t</span><span class="special">)</span> <span class="special">&lt;</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">small_vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="number">10</span><span class="special">&gt;)));</span>
 
    <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
@@ -483,12 +521,14 @@
 <li class="listitem">
             <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>:
             the type that will be used to store size-related parameters inside of
-            the devector. Sometimes, when the maximum capacity to be used is much
-            less than the theoretical maximum that a devector can hold, it's interesting
-            to use smaller unsigned integer types to represent <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code> inside devector, so that the size of
-            an empty devector is minimized and cache performance might be improved.
-            See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code>
-            for more details.
+            the devector. Sometimes, when the maximum devector capacity to be used
+            is much less than <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span></code>
+            capacity, it may be beneficial to use a smaller unsigned integer type
+            to represent <code class="computeroutput"><span class="identifier">size</span><span class="special">()</span></code>
+            and <code class="computeroutput"><span class="identifier">capacity</span><span class="special">()</span></code>
+            values inside the devector, so that the size of an empty devector object
+            is minimized and cache performance is possibly improved. See <code class="computeroutput"><a class="link" href="../doxygen/boost_container_header_reference/structboost_1_1container_1_1stored__size.html" title="Struct template stored_size">stored_size</a></code> for more
+            details.
           </li>
 <li class="listitem">
             <code class="computeroutput">relocate_on_XX</code>:

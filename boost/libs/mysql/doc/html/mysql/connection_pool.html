@@ -1,13 +1,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>(Experimental) Connection pools</title>
+<title>Connection pools</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../index.html" title="Chapter 1. Boost.MySQL">
-<link rel="prev" href="any_connection.html" title="(Experimental) Type-erased connections with any_connection">
-<link rel="next" href="sql_formatting.html" title="(Experimental) Client-side SQL query formatting">
+<link rel="prev" href="multi_function.html" title="Multi-function operations">
+<link rel="next" href="async.html" title="Going async">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,11 +21,11 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="any_connection.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="sql_formatting.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="multi_function.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="async.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="mysql.connection_pool"></a><a class="link" href="connection_pool.html" title="(Experimental) Connection pools">(Experimental) Connection pools</a>
+<a name="mysql.connection_pool"></a><a class="link" href="connection_pool.html" title="Connection pools">Connection pools</a>
 </h2></div></div></div>
 <p>
       Connection pooling is a technique where several long-lived connections are
@@ -42,15 +42,6 @@
           sessions, perform retries and apply timeouts out of the box.
         </li>
 </ul></div>
-<div class="note"><table border="0" summary="Note">
-<tr>
-<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
-<th align="left">Note</th>
-</tr>
-<tr><td align="left" valign="top"><p>
-        This feature is experimental. Its API may change in subsequent releases.
-      </p></td></tr>
-</table></div>
 <p>
       This is how you can create a pool of connections:
     </p>
@@ -100,12 +91,12 @@
 <span class="special">{</span>
     <span class="comment">// Get a fresh connection from the pool.</span>
     <span class="comment">// pooled_connection is a proxy to an any_connection object.</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">use_awaitable</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">();</span>
 
     <span class="comment">// Use pooled_connection::operator-&gt; to access the underlying any_connection.</span>
     <span class="comment">// Let's use the connection</span>
     <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-    <span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT COUNT(*) FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">use_awaitable</span><span class="special">);</span>
+    <span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT COUNT(*) FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
     <span class="identifier">co_return</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">().</span><span class="identifier">at</span><span class="special">(</span><span class="number">0</span><span class="special">).</span><span class="identifier">at</span><span class="special">(</span><span class="number">0</span><span class="special">).</span><span class="identifier">as_int64</span><span class="special">();</span>
 
     <span class="comment">// When conn is destroyed, the connection is returned to the pool</span>
@@ -158,8 +149,7 @@
 <li class="listitem">
           If a connection is requested, and there are <code class="computeroutput"><span class="identifier">max_size</span></code>
           connections in use, <a class="link" href="ref/boost__mysql__connection_pool/async_get_connection.html" title="connection_pool::async_get_connection"><code class="literal">connection_pool::async_get_connection</code></a>
-          waits for a connection to become available, up to a certain period of time.
-          If no connection is available after this period, the operation fails.
+          waits for a connection to become available.
         </li>
 <li class="listitem">
           Once created, connections never get deallocated.
@@ -201,6 +191,31 @@
 </pre>
 <h4>
 <a name="mysql.connection_pool.h1"></a>
+      <span class="phrase"><a name="mysql.connection_pool.applying_a_timeout_to_async_get_"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.applying_a_timeout_to_async_get_">Applying a
+      timeout to async_get_connection</a>
+    </h4>
+<p>
+      By default, <a class="link" href="ref/boost__mysql__connection_pool/async_get_connection.html" title="connection_pool::async_get_connection"><code class="literal">connection_pool::async_get_connection</code></a>
+      waits until a connection is available. This means that, if the server is unavailable,
+      <code class="computeroutput"><span class="identifier">async_get_connection</span></code> may wait
+      forever.
+    </p>
+<p>
+      For this reason, you may consider setting a timeout to <code class="computeroutput"><span class="identifier">async_get_connection</span></code>.
+      You can do this using <a href="../../../../../doc/html/boost_asio/reference/cancel_after.html" target="_top"><code class="literal">asio::cancel_after</code></a>,
+      which uses Asio's per-operation cancellation mechanism:
+    </p>
+<pre class="programlisting"><span class="comment">// Get a connection from the pool, but don't wait more than 5 seconds</span>
+<span class="keyword">auto</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancel_after</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="number">5</span><span class="special">)));</span>
+</pre>
+<p>
+      You might consider setting the timeout at a higher level, instead. For instance,
+      if you're handling an HTTP request, you can use <code class="computeroutput"><span class="identifier">cancel_after</span></code>
+      to set a timeout to the entire request. The <a class="link" href="examples/connection_pool.html" title="A REST API server that uses connection pooling">connection
+      pool example</a> takes this approach.
+    </p>
+<h4>
+<a name="mysql.connection_pool.h2"></a>
       <span class="phrase"><a name="mysql.connection_pool.session_state"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.session_state">Session
       state</a>
     </h4>
@@ -226,13 +241,13 @@
       to skip resetting. For instance:
     </p>
 <pre class="programlisting"><span class="comment">// Get a connection from the pool</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">use_awaitable</span><span class="special">);</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">();</span>
 
 <span class="comment">// Use the connection in a way that doesn't mutate session state.</span>
 <span class="comment">// We're not setting variables, preparing statements or starting transactions,</span>
 <span class="comment">// so it's safe to skip reset</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT COUNT(*) FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">use_awaitable</span><span class="special">);</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT COUNT(*) FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 
 <span class="comment">// Explicitly return the connection to the pool, skipping reset</span>
 <span class="identifier">conn</span><span class="special">.</span><span class="identifier">return_without_reset</span><span class="special">();</span>
@@ -243,7 +258,7 @@
       or not, assume it does.
     </p>
 <h4>
-<a name="mysql.connection_pool.h2"></a>
+<a name="mysql.connection_pool.h3"></a>
       <span class="phrase"><a name="mysql.connection_pool.character_set"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.character_set">Character
       set</a>
     </h4>
@@ -266,7 +281,7 @@
       on your connection after it's been retrieved from the pool.
     </p>
 <h4>
-<a name="mysql.connection_pool.h3"></a>
+<a name="mysql.connection_pool.h4"></a>
       <span class="phrase"><a name="mysql.connection_pool.connection_lifecycle"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.connection_lifecycle">Connection
       lifecycle</a>
     </h4>
@@ -324,14 +339,13 @@
         </li>
 </ul></div>
 <h4>
-<a name="mysql.connection_pool.h4"></a>
-      <span class="phrase"><a name="mysql.connection_pool.thread_safety_and_executors"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.thread_safety_and_executors">Thread-safety
-      and executors</a>
+<a name="mysql.connection_pool.h5"></a>
+      <span class="phrase"><a name="mysql.connection_pool.thread_safety"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.thread_safety">Thread-safety</a>
     </h4>
 <p>
       By default, <a class="link" href="ref/boost__mysql__connection_pool.html" title="connection_pool"><code class="literal">connection_pool</code></a>
-      is <span class="bold"><strong>NOT thread-safe</strong></span>, but it can be easily made
-      thread-safe by using:
+      is <span class="bold"><strong>not thread-safe</strong></span>, but it can be easily made
+      thread-safe by setting <a class="link" href="ref/boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="literal">pool_params::thread_safe</code></a>:
     </p>
 <pre class="programlisting"><span class="comment">// The I/O context, required by all I/O operations</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">io_context</span> <span class="identifier">ctx</span><span class="special">;</span>
@@ -342,46 +356,38 @@
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">mysql_username</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">mysql_password</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">database</span> <span class="special">=</span> <span class="string">"boost_mysql_examples"</span><span class="special">;</span>
+<span class="identifier">params</span><span class="special">.</span><span class="identifier">thread_safe</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>  <span class="comment">// enable thread safety</span>
 
-<span class="comment">// By passing pool_executor_params::thread_safe to connection_pool,</span>
-<span class="comment">// we make all its member functions thread-safe.</span>
-<span class="comment">// This works by creating a strand.</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span> <span class="identifier">pool</span><span class="special">(</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pool_executor_params</span><span class="special">::</span><span class="identifier">thread_safe</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">.</span><span class="identifier">get_executor</span><span class="special">()),</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">params</span><span class="special">)</span>
-<span class="special">);</span>
+<span class="comment">// Construct a thread-safe pool</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span> <span class="identifier">pool</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">params</span><span class="special">));</span>
 
 <span class="comment">// We can now pass a reference to pool to other threads,</span>
 <span class="comment">// and call async_get_connection concurrently without problem.</span>
 <span class="comment">// Individual connections are still not thread-safe.</span>
 </pre>
 <p>
-      This works by using strands. Recall that a <a href="../../../../../doc/html/boost_asio/reference/strand.html" target="_top"><code class="literal">boost::asio::strand</code></a>
-      is Asio's method to enable concurrency without explicit locking. A strand is
-      an executor that wraps another executor. All handlers dispatched through a
-      strand will be serialized: no two handlers will be run in parallel, which avoids
-      data races.
+      Thread-safe connection pools create internally a <a href="../../../../../doc/html/boost_asio/reference/strand.html" target="_top"><code class="literal">asio::strand</code></a>,
+      Asio's method to enable concurrency without explicit locking. Enabling thread-safety
+      will ensure that all intermediate handlers run through the created strand,
+      avoiding data races at the cost of some performance.
     </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        Thread-safety only protects the pool. Individual connections are <span class="bold"><strong>not</strong></span> thread-safe. Assignments aren't thread-safe, either.
+        See <a class="link" href="ref/boost__mysql__connection_pool.html" title="connection_pool"><code class="literal">connection_pool</code></a>
+        docs for more info.
+      </p></td></tr>
+</table></div>
 <p>
-      We're passing a <a class="link" href="ref/boost__mysql__pool_executor_params.html" title="pool_executor_params"><code class="literal">pool_executor_params</code></a>
-      instance to the pool's constructor, which contains two executors:
+      Thread-safety extends to per-operation cancellation, too. Cancelling an operation
+      on a thread-safe pool is safe.
     </p>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem">
-          <a class="link" href="ref/boost__mysql__pool_executor_params/pool_executor.html" title="pool_executor_params::pool_executor"><code class="literal">pool_executor_params::pool_executor</code></a>
-          is used to run <a class="link" href="ref/boost__mysql__connection_pool/async_run.html" title="connection_pool::async_run"><code class="literal">connection_pool::async_run</code></a>
-          and <a class="link" href="ref/boost__mysql__connection_pool/async_get_connection.html" title="connection_pool::async_get_connection"><code class="literal">connection_pool::async_get_connection</code></a>
-          intermediate handlers. By using <a class="link" href="ref/boost__mysql__pool_executor_params/thread_safe.html" title="pool_executor_params::thread_safe"><code class="literal">pool_executor_params::thread_safe</code></a>,
-          a strand is created, and all these handlers will be serialized.
-        </li>
-<li class="listitem">
-          <a class="link" href="ref/boost__mysql__pool_executor_params/connection_executor.html" title="pool_executor_params::connection_executor"><code class="literal">pool_executor_params::connection_executor</code></a>
-          is used to construct connections. By default, this won't be wrapped in
-          any strand, and inividual connections will not be thread-safe.
-        </li>
-</ul></div>
 <h4>
-<a name="mysql.connection_pool.h5"></a>
+<a name="mysql.connection_pool.h6"></a>
       <span class="phrase"><a name="mysql.connection_pool.transport_types_and_tls"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.transport_types_and_tls">Transport
       types and TLS</a>
     </h4>
@@ -399,7 +405,7 @@
       is provided, one will be created for you internally.
     </p>
 <h4>
-<a name="mysql.connection_pool.h6"></a>
+<a name="mysql.connection_pool.h7"></a>
       <span class="phrase"><a name="mysql.connection_pool.sync"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.sync">Implementing
       sync functions</a>
     </h4>
@@ -437,7 +443,7 @@
     <span class="comment">// Constructor: constructs the connection_pool object from</span>
     <span class="comment">// the single-thread pool and calls async_run.</span>
     <span class="comment">// The pool has a single thread, which creates an implicit strand.</span>
-    <span class="comment">// There is no need to use pool_executor_params::thread_safe</span>
+    <span class="comment">// There is no need to use pool_params::thread_safe</span>
     <span class="identifier">sync_pool</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pool_params</span> <span class="identifier">params</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">conn_pool_</span><span class="special">(</span><span class="identifier">thread_pool_</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">params</span><span class="special">))</span>
     <span class="special">{</span>
         <span class="comment">// Run the pool in the background (this is performed by the thread_pool thread).</span>
@@ -445,52 +451,31 @@
         <span class="identifier">conn_pool_</span><span class="special">.</span><span class="identifier">async_run</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">detached</span><span class="special">);</span>
     <span class="special">}</span>
 
-    <span class="comment">// Retrieves a connection from the pool (error code version)</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">get_connection</span><span class="special">(</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">diagnostics</span><span class="special">&amp;</span> <span class="identifier">diag</span><span class="special">,</span>
-        <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">steady_clock</span><span class="special">::</span><span class="identifier">duration</span> <span class="identifier">timeout</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="number">30</span><span class="special">)</span>
-    <span class="special">)</span>
-    <span class="special">{</span>
-        <span class="comment">// The completion token to use for the async initiation function.</span>
-        <span class="comment">// use_future will make the async function return a std::future object, which will</span>
-        <span class="comment">// become ready when the operation completes.</span>
-        <span class="comment">// as_tuple prevents the future from throwing on error, and packages the result as a tuple.</span>
-        <span class="comment">// The returned future will be std::future&lt;std::tuple&lt;error_code, pooled_connection&gt;&gt;.</span>
-        <span class="keyword">constexpr</span> <span class="keyword">auto</span> <span class="identifier">completion_token</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">as_tuple</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">use_future</span><span class="special">);</span>
-
-        <span class="comment">// We will use std::tie to decompose the tuple into its components.</span>
-        <span class="comment">// We need to declare the connection before using std::tie</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">res</span><span class="special">;</span>
-
-        <span class="comment">// async_get_connection returns a future. Calling std::future::get will</span>
-        <span class="comment">// wait for the future to become ready</span>
-        <span class="identifier">std</span><span class="special">::</span><span class="identifier">tie</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">res</span><span class="special">)</span> <span class="special">=</span> <span class="identifier">conn_pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">timeout</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">completion_token</span><span class="special">).</span><span class="identifier">get</span><span class="special">();</span>
-
-        <span class="comment">// Done!</span>
-        <span class="keyword">return</span> <span class="identifier">res</span><span class="special">;</span>
-    <span class="special">}</span>
-
-    <span class="comment">// Retrieves a connection from the pool (exception version)</span>
+    <span class="comment">// Retrieves a connection from the pool. Throws an exception on error</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">get_connection</span><span class="special">(</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">steady_clock</span><span class="special">::</span><span class="identifier">duration</span> <span class="identifier">timeout</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="number">30</span><span class="special">)</span>
     <span class="special">)</span>
     <span class="special">{</span>
-        <span class="comment">// Call the error code version</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">diagnostics</span> <span class="identifier">diag</span><span class="special">;</span>
-        <span class="keyword">auto</span> <span class="identifier">res</span> <span class="special">=</span> <span class="identifier">get_connection</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">timeout</span><span class="special">);</span>
-
-        <span class="comment">// This will throw boost::mysql::error_with_diagnostics on error</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
-
-        <span class="comment">// Done</span>
-        <span class="keyword">return</span> <span class="identifier">res</span><span class="special">;</span>
+        <span class="comment">// use_future returns a std::future&lt;pooled_connection&gt;.</span>
+        <span class="comment">// Calling get() waits for the future to complete and throws an exception on failure.</span>
+        <span class="comment">// with_diagnostics ensures that the exception contains any server-supplied information.</span>
+        <span class="comment">// cancel_after applies a timeout to the operation</span>
+        <span class="comment">// &lt;-</span>
+        <span class="comment">// clang-format off</span>
+        <span class="comment">// -&gt;</span>
+        <span class="keyword">return</span> <span class="identifier">conn_pool_</span>
+            <span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span>
+                <span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancel_after</span><span class="special">(</span><span class="identifier">timeout</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">use_future</span><span class="special">))</span>
+            <span class="special">)</span>
+            <span class="special">.</span><span class="identifier">get</span><span class="special">();</span>
+        <span class="comment">// &lt;-</span>
+        <span class="comment">// clang-format on</span>
+        <span class="comment">// -&gt;</span>
     <span class="special">}</span>
 <span class="special">};</span>
 </pre>
 <h4>
-<a name="mysql.connection_pool.h7"></a>
+<a name="mysql.connection_pool.h8"></a>
       <span class="phrase"><a name="mysql.connection_pool.benchmarks"></a></span><a class="link" href="connection_pool.html#mysql.connection_pool.benchmarks">Benchmarks</a>
     </h4>
 <p>
@@ -559,14 +544,14 @@
       </p></td></tr>
 </table></div>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="any_connection.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="sql_formatting.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="multi_function.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="async.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

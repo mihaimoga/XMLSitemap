@@ -28,35 +28,30 @@
 <a name="mysql.ref.boost__mysql__any_connection.async_run_pipeline"></a><a class="link" href="async_run_pipeline.html" title="any_connection::async_run_pipeline">any_connection::async_run_pipeline</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm42029"></a>
-        </p>
-<p>
-          Runs a set of pipelined requests.
+          <a class="indexterm" name="id47137"></a>
+Runs a set of pipelined requests.
         </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">class</span> <a href="../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a><span class="special">&gt;</span>
+    <span class="keyword">class</span> <a href="../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a> <span class="special">=</span> <a class="link" href="../boost__mysql__with_diagnostics_t.html" title="with_diagnostics_t"><code class="literal">with_diagnostics_t</code></a><span class="special">&lt;</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred_t</span><span class="special">&gt;&gt;</span>
 <span class="keyword">auto</span>
 <a class="link" href="async_run_pipeline/overload1.html" title="any_connection::async_run_pipeline (1 of 2 overloads)">async_run_pipeline</a><span class="special">(</span>
-    <span class="keyword">const</span> <span class="identifier">pipeline_request</span><span class="special">&amp;</span> <span class="identifier">req</span><span class="special">,</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">stage_response</span> <span class="special">&gt;&amp;</span> <span class="identifier">res</span><span class="special">,</span>
-    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span><span class="special">);</span>
+    <span class="keyword">const</span> <a class="link" href="../boost__mysql__pipeline_request.html" title="pipeline_request"><code class="literal">pipeline_request</code></a><span class="special">&amp;</span> <span class="identifier">req</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <a class="link" href="../boost__mysql__stage_response.html" title="stage_response"><code class="literal">stage_response</code></a> <span class="special">&gt;&amp;</span> <span class="identifier">res</span><span class="special">,</span>
+    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="special">{});</span>
   <span class="emphasis"><em>» <a class="link" href="async_run_pipeline/overload1.html" title="any_connection::async_run_pipeline (1 of 2 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
-</pre>
-<p>
-          Runs a set of pipelined requests.
-        </p>
-<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">class</span> <a href="../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a><span class="special">&gt;</span>
+
+<span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">class</span> <a href="../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a> <span class="special">=</span> <a class="link" href="../boost__mysql__with_diagnostics_t.html" title="with_diagnostics_t"><code class="literal">with_diagnostics_t</code></a><span class="special">&lt;</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred_t</span><span class="special">&gt;&gt;</span>
 <span class="keyword">auto</span>
 <a class="link" href="async_run_pipeline/overload2.html" title="any_connection::async_run_pipeline (2 of 2 overloads)">async_run_pipeline</a><span class="special">(</span>
-    <span class="keyword">const</span> <span class="identifier">pipeline_request</span><span class="special">&amp;</span> <span class="identifier">req</span><span class="special">,</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">stage_response</span> <span class="special">&gt;&amp;</span> <span class="identifier">res</span><span class="special">,</span>
-    <span class="identifier">diagnostics</span><span class="special">&amp;</span> <span class="identifier">diag</span><span class="special">,</span>
-    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span><span class="special">);</span>
+    <span class="keyword">const</span> <a class="link" href="../boost__mysql__pipeline_request.html" title="pipeline_request"><code class="literal">pipeline_request</code></a><span class="special">&amp;</span> <span class="identifier">req</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <a class="link" href="../boost__mysql__stage_response.html" title="stage_response"><code class="literal">stage_response</code></a> <span class="special">&gt;&amp;</span> <span class="identifier">res</span><span class="special">,</span>
+    <a class="link" href="../boost__mysql__diagnostics.html" title="diagnostics"><code class="literal">diagnostics</code></a><span class="special">&amp;</span> <span class="identifier">diag</span><span class="special">,</span>
+    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="special">{});</span>
   <span class="emphasis"><em>» <a class="link" href="async_run_pipeline/overload2.html" title="any_connection::async_run_pipeline (2 of 2 overloads)"><code class="computeroutput"><span class="identifier">more</span><span class="special">...</span></code></a></em></span>
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

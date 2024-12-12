@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <li>Boost. The library is included in Boost distributions starting with 1.84.</li>
 <li>C++17 or higher.</li>
 <li>Redis 6 or higher (must support RESP3).</li>
-<li>Gcc (10, 11, 12), Clang (11, 13, 14) and Visual Studio (16 2019, 17 2022).</li>
+<li>Gcc (11, 12), Clang (11, 13, 14) and Visual Studio (16 2019, 17 2022).</li>
 <li>Have basic-level knowledge about <a href="https://redis.io/docs/">Redis</a> and <a href="https://www.boost.org/doc/libs/1_82_0/doc/html/boost_asio/overview.html">Boost.Asio</a>.</li>
 </ul>
 <p >The latest release can be downloaded on <a href="https://github.com/boostorg/redis/releases">https://github.com/boostorg/redis/releases</a>. The library headers can be found in the <code>include</code> subdirectory and a compilation of the source</p>
@@ -586,15 +586,23 @@ Acknowledgement</h1>
 <h1><a class="anchor" id="autotoc_md20"></a>
 Changelog</h1>
 <h2><a class="anchor" id="autotoc_md21"></a>
-Boost 1.85</h2>
+Boost 1.87</h2>
 <ul>
-<li>(<a href="https://github.com/boostorg/redis/issues/170">Issue 170</a>) Under load and on low-latency networks it is possible to start receiving responses before the write operation completed and while the request is still marked as staged and not written. This messes up with the heuristics that classifies responses as unsolicied or not.</li>
-<li>(<a href="https://github.com/boostorg/redis/issues/168">Issue 168</a>). Provides a way of passing a custom SSL context to the connection. The design here differs from that of Boost.Beast and Boost.MySql since in Boost.Redis the connection owns the context instead of only storing a reference to a user provided one. This is ok so because apps need only one connection for their entire application, which makes the overhead of one ssl-context per connection negligible.</li>
-<li>(<a href="https://github.com/boostorg/redis/issues/181">Issue 181</a>). See a detailed description of this bug in <a href="https://github.com/boostorg/redis/issues/181#issuecomment-1913346983">this</a> comment.</li>
-<li>(<a href="https://github.com/boostorg/redis/issues/182">Issue 182</a>). Sets <code>"default"</code> as the default value of <code>config::username</code>. This makes it simpler to use the <code>requirepass</code> configuration in Redis.</li>
-<li>(<a href="https://github.com/boostorg/redis/issues/189">Issue 189</a>). Fixes narrowing convertion by using <code>std::size_t</code> instead of <code>std::uint64_t</code> for the sizes of bulks and aggregates. The code relies now on <code>std::from_chars</code> returning an error if a value greater than 32 is received on platforms on which the size of<code>std::size_t</code> is 32.</li>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/205">205</a>) Improves reaction time to disconnection by using <code>wait_for_one_error</code> instead of <code>wait_for_all</code>. The function <code>connection::async_run</code> was also changed to return EOF to the user when that error is received from the server. That is a breaking change.</li>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/210">210</a>) Fixes the adapter of empty nested reposponses.</li>
+<li>(Issues <a href="https://github.com/boostorg/redis/issues/211">211</a> and <a href="https://github.com/boostorg/redis/issues/212">212</a>) Fixes the reconnect loop that would hang under certain conditions, see the linked issues for more details.</li>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/219">219</a>) Changes the default log level from <code>disabled</code> to <code>debug</code>.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md22"></a>
+Boost 1.85</h2>
+<ul>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/170">170</a>) Under load and on low-latency networks it is possible to start receiving responses before the write operation completed and while the request is still marked as staged and not written. This messes up with the heuristics that classifies responses as unsolicied or not.</li>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/168">168</a>). Provides a way of passing a custom SSL context to the connection. The design here differs from that of Boost.Beast and Boost.MySql since in Boost.Redis the connection owns the context instead of only storing a reference to a user provided one. This is ok so because apps need only one connection for their entire application, which makes the overhead of one ssl-context per connection negligible.</li>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/181">181</a>). See a detailed description of this bug in <a href="https://github.com/boostorg/redis/issues/181#issuecomment-1913346983">this</a> comment.</li>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/182">182</a>). Sets <code>"default"</code> as the default value of <code>config::username</code>. This makes it simpler to use the <code>requirepass</code> configuration in Redis.</li>
+<li>(Issue <a href="https://github.com/boostorg/redis/issues/189">189</a>). Fixes narrowing convertion by using <code>std::size_t</code> instead of <code>std::uint64_t</code> for the sizes of bulks and aggregates. The code relies now on <code>std::from_chars</code> returning an error if a value greater than 32 is received on platforms on which the size of<code>std::size_t</code> is 32.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md23"></a>
 Boost 1.84 (First release in Boost)</h2>
 <ul>
 <li>Deprecates the <code>async_receive</code> overload that takes a response. Users should now first call <code>set_receive_response</code> to avoid constantly and unnecessarily setting the same response.</li>
@@ -602,7 +610,7 @@ Boost 1.84 (First release in Boost)</h2>
 <li>The connection has a new member <code>get_usage()</code> that returns the connection usage information, such as number of bytes written, received etc.</li>
 <li>There are massive performance improvements in the consuming of server pushes which are now communicated with an <code>asio::channel</code> and therefore can be buffered which avoids blocking the socket read-loop. Batch reads are also supported by means of <code>channel.try_send</code> and buffered messages can be consumed synchronously with <code>connection::receive</code>. The function <code>boost::redis::cancel_one</code> has been added to simplify processing multiple server pushes contained in the same <code>generic_response</code>. <em>IMPORTANT</em>: These changes may result in more than one push in the response when <code>connection::async_receive</code> resumes. The user must therefore be careful when calling <code>resp.clear()</code>: either ensure that all message have been processed or just use <code>consume_one</code>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 v1.4.2 (incorporates changes to conform the boost review and more)</h2>
 <ul>
 <li>Adds <code><a class="el" href="group__high-level-api.html#a72f73dba57cbafb47d62f7f510b19984" title="Database that will be passed to the SELECT command.">boost::redis::config::database_index</a></code> to make it possible to choose a database before starting running commands e.g. after an automatic reconnection.</li>
@@ -622,14 +630,14 @@ v1.4.2 (incorporates changes to conform the boost review and more)</h2>
 <li>Fixes build with libc++.</li>
 <li>Adds high-level functionality to the connection classes. For example, <code><a class="el" href="classboost_1_1redis_1_1connection.html#a55cb11a29f2f9886dae0065f0f478c6a" title="Calls boost::redis::basic_connection::async_run.">boost::redis::connection::async_run</a></code> will automatically resolve, connect, reconnect and perform health checks.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md25"></a>
 v1.4.0-1</h2>
 <ul>
 <li>Renames <code>retry_on_connection_lost</code> to <code>cancel_if_unresponded</code>. (v1.4.1)</li>
 <li>Removes dependency on Boost.Hana, <code>boost::string_view</code>, Boost.Variant2 and Boost.Spirit.</li>
 <li>Fixes build and setup CI on windows.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 v1.3.0-1</h2>
 <ul>
 <li>Upgrades to Boost 1.80.0</li>
@@ -639,7 +647,7 @@ v1.3.0-1</h2>
 <li>The <code>aedis::connection</code> is now using a typeddef to a <code>net::ip::tcp::socket</code> and <code>aedis::ssl::connection</code> to <code>net::ssl::stream&lt;net::ip::tcp::socket&gt;</code>. Users that need to use other stream type must now specialize <code>aedis::basic_connection</code>.</li>
 <li>Adds a low level example of async code.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 v1.2.0</h2>
 <ul>
 <li><code>aedis::adapt</code> supports now tuples created with <code>std::tie</code>. <code>aedis::ignore</code> is now an alias to the type of <code>std::ignore</code>.</li>
@@ -657,7 +665,7 @@ v1.2.0</h2>
 <li>Changes <code>aedis::connection::async_run</code> completion signature to <code>f(error_code)</code>. This is how is was in the past, the second parameter was not helpful.</li>
 <li>Renames <code>operation::receive_push</code> to <code>aedis::operation::receive</code>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 v1.1.0-1</h2>
 <ul>
 <li>Removes <code>coalesce_requests</code> from the <code>aedis::connection::config</code>, it became a request property now, see <code>aedis::request::config::coalesce</code>.</li>
@@ -676,7 +684,7 @@ v1.1.0-1</h2>
 <li>Changes the behaviour of <code>connection::async_run</code> that would cause it to complete with success when an error in the <code>connection::async_exec</code> occurred.</li>
 <li>Ports the buildsystem from autotools to CMake.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 v1.0.0</h2>
 <ul>
 <li>Adds experimental cmake support for windows users.</li>
@@ -687,7 +695,7 @@ v1.0.0</h2>
 <li>Bugfix: a bug on reconnect from a state where the <code>connection</code> object had unsent commands. It could cause <code>async_exec</code> to never complete under certain conditions.</li>
 <li>Bugfix: Documentation of <code>adapt()</code> functions were missing from Doxygen.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 v0.3.0</h2>
 <ul>
 <li>Adds <code>experimental::exec</code> and <code>receive_event</code> functions to offer a thread safe and synchronous way of executing requests across threads. See <code>intro_sync.cpp</code> and <code>subscriber_sync.cpp</code> for examples.</li>
@@ -704,7 +712,7 @@ v0.3.0</h2>
 <li>Many simplifications in the <code>chat_room</code> example.</li>
 <li>Fixes build in clang the compilers and makes some improvements in the documentation.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 v0.2.0-1</h2>
 <ul>
 <li>Fixes a bug that happens on very high load. (v0.2.1)</li>
@@ -713,7 +721,7 @@ v0.2.0-1</h2>
 <li>Support for reconnection: Pending requests are not canceled when a connection is lost and are re-sent when a new one is established.</li>
 <li>The library is not sending HELLO-3 on user behalf anymore. This is important to support AUTH properly.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 v0.1.0-2</h2>
 <ul>
 <li>Adds reconnect coroutine in the <code>echo_server</code> example. (v0.1.2)</li>
@@ -723,7 +731,7 @@ v0.1.0-2</h2>
 <li>Improves the documentation and adds some features to the high-level client. (v.0.1.1)</li>
 <li>Improvements in the design and documentation.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 v0.0.1</h2>
 <ul>
 <li>First release to collect design feedback. </li>
@@ -736,7 +744,7 @@ v0.0.1</h2>
 </div> <!-- close #content-wrapper -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Jul 24 2024 04:40:45 for Boost.Redis by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Thu Dec 5 2024 00:57:06 for Boost.Redis by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </div> <!-- #page-wrapper -->

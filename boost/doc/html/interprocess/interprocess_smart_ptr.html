@@ -156,12 +156,12 @@
    <span class="comment">//Remove shared memory on construction and destruction</span>
    <span class="keyword">struct</span> <span class="identifier">shm_remove</span>
    <span class="special">{</span>
-      <span class="identifier">shm_remove</span><span class="special">()</span> <span class="special">{</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"MySharedMemory"</span><span class="special">);</span> <span class="special">}</span>
-      <span class="special">~</span><span class="identifier">shm_remove</span><span class="special">(){</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"MySharedMemory"</span><span class="special">);</span> <span class="special">}</span>
+      <span class="identifier">shm_remove</span><span class="special">()</span> <span class="special">{</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span>"MyName"<span class="special">);</span> <span class="special">}</span>
+      <span class="special">~</span><span class="identifier">shm_remove</span><span class="special">(){</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span>"MyName"<span class="special">);</span> <span class="special">}</span>
    <span class="special">}</span> <span class="identifier">remover</span><span class="special">;</span>
 
    <span class="comment">//Create shared memory</span>
-   <span class="identifier">managed_shared_memory</span> <span class="identifier">shmem</span><span class="special">(</span><span class="identifier">create_only</span><span class="special">,</span> <span class="string">"MySharedMemory"</span><span class="special">,</span> <span class="number">10000</span><span class="special">);</span>
+   <span class="identifier">managed_shared_memory</span> <span class="identifier">shmem</span><span class="special">(</span><span class="identifier">create_only</span><span class="special">,</span> "MyName"<span class="special">,</span> <span class="number">10000</span><span class="special">);</span>
 
    <span class="comment">//Create the unique reference counted object in shared memory</span>
    <span class="identifier">N</span><span class="special">::</span><span class="identifier">reference_counted_class</span> <span class="special">*</span><span class="identifier">ref_counted</span> <span class="special">=</span>
@@ -263,11 +263,11 @@
    <span class="comment">//Remove shared memory on construction and destruction</span>
    <span class="keyword">struct</span> <span class="identifier">shm_remove</span>
    <span class="special">{</span>
-      <span class="identifier">shm_remove</span><span class="special">()</span> <span class="special">{</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"MySharedMemory"</span><span class="special">);</span> <span class="special">}</span>
-      <span class="special">~</span><span class="identifier">shm_remove</span><span class="special">(){</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"MySharedMemory"</span><span class="special">);</span> <span class="special">}</span>
+      <span class="identifier">shm_remove</span><span class="special">()</span> <span class="special">{</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span>"MyName"<span class="special">);</span> <span class="special">}</span>
+      <span class="special">~</span><span class="identifier">shm_remove</span><span class="special">(){</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span>"MyName"<span class="special">);</span> <span class="special">}</span>
    <span class="special">}</span> <span class="identifier">remover</span><span class="special">;</span>
 
-   <span class="identifier">managed_shared_memory</span> <span class="identifier">shmem</span><span class="special">(</span><span class="identifier">create_only</span><span class="special">,</span> <span class="string">"MySharedMemory"</span><span class="special">,</span> <span class="number">10000</span><span class="special">);</span>
+   <span class="identifier">managed_shared_memory</span> <span class="identifier">shmem</span><span class="special">(</span><span class="identifier">create_only</span><span class="special">,</span> "MyName"<span class="special">,</span> <span class="number">10000</span><span class="special">);</span>
 
    <span class="comment">//In the first try, there will be no exceptions</span>
    <span class="comment">//in the second try we will throw an exception</span>
@@ -282,7 +282,7 @@
       <span class="comment">//we destroy the object automatically</span>
       <span class="identifier">my_deleter</span><span class="special">&lt;</span><span class="identifier">my_class</span><span class="special">&gt;</span> <span class="identifier">d</span><span class="special">(</span><span class="identifier">shmem</span><span class="special">.</span><span class="identifier">get_segment_manager</span><span class="special">());</span>
 
-      <span class="identifier">BOOST_TRY</span><span class="special">{</span>
+      try <span class="special">{</span>
          <span class="identifier">scoped_ptr</span><span class="special">&lt;</span><span class="identifier">my_class</span><span class="special">,</span> <span class="identifier">my_deleter</span><span class="special">&lt;</span><span class="identifier">my_class</span><span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">s_ptr</span><span class="special">(</span><span class="identifier">my_object</span><span class="special">,</span> <span class="identifier">d</span><span class="special">);</span>
          <span class="comment">//Let's emulate a exception capable operation</span>
          <span class="comment">//In the second try, throw an exception</span>
@@ -294,7 +294,7 @@
          <span class="comment">//to avoid destruction</span>
          <span class="identifier">s_ptr</span><span class="special">.</span><span class="identifier">release</span><span class="special">();</span>
       <span class="special">}</span>
-      <span class="identifier">BOOST_CATCH</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">my_exception</span> <span class="special">&amp;){}</span> <span class="identifier">BOOST_CATCH_END</span>
+      catch<span class="special">(</span><span class="keyword">const</span> <span class="identifier">my_exception</span> <span class="special">&amp;){}</span>
       <span class="comment">//Here, scoped_ptr is destroyed</span>
       <span class="comment">//so it we haven't thrown an exception</span>
       <span class="comment">//the object should be there, otherwise, destroyed</span>
@@ -399,11 +399,11 @@
    <span class="comment">//Remove shared memory on construction and destruction</span>
    <span class="keyword">struct</span> <span class="identifier">shm_remove</span>
    <span class="special">{</span>
-      <span class="identifier">shm_remove</span><span class="special">()</span> <span class="special">{</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"MySharedMemory"</span><span class="special">);</span> <span class="special">}</span>
-      <span class="special">~</span><span class="identifier">shm_remove</span><span class="special">(){</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"MySharedMemory"</span><span class="special">);</span> <span class="special">}</span>
+      <span class="identifier">shm_remove</span><span class="special">()</span> <span class="special">{</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span>"MyName"<span class="special">);</span> <span class="special">}</span>
+      <span class="special">~</span><span class="identifier">shm_remove</span><span class="special">(){</span> <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span>"MyName"<span class="special">);</span> <span class="special">}</span>
    <span class="special">}</span> <span class="identifier">remover</span><span class="special">;</span>
 
-   <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">create_only</span><span class="special">,</span> <span class="string">"MySharedMemory"</span><span class="special">,</span> <span class="number">4096</span><span class="special">);</span>
+   <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">create_only</span><span class="special">,</span> "MyName"<span class="special">,</span> <span class="number">4096</span><span class="special">);</span>
 
    <span class="comment">//Create a shared pointer in shared memory</span>
    <span class="comment">//pointing to a newly created object in the segment</span>
@@ -656,8 +656,8 @@
       </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">managed_mapped_file</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">smart_ptr</span><span class="special">/</span><span class="identifier">unique_ptr</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">containers</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">containers</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">vector</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">container</span><span class="special">/</span><span class="identifier">list</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">interprocess</span><span class="special">/</span><span class="identifier">allocators</span><span class="special">/</span><span class="identifier">allocator</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
 
@@ -677,12 +677,12 @@
 <span class="keyword">typedef</span> <span class="identifier">managed_unique_ptr</span><span class="special">&lt;</span><span class="identifier">MyType</span><span class="special">,</span> <span class="identifier">managed_mapped_file</span><span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">unique_ptr_type</span><span class="special">;</span>
 
 <span class="comment">//Define containers of unique pointer. Unique pointer simplifies object management</span>
-<span class="keyword">typedef</span> <span class="identifier">vector</span>
+<span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">vector</span>
    <span class="special">&lt;</span> <span class="identifier">unique_ptr_type</span>
    <span class="special">,</span> <span class="identifier">allocator</span><span class="special">&lt;</span><span class="identifier">unique_ptr_type</span><span class="special">,</span> <span class="identifier">managed_mapped_file</span><span class="special">::</span><span class="identifier">segment_manager</span><span class="special">&gt;</span>
    <span class="special">&gt;</span> <span class="identifier">unique_ptr_vector_t</span><span class="special">;</span>
 
-<span class="keyword">typedef</span> <span class="identifier">list</span>
+<span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">list</span>
    <span class="special">&lt;</span> <span class="identifier">unique_ptr_type</span>
    <span class="special">,</span> <span class="identifier">allocator</span><span class="special">&lt;</span><span class="identifier">unique_ptr_type</span><span class="special">,</span> <span class="identifier">managed_mapped_file</span><span class="special">::</span><span class="identifier">segment_manager</span><span class="special">&gt;</span>
    <span class="special">&gt;</span> <span class="identifier">unique_ptr_list_t</span><span class="special">;</span>
@@ -769,7 +769,7 @@
 </pre>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2005-2015 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2005-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

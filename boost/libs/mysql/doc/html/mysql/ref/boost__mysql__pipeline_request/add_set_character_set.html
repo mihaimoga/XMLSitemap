@@ -28,18 +28,16 @@
 <a name="mysql.ref.boost__mysql__pipeline_request.add_set_character_set"></a><a class="link" href="add_set_character_set.html" title="pipeline_request::add_set_character_set">pipeline_request::add_set_character_set</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm67536"></a>
-        </p>
-<p>
-          Adds a set character set stage.
+          <a class="indexterm" name="id79855"></a>
+Adds a set character set stage.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__pipeline_request.add_set_character_set.h0"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__pipeline_request.add_set_character_set.synopsis"></a></span><a class="link" href="add_set_character_set.html#mysql.ref.boost__mysql__pipeline_request.add_set_character_set.synopsis">Synopsis</a>
         </h6>
-<pre class="programlisting"><span class="identifier">pipeline_request</span><span class="special">&amp;</span>
+<pre class="programlisting"><a class="link" href="../boost__mysql__pipeline_request.html" title="pipeline_request"><code class="literal">pipeline_request</code></a><span class="special">&amp;</span>
 <span class="identifier">add_set_character_set</span><span class="special">(</span>
-    <span class="identifier">character_set</span> <span class="identifier">charset</span><span class="special">);</span>
+    <a class="link" href="../boost__mysql__character_set.html" title="character_set"><code class="literal">character_set</code></a> <span class="identifier">charset</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__pipeline_request.add_set_character_set.h1"></a>
@@ -58,8 +56,10 @@
           Strong guarantee. Throws if the supplied character set name is not valid
           (i.e. <code class="computeroutput"><span class="identifier">charset</span><span class="special">.</span><span class="identifier">name</span></code> contains non-ASCII characters).
           The check is performed as a hardening measure, and never happens with the
-          character sets provided by this library. Additionally, memory allocations
-          may throw.
+          character sets provided by this library.
+        </p>
+<p>
+          Additionally, memory allocations may throw.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__pipeline_request.add_set_character_set.h3"></a>
@@ -103,7 +103,7 @@
           The passed character set should not be default-constructed (<code class="computeroutput"><span class="identifier">charset</span><span class="special">.</span><span class="identifier">name</span> <span class="special">!=</span> <span class="keyword">nullptr</span></code>).
         </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

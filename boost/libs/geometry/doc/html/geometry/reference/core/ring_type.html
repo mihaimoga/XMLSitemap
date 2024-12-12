@@ -28,7 +28,7 @@
 <a name="geometry.reference.core.ring_type"></a><a class="link" href="ring_type.html" title="ring_type">ring_type</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="idm70664"></a>
+          <a class="indexterm" name="id71986"></a>
 Metafunction defining <span class="bold"><strong>type</strong></span> as the ring_type
           of the specified geometry type.
         </p>
@@ -131,11 +131,11 @@ Metafunction defining <span class="bold"><strong>type</strong></span> as the rin
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">point</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span> <span class="identifier">polygon</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">polygon</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;;</span>
 
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">ring_type</span><span class="special">&lt;</span><span class="identifier">polygon</span><span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">ring_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">interior_type</span><span class="special">&lt;</span><span class="identifier">polygon</span><span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">int_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">ring_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">ring_type</span><span class="special">&lt;</span><span class="identifier">polygon</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">int_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">interior_type</span><span class="special">&lt;</span><span class="identifier">polygon</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">;</span>
 
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">ring_type</span><span class="special">).</span><span class="identifier">name</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">int_type</span><span class="special">).</span><span class="identifier">name</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
@@ -144,7 +144,7 @@ Metafunction defining <span class="bold"><strong>type</strong></span> as the rin
     <span class="comment">// which is a Boost.Range compatible range</span>
     <span class="comment">// The type of an element of the collection is the very same ring type again.</span>
     <span class="comment">// We show that.</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">range_value</span><span class="special">&lt;</span><span class="identifier">int_type</span><span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">int_ring_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">int_ring_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">range_value</span><span class="special">&lt;</span><span class="identifier">int_type</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">;</span>
 
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span>
         <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">boolalpha</span>
@@ -164,8 +164,8 @@ St6vectorIN5boost8geometry5model4ringINS2_2d28point_xyIdNS1_2cs9cartesianEEELb1E
 true
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

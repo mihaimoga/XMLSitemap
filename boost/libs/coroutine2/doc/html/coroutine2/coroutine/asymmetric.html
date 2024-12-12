@@ -349,7 +349,7 @@
 </table></div>
 <pre class="programlisting"><span class="keyword">try</span> <span class="special">{</span>
     <span class="comment">// code that might throw</span>
-<span class="special">}</span> <span class="keyword">catch</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">coroutines2</span><span class="special">::</span><span class="identifier">detail</span><span class="special">::</span><span class="identifier">forced_unwind</span><span class="special">&amp;)</span> <span class="special">{</span>
+<span class="special">}</span> <span class="keyword">catch</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">context</span><span class="special">::</span><span class="identifier">detail</span><span class="special">::</span><span class="identifier">forced_unwind</span><span class="special">&amp;)</span> <span class="special">{</span>
     <span class="keyword">throw</span><span class="special">;</span>
 <span class="special">}</span> <span class="keyword">catch</span><span class="special">(...)</span> <span class="special">{</span>
     <span class="comment">// possibly not re-throw pending exception</span>
@@ -399,22 +399,22 @@
       </p>
 <pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">X</span> <span class="special">{</span>
     <span class="identifier">X</span><span class="special">(){</span>
-        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"X()"</span><span class="special">&lt;&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"X()"</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
     <span class="special">}</span>
 
     <span class="special">~</span><span class="identifier">X</span><span class="special">(){</span>
-        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"~X()"</span><span class="special">&lt;&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"~X()"</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
     <span class="special">}</span>
 <span class="special">};</span>
 
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">coroutines2</span><span class="special">::</span><span class="identifier">coroutine</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;::</span><span class="identifier">push_type</span>   <span class="identifier">coro_t</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">coroutines2</span><span class="special">::</span><span class="identifier">coroutine</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;</span> <span class="identifier">coro_t</span><span class="special">;</span>
 
     <span class="identifier">coro_t</span><span class="special">::</span><span class="identifier">push_type</span> <span class="identifier">sink</span><span class="special">(</span>
         <span class="special">[&amp;](</span><span class="identifier">coro_t</span><span class="special">::</span><span class="identifier">pull_type</span><span class="special">&amp;</span> <span class="identifier">source</span><span class="special">){</span>
             <span class="identifier">X</span> <span class="identifier">x</span><span class="special">;</span>
-            <span class="keyword">for</span><span class="special">(</span><span class="keyword">int</span><span class="special">=</span><span class="number">0</span><span class="special">;;++</span><span class="identifier">i</span><span class="special">){</span>
-                <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"fn(): "</span><span class="special">&lt;&lt;</span><span class="identifier">i</span><span class="special">&lt;&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+            <span class="keyword">for</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">i</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span> <span class="special">;</span> <span class="special">++</span><span class="identifier">i</span><span class="special">){</span>
+                <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"fn(): "</span> <span class="special">&lt;&lt;</span> <span class="identifier">i</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
                 <span class="comment">// transfer execution control back to main()</span>
                 <span class="identifier">source</span><span class="special">();</span>
             <span class="special">}</span>
@@ -436,7 +436,6 @@
     <span class="identifier">fn</span><span class="special">():</span> <span class="number">2</span>
     <span class="identifier">fn</span><span class="special">():</span> <span class="number">3</span>
     <span class="identifier">fn</span><span class="special">():</span> <span class="number">4</span>
-    <span class="identifier">fn</span><span class="special">():</span> <span class="number">5</span>
     <span class="identifier">sink</span> <span class="identifier">is</span> <span class="identifier">complete</span><span class="special">:</span> <span class="keyword">false</span>
     <span class="special">~</span><span class="identifier">X</span><span class="special">()</span>
 </pre>

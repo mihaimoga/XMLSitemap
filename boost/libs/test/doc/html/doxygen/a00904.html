@@ -41,7 +41,7 @@
 
   <span class="keyword">struct</span> <a class="link" href="a00908.html" title="Struct location">location</a> <span class="special">{</span>
 
-    <span class="comment">// <a class="link" href="a00908.html#idm44195-bb">public member functions</a></span>
+    <span class="comment">// <a class="link" href="a00908.html#id23-bb">public member functions</a></span>
     <span class="keyword">explicit</span> <a class="link" href="a00908.html#doxygen.a00908_1a726d382e166ea16c75783e0493976bb9"><span class="identifier">location</span></a><span class="special">(</span><span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> <span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
     <span class="keyword">explicit</span> <a class="link" href="a00908.html#doxygen.a00908_1a93da8bd22451e9f9884f0e8066a29ba0"><span class="identifier">location</span></a><span class="special">(</span><span class="identifier">const_string</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="special">=</span> <span class="number">0</span><span class="special">,</span> <span class="keyword">char</span> <span class="keyword">const</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
 
@@ -52,21 +52,21 @@
   <span class="special">}</span><span class="special">;</span>
   <span class="keyword">enum</span> <a class="link" href="a00904_1ad9dfa8b8077567a56c8474ccd2e21902.html" title="Type error_code">error_code</a><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="a00904.html#idm44215-bb">Constructors</a></span>
+  <span class="comment">// <a class="link" href="a00904.html#id24-bb">Constructors</a></span>
   <a class="link" href="a00904.html#doxygen.a00904_1af88cc0447e51f784d1418eb4aaf528fb"><span class="identifier">execution_exception</span></a><span class="special">(</span><span class="identifier">error_code</span><span class="special">,</span> <span class="identifier">const_string</span><span class="special">,</span> <a class="link" href="a00908.html" title="Struct location">location</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="a00904.html#idm44233-bb">Access methods</a></span>
+  <span class="comment">// <a class="link" href="a00904.html#id25-bb">Access methods</a></span>
   <span class="identifier">error_code</span> <a class="link" href="a00904.html#doxygen.a00904_1ac69d7a47fc97b023d5643f186006cf59"><span class="identifier">code</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="identifier">const_string</span> <a class="link" href="a00904.html#doxygen.a00904_1a2c7de7a46a0fb451e5d5b56180a43e3a"><span class="identifier">what</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <a class="link" href="a00908.html" title="Struct location">location</a> <span class="keyword">const</span> <span class="special">&amp;</span> <a class="link" href="a00904.html#doxygen.a00904_1a0be6557b3762279bb8f0847ff761a1a9"><span class="identifier">where</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm49700"></a><h2>Description</h2>
+<a name="id51150"></a><h2>Description</h2>
 <p>The instance of this class is thrown out of <a class="link" href="a00912.html#doxygen.a00912_1a6e5bb9bb9bceaa52644920790193da9a">execution_monitor::execute</a> invocation when failure is detected. Regardless of a kind of failure occurred the instance will provide a uniform way to catch and report it.</p>
 <p>One important design rationale for this class is that we should be ready to work after fatal memory corruptions or out of memory conditions. To facilitate this class never allocates any memory and assumes that strings it refers to are either some constants or live in a some kind of persistent (preallocated) memory. </p>
 <div class="refsect2">
-<a name="idm49705"></a><h3>
-<a name="idm44215-bb"></a><code class="computeroutput">execution_exception</code> Constructors</h3>
+<a name="id51155"></a><h3>
+<a name="id24-bb"></a><code class="computeroutput">execution_exception</code> Constructors</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><a name="doxygen.a00904_1af88cc0447e51f784d1418eb4aaf528fb"></a><span class="identifier">execution_exception</span><span class="special">(</span><span class="identifier">error_code</span> ec<span class="special">,</span> <span class="identifier">const_string</span> what_msg<span class="special">,</span> 
                     <a class="link" href="a00908.html" title="Struct location">location</a> <span class="keyword">const</span> <span class="special">&amp;</span> location<span class="special">)</span><span class="special">;</span></pre>Constructs instance based on message, location and error code. <p>
@@ -103,8 +103,8 @@
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm49746"></a><h3>
-<a name="idm44233-bb"></a><code class="computeroutput">execution_exception</code> Access methods</h3>
+<a name="id51196"></a><h3>
+<a name="id25-bb"></a><code class="computeroutput">execution_exception</code> Access methods</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="identifier">error_code</span> <a name="doxygen.a00904_1ac69d7a47fc97b023d5643f186006cf59"></a><span class="identifier">code</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Exception error code. </li>

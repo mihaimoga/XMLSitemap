@@ -32,8 +32,8 @@
         For the case where throwing exceptions is undesirable, Boost.JSON also provides
         a non-throwing version of <a class="link" href="../ref/boost__json__value_to.html" title="value_to"><code class="computeroutput"><span class="identifier">value_to</span></code></a>, the function template
         <a class="link" href="../ref/boost__json__try_value_to.html" title="try_value_to"><code class="computeroutput"><span class="identifier">try_value_to</span></code></a>.
-        It returns <a class="link" href="../ref/boost__json__result.html" title="result"><code class="computeroutput"><span class="identifier">result</span></code></a>,
-        a specialised variant that either holds a value or an <a class="link" href="../ref/boost__json__error_code.html" title="error_code"><code class="computeroutput"><span class="identifier">error_code</span></code></a>.
+        It returns <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_resultt_e" target="_top"><code class="computeroutput"><span class="identifier">result</span></code></a>, a specialised variant that
+        either holds a value or an <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_code" target="_top"><code class="computeroutput"><span class="identifier">error_code</span></code></a>.
       </p>
 <div class="note"><table border="0" summary="Note">
 <tr>
@@ -117,14 +117,14 @@
         overload of the form described in this section, but there is one of the form
         intended for <a class="link" href="../ref/boost__json__value_to.html" title="value_to"><code class="computeroutput"><span class="identifier">value_to</span></code></a>, then the library still
         tries to perform the conversion. It uses the throwing overload, and attempts
-        to convert any thrown exception into an <a class="link" href="../ref/boost__json__error_code.html" title="error_code"><code class="computeroutput"><span class="identifier">error_code</span></code></a>. Note, though, that such
-        approach will likely be slower then a dedicated overload.
+        to convert any thrown exception into an <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_code" target="_top"><code class="computeroutput"><span class="identifier">error_code</span></code></a>. Note, though, that
+        such approach will likely be slower then a dedicated overload.
       </p>
 <p>
         The opposite is also true: if there's a <code class="computeroutput"><span class="identifier">tag_invoke</span></code>
         overload intended for <a class="link" href="../ref/boost__json__try_value_to.html" title="try_value_to"><code class="computeroutput"><span class="identifier">try_value_to</span></code></a>, but not for <a class="link" href="../ref/boost__json__value_to.html" title="value_to"><code class="computeroutput"><span class="identifier">value_to</span></code></a>,
         then calling <code class="computeroutput"><a class="link" href="../ref/boost__json__value_to.html" title="value_to"><code class="computeroutput"><span class="identifier">value_to</span></code></a></code> will invoke the
-        non-throwing overload, then construct a <a class="link" href="../ref/boost__json__system_error.html" title="system_error"><code class="computeroutput"><span class="identifier">system_error</span></code></a> from the <a class="link" href="../ref/boost__json__error_code.html" title="error_code"><code class="computeroutput"><span class="identifier">error_code</span></code></a> and throw it. Due to
+        non-throwing overload, then construct a <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_system_error" target="_top"><code class="computeroutput"><span class="identifier">system_error</span></code></a> from the <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_code" target="_top"><code class="computeroutput"><span class="identifier">error_code</span></code></a> and throw it. Due to
         these fallbacks, it is recommended that users provide the overload from this
         section, rather then the other one, if they ever intend to use <a class="link" href="../ref/boost__json__try_value_to.html" title="try_value_to"><code class="computeroutput"><span class="identifier">try_value_to</span></code></a>.
       </p>

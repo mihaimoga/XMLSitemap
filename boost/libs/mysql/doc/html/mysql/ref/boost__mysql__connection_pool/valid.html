@@ -28,17 +28,15 @@
 <a name="mysql.ref.boost__mysql__connection_pool.valid"></a><a class="link" href="valid.html" title="connection_pool::valid">connection_pool::valid</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm50183"></a>
-        </p>
-<p>
-          Returns whether the object is in a moved-from state.
+          <a class="indexterm" name="id62015"></a>
+Returns whether the object is in a moved-from state.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.valid.h0"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.valid.synopsis"></a></span><a class="link" href="valid.html#mysql.ref.boost__mysql__connection_pool.valid.synopsis">Synopsis</a>
         </h6>
 <pre class="programlisting"><span class="keyword">bool</span>
-<span class="identifier">valid</span><span class="special">()</span> <span class="keyword">const</span><span class="special">;</span>
+<span class="identifier">valid</span><span class="special">()</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.valid.h1"></a>
@@ -59,15 +57,17 @@
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.valid.h3"></a>
-          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.valid.thead_safety"></a></span><a class="link" href="valid.html#mysql.ref.boost__mysql__connection_pool.valid.thead_safety">Thead-safety</a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.valid.thread_safety"></a></span><a class="link" href="valid.html#mysql.ref.boost__mysql__connection_pool.valid.thread_safety">Thread-safety</a>
         </h6>
 <p>
-          This function is never thread-safe, regardless of the executor configuration
-          passed to the constructor. Calling this function concurrently with any
-          other function introduces data races.
+          Reads the internal state handle. Does not access the pool state. Can be
+          called concurrently with any other function that reads the state handle,
+          like <a class="link" href="async_run.html" title="connection_pool::async_run"><code class="computeroutput"><span class="identifier">async_run</span></code></a> or <a class="link" href="async_get_connection.html" title="connection_pool::async_get_connection"><code class="computeroutput"><span class="identifier">async_get_connection</span></code></a>. It can't
+          be called concurrently with functions modifying the handle, like assignments,
+          even if <a class="link" href="../boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a> is set to true.
         </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

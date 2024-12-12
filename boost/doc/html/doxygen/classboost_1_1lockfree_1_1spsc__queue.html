@@ -33,7 +33,7 @@
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
 <div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../lockfree/reference.html#doxygen.spsc__queue_8hpp" title="Header &lt;boost/lockfree/spsc_queue.hpp&gt;">boost/lockfree/spsc_queue.hpp</a>&gt;
 
-</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span> <span class="special">...</span> Options<span class="special">&gt;</span> 
+</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span><span class="special">...</span> Options<span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
@@ -43,32 +43,41 @@
 
   <span class="comment">// <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#id-1_3_21_6_4_1_1_1_6-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a37ec8638a88eb65bb6d6bc00c65b5274"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="keyword">void</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
-    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1afccfc5565b809f27cba00d67c1f0f22f"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a6b0fb2495dd2d742f4ac4ff4f474ef6e"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a1b795c07647a10536c33fe26be67ef2b"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
-    <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac6e1255f75a38e132eb393da4e6cafa6"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> 
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a4b9264a4b4e393f765cd3c0ebf97b4fc"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac319001be218c3d9eb732f85aa5a6a27"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">explicit</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a858f61a8ed1172158b23da770320b11c"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a7d56bf19494a1500602a18c14043a449"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> 
                <span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a08566bbe85230b6a62a6c18b811e531f"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">allocator_arg</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1aa012f7917ffc715e5ec2d5de27ed8011"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1af1c7dc0749ff0cf649c443d41f0f28ec"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">allocator_arg</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a6c3a253dfd34e28d70fb816a5bdb9a2c"><span class="identifier">spsc_queue</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a33655f61ab0e115e5a7ee33c53fd70e5"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac383b0a903c7de8182b184dc9e9904c9"><span class="identifier">spsc_queue</span></a><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a39f4124525b294be0a40aa8aa82f7bd8"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1aa9ec66a800f75ab4239f5fa69becfbaa"><span class="identifier">push</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a49f5614dddc839ae53562444155d65e1"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a53da262b413be07633c71ba986296e87"><span class="identifier">pop</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">typenameis_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> 
-    <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac80830347ee4c6601fa645a7eac3bf91"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+           <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+    <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1acd52553fc38cecf7fd753c7b16378b17"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1aadbb77122aeb505381d1d8abb735308f"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">U</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a3a80bbd36ae35ee5da40ea47db5e2ae2"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span>
   <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a69291244914101ed5a3f0464756f83d7"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="keyword">const</span> <span class="special">*</span><span class="special">,</span> <span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">size_type</span> size<span class="special">&gt;</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1aa9dd23b2061693ad801acb50dcf88616"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">T</span> <span class="keyword">const</span> <span class="special">(</span><span class="special">&amp;</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> Extent<span class="special">&gt;</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a3ce4506ee40dcacd171d7453772a87a9"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">span</span><span class="special">&lt;</span> <span class="keyword">const</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">Extent</span> <span class="special">&gt;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ConstIterator<span class="special">&gt;</span> 
     <span class="identifier">ConstIterator</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a66368494233983ddc594d8a702cc14cd"><span class="identifier">push</span></a><span class="special">(</span><span class="identifier">ConstIterator</span><span class="special">,</span> <span class="identifier">ConstIterator</span><span class="special">)</span><span class="special">;</span>
   <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a8aaf171206a7b0c862a3ad066c916581"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">T</span> <span class="special">*</span><span class="special">,</span> <span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">size_type</span> size<span class="special">&gt;</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1ad631dce12b26271ec5658f3f3f8104d6"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">T</span><span class="special">(</span><span class="special">&amp;</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <a class="link" href="../OutputIterator.html" title="Concept OutputIterator">OutputIterator</a><span class="special">&gt;</span> 
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">disable_if</span><span class="special">&lt;</span> <span class="identifier">typenameis_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">OutputIterator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">,</span> <span class="identifier">size_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> 
-    <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a7bc729905b232dbe8d5c2ed9ef5b4bd5"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">OutputIterator</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a54f291b45b670bccbef9564cb2f7e0a1"><span class="identifier">consume_one</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1aee35f412b19bc7951e3f2890919e3112"><span class="identifier">consume_one</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a916a9012f247d17db0b21ac46d809d0d"><span class="identifier">consume_all</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1ab54fe3bb7fa8187357973dfc444ef26c"><span class="identifier">consume_all</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">OutputIterator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">,</span> <span class="identifier">size_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> 
+    <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1aca56d28f493f89cb7dcef27f23b24725"><span class="identifier">pop</span></a><span class="special">(</span><span class="identifier">OutputIterator</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a0ec271c24e8ecdc42d422ece84eed354"><span class="identifier">consume_one</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a8b30c85fb9b9425e15a067e1d092c9f5"><span class="identifier">consume_all</span></a><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a0652dcc180b385a352beaf6e57b37b29"><span class="identifier">read_available</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="identifier">size_type</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1afe8872cf0c1a016c8effe4da9bc2f29c"><span class="identifier">write_available</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html#doxygen.classboost_1_1lockfree_1_1spsc__queue_1a285425cc0ba5a8512c6971beb07eae1f"><span class="identifier">front</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
@@ -90,7 +99,7 @@
 <p><span class="bold"><strong>Requirements:</strong></span> </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>T must have a default constructor</p></li>
-<li class="listitem"><p>T must be copyable </p></li>
+<li class="listitem"><p>T must be copyable or movable </p></li>
 </ul></div>
 <p>
 </p>
@@ -115,8 +124,8 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
-  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1afccfc5565b809f27cba00d67c1f0f22f"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a4b9264a4b4e393f765cd3c0ebf97b4fc"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre>
 <p>Constructs a <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> with a custom allocator</p>
 <p>
 </p>
@@ -141,7 +150,8 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a6b0fb2495dd2d742f4ac4ff4f474ef6e"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac319001be218c3d9eb732f85aa5a6a27"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">allocator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre>
 <p>Constructs a <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> with a custom allocator</p>
 <p>
 </p>
@@ -166,7 +176,8 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a1b795c07647a10536c33fe26be67ef2b"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">size_type</span> element_count<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a858f61a8ed1172158b23da770320b11c"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">size_type</span> element_count<span class="special">)</span><span class="special">;</span></pre>
 <p>Constructs a <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> for element_count elements</p>
 <p>
 </p>
@@ -182,8 +193,8 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
-  <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac6e1255f75a38e132eb393da4e6cafa6"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">size_type</span> element_count<span class="special">,</span> 
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a7d56bf19494a1500602a18c14043a449"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">size_type</span> element_count<span class="special">,</span> 
              <span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">allocator_rebind</span><span class="special">&lt;</span> <span class="identifier">allocator</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
 <p>Constructs a <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> for element_count elements with a custom allocator</p>
 <p>
@@ -200,7 +211,8 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a08566bbe85230b6a62a6c18b811e531f"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">size_type</span> element_count<span class="special">,</span> <span class="identifier">allocator_arg</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">runtime_sized</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1af1c7dc0749ff0cf649c443d41f0f28ec"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="identifier">size_type</span> element_count<span class="special">,</span> <span class="identifier">allocator_arg</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
 <p>Constructs a <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> for element_count elements with a custom allocator</p>
 <p>
 </p>
@@ -215,8 +227,12 @@
 </tr></tbody>
 </table></div>
 </li>
+<li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a6c3a253dfd34e28d70fb816a5bdb9a2c"></a><span class="identifier">spsc_queue</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a33655f61ab0e115e5a7ee33c53fd70e5"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac383b0a903c7de8182b184dc9e9904c9"></a><span class="identifier">spsc_queue</span><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
+<li class="listitem"><pre class="literallayout"><a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a39f4124525b294be0a40aa8aa82f7bd8"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">delete</span><span class="special">;</span></pre></li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1aa012f7917ffc715e5ec2d5de27ed8011"></a><span class="identifier">push</span><span class="special">(</span><span class="identifier">T</span> <span class="keyword">const</span> <span class="special">&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1aa9ec66a800f75ab4239f5fa69becfbaa"></a><span class="identifier">push</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
 <p>Pushes object t to the ringbuffer.</p>
 <p>
 
@@ -228,6 +244,43 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>Thread-safe and wait-free </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>only one thread is allowed to push data to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
+</tr>
+<tr>
+<td><p><span class="term">Postconditions:</span></p></td>
+<td><p>object will be pushed to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a>, unless it is full. </p></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>true, if the push operation is successful.</p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a49f5614dddc839ae53562444155d65e1"></a><span class="identifier">push</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;&amp;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes object t to the ringbuffer.</p>
+<p>
+
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free  </p></td></tr>
 </table></div>
 <p>
 </p>
@@ -276,7 +329,7 @@
 <tbody>
 <tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>only one thread is allowed to pop data to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
+<td><p>only one thread is allowed to pop data from the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
 </tr>
 <tr>
 <td><p><span class="term">Postconditions:</span></p></td>
@@ -290,9 +343,9 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
-  <span class="identifier">boost</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">typenameis_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> 
-  <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1ac80830347ee4c6601fa645a7eac3bf91"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">,</span> 
+         <span class="keyword">typename</span> Enabler <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">U</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span> <span class="special">&gt;</span> <span class="special">&gt;</span> 
+  <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1acd52553fc38cecf7fd753c7b16378b17"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">U</span> <span class="special">&amp;</span> ret<span class="special">)</span><span class="special">;</span></pre>
 <p>Pops one object from ringbuffer.</p>
 <p>
 
@@ -315,7 +368,7 @@
 <tbody>
 <tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>only one thread is allowed to pop data to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
+<td><p>only one thread is allowed to pop data from the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
 </tr>
 <tr>
 <td><p><span class="term">Postconditions:</span></p></td>
@@ -324,6 +377,63 @@
 <tr>
 <td><p><span class="term">Returns:</span></p></td>
 <td><p>true, if the pop operation is successful, false if ringbuffer was empty.</p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1aadbb77122aeb505381d1d8abb735308f"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Pops object from <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a>, returning a std::optional&lt;&gt;</p>
+<p>
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and non-blocking </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p><code class="computeroutput">std::optional</code> with value if successful, <code class="computeroutput">std::nullopt</code> if <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> is empty.</p></td>
+</tr></tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span> <span class="identifier">U</span> <span class="special">&gt;</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a3a80bbd36ae35ee5da40ea47db5e2ae2"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">uses_optional_t</span><span class="special">)</span><span class="special">;</span></pre>
+<p>Pops object from <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a>, returning a std::optional&lt;&gt;</p>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and non-blocking </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>type T must be convertible to U </p></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p><code class="computeroutput">std::optional</code> with value if successful, <code class="computeroutput">std::nullopt</code> if <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> is empty.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -363,6 +473,38 @@
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">size_type</span> size<span class="special">&gt;</span> <span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1aa9dd23b2061693ad801acb50dcf88616"></a><span class="identifier">push</span><span class="special">(</span><span class="identifier">T</span> <span class="keyword">const</span> <span class="special">(</span><span class="special">&amp;</span><span class="special">)</span> t<span class="special">)</span><span class="special">;</span></pre>
 <p>Pushes as many objects from the array t as there is space available.</p>
+<p>
+
+</p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>Thread-safe and wait-free </p></td></tr>
+</table></div>
+<p>
+</p>
+<div class="variablelist"><table border="0" class="variablelist compact">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term">Requires:</span></p></td>
+<td><p>only one thread is allowed to push data to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
+</tr>
+<tr>
+<td><p><span class="term">Returns:</span></p></td>
+<td><p>number of pushed items</p></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> Extent<span class="special">&gt;</span> <span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a3ce4506ee40dcacd171d7453772a87a9"></a><span class="identifier">push</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">span</span><span class="special">&lt;</span> <span class="keyword">const</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">Extent</span> <span class="special">&gt;</span> t<span class="special">)</span><span class="special">;</span></pre>
+<p>Pushes as many objects from the span t as there is space available.</p>
 <p>
 
 </p>
@@ -448,7 +590,7 @@
 <tbody>
 <tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>only one thread is allowed to pop data to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
+<td><p>only one thread is allowed to pop data from the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
 </tr>
 <tr>
 <td><p><span class="term">Returns:</span></p></td>
@@ -480,7 +622,7 @@
 <tbody>
 <tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>only one thread is allowed to pop data to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
+<td><p>only one thread is allowed to pop data from the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
 </tr>
 <tr>
 <td><p><span class="term">Returns:</span></p></td>
@@ -491,8 +633,8 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <a class="link" href="../OutputIterator.html" title="Concept OutputIterator">OutputIterator</a><span class="special">&gt;</span> 
-  <span class="identifier">boost</span><span class="special">::</span><span class="identifier">disable_if</span><span class="special">&lt;</span> <span class="identifier">typenameis_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">OutputIterator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">,</span> <span class="identifier">size_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> 
-  <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a7bc729905b232dbe8d5c2ed9ef5b4bd5"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">OutputIterator</span> it<span class="special">)</span><span class="special">;</span></pre>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="special">!</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">OutputIterator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">value</span><span class="special">,</span> <span class="identifier">size_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> 
+  <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1aca56d28f493f89cb7dcef27f23b24725"></a><span class="identifier">pop</span><span class="special">(</span><span class="identifier">OutputIterator</span> it<span class="special">)</span><span class="special">;</span></pre>
 <p>Pops objects to the output iterator it</p>
 <p>
 
@@ -514,7 +656,7 @@
 <tbody>
 <tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>only one thread is allowed to pop data to the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
+<td><p>only one thread is allowed to pop data from the <a class="link" href="classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a> </p></td>
 </tr>
 <tr>
 <td><p><span class="term">Returns:</span></p></td>
@@ -524,7 +666,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a54f291b45b670bccbef9564cb2f7e0a1"></a><span class="identifier">consume_one</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a0ec271c24e8ecdc42d422ece84eed354"></a><span class="identifier">consume_one</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
 <p>consumes one element via a functor</p>
 <p>pops one element from the queue and applies the functor on this object</p>
 <p>
@@ -550,33 +692,7 @@
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1aee35f412b19bc7951e3f2890919e3112"></a><span class="identifier">consume_one</span><span class="special">(</span><span class="identifier">Functor</span> <span class="keyword">const</span> <span class="special">&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
-<p>consumes one element via a functor</p>
-<p>pops one element from the queue and applies the functor on this object</p>
-<p>
-</p>
-<div class="note"><table border="0" summary="Note">
-<tr>
-<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
-<th align="left">Note</th>
-</tr>
-<tr><td align="left" valign="top"><p>Thread-safe and non-blocking, if functor is thread-safe and non-blocking  </p></td></tr>
-</table></div>
-<p>
-</p>
-<div class="variablelist"><table border="0" class="variablelist compact">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term">Returns:</span></p></td>
-<td><p>true, if one element was consumed</p></td>
-</tr></tbody>
-</table></div>
-</li>
-<li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a916a9012f247d17db0b21ac46d809d0d"></a><span class="identifier">consume_all</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
+<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a8b30c85fb9b9425e15a067e1d092c9f5"></a><span class="identifier">consume_all</span><span class="special">(</span><span class="identifier">Functor</span> <span class="special">&amp;&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
 <p>consumes all elements via a functor</p>
 <p>sequentially pops all elements from the queue and applies the functor on each object</p>
 <p>
@@ -587,32 +703,6 @@
 <th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>Thread-safe and non-blocking, if functor is thread-safe and non-blocking </p></td></tr>
-</table></div>
-<p>
-</p>
-<div class="variablelist"><table border="0" class="variablelist compact">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term">Returns:</span></p></td>
-<td><p>number of elements that are consumed</p></td>
-</tr></tbody>
-</table></div>
-</li>
-<li class="listitem">
-<pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Functor<span class="special">&gt;</span> <span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1spsc__queue_1ab54fe3bb7fa8187357973dfc444ef26c"></a><span class="identifier">consume_all</span><span class="special">(</span><span class="identifier">Functor</span> <span class="keyword">const</span> <span class="special">&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>
-<p>consumes all elements via a functor</p>
-<p>sequentially pops all elements from the queue and applies the functor on each object</p>
-<p>
-</p>
-<div class="note"><table border="0" summary="Note">
-<tr>
-<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
-<th align="left">Note</th>
-</tr>
-<tr><td align="left" valign="top"><p>Thread-safe and non-blocking, if functor is thread-safe and non-blocking  </p></td></tr>
 </table></div>
 <p>
 </p>

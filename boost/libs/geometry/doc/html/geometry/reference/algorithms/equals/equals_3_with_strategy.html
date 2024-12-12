@@ -29,7 +29,7 @@
           (with strategy)</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm44848"></a>
+            <a class="indexterm" name="id46499"></a>
 Checks if a geometry are spatially equal.
           </p>
 <h6>
@@ -857,17 +857,13 @@ Checks if a geometry are spatially equal.
 
 <span class="identifier">BOOST_GEOMETRY_REGISTER_BOOST_TUPLE_CS</span><span class="special">(</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">cartesian</span><span class="special">)</span>
 
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">tuple_list_of</span><span class="special">;</span>
-
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">point</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;;</span>
 
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span> <span class="identifier">poly1</span><span class="special">,</span> <span class="identifier">poly2</span><span class="special">;</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">exterior_ring</span><span class="special">(</span><span class="identifier">poly1</span><span class="special">)</span> <span class="special">=</span> <span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">5</span><span class="special">)(</span><span class="number">5</span><span class="special">,</span> <span class="number">5</span><span class="special">)(</span><span class="number">5</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">);</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">exterior_ring</span><span class="special">(</span><span class="identifier">poly2</span><span class="special">)</span> <span class="special">=</span> <span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">5</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">5</span><span class="special">)(</span><span class="number">5</span><span class="special">,</span> <span class="number">5</span><span class="special">)(</span><span class="number">5</span><span class="special">,</span> <span class="number">0</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">exterior_ring</span><span class="special">(</span><span class="identifier">poly1</span><span class="special">)</span> <span class="special">=</span> <span class="special">{{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">5</span><span class="special">},</span> <span class="special">{</span><span class="number">5</span><span class="special">,</span> <span class="number">5</span><span class="special">},</span> <span class="special">{</span><span class="number">5</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">}};</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">exterior_ring</span><span class="special">(</span><span class="identifier">poly2</span><span class="special">)</span> <span class="special">=</span> <span class="special">{{</span><span class="number">5</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">5</span><span class="special">},</span> <span class="special">{</span><span class="number">5</span><span class="special">,</span> <span class="number">5</span><span class="special">},</span> <span class="special">{</span><span class="number">5</span><span class="special">,</span> <span class="number">0</span><span class="special">}};</span>
 
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span>
         <span class="special">&lt;&lt;</span> <span class="string">"polygons are spatially "</span>
@@ -882,7 +878,6 @@ Checks if a geometry are spatially equal.
         <span class="special">&lt;&lt;</span> <span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">equals</span><span class="special">(</span><span class="identifier">box</span><span class="special">,</span> <span class="identifier">poly2</span><span class="special">)</span> <span class="special">?</span> <span class="string">"equal"</span> <span class="special">:</span> <span class="string">"not equal"</span><span class="special">)</span>
         <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 
-
     <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
@@ -895,8 +890,8 @@ Checks if a geometry are spatially equal.
 polygon and box are spatially equal
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

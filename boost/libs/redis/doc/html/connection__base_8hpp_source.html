@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('connection__base_8hpp_source.html','')
   <div class="headertitle"><div class="title">connection_base.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* Copyright (c) 2018-2023 Marcelo Zimbres Silva (mzimbres@gmail.com)</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/* Copyright (c) 2018-2024 Marcelo Zimbres Silva (mzimbres@gmail.com)</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> * Distributed under the Boost Software License, Version 1.0. (See</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> * accompanying file LICENSE.txt)</span></div>
@@ -432,7 +432,7 @@ $(document).ready(function(){initNavTree('connection__base_8hpp_source.html','')
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>            <span class="keywordflow">if</span> (ec == asio::error::eof) {</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>               logger_.trace(<span class="stringliteral">&quot;reader-op: EOF received. Exiting ...&quot;</span>);</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>               conn_-&gt;cancel(<a class="code hl_enumvalue" href="group__high-level-api.html#ggaaf95d0d45b3829342e8adff2d6c3fcbeaa53108f7543b75adbb34afc035d4cdf6">operation::run</a>);</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>               <span class="keywordflow">return</span> self.complete({}); <span class="comment">// EOFINAE: EOF is not an error.</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>               <span class="keywordflow">return</span> self.complete(ec);</div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>            }</div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>            <span class="comment">// The connection is not viable after an error.</span></div>
@@ -805,7 +805,7 @@ $(document).ready(function(){initNavTree('connection__base_8hpp_source.html','')
 <div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>   <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>&gt; <span class="keyword">friend</span> <span class="keyword">struct </span>writer_op;</div>
 <div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>   <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>&gt; <span class="keyword">friend</span> <span class="keyword">struct </span>run_op;</div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>   <span class="keyword">template</span> &lt;<span class="keyword">class</span>&gt; <span class="keyword">friend</span> <span class="keyword">struct </span>exec_op;</div>
-<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>   <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keyword">class</span>&gt; <span class="keyword">friend</span> <span class="keyword">struct </span>run_all_op;</div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>   <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keyword">class</span>&gt; <span class="keyword">friend</span> <span class="keyword">struct </span>runner_op;</div>
 <div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span> </div>
 <div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>   <span class="keywordtype">void</span> cancel_push_requests()</div>
 <div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>   {</div>
@@ -1094,7 +1094,7 @@ $(document).ready(function(){initNavTree('connection__base_8hpp_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1878a3f4746a95c6aad317458cc7ef80.html">boost</a></li><li class="navelem"><a class="el" href="dir_2cc765c1b27cc1fc357a11cf7463bf5b.html">redis</a></li><li class="navelem"><a class="el" href="dir_f302fe01f65b2994e2f6bed4560d702c.html">detail</a></li><li class="navelem"><b>connection_base.hpp</b></li>
-    <li class="footer">Generated on Wed Jul 24 2024 04:40:45 for Boost.Redis by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+    <li class="footer">Generated on Thu Dec 5 2024 00:57:06 for Boost.Redis by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
 </div> <!-- #page-wrapper -->

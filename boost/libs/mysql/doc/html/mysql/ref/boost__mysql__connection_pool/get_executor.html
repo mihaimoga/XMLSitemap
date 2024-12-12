@@ -28,24 +28,24 @@
 <a name="mysql.ref.boost__mysql__connection_pool.get_executor"></a><a class="link" href="get_executor.html" title="connection_pool::get_executor">connection_pool::get_executor</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm50214"></a>
-        </p>
-<p>
-          Retrieves the executor associated to this object.
+          <a class="indexterm" name="id62056"></a>
+Retrieves the executor associated to this object.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.get_executor.h0"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.get_executor.synopsis"></a></span><a class="link" href="get_executor.html#mysql.ref.boost__mysql__connection_pool.get_executor.synopsis">Synopsis</a>
         </h6>
-<pre class="programlisting"><span class="identifier">executor_type</span>
-<span class="identifier">get_executor</span><span class="special">();</span>
+<pre class="programlisting"><a class="link" href="executor_type.html" title="connection_pool::executor_type"><code class="literal">connection_pool::executor_type</code></a>
+<span class="identifier">get_executor</span><span class="special">()</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.get_executor.h1"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.get_executor.description"></a></span><a class="link" href="get_executor.html#mysql.ref.boost__mysql__connection_pool.get_executor.description">Description</a>
         </h6>
 <p>
-          Returns the pool executor passed to the constructor, as per <a class="link" href="../boost__mysql__pool_executor_params/pool_executor.html" title="pool_executor_params::pool_executor"><code class="computeroutput"><span class="identifier">pool_executor_params</span><span class="special">::</span><span class="identifier">pool_executor</span></code></a>.
+          Returns the executor used to construct the pool as first argument. This
+          is the case even when using <a class="link" href="../boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a> - the internal strand
+          created in this case is never exposed.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.get_executor.h2"></a>
@@ -57,15 +57,15 @@
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.get_executor.h3"></a>
-          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.get_executor.thead_safety"></a></span><a class="link" href="get_executor.html#mysql.ref.boost__mysql__connection_pool.get_executor.thead_safety">Thead-safety</a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.get_executor.thread_safety"></a></span><a class="link" href="get_executor.html#mysql.ref.boost__mysql__connection_pool.get_executor.thread_safety">Thread-safety</a>
         </h6>
 <p>
-          This function is never thread-safe, regardless of the executor configuration
-          passed to the constructor. Calling this function concurrently with any
-          other function introduces data races.
+          Reads the internal state handle. Reads the pool state. If the pool was
+          built with thread-safety enabled, it can be called concurrently with other
+          functions that don't modify the state handle.
         </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

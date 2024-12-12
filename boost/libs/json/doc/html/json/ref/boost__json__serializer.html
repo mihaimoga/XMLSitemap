@@ -37,7 +37,8 @@
 <p>
         Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/json/blob/master/include/boost/json/serializer.hpp" target="_top">boost/json/serializer.hpp</a>&gt;</code>
       </p>
-<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">serializer</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">serializer</span>
+    <span class="special">:</span> <span class="keyword">private</span> <span class="identifier">detail</span><span class="special">::</span><span class="identifier">writer</span><span class="special">;</span>
 </pre>
 <h5>
 <a name="json.ref.boost__json__serializer.h1"></a>
@@ -96,7 +97,8 @@
 <td>
                 <p>
                   Reset the serializer for a new element. <br><span class="silver">—</span><br>Reset
-                  the serializer for a new string.
+                  the serializer for a new string. <br><span class="silver">—</span><br>Reset
+                  the serializer for std::nullptr_t.
                 </p>
               </td>
 </tr>

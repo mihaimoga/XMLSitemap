@@ -1,13 +1,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>(Experimental) Connection pools</title>
+<title>A REST API server that uses connection pooling</title>
 <link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../examples.html" title="Examples">
 <link rel="prev" href="pipeline.html" title="(Experimental) Pipelines">
-<link rel="next" href="../tests.html" title="Building and running the tests">
+<link rel="next" href="../ref.html" title="Reference">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,30 +21,35 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="pipeline.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../tests.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="pipeline.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../ref.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="mysql.examples.connection_pool"></a><a class="link" href="connection_pool.html" title="(Experimental) Connection pools">(Experimental) Connection
-      pools</a>
+<a name="mysql.examples.connection_pool"></a><a class="link" href="connection_pool.html" title="A REST API server that uses connection pooling">A REST API server that
+      uses connection pooling</a>
 </h3></div></div></div>
 <p>
-        This example demonstrates how to use <a class="link" href="../ref/boost__mysql__connection_pool.html" title="connection_pool"><code class="literal">connection_pool</code></a>.
-        It implements an HTTP REST API server for a text notes application. The API
-        provides CRUD methods on note objects. Instead of opening a new MySQL connection
-        per HTTP request, the server uses a connection pool to reuse connections.
+        This example assumes you have gone through the <a class="link" href="../examples.html#mysql.examples.setup">setup</a>.
       </p>
-<p>
-        The example employs async functions with stackful coroutines.
-      </p>
-<p>
-        This example contains multiple files, and requires linking to <a href="../../../../../../libs/context/index.html" target="_top">Boost.Context</a>,
-        <a href="../../../../../../libs/json/index.html" target="_top">Boost.Json</a> and and <a href="../../../../../../libs/url/index.html" target="_top">Boost.Url</a>. This example assumes
-        you have gone through the <a class="link" href="../examples.html#mysql.examples.setup">setup</a>.
-      </p>
-<pre class="programlisting"><span class="comment">//</span>
-<span class="comment">// File: main.cpp</span>
-<span class="comment">//</span>
+<pre class="programlisting"><span class="comment">/**
+ * This example demonstrates how to use a connection_pool.
+ * It implements a minimal REST API to manage notes.
+ * A note is a simple object containing a user-defined title and content.
+ * The REST API offers CRUD operations on such objects:
+ *    POST   /notes        Creates a new note.
+ *    GET    /notes        Retrieves all notes.
+ *    GET    /notes/&lt;id&gt;   Retrieves a single note.
+ *    PUT    /notes/&lt;id&gt;   Replaces a note, changing its title and content.
+ *    DELETE /notes/&lt;id&gt;   Deletes a note.
+ *
+ * Notes are stored in MySQL. The note_repository class encapsulates
+ *   access to MySQL, offering friendly functions to manipulate notes.
+ * server.cpp encapsulates all the boilerplate to launch an HTTP server,
+ *   match URLs to API endpoints, and invoke the relevant note_repository functions.
+ * All communication happens asynchronously. We use stackful coroutines to simplify
+ *   development, using boost::asio::spawn and boost::asio::yield_context.
+ * This example requires linking to Boost::context, Boost::json and Boost::url.
+ */</span>
 
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">any_address</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">connection_pool</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -62,25 +67,6 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">string</span><span class="special">&gt;</span>
 
 <span class="preprocessor">#include</span> <span class="string">"server.hpp"</span>
-
-<span class="comment">// This example demonstrates how to use a connection_pool.</span>
-<span class="comment">// It implements a minimal REST API to manage notes.</span>
-<span class="comment">// A note is a simple object containing a user-defined title and content.</span>
-<span class="comment">// The REST API offers CRUD operations on such objects:</span>
-<span class="comment">//    POST   /notes        Creates a new note.</span>
-<span class="comment">//    GET    /notes        Retrieves all notes.</span>
-<span class="comment">//    GET    /notes/&lt;id&gt;   Retrieves a single note.</span>
-<span class="comment">//    PUT    /notes/&lt;id&gt;   Replaces a note, changing its title and content.</span>
-<span class="comment">//    DELETE /notes/&lt;id&gt;   Deletes a note.</span>
-<span class="comment">//</span>
-<span class="comment">// Notes are stored in MySQL. The note_repository class encapsulates</span>
-<span class="comment">//   access to MySQL, offering friendly functions to manipulate notes.</span>
-<span class="comment">// server.cpp encapsulates all the boilerplate to launch an HTTP server,</span>
-<span class="comment">//   match URLs to API endpoints, and invoke the relevant note_repository functions.</span>
-<span class="comment">// All communication happens asynchronously. We use stackful coroutines to simplify</span>
-<span class="comment">//   development, using boost::asio::spawn and boost::asio::yield_context.</span>
-<span class="comment">//</span>
-<span class="comment">// Note: connection_pool is an experimental feature.</span>
 
 <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">notes</span><span class="special">;</span>
 
@@ -122,16 +108,16 @@
         <span class="string">"boost_mysql_examples"</span><span class="special">,</span>
     <span class="special">};</span>
 
-    <span class="comment">// Create the connection pool</span>
-    <span class="keyword">auto</span> <span class="identifier">shared_st</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">make_shared</span><span class="special">&lt;</span><span class="identifier">shared_state</span><span class="special">&gt;(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span><span class="special">(</span>
-        <span class="comment">// Using thread_safe will create a strand for the connection pool.</span>
-        <span class="comment">// This allows us to share the pool between sessions, which may run</span>
-        <span class="comment">// concurrently, on different threads.</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pool_executor_params</span><span class="special">::</span><span class="identifier">thread_safe</span><span class="special">(</span><span class="identifier">th_pool</span><span class="special">.</span><span class="identifier">get_executor</span><span class="special">()),</span>
+    <span class="comment">// Using thread_safe will make the pool thread-safe by internally</span>
+    <span class="comment">// creating and using a strand.</span>
+    <span class="comment">// This allows us to share the pool between sessions, which may run</span>
+    <span class="comment">// concurrently, on different threads.</span>
+    <span class="identifier">pool_prms</span><span class="special">.</span><span class="identifier">thread_safe</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
 
-        <span class="comment">// Pool config</span>
-        <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">pool_prms</span><span class="special">)</span>
-    <span class="special">));</span>
+    <span class="comment">// Create the connection pool</span>
+    <span class="keyword">auto</span> <span class="identifier">shared_st</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">make_shared</span><span class="special">&lt;</span><span class="identifier">shared_state</span><span class="special">&gt;(</span>
+        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span><span class="special">(</span><span class="identifier">th_pool</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">pool_prms</span><span class="special">))</span>
+    <span class="special">);</span>
 
     <span class="comment">// A signal_set allows us to intercept SIGINT and SIGTERM and</span>
     <span class="comment">// exit gracefully</span>
@@ -313,12 +299,11 @@
 <span class="comment">// File: repository.cpp</span>
 <span class="comment">//</span>
 
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">diagnostics</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">error_code</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">statement</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">static_results</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">string_view</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">throw_on_error</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">with_diagnostics</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">with_params</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iterator</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">tuple</span><span class="special">&gt;</span>
@@ -329,6 +314,7 @@
 
 <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">notes</span><span class="special">;</span>
 <span class="keyword">namespace</span> <span class="identifier">mysql</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">with_diagnostics</span><span class="special">;</span>
 
 <span class="comment">// SQL code to create the notes table is located under $REPO_ROOT/example/db_setup.sql</span>
 <span class="comment">// The table looks like this:</span>
@@ -341,20 +327,16 @@
 
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">note_t</span><span class="special">&gt;</span> <span class="identifier">note_repository</span><span class="special">::</span><span class="identifier">get_notes</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span> <span class="identifier">yield</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">diagnostics</span> <span class="identifier">diag</span><span class="special">;</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
-
     <span class="comment">// Get a fresh connection from the pool. This returns a pooled_connection object,</span>
     <span class="comment">// which is a proxy to an any_connection object. Connections are returned to the</span>
     <span class="comment">// pool when the proxy object is destroyed.</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="comment">// with_diagnostics ensures that thrown exceptions include diagnostic information</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">));</span>
 
     <span class="comment">// Execute the query to retrieve all notes. We use the static interface to</span>
     <span class="comment">// parse results directly into static_results.</span>
     <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">note_t</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT id, title, content FROM notes"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT id, title, content FROM notes"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">,</span> <span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">));</span>
 
     <span class="comment">// By default, connections are reset after they are returned to the pool</span>
     <span class="comment">// (by using any_connection::async_reset_connection). This will reset any</span>
@@ -370,72 +352,57 @@
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">make_move_iterator</span><span class="special">(</span><span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">().</span><span class="identifier">begin</span><span class="special">()),</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">make_move_iterator</span><span class="special">(</span><span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">().</span><span class="identifier">end</span><span class="special">())</span>
     <span class="special">);</span>
+
+    <span class="comment">// If an exception is thrown, pooled_connection's destructor will</span>
+    <span class="comment">// return the connection automatically to the pool.</span>
 <span class="special">}</span>
 
 <span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">note_t</span><span class="special">&gt;</span> <span class="identifier">note_repository</span><span class="special">::</span><span class="identifier">get_note</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span> <span class="identifier">note_id</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span> <span class="identifier">yield</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">diagnostics</span> <span class="identifier">diag</span><span class="special">;</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
-
     <span class="comment">// Get a fresh connection from the pool. This returns a pooled_connection object,</span>
     <span class="comment">// which is a proxy to an any_connection object. Connections are returned to the</span>
     <span class="comment">// pool when the proxy object is destroyed.</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">));</span>
 
-    <span class="comment">// Our query has a parameter, so we need a prepared statement.</span>
-    <span class="comment">// We don't need to deallocate this statement explicitly</span>
-    <span class="comment">// (no need to call any_connection::async_close_statement).</span>
-    <span class="comment">// The connection pool takes care of this for us</span>
-    <span class="comment">// (by using any_connection::async_reset_connection).</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_prepare_statement</span><span class="special">(</span>
-        <span class="string">"SELECT id, title, content FROM notes WHERE id = ?"</span><span class="special">,</span>
-        <span class="identifier">diag</span><span class="special">,</span>
-        <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]</span>
-    <span class="special">);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
-
-    <span class="comment">// Execute the statement. We use the static interface to parse results</span>
+    <span class="comment">// When executed, with_params expands a query client-side before sending it to the server.</span>
+    <span class="comment">// Placeholders are marked with {}</span>
     <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">note_t</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">note_id</span><span class="special">),</span> <span class="identifier">result</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span>
+        <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">with_params</span><span class="special">(</span><span class="string">"SELECT id, title, content FROM notes WHERE id = {}"</span><span class="special">,</span> <span class="identifier">note_id</span><span class="special">),</span>
+        <span class="identifier">result</span><span class="special">,</span>
+        <span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">)</span>
+    <span class="special">);</span>
+
+    <span class="comment">// We did nothing to mutate session state, so we can skip reset</span>
+    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">return_without_reset</span><span class="special">();</span>
 
     <span class="comment">// An empty results object indicates that no note was found</span>
     <span class="keyword">if</span> <span class="special">(</span><span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">().</span><span class="identifier">empty</span><span class="special">())</span>
         <span class="keyword">return</span> <span class="special">{};</span>
     <span class="keyword">else</span>
         <span class="keyword">return</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">()[</span><span class="number">0</span><span class="special">]);</span>
-
-    <span class="comment">// There's no need to return the connection explicitly to the pool,</span>
-    <span class="comment">// pooled_connection's destructor takes care of it.</span>
 <span class="special">}</span>
 
 <span class="identifier">note_t</span> <span class="identifier">note_repository</span><span class="special">::</span><span class="identifier">create_note</span><span class="special">(</span><span class="identifier">string_view</span> <span class="identifier">title</span><span class="special">,</span> <span class="identifier">string_view</span> <span class="identifier">content</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span> <span class="identifier">yield</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">diagnostics</span> <span class="identifier">diag</span><span class="special">;</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
-
     <span class="comment">// Get a fresh connection from the pool. This returns a pooled_connection object,</span>
     <span class="comment">// which is a proxy to an any_connection object. Connections are returned to the</span>
     <span class="comment">// pool when the proxy object is destroyed.</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">));</span>
 
-    <span class="comment">// Our query has parameters, so we need to prepare a statement.</span>
-    <span class="comment">// As explained above, there is no need to deallocate the statement explicitly,</span>
-    <span class="comment">// since the pool takes care of it.</span>
+    <span class="comment">// We will use statements in this function for the sake of example.</span>
+    <span class="comment">// We don't need to deallocate the statement explicitly,</span>
+    <span class="comment">// since the pool takes care of it after the connection is returned.</span>
+    <span class="comment">// You can also use with_params instead of statements.</span>
     <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_prepare_statement</span><span class="special">(</span>
         <span class="string">"INSERT INTO notes (title, content) VALUES (?, ?)"</span><span class="special">,</span>
-        <span class="identifier">diag</span><span class="special">,</span>
-        <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]</span>
+        <span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">)</span>
     <span class="special">);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
 
     <span class="comment">// Execute the statement. The statement won't produce any rows,</span>
     <span class="comment">// so we can use static_results&lt;std::tuple&lt;&gt;&gt;</span>
     <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">title</span><span class="special">,</span> <span class="identifier">content</span><span class="special">),</span> <span class="identifier">result</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">title</span><span class="special">,</span> <span class="identifier">content</span><span class="special">),</span> <span class="identifier">result</span><span class="special">,</span> <span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">));</span>
 
     <span class="comment">// MySQL reports last_insert_id as a uint64_t regardless of the actual ID type.</span>
     <span class="comment">// Given our table definition, this cast is safe</span>
@@ -454,69 +421,56 @@
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span> <span class="identifier">yield</span>
 <span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">diagnostics</span> <span class="identifier">diag</span><span class="special">;</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
-
     <span class="comment">// Get a fresh connection from the pool. This returns a pooled_connection object,</span>
     <span class="comment">// which is a proxy to an any_connection object. Connections are returned to the</span>
     <span class="comment">// pool when the proxy object is destroyed.</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">));</span>
 
-    <span class="comment">// Our query has parameters, so we need to prepare a statement.</span>
-    <span class="comment">// As explained above, there is no need to deallocate the statement explicitly,</span>
-    <span class="comment">// since the pool takes care of it.</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_prepare_statement</span><span class="special">(</span>
-        <span class="string">"UPDATE notes SET title = ?, content = ? WHERE id = ?"</span><span class="special">,</span>
-        <span class="identifier">diag</span><span class="special">,</span>
-        <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]</span>
-    <span class="special">);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
-
-    <span class="comment">// Execute the statement. The statement won't produce any rows,</span>
-    <span class="comment">// so we can use static_results&lt;std::tuple&lt;&gt;&gt;</span>
+    <span class="comment">// Expand and execute the query.</span>
+    <span class="comment">// It won't produce any rows, so we can use static_results&lt;std::tuple&lt;&gt;&gt;</span>
     <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;&gt;&gt;</span> <span class="identifier">empty_result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">title</span><span class="special">,</span> <span class="identifier">content</span><span class="special">,</span> <span class="identifier">note_id</span><span class="special">),</span> <span class="identifier">empty_result</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span>
+        <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">with_params</span><span class="special">(</span>
+            <span class="string">"UPDATE notes SET title = {}, content = {} WHERE id = {}"</span><span class="special">,</span>
+            <span class="identifier">title</span><span class="special">,</span>
+            <span class="identifier">content</span><span class="special">,</span>
+            <span class="identifier">note_id</span>
+        <span class="special">),</span>
+        <span class="identifier">empty_result</span><span class="special">,</span>
+        <span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">)</span>
+    <span class="special">);</span>
+
+    <span class="comment">// We didn't mutate session state, so we can skip reset</span>
+    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">return_without_reset</span><span class="special">();</span>
 
     <span class="comment">// No affected rows means that the note doesn't exist</span>
     <span class="keyword">if</span> <span class="special">(</span><span class="identifier">empty_result</span><span class="special">.</span><span class="identifier">affected_rows</span><span class="special">()</span> <span class="special">==</span> <span class="number">0u</span><span class="special">)</span>
         <span class="keyword">return</span> <span class="special">{};</span>
 
     <span class="keyword">return</span> <span class="identifier">note_t</span><span class="special">{</span><span class="identifier">note_id</span><span class="special">,</span> <span class="identifier">title</span><span class="special">,</span> <span class="identifier">content</span><span class="special">};</span>
-
-    <span class="comment">// There's no need to return the connection explicitly to the pool,</span>
-    <span class="comment">// pooled_connection's destructor takes care of it.</span>
 <span class="special">}</span>
 
 <span class="keyword">bool</span> <span class="identifier">note_repository</span><span class="special">::</span><span class="identifier">delete_note</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span> <span class="identifier">note_id</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span> <span class="identifier">yield</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">diagnostics</span> <span class="identifier">diag</span><span class="special">;</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
-
     <span class="comment">// Get a fresh connection from the pool. This returns a pooled_connection object,</span>
     <span class="comment">// which is a proxy to an any_connection object. Connections are returned to the</span>
     <span class="comment">// pool when the proxy object is destroyed.</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">pool_</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">(</span><span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">));</span>
 
-    <span class="comment">// Our query has parameters, so we need to prepare a statement.</span>
-    <span class="comment">// As explained above, there is no need to deallocate the statement explicitly,</span>
-    <span class="comment">// since the pool takes care of it.</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_prepare_statement</span><span class="special">(</span><span class="string">"DELETE FROM notes WHERE id = ?"</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
-
-    <span class="comment">// Execute the statement. The statement won't produce any rows,</span>
-    <span class="comment">// so we can use static_results&lt;std::tuple&lt;&gt;&gt;</span>
+    <span class="comment">// Expand and execute the query.</span>
+    <span class="comment">// It won't produce any rows, so we can use static_results&lt;std::tuple&lt;&gt;&gt;</span>
     <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;&gt;&gt;</span> <span class="identifier">empty_result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">note_id</span><span class="special">),</span> <span class="identifier">empty_result</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">,</span> <span class="identifier">yield</span><span class="special">[</span><span class="identifier">ec</span><span class="special">]);</span>
-    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">throw_on_error</span><span class="special">(</span><span class="identifier">ec</span><span class="special">,</span> <span class="identifier">diag</span><span class="special">);</span>
+    <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span>
+        <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">with_params</span><span class="special">(</span><span class="string">"DELETE FROM notes WHERE id = {}"</span><span class="special">,</span> <span class="identifier">note_id</span><span class="special">),</span>
+        <span class="identifier">empty_result</span><span class="special">,</span>
+        <span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">yield</span><span class="special">)</span>
+    <span class="special">);</span>
+
+    <span class="comment">// We didn't mutate session state, so we can skip reset</span>
+    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">return_without_reset</span><span class="special">();</span>
 
     <span class="comment">// No affected rows means that the note didn't exist</span>
     <span class="keyword">return</span> <span class="identifier">empty_result</span><span class="special">.</span><span class="identifier">affected_rows</span><span class="special">()</span> <span class="special">!=</span> <span class="number">0u</span><span class="special">;</span>
-
-    <span class="comment">// There's no need to return the connection explicitly to the pool,</span>
-    <span class="comment">// pooled_connection's destructor takes care of it.</span>
 <span class="special">}</span>
 </pre>
 <pre class="programlisting"><span class="comment">//</span>
@@ -548,6 +502,8 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">error_code</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">mysql</span><span class="special">/</span><span class="identifier">error_with_diagnostics</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">asio</span><span class="special">/</span><span class="identifier">cancel_after</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">asio</span><span class="special">/</span><span class="identifier">spawn</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">json</span><span class="special">/</span><span class="identifier">parse</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">json</span><span class="special">/</span><span class="identifier">serialize</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">json</span><span class="special">/</span><span class="identifier">value_from</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
@@ -556,9 +512,9 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">url</span><span class="special">/</span><span class="identifier">parse</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">variant2</span><span class="special">/</span><span class="identifier">variant</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">chrono</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstdint</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">exception</span><span class="special">&gt;</span>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">string</span><span class="special">&gt;</span>
 
 <span class="preprocessor">#include</span> <span class="string">"handle_request.hpp"</span>
@@ -854,8 +810,13 @@
     <span class="special">{</span>
         <span class="keyword">try</span>
         <span class="special">{</span>
-            <span class="comment">// Attempt to handle the request</span>
-            <span class="keyword">return</span> <span class="identifier">handle_request_impl</span><span class="special">(</span><span class="identifier">yield</span><span class="special">);</span>
+            <span class="comment">// Attempt to handle the request. We use cancel_after to set</span>
+            <span class="comment">// a timeout to the overall operation</span>
+            <span class="keyword">return</span> <span class="identifier">asio</span><span class="special">::</span><span class="identifier">spawn</span><span class="special">(</span>
+                <span class="identifier">yield</span><span class="special">.</span><span class="identifier">get_executor</span><span class="special">(),</span>
+                <span class="special">[</span><span class="keyword">this</span><span class="special">](</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span> <span class="identifier">yield2</span><span class="special">)</span> <span class="special">{</span> <span class="keyword">return</span> <span class="identifier">handle_request_impl</span><span class="special">(</span><span class="identifier">yield2</span><span class="special">);</span> <span class="special">},</span>
+                <span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancel_after</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">seconds</span><span class="special">(</span><span class="number">30</span><span class="special">),</span> <span class="identifier">yield</span><span class="special">)</span>
+            <span class="special">);</span>
         <span class="special">}</span>
         <span class="keyword">catch</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">error_with_diagnostics</span><span class="special">&amp;</span> <span class="identifier">err</span><span class="special">)</span>
         <span class="special">{</span>
@@ -1082,7 +1043,7 @@
 <span class="special">{</span>
     <span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
 
-    <span class="comment">// An object that allows us to acept incoming TCP connections.</span>
+    <span class="comment">// An object that allows us to accept incoming TCP connections.</span>
     <span class="comment">// Since we're in a multi-threaded environment, we create a strand for the acceptor,</span>
     <span class="comment">// so all accept handlers are run serialized</span>
     <span class="keyword">auto</span> <span class="identifier">acceptor</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">make_shared</span><span class="special">&lt;</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">acceptor</span><span class="special">&gt;(</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">make_strand</span><span class="special">(</span><span class="identifier">ex</span><span class="special">));</span>
@@ -1160,14 +1121,14 @@
 <span class="special">}</span>  <span class="comment">// namespace notes</span>
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="pipeline.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../tests.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="pipeline.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../examples.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../ref.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

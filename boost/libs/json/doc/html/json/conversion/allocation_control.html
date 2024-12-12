@@ -32,7 +32,7 @@
         creates a <a class="link" href="../ref/boost__json__value.html" title="value"><code class="computeroutput"><span class="identifier">value</span></code></a>
         object, users may want to control the way memory is allocated for it. For
         this reason the function has an optional <a class="link" href="../ref/boost__json__storage_ptr.html" title="storage_ptr"><code class="computeroutput"><span class="identifier">storage_ptr</span></code></a> parameter, that is used
-        to set the <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> for the result.
+        to set the <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> for the result.
       </p>
 <div class="note"><table border="0" summary="Note">
 <tr>
@@ -48,8 +48,7 @@
         As the conversion result is set via an output parameter of type <code class="computeroutput"><span class="identifier">value</span><span class="special">&amp;</span></code>,
         the intended <a class="link" href="../ref/boost__json__storage_ptr.html" title="storage_ptr"><code class="computeroutput"><span class="identifier">storage_ptr</span></code></a> is correctly propagated.
         But users still should take care to not create temporaries using the default
-        <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
-        by accident.
+        <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> by accident.
       </p>
 <p>
         For example, consider this alternative implementation of <code class="computeroutput"><span class="identifier">tag_invoke</span></code>
@@ -64,11 +63,11 @@
 </pre>
 <p>
         This implementation explicitly creates an <a class="link" href="../ref/boost__json__array.html" title="array"><code class="computeroutput"><span class="identifier">array</span></code></a> rather than relying on assignment
-        from an initializer list. But the array uses default <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>, not the one used
+        from an initializer list. But the array uses default <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>, not the one used
         by <code class="computeroutput"><span class="identifier">jv</span></code>.
       </p>
 <p>
-        To avoid creating such temporaries with an incorrect <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>, using <code class="computeroutput"><span class="identifier">value</span></code>'s member functions <code class="computeroutput"><span class="identifier">emplace_array</span></code>, <code class="computeroutput"><span class="identifier">emplace_object</span></code>,
+        To avoid creating such temporaries with an incorrect <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>, using <code class="computeroutput"><span class="identifier">value</span></code>'s member functions <code class="computeroutput"><span class="identifier">emplace_array</span></code>, <code class="computeroutput"><span class="identifier">emplace_object</span></code>,
         and <code class="computeroutput"><span class="identifier">emplace_string</span></code> can be
         helpful.
       </p>

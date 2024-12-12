@@ -664,6 +664,7 @@ pre.rouge {
 <li><a href="#overview">Overview</a></li>
 <li><a href="#changelog">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changelog_changes_in_1_87_0">Changes in 1.87.0</a></li>
 <li><a href="#changelog_changes_in_1_86_0">Changes in 1.86.0</a></li>
 <li><a href="#changelog_changes_in_1_83_0">Changes in 1.83.0</a></li>
 </ul>
@@ -816,6 +817,14 @@ pre.rouge {
 </li>
 </ul>
 </li>
+<li><a href="#to_array">&lt;boost/compat/to_array.hpp&gt;</a>
+<ul class="sectlevel2">
+<li><a href="#ref_to_array_description">Description</a></li>
+<li><a href="#ref_to_array_example">Example</a></li>
+<li><a href="#ref_to_array_synopsis">Synopsis</a></li>
+<li><a href="#ref_to_array_to_array">to_array</a></li>
+</ul>
+</li>
 <li><a href="#type_traits">&lt;boost/compat/type_traits.hpp&gt;</a>
 <ul class="sectlevel2">
 <li><a href="#ref_type_traits_description">Description</a></li>
@@ -870,6 +879,16 @@ implementations.</p>
 <div class="sect1">
 <h2 id="changelog">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changelog_changes_in_1_87_0">Changes in 1.87.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added <code>to_array.hpp</code> (contributed by Ruben Perez Hidalgo.)</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changelog_changes_in_1_86_0">Changes in 1.86.0</h3>
 <div class="ulist">
@@ -2538,6 +2557,115 @@ Returns:
 </div>
 </div>
 <div class="sect1">
+<h2 id="to_array">&lt;boost/compat/to_array.hpp&gt;</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ref_to_array_description">Description</h3>
+<div class="paragraph">
+<p>The header <code>&lt;boost/compat/to_array.hpp&gt;</code> implements, in a portable way, the C++20
+<code>std::to_array</code> function, present in the <code>&lt;array&gt;</code> header.</p>
+</div>
+<div class="paragraph">
+<p><code>to_array</code> creates a <code>std::array</code> from a single-dimensional C array,
+performing an element-wise copy or move.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_to_array_example">Example</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">int</span> <span class="n">input</span> <span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">output</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">compat</span><span class="o">::</span><span class="n">to_array</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">((</span>
+    <span class="n">output</span> <span class="o">==</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">{{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}}</span>
+<span class="p">));</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_to_array_synopsis">Synopsis</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">namespace</span> <span class="n">boost</span>
+<span class="p">{</span>
+<span class="k">namespace</span> <span class="n">compat</span>
+<span class="p">{</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">N</span><span class="p">&gt;</span>
+<span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">remove_cv_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">to_array</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">N</span><span class="p">]);</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">N</span><span class="p">&gt;</span>
+<span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">remove_cv_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">to_array</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">N</span><span class="p">]);</span>
+
+<span class="p">}</span> <span class="c1">// namespace compat</span>
+<span class="p">}</span> <span class="c1">// namespace boost</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_to_array_to_array">to_array</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">N</span><span class="p">&gt;</span>
+<span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">remove_cv_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">to_array</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">N</span><span class="p">]);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Creates an array of <code>N</code> elements by copying elements in <code>a</code>.
+For every <code>i</code> in <code>0, &#8230;&#8203;, N-1</code>, copy-initializes the i-th element
+in the output array from <code>a[i]</code>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Type requirements:
+</td>
+<td class="hdlist2">
+<p><code>std::is_constructible_v&lt;remove_cv_t&lt;T&gt;, T&amp;&gt; &amp;&amp; !std::is_array_v&lt;T&gt;</code>.
+Otherwise, the overload is ill-formed.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">N</span><span class="p">&gt;</span>
+<span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">remove_cvref_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">to_array</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">N</span><span class="p">]);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Creates an array of <code>N</code> elements by moving elements in <code>a</code>.
+For every <code>i</code> in <code>0, &#8230;&#8203;, N-1</code>, move-initializes the i-th element
+in the output array from <code>std::move(a[i])</code>.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Type requirements:
+</td>
+<td class="hdlist2">
+<p><code>std::is_constructible_v&lt;remove_cv_t&lt;T&gt;, T&amp;&amp;&gt; &amp;&amp; !std::is_array_v&lt;T&gt;</code>.
+Otherwise, the overload is ill-formed.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="type_traits">&lt;boost/compat/type_traits.hpp&gt;</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -2595,7 +2723,7 @@ contributors and is distributed under the
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-24 04:36:49 UTC
+Last updated 2024-12-05 00:53:11 UTC
 </div>
 </div>
 <style>

@@ -28,7 +28,7 @@
 <a name="geometry.reference.io.svg.svg_mapper"></a><a class="link" href="svg_mapper.html" title="svg_mapper">svg_mapper</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm74805"></a>
+            <a class="indexterm" name="id76196"></a>
 Helper class to create SVG maps.
           </p>
 <h6>
@@ -412,7 +412,11 @@ Helper class to create SVG maps.
             <span class="phrase"><a name="geometry.reference.io.svg.svg_mapper.example"></a></span><a class="link" href="svg_mapper.html#geometry.reference.io.svg.svg_mapper.example">Example</a>
           </h6>
 <p>
-            Shows the usage of svg_mapper
+            Shows the usage of svg_mapper. Make sure to first call only the method
+            <code class="literal">add</code> and then call only the methods <code class="literal">map</code>
+            or <code class="literal">text</code>. Because <code class="literal">add</code> calculates
+            the bounding box internally and that should be finished before calling
+            mapping functions. This might require two loops.
           </p>
 <p>
 </p>
@@ -426,7 +430,7 @@ Helper class to create SVG maps.
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
     <span class="comment">// Specify the basic type</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">point_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
 
     <span class="comment">// Declare some geometries and set their values</span>
     <span class="identifier">point_type</span> <span class="identifier">a</span><span class="special">;</span>
@@ -473,7 +477,7 @@ Helper class to create SVG maps.
             with arrows and groups</a>
           </h6>
 <p>
-            Shows the usage of svg_mapper with arrows, groups and a larger margin
+            Shows the usage of svg_mapper with arrows, groups and a larger margin.
           </p>
 <p>
 </p>
@@ -544,8 +548,8 @@ Helper class to create SVG maps.
                 <a class="link" href="svg.html" title="svg">The SVG manipulator</a>
               </li></ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

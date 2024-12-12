@@ -28,7 +28,7 @@
 <a name="geometry.reference.algorithms.for_each.for_each_segment"></a><a class="link" href="for_each_segment.html" title="for_each_segment">for_each_segment</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm47098"></a>
+            <a class="indexterm" name="id48694"></a>
 Applies function <span class="bold"><strong>f</strong></span> to each segment.
           </p>
 <h6>
@@ -167,72 +167,37 @@ Applies function <span class="bold"><strong>f</strong></span> to each segment.
 <p>
 </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">limits</span><span class="special">&gt;</span>
 
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="identifier">linestring</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="identifier">point_xy</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-
-
-<span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Segment</span><span class="special">&gt;</span>
-<span class="keyword">struct</span> <span class="identifier">gather_segment_statistics</span>
-<span class="special">{</span>
-    <span class="comment">// Remember that if coordinates are integer, the length might be floating point</span>
-    <span class="comment">// So use "double" for integers. In other cases, use coordinate type</span>
-    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">select_most_precise</span>
-        <span class="special">&lt;</span>
-            <span class="keyword">typename</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">coordinate_type</span><span class="special">&lt;</span><span class="identifier">Segment</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">,</span>
-            <span class="keyword">double</span>
-        <span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">type</span><span class="special">;</span>
-
-    <span class="identifier">type</span> <span class="identifier">min_length</span><span class="special">,</span> <span class="identifier">max_length</span><span class="special">;</span>
-
-    <span class="comment">// Initialize min and max</span>
-    <span class="identifier">gather_segment_statistics</span><span class="special">()</span>
-        <span class="special">:</span> <span class="identifier">min_length</span><span class="special">(</span><span class="number">1e38</span><span class="special">)</span>
-        <span class="special">,</span> <span class="identifier">max_length</span><span class="special">(-</span><span class="number">1</span><span class="special">)</span>
-    <span class="special">{}</span>
-
-    <span class="comment">// This operator is called for each segment</span>
-    <span class="keyword">inline</span> <span class="keyword">void</span> <span class="keyword">operator</span><span class="special">()(</span><span class="identifier">Segment</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">s</span><span class="special">)</span>
-    <span class="special">{</span>
-        <span class="identifier">type</span> <span class="identifier">length</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">length</span><span class="special">(</span><span class="identifier">s</span><span class="special">);</span>
-        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">length</span> <span class="special">&lt;</span> <span class="identifier">min_length</span><span class="special">)</span> <span class="identifier">min_length</span> <span class="special">=</span> <span class="identifier">length</span><span class="special">;</span>
-        <span class="keyword">if</span> <span class="special">(</span><span class="identifier">length</span> <span class="special">&gt;</span> <span class="identifier">max_length</span><span class="special">)</span> <span class="identifier">max_length</span> <span class="special">=</span> <span class="identifier">length</span><span class="special">;</span>
-    <span class="special">}</span>
-<span class="special">};</span>
-
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="comment">// Bring "+=" for a vector into scope</span>
-    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">;</span>
-
     <span class="comment">// Define a type</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">point</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
 
-    <span class="comment">// Declare a linestring</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span> <span class="identifier">polyline</span><span class="special">;</span>
+    <span class="comment">// Create a linestring</span>
+    <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span> <span class="identifier">polyline</span> <span class="special">=</span>
+        <span class="special">{{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">3</span><span class="special">,</span> <span class="number">3</span><span class="special">},</span> <span class="special">{</span><span class="number">5</span><span class="special">,</span> <span class="number">1</span><span class="special">},</span> <span class="special">{</span><span class="number">6</span><span class="special">,</span> <span class="number">2</span><span class="special">},</span> <span class="special">{</span><span class="number">8</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">4</span><span class="special">,</span> <span class="special">-</span><span class="number">4</span><span class="special">},</span> <span class="special">{</span><span class="number">1</span><span class="special">,</span> <span class="special">-</span><span class="number">1</span><span class="special">},</span> <span class="special">{</span><span class="number">3</span><span class="special">,</span> <span class="number">2</span><span class="special">}};</span>
 
-    <span class="comment">// Use Boost.Assign to initialize a linestring</span>
-    <span class="identifier">polyline</span> <span class="special">+=</span> <span class="identifier">point</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">),</span> <span class="identifier">point</span><span class="special">(</span><span class="number">3</span><span class="special">,</span> <span class="number">3</span><span class="special">),</span> <span class="identifier">point</span><span class="special">(</span><span class="number">5</span><span class="special">,</span> <span class="number">1</span><span class="special">),</span> <span class="identifier">point</span><span class="special">(</span><span class="number">6</span><span class="special">,</span> <span class="number">2</span><span class="special">),</span>
-                <span class="identifier">point</span><span class="special">(</span><span class="number">8</span><span class="special">,</span> <span class="number">0</span><span class="special">),</span> <span class="identifier">point</span><span class="special">(</span><span class="number">4</span><span class="special">,</span> <span class="special">-</span><span class="number">4</span><span class="special">),</span> <span class="identifier">point</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="special">-</span><span class="number">1</span><span class="special">),</span> <span class="identifier">point</span><span class="special">(</span><span class="number">3</span><span class="special">,</span> <span class="number">2</span><span class="special">);</span>
+    <span class="comment">// Iterate over its segments to find the minimum and maximum length</span>
+    <span class="keyword">double</span> <span class="identifier">min_length</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">numeric_limits</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;::</span><span class="identifier">max</span><span class="special">();</span>
+    <span class="keyword">double</span> <span class="identifier">max_length</span> <span class="special">=</span> <span class="special">-</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">numeric_limits</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;::</span><span class="identifier">max</span><span class="special">();</span>
 
-
-    <span class="comment">// Declare the gathering class...</span>
-    <span class="identifier">gather_segment_statistics</span>
-        <span class="special">&lt;</span>
-            <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">referring_segment</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span>
-        <span class="special">&gt;</span> <span class="identifier">functor</span><span class="special">;</span>
-
-    <span class="comment">// ... and use it, the essention.</span>
-    <span class="comment">// As also in std::for_each it is a const value, so retrieve it as a return value.</span>
-    <span class="identifier">functor</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">for_each_segment</span><span class="special">(</span><span class="identifier">polyline</span><span class="special">,</span> <span class="identifier">functor</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">for_each_segment</span><span class="special">(</span><span class="identifier">polyline</span><span class="special">,</span>
+        <span class="special">[&amp;](</span><span class="keyword">auto</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">s</span><span class="special">)</span>
+        <span class="special">{</span>
+            <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">length</span> <span class="special">=</span> <span class="keyword">static_cast</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">length</span><span class="special">(</span><span class="identifier">s</span><span class="special">));</span>
+            <span class="identifier">min_length</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">min</span><span class="special">(</span><span class="identifier">min_length</span><span class="special">,</span> <span class="identifier">length</span><span class="special">);</span>
+            <span class="identifier">max_length</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">max</span><span class="special">(</span><span class="identifier">max_length</span><span class="special">,</span> <span class="identifier">length</span><span class="special">);</span>
+        <span class="special">});</span>
 
     <span class="comment">// Output the results</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span>
-        <span class="special">&lt;&lt;</span> <span class="string">"Min segment length: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">functor</span><span class="special">.</span><span class="identifier">min_length</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span>
-        <span class="special">&lt;&lt;</span> <span class="string">"Max segment length: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">functor</span><span class="special">.</span><span class="identifier">max_length</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+        <span class="special">&lt;&lt;</span> <span class="string">"Min segment length: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">min_length</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span>
+        <span class="special">&lt;&lt;</span> <span class="string">"Max segment length: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">max_length</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 
     <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
@@ -246,8 +211,8 @@ Applies function <span class="bold"><strong>f</strong></span> to each segment.
 Max segment length: 5.65685
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -116,14 +116,10 @@
             <a class="link" href="ref/boost__json__string_view.html" title="string_view"><code class="computeroutput"><span class="identifier">string_view</span></code></a>
           </li>
 <li class="listitem">
-            <a class="link" href="ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>,
-            <a class="link" href="ref/boost__json__polymorphic_allocator.html" title="polymorphic_allocator"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a>
+            <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>, <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1polymorphic__allocator.html" target="_top"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a>
           </li>
 <li class="listitem">
-            <a class="link" href="ref/boost__json__error_category.html" title="error_category"><code class="computeroutput"><span class="identifier">error_category</span></code></a>,
-            <a class="link" href="ref/boost__json__error_code.html" title="error_code"><code class="computeroutput"><span class="identifier">error_code</span></code></a>,
-            <a class="link" href="ref/boost__json__error_condition.html" title="error_condition"><code class="computeroutput"><span class="identifier">error_condition</span></code></a>,
-            <a class="link" href="ref/boost__json__system_error.html" title="system_error"><code class="computeroutput"><span class="identifier">system_error</span></code></a>
+            <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_category" target="_top"><code class="computeroutput"><span class="identifier">error_category</span></code></a>, <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_code" target="_top"><code class="computeroutput"><span class="identifier">error_code</span></code></a>, <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_condition" target="_top"><code class="computeroutput"><span class="identifier">error_condition</span></code></a>, <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_system_error" target="_top"><code class="computeroutput"><span class="identifier">system_error</span></code></a>
           </li>
 </ul></div>
 <h5>
@@ -139,7 +135,11 @@
 </pre>
 <p>
         MSVC users must also define the macro <code class="computeroutput"><span class="identifier">BOOST_JSON_NO_LIB</span></code>
-        to disable auto-linking.
+        to disable auto-linking. Note, that if you also want to avoid linking to
+        Boost.Container, which is a dependency of Boost.JSON, you have to define
+        <code class="computeroutput"><span class="identifier">BOOST_CONTAINER_NO_LIB</span></code>. In
+        order to disable auto-linking to Boost libraries completely you can define
+        <code class="computeroutput"><span class="identifier">BOOST_ALL_NO_LIB</span></code> instead.
       </p>
 <h5>
 <a name="json.overview.requirements.h1"></a>
@@ -193,10 +193,10 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            clang: 3.5, 3.6, 3.7, 3.8, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+            clang: 3.8, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
           </li>
 <li class="listitem">
-            gcc: 4.8, 4.9, 5, 6, 7, 8, 9, 10, 11, 12
+            gcc: 4.8, 4.9, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
           </li>
 <li class="listitem">
             msvc: 14.0, 14.1, 14.2, 14.3

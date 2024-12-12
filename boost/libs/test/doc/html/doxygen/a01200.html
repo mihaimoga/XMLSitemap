@@ -41,30 +41,30 @@
     <span class="comment">// types</span>
     <span class="keyword">typedef</span> <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">sample_merge</span><span class="special">(</span><span class="special">*</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">declval</span><span class="special">&lt;</span> <span class="identifier">dataset1_iter</span> <span class="special">&gt;</span><span class="special">(</span><span class="special">)</span><span class="special">,</span> <span class="special">*</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">declval</span><span class="special">&lt;</span> <span class="identifier">dataset2_iter</span> <span class="special">&gt;</span><span class="special">(</span><span class="special">)</span><span class="special">)</span><span class="special">)</span> <a class="link" href="a01204.html#doxygen.a01204_1a20db49ad98af9450c24bca8b56548758"><span class="identifier">iterator_sample</span></a><span class="special">;</span>
 
-    <span class="comment">// <a class="link" href="a01204.html#idm43629-bb">public member functions</a></span>
+    <span class="comment">// <a class="link" href="a01204.html#id18-bb">public member functions</a></span>
     <span class="keyword">explicit</span> <a class="link" href="a01204.html#doxygen.a01204_1a4627fb433aa31ab55019aefa045dedf9"><span class="identifier">iterator</span></a><span class="special">(</span><span class="identifier">dataset1_iter</span><span class="special">,</span> <span class="identifier">dataset2_iter</span><span class="special">)</span><span class="special">;</span>
     <span class="keyword">auto</span> <a class="link" href="a01204.html#doxygen.a01204_1a9c153b436e84795372b090f1e2016f3d"><span class="keyword">operator</span><span class="special">*</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
     <span class="keyword">void</span> <a class="link" href="a01204.html#doxygen.a01204_1abf0ee5daeb88dc1c7be43812531c882b"><span class="keyword">operator</span><span class="special">++</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="special">}</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="a01200.html#idm43641-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="a01200.html#id19-bb">public member functions</a></span>
   <a class="link" href="a01200.html#doxygen.a01200_1abe8b2ee7c50c963dc10919869c294cea"><span class="identifier">zip</span></a><span class="special">(</span><span class="identifier">DataSet1</span> <span class="special">&amp;&amp;</span><span class="special">,</span> <span class="identifier">DataSet2</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="a01200.html#doxygen.a01200_1a52b46bb6e6d8d29ccee5cd3bf4f2948d"><span class="identifier">zip</span></a><span class="special">(</span><a class="link" href="a01200.html" title="Class template zip">zip</a> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="a01096.html" title="Class size_t">data::size_t</a> <a class="link" href="a01200.html#doxygen.a01200_1afb5a409903fd1e7b3b09b78c154d2d3f"><span class="identifier">size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <a class="link" href="a01204.html" title="Struct iterator">iterator</a> <a class="link" href="a01200.html#doxygen.a01200_1acee5e049a9b1ca0a7a6ee5baba69088d"><span class="identifier">begin</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="a01200.html#idm43661-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="a01200.html#id20-bb">private member functions</a></span>
   <a class="link" href="a01096.html" title="Class size_t">data::size_t</a> <a class="link" href="a01200.html#doxygen.a01200_1afaecdba00cbe6205b78b0c4c59b346e0"><span class="identifier">zip_size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
   <span class="comment">// public data members</span>
   <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> <span class="identifier">arity</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm47923"></a><h2>Description</h2>
+<a name="id49434"></a><h2>Description</h2>
 <p>A zip of two datasets is a dataset whose arity is the sum of the operand datasets arity. The size is given by the function creating the instance (see <code class="computeroutput">operator^</code> on datasets). </p>
 <div class="refsect2">
-<a name="idm47927"></a><h3>
-<a name="idm43641-bb"></a><code class="computeroutput">zip</code> public member functions</h3>
+<a name="id49438"></a><h3>
+<a name="id19-bb"></a><code class="computeroutput">zip</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.a01200_1abe8b2ee7c50c963dc10919869c294cea"></a><span class="identifier">zip</span><span class="special">(</span><span class="identifier">DataSet1</span> <span class="special">&amp;&amp;</span> ds1<span class="special">,</span> <span class="identifier">DataSet2</span> <span class="special">&amp;&amp;</span> ds2<span class="special">)</span><span class="special">;</span></pre>Constructor. <p>The datasets are moved and not copied. </p>
@@ -76,8 +76,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm47976"></a><h3>
-<a name="idm43661-bb"></a><code class="computeroutput">zip</code> private member functions</h3>
+<a name="id49487"></a><h3>
+<a name="id20-bb"></a><code class="computeroutput">zip</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><a class="link" href="a01096.html" title="Class size_t">data::size_t</a> <a name="doxygen.a01200_1afaecdba00cbe6205b78b0c4c59b346e0"></a><span class="identifier">zip_size</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Handles the sise of the resulting zipped dataset. </li></ol></div>
 </div>

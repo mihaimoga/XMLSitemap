@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="a01052.html" title="Class output_test_stream">output_test_stream</a> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">wrap_stringstream</span><span class="special">::</span><span class="identifier">wrapped_stream</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="a01052.html#idm46410-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="a01052.html#id83-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="a01052.html#doxygen.a01052_1af6a2f4f0edbb626cfa45b1fa4e1a3bed"><span class="identifier">output_test_stream</span></a><span class="special">(</span><span class="identifier">const_string</span> <span class="special">=</span> <span class="identifier">const_string</span><span class="special">(</span><span class="special">)</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">,</span> 
                               <span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="a01052.html#doxygen.a01052_1a019fdeb456018a49c2693516141def99"><span class="special">~</span><span class="identifier">output_test_stream</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -46,18 +46,18 @@
   <span class="keyword">virtual</span> <a class="link" href="a00948.html" title="Class assertion_result">assertion_result</a> <a class="link" href="a01052.html#doxygen.a01052_1a49e9cd8a93aa13207dd5e4209268220a"><span class="identifier">match_pattern</span></a><span class="special">(</span><span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="a01052.html#doxygen.a01052_1a3ad3b690b7cd00bfb28e7b6eee9a533e"><span class="identifier">flush</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="a01052.html#idm46486-bb">protected member functions</a></span>
+  <span class="comment">// <a class="link" href="a01052.html#id84-bb">protected member functions</a></span>
   <span class="keyword">virtual</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <a class="link" href="a01052.html#doxygen.a01052_1a138739109ff4fe4adb9347a4c12b1a89"><span class="identifier">get_stream_string_representation</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="a01052.html#idm46492-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="a01052.html#id85-bb">private member functions</a></span>
   <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <a class="link" href="a01052.html#doxygen.a01052_1aa1a4c212d8db73ee3cb3fe80bb2d60ce"><span class="identifier">length</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a01052.html#doxygen.a01052_1aed11e87850b4446716106721af23edac"><span class="identifier">sync</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm57289"></a><h2>Description</h2>
+<a name="id58679"></a><h2>Description</h2>
 <div class="refsect2">
-<a name="idm57291"></a><h3>
-<a name="idm46410-bb"></a><code class="computeroutput">output_test_stream</code> public member functions</h3>
+<a name="id58681"></a><h3>
+<a name="id83-bb"></a><code class="computeroutput">output_test_stream</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.a01052_1af6a2f4f0edbb626cfa45b1fa4e1a3bed"></a><span class="identifier">output_test_stream</span><span class="special">(</span><span class="identifier">const_string</span> pattern_file_name <span class="special">=</span> <span class="identifier">const_string</span><span class="special">(</span><span class="special">)</span><span class="special">,</span> 
@@ -205,15 +205,15 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm57469"></a><h3>
-<a name="idm46486-bb"></a><code class="computeroutput">output_test_stream</code> protected member functions</h3>
+<a name="id58859"></a><h3>
+<a name="id84-bb"></a><code class="computeroutput">output_test_stream</code> protected member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">virtual</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <a name="doxygen.a01052_1a138739109ff4fe4adb9347a4c12b1a89"></a><span class="identifier">get_stream_string_representation</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Returns the string representation of the stream. <p>May be overriden in order to mutate the string before the matching operations. </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm57488"></a><h3>
-<a name="idm46492-bb"></a><code class="computeroutput">output_test_stream</code> private member functions</h3>
+<a name="id58878"></a><h3>
+<a name="id85-bb"></a><code class="computeroutput">output_test_stream</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <a name="doxygen.a01052_1aa1a4c212d8db73ee3cb3fe80bb2d60ce"></a><span class="identifier">length</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Length of the stream. </li>

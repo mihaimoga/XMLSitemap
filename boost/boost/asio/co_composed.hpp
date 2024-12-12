@@ -846,15 +846,15 @@ public:
     throw;
   }
 
-  template <async_operation Op>
-  auto await_transform(Op&& op
+  template <BOOST_ASIO_ASYNC_OPERATION Op>
+  auto await_transform(Op&& op,
 #if defined(BOOST_ASIO_ENABLE_HANDLER_TRACKING)
 # if defined(BOOST_ASIO_HAS_SOURCE_LOCATION)
-      , boost::asio::detail::source_location location
-        = boost::asio::detail::source_location::current()
+      boost::asio::detail::source_location location
+        = boost::asio::detail::source_location::current(),
 # endif // defined(BOOST_ASIO_HAS_SOURCE_LOCATION)
 #endif // defined(BOOST_ASIO_ENABLE_HANDLER_TRACKING)
-    )
+      constraint_t<is_async_operation<Op>::value> = 0)
   {
     class [[nodiscard]] awaitable
     {
@@ -963,7 +963,7 @@ public:
 
             Handler handler(std::move(a.promise_.state_.handler_));
             std::tuple<decay_t<Args>...> result(
-                std::move(static_cast<std::tuple<Args&&...>>(a.result_)));
+                std::move(static_cast<std::tuple<Args&&...>&>(a.result_)));
 
             co_composed_handler_base<Executors, Handler,
               Return>(std::move(composed_handler));
@@ -1104,7 +1104,7 @@ private:
 };
 
 template <typename... Signatures, typename Implementation, typename Executors>
-inline initiate_co_composed<Implementation, Executors, Signatures...>
+inline initiate_co_composed<decay_t<Implementation>, Executors, Signatures...>
 make_initiate_co_composed(Implementation&& implementation,
     composed_io_executors<Executors>&& executors)
 {

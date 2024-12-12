@@ -41,18 +41,18 @@
   <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">clopper_pearson_interval</span><span class="special">::</span><span class="identifier">value_type</span>    <a name="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a690cde8b9671f13c501c185792ae2c02"></a><span class="identifier">value_type</span><span class="special">;</span>   
   <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">clopper_pearson_interval</span><span class="special">::</span><span class="identifier">interval_type</span> <a name="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a311d1b279d67fb3f1bd7cf4f3dc25410"></a><span class="identifier">interval_type</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval.html#idm16007-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval.html#id76-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a075dc68f01c2ecb48e7d56610111e67b"><span class="identifier">clopper_pearson_interval</span></a><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1utility_1_1confidence__level.html" title="Class confidence_level">confidence_level</a> <span class="special">=</span> <span class="identifier">deviation</span><span class="special">{</span><span class="number">1</span><span class="special">}</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="identifier">interval_type</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1abb03b5b488b993ea5841354088c9f91d"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">value_type</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm31557"></a><h2>Description</h2>
+<a name="id32898"></a><h2>Description</h2>
 <p>This is the classic frequentist interval obtained with the Neyman construction. It is therefore often called the 'exact' interval. It is guaranteed to have at least the requested confidence level for all values of the fraction.</p>
 <p>The interval is wider than others that produce coverage closer to the expected confidence level over a random ensemble of factions. The Clopper-Pearson interval essentially always overcovers for such a random ensemble, which is undesirable in practice. The Clopper-Pearson interval is recommended when it is important to be conservative, but the Wilson interval should be preferred in most applications.</p>
 <p>C. Clopper, E.S. Pearson (1934), Biometrika 26 (4): 404-413. doi:10.1093/biomet/26.4.404. </p>
 <div class="refsect2">
-<a name="idm31562"></a><h3>
-<a name="idm16007-bb"></a><code class="computeroutput">clopper_pearson_interval</code> public member functions</h3>
+<a name="id32903"></a><h3>
+<a name="id76-bb"></a><code class="computeroutput">clopper_pearson_interval</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a075dc68f01c2ecb48e7d56610111e67b"></a><span class="identifier">clopper_pearson_interval</span><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1utility_1_1confidence__level.html" title="Class confidence_level">confidence_level</a> cl <span class="special">=</span> <span class="identifier">deviation</span><span class="special">{</span><span class="number">1</span><span class="special">}</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Construct Clopper-Pearson interval computer. <p>

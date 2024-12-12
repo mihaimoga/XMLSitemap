@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1contract_1_1check.html" title="Class check">check</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1contract_1_1check.html#idm34301-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1contract_1_1check.html#id13-bb">public member functions</a></span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> F<span class="special">&gt;</span> <a class="link" href="classboost_1_1contract_1_1check.html#doxygen.reference.classboost_1_1contract_1_1check_1aef988b10c531e8fd1c72b7d228769926"><span class="identifier">check</span></a><span class="special">(</span><span class="identifier">F</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1contract_1_1check.html#doxygen.reference.classboost_1_1contract_1_1check_1a53fdb80101d9a2a59f12eeb05b27b8d5"><span class="identifier">check</span></a><span class="special">(</span><a class="link" href="classboost_1_1contract_1_1check.html" title="Class check">check</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> VirtualResult<span class="special">&gt;</span> 
@@ -50,7 +50,7 @@
   <a class="link" href="classboost_1_1contract_1_1check.html#doxygen.reference.classboost_1_1contract_1_1check_1a350ed366e128733fe7e558ed7d42f96b"><span class="special">~</span><span class="identifier">check</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm36044"></a><h2>Description</h2>
+<a name="id37489"></a><h2>Description</h2>
 <p>In general, when this object is constructed it checks class invariants at entry, preconditions, and makes old value copies at body. When it is destructed, it checks class invariants at exist, postconditions, and exception guarantees. This object enforces the following (see  <a class="link" href="../../boost_contract/contract_programming_overview.html" title="Contract Programming Overview"> Contract Programming Overview</a>):</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>Postconditions are checked only if the body does not throw an exception. </p></li>
@@ -65,8 +65,8 @@ When used this way, this object is constructed and initialized to the return val
 <p>
 </p>
 <div class="refsect2">
-<a name="idm36075"></a><h3>
-<a name="idm34301-bb"></a><code class="computeroutput">check</code> public member functions</h3>
+<a name="id37520"></a><h3>
+<a name="id13-bb"></a><code class="computeroutput">check</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> F<span class="special">&gt;</span> <a name="doxygen.reference.classboost_1_1contract_1_1check_1aef988b10c531e8fd1c72b7d228769926"></a><span class="identifier">check</span><span class="special">(</span><span class="identifier">F</span> <span class="keyword">const</span> <span class="special">&amp;</span> f<span class="special">)</span><span class="special">;</span></pre>Construct this object for implementation checks. <p>This can be used to program checks within implementation code (body, etc.). This constructor is not declared <code class="computeroutput">explicit</code> so initializations can use assignment syntax <code class="computeroutput">=</code>.</p>

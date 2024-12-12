@@ -35,7 +35,7 @@
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-            A storage pointer always points to a valid, type-erased <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>.
+            A storage pointer always points to a valid, type-erased <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>.
           </li>
 <li class="listitem">
             Default-constructed storage pointers reference the <span class="emphasis"><em>default
@@ -43,8 +43,7 @@
             uses the equivalent of global operator new and delete.
           </li>
 <li class="listitem">
-            Storage pointers constructed from a <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span><span class="special">*</span></code></a>
-            or <a class="link" href="../ref/boost__json__polymorphic_allocator.html" title="polymorphic_allocator"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a> do not
+            Storage pointers constructed from a <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> or <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1polymorphic__allocator.html" target="_top"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a> do not
             acquire ownership; the caller is responsible for ensuring that the lifetime
             of the resource extends until it is no longer referenced.
           </li>
@@ -126,7 +125,7 @@
 <tr>
 <td>
                 <p>
-                  <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
+                  <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
                 </p>
               </td>
 <td>
@@ -153,13 +152,13 @@
 <tr>
 <td>
                 <p>
-                  <a class="link" href="../ref/boost__json__polymorphic_allocator.html" title="polymorphic_allocator"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a>
+                  <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1polymorphic__allocator.html" target="_top"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a>
                 </p>
               </td>
 <td>
                 <p>
                   An <a href="https://en.cppreference.com/w/cpp/named_req/Allocator" target="_top"><span class="emphasis"><em>Allocator</em></span></a>
-                  which uses a reference to a <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> to perform
+                  which uses a reference to a <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> to perform
                   allocations.
                 </p>
               </td>
@@ -186,7 +185,7 @@
               </td>
 <td>
                 <p>
-                  A smart pointer through which a <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> is managed
+                  A smart pointer through which a <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> is managed
                   and accessed.
                 </p>
               </td>
@@ -368,7 +367,7 @@
 </pre>
 <p>
         When using a memory resource in this fashion, including the case where a
-        storage pointer or container is constructed from a <a class="link" href="../ref/boost__json__polymorphic_allocator.html" title="polymorphic_allocator"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a>, the caller
+        storage pointer or container is constructed from a <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1polymorphic__allocator.html" target="_top"><code class="computeroutput"><span class="identifier">polymorphic_allocator</span></code></a>, the caller
         must ensure that the lifetime of the resource is extended until it is no
         longer referenced by any variables; otherwise, undefined behavior is possible.
       </p>
@@ -395,10 +394,10 @@
       </h5>
 <p>
         To implement custom memory allocation strategies, derive your class from
-        <a class="link" href="../ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
-        and implement the functions <code class="computeroutput"><span class="identifier">do_allocate</span></code>,
-        <code class="computeroutput"><span class="identifier">do_deallocate</span></code>, and <code class="computeroutput"><span class="identifier">do_is_equal</span></code> as seen in this example below,
-        which logs each operation it performs to the console:
+        <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> and implement the
+        functions <code class="computeroutput"><span class="identifier">do_allocate</span></code>, <code class="computeroutput"><span class="identifier">do_deallocate</span></code>, and <code class="computeroutput"><span class="identifier">do_is_equal</span></code>
+        as seen in this example below, which logs each operation it performs to the
+        console:
       </p>
 <pre class="programlisting"><span class="keyword">class</span> <span class="identifier">logging_resource</span> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">memory_resource</span>
 <span class="special">{</span>

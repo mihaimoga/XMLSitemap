@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1compute_1_1program__cache.html" title="Class program_cache">program_cache</a> <span class="special">:</span> <span class="keyword">private</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">noncopyable</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1program__cache.html#idm11715-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1program__cache.html#id88-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1compute_1_1program__cache.html#doxygen.header_reference.classboost_1_1compute_1_1program__cache_1a84e0692477326ac81c4a7efc80620128"><span class="identifier">program_cache</span></a><span class="special">(</span><span class="identifier">size_t</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1compute_1_1program__cache.html#doxygen.header_reference.classboost_1_1compute_1_1program__cache_1a92e57ec6cffd528aa2d5647961cd8dce"><span class="special">~</span><span class="identifier">program_cache</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="identifier">size_t</span> <a class="link" href="classboost_1_1compute_1_1program__cache.html#doxygen.header_reference.classboost_1_1compute_1_1program__cache_1a89e723a895aa03b6573d45f8c4c81d24"><span class="identifier">size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
@@ -49,11 +49,11 @@
   <span class="identifier">program</span> <a class="link" href="classboost_1_1compute_1_1program__cache.html#doxygen.header_reference.classboost_1_1compute_1_1program__cache_1a05ecc23ce46c93f8db9332978ffdc9ec"><span class="identifier">get_or_build</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="special">&amp;</span><span class="special">,</span> 
                        <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">context</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1program__cache.html#idm11794-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1program__cache.html#id89-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span> <a class="link" href="classboost_1_1compute_1_1program__cache.html" title="Class program_cache">program_cache</a> <span class="special">&gt;</span> <a class="link" href="classboost_1_1compute_1_1program__cache.html#doxygen.header_reference.classboost_1_1compute_1_1program__cache_1a02824381fa15307631edc0743186773c"><span class="identifier">get_global_cache</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">context</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm38015"></a><h2>Description</h2>
+<a name="id39463"></a><h2>Description</h2>
 <p>The <a class="link" href="classboost_1_1compute_1_1program__cache.html" title="Class program_cache">program_cache</a> class stores program objects in a LRU cache.</p>
 <p>This class can be used to help mitigate the overhead of OpenCL's run-time kernel compilation model. Commonly used programs can be stored persistently in the cache and only compiled once on their first use.</p>
 <p>Program objects are stored and retreived based on a user-defined cache key along with the options used to build the program (if any).</p>
@@ -70,8 +70,8 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="idm38060"></a><h3>
-<a name="idm11715-bb"></a><code class="computeroutput">program_cache</code> public member functions</h3>
+<a name="id39508"></a><h3>
+<a name="id88-bb"></a><code class="computeroutput">program_cache</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.header_reference.classboost_1_1compute_1_1program__cache_1a84e0692477326ac81c4a7efc80620128"></a><span class="identifier">program_cache</span><span class="special">(</span><span class="identifier">size_t</span> capacity<span class="special">)</span><span class="special">;</span></pre>
@@ -118,8 +118,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm38306"></a><h3>
-<a name="idm11794-bb"></a><code class="computeroutput">program_cache</code> public static functions</h3>
+<a name="id39754"></a><h3>
+<a name="id89-bb"></a><code class="computeroutput">program_cache</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span> <a class="link" href="classboost_1_1compute_1_1program__cache.html" title="Class program_cache">program_cache</a> <span class="special">&gt;</span> 
 <a name="doxygen.header_reference.classboost_1_1compute_1_1program__cache_1a02824381fa15307631edc0743186773c"></a><span class="identifier">get_global_cache</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">context</span> <span class="special">&amp;</span> context<span class="special">)</span><span class="special">;</span></pre>

@@ -28,18 +28,18 @@
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">auto</span> DefaultValue<span class="special">,</span> <span class="keyword">auto</span><span class="special">...</span> UnallocatedValues<span class="special">&gt;</span> 
 <span class="keyword">struct</span> <a class="link" href="structboost_1_1scope_1_1unallocated__resource.html" title="Struct template unallocated_resource">unallocated_resource</a> <span class="special">{</span>
 
-  <span class="comment">// <a class="link" href="structboost_1_1scope_1_1unallocated__resource.html#idm7341-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="structboost_1_1scope_1_1unallocated__resource.html#id17-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">DefaultValue</span><span class="special">)</span> <a class="link" href="structboost_1_1scope_1_1unallocated__resource.html#doxygen.reference.structboost_1_1scope_1_1unallocated__resource_1afa9dd18f5e5eb9b02cee3d4fc08eb321"><span class="identifier">make_default</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Resource<span class="special">&gt;</span> 
     <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="structboost_1_1scope_1_1unallocated__resource.html#doxygen.reference.structboost_1_1scope_1_1unallocated__resource_1ae023c418046c96e9250e64d60d84339e"><span class="identifier">is_allocated</span></a><span class="special">(</span><span class="identifier">Resource</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm9488"></a><h2>Description</h2>
+<a name="id10828"></a><h2>Description</h2>
 <p>This class template generates resource traits for <code class="computeroutput"><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code> that specify one or more unallocated resource values. The first value, specified in the <code class="computeroutput">DefaultValue</code> non-type template parameter, is considered the default. The other values, listed in <code class="computeroutput">UnallocatedValues</code>, are optional. Any resource values other than <code class="computeroutput">DefaultValue</code> or listed in <code class="computeroutput">UnallocatedValues</code> are considered as allocated.</p>
 <p>In order for the generated resource traits to enable optimized implementation of <code class="computeroutput"><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code>, the resource type must support non-throwing construction and assignment from, and comparison for (in)equality with <code class="computeroutput">DefaultValue</code> or any of the resource values listed in <code class="computeroutput">UnallocatedValues</code>. </p>
 <div class="refsect2">
-<a name="idm9502"></a><h3>
-<a name="idm7341-bb"></a><code class="computeroutput">unallocated_resource</code> public static functions</h3>
+<a name="id10842"></a><h3>
+<a name="id17-bb"></a><code class="computeroutput">unallocated_resource</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">DefaultValue</span><span class="special">)</span> <a name="doxygen.reference.structboost_1_1scope_1_1unallocated__resource_1afa9dd18f5e5eb9b02cee3d4fc08eb321"></a><span class="identifier">make_default</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns the default resource value. </li>

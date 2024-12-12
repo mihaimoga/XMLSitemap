@@ -30,8 +30,11 @@
 <p>
         For large inputs parsing into the library's containers followed by conversion
         via <a class="link" href="../ref/boost__json__value_to.html" title="value_to"><code class="computeroutput"><span class="identifier">value_to</span></code></a>
+        (or vice versa <a class="link" href="../ref/boost__json__value_from.html" title="value_from"><code class="computeroutput"><span class="identifier">value_from</span></code></a> followed by serialization
+        from a <a class="link" href="../ref/boost__json__value.html" title="value"><code class="computeroutput"><span class="identifier">value</span></code></a>)
         might be prohibitively expensive. For these cases the library provides components
-        that allow parsing directly into user-provided objects.
+        that allow parsing directly into and serializing directly from user-provided
+        objects.
       </p>
 <p>
         The drawback of this approach is that fully custom type representations are
@@ -43,7 +46,7 @@
       </p>
 <p>
         That being said, if your types are default-constructible and you don't need
-        the customisability allowed by <a class="link" href="../ref/boost__json__value_to.html" title="value_to"><code class="computeroutput"><span class="identifier">value_to</span></code></a>, then you can get a significant
+        the customisability allowed by <a class="link" href="../ref/boost__json__value_to.html" title="value_to"><code class="computeroutput"><span class="identifier">value_to</span></code></a> and <a class="link" href="../ref/boost__json__value_from.html" title="value_from"><code class="computeroutput"><span class="identifier">value_from</span></code></a>, then you can get a significant
         performance boost with direct parsing.
       </p>
 <p>
@@ -57,12 +60,17 @@
 <span class="identifier">parse_into</span><span class="special">(</span><span class="identifier">vectors</span><span class="special">,</span> <span class="identifier">input</span><span class="special">);</span>
 </pre>
 <p>
-        Finally, if you need to combine incremental parsing with direct parsing,
-        you can resort to <a class="link" href="../ref/boost__json__parser_for.html" title="parser_for"><code class="computeroutput"><span class="identifier">parser_for</span></code></a>. <code class="computeroutput"><span class="identifier">parser_for</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
-        is an instantiation of <a class="link" href="../ref/boost__json__basic_parser.html" title="basic_parser"><code class="computeroutput"><span class="identifier">basic_parser</span></code></a> that parses into an
+        If you need to combine incremental parsing with direct parsing, you can resort
+        to <a class="link" href="../ref/boost__json__parser_for.html" title="parser_for"><code class="computeroutput"><span class="identifier">parser_for</span></code></a>.
+        <code class="computeroutput"><span class="identifier">parser_for</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code> is
+        an instantiation of <a class="link" href="../ref/boost__json__basic_parser.html" title="basic_parser"><code class="computeroutput"><span class="identifier">basic_parser</span></code></a> that parses into an
         object of type <code class="computeroutput"><span class="identifier">T</span></code>, and is
         what <a class="link" href="../ref/boost__json__parse_into.html" title="parse_into"><code class="computeroutput"><span class="identifier">parse_into</span></code></a>
         uses under the hood.
+      </p>
+<p>
+        Direct serialization doesn't require any special components and works with
+        the refular <a class="link" href="../ref/boost__json__serializer.html" title="serializer"><code class="computeroutput"><span class="identifier">serializer</span></code></a> and <a class="link" href="../ref/boost__json__serialize.html" title="serialize"><code class="computeroutput"><span class="identifier">serialize</span></code></a>.
       </p>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>

@@ -6,7 +6,7 @@ var searchData=
   ['on_5fread_3',['on_read',['../group__high-level-api.html#gafa6b3a1c6a60c3cf876f68334fb7da69',1,'boost::redis::logger']]],
   ['on_5fresolve_4',['on_resolve',['../group__high-level-api.html#gaa4f8e43bbfbc521140d67d3391e74505',1,'boost::redis::logger']]],
   ['on_5frun_5',['on_run',['../group__high-level-api.html#ga3d429b457bc761452f429666697264b2',1,'boost::redis::logger']]],
-  ['on_5frunner_6',['on_runner',['../group__high-level-api.html#ga2213233902a9c507195602e9c4dc763a',1,'boost::redis::logger']]],
+  ['on_5frunner_6',['on_runner',['../group__high-level-api.html#ga4f3c9e7a1e559f21af694ce6fce827a9',1,'boost::redis::logger']]],
   ['on_5fssl_5fhandshake_7',['on_ssl_handshake',['../group__high-level-api.html#gab9f560732061d32e36c1b123f7527793',1,'boost::redis::logger']]],
   ['on_5fwrite_8',['on_write',['../group__high-level-api.html#gae088c11e07c96870da765defff9cd43b',1,'boost::redis::logger']]],
   ['operator_21_3d_9',['operator!=',['../structboost_1_1redis_1_1adapter_1_1error.html#a3db4e1fd41af67a7a1c50d293153d30d',1,'boost::redis::adapter::error']]],

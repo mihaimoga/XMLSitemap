@@ -29,36 +29,35 @@
           (4 of 31 overloads)</a>
 </h6></div></div></div>
 <p>
-            Constructs a <code class="computeroutput"><span class="identifier">field</span></code> holding
-            NULL.
+            Move constructor.
           </p>
 <h6>
 <a name="mysql.ref.boost__mysql__field.field.overload4.h0"></a>
             <span class="phrase"><a name="mysql.ref.boost__mysql__field.field.overload4.synopsis"></a></span><a class="link" href="overload4.html#mysql.ref.boost__mysql__field.field.overload4.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="identifier">field</span><span class="special">(</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">nullptr_t</span><span class="special">);</span>
+    <a class="link" href="../../boost__mysql__field.html" title="field"><code class="literal">field</code></a><span class="special">&amp;&amp;</span> <span class="identifier">other</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__field.field.overload4.h1"></a>
-            <span class="phrase"><a name="mysql.ref.boost__mysql__field.field.overload4.description"></a></span><a class="link" href="overload4.html#mysql.ref.boost__mysql__field.field.overload4.description">Description</a>
-          </h6>
-<p>
-            Caution: <code class="computeroutput"><span class="identifier">field</span><span class="special">(</span><span class="identifier">NULL</span><span class="special">)</span></code>
-            will <span class="bold"><strong>NOT</strong></span> match this overload. It will
-            try to construct a <code class="computeroutput"><span class="identifier">string_view</span></code>
-            from a NULL C string, causing undefined behavior.
-          </p>
-<h6>
-<a name="mysql.ref.boost__mysql__field.field.overload4.h2"></a>
             <span class="phrase"><a name="mysql.ref.boost__mysql__field.field.overload4.exception_safety"></a></span><a class="link" href="overload4.html#mysql.ref.boost__mysql__field.field.overload4.exception_safety">Exception
             safety</a>
           </h6>
 <p>
             No-throw guarantee.
           </p>
+<h6>
+<a name="mysql.ref.boost__mysql__field.field.overload4.h2"></a>
+            <span class="phrase"><a name="mysql.ref.boost__mysql__field.field.overload4.object_lifetimes"></a></span><a class="link" href="overload4.html#mysql.ref.boost__mysql__field.field.overload4.object_lifetimes">Object
+            lifetimes</a>
+          </h6>
+<p>
+            All references into <code class="computeroutput"><span class="identifier">other</span></code>
+            are invalidated, including the ones obtained by calling get_xxx, as_xxx
+            and <a class="link" href="../operator_field_view.html" title="field::operator field_view"><code class="computeroutput"><span class="identifier">field</span><span class="special">::</span><span class="keyword">operator</span> <span class="identifier">field_view</span><span class="special">()</span></code></a>.
+          </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -36,13 +36,13 @@
             <span class="phrase"><a name="mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.synopsis"></a></span><a class="link" href="overload2.html#mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">class</span> <a href="../../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a><span class="special">&gt;</span>
+    <span class="keyword">class</span> <a href="../../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a> <span class="special">=</span> <a class="link" href="../../boost__mysql__with_diagnostics_t.html" title="with_diagnostics_t"><code class="literal">with_diagnostics_t</code></a><span class="special">&lt;</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred_t</span><span class="special">&gt;&gt;</span>
 <span class="keyword">auto</span>
 <span class="identifier">async_run_pipeline</span><span class="special">(</span>
-    <span class="keyword">const</span> <span class="identifier">pipeline_request</span><span class="special">&amp;</span> <span class="identifier">req</span><span class="special">,</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">stage_response</span> <span class="special">&gt;&amp;</span> <span class="identifier">res</span><span class="special">,</span>
-    <span class="identifier">diagnostics</span><span class="special">&amp;</span> <span class="identifier">diag</span><span class="special">,</span>
-    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span><span class="special">);</span>
+    <span class="keyword">const</span> <a class="link" href="../../boost__mysql__pipeline_request.html" title="pipeline_request"><code class="literal">pipeline_request</code></a><span class="special">&amp;</span> <span class="identifier">req</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <a class="link" href="../../boost__mysql__stage_response.html" title="stage_response"><code class="literal">stage_response</code></a> <span class="special">&gt;&amp;</span> <span class="identifier">res</span><span class="special">,</span>
+    <a class="link" href="../../boost__mysql__diagnostics.html" title="diagnostics"><code class="literal">diagnostics</code></a><span class="special">&amp;</span> <span class="identifier">diag</span><span class="special">,</span>
+    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="special">{});</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.h1"></a>
@@ -85,6 +85,22 @@
           </p>
 <h6>
 <a name="mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.h3"></a>
+            <span class="phrase"><a name="mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.executor"></a></span><a class="link" href="overload2.html#mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.executor">Executor</a>
+          </h6>
+<p>
+            Intermediate completion handlers, as well as the final handler, are executed
+            using <code class="computeroutput"><span class="identifier">token</span></code>'s associated
+            executor, or <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">get_executor</span><span class="special">()</span></code>
+            if the token doesn't have an associated executor.
+          </p>
+<p>
+            If the final handler has an associated immediate executor, and the operation
+            completes immediately, the final handler is dispatched to it. Otherwise,
+            the final handler is called as if it was submitted using <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">post</span></code>, and is never be called inline
+            from within this function.
+          </p>
+<h6>
+<a name="mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.h4"></a>
             <span class="phrase"><a name="mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.object_lifetimes"></a></span><a class="link" href="overload2.html#mysql.ref.boost__mysql__any_connection.async_run_pipeline.overload2.object_lifetimes">Object
             lifetimes</a>
           </h6>
@@ -93,7 +109,7 @@
             modified until the operation completes.
           </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

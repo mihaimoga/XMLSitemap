@@ -23,15 +23,15 @@ The free functions [*get] and [*set] are two of the most important functions of 
 
 [heading Synopsis]
 ``template<std::size_t Dimension, typename Geometry>
-void set(Geometry & geometry, typename coordinate_type< Geometry >::type const & value)``
+void set(Geometry & geometry, coordinate_type_t< Geometry > const & value)``
 
 [heading Parameters]
 
 [table
 [[Type] [Concept] [Name] [Description] ]
 [[Dimension] [Dimension, this template parameter is required. Should contain \[0 .. n-1\] for an n-dimensional geometry ] [ - ] [Must be specified]]
-[[Geometry &] [Any type fulfilling a Geometry Concept (usually a Point Concept) ] [geometry] [A model of the specified concept (usually a point) ]]
-[[typename coordinate_type< Geometry >::type const &] [] [value] [The coordinate value to set]]
+[[Geometry &] [Any type fulfilling a Geometry Concept (usually a Point Concept) ] [geometry] [A model of the specified concept ]]
+[[coordinate_type_t< Geometry > const &] [] [value] [The coordinate value to set]]
 ]
 
 
@@ -60,7 +60,7 @@ The free functions [*get] and [*set] are two of the most important functions of 
 
 [heading Synopsis]
 ``template<std::size_t Index, std::size_t Dimension, typename Geometry>
-void set(Geometry & geometry, typename coordinate_type< Geometry >::type const & value)``
+void set(Geometry & geometry, coordinate_type_t< Geometry > const & value)``
 
 [heading Parameters]
 
@@ -69,7 +69,7 @@ void set(Geometry & geometry, typename coordinate_type< Geometry >::type const &
 [[Index] [Index, this template parameter is required. For a Box: either min_corner or max_corner. For a Segment: either 0 or 1 for first or last point. ] [ - ] [Must be specified]]
 [[Dimension] [Dimension, this template parameter is required. Should contain \[0 .. n-1\] for an n-dimensional geometry ] [ - ] [Must be specified]]
 [[Geometry &] [Any type fulfilling a Box Concept or a Segment Concept ] [geometry] [A model of the specified concept ]]
-[[typename coordinate_type< Geometry >::type const &] [] [value] [The coordinate value to set]]
+[[coordinate_type_t< Geometry > const &] [] [value] [The coordinate value to set]]
 ]
 
 

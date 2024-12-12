@@ -28,7 +28,7 @@
 <a name="geometry.reference.algorithms.is_simple.is_simple_1"></a><a class="link" href="is_simple_1.html" title="is_simple">is_simple</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm49292"></a>
+            <a class="indexterm" name="id50786"></a>
 Checks if a geometry is simple.
           </p>
 <h6>
@@ -305,9 +305,9 @@ Checks if a geometry is simple.
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">point_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;</span> <span class="identifier">linestring_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">multi_linestring</span><span class="special">&lt;</span><span class="identifier">linestring_type</span><span class="special">&gt;</span> <span class="identifier">multi_linestring_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">linestring_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">multi_linestring_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">multi_linestring</span><span class="special">&lt;</span><span class="identifier">linestring_type</span><span class="special">&gt;;</span>
 
     <span class="identifier">multi_linestring_type</span> <span class="identifier">multi_linestring</span><span class="special">;</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">read_wkt</span><span class="special">(</span><span class="string">"MULTILINESTRING((0 0,0 10,10 10,10 0,0 0),(10 10,20 20))"</span><span class="special">,</span> <span class="identifier">multi_linestring</span><span class="special">);</span>
@@ -338,8 +338,8 @@ Checks if a geometry is simple.
                 <a class="link" href="../is_valid.html" title="is_valid">is_valid</a>
               </li></ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

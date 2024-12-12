@@ -39,7 +39,7 @@
   <span class="comment">// types</span>
   <span class="keyword">typedef</span> <span class="identifier">Mutex</span> <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1scoped__lock_1aa2b9cc2be8d165e4c31d6fa19f323624"></a><span class="identifier">mutex_type</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html#idm32894-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="../boost_container_header_reference/classboost_1_1container_1_1set.html#id101-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1scoped__lock_1aee816a4be359f8dd3ac6dbf1a0cb68d2"><span class="identifier">scoped_lock</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1scoped__lock_1a9a026e48b87795491ee6df539e213c83"><span class="identifier">scoped_lock</span></a><span class="special">(</span><span class="identifier">mutex_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1scoped__lock_1a4ed8c30faeae19f60b7050e9917238cc"><span class="identifier">scoped_lock</span></a><span class="special">(</span><span class="identifier">mutex_type</span> <span class="special">&amp;</span><span class="special">,</span> <a class="link" href="structboost_1_1interprocess_1_1defer__lock__type.html" title="Struct defer_lock_type">defer_lock_type</a><span class="special">)</span><span class="special">;</span>
@@ -70,11 +70,11 @@
   <span class="keyword">void</span> <a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1scoped__lock_1a699bba79ce251c921b885d2aea9751c0"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html" title="Class template scoped_lock">scoped_lock</a><span class="special">&lt;</span> <span class="identifier">mutex_type</span> <span class="special">&gt;</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.17.17.3.75.4.4"></a><h2>Description</h2>
+<a name="id-1.3.17.19.3.75.4.4"></a><h2>Description</h2>
 <p><a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html" title="Class template scoped_lock">scoped_lock</a> is meant to carry out the tasks for locking, unlocking, try-locking and timed-locking (recursive or not) for the Mutex. The Mutex need not supply all of this functionality. If the client of scoped_lock&lt;Mutex&gt; does not use functionality which the Mutex does not supply, no harm is done. Mutex ownership transfer is supported through the syntax of move semantics. Ownership transfer is allowed both by construction and assignment. The <a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html" title="Class template scoped_lock">scoped_lock</a> does not support copy semantics. A compile time error results if copy construction or copy assignment is attempted. Mutex ownership can also be moved from an <a class="link" href="classboost_1_1interprocess_1_1upgradable__lock.html" title="Class template upgradable_lock">upgradable_lock</a> and <a class="link" href="classboost_1_1interprocess_1_1sharable__lock.html" title="Class template sharable_lock">sharable_lock</a> via constructor. In this role, <a class="link" href="classboost_1_1interprocess_1_1scoped__lock.html" title="Class template scoped_lock">scoped_lock</a> shares the same functionality as a write_lock. </p>
 <div class="refsect2">
-<a name="id-1.3.17.17.3.75.4.4.3"></a><h3>
-<a name="idm32894-bb"></a><code class="computeroutput">scoped_lock</code> public member functions</h3>
+<a name="id-1.3.17.19.3.75.4.4.3"></a><h3>
+<a name="id101-bb"></a><code class="computeroutput">scoped_lock</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1scoped__lock_1aee816a4be359f8dd3ac6dbf1a0cb68d2"></a><span class="identifier">scoped_lock</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>
@@ -182,7 +182,7 @@
 </div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2005-2015 Ion Gaztanaga<p>
+<div class="copyright-footer">Copyright © 2005-2024 Ion Gaztanaga<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

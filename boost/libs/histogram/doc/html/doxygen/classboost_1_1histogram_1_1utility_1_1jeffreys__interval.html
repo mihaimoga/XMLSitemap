@@ -41,17 +41,17 @@
   <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">jeffreys_interval</span><span class="special">::</span><span class="identifier">value_type</span>    <a name="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a0849e5bc5919da6ff789d14cf7a91822"></a><span class="identifier">value_type</span><span class="special">;</span>   
   <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">jeffreys_interval</span><span class="special">::</span><span class="identifier">interval_type</span> <a name="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a8e0f12d950ea9c369f30b41c2b22689e"></a><span class="identifier">interval_type</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1utility_1_1jeffreys__interval.html#idm16050-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1utility_1_1jeffreys__interval.html#id77-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1jeffreys__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1ab797348bd255fcd856b2fc570c91f91d"><span class="identifier">jeffreys_interval</span></a><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1utility_1_1confidence__level.html" title="Class confidence_level">confidence_level</a> <span class="special">=</span> <span class="identifier">deviation</span><span class="special">{</span><span class="number">1</span><span class="special">}</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="identifier">interval_type</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1jeffreys__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a2d0fddacf2580f4b7499b44912ddd98a"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">value_type</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm31731"></a><h2>Description</h2>
+<a name="id33071"></a><h2>Description</h2>
 <p>This is the Bayesian credible interval with a Jeffreys prior. Although it has a Bayesian derivation, it has good coverage. The interval boundaries are close to the Wilson interval. A special property of this interval is that it is equal-tailed; the probability of the true value to be above or below the interval is approximately equal.</p>
 <p>To avoid coverage probability tending to zero when the fraction approaches 0 or 1, this implementation uses a modification described in section 4.1.2 of the paper by L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133, doi:10.1214/ss/1009213286. </p>
 <div class="refsect2">
-<a name="idm31735"></a><h3>
-<a name="idm16050-bb"></a><code class="computeroutput">jeffreys_interval</code> public member functions</h3>
+<a name="id33075"></a><h3>
+<a name="id77-bb"></a><code class="computeroutput">jeffreys_interval</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1ab797348bd255fcd856b2fc570c91f91d"></a><span class="identifier">jeffreys_interval</span><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1utility_1_1confidence__level.html" title="Class confidence_level">confidence_level</a> cl <span class="special">=</span> <span class="identifier">deviation</span><span class="special">{</span><span class="number">1</span><span class="special">}</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Construct Jeffreys interval computer. <p>

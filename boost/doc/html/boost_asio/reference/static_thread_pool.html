@@ -282,6 +282,23 @@
       </p>
 <h5>
 <a name="boost_asio.reference.static_thread_pool.h3"></a>
+        <span class="phrase"><a name="boost_asio.reference.static_thread_pool.thread_safety"></a></span><a class="link" href="static_thread_pool.html#boost_asio.reference.static_thread_pool.thread_safety">Thread Safety</a>
+      </h5>
+<p>
+        <span class="emphasis"><em>Distinct</em></span> <span class="emphasis"><em>objects:</em></span> Safe.
+      </p>
+<p>
+        <span class="emphasis"><em>Shared</em></span> <span class="emphasis"><em>objects:</em></span> Safe, with the
+        specific exceptions of the <code class="computeroutput"><span class="identifier">join</span><span class="special">()</span></code> <code class="computeroutput"><span class="identifier">wait</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">notify_fork</span><span class="special">()</span></code> functions. The <code class="computeroutput"><span class="identifier">join</span><span class="special">()</span></code> and <code class="computeroutput"><span class="identifier">wait</span><span class="special">()</span></code> functions must not be called at the same
+        time as other calls to <code class="computeroutput"><span class="identifier">join</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">wait</span><span class="special">()</span></code> on the same pool. The <code class="computeroutput"><span class="identifier">notify_fork</span><span class="special">()</span></code> function should not be called while any
+        <a class="link" href="thread_pool.html" title="thread_pool"><code class="computeroutput"><span class="identifier">thread_pool</span></code></a>
+        function, or any function on an I/O object that is associated with the <a class="link" href="thread_pool.html" title="thread_pool"><code class="computeroutput"><span class="identifier">thread_pool</span></code></a>,
+        is being called in another thread. (In effect, this means that <code class="computeroutput"><span class="identifier">notify_fork</span><span class="special">()</span></code>
+        is safe only on a thread pool that has no internal or attached threads at
+        the time.)
+      </p>
+<h5>
+<a name="boost_asio.reference.static_thread_pool.h4"></a>
         <span class="phrase"><a name="boost_asio.reference.static_thread_pool.submitting_tasks_to_the_pool"></a></span><a class="link" href="static_thread_pool.html#boost_asio.reference.static_thread_pool.submitting_tasks_to_the_pool">Submitting
         tasks to the pool</a>
       </h5>
@@ -315,7 +332,7 @@
 <span class="identifier">pool</span><span class="special">.</span><span class="identifier">join</span><span class="special">();</span>
 </pre>
 <h5>
-<a name="boost_asio.reference.static_thread_pool.h4"></a>
+<a name="boost_asio.reference.static_thread_pool.h5"></a>
         <span class="phrase"><a name="boost_asio.reference.static_thread_pool.requirements"></a></span><a class="link" href="static_thread_pool.html#boost_asio.reference.static_thread_pool.requirements">Requirements</a>
       </h5>
 <p>

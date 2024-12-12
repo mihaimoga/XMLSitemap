@@ -28,7 +28,7 @@
 <a name="geometry.reference.core.closure"></a><a class="link" href="closure.html" title="closure">closure</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="idm68839"></a>
+          <a class="indexterm" name="id70125"></a>
 Metafunction defining <span class="bold"><strong>value</strong></span> as the closure
           (clockwise, counterclockwise) of the specified geometry type.
         </p>
@@ -40,6 +40,7 @@ Metafunction defining <span class="bold"><strong>value</strong></span> as the cl
 </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Geometry</span><span class="special">&gt;</span>
 <span class="keyword">struct</span> <span class="identifier">closure</span>
+      <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">integral_constant</span><span class="special">&lt;</span> <span class="identifier">closure_selector</span><span class="special">,</span> <span class="identifier">core_dispatch</span><span class="special">::</span><span class="identifier">closure</span><span class="special">&lt;</span> <span class="identifier">tag_t</span><span class="special">&lt;</span> <span class="identifier">Geometry</span> <span class="special">&gt;,</span> <span class="identifier">util</span><span class="special">::</span><span class="identifier">remove_cptrref_t</span><span class="special">&lt;</span> <span class="identifier">Geometry</span> <span class="special">&gt;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>
 <span class="special">{</span>
   <span class="comment">// ...</span>
 <span class="special">};</span>
@@ -131,8 +132,8 @@ Metafunction defining <span class="bold"><strong>value</strong></span> as the cl
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">point_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;</span> <span class="identifier">polygon_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">polygon_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;;</span>
 
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">closure_selector</span> <span class="identifier">clos</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">closure</span><span class="special">&lt;</span><span class="identifier">polygon_type</span><span class="special">&gt;::</span><span class="identifier">value</span><span class="special">;</span>
 
@@ -162,8 +163,8 @@ Metafunction defining <span class="bold"><strong>value</strong></span> as the cl
               closure_selector enumeration</a>
             </li></ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

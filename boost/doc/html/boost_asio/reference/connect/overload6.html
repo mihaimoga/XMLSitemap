@@ -1,13 +1,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>connect (6 of 12 overloads)</title>
+<title>connect (6 of 8 overloads)</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../../boost_asio.html" title="Boost.Asio">
 <link rel="up" href="../connect.html" title="connect">
-<link rel="prev" href="overload5.html" title="connect (5 of 12 overloads)">
-<link rel="next" href="overload7.html" title="connect (7 of 12 overloads)">
+<link rel="prev" href="overload5.html" title="connect (5 of 8 overloads)">
+<link rel="next" href="overload7.html" title="connect (7 of 8 overloads)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -25,8 +25,8 @@
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
-<a name="boost_asio.reference.connect.overload6"></a><a class="link" href="overload6.html" title="connect (6 of 12 overloads)">connect (6
-        of 12 overloads)</a>
+<a name="boost_asio.reference.connect.overload6"></a><a class="link" href="overload6.html" title="connect (6 of 8 overloads)">connect (6
+        of 8 overloads)</a>
 </h4></div></div></div>
 <p>
           Establishes a socket connection by trying each endpoint in a sequence.
@@ -34,12 +34,15 @@
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">typename</span> <a class="link" href="../Protocol.html" title="Protocol requirements">Protocol</a><span class="special">,</span>
     <span class="keyword">typename</span> <a class="link" href="../Executor1.html" title="Executor requirements">Executor</a><span class="special">,</span>
-    <span class="keyword">typename</span> <span class="identifier">Iterator</span><span class="special">&gt;</span>
-<span class="identifier">Iterator</span> <span class="identifier">connect</span><span class="special">(</span>
+    <span class="keyword">typename</span> <a class="link" href="../EndpointSequence.html" title="Endpoint sequence requirements">EndpointSequence</a><span class="special">,</span>
+    <span class="keyword">typename</span> <a class="link" href="../ConnectCondition.html" title="Connect condition requirements">ConnectCondition</a><span class="special">&gt;</span>
+<span class="identifier">Protocol</span><span class="special">::</span><span class="identifier">endpoint</span> <span class="identifier">connect</span><span class="special">(</span>
     <span class="identifier">basic_socket</span><span class="special">&lt;</span> <span class="identifier">Protocol</span><span class="special">,</span> <span class="identifier">Executor</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <span class="identifier">s</span><span class="special">,</span>
-    <span class="identifier">Iterator</span> <span class="identifier">begin</span><span class="special">,</span>
-    <span class="identifier">Iterator</span> <span class="identifier">end</span><span class="special">,</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">);</span>
+    <span class="keyword">const</span> <span class="identifier">EndpointSequence</span> <span class="special">&amp;</span> <span class="identifier">endpoints</span><span class="special">,</span>
+    <span class="identifier">ConnectCondition</span> <span class="identifier">connect_condition</span><span class="special">,</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_endpoint_sequence</span><span class="special">&lt;</span> <span class="identifier">EndpointSequence</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_connect_condition</span><span class="special">&lt;</span> <span class="identifier">ConnectCondition</span><span class="special">,</span> <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">declval</span><span class="special">&lt;</span> <span class="keyword">const</span> <span class="identifier">EndpointSequence</span> <span class="special">&amp;</span> <span class="special">&gt;().</span><span class="identifier">begin</span><span class="special">())&gt;::</span><span class="identifier">value</span> <span class="special">&gt;=</span> <span class="number">0</span><span class="special">);</span>
 </pre>
 <p>
           This function attempts to connect a socket to one of a sequence of endpoints.
@@ -59,14 +62,30 @@
                 The socket to be connected. If the socket is already open, it will
                 be closed.
               </p></dd>
-<dt><span class="term">begin</span></dt>
+<dt><span class="term">endpoints</span></dt>
 <dd><p>
-                An iterator pointing to the start of a sequence of endpoints.
+                A sequence of endpoints.
               </p></dd>
-<dt><span class="term">end</span></dt>
-<dd><p>
-                An iterator pointing to the end of a sequence of endpoints.
-              </p></dd>
+<dt><span class="term">connect_condition</span></dt>
+<dd>
+<p>
+                A function object that is called prior to each connection attempt.
+                The signature of the function object must be:
+              </p>
+<pre class="programlisting"><span class="keyword">bool</span> <span class="identifier">connect_condition</span><span class="special">(</span>
+   <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
+   <span class="keyword">const</span> <span class="keyword">typename</span> <span class="identifier">Protocol</span><span class="special">::</span><span class="identifier">endpoint</span><span class="special">&amp;</span> <span class="identifier">next</span><span class="special">);</span>
+</pre>
+<p>
+                The <code class="computeroutput"><span class="identifier">ec</span></code> parameter
+                contains the result from the most recent connect operation. Before
+                the first connection attempt, <code class="computeroutput"><span class="identifier">ec</span></code>
+                is always set to indicate success. The <code class="computeroutput"><span class="identifier">next</span></code>
+                parameter is the next endpoint to be tried. The function object should
+                return true if the next endpoint should be tried, and false if it
+                should be skipped.
+              </p>
+</dd>
 <dt><span class="term">ec</span></dt>
 <dd><p>
                 Set to indicate what error occurred, if any. If the sequence is empty,
@@ -80,22 +99,45 @@
           <span class="phrase"><a name="boost_asio.reference.connect.overload6.return_value"></a></span><a class="link" href="overload6.html#boost_asio.reference.connect.overload6.return_value">Return Value</a>
         </h6>
 <p>
-          On success, an iterator denoting the successfully connected endpoint. Otherwise,
-          the end iterator.
+          On success, the successfully connected endpoint. Otherwise, a default-constructed
+          endpoint.
         </p>
 <h6>
 <a name="boost_asio.reference.connect.overload6.h2"></a>
           <span class="phrase"><a name="boost_asio.reference.connect.overload6.example"></a></span><a class="link" href="overload6.html#boost_asio.reference.connect.overload6.example">Example</a>
         </h6>
+<p>
+          The following connect condition function object can be used to output information
+          about the individual connection attempts:
+        </p>
+<pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">my_connect_condition</span>
+<span class="special">{</span>
+  <span class="keyword">bool</span> <span class="keyword">operator</span><span class="special">()(</span>
+      <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span><span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">,</span>
+      <span class="keyword">const</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">endpoint</span><span class="special">&amp;</span> <span class="identifier">next</span><span class="special">)</span>
+  <span class="special">{</span>
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">ec</span><span class="special">)</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Error: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">ec</span><span class="special">.</span><span class="identifier">message</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Trying: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">next</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+    <span class="keyword">return</span> <span class="keyword">true</span><span class="special">;</span>
+  <span class="special">}</span>
+<span class="special">};</span>
+</pre>
+<p>
+          It would be used with the <a class="link" href="../connect.html" title="connect"><code class="computeroutput"><span class="identifier">connect</span></code></a> function as follows:
+        </p>
 <pre class="programlisting"><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span> <span class="identifier">r</span><span class="special">(</span><span class="identifier">my_context</span><span class="special">);</span>
 <span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">query</span> <span class="identifier">q</span><span class="special">(</span><span class="string">"host"</span><span class="special">,</span> <span class="string">"service"</span><span class="special">);</span>
-<span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">results_type</span> <span class="identifier">e</span> <span class="special">=</span> <span class="identifier">r</span><span class="special">.</span><span class="identifier">resolve</span><span class="special">(</span><span class="identifier">q</span><span class="special">);</span>
 <span class="identifier">tcp</span><span class="special">::</span><span class="identifier">socket</span> <span class="identifier">s</span><span class="special">(</span><span class="identifier">my_context</span><span class="special">);</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">connect</span><span class="special">(</span><span class="identifier">s</span><span class="special">,</span> <span class="identifier">e</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">e</span><span class="special">.</span><span class="identifier">end</span><span class="special">(),</span> <span class="identifier">ec</span><span class="special">);</span>
+<span class="identifier">tcp</span><span class="special">::</span><span class="identifier">endpoint</span> <span class="identifier">e</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">connect</span><span class="special">(</span><span class="identifier">s</span><span class="special">,</span>
+    <span class="identifier">r</span><span class="special">.</span><span class="identifier">resolve</span><span class="special">(</span><span class="identifier">q</span><span class="special">),</span> <span class="identifier">my_connect_condition</span><span class="special">(),</span> <span class="identifier">ec</span><span class="special">);</span>
 <span class="keyword">if</span> <span class="special">(</span><span class="identifier">ec</span><span class="special">)</span>
 <span class="special">{</span>
   <span class="comment">// An error occurred.</span>
+<span class="special">}</span>
+<span class="keyword">else</span>
+<span class="special">{</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Connected to: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">e</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
 </div>

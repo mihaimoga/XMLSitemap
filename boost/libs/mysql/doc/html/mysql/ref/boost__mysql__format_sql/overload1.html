@@ -29,7 +29,7 @@
         (1 of 2 overloads)</a>
 </h5></div></div></div>
 <p>
-          (EXPERIMENTAL) Composes a SQL query client-side.
+          Composes a SQL query client-side.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__format_sql.overload1.h0"></a>
@@ -39,11 +39,11 @@
           Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql/format_sql.hpp" target="_top">boost/mysql/format_sql.hpp</a>&gt;</code>
         </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">class</span><span class="special">...</span> <a class="link" href="../boost__mysql__Formattable.html" title="Formattable concept"><code class="literal"><span class="emphasis"><em>Formattable</em></span></code></a><span class="special">&gt;</span>
+    <span class="keyword">class</span><span class="special">...</span> <span class="identifier">Formattable</span><span class="special">&gt;</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span>
 <span class="identifier">format_sql</span><span class="special">(</span>
-    <span class="identifier">format_options</span> <span class="identifier">opts</span><span class="special">,</span>
-    <span class="identifier">constant_string_view</span> <span class="identifier">format_str</span><span class="special">,</span>
+    <a class="link" href="../boost__mysql__format_options.html" title="format_options"><code class="literal">format_options</code></a> <span class="identifier">opts</span><span class="special">,</span>
+    <a class="link" href="../boost__mysql__constant_string_view.html" title="constant_string_view"><code class="literal">constant_string_view</code></a> <span class="identifier">format_str</span><span class="special">,</span>
     <span class="identifier">Formattable</span><span class="special">&amp;&amp;...</span> <span class="identifier">args</span><span class="special">);</span>
 </pre>
 <h6>
@@ -59,7 +59,7 @@
           the string and format string arguments.
         </p>
 <p>
-          Formatting is performed as if <a class="link" href="../boost__mysql__basic_format_context/append_raw.html" title="basic_format_context::append_raw"><code class="computeroutput"><span class="identifier">format_context</span><span class="special">::</span><span class="identifier">append_raw</span></code></a> and <a class="link" href="../boost__mysql__basic_format_context/append_value.html" title="basic_format_context::append_value"><code class="computeroutput"><span class="identifier">format_context</span><span class="special">::</span><span class="identifier">append_value</span></code></a> were called on a
+          Formatting is performed as if <a class="link" href="../boost__mysql__format_context_base/append_raw.html" title="format_context_base::append_raw"><code class="computeroutput"><span class="identifier">format_context</span><span class="special">::</span><span class="identifier">append_raw</span></code></a> and <a class="link" href="../boost__mysql__format_context_base/append_value.html" title="format_context_base::append_value"><code class="computeroutput"><span class="identifier">format_context</span><span class="special">::</span><span class="identifier">append_value</span></code></a> were called on a
           context created by this function.
         </p>
 <h6>
@@ -120,8 +120,11 @@
               (there aren't enough arguments or a named argument is not found).
             </li>
 </ul></div>
+<p>
+          Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql.hpp" target="_top">boost/mysql.hpp</a>&gt;</code>
+        </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

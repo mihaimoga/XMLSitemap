@@ -37,7 +37,7 @@
 <p>
         Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql/row.hpp" target="_top">boost/mysql/row.hpp</a>&gt;</code>
       </p>
-<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">row</span>
+<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">row</span><span class="special">;</span>
 </pre>
 <h5>
 <a name="mysql.ref.boost__mysql__row.h1"></a>
@@ -259,14 +259,28 @@
 <tr>
 <td>
                 <p>
+                  <span class="bold"><strong><a class="link" href="boost__mysql__row/operator_row_view.html" title="row::operator row_view">operator
+                  row_view</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Creates a <a class="link" href="boost__mysql__row_view.html" title="row_view"><code class="computeroutput"><span class="identifier">row_view</span></code></a> that references
+                  <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
                   <span class="bold"><strong><a class="link" href="boost__mysql__row/operator_eq_.html" title="row::operator=">operator=</a></strong></span>
                 </p>
               </td>
 <td>
                 <p>
                   Copy assignment. <br><span class="silver">—</span><br>Move assignment.
-                  <br><span class="silver">—</span><br>Replaces the contents with a
-                  <a class="link" href="boost__mysql__row_view.html" title="row_view"><code class="computeroutput"><span class="identifier">row_view</span></code></a>.
+                  <br><span class="silver">—</span><br>Replaces the contents with
+                  a <a class="link" href="boost__mysql__row_view.html" title="row_view"><code class="computeroutput"><span class="identifier">row_view</span></code></a>.
                 </p>
               </td>
 </tr>
@@ -285,20 +299,6 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__row/operator_row_view.html" title="row::operator row_view">operator
-                  row_view</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Creates a <a class="link" href="boost__mysql__row_view.html" title="row_view"><code class="computeroutput"><span class="identifier">row_view</span></code></a> that references
-                  <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
                   <span class="bold"><strong><a class="link" href="boost__mysql__row/row.html" title="row::row">row</a> <span class="silver">[constructor]</span></strong></span>
                 </p>
               </td>
@@ -306,7 +306,8 @@
                 <p>
                   Constructs an empty row. <br><span class="silver">—</span><br>Copy
                   constructor. <br><span class="silver">—</span><br>Move constructor.
-                  <br><span class="silver">—</span><br>Constructs a row from a <a class="link" href="boost__mysql__row_view.html" title="row_view"><code class="computeroutput"><span class="identifier">row_view</span></code></a>.
+                  <br><span class="silver">—</span><br>Constructs a row from a
+                  <a class="link" href="boost__mysql__row_view.html" title="row_view"><code class="computeroutput"><span class="identifier">row_view</span></code></a>.
                 </p>
               </td>
 </tr>
@@ -338,8 +339,8 @@
 </table></div>
 <h5>
 <a name="mysql.ref.boost__mysql__row.h3"></a>
-        <span class="phrase"><a name="mysql.ref.boost__mysql__row.related_functions"></a></span><a class="link" href="boost__mysql__row.html#mysql.ref.boost__mysql__row.related_functions">Related
-        Functions</a>
+        <span class="phrase"><a name="mysql.ref.boost__mysql__row.related_non_member_functions"></a></span><a class="link" href="boost__mysql__row.html#mysql.ref.boost__mysql__row.related_non_member_functions">Related
+        Non-member Functions</a>
       </h5>
 <div class="informaltable"><table class="table">
 <colgroup>
@@ -362,12 +363,12 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__row/operator_eq__eq_.html" title="row::operator==">operator==</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__mysql__row/operator__not__eq__fe.html" title="row::operator!=">operator!=</a></strong></span>
                 </p>
               </td>
 <td>
                 <p>
-                  Equality operator. <br><span class="silver">—</span><br>
+                  Inequality operator. <br><span class="silver">—</span><br>
 
                 </p>
               </td>
@@ -375,12 +376,12 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__row/operator__not__eq_.html" title="row::operator!=">operator!=</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__mysql__row/operator_eq__eq__fe.html" title="row::operator==">operator==</a></strong></span>
                 </p>
               </td>
 <td>
                 <p>
-                  Inequality operator. <br><span class="silver">—</span><br>
+                  Equality operator. <br><span class="silver">—</span><br>
 
                 </p>
               </td>
@@ -410,8 +411,11 @@
         and references into the <code class="computeroutput"><span class="identifier">row</span></code>
         remain valid.
       </p>
+<p>
+        Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql.hpp" target="_top">boost/mysql.hpp</a>&gt;</code>
+      </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

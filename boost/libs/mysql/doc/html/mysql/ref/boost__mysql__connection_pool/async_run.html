@@ -28,20 +28,18 @@
 <a name="mysql.ref.boost__mysql__connection_pool.async_run"></a><a class="link" href="async_run.html" title="connection_pool::async_run">connection_pool::async_run</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm50246"></a>
-        </p>
-<p>
-          Runs the pool task in charge of managing connections.
+          <a class="indexterm" name="id62089"></a>
+Runs the pool task in charge of managing connections.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.async_run.h0"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_run.synopsis"></a></span><a class="link" href="async_run.html#mysql.ref.boost__mysql__connection_pool.async_run.synopsis">Synopsis</a>
         </h6>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">class</span> <a href="../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a><span class="special">&gt;</span>
+    <span class="keyword">class</span> <a href="../../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a> <span class="special">=</span> <a class="link" href="../boost__mysql__with_diagnostics_t.html" title="with_diagnostics_t"><code class="literal">with_diagnostics_t</code></a><span class="special">&lt;</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred_t</span><span class="special">&gt;&gt;</span>
 <span class="keyword">auto</span>
 <span class="identifier">async_run</span><span class="special">(</span>
-    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span><span class="special">);</span>
+    <span class="identifier">CompletionToken</span><span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="special">{});</span>
 </pre>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.async_run.h1"></a>
@@ -53,9 +51,10 @@
         </p>
 <p>
           The async operation will run indefinitely, until the pool is cancelled
-          (by being destroyed or calling <a class="link" href="cancel.html" title="connection_pool::cancel"><code class="computeroutput"><span class="identifier">cancel</span></code></a>). The operation completes
-          once all internal connection operations (including connects, pings and
-          resets) complete.
+          (by calling <a class="link" href="cancel.html" title="connection_pool::cancel"><code class="computeroutput"><span class="identifier">cancel</span></code></a> or using per-operation
+          cancellation on the <code class="computeroutput"><span class="identifier">async_run</span></code>
+          operation). The operation completes once all internal connection operations
+          (including connects, pings and resets) complete.
         </p>
 <p>
           It is safe to call this function after calling <a class="link" href="cancel.html" title="connection_pool::cancel"><code class="computeroutput"><span class="identifier">cancel</span></code></a>.
@@ -92,6 +91,43 @@
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.async_run.h5"></a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_run.executor"></a></span><a class="link" href="async_run.html#mysql.ref.boost__mysql__connection_pool.async_run.executor">Executor</a>
+        </h6>
+<p>
+          The final handler is executed using <code class="computeroutput"><span class="identifier">token</span></code>'s
+          associated executor, or <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">get_executor</span><span class="special">()</span></code> if the token doesn't have an associated
+          executor. The final handler is called as if it was submitted using <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">post</span></code>, and is never be called inline from
+          within this function.
+        </p>
+<p>
+          If the pool was constructed with thread-safety enabled, intermediate completion
+          handlers are executed using an internal strand that wraps <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">get_executor</span><span class="special">()</span></code>.
+          Otherwise, intermediate handlers are executed using <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">get_executor</span><span class="special">()</span></code>. In any case, the token's associated
+          executor is only used for the final handler.
+        </p>
+<h6>
+<a name="mysql.ref.boost__mysql__connection_pool.async_run.h6"></a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_run.per_operation_cancellation"></a></span><a class="link" href="async_run.html#mysql.ref.boost__mysql__connection_pool.async_run.per_operation_cancellation">Per-operation
+          cancellation</a>
+        </h6>
+<p>
+          This operation supports per-operation cancellation. Cancelling <code class="computeroutput"><span class="identifier">async_run</span></code> is equivalent to calling <a class="link" href="cancel.html" title="connection_pool::cancel"><code class="computeroutput"><span class="identifier">connection_pool</span><span class="special">::</span><span class="identifier">cancel</span></code></a>. The following <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancellation_type_t</span></code> values are supported:
+        </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+              <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancellation_type_t</span><span class="special">::</span><span class="identifier">terminal</span></code>
+            </li>
+<li class="listitem">
+              <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancellation_type_t</span><span class="special">::</span><span class="identifier">partial</span></code>
+            </li>
+</ul></div>
+<p>
+          Note that <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancellation_type_t</span><span class="special">::</span><span class="identifier">total</span></code> is not supported because invoking
+          <code class="computeroutput"><span class="identifier">async_run</span></code> always has observable
+          side effects.
+        </p>
+<h6>
+<a name="mysql.ref.boost__mysql__connection_pool.async_run.h7"></a>
           <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_run.errors"></a></span><a class="link" href="async_run.html#mysql.ref.boost__mysql__connection_pool.async_run.errors">Errors</a>
         </h6>
 <p>
@@ -99,24 +135,16 @@
           maximum compatibility with Boost.Asio infrastructure.
         </p>
 <h6>
-<a name="mysql.ref.boost__mysql__connection_pool.async_run.h6"></a>
-          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_run.executor"></a></span><a class="link" href="async_run.html#mysql.ref.boost__mysql__connection_pool.async_run.executor">Executor</a>
+<a name="mysql.ref.boost__mysql__connection_pool.async_run.h8"></a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_run.thread_safety"></a></span><a class="link" href="async_run.html#mysql.ref.boost__mysql__connection_pool.async_run.thread_safety">Thread-safety</a>
         </h6>
 <p>
-          This function will run entirely in the pool's executor (as given by <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">get_executor</span><span class="special">()</span></code>).
-          No internal data will be accessed or modified as part of the initiating
-          function. This simplifies thread-safety.
-        </p>
-<h6>
-<a name="mysql.ref.boost__mysql__connection_pool.async_run.h7"></a>
-          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_run.thead_safety"></a></span><a class="link" href="async_run.html#mysql.ref.boost__mysql__connection_pool.async_run.thead_safety">Thead-safety</a>
-        </h6>
-<p>
-          When the pool is constructed with adequate executor configuration, this
-          function is safe to be called concurrently with <a class="link" href="async_get_connection.html" title="connection_pool::async_get_connection"><code class="computeroutput"><span class="identifier">async_get_connection</span></code></a>, <a class="link" href="cancel.html" title="connection_pool::cancel"><code class="computeroutput"><span class="identifier">cancel</span></code></a>, <code class="computeroutput"><span class="special">~</span><span class="identifier">pooled_connection</span></code> and <a class="link" href="../boost__mysql__pooled_connection/return_without_reset.html" title="pooled_connection::return_without_reset"><code class="computeroutput"><span class="identifier">pooled_connection</span><span class="special">::</span><span class="identifier">return_without_reset</span></code></a>.
+          Reads the internal state handle. Mutates the pool state. If the pool was
+          built with thread-safety enabled, it can be called concurrently with other
+          functions that don't modify the state handle.
         </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

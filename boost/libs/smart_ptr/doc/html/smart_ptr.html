@@ -664,6 +664,7 @@ pre.rouge {
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#changelog">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changelog_changes_in_1_87_0">Changes in 1.87.0</a></li>
 <li><a href="#changelog_changes_in_1_79_0">Changes in 1.79.0</a></li>
 <li><a href="#changelog_changes_in_1_74_0">Changes in 1.74.0</a></li>
 <li><a href="#changelog_changes_in_1_72_0">Changes in 1.72.0</a></li>
@@ -881,6 +882,7 @@ pre.rouge {
 <li><a href="#shared_array_description">Description</a></li>
 <li><a href="#shared_array_synopsis">Synopsis</a></li>
 <li><a href="#shared_array_members">Members</a></li>
+<li><a href="#shared_array_free_functions">Free Functions</a></li>
 </ul>
 </li>
 <li><a href="#copyright">Appendix D: Copyright and License</a></li>
@@ -975,6 +977,24 @@ are not allowed to throw exceptions.</p>
 <div class="sect1">
 <h2 id="changelog">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changelog_changes_in_1_87_0">Changes in 1.87.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>C&#43;&#43;03 is no longer supported, a C&#43;&#43;11 compiler is required.
+This includes GCC 4.8 or later, and MSVC 14.0 or later.</p>
+</li>
+<li>
+<p>The functionality enabled by the macros <code>BOOST_SP_ENABLE_DEBUG_HOOKS</code>,
+<code>BOOST_SP_USE_STD_ALLOCATOR</code>, <code>BOOST_SP_USE_QUICK_ALLOCATOR</code>,
+<code>BOOST_AC_USE_SPINLOCK</code>, <code>BOOST_AC_USE_PTHREADS</code>, <code>BOOST_SP_USE_SPINLOCK</code>,
+and <code>BOOST_SP_USE_PTHREADS</code> has been deprecated and support for it
+will be removed in a future release.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changelog_changes_in_1_79_0">Changes in 1.79.0</h3>
 <div class="ulist">
@@ -11324,12 +11344,12 @@ number of elements in the array.</p>
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p><mark>#</mark> unique</p>
-</div>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="shared_array_unique">unique</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="kt">bool</span> <span class="n">unique</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
@@ -11343,8 +11363,7 @@ number of elements in the array.</p>
 <dl>
 <dt class="hdlist1">Returns</dt>
 <dd>
-<p><code>true</code> if no other <code>shared_array</code> is sharing ownership of the
-stored pointer, <code>false</code> otherwise.</p>
+<p><code>true</code> if no other <code>shared_array</code> is sharing ownership of the stored pointer, <code>false</code> otherwise.</p>
 </dd>
 </dl>
 </div>
@@ -11422,13 +11441,13 @@ stored pointer.</p>
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>## Free Functions</p>
-</div>
 </li>
 </ul>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="shared_array_free_functions">Free Functions</h3>
 <div class="sect3">
 <h4 id="shared_array_comparison">Comparison</h4>
 <div class="listingblock">
@@ -11557,7 +11576,7 @@ mandates that relational operations on pointers are unspecified (5.9
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-24 04:36:55 UTC
+Last updated 2024-12-05 00:53:18 UTC
 </div>
 </div>
 <style>

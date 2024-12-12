@@ -673,6 +673,7 @@ pre.rouge {
 </li>
 <li><a href="#changelog">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changes_in_1_87_0">Changes in 1.87.0</a></li>
 <li><a href="#changes_in_1_85_0">Changes in 1.85.0</a></li>
 <li><a href="#changes_in_1_83_0">Changes in 1.83.0</a></li>
 <li><a href="#changes_in_1_79_0">Changes in 1.79.0</a></li>
@@ -909,6 +910,11 @@ pre.rouge {
 <li><a href="#mp_bind_front_qq_t">mp_bind_front_q&lt;Q, T&#8230;&#8203;&gt;</a></li>
 <li><a href="#mp_bind_backf_t">mp_bind_back&lt;F, T&#8230;&#8203;&gt;</a></li>
 <li><a href="#mp_bind_back_qq_t">mp_bind_back_q&lt;Q, T&#8230;&#8203;&gt;</a></li>
+</ul>
+</li>
+<li><a href="#lambda">Lambda Expressions, &lt;boost/mp11/lambda.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#mp_lambdat">mp_lambda&lt;T&gt;</a></li>
 </ul>
 </li>
 <li><a href="#integer_sequence">Integer Sequences, &lt;boost/mp11/integer_sequence.hpp&gt;</a>
@@ -1639,6 +1645,16 @@ elements will be the same, either <code>int</code> or <code>float</code>, and we
 <div class="sect1">
 <h2 id="changelog">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changes_in_1_87_0">Changes in 1.87.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added <code>mp_lambda</code> (contributed by Joaquin M Lopez Munoz)</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changes_in_1_85_0">Changes in 1.85.0</h3>
 <div class="ulist">
@@ -5765,6 +5781,56 @@ expressions replaced with their corresponding evaluations against <code>U&#8230;
 </div>
 </div>
 <div class="sect2">
+<h3 id="lambda">Lambda Expressions, &lt;boost/mp11/lambda.hpp&gt;</h3>
+<div class="sect3">
+<h4 id="mp_lambdat">mp_lambda&lt;T&gt;</h4>
+<div class="literalblock">
+<div class="content">
+<pre>template&lt;class T&gt; using mp_lambda = /*...*/;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>mp_lambda&lt;T&gt;</code> is a quoted metafunction whose nested template <code>fn&lt;U&#8230;&#8203;&gt;</code>
+returns a type <code>V</code> with the same syntactic definition as <code>T</code>, except
+that occurrences of placeholders in <code>T</code> are replaced by the corresponding
+element of <code>U&#8230;&#8203;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>mp_lambda&lt;std::pair&lt;_1, _2*&gt;&gt;::fn&lt;int, char&gt;</code> is <code>std::pair&lt;int, char*&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>Replacement does not happen inside those constituent parts of <code>T</code> resulting
+from the instantiation of a class template with non-type template parameters.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In GCC 4.8, a compiler bug results in <code>const</code> and <code>volatile</code> qualifiers
+being stripped from the returned type <code>V</code> (except when they are applied to
+function or member function types).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>mp_lambda</code> is not supported in VS2013 and prior due to compiler limitations.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="integer_sequence">Integer Sequences, &lt;boost/mp11/integer_sequence.hpp&gt;</h3>
 <div class="sect3">
 <h4 id="integer_sequencet_i">integer_sequence&lt;T, I&#8230;&#8203;&gt;</h4>
@@ -5964,7 +6030,7 @@ into this documentation by Glen Fernandes.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-07-24 04:36:53 UTC
+Last updated 2024-12-05 00:53:15 UTC
 </div>
 </div>
 <style>

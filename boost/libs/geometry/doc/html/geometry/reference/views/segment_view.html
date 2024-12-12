@@ -28,7 +28,7 @@
 <a name="geometry.reference.views.segment_view"></a><a class="link" href="segment_view.html" title="segment_view">segment_view</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="idm100450"></a>
+          <a class="indexterm" name="id101677"></a>
 Makes a segment behave like a linestring or a range.
         </p>
 <h6>
@@ -251,12 +251,12 @@ Makes a segment behave like a linestring or a range.
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">segment</span>
+    <span class="keyword">using</span> <span class="identifier">segment_type</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">segment</span>
         <span class="special">&lt;</span>
             <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">point</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">cartesian</span><span class="special">&gt;</span>
-        <span class="special">&gt;</span> <span class="identifier">segment_type</span><span class="special">;</span>
+        <span class="special">&gt;;</span>
 
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">segment_view</span><span class="special">&lt;</span><span class="identifier">segment_type</span><span class="special">&gt;</span> <span class="identifier">segment_view</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">segment_view</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">segment_view</span><span class="special">&lt;</span><span class="identifier">segment_type</span><span class="special">&gt;;</span>
 
     <span class="identifier">segment_type</span> <span class="identifier">segment</span><span class="special">;</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">assign_values</span><span class="special">(</span><span class="identifier">segment</span><span class="special">,</span> <span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">,</span> <span class="number">1</span><span class="special">,</span> <span class="number">1</span><span class="special">);</span>
@@ -286,8 +286,8 @@ Makes a segment behave like a linestring or a range.
 Length: 1.41421
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

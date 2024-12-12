@@ -33,7 +33,7 @@
   <span class="keyword">typedef</span> <span class="identifier">Deleter</span>  <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a0f021b62a0162dd6080d0460139a8785"></a><span class="identifier">deleter_type</span><span class="special">;</span>   <span class="comment">// Deleter type. </span>
   <span class="keyword">typedef</span> <span class="identifier">Traits</span>   <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a7762fa62b377a4fe9013a86afeb00b99"></a><span class="identifier">traits_type</span><span class="special">;</span>    <span class="comment">// Resource traits. </span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1scope_1_1unique__resource.html#idm7424-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1scope_1_1unique__resource.html#id18-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1a399d5a11543c898f52254b8b30305f06"><span class="identifier">unique_resource</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> D<span class="special">&gt;</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1ac09d9731459096ae7f73c45f6410ef38"><span class="identifier">unique_resource</span></a><span class="special">(</span><span class="identifier">default_resource_t</span><span class="special">,</span> <span class="identifier">D</span> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> R<span class="special">&gt;</span> <span class="keyword">explicit</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1a26204cdc4d828579edf28a81e04dd1ea"><span class="identifier">unique_resource</span></a><span class="special">(</span><span class="identifier">R</span> <span class="special">&amp;&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
@@ -54,11 +54,11 @@
   <span class="keyword">auto</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1a9b7292c0085155ef5b3f0ff33cf79848"><span class="keyword">operator</span><span class="special">*</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1a390ff95ed46ac302cadde81b9b157aad"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1scope_1_1unique__resource.html#idm7779-bb">friend functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1scope_1_1unique__resource.html#id19-bb">friend functions</a></span>
   <span class="keyword">void</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1a98787099f36787dc31b14a9fcc8d3498"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span><span class="special">,</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm9831"></a><h2>Description</h2>
+<a name="id11170"></a><h2>Description</h2>
 <p>A <code class="computeroutput"><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code> object exclusively owns wrapped resource and invokes the deleter function object on it on destruction. The wrapped resource can have any type that is:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>Move-constructible, where the move constructor is marked as <code class="computeroutput">noexcept</code>, or </p></li>
@@ -85,7 +85,7 @@ Note that <code class="computeroutput">is_allocated(make_default())</code> must 
 <p>
 </p>
 <div class="refsect2">
-<a name="idm9881"></a><h3>Template Parameters</h3>
+<a name="id11220"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Resource</pre>
@@ -102,8 +102,8 @@ Note that <code class="computeroutput">is_allocated(make_default())</code> must 
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm9904"></a><h3>
-<a name="idm7424-bb"></a><code class="computeroutput">unique_resource</code> public member functions</h3>
+<a name="id11243"></a><h3>
+<a name="id18-bb"></a><code class="computeroutput">unique_resource</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a399d5a11543c898f52254b8b30305f06"></a><span class="identifier">unique_resource</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span></pre>Constructs an unallocated unique resource guard. <p><span class="bold"><strong>Requires:</strong></span> Default <code class="computeroutput">Resource</code> value can be constructed. <code class="computeroutput">Deleter</code> is default-constructible and is not a pointer to function.</p>
@@ -449,8 +449,8 @@ Note that <code class="computeroutput">is_allocated(make_default())</code> must 
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm10523"></a><h3>
-<a name="idm7779-bb"></a><code class="computeroutput">unique_resource</code> friend functions</h3>
+<a name="id11862"></a><h3>
+<a name="id19-bb"></a><code class="computeroutput">unique_resource</code> friend functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">void</span> <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a98787099f36787dc31b14a9fcc8d3498"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span> left<span class="special">,</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span> right<span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="special">...</span><span class="special">)</span><span class="special">;</span></pre>Swaps two unique resource wrappers. <p><span class="bold"><strong>Effects:</strong></span> As if <code class="computeroutput">left.swap(right)</code>. </p>
 </li></ol></div>

@@ -38,7 +38,7 @@
   <span class="comment">// types</span>
   <span class="keyword">typedef</span> <span class="identifier">T</span> <a name="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1a9af83c479c61b9b5aaf621cfb114a8ba"></a><span class="identifier">element_type</span><span class="special">;</span>  <span class="comment">// Pointed old value type. </span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1contract_1_1old__ptr__if__copyable.html#idm36395-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1contract_1_1old__ptr__if__copyable.html#id30-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1contract_1_1old__ptr__if__copyable.html#doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1ac91c6fa0ac5d563e9da9f6d16cb98996"><span class="identifier">old_ptr_if_copyable</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1contract_1_1old__ptr__if__copyable.html#doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1adcb8a091a60d2d37b6f0005609b8585e"><span class="identifier">old_ptr_if_copyable</span></a><span class="special">(</span><a class="link" href="classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">old_ptr</a><span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="identifier">T</span> <span class="keyword">const</span> <span class="special">&amp;</span> <a class="link" href="classboost_1_1contract_1_1old__ptr__if__copyable.html#doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1a2e39c09011d127e6cfa456d1ff78dea7"><span class="keyword">operator</span><span class="special">*</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
@@ -46,7 +46,7 @@
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1contract_1_1old__ptr__if__copyable.html#doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1aeb4f2eba2950c9572ce0de442f9434b5"><span class="keyword">operator</span> <span class="keyword">bool</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm41794"></a><h2>Description</h2>
+<a name="id43166"></a><h2>Description</h2>
 <p>This pointer can be set to point to an actual old value copy using either  <code class="computeroutput"><a class="link" href="old_8hpp_1a07326d65350421d14684447dec36d1ba.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code> or  <code class="computeroutput"><a class="link" href="old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2.html" title="Function make_old">boost::contract::make_old</a></code>:</p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">T</span><span class="special">&gt;</span> <span class="comment">// Type `T` might or not be copyable.</span>
 <span class="keyword">class</span> <span class="identifier">u</span> <span class="special">{</span>
@@ -68,15 +68,15 @@
 
 </p>
 <div class="refsect2">
-<a name="idm41868"></a><h3>Template Parameters</h3>
+<a name="id43240"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> T</pre>
 <p>Type of the pointed old value. If this type is not copyable (i.e., <code class="computeroutput">boost::contract::is_old_value_copyable&lt;T&gt;::value</code> is <code class="computeroutput">false</code>), this pointer will always be null (but this library will not generate a compile-time error when this pointer is dereferenced). </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm41879"></a><h3>
-<a name="idm36395-bb"></a><code class="computeroutput">old_ptr_if_copyable</code> public member functions</h3>
+<a name="id43251"></a><h3>
+<a name="id30-bb"></a><code class="computeroutput">old_ptr_if_copyable</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1ac91c6fa0ac5d563e9da9f6d16cb98996"></a><span class="identifier">old_ptr_if_copyable</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Construct this old value pointer as null. </li>

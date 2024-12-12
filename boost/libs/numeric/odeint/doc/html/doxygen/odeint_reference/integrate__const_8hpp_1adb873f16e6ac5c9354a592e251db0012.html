@@ -39,7 +39,7 @@
                          <span class="identifier">Time</span> start_time<span class="special">,</span> <span class="identifier">Time</span> end_time<span class="special">,</span> <span class="identifier">Time</span> dt<span class="special">,</span> 
                          <span class="identifier">Observer</span> observer<span class="special">,</span> <span class="identifier">StepOverflowChecker</span> checker<span class="special">)</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm24450"></a><h2>Description</h2>
+<a name="id25922"></a><h2>Description</h2>
 <p>Integrates the ODE defined by system using the given stepper. This method ensures that the observer is called at constant intervals dt. If the Stepper is a normal stepper without step size control, dt is also used for the numerical scheme. If a ControlledStepper is provided, the algorithm might reduce the step size to meet the error bounds, but it is ensured that the observer is always called at equidistant time points t0 + n*dt. If a DenseOutputStepper is used, the step size also may vary and the dense output is used to call the observer at equidistant time points. If a <a class="link" href="classboost_1_1numeric_1_1odeint_1_1max__step__checker.html" title="Class max_step_checker">max_step_checker</a> is provided as StepOverflowChecker, a no_progress_error is thrown if too many steps (default: 500) are performed without progress, i.e. in between observer calls. If no checker is provided, no such overflow check is performed.</p>
 <p>
 

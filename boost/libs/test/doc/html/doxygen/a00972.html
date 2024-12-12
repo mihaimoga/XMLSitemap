@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="a00972.html" title="Class unit_test_log_t">unit_test_log_t</a> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">unit_test</span><span class="special">::</span><span class="identifier">test_observer</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="a00972.html#idm47451-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="a00972.html#id156-bb">public member functions</a></span>
   <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a00972.html#doxygen.a00972_1afa131ed8a625bcea883d3c480971f673"><span class="identifier">test_start</span></a><span class="special">(</span><span class="identifier">counter_t</span><span class="special">,</span> <span class="identifier">test_unit_id</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a00972.html#doxygen.a00972_1a6ff1f3c17c6925599e142ea5110e565d"><span class="identifier">test_finish</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a00972.html#doxygen.a00972_1a26828ee3d6eb8a0493d8d346c6e20b9d"><span class="identifier">test_aborted</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -66,11 +66,11 @@
   <a class="link" href="a00972.html" title="Class unit_test_log_t">unit_test_log_t</a> <span class="special">&amp;</span> <a class="link" href="a00972.html#doxygen.a00972_1ae400845852b049672358fbe542f42f29"><span class="keyword">operator</span><span class="special">&lt;&lt;</span></a><span class="special">(</span><span class="identifier">lazy_ostream</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="emphasis"><em><span class="identifier">unspecified</span></em></span> <a class="link" href="a00972.html#doxygen.a00972_1a4440883e0015a9a2d516b599720eec89"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><span class="identifier">log_level</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="a00972.html#doxygen.a00972_1a53edadabb9060db04fffee37da090882"><span class="identifier">configure</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a00972.html#idm47708-bb"><span class="identifier">test_unit_skipped</span></a><span class="special">(</span><a class="link" href="a01020.html" title="Class test_unit">test_unit</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a00972.html#idm47714-bb"><span class="identifier">assertion_result</span></a><span class="special">(</span><span class="identifier">unit_test</span><span class="special">::</span><span class="identifier">assertion_result</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a00972.html#id157-bb"><span class="identifier">test_unit_skipped</span></a><span class="special">(</span><a class="link" href="a01020.html" title="Class test_unit">test_unit</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">virtual</span> <span class="keyword">void</span> <a class="link" href="a00972.html#id158-bb"><span class="identifier">assertion_result</span></a><span class="special">(</span><span class="identifier">unit_test</span><span class="special">::</span><span class="identifier">assertion_result</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm61373"></a><h2>Description</h2>
+<a name="id62750"></a><h2>Description</h2>
 <p>The Boost.Test framework allows for having several formatters/loggers at the same time, each of which having their own log level and output stream.</p>
 <p>This class serves the purpose of</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -114,8 +114,8 @@ Users/developers willing to implement their own formatter need to:</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="idm61413"></a><h3>
-<a name="idm47451-bb"></a><code class="computeroutput">unit_test_log_t</code> public member functions</h3>
+<a name="id62790"></a><h3>
+<a name="id156-bb"></a><code class="computeroutput">unit_test_log_t</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">virtual</span> <span class="keyword">void</span> <a name="doxygen.a00972_1afa131ed8a625bcea883d3c480971f673"></a><span class="identifier">test_start</span><span class="special">(</span><span class="identifier">counter_t</span><span class="special">,</span> <span class="identifier">test_unit_id</span><span class="special">)</span><span class="special">;</span></pre>Called before the framework starts executing the test cases. <p>
@@ -314,8 +314,8 @@ Users/developers willing to implement their own formatter need to:</p>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">void</span> <a name="doxygen.a00972_1a53edadabb9060db04fffee37da090882"></a><span class="identifier">configure</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Prepares internal states after log levels, streams and format has been set up. </li>
 <li class="listitem">
-<pre class="literallayout"><span class="keyword">virtual</span> <span class="keyword">void</span> <a name="idm47708-bb"></a><span class="identifier">test_unit_skipped</span><span class="special">(</span><a class="link" href="a01020.html" title="Class test_unit">test_unit</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre>backward compatibility </li>
-<li class="listitem"><pre class="literallayout"><span class="keyword">virtual</span> <span class="keyword">void</span> <a name="idm47714-bb"></a><span class="identifier">assertion_result</span><span class="special">(</span><span class="identifier">unit_test</span><span class="special">::</span><span class="identifier">assertion_result</span><span class="special">)</span><span class="special">;</span></pre></li>
+<pre class="literallayout"><span class="keyword">virtual</span> <span class="keyword">void</span> <a name="id157-bb"></a><span class="identifier">test_unit_skipped</span><span class="special">(</span><a class="link" href="a01020.html" title="Class test_unit">test_unit</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre>backward compatibility </li>
+<li class="listitem"><pre class="literallayout"><span class="keyword">virtual</span> <span class="keyword">void</span> <a name="id158-bb"></a><span class="identifier">assertion_result</span><span class="special">(</span><span class="identifier">unit_test</span><span class="special">::</span><span class="identifier">assertion_result</span><span class="special">)</span><span class="special">;</span></pre></li>
 </ol></div>
 </div>
 </div>

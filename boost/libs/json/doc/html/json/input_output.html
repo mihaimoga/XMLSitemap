@@ -157,7 +157,7 @@
 <pre class="programlisting"><span class="identifier">value</span> <span class="identifier">jv</span> <span class="special">=</span> <span class="identifier">parse</span><span class="special">(</span> <span class="string">"[1,2,3,4,5]"</span> <span class="special">);</span>
 </pre>
 <p>
-        Alternatively, an <a class="link" href="ref/boost__json__error_code.html" title="error_code"><code class="computeroutput"><span class="identifier">error_code</span></code></a> can be used:
+        Alternatively, an <a href="https://boost.org/doc/libs/release/libs/system/doc/html/system.html#ref_error_code" target="_top"><code class="computeroutput"><span class="identifier">error_code</span></code></a> can be used:
       </p>
 <pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="identifier">ec</span><span class="special">;</span>
 <span class="identifier">value</span> <span class="identifier">jv</span> <span class="special">=</span> <span class="identifier">parse</span><span class="special">(</span> <span class="string">"[1,2,3,4,5]"</span><span class="special">,</span> <span class="identifier">ec</span> <span class="special">);</span>
@@ -165,8 +165,7 @@
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Parsing failed: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">ec</span><span class="special">.</span><span class="identifier">message</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
 </pre>
 <p>
-        Even when using error codes, exceptions thrown from the underlying <a class="link" href="ref/boost__json__memory_resource.html" title="memory_resource"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a>
-        are still possible:
+        Even when using error codes, exceptions thrown from the underlying <a href="https://boost.org/doc/libs/release/doc/html/doxygen/boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html" target="_top"><code class="computeroutput"><span class="identifier">memory_resource</span></code></a> are still possible:
       </p>
 <pre class="programlisting"><span class="keyword">try</span>
 <span class="special">{</span>

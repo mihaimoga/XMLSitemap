@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1contract_1_1specify__precondition__old__postcondition__except.html" title="Class template specify_precondition_old_postcondition_except">specify_precondition_old_postcondition_except</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1contract_1_1specify__precondition__old__postcondition__except.html#idm36036-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1contract_1_1specify__precondition__old__postcondition__except.html#id25-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1contract_1_1specify__precondition__old__postcondition__except.html#doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1a22827089903c788e585ac5dfe2707813"><span class="special">~</span><span class="identifier">specify_precondition_old_postcondition_except</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="keyword">false</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> F<span class="special">&gt;</span> 
     <a class="link" href="classboost_1_1contract_1_1specify__old__postcondition__except.html" title="Class template specify_old_postcondition_except">specify_old_postcondition_except</a><span class="special">&lt;</span> <span class="identifier">VirtualResult</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1contract_1_1specify__precondition__old__postcondition__except.html#doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1a91c8dbd61d932d70d86835717e232ec9"><span class="identifier">precondition</span></a><span class="special">(</span><span class="identifier">F</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
@@ -46,22 +46,22 @@
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> F<span class="special">&gt;</span> <a class="link" href="classboost_1_1contract_1_1specify__nothing.html" title="Class specify_nothing">specify_nothing</a> <a class="link" href="classboost_1_1contract_1_1specify__precondition__old__postcondition__except.html#doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1afd2c8827d59ddbfe82e957f72461ac9f"><span class="identifier">except</span></a><span class="special">(</span><span class="identifier">F</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm40532"></a><h2>Description</h2>
+<a name="id41911"></a><h2>Description</h2>
 <p>Allow to specify functors this library will call to check preconditions, copy old values at body, check postconditions, and check exception guarantees. This object is internally constructed by the library when users specify contracts calling  <code class="computeroutput"><a class="link" href="function_8hpp_1ad293a3bf388b43d667bc6dbf2aef873a.html" title="Function function">boost::contract::function</a></code> and similar functions (that is why this class does not have a public constructor).</p>
 <p><b>See Also: </b> <a class="link" href="../../boost_contract/tutorial.html#boost_contract.tutorial.preconditions" title="Preconditions"> Preconditions</a>,  <a class="link" href="../../boost_contract/advanced.html#boost_contract.advanced.old_values_copied_at_body" title="Old Values Copied at Body"> Old Values Copied at Body</a>,  <a class="link" href="../../boost_contract/tutorial.html#boost_contract.tutorial.postconditions" title="Postconditions"> Postconditions</a>,  <a class="link" href="../../boost_contract/tutorial.html#boost_contract.tutorial.exception_guarantees" title="Exception Guarantees"> Exception Guarantees</a></p>
 <p>
 
 </p>
 <div class="refsect2">
-<a name="idm40545"></a><h3>Template Parameters</h3>
+<a name="id41924"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> VirtualResult <span class="special">=</span> <span class="keyword">void</span></pre>
 <p>Return type of the enclosing function declaring the contract if that is either a virtual or an overriding public function, otherwise this is always <code class="computeroutput">void</code>. (Usually this template parameter is automatically deduced by C++ and it does not need to be explicitly specified by programmers.) </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm40557"></a><h3>
-<a name="idm36036-bb"></a><code class="computeroutput">specify_precondition_old_postcondition_except</code> public member functions</h3>
+<a name="id41936"></a><h3>
+<a name="id25-bb"></a><code class="computeroutput">specify_precondition_old_postcondition_except</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1a22827089903c788e585ac5dfe2707813"></a><span class="special">~</span><span class="identifier">specify_precondition_old_postcondition_except</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">(</span><span class="keyword">false</span><span class="special">)</span><span class="special">;</span></pre>Destruct this object. <p><span class="bold"><strong>Throws:</strong></span> This is declared <code class="computeroutput">noexcept(false)</code> since C++11 to allow users to program failure handlers that throw exceptions on contract assertion failures (not the default, see  <a class="link" href="../../boost_contract/advanced.html#boost_contract.advanced.throw_on_failures__and__noexcept__" title="Throw on Failures (and noexcept)">

@@ -28,7 +28,7 @@
 <a name="geometry.reference.core.dimension"></a><a class="link" href="dimension.html" title="dimension">dimension</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="idm69658"></a>
+          <a class="indexterm" name="id70964"></a>
 Metafunction defining <span class="bold"><strong>value</strong></span> as the number
           of coordinates (the number of axes of any geometry) of the point type making
           up the specified geometry type.
@@ -41,7 +41,7 @@ Metafunction defining <span class="bold"><strong>value</strong></span> as the nu
 </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Geometry</span><span class="special">&gt;</span>
 <span class="keyword">struct</span> <span class="identifier">dimension</span>
-      <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">core_dispatch</span><span class="special">::</span><span class="identifier">dimension</span><span class="special">&lt;</span> <span class="identifier">tag</span><span class="special">&lt;</span> <span class="identifier">Geometry</span> <span class="special">&gt;::</span><span class="identifier">type</span><span class="special">,</span> <span class="identifier">util</span><span class="special">::</span><span class="identifier">remove_cptrref</span><span class="special">&lt;</span> <span class="identifier">Geometry</span> <span class="special">&gt;::</span><span class="identifier">type</span> <span class="special">&gt;</span>
+      <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">core_dispatch</span><span class="special">::</span><span class="identifier">dimension</span><span class="special">&lt;</span> <span class="identifier">tag_t</span><span class="special">&lt;</span> <span class="identifier">Geometry</span> <span class="special">&gt;,</span> <span class="identifier">util</span><span class="special">::</span><span class="identifier">remove_cptrref_t</span><span class="special">&lt;</span> <span class="identifier">Geometry</span> <span class="special">&gt;</span> <span class="special">&gt;</span>
 <span class="special">{</span>
   <span class="comment">// ...</span>
 <span class="special">};</span>
@@ -147,8 +147,8 @@ Metafunction defining <span class="bold"><strong>value</strong></span> as the nu
 <pre class="programlisting">dimensions: 3
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

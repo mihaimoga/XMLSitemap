@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../boost_pfr.html" title="Chapter 26. Boost.PFR 2.2">
-<link rel="prev" href="../boost_pfr.html" title="Chapter 26. Boost.PFR 2.2">
+<link rel="up" href="../boost_pfr.html" title="Chapter 27. Boost.PFR 2.2">
+<link rel="prev" href="../boost_pfr.html" title="Chapter 27. Boost.PFR 2.2">
 <link rel="next" href="tutorial.html" title="Tutorial">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -66,7 +66,7 @@
             </td>
 <td>
               <p>
-                <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/core_8hpp_1a63c9163742578c204bb51632f4bb5abd.html" title="Function template get">boost::pfr::get</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/core_8hpp_1a07b17ed2eaa9115346f5b14899ec53e4.html" title="Function template get">boost::pfr::get</a></code>
               </p>
             </td>
 </tr>
@@ -85,7 +85,7 @@
             </td>
 <td>
               <p>
-                <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/core__name_8hpp_1a91192c31359dec26299af54b05566d3e.html" title="Function template get_name">boost::pfr::get_name</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/core__name_8hpp_1ad820b865b5817b15c21faca3f470e511.html" title="Function template get_name">boost::pfr::get_name</a></code>
               </p>
             </td>
 </tr>
@@ -109,7 +109,7 @@
                 <code class="computeroutput"><a class="link" href="../reference_section_of_pfr.html#doxygen.reference_section_of_pfr.ops_8hpp" title="Header &lt;boost/pfr/ops.hpp&gt;">Header boost/pfr/ops.hpp</a></code>:
               </p>
               <p>
-                * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/ops_8hpp_1aa543ccb9ec6da2cd866988e786884bba.html" title="Function template eq">boost::pfr::eq</a></code>
+                * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/ops_8hpp_1a8d231fd562e78a07a9942d6b55fa9e16.html" title="Function template eq">boost::pfr::eq</a></code>
               </p>
               <p>
                 * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/ops_8hpp_1a952c8fa2656fc8479162dd3dc91652c8.html" title="Function template ne">boost::pfr::ne</a></code>
@@ -147,7 +147,34 @@
                 <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/core_8hpp_1abc9474618e0534c08470faf109417509.html" title="Function template for_each_field">boost::pfr::for_each_field</a></code>
               </p>
               <p>
-                <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/io_8hpp_1af4a08e54d8910ff9c751470addfc6248.html" title="Function template io">boost::pfr::io</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/io_8hpp_1adcb0ad73dc25ac01d68cf0e7fb98d506.html" title="Function template io">boost::pfr::io</a></code>
+              </p>
+            </td>
+</tr>
+<tr>
+<td>
+<pre class="table-programlisting"><span class="comment">// Print the name and value</span>
+<span class="comment">// of each element of the structure</span>
+
+<span class="keyword">struct</span> <span class="identifier">test</span> <span class="special">{</span>
+    <span class="keyword">int</span> <span class="identifier">n</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">str</span><span class="special">;</span>
+<span class="special">};</span>
+
+<span class="identifier">test</span> <span class="identifier">var</span><span class="special">{</span><span class="number">42</span><span class="special">,</span> <span class="string">"Hello, World!"</span><span class="special">};</span>
+
+<span class="comment">// Outputs:</span>
+<span class="comment">//  n: 42</span>
+<span class="comment">//  str: Hello, World!</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">pfr</span><span class="special">::</span><span class="identifier">for_each_field_with_name</span><span class="special">(</span><span class="identifier">var</span><span class="special">,</span>
+  <span class="special">[](</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">name</span><span class="special">,</span> <span class="keyword">const</span> <span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">value</span><span class="special">)</span> <span class="special">{</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">name</span> <span class="special">&lt;&lt;</span> <span class="string">": "</span> <span class="special">&lt;&lt;</span> <span class="identifier">value</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+<span class="special">});</span>
+</pre>
+            </td>
+<td>
+              <p>
+                <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/core__name_8hpp_1a8c6c718187b9f6e884e6fc9f53c5d7e6.html" title="Function template for_each_field_with_name">boost::pfr::for_each_field_with_name</a></code>
               </p>
             </td>
 </tr>
@@ -201,7 +228,7 @@
                 </a></code>:
               </p>
               <p>
-                * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/ops__fields_8hpp_1a30edb57037dab6cba70cdbfb6a127947.html" title="Function template eq_fields">boost::pfr::eq_fields</a></code>
+                * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/ops__fields_8hpp_1a0296971dd9810d022b3b8ec7f43cbaed.html" title="Function template eq_fields">boost::pfr::eq_fields</a></code>
               </p>
               <p>
                 * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/ops__fields_8hpp_1affccfae701ea29ddf4debeeab7a00291.html" title="Function template ne_fields">boost::pfr::ne_fields</a></code>
@@ -217,7 +244,7 @@
                 </a></code>
               </p>
               <p>
-                * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/io__fields_8hpp_1a704fe5a251cc1e58e81560de0cf17648.html" title="Function template io_fields">boost::pfr::io_fields</a></code>
+                * <code class="computeroutput"><a class="link" href="../doxygen/reference_section_of_pfr/io__fields_8hpp_1a443c5a5adc536e5a94c732f76c673d20.html" title="Function template io_fields">boost::pfr::io_fields</a></code>
               </p>
             </td>
 </tr>

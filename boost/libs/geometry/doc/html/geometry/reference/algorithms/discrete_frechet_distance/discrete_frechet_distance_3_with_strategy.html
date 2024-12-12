@@ -29,12 +29,20 @@
           (with strategy)</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm37264"></a>
-Calculate discrete Frechet distance between two geometries (currently
-            works for LineString-LineString) using specified strategy.
+            <a class="indexterm" name="id38853"></a>
+Calculate the discrete Frechet distance between two geometries using
+            the specified strategy.
           </p>
 <h6>
 <a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h0"></a>
+            <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.description"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.description">Description</a>
+          </h6>
+<p>
+            The free function <code class="literal">discrete_frechet_distance</code> calculates
+            the discrete Frechet distance between two geometries.
+          </p>
+<h6>
+<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h1"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.synopsis"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.synopsis">Synopsis</a>
           </h6>
 <p>
@@ -44,7 +52,7 @@ Calculate discrete Frechet distance between two geometries (currently
 <p>
           </p>
 <h6>
-<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h1"></a>
+<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h2"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.parameters"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.parameters">Parameters</a>
           </h6>
 <div class="informaltable"><table class="table">
@@ -95,7 +103,7 @@ Calculate discrete Frechet distance between two geometries (currently
                   </td>
 <td>
                     <p>
-                      Input geometry
+                      A model of the specified concept
                     </p>
                   </td>
 </tr>
@@ -117,7 +125,7 @@ Calculate discrete Frechet distance between two geometries (currently
                   </td>
 <td>
                     <p>
-                      Input geometry
+                      A model of the specified concept
                     </p>
                   </td>
 </tr>
@@ -129,7 +137,7 @@ Calculate discrete Frechet distance between two geometries (currently
                   </td>
 <td>
                     <p>
-                      A type fulfilling a DistanceStrategy concept
+                      Any type fulfilling a Distance Strategy Concept
                     </p>
                   </td>
 <td>
@@ -139,14 +147,15 @@ Calculate discrete Frechet distance between two geometries (currently
                   </td>
 <td>
                     <p>
-                      Distance strategy to be used to calculate Pt-Pt distance
+                      The strategy which will be used for point to point distance
+                      calculations
                     </p>
                   </td>
 </tr>
 </tbody>
 </table></div>
 <h6>
-<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h2"></a>
+<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h3"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.header"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.header">Header</a>
           </h6>
 <p>
@@ -162,12 +171,59 @@ Calculate discrete Frechet distance between two geometries (currently
             <code class="computeroutput"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">algorithms</span><span class="special">/</span><span class="identifier">discrete_frechet_distance</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
           </p>
 <h6>
-<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h3"></a>
-            <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.behavior"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.behavior">Behavior</a>
+<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h4"></a>
+            <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.conformance"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.conformance">Conformance</a>
           </h6>
 <p>
-            The algorithm calculate discrete frechet distance between two geometries.
+            The function <code class="literal">discrete_frechet_distance</code> is not defined
+            by OGC.
           </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+              PostGIS contains an algorithm ST_FrechetDistance with similar functionality.
+              See the <a href="https://postgis.net/docs/ST_FrechetDistance.html" target="_top">PostGIS
+              documentation</a>.
+            </p></td></tr>
+</table></div>
+<h6>
+<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h5"></a>
+            <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.supported_geometries"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.supported_geometries">Supported
+            geometries</a>
+          </h6>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                    <p>
+                      Geometries
+                    </p>
+                  </th>
+<th>
+                    <p>
+                      Status
+                    </p>
+                  </th>
+</tr></thead>
+<tbody><tr>
+<td>
+                    <p>
+                      Linestring-Linestring
+                    </p>
+                  </td>
+<td>
+                    <p>
+                      <span class="inlinemediaobject"><img src="../../../../img/ok.png" alt="ok"></span>
+                    </p>
+                  </td>
+</tr></tbody>
+</table></div>
 <div class="note"><table border="0" summary="Note">
 <tr>
 <td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../../../../doc/src/images/note.png"></td>
@@ -180,7 +236,7 @@ Calculate discrete Frechet distance between two geometries (currently
             </p></td></tr>
 </table></div>
 <h6>
-<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h4"></a>
+<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h6"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.available_strategies"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.available_strategies">Available
             Strategies</a>
           </h6>
@@ -193,9 +249,12 @@ Calculate discrete Frechet distance between two geometries (currently
                 <a class="link" href="../../strategies/strategy_distance_haversine.html" title="strategy::distance::haversine">Haversine
                 (spherical)</a>
               </li>
+<li class="listitem">
+                One of the geographic point to point strategies
+              </li>
 </ul></div>
 <h6>
-<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h5"></a>
+<a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.h7"></a>
             <span class="phrase"><a name="geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.example"></a></span><a class="link" href="discrete_frechet_distance_3_with_strategy.html#geometry.reference.algorithms.discrete_frechet_distance.discrete_frechet_distance_3_with_strategy.example">Example</a>
           </h6>
 <p>
@@ -213,8 +272,8 @@ Calculate discrete Frechet distance between two geometries (currently
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
     <span class="keyword">namespace</span> <span class="identifier">bg</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">point</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">geographic</span><span class="special">&lt;</span><span class="identifier">bg</span><span class="special">::</span><span class="identifier">degree</span><span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">point_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;</span> <span class="identifier">linestring_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point_type</span> <span class="special">=</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">point</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">geographic</span><span class="special">&lt;</span><span class="identifier">bg</span><span class="special">::</span><span class="identifier">degree</span><span class="special">&gt;&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">linestring_type</span> <span class="special">=</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;;</span>
 
     <span class="identifier">linestring_type</span> <span class="identifier">ls1</span><span class="special">,</span> <span class="identifier">ls2</span><span class="special">;</span>
     <span class="identifier">bg</span><span class="special">::</span><span class="identifier">read_wkt</span><span class="special">(</span><span class="string">"LINESTRING(0 0,1 1,1 2,2 1,2 2)"</span><span class="special">,</span> <span class="identifier">ls1</span><span class="special">);</span>
@@ -238,8 +297,8 @@ Calculate discrete Frechet distance between two geometries (currently
 <pre class="programlisting">Discrete Frechet Distance: 156874
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

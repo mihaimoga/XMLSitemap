@@ -36,7 +36,7 @@
 <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Iter<span class="special">,</span> <span class="keyword">typename</span> Compare<span class="special">&gt;</span> 
   <span class="keyword">void</span> <span class="identifier">pdqsort_branchless</span><span class="special">(</span><span class="identifier">Iter</span> first<span class="special">,</span> <span class="identifier">Iter</span> last<span class="special">,</span> <span class="identifier">Compare</span> comp<span class="special">)</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm2031"></a><h2>Description</h2>
+<a name="id3432"></a><h2>Description</h2>
 <p><code class="computeroutput">pdqsort_branchless</code> is a fast generic sorting algorithm that is similar in concept to introsort but runs faster on certain patterns. <code class="computeroutput">pdqsort_branchless</code> is in-place, unstable, deterministic, has a worst case runtime of <span class="emphasis"><em>O(N * lg(N))</em></span> and a best case of <span class="emphasis"><em>O(N)</em></span>. Even without patterns, the quicksort has been very efficiently implemented with block based partitioning, and <code class="computeroutput">pdqsort_branchless</code> runs 80-90% faster than GCC 6.2's <code class="computeroutput">std::sort</code> when sorting small data such as integers. However, this speedup is gained by totally bypassing the branch predictor, if your comparison operator or iterator contains branches you will most likely see little gain or a small loss in performance.</p>
 <p>
 

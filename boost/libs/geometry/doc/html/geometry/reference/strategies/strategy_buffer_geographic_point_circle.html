@@ -28,7 +28,7 @@
 <a name="geometry.reference.strategies.strategy_buffer_geographic_point_circle"></a><a class="link" href="strategy_buffer_geographic_point_circle.html" title="strategy::buffer::geographic_point_circle">strategy::buffer::geographic_point_circle</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="idm94711"></a><a class="indexterm" name="idm94713"></a><a class="indexterm" name="idm94715"></a>
+          <a class="indexterm" name="id95994"></a><a class="indexterm" name="id95996"></a><a class="indexterm" name="id95998"></a>
 Create a circular buffer around a point, on the Earth.
         </p>
 <h6>
@@ -225,7 +225,7 @@ Create a circular buffer around a point, on the Earth.
 <span class="special">{</span>
     <span class="keyword">namespace</span> <span class="identifier">bg</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">;</span>
 
-    <span class="keyword">typedef</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">point</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">geographic</span><span class="special">&lt;</span><span class="identifier">bg</span><span class="special">::</span><span class="identifier">degree</span><span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">point</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point</span> <span class="special">=</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">point</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="identifier">bg</span><span class="special">::</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">geographic</span><span class="special">&lt;</span><span class="identifier">bg</span><span class="special">::</span><span class="identifier">degree</span><span class="special">&gt;&gt;;</span>
 
     <span class="comment">// Declare the geographic_point_circle strategy (with 36 points)</span>
     <span class="comment">// Default template arguments (taking Andoyer strategy)</span>
@@ -244,7 +244,7 @@ Create a circular buffer around a point, on the Earth.
     <span class="identifier">bg</span><span class="special">::</span><span class="identifier">read_wkt</span><span class="special">(</span><span class="string">"POINT(4.9 52.1)"</span><span class="special">,</span> <span class="identifier">p</span><span class="special">);</span>
 
     <span class="comment">// Create the buffer of a point on the Earth</span>
-    <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">multi_polygon</span><span class="special">&lt;</span><span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+    <span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">multi_polygon</span><span class="special">&lt;</span><span class="identifier">bg</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
     <span class="identifier">bg</span><span class="special">::</span><span class="identifier">buffer</span><span class="special">(</span><span class="identifier">p</span><span class="special">,</span> <span class="identifier">result</span><span class="special">,</span>
                 <span class="identifier">distance_strategy</span><span class="special">,</span> <span class="identifier">side_strategy</span><span class="special">,</span>
                 <span class="identifier">join_strategy</span><span class="special">,</span> <span class="identifier">end_strategy</span><span class="special">,</span> <span class="identifier">point_strategy</span><span class="special">);</span>
@@ -279,8 +279,8 @@ Create a circular buffer around a point, on the Earth.
             </li>
 </ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

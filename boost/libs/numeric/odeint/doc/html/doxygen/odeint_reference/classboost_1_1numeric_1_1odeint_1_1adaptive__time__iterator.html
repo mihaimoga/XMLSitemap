@@ -36,20 +36,20 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator.html" title="Class template adaptive_time_iterator">adaptive_time_iterator</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator.html#idm23932-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator.html#id12-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator_1ac74ffe311a01603cce1903466b0afaf2"><span class="identifier">adaptive_time_iterator</span></a><span class="special">(</span><span class="identifier">Stepper</span><span class="special">,</span> <span class="identifier">System</span><span class="special">,</span> <span class="identifier">State</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">time_type</span><span class="special">,</span> <span class="identifier">time_type</span><span class="special">,</span> 
                          <span class="identifier">time_type</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator_1a19d96d1df2b8c3167bbf6d17847ee224"><span class="identifier">adaptive_time_iterator</span></a><span class="special">(</span><span class="identifier">Stepper</span><span class="special">,</span> <span class="identifier">System</span><span class="special">,</span> <span class="identifier">State</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm26268"></a><h2>Description</h2>
+<a name="id27726"></a><h2>Description</h2>
 <p>Implements an iterator representing the solution of an ODE from t_start to t_end evaluated at steps with an adaptive step size dt. After each iteration the iterator dereferences to a pair containing state and time at the next time point t+dt where dt is controlled by the stepper. This iterator can be used with ControlledSteppers and DenseOutputSteppers and it always makes use of the all the given steppers capabilities. A for_each over such an iterator range behaves similar to the integrate_adaptive routine.</p>
 <p><a class="link" href="classboost_1_1numeric_1_1odeint_1_1adaptive__iterator.html" title="Class template adaptive_iterator">adaptive_iterator</a> is a model of single-pass iterator.</p>
 <p>The value type of this iterator is a std::pair of state and time of the stepper.</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="idm26275"></a><h3>Template Parameters</h3>
+<a name="id27733"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Stepper</pre>
@@ -66,8 +66,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm26296"></a><h3>
-<a name="idm23932-bb"></a><code class="computeroutput">adaptive_time_iterator</code> public member functions</h3>
+<a name="id27754"></a><h3>
+<a name="id12-bb"></a><code class="computeroutput">adaptive_time_iterator</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adaptive__time__iterator_1ac74ffe311a01603cce1903466b0afaf2"></a><span class="identifier">adaptive_time_iterator</span><span class="special">(</span><span class="identifier">Stepper</span> stepper<span class="special">,</span> <span class="identifier">System</span> sys<span class="special">,</span> <span class="identifier">State</span> <span class="special">&amp;</span> s<span class="special">,</span> 
                        <span class="identifier">time_type</span> t_start<span class="special">,</span> <span class="identifier">time_type</span> t_end<span class="special">,</span> <span class="identifier">time_type</span> dt<span class="special">)</span><span class="special">;</span></pre></li>

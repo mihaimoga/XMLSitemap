@@ -33,7 +33,7 @@
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
 <div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../heap/reference.html#doxygen.pairing__heap_8hpp" title="Header &lt;boost/heap/pairing_heap.hpp&gt;">boost/heap/pairing_heap.hpp</a>&gt;
 
-</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">class</span> <span class="special">...</span> Options<span class="special">&gt;</span> 
+</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">class</span><span class="special">...</span> Options<span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1heap_1_1pairing__heap.html" title="Class template pairing_heap">pairing_heap</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// <a class="link" href="classboost_1_1heap_1_1pairing__heap.html#doxygen.classboost_1_1heap_1_1pairing__heaptypes">types</a></span>
@@ -53,6 +53,7 @@
 
   <span class="comment">// <a class="link" href="classboost_1_1heap_1_1pairing__heap.html#id-1_3_16_6_6_1_1_1_22-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1heap_1_1pairing__heap.html#doxygen.classboost_1_1heap_1_1pairing__heap_1a66b645e6772341cab1abf7e16fcf63e5"><span class="identifier">pairing_heap</span></a><span class="special">(</span><span class="identifier">value_compare</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="special">=</span> <span class="identifier">value_compare</span><span class="special">(</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
+  <span class="keyword">explicit</span> <a class="link" href="classboost_1_1heap_1_1pairing__heap.html#doxygen.classboost_1_1heap_1_1pairing__heap_1aa8f3f2e1eee8b6e65dd4b42f696ff9b1"><span class="identifier">pairing_heap</span></a><span class="special">(</span><span class="identifier">allocator_type</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1heap_1_1pairing__heap.html#doxygen.classboost_1_1heap_1_1pairing__heap_1a2012dd181b76322c7a345067f51136ba"><span class="identifier">pairing_heap</span></a><span class="special">(</span><a class="link" href="classboost_1_1heap_1_1pairing__heap.html" title="Class template pairing_heap">pairing_heap</a> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1heap_1_1pairing__heap.html#doxygen.classboost_1_1heap_1_1pairing__heap_1a446a9b52dfd959df7f750c1459c47a5b"><span class="identifier">pairing_heap</span></a><span class="special">(</span><a class="link" href="classboost_1_1heap_1_1pairing__heap.html" title="Class template pairing_heap">pairing_heap</a> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1heap_1_1pairing__heap.html" title="Class template pairing_heap">pairing_heap</a> <span class="special">&amp;</span> <a class="link" href="classboost_1_1heap_1_1pairing__heap.html#doxygen.classboost_1_1heap_1_1pairing__heap_1ae07331a2251ebfb7f73697ea09fe6b9a"><span class="keyword">operator</span><span class="special">=</span></a><span class="special">(</span><a class="link" href="classboost_1_1heap_1_1pairing__heap.html" title="Class template pairing_heap">pairing_heap</a> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
@@ -130,6 +131,11 @@
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1heap_1_1pairing__heap_1a66b645e6772341cab1abf7e16fcf63e5"></a><span class="identifier">pairing_heap</span><span class="special">(</span><span class="identifier">value_compare</span> <span class="keyword">const</span> <span class="special">&amp;</span> cmp <span class="special">=</span> <span class="identifier">value_compare</span><span class="special">(</span><span class="special">)</span><span class="special">)</span><span class="special">;</span></pre>
+<p><span class="bold"><strong>Effects:</strong></span> constructs an empty priority queue.</p>
+<p><span class="bold"><strong>Complexity:</strong></span> Constant.  </p>
+</li>
+<li class="listitem">
+<pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1heap_1_1pairing__heap_1aa8f3f2e1eee8b6e65dd4b42f696ff9b1"></a><span class="identifier">pairing_heap</span><span class="special">(</span><span class="identifier">allocator_type</span> <span class="keyword">const</span> <span class="special">&amp;</span> alloc<span class="special">)</span><span class="special">;</span></pre>
 <p><span class="bold"><strong>Effects:</strong></span> constructs an empty priority queue.</p>
 <p><span class="bold"><strong>Complexity:</strong></span> Constant.  </p>
 </li>

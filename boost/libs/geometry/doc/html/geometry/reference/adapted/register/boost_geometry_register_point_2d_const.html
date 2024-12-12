@@ -28,7 +28,7 @@
 <a name="geometry.reference.adapted.register.boost_geometry_register_point_2d_const"></a><a class="link" href="boost_geometry_register_point_2d_const.html" title="BOOST_GEOMETRY_REGISTER_POINT_2D_CONST">BOOST_GEOMETRY_REGISTER_POINT_2D_CONST</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm20280"></a>
+            <a class="indexterm" name="id21912"></a>
 Macro to register a 2D point type (const version)
           </p>
 <h6>
@@ -38,8 +38,10 @@ Macro to register a 2D point type (const version)
 <p>
             The macro BOOST_GEOMETRY_REGISTER_POINT_2D_CONST registers a two-dimensional
             point type such that it is recognized by Boost.Geometry and that Boost.Geometry
-            functionality can used with the specified type.. The const version registers
-            only read access to the fields, the point type is therefore read-only
+            functionality can used with the specified type. The const version registers
+            only read access to the fields, the point type is therefore read-only.
+            For geographic coordinate systems, be sure to specify first longitude
+            and then latitude, to be able to use the strategies included in the library.
           </p>
 <h6>
 <a name="geometry.reference.adapted.register.boost_geometry_register_point_2d_const.h1"></a>
@@ -117,7 +119,7 @@ Macro to register a 2D point type (const version)
                   </td>
 <td>
                     <p>
-                      Member containing first (usually x) coordinate
+                      Member containing first (usually x, or longitude) coordinate
                     </p>
                   </td>
 </tr>
@@ -129,7 +131,7 @@ Macro to register a 2D point type (const version)
                   </td>
 <td>
                     <p>
-                      Member containing second (usually y) coordinate
+                      Member containing second (usually y, or latitude) coordinate
                     </p>
                   </td>
 </tr>
@@ -143,8 +145,8 @@ Macro to register a 2D point type (const version)
             <code class="computeroutput"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="keyword">register</span><span class="special">/</span><span class="identifier">point</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code>
           </p>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

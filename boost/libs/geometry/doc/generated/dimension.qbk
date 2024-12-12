@@ -21,7 +21,7 @@ Metafunction defining [*value] as the number of coordinates (the number of axes 
 [heading Synopsis]
 ``template<typename Geometry>
 struct dimension
-      : public core_dispatch::dimension< tag< Geometry >::type, util::remove_cptrref< Geometry >::type >
+      : public core_dispatch::dimension< tag_t< Geometry >, util::remove_cptrref_t< Geometry > >
 {
   // ...
 };

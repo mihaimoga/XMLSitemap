@@ -126,26 +126,6 @@
 </tr>
 </tbody>
 </table></div>
-<h6>
-<a name="json.ref.boost__json__value.value.overload35.h5"></a>
-            <span class="phrase"><a name="json.ref.boost__json__value.value.overload35.note"></a></span><a class="link" href="overload35.html#json.ref.boost__json__value.value.overload35.note">Note</a>
-          </h6>
-<p>
-            The previous behavior of this constructor was to always construct either
-            an <a class="link" href="../../boost__json__object.html" title="object"><code class="computeroutput"><span class="identifier">object</span></code></a>
-            or an <a class="link" href="../../boost__json__array.html" title="array"><code class="computeroutput"><span class="identifier">array</span></code></a>.
-            In practice though, several C++ implementations did not treat <code class="computeroutput"><span class="identifier">value</span><span class="special">{</span><span class="identifier">x</span><span class="special">}</span></code>
-            as a constructor from initializer list. This effectively resulted in
-            different behavior on different implementations.
-          </p>
-<p>
-            If you need the legacy behavior define macro <code class="computeroutput"><span class="identifier">BOOST_JSON_LEGACY_INIT_LIST_BEHAVIOR</span></code>
-            when you are building the library. The macro and the functionality will
-            be deprecated in the future and then removed, so we urge you to change
-            your code for the new behavior as soon as possible. The simplest way
-            to create an <a class="link" href="../../boost__json__array.html" title="array"><code class="computeroutput"><span class="identifier">array</span></code></a> with 1 element using an
-            initializer list is via <code class="computeroutput"><span class="identifier">array</span><span class="special">{</span><span class="identifier">x</span><span class="special">}</span></code>.
-          </p>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Vinnie Falco<br>Copyright © 2020 Krystian Stasiowski<br>Copyright © 2022 Dmitry Arkhipov<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying

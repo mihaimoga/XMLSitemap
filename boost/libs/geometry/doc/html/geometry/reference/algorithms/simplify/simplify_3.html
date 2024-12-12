@@ -28,7 +28,7 @@
 <a name="geometry.reference.algorithms.simplify.simplify_3"></a><a class="link" href="simplify_3.html" title="simplify">simplify</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm59795"></a>
+            <a class="indexterm" name="id61205"></a>
 Simplify a geometry.
           </p>
 <h6>
@@ -222,18 +222,12 @@ Simplify a geometry.
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="identifier">linestring</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="identifier">point_xy</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
-<a class="co" name="geometry.reference.algorithms.simplify.simplify_3.c0" href="simplify_3.html#geometry.reference.algorithms.simplify.simplify_3.c1"><img src="../../../../../../../../doc/src/images/callouts/1.png" alt="1" border="0"></a>
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-
-<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">;</span>
-
-
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">xy</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">xy</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
 
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">xy</span><span class="special">&gt;</span> <span class="identifier">line</span><span class="special">;</span>
-    <span class="identifier">line</span> <span class="special">+=</span> <span class="identifier">xy</span><span class="special">(</span><span class="number">1.1</span><span class="special">,</span> <span class="number">1.1</span><span class="special">),</span> <span class="identifier">xy</span><span class="special">(</span><span class="number">2.5</span><span class="special">,</span> <span class="number">2.1</span><span class="special">),</span> <span class="identifier">xy</span><span class="special">(</span><span class="number">3.1</span><span class="special">,</span> <span class="number">3.1</span><span class="special">),</span> <span class="identifier">xy</span><span class="special">(</span><span class="number">4.9</span><span class="special">,</span> <span class="number">1.1</span><span class="special">),</span> <span class="identifier">xy</span><span class="special">(</span><span class="number">3.1</span><span class="special">,</span> <span class="number">1.9</span><span class="special">);</span> <a class="co" name="geometry.reference.algorithms.simplify.simplify_3.c2" href="simplify_3.html#geometry.reference.algorithms.simplify.simplify_3.c3"><img src="../../../../../../../../doc/src/images/callouts/2.png" alt="2" border="0"></a>
+    <span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">xy</span><span class="special">&gt;</span> <span class="identifier">line</span>
+        <span class="special">{{</span><span class="number">1.1</span><span class="special">,</span> <span class="number">1.1</span><span class="special">},</span> <span class="special">{</span><span class="number">2.5</span><span class="special">,</span> <span class="number">2.1</span><span class="special">},</span> <span class="special">{</span><span class="number">3.1</span><span class="special">,</span> <span class="number">3.1</span><span class="special">},</span> <span class="special">{</span><span class="number">4.9</span><span class="special">,</span> <span class="number">1.1</span><span class="special">},</span> <span class="special">{</span><span class="number">3.1</span><span class="special">,</span> <span class="number">1.9</span><span class="special">}};</span>
 
     <span class="comment">// Simplify it, using distance of 0.5 units</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">xy</span><span class="special">&gt;</span> <span class="identifier">simplified</span><span class="special">;</span>
@@ -242,26 +236,11 @@ Simplify a geometry.
         <span class="special">&lt;&lt;</span> <span class="string">"  original: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">line</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span>
         <span class="special">&lt;&lt;</span> <span class="string">"simplified: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">simplified</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 
-
     <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
 <p>
           </p>
-<div class="calloutlist"><table border="0" summary="Callout list">
-<tr>
-<td width="5%" valign="top" align="left"><p><a name="geometry.reference.algorithms.simplify.simplify_3.c1"></a><a href="#geometry.reference.algorithms.simplify.simplify_3.c0"><img src="../../../../../../../../doc/src/images/callouts/1.png" alt="1" border="0"></a> </p></td>
-<td valign="top" align="left"><p>
-                For this example we use Boost.Assign to add points
-              </p></td>
-</tr>
-<tr>
-<td width="5%" valign="top" align="left"><p><a name="geometry.reference.algorithms.simplify.simplify_3.c3"></a><a href="#geometry.reference.algorithms.simplify.simplify_3.c2"><img src="../../../../../../../../doc/src/images/callouts/2.png" alt="2" border="0"></a> </p></td>
-<td valign="top" align="left"><p>
-                With Boost.Assign
-              </p></td>
-</tr>
-</table></div>
 <p>
             Output:
           </p>
@@ -276,8 +255,8 @@ simplified: ((1.1, 1.1), (3.1, 3.1), (4.9, 1.1), (3.1, 1.9))
             <span class="inlinemediaobject"><img src="../../../../svg_simplify_country.png" alt="svg_simplify_country"></span>
           </p>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

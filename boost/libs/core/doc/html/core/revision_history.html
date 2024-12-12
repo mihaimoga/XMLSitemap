@@ -28,6 +28,7 @@
 <a name="core.revision_history"></a><a class="link" href="revision_history.html" title="Revision History">Revision History</a>
 </h2></div></div></div>
 <div class="toc"><dl class="toc">
+<dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_86_0">Changes in 1.86.0</a></span></dt>
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_85_0">Changes in 1.85.0</a></span></dt>
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_84_0">Changes in 1.84.0</a></span></dt>
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_83_0">Changes in 1.83.0</a></span></dt>
@@ -46,6 +47,32 @@
 </dl></div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
+<a name="core.revision_history.changes_in_1_86_0"></a><a class="link" href="revision_history.html#core.revision_history.changes_in_1_86_0" title="Changes in 1.86.0">Changes in 1.86.0</a>
+</h3></div></div></div>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+            Added a <a class="link" href="pointer_in_range.html" title="pointer_in_range"><code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">core</span><span class="special">/</span><span class="identifier">pointer_in_range</span><span class="special">.</span><span class="identifier">hpp</span></code></a>
+            header with a <code class="computeroutput"><span class="identifier">pointer_in_range</span></code>
+            function template to check if a pointer is within a given range.
+          </li>
+<li class="listitem">
+            Fixed <code class="computeroutput"><span class="identifier">type_name</span></code> for abstract
+            classes. (<a href="https://github.com/boostorg/core/issues/172" target="_top">#172</a>)
+          </li>
+<li class="listitem">
+            Fixed <code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">core</span><span class="special">/</span><span class="identifier">type_name</span><span class="special">.</span><span class="identifier">hpp</span></code> compilation error with MSVC with
+            disabled native <code class="computeroutput"><span class="keyword">wchar_t</span></code>
+            type. (<a href="https://github.com/boostorg/core/issues/173" target="_top">#173</a>)
+          </li>
+<li class="listitem">
+            Added a workaround for an MSVC <a href="https://developercommunity.visualstudio.com/t/Compiler-bug:-Incorrect-C2247-and-C2248/10690025" target="_top">bug</a>
+            causing <code class="computeroutput"><span class="identifier">empty_value</span></code> compilation
+            errors when it is used with a nested class. (<a href="https://github.com/boostorg/core/pull/175" target="_top">PR#175</a>)
+          </li>
+</ul></div>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
 <a name="core.revision_history.changes_in_1_85_0"></a><a class="link" href="revision_history.html#core.revision_history.changes_in_1_85_0" title="Changes in 1.85.0">Changes in 1.85.0</a>
 </h3></div></div></div>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -58,7 +85,7 @@
 <p class="simpara">
             Changed <a class="link" href="null_deleter.html" title="null_deleter"><code class="computeroutput"><span class="identifier">null_deleter</span></code></a>,
             <a class="link" href="fclose_deleter.html" title="fclose_deleter"><code class="computeroutput"><span class="identifier">fclose_deleter</span></code></a>
-            and <a class="link" href="../">checked deleter</a> definitions
+            and <a class="link" href="checked_delete.html" title="checked_delete">checked deleter</a> definitions
             so that they don't bring namespace <code class="computeroutput"><span class="identifier">boost</span></code>
             into argument-dependent lookup in cases like this:
           </p>

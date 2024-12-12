@@ -29,6 +29,78 @@
 </h2></div></div></div>
 <h4>
 <a name="beast.release_notes.h0"></a>
+      <span class="phrase"><a name="beast.release_notes.boost_1_87"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_87">Boost
+      1.87</a>
+    </h4>
+<p>
+      <span class="bold"><strong>API Changes</strong></span>
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2920" target="_top">#2920</a> Added <code class="computeroutput"><span class="identifier">error_code</span></code>
+          overload for <code class="computeroutput"><span class="identifier">basic_fields</span><span class="special">::</span><span class="identifier">insert</span><span class="special">()</span></code>
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2911" target="_top">#2911</a> Added overload for <code class="computeroutput"><span class="identifier">websocket</span><span class="special">::</span><span class="identifier">stream</span><span class="special">::</span><span class="identifier">get_status</span></code>
+          to query permessage-deflate status
+        </li>
+</ul></div>
+<p>
+      <span class="bold"><strong>Fixes</strong></span>
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2926" target="_top">#2926</a> Fixed use-after-move in calls to <code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">dispatch</span></code>
+          within <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_stream</span></code>, which caused <code class="computeroutput"><span class="identifier">bad_executor</span></code> exceptions on timeouts
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2915" target="_top">#2915</a> Removed mutating operations in initiating functions
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2915" target="_top">#2915</a> Fixed cancellation handling in <code class="computeroutput"><span class="identifier">teardown_tcp_op</span></code>
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2920" target="_top">#2920</a> Set <code class="computeroutput"><span class="identifier">state_</span></code> in
+          <code class="computeroutput"><span class="identifier">basic_parser</span></code> before calling
+          <code class="computeroutput"><span class="identifier">on_finish_impl</span></code>
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2939" target="_top">#2939</a> Removed static specifier from <code class="computeroutput"><span class="identifier">clamp</span></code>
+          functions
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2903" target="_top">#2903</a> Addressed <code class="computeroutput"><span class="special">-</span><span class="identifier">Wattributes</span></code>
+          warnings in tests
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2944" target="_top">#2944</a> Addressed unreachable code warning in tests
+        </li>
+</ul></div>
+<p>
+      <span class="bold"><strong>Improvements</strong></span>
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2940" target="_top">#2940</a> Added forward declaration headers for types in <code class="computeroutput"><span class="identifier">beast</span><span class="special">::</span><span class="identifier">http</span></code>
+          namespace
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2920" target="_top">#2920</a> Enabled <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">parser</span></code> to use <code class="computeroutput"><span class="identifier">basic_fields</span><span class="special">::</span><span class="identifier">insert</span><span class="special">()</span></code> with <code class="computeroutput"><span class="identifier">error_code</span></code>
+          overload
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2920" target="_top">#2920</a> Applied <code class="computeroutput"><span class="identifier">header_limit_</span></code>
+          in <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_parser</span></code> to trailer headers
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2920" target="_top">#2920</a> Improved <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_parser</span></code> to return <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">error</span><span class="special">::</span><span class="identifier">header_limit</span></code> earlier
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/2905" target="_top">#2905</a> Added support for modular boost build structure
+        </li>
+</ul></div>
+<h4>
+<a name="beast.release_notes.h1"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_86"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_86">Boost
       1.86</a>
     </h4>
@@ -121,7 +193,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h1"></a>
+<a name="beast.release_notes.h2"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_85"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_85">Boost
       1.85</a>
     </h4>
@@ -195,7 +267,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h2"></a>
+<a name="beast.release_notes.h3"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_84"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_84">Boost
       1.84</a>
     </h4>
@@ -239,7 +311,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h3"></a>
+<a name="beast.release_notes.h4"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_83"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_83">Boost
       1.83</a>
     </h4>
@@ -261,7 +333,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h4"></a>
+<a name="beast.release_notes.h5"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_82"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_82">Boost
       1.82</a>
     </h4>
@@ -295,7 +367,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h5"></a>
+<a name="beast.release_notes.h6"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_81"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_81">Boost
       1.81</a>
     </h4>
@@ -383,7 +455,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h6"></a>
+<a name="beast.release_notes.h7"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_80"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_80">Boost
       1.80</a>
     </h4>
@@ -421,7 +493,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h7"></a>
+<a name="beast.release_notes.h8"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_79"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_79">Boost
       1.79</a>
     </h4>
@@ -472,7 +544,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h8"></a>
+<a name="beast.release_notes.h9"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_78"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_78">Boost
       1.78</a>
     </h4>
@@ -511,7 +583,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h9"></a>
+<a name="beast.release_notes.h10"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_77"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_77">Boost
       1.77</a>
     </h4>
@@ -548,7 +620,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h10"></a>
+<a name="beast.release_notes.h11"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_76"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_76">Boost
       1.76</a>
     </h4>
@@ -596,7 +668,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h11"></a>
+<a name="beast.release_notes.h12"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_75"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_75">Boost
       1.75</a>
     </h4>
@@ -664,7 +736,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h12"></a>
+<a name="beast.release_notes.h13"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_74"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_74">Boost
       1.74</a>
     </h4>
@@ -861,7 +933,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h13"></a>
+<a name="beast.release_notes.h14"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_73"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_73">Boost
       1.73</a>
     </h4>
@@ -994,7 +1066,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h14"></a>
+<a name="beast.release_notes.h15"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_72"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_72">Boost
       1.72</a>
     </h4>
@@ -1066,7 +1138,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h15"></a>
+<a name="beast.release_notes.h16"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_71"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_71">Boost
       1.71</a>
     </h4>
@@ -1228,7 +1300,7 @@
           Documentation is built with SaxonHE instead of xsltproc
         </li></ul></div>
 <h4>
-<a name="beast.release_notes.h16"></a>
+<a name="beast.release_notes.h17"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_70"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_70">Boost
       1.70</a>
     </h4>
@@ -1702,7 +1774,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h17"></a>
+<a name="beast.release_notes.h18"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_69"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_69">Boost
       1.69</a>
     </h4>
@@ -1765,7 +1837,7 @@
           Add <code class="computeroutput"><span class="identifier">timeout_socket</span></code>
         </li></ul></div>
 <h4>
-<a name="beast.release_notes.h18"></a>
+<a name="beast.release_notes.h19"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_68"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_68">Boost
       1.68</a>
     </h4>
@@ -1918,7 +1990,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h19"></a>
+<a name="beast.release_notes.h20"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_67"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_67">Boost
       1.67</a>
     </h4>
@@ -2117,7 +2189,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h20"></a>
+<a name="beast.release_notes.h21"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_66"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_66">Boost
       1.66</a>
     </h4>

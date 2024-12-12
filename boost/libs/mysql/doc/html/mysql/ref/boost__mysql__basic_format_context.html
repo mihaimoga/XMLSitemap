@@ -28,7 +28,7 @@
 <a name="mysql.ref.boost__mysql__basic_format_context"></a><a class="link" href="boost__mysql__basic_format_context.html" title="basic_format_context">basic_format_context</a>
 </h4></div></div></div>
 <p>
-        (EXPERIMENTAL) Format context for incremental SQL formatting.
+        Format context for incremental SQL formatting.
       </p>
 <h5>
 <a name="mysql.ref.boost__mysql__basic_format_context.h0"></a>
@@ -39,8 +39,8 @@
       </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">class</span> <a class="link" href="boost__mysql__OutputString.html" title="OutputString concept"><code class="literal"><span class="emphasis"><em>OutputString</em></span></code></a><span class="special">&gt;</span>
-<span class="keyword">class</span> <span class="identifier">basic_format_context</span> <span class="special">:</span>
-    <span class="keyword">public</span> <span class="identifier">format_context_base</span>
+<span class="keyword">class</span> <span class="identifier">basic_format_context</span>
+    <span class="special">:</span> <span class="keyword">public</span> <a class="link" href="boost__mysql__format_context_base.html" title="format_context_base"><code class="literal">format_context_base</code></a><span class="special">;</span>
 </pre>
 <h5>
 <a name="mysql.ref.boost__mysql__basic_format_context.h1"></a>
@@ -68,72 +68,12 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__basic_format_context/add_error.html" title="basic_format_context::add_error">add_error</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Adds an error to the current error state.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__basic_format_context/append_raw.html" title="basic_format_context::append_raw">append_raw</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Adds raw SQL to the output string (low level).
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__basic_format_context/append_value.html" title="basic_format_context::append_value">append_value</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Formats a value and adds it to the output string (low level).
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
                   <span class="bold"><strong><a class="link" href="boost__mysql__basic_format_context/basic_format_context.html" title="basic_format_context::basic_format_context">basic_format_context</a> <span class="silver">[constructor]</span></strong></span>
                 </p>
               </td>
 <td>
                 <p>
                   Constructor. <br><span class="silver">—</span><br>Move constructor.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__basic_format_context/error_state.html" title="basic_format_context::error_state">error_state</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Retrieves the current error state.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__basic_format_context/format_opts.html" title="basic_format_context::format_opts">format_opts</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Retrieves the format options.
                 </p>
               </td>
 </tr>
@@ -178,8 +118,11 @@
         <a class="link" href="boost__mysql__basic_format_context/get.html" title="basic_format_context::get"><code class="computeroutput"><span class="identifier">get</span></code></a>, they cannot be re-used. This
         is a move-only type.
       </p>
+<p>
+        Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql.hpp" target="_top">boost/mysql.hpp</a>&gt;</code>
+      </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

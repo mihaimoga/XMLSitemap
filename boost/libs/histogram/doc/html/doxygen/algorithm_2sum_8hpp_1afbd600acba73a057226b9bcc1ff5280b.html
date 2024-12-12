@@ -36,7 +36,7 @@
 <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> A<span class="special">,</span> <span class="keyword">typename</span> S<span class="special">&gt;</span> 
   <span class="keyword">auto</span> <span class="identifier">sum</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1histogram_1_1histogram.html" title="Class template histogram">histogram</a><span class="special">&lt;</span> <span class="identifier">A</span><span class="special">,</span> <span class="identifier">S</span> <span class="special">&gt;</span> <span class="special">&amp;</span> hist<span class="special">,</span> <span class="keyword">const</span> <span class="identifier">coverage</span> cov <span class="special">=</span> <span class="identifier">coverage</span><span class="special">::</span><span class="identifier">all</span><span class="special">)</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm23530"></a><h2>Description</h2>
+<a name="id24918"></a><h2>Description</h2>
 <p>The implementation favors accuracy and protection against overflow over speed. If the value type of the histogram is an integral or floating point type, accumulators::sum&lt;double&gt; is used to compute the sum, else the original value type is used. Compilation fails, if the value type does not support operator+=. The return type is double if the value type of the histogram is integral or floating point, and the original value type otherwise.</p>
 <p>If you need a different trade-off, you can write your own loop or use <code class="computeroutput">std::accumulate</code>:</p>
 <pre class="programlisting"><span class="comment">// iterate over all bins</span>

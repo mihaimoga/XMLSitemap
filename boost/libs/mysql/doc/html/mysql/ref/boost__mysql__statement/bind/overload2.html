@@ -38,7 +38,7 @@
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">class</span> <a class="link" href="../../boost__mysql__WritableFieldTuple.html" title="WritableField and WritableFieldTuple concepts"><code class="literal"><span class="emphasis"><em>WritableFieldTuple</em></span></code></a><span class="special">,</span>
     <span class="keyword">typename</span> <span class="identifier">EnableIf</span> <span class="special">=</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="identifier">detail</span><span class="special">::</span><span class="identifier">is_writable_field_tuple</span><span class="special">&lt;</span><span class="identifier">WritableFieldTuple</span><span class="special">&gt;::</span><span class="identifier">value</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">&gt;</span>
-<span class="identifier">bound_statement_tuple</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">decay</span><span class="special">&lt;</span> <span class="identifier">WritableFieldTuple</span> <span class="special">&gt;::</span><span class="identifier">type</span> <span class="special">&gt;</span>
+<a class="link" href="../../boost__mysql__bound_statement_tuple.html" title="bound_statement_tuple"><code class="literal">bound_statement_tuple</code></a><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">decay</span><span class="special">&lt;</span> <span class="identifier">WritableFieldTuple</span> <span class="special">&gt;::</span><span class="identifier">type</span> <span class="special">&gt;</span>
 <span class="identifier">bind</span><span class="special">(</span>
     <span class="identifier">WritableFieldTuple</span><span class="special">&amp;&amp;</span> <span class="identifier">params</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 </pre>
@@ -75,7 +75,7 @@
             Strong guarantee. Only throws if the decay-copy of the tuple throws.
           </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

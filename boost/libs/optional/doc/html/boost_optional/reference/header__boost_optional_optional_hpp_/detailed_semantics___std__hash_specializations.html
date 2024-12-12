@@ -46,14 +46,14 @@
 <p>
         </p>
 <p>
-          The specialization <code class="computeroutput"><span class="identifier">hash</span><span class="special">&lt;</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span></code> is enabled if and only if <code class="computeroutput"><span class="identifier">hash</span><span class="special">&lt;</span><span class="identifier">remove_</span><span class="error">­</span><span class="identifier">const_</span><span class="error">­</span><span class="identifier">t</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span></code>
+          The specialization <code class="computeroutput"><span class="identifier">hash</span><span class="special">&lt;</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span></code> is enabled if and only if <code class="computeroutput"><span class="identifier">hash</span><span class="special">&lt;</span><span class="identifier">remove_const_t</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span></code>
           is enabled. When enabled, for an object <code class="computeroutput"><span class="identifier">o</span></code>
           of type <code class="computeroutput"><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>,
-          if <code class="computeroutput"><span class="identifier">o</span><span class="special">.</span><span class="identifier">has_</span><span class="error">­</span><span class="identifier">value</span><span class="special">()</span> <span class="special">==</span> <span class="keyword">true</span></code>,
+          if <code class="computeroutput"><span class="identifier">o</span><span class="special">.</span><span class="identifier">has_value</span><span class="special">()</span>
+          <span class="special">==</span> <span class="keyword">true</span></code>,
           then <code class="computeroutput"><span class="identifier">hash</span><span class="special">&lt;</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;()(</span><span class="identifier">o</span><span class="special">)</span></code> evaluates
-          to the same value as <code class="computeroutput"><span class="identifier">hash</span><span class="special">&lt;</span><span class="identifier">remove_</span><span class="error">­</span><span class="identifier">const_</span><span class="error">­</span><span class="identifier">t</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;()(*</span><span class="identifier">o</span><span class="special">)</span></code>; otherwise
-          it evaluates to an unspecified value. The member functions are not guaranteed
-          to be <code class="computeroutput"><span class="keyword">noexcept</span></code>.
+          to the same value as <code class="computeroutput"><span class="identifier">hash</span><span class="special">&lt;</span><span class="identifier">remove_const_t</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;()(*</span><span class="identifier">o</span><span class="special">)</span></code>; otherwise it evaluates to an unspecified
+          value. The member functions are not guaranteed to be <code class="computeroutput"><span class="keyword">noexcept</span></code>.
         </p>
 <div class="caution"><table border="0" summary="Caution">
 <tr>
@@ -69,7 +69,7 @@
           </p></td></tr>
 </table></div>
 </div>
-<div class="copyright-footer">Copyright © 2003-2007 Fernando Luis Cacciola Carballal<br>Copyright © 2014-2023 Andrzej Krzemieński<p>
+<div class="copyright-footer">Copyright © 2003-2007 Fernando Luis Cacciola Carballal<br>Copyright © 2014-2024 Andrzej Krzemieński<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

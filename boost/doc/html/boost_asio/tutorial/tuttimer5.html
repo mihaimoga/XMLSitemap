@@ -173,6 +173,11 @@
   <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">io_context</span> <span class="identifier">io</span><span class="special">;</span>
   <span class="identifier">printer</span> <span class="identifier">p</span><span class="special">(</span><span class="identifier">io</span><span class="special">);</span>
   <span class="identifier">std</span><span class="special">::</span><span class="identifier">thread</span> <span class="identifier">t</span><span class="special">([&amp;]{</span> <span class="identifier">io</span><span class="special">.</span><span class="identifier">run</span><span class="special">();</span> <span class="special">});</span>
+  <span class="identifier">io</span><span class="special">.</span><span class="identifier">run</span><span class="special">();</span>
+  <span class="identifier">t</span><span class="special">.</span><span class="identifier">join</span><span class="special">();</span>
+
+  <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+<span class="special">}</span>
 </pre>
 <p>
         See the <a class="link" href="tuttimer5/src.html" title="Source listing for Timer.5">full source listing</a>

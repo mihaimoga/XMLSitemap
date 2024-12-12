@@ -29,7 +29,7 @@
           (with strategy)</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm31041"></a>
+            <a class="indexterm" name="id32612"></a>
 Corrects a geometry.
           </p>
 <h6>
@@ -409,38 +409,37 @@ Corrects a geometry.
 
 <span class="identifier">BOOST_GEOMETRY_REGISTER_BOOST_TUPLE_CS</span><span class="special">(</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">cartesian</span><span class="special">)</span>
 
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
-
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">::</span><span class="identifier">tuple_list_of</span><span class="special">;</span>
-
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span>
+    <span class="keyword">using</span> <span class="identifier">clockwise_closed_polygon</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span>
         <span class="special">&lt;</span>
             <span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;</span>
-        <span class="special">&gt;</span> <span class="identifier">clockwise_closed_polygon</span><span class="special">;</span>
+        <span class="special">&gt;;</span>
 
     <span class="identifier">clockwise_closed_polygon</span> <span class="identifier">cwcp</span><span class="special">;</span>
 
     <span class="comment">// Fill it counterclockwise (so wrongly), forgetting the closing point</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">exterior_ring</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">)</span> <span class="special">=</span> <span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">10</span><span class="special">,</span> <span class="number">10</span><span class="special">)(</span><span class="number">0</span><span class="special">,</span> <span class="number">9</span><span class="special">);</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">exterior_ring</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">)</span> <span class="special">=</span> <span class="special">{{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">10</span><span class="special">,</span> <span class="number">10</span><span class="special">},</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">9</span><span class="special">}};</span>
 
     <span class="comment">// Add a counterclockwise closed inner ring (this is correct)</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">interior_rings</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">).</span><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">)(</span><span class="number">4</span><span class="special">,</span> <span class="number">6</span><span class="special">)(</span><span class="number">2</span><span class="special">,</span> <span class="number">8</span><span class="special">)(</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">));</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">interior_rings</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">).</span><span class="identifier">push_back</span><span class="special">({{</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">},</span> <span class="special">{</span><span class="number">4</span><span class="special">,</span> <span class="number">6</span><span class="special">},</span> <span class="special">{</span><span class="number">2</span><span class="special">,</span> <span class="number">8</span><span class="special">},</span> <span class="special">{</span><span class="number">1</span><span class="special">,</span> <span class="number">2</span><span class="special">}});</span>
 
     <span class="comment">// Its area should be negative (because of wrong orientation)</span>
     <span class="comment">//     and wrong (because of omitted closing point)</span>
-    <span class="keyword">double</span> <span class="identifier">area_before</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">area</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">);</span>
+    <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">area_before</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">area</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">);</span>
+    <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">count_before</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">num_points</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">);</span>
 
     <span class="comment">// Correct it!</span>
     <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">correct</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">);</span>
 
     <span class="comment">// Check its new area</span>
-    <span class="keyword">double</span> <span class="identifier">area_after</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">area</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">);</span>
+    <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">area_after</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">area</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">);</span>
+    <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">count_after</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">num_points</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">);</span>
 
     <span class="comment">// And output it</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">cwcp</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">area_before</span> <span class="special">&lt;&lt;</span> <span class="string">" -&gt; "</span> <span class="special">&lt;&lt;</span> <span class="identifier">area_after</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">count_before</span> <span class="special">&lt;&lt;</span> <span class="string">" -&gt; "</span> <span class="special">&lt;&lt;</span> <span class="identifier">count_after</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 
     <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
 <span class="special">}</span>
@@ -452,10 +451,11 @@ Corrects a geometry.
           </p>
 <pre class="programlisting">(((0, 0), (0, 9), (10, 10), (0, 0)), ((1, 2), (4, 6), (2, 8), (1, 2)))
 -7 -&gt; 38
+7 -&gt; 8
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

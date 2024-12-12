@@ -28,7 +28,7 @@
 <a name="geometry.reference.core.tag_cast"></a><a class="link" href="tag_cast.html" title="tag_cast">tag_cast</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="idm71404"></a>
+          <a class="indexterm" name="id72712"></a>
 Metafunction defining a type being either the specified tag, or one of
           the specified basetags if the type inherits from them.
         </p>
@@ -169,11 +169,11 @@ Metafunction defining a type being either the specified tag, or one of
 <span class="keyword">namespace</span> <span class="identifier">geo</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">;</span>
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">typedef</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">point_type</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;</span> <span class="identifier">polygon_type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">point_type</span> <span class="special">=</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">d2</span><span class="special">::</span><span class="identifier">point_xy</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
+    <span class="keyword">using</span> <span class="identifier">polygon_type</span> <span class="special">=</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">polygon</span><span class="special">&lt;</span><span class="identifier">point_type</span><span class="special">&gt;;</span>
 
-    <span class="keyword">typedef</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">tag</span><span class="special">&lt;</span><span class="identifier">polygon_type</span><span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">tag</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">tag_cast</span><span class="special">&lt;</span><span class="identifier">tag</span><span class="special">,</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">linear_tag</span><span class="special">,</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">areal_tag</span><span class="special">&gt;::</span><span class="identifier">type</span> <span class="identifier">base_tag</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">tag</span> <span class="special">=</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">tag</span><span class="special">&lt;</span><span class="identifier">polygon_type</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">base_tag</span> <span class="special">=</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">tag_cast</span><span class="special">&lt;</span><span class="identifier">tag</span><span class="special">,</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">linear_tag</span><span class="special">,</span> <span class="identifier">geo</span><span class="special">::</span><span class="identifier">areal_tag</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">;</span>
 
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"tag: "</span> <span class="special">&lt;&lt;</span> <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">tag</span><span class="special">).</span><span class="identifier">name</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span>
         <span class="special">&lt;&lt;</span> <span class="string">"base tag: "</span> <span class="special">&lt;&lt;</span> <span class="keyword">typeid</span><span class="special">(</span><span class="identifier">base_tag</span><span class="special">).</span><span class="identifier">name</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
@@ -190,8 +190,8 @@ Metafunction defining a type being either the specified tag, or one of
 base tag: struct boost::geometry::areal_tag
 </pre>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

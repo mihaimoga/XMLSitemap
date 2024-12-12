@@ -28,7 +28,7 @@
 <a name="geometry.reference.algorithms.assign.assign_points"></a><a class="link" href="assign_points.html" title="assign_points">assign_points</a>
 </h5></div></div></div>
 <p>
-            <a class="indexterm" name="idm22739"></a>
+            <a class="indexterm" name="id24339"></a>
 Assign a range of points to a linestring, ring or polygon.
           </p>
 <h6>
@@ -157,8 +157,8 @@ Assign a range of points to a linestring, ring or polygon.
             <span class="phrase"><a name="geometry.reference.algorithms.assign.assign_points.example"></a></span><a class="link" href="assign_points.html#geometry.reference.algorithms.assign.assign_points.example">Example</a>
           </h6>
 <p>
-            Shows usage of Boost.Geometry's assign, Boost.Assign, and Boost.Range
-            to assign ranges of a linestring
+            Shows usage of Boost.Geometry's assign, and Boost.Range to assign ranges
+            of a linestring
           </p>
 <p>
 </p>
@@ -168,7 +168,6 @@ Assign a range of points to a linestring, ring or polygon.
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="identifier">linestring</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="identifier">adapted</span><span class="special">/</span><span class="identifier">boost_tuple</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
-<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">assign</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">geometry</span><span class="special">/</span><span class="identifier">geometries</span><span class="special">/</span><span class="identifier">adapted</span><span class="special">/</span><span class="identifier">boost_range</span><span class="special">/</span><span class="identifier">filtered</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 
 <span class="identifier">BOOST_GEOMETRY_REGISTER_BOOST_TUPLE_CS</span><span class="special">(</span><span class="identifier">cs</span><span class="special">::</span><span class="identifier">cartesian</span><span class="special">)</span>
@@ -193,15 +192,13 @@ Assign a range of points to a linestring, ring or polygon.
 
 <span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span>
 <span class="special">{</span>
-    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">assign</span><span class="special">;</span>
-
-    <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;</span> <span class="special">&gt;</span> <span class="identifier">ls</span><span class="special">;</span>
+    <span class="keyword">using</span> <span class="identifier">ls</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">model</span><span class="special">::</span><span class="identifier">linestring</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;&gt;;</span>
 
     <span class="identifier">ls</span> <span class="identifier">line1</span><span class="special">,</span> <span class="identifier">line2</span><span class="special">,</span> <span class="identifier">line3</span><span class="special">;</span>
 
-    <span class="identifier">line1</span> <span class="special">=</span> <span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">2</span><span class="special">,</span> <span class="number">3</span><span class="special">)(</span><span class="number">4</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">6</span><span class="special">,</span> <span class="number">3</span><span class="special">)(</span><span class="number">8</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">10</span><span class="special">,</span> <span class="number">3</span><span class="special">)(</span><span class="number">12</span><span class="special">,</span> <span class="number">0</span><span class="special">);</span> <a class="co" name="geometry.reference.algorithms.assign.assign_points.c0" href="assign_points.html#geometry.reference.algorithms.assign.assign_points.c1"><img src="../../../../../../../../doc/src/images/callouts/1.png" alt="1" border="0"></a>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">assign_points</span><span class="special">(</span><span class="identifier">line2</span><span class="special">,</span> <span class="identifier">tuple_list_of</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">2</span><span class="special">,</span> <span class="number">2</span><span class="special">)(</span><span class="number">4</span><span class="special">,</span> <span class="number">0</span><span class="special">)(</span><span class="number">6</span><span class="special">,</span> <span class="number">2</span><span class="special">)(</span><span class="number">8</span><span class="special">,</span> <span class="number">0</span><span class="special">));</span> <a class="co" name="geometry.reference.algorithms.assign.assign_points.c2" href="assign_points.html#geometry.reference.algorithms.assign.assign_points.c3"><img src="../../../../../../../../doc/src/images/callouts/2.png" alt="2" border="0"></a>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">assign_points</span><span class="special">(</span><span class="identifier">line3</span><span class="special">,</span> <span class="identifier">line1</span> <span class="special">|</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">filtered</span><span class="special">(</span><span class="identifier">x_between</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;(</span><span class="number">4</span><span class="special">,</span> <span class="number">8</span><span class="special">)));</span> <a class="co" name="geometry.reference.algorithms.assign.assign_points.c4" href="assign_points.html#geometry.reference.algorithms.assign.assign_points.c5"><img src="../../../../../../../../doc/src/images/callouts/3.png" alt="3" border="0"></a>
+    <span class="identifier">line1</span> <span class="special">=</span> <span class="special">{{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">2</span><span class="special">,</span> <span class="number">3</span><span class="special">},</span> <span class="special">{</span><span class="number">4</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">6</span><span class="special">,</span> <span class="number">3</span><span class="special">},</span> <span class="special">{</span><span class="number">8</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">10</span><span class="special">,</span> <span class="number">3</span><span class="special">},</span> <span class="special">{</span><span class="number">12</span><span class="special">,</span> <span class="number">0</span><span class="special">}};</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">assign_points</span><span class="special">(</span><span class="identifier">line2</span><span class="special">,</span> <span class="identifier">ls</span><span class="special">({{</span><span class="number">0</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">2</span><span class="special">,</span> <span class="number">2</span><span class="special">},</span> <span class="special">{</span><span class="number">4</span><span class="special">,</span> <span class="number">0</span><span class="special">},</span> <span class="special">{</span><span class="number">6</span><span class="special">,</span> <span class="number">2</span><span class="special">},</span> <span class="special">{</span><span class="number">8</span><span class="special">,</span> <span class="number">0</span><span class="special">}}));</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">assign_points</span><span class="special">(</span><span class="identifier">line3</span><span class="special">,</span> <span class="identifier">line1</span> <span class="special">|</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">adaptors</span><span class="special">::</span><span class="identifier">filtered</span><span class="special">(</span><span class="identifier">x_between</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;(</span><span class="number">4</span><span class="special">,</span> <span class="number">8</span><span class="special">)));</span> <a class="co" name="geometry.reference.algorithms.assign.assign_points.c0" href="assign_points.html#geometry.reference.algorithms.assign.assign_points.c1"><img src="../../../../../../../../doc/src/images/callouts/1.png" alt="1" border="0"></a>
 
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"line 1: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">line1</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"line 2: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">geometry</span><span class="special">::</span><span class="identifier">dsv</span><span class="special">(</span><span class="identifier">line2</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
@@ -212,27 +209,12 @@ Assign a range of points to a linestring, ring or polygon.
 </pre>
 <p>
           </p>
-<div class="calloutlist"><table border="0" summary="Callout list">
-<tr>
+<div class="calloutlist"><table border="0" summary="Callout list"><tr>
 <td width="5%" valign="top" align="left"><p><a name="geometry.reference.algorithms.assign.assign_points.c1"></a><a href="#geometry.reference.algorithms.assign.assign_points.c0"><img src="../../../../../../../../doc/src/images/callouts/1.png" alt="1" border="0"></a> </p></td>
-<td valign="top" align="left"><p>
-                tuple_list_of is part of Boost.Assign and can be used for Boost.Geometry
-                if points are tuples
-              </p></td>
-</tr>
-<tr>
-<td width="5%" valign="top" align="left"><p><a name="geometry.reference.algorithms.assign.assign_points.c3"></a><a href="#geometry.reference.algorithms.assign.assign_points.c2"><img src="../../../../../../../../doc/src/images/callouts/2.png" alt="2" border="0"></a> </p></td>
-<td valign="top" align="left"><p>
-                tuple_list_of delivers a range and can therefore be used in boost::geometry::assign
-              </p></td>
-</tr>
-<tr>
-<td width="5%" valign="top" align="left"><p><a name="geometry.reference.algorithms.assign.assign_points.c5"></a><a href="#geometry.reference.algorithms.assign.assign_points.c4"><img src="../../../../../../../../doc/src/images/callouts/3.png" alt="3" border="0"></a> </p></td>
 <td valign="top" align="left"><p>
                 Boost.Range adaptors can also be used in boost::geometry::assign
               </p></td>
-</tr>
-</table></div>
+</tr></table></div>
 <p>
             Output:
           </p>
@@ -249,8 +231,8 @@ line 3: ((4, 0), (6, 3), (8, 0))
                 <a class="link" href="../append.html" title="append">append</a>
               </li></ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2009-2021 Barend Gehrels,
-      Bruno Lalande, Mateusz Loskot, Adam Wulkiewicz, Oracle and/or its affiliates<p>
+<div class="copyright-footer">Copyright © 2009-2024 Barend Gehrels, Bruno Lalande, Mateusz Loskot, Adam
+      Wulkiewicz, Oracle and/or its affiliates<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

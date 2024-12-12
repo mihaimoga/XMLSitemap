@@ -28,10 +28,8 @@
 <a name="mysql.ref.boost__mysql__connection_pool._dtor_connection_pool"></a><a class="link" href="_dtor_connection_pool.html" title="connection_pool::~connection_pool">connection_pool::~connection_pool</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="idm50168"></a>
-        </p>
-<p>
-          Destructor.
+          <a class="indexterm" name="id61978"></a>
+Destructor.
         </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool._dtor_connection_pool.h0"></a>
@@ -39,8 +37,30 @@
         </h6>
 <pre class="programlisting"><span class="special">~</span><span class="identifier">connection_pool</span><span class="special">();</span>
 </pre>
+<h6>
+<a name="mysql.ref.boost__mysql__connection_pool._dtor_connection_pool.h1"></a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool._dtor_connection_pool.description"></a></span><a class="link" href="_dtor_connection_pool.html#mysql.ref.boost__mysql__connection_pool._dtor_connection_pool.description">Description</a>
+        </h6>
+<p>
+          Cancels all outstanding async operations on <code class="computeroutput"><span class="special">*</span><span class="keyword">this</span></code>, as per <a class="link" href="cancel.html" title="connection_pool::cancel"><code class="computeroutput"><span class="identifier">cancel</span></code></a>.
+        </p>
+<h6>
+<a name="mysql.ref.boost__mysql__connection_pool._dtor_connection_pool.h2"></a>
+          <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool._dtor_connection_pool.thread_safety"></a></span><a class="link" href="_dtor_connection_pool.html#mysql.ref.boost__mysql__connection_pool._dtor_connection_pool.thread_safety">Thread-safety</a>
+        </h6>
+<p>
+          Mutates the internal state handle. Mutates the pool state. This function
+          <span class="bold"><strong>can never be called concurrently with other functions
+          that read the internal state handle</strong></span>, even for pools created
+          with <a class="link" href="../boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a> set to true.
+        </p>
+<p>
+          The internal pool state is modified as per <a class="link" href="cancel.html" title="connection_pool::cancel"><code class="computeroutput"><span class="identifier">cancel</span></code></a>. If thread-safety is enabled,
+          it's safe to call the destructor concurrently with functions that only
+          access the pool's internal state, like returning connections.
+        </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

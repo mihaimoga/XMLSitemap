@@ -49,7 +49,7 @@
   <span class="keyword">typedef</span> <span class="identifier">stepper_base_type</span><span class="special">::</span><span class="identifier">operations_type</span>                                <a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a545875e259bd43c81feb1b8c1e2bb0b7"></a><span class="identifier">operations_type</span><span class="special">;</span>  
   <span class="keyword">typedef</span> <span class="identifier">stepper_base_type</span><span class="special">::</span><span class="identifier">resizer_type</span>                                   <a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a4bfc79b415da2a616a22c3c570e07e03"></a><span class="identifier">resizer_type</span><span class="special">;</span>     
 
-  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#idm29961-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#id197-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a8b6dd2866eb442ffb9c0c9e770697db6"><span class="identifier">runge_kutta_dopri5</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">algebra_type</span> <span class="special">&amp;</span> <span class="special">=</span> <span class="identifier">algebra_type</span><span class="special">(</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> System<span class="special">,</span> <span class="keyword">typename</span> StateIn<span class="special">,</span> <span class="keyword">typename</span> DerivIn<span class="special">,</span> 
            <span class="keyword">typename</span> StateOut<span class="special">,</span> <span class="keyword">typename</span> DerivOut<span class="special">&gt;</span> 
@@ -65,18 +65,18 @@
                     <span class="identifier">time_type</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">StateIn2</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">DerivIn2</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">time_type</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> StateIn<span class="special">&gt;</span> <span class="keyword">void</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a7c6f25efc08e3023af10937380d8e793"><span class="identifier">adjust_size</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">StateIn</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#idm30114-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#id198-bb">private member functions</a></span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> StateIn<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a134b1c63a9fbba9d2c0ca9a657b931a0"><span class="identifier">resize_k_x_tmp_impl</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">StateIn</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> StateIn<span class="special">&gt;</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a90cd97b230417faf7cef7fc9efb9911a"><span class="identifier">resize_dxdt_tmp_impl</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">StateIn</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm49668"></a><h2>Description</h2>
+<a name="id51036"></a><h2>Description</h2>
 <p>The Runge-Kutta Dormand-Prince 5 method is a very popular method for solving ODEs, see <a href="../../" target="_top"></a>. The method is explicit and fulfills the Error Stepper concept. Step size control is provided but continuous output is available which make this method favourable for many applications.</p>
 <p>This class derives from explicit_error_stepper_fsal_base and inherits its interface via CRTP (current recurring template pattern). The method possesses the FSAL (first-same-as-last) property. See explicit_error_stepper_fsal_base for more details.</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="idm49674"></a><h3>Template Parameters</h3>
+<a name="id51042"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> State</pre>
@@ -109,8 +109,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm49743"></a><h3>
-<a name="idm29961-bb"></a><code class="computeroutput">runge_kutta_dopri5</code> public member functions</h3>
+<a name="id51111"></a><h3>
+<a name="id197-bb"></a><code class="computeroutput">runge_kutta_dopri5</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a8b6dd2866eb442ffb9c0c9e770697db6"></a><span class="identifier">runge_kutta_dopri5</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">algebra_type</span> <span class="special">&amp;</span> algebra <span class="special">=</span> <span class="identifier">algebra_type</span><span class="special">(</span><span class="special">)</span><span class="special">)</span><span class="special">;</span></pre>Constructs the <a class="link" href="classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5.html" title="Class template runge_kutta_dopri5">runge_kutta_dopri5</a> class. This constructor can be used as a default constructor if the algebra has a default constructor. <p>
@@ -278,8 +278,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm50043"></a><h3>
-<a name="idm30114-bb"></a><code class="computeroutput">runge_kutta_dopri5</code> private member functions</h3>
+<a name="id51411"></a><h3>
+<a name="id198-bb"></a><code class="computeroutput">runge_kutta_dopri5</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> StateIn<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a134b1c63a9fbba9d2c0ca9a657b931a0"></a><span class="identifier">resize_k_x_tmp_impl</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">StateIn</span> <span class="special">&amp;</span> x<span class="special">)</span><span class="special">;</span></pre></li>
 <li class="listitem"><pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> StateIn<span class="special">&gt;</span> <span class="keyword">bool</span> <a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1runge__kutta__dopri5_1a90cd97b230417faf7cef7fc9efb9911a"></a><span class="identifier">resize_dxdt_tmp_impl</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">StateIn</span> <span class="special">&amp;</span> x<span class="special">)</span><span class="special">;</span></pre></li>

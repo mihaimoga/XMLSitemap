@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<title>Building Hybrid Systems with Boost.Python</title>
+<meta name="generator" content="Docutils 0.20.1: https://docutils.sourceforge.io/" />
 <meta name="author" content="David Abrahams" />
 <meta name="organization" content="Boost Consulting" />
 <meta name="date" content="2003-05-14" />
 <meta name="author" content="Ralf W. Grosse-Kunstleve" />
 <meta name="copyright" content="Copyright David Abrahams and Ralf W. Grosse-Kunstleve 2003. All rights reserved" />
+<title>Building Hybrid Systems with Boost.Python</title>
 <link rel="stylesheet" href="rst.css" type="text/css" />
 </head>
 <body>
@@ -36,33 +36,33 @@
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#abstract" id="id5">Abstract</a></li>
-<li><a class="reference internal" href="#introduction" id="id6">Introduction</a></li>
-<li><a class="reference internal" href="#boost-python-design-goals" id="id7">Boost.Python Design Goals</a></li>
-<li><a class="reference internal" href="#hello-boost-python-world" id="id8">Hello Boost.Python World</a></li>
-<li><a class="reference internal" href="#library-overview" id="id9">Library Overview</a><ul>
-<li><a class="reference internal" href="#exposing-classes" id="id10">Exposing Classes</a><ul>
-<li><a class="reference internal" href="#constructors" id="id11">Constructors</a></li>
-<li><a class="reference internal" href="#data-members-and-properties" id="id12">Data Members and Properties</a></li>
-<li><a class="reference internal" href="#operator-overloading" id="id13">Operator Overloading</a></li>
-<li><a class="reference internal" href="#inheritance" id="id14">Inheritance</a></li>
-<li><a class="reference internal" href="#virtual-functions" id="id15">Virtual Functions</a></li>
-<li><a class="reference internal" href="#deeper-reflection-on-the-horizon" id="id16">Deeper Reflection on the Horizon?</a></li>
+<li><a class="reference internal" href="#abstract" id="toc-entry-1">Abstract</a></li>
+<li><a class="reference internal" href="#introduction" id="toc-entry-2">Introduction</a></li>
+<li><a class="reference internal" href="#boost-python-design-goals" id="toc-entry-3">Boost.Python Design Goals</a></li>
+<li><a class="reference internal" href="#hello-boost-python-world" id="toc-entry-4">Hello Boost.Python World</a></li>
+<li><a class="reference internal" href="#library-overview" id="toc-entry-5">Library Overview</a><ul>
+<li><a class="reference internal" href="#exposing-classes" id="toc-entry-6">Exposing Classes</a><ul>
+<li><a class="reference internal" href="#constructors" id="toc-entry-7">Constructors</a></li>
+<li><a class="reference internal" href="#data-members-and-properties" id="toc-entry-8">Data Members and Properties</a></li>
+<li><a class="reference internal" href="#operator-overloading" id="toc-entry-9">Operator Overloading</a></li>
+<li><a class="reference internal" href="#inheritance" id="toc-entry-10">Inheritance</a></li>
+<li><a class="reference internal" href="#virtual-functions" id="toc-entry-11">Virtual Functions</a></li>
+<li><a class="reference internal" href="#deeper-reflection-on-the-horizon" id="toc-entry-12">Deeper Reflection on the Horizon?</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#serialization" id="id17">Serialization</a></li>
-<li><a class="reference internal" href="#object-interface" id="id18">Object interface</a></li>
+<li><a class="reference internal" href="#serialization" id="toc-entry-13">Serialization</a></li>
+<li><a class="reference internal" href="#object-interface" id="toc-entry-14">Object interface</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#thinking-hybrid" id="id19">Thinking hybrid</a></li>
-<li><a class="reference internal" href="#development-history" id="id20">Development history</a></li>
-<li><a class="reference internal" href="#conclusions" id="id21">Conclusions</a></li>
-<li><a class="reference internal" href="#citations" id="id22">Citations</a></li>
-<li><a class="reference internal" href="#footnotes" id="id23">Footnotes</a></li>
+<li><a class="reference internal" href="#thinking-hybrid" id="toc-entry-15">Thinking hybrid</a></li>
+<li><a class="reference internal" href="#development-history" id="toc-entry-16">Development history</a></li>
+<li><a class="reference internal" href="#conclusions" id="toc-entry-17">Conclusions</a></li>
+<li><a class="reference internal" href="#citations" id="toc-entry-18">Citations</a></li>
+<li><a class="reference internal" href="#footnotes" id="toc-entry-19">Footnotes</a></li>
 </ul>
 </div>
 <div class="section" id="abstract">
-<h1><a class="toc-backref" href="#id5">Abstract</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-1">Abstract</a></h1>
 <p>Boost.Python is an open source C++ library which provides a concise
 IDL-like interface for binding C++ classes and functions to
 Python. Leveraging the full power of C++ compile-time introspection
@@ -75,7 +75,7 @@ compile-time polymorphism of C++ and the extremely convenient run-time
 polymorphism of Python.</p>
 </div>
 <div class="section" id="introduction">
-<h1><a class="toc-backref" href="#id6">Introduction</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-2">Introduction</a></h1>
 <p>Python and C++ are in many ways as different as two languages could
 be: while C++ is usually compiled to machine-code, Python is
 interpreted.  Python's dynamic type system is often cited as the
@@ -167,7 +167,7 @@ code being exposed, the user has unprecedented power available when
 she does need to take control.</p>
 </div>
 <div class="section" id="boost-python-design-goals">
-<h1><a class="toc-backref" href="#id7">Boost.Python Design Goals</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-3">Boost.Python Design Goals</a></h1>
 <p>The primary goal of Boost.Python is to allow users to expose C++
 classes and functions to Python using nothing more than a C++
 compiler.  In broad strokes, the user experience should be one of
@@ -193,7 +193,7 @@ to be wrappable by third parties who only have access to header files
 and binaries.</p>
 </div>
 <div class="section" id="hello-boost-python-world">
-<h1><a class="toc-backref" href="#id8">Hello Boost.Python World</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-4">Hello Boost.Python World</a></h1>
 <p>And now for a preview of Boost.Python, and how it improves on the raw
 facilities offered by Python. Here's a function we might want to
 expose:</p>
@@ -288,12 +288,12 @@ registry allows users to add arbitrary conversion methods.</li>
 </ul>
 </div>
 <div class="section" id="library-overview">
-<h1><a class="toc-backref" href="#id9">Library Overview</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-5">Library Overview</a></h1>
 <p>This section outlines some of the library's major features.  Except as
 neccessary to avoid confusion, details of library implementation are
 omitted.</p>
 <div class="section" id="exposing-classes">
-<h2><a class="toc-backref" href="#id10">Exposing Classes</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-6">Exposing Classes</a></h2>
 <p>C++ classes and structs are exposed with a similarly-terse interface.
 Given:</p>
 <pre class="literal-block">
@@ -363,7 +363,7 @@ will stick to the terse syntax.</p>
 'howdy'
 </pre>
 <div class="section" id="constructors">
-<h3><a class="toc-backref" href="#id11">Constructors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-7">Constructors</a></h3>
 <p>Since our <tt class="docutils literal">World</tt> class is just a plain <tt class="docutils literal">struct</tt>, it has an
 implicit no-argument (nullary) constructor.  Boost.Python exposes the
 nullary constructor by default, which is why we were able to write:</p>
@@ -400,7 +400,7 @@ class_&lt;World&gt;(&quot;World&quot;, init&lt;std::string&gt;())
 constructors to be overloaded to mirror C++ overloading.</p>
 </div>
 <div class="section" id="data-members-and-properties">
-<h3><a class="toc-backref" href="#id12">Data Members and Properties</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-8">Data Members and Properties</a></h3>
 <p>Any publicly-accessible data members in a C++ class can be easily
 exposed as either <tt class="docutils literal">readonly</tt> or <tt class="docutils literal">readwrite</tt> attributes:</p>
 <pre class="literal-block">
@@ -448,7 +448,7 @@ class_&lt;World&gt;(&quot;World&quot;, init&lt;std::string&gt;())
 </pre>
 </div>
 <div class="section" id="operator-overloading">
-<h3><a class="toc-backref" href="#id13">Operator Overloading</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-9">Operator Overloading</a></h3>
 <p>The ability to write arithmetic operators for user-defined types has
 been a major factor in the success of both languages for numerical
 computation, and the success of packages like <a class="reference external" href="http://www.pfdubois.com/numpy/">NumPy</a> attests to the
@@ -469,7 +469,7 @@ class_&lt;rational&lt;int&gt; &gt;(&quot;rational_int&quot;)
   ...
 </pre>
 <p>The magic is performed using a simplified application of &quot;expression
-templates&quot; <a class="citation-reference" href="#veld1995" id="id1">[VELD1995]</a>, a technique originally developed for
+templates&quot; <a class="citation-reference" href="#veld1995" id="citation-reference-1">[VELD1995]</a>, a technique originally developed for
 optimization of high-performance matrix algebra expressions.  The
 essence is that instead of performing the computation immediately,
 operators are overloaded to construct a type <em>representing</em> the
@@ -480,7 +480,7 @@ Boost.Python uses the same technique to build an appropriate Python
 method object based on expressions involving <tt class="docutils literal">self</tt>.</p>
 </div>
 <div class="section" id="inheritance">
-<h3><a class="toc-backref" href="#id14">Inheritance</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-10">Inheritance</a></h3>
 <p>C++ inheritance relationships can be represented to Boost.Python by adding
 an optional <tt class="docutils literal"><span class="pre">bases&lt;...&gt;</span></tt> argument to the <tt class="docutils literal"><span class="pre">class_&lt;...&gt;</span></tt> template
 parameter list as follows:</p>
@@ -542,7 +542,7 @@ by either removing <tt class="docutils literal">D</tt>'s <tt class="docutils lit
 <tt class="docutils literal"><span class="pre">SomeBoostPythonClass.__init__(...)</span></tt> explicitly.</p>
 </div>
 <div class="section" id="virtual-functions">
-<h3><a class="toc-backref" href="#id15">Virtual Functions</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-11">Virtual Functions</a></h3>
 <p>Deriving new types in Python from extension classes is not very
 interesting unless they can be used polymorphically from C++.  In
 other words, Python method implementations should appear to override
@@ -614,7 +614,7 @@ called on an object of type <tt class="docutils literal">BaseWrap</tt>, since it
 </ul>
 </div>
 <div class="section" id="deeper-reflection-on-the-horizon">
-<h3><a class="toc-backref" href="#id16">Deeper Reflection on the Horizon?</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-12">Deeper Reflection on the Horizon?</a></h3>
 <p>Admittedly, this formula is tedious to repeat, especially on a project
 with many polymorphic classes.  That it is neccessary reflects some
 limitations in C++'s compile-time introspection capabilities: there's
@@ -638,7 +638,7 @@ will be &quot;thinking hybrid&quot; about their own code.</p>
 </div>
 </div>
 <div class="section" id="serialization">
-<h2><a class="toc-backref" href="#id17">Serialization</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-13">Serialization</a></h2>
 <p><em>Serialization</em> is the process of converting objects in memory to a
 form that can be stored on disk or sent over a network connection. The
 serialized object (most often a plain string) can be retrieved and
@@ -708,7 +708,7 @@ more work than is shown in the example above. Fortunately the
 code manageable.</p>
 </div>
 <div class="section" id="object-interface">
-<h2><a class="toc-backref" href="#id18">Object interface</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-14">Object interface</a></h2>
 <p>Experienced 'C' language extension module authors will be familiar
 with the ubiquitous <tt class="docutils literal">PyObject*</tt>, manual reference-counting, and the
 need to remember which API calls return &quot;new&quot; (owned) references or
@@ -754,7 +754,7 @@ C++.  Of course we can wrap C++ functions which accept or return
 </div>
 </div>
 <div class="section" id="thinking-hybrid">
-<h1><a class="toc-backref" href="#id19">Thinking hybrid</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-15">Thinking hybrid</a></h1>
 <p>Because of the practical and mental difficulties of combining
 programming languages, it is common to settle a single language at the
 outset of any development effort.  For many applications, performance
@@ -795,15 +795,15 @@ to access all of our code from Python allows a broader group of
 developers to use it in the rapid development of new applications.</p>
 </div>
 <div class="section" id="development-history">
-<h1><a class="toc-backref" href="#id20">Development history</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-16">Development history</a></h1>
 <p>The first version of Boost.Python was developed in 2000 by Dave
 Abrahams at Dragon Systems, where he was privileged to have Tim Peters
 as a guide to &quot;The Zen of Python&quot;.  One of Dave's jobs was to develop
 a Python-based natural language processing system.  Since it was
 eventually going to be targeting embedded hardware, it was always
 assumed that the compute-intensive core would be rewritten in C++ to
-optimize speed and memory footprint<a class="footnote-reference" href="#proto" id="id2"><sup>1</sup></a>.  The project also wanted to
-test all of its C++ code using Python test scripts<a class="footnote-reference" href="#test" id="id3"><sup>2</sup></a>.  The only
+optimize speed and memory footprint<a class="footnote-reference" href="#proto" id="footnote-reference-1"><sup>1</sup></a>.  The project also wanted to
+test all of its C++ code using Python test scripts<a class="footnote-reference" href="#test" id="footnote-reference-2"><sup>2</sup></a>.  The only
 tool we knew of for binding C++ and Python was <a class="reference external" href="http://www.swig.org/">SWIG</a>, and at the time
 its handling of C++ was weak.  It would be false to claim any deep
 insight into the possible advantages of Boost.Python's approach at
@@ -816,7 +816,7 @@ described in this paper, differing most-noticeably by having a
 slightly more cumbersome syntax and by lack of special support for
 operator overloading, pickling, and component-based development.
 These last three features were quickly added by Ullrich Koethe and
-Ralf Grosse-Kunstleve<a class="footnote-reference" href="#feature" id="id4"><sup>3</sup></a>, and other enthusiastic contributors arrived
+Ralf Grosse-Kunstleve<a class="footnote-reference" href="#feature" id="footnote-reference-3"><sup>3</sup></a>, and other enthusiastic contributors arrived
 on the scene to contribute enhancements like support for nested
 modules and static member functions.</p>
 <p>By early 2001 development had stabilized and few new features were
@@ -867,7 +867,7 @@ Python C++-sig and a backlog of desired improvements show that the
 library is getting used.  To us, the future looks bright.</p>
 </div>
 <div class="section" id="conclusions">
-<h1><a class="toc-backref" href="#id21">Conclusions</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-17">Conclusions</a></h1>
 <p>Boost.Python achieves seamless interoperability between two rich and
 complimentary language environments.  Because it leverages template
 metaprogramming to introspect about types and functions, the user
@@ -882,22 +882,22 @@ pure C++.  Given the luxury of building a hybrid software system from
 the ground up, we can approach design with new confidence and power.</p>
 </div>
 <div class="section" id="citations">
-<h1><a class="toc-backref" href="#id22">Citations</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-18">Citations</a></h1>
 <table class="docutils citation" frame="void" id="veld1995" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[VELD1995]</a></td><td>T. Veldhuizen, &quot;Expression Templates,&quot; C++ Report,
+<tr><td class="label"><a class="fn-backref" href="#citation-reference-1">[VELD1995]</a></td><td>T. Veldhuizen, &quot;Expression Templates,&quot; C++ Report,
 Vol. 7 No. 5 June 1995, pp. 26-31.
 <a class="reference external" href="http://osl.iu.edu/~tveldhui/papers/Expression-Templates/exprtmpl.html">http://osl.iu.edu/~tveldhui/papers/Expression-Templates/exprtmpl.html</a></td></tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="footnotes">
-<h1><a class="toc-backref" href="#id23">Footnotes</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-19">Footnotes</a></h1>
 <table class="docutils footnote" frame="void" id="proto" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>In retrospect, it seems that &quot;thinking hybrid&quot; from the
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-1">[1]</a></td><td>In retrospect, it seems that &quot;thinking hybrid&quot; from the
 ground up might have been better for the NLP system: the
 natural component boundaries defined by the pure python
 prototype turned out to be inappropriate for getting the
@@ -909,7 +909,7 @@ side when the core was moved to C++.</td></tr>
 <table class="docutils footnote" frame="void" id="test" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>We also have some reservations about driving all C++
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-2">[2]</a></td><td>We also have some reservations about driving all C++
 testing through a Python interface, unless that's the only way
 it will be ultimately used.  Any transition across language
 boundaries with such different object models can inevitably
@@ -919,7 +919,7 @@ mask bugs.</td></tr>
 <table class="docutils footnote" frame="void" id="feature" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>These features were expressed very differently in v1 of
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-3">[3]</a></td><td>These features were expressed very differently in v1 of
 Boost.Python</td></tr>
 </tbody>
 </table>

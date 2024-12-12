@@ -36,19 +36,19 @@
 <span class="keyword">class</span> <a class="link" href="a00912.html" title="Class execution_monitor">execution_monitor</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="a00912.html#idm44321-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="a00912.html#id26-bb">public member functions</a></span>
   <a class="link" href="a00912.html#doxygen.a00912_1abf8c5dcfcbdb60ab20fd778c09f7f820"><span class="identifier">execution_monitor</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">int</span> <a class="link" href="a00912.html#doxygen.a00912_1a6e5bb9bb9bceaa52644920790193da9a"><span class="identifier">execute</span></a><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">function</span><span class="special">&lt;</span> <span class="keyword">int</span><span class="special">(</span><span class="special">)</span><span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="a00912.html#doxygen.a00912_1aa3dd353a18e899648646b01d8757b19b"><span class="identifier">vexecute</span></a><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">function</span><span class="special">&lt;</span> <span class="keyword">void</span><span class="special">(</span><span class="special">)</span><span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ExceptionType<span class="special">,</span> <span class="keyword">typename</span> ExceptionTranslator<span class="special">&gt;</span> 
-    <span class="keyword">void</span> <a class="link" href="a00912.html#idm44359-bb"><span class="identifier">register_exception_translator</span></a><span class="special">(</span><span class="identifier">ExceptionTranslator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> 
+    <span class="keyword">void</span> <a class="link" href="a00912.html#id27-bb"><span class="identifier">register_exception_translator</span></a><span class="special">(</span><span class="identifier">ExceptionTranslator</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">,</span> 
                                        <span class="identifier">const_string</span> <span class="special">=</span> <span class="identifier">const_string</span><span class="special">(</span><span class="special">)</span><span class="special">,</span> 
                                        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">type</span><span class="special">&lt;</span> <span class="identifier">ExceptionType</span> <span class="special">&gt;</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="a00912.html#doxygen.a00912_1a4eff52558e85f85d314208b83cf44750"><span class="identifier">erase_exception_translator</span></a><span class="special">(</span><span class="identifier">const_string</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ExceptionType<span class="special">&gt;</span> 
     <span class="keyword">void</span> <a class="link" href="a00912.html#doxygen.a00912_1aceae7fc819b420cc9c032ae94079c628"><span class="identifier">erase_exception_translator</span></a><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">type</span><span class="special">&lt;</span> <span class="identifier">ExceptionType</span> <span class="special">&gt;</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="a00912.html#idm44405-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="a00912.html#id28-bb">private member functions</a></span>
   <span class="keyword">int</span> <a class="link" href="a00912.html#doxygen.a00912_1acfe5198520c5cd8ec73c313c04f80308"><span class="identifier">catch_signals</span></a><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">function</span><span class="special">&lt;</span> <span class="keyword">int</span><span class="special">(</span><span class="special">)</span><span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 
   <span class="comment">// <a class="link" href="a00912.html#doxygen.a00912public-data-members">public data members</a></span>
@@ -59,12 +59,12 @@
   <span class="identifier">unit_test</span><span class="special">::</span><span class="identifier">readwrite_property</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="special">&gt;</span> <a class="link" href="a00912.html#doxygen.a00912_1a4511f36e895f59481684060cf9741d1f"><span class="identifier">p_detect_fp_exceptions</span></a><span class="special">;</span>  <span class="comment">// Should monitor try to detect hardware floating point exceptions (!= 0), and which specific exception to catch. </span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm50158"></a><h2>Description</h2>
+<a name="id51605"></a><h2>Description</h2>
 <p>This class is used to uniformly detect and report an occurrence of several types of signals and exceptions, reducing various errors to a uniform <a class="link" href="a00904.html" title="Class execution_exception">execution_exception</a> that is returned to a caller.</p>
 <p>The <a class="link" href="a00912.html" title="Class execution_monitor">execution_monitor</a> behavior can be customized through a set of public parameters (properties) associated with the <a class="link" href="a00912.html" title="Class execution_monitor">execution_monitor</a> instance. All parameters are implemented as public unit_test::readwrite_property data members of the class <a class="link" href="a00912.html" title="Class execution_monitor">execution_monitor</a>. </p>
 <div class="refsect2">
-<a name="idm50166"></a><h3>
-<a name="idm44321-bb"></a><code class="computeroutput">execution_monitor</code> public member functions</h3>
+<a name="id51613"></a><h3>
+<a name="id26-bb"></a><code class="computeroutput">execution_monitor</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.a00912_1abf8c5dcfcbdb60ab20fd778c09f7f820"></a><span class="identifier">execution_monitor</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>Default constructor initializes all execution monitor properties. </li>
@@ -139,7 +139,7 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ExceptionType<span class="special">,</span> <span class="keyword">typename</span> ExceptionTranslator<span class="special">&gt;</span> 
-  <span class="keyword">void</span> <a name="idm44359-bb"></a><span class="identifier">register_exception_translator</span><span class="special">(</span><span class="identifier">ExceptionTranslator</span> <span class="keyword">const</span> <span class="special">&amp;</span> tr<span class="special">,</span> 
+  <span class="keyword">void</span> <a name="id27-bb"></a><span class="identifier">register_exception_translator</span><span class="special">(</span><span class="identifier">ExceptionTranslator</span> <span class="keyword">const</span> <span class="special">&amp;</span> tr<span class="special">,</span> 
                                      <span class="identifier">const_string</span> tag <span class="special">=</span> <span class="identifier">const_string</span><span class="special">(</span><span class="special">)</span><span class="special">,</span> 
                                      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">type</span><span class="special">&lt;</span> <span class="identifier">ExceptionType</span> <span class="special">&gt;</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span></pre>Registers custom (user supplied) exception translator. <p>This method template registers a translator for an exception type specified as a first template argument. For example </p>
 <pre class="programlisting"><span class="keyword">void</span> <span class="identifier">myExceptTr</span><span class="special">(</span> <span class="identifier">MyException</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">ex</span> <span class="special">)</span> <span class="special">{</span> <span class="comment">/*do something with the exception here*/</span><span class="special">}</span>
@@ -225,12 +225,12 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm50390"></a><h3>
-<a name="idm44405-bb"></a><code class="computeroutput">execution_monitor</code> private member functions</h3>
+<a name="id51837"></a><h3>
+<a name="id28-bb"></a><code class="computeroutput">execution_monitor</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><pre class="literallayout"><span class="keyword">int</span> <a name="doxygen.a00912_1acfe5198520c5cd8ec73c313c04f80308"></a><span class="identifier">catch_signals</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">function</span><span class="special">&lt;</span> <span class="keyword">int</span><span class="special">(</span><span class="special">)</span><span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span> F<span class="special">)</span><span class="special">;</span></pre></li></ol></div>
 </div>
 <div class="refsect2">
-<a name="idm50414"></a><h3>
+<a name="id51861"></a><h3>
 <a name="doxygen.a00912public-data-members"></a><code class="computeroutput">execution_monitor</code> 
         public
        public data members</h3>

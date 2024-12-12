@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../../pt01.html" title="Part Two: Reference. ">
-<link rel="prev" href="boost__mysql__pool_params/ping_timeout.html" title="pool_params::ping_timeout">
+<link rel="prev" href="boost__mysql__pool_params/connection_executor.html" title="pool_params::connection_executor">
 <link rel="next" href="boost__mysql__pooled_connection/pooled_connection.html" title="pooled_connection::pooled_connection">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -21,15 +21,15 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__mysql__pool_params/ping_timeout.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__pooled_connection/pooled_connection.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__mysql__pool_params/connection_executor.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__pooled_connection/pooled_connection.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
 <a name="mysql.ref.boost__mysql__pooled_connection"></a><a class="link" href="boost__mysql__pooled_connection.html" title="pooled_connection">pooled_connection</a>
 </h4></div></div></div>
 <p>
-        (EXPERIMENTAL) A proxy to a connection owned by a pool that returns it to
-        the pool when destroyed.
+        A proxy to a connection owned by a pool that returns it to the pool when
+        destroyed.
       </p>
 <h5>
 <a name="mysql.ref.boost__mysql__pooled_connection.h0"></a>
@@ -38,7 +38,7 @@
 <p>
         Defined in header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql/connection_pool.hpp" target="_top">boost/mysql/connection_pool.hpp</a>&gt;</code>
       </p>
-<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">pooled_connection</span>
+<pre class="programlisting"><span class="keyword">class</span> <span class="identifier">pooled_connection</span><span class="special">;</span>
 </pre>
 <h5>
 <a name="mysql.ref.boost__mysql__pooled_connection.h1"></a>
@@ -71,20 +71,7 @@
               </td>
 <td>
                 <p>
-                  Retrieves the connection owned by this object. <br><span class="silver">—</span><br>Retrieves
-                  the connection owned by this object.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__mysql__pooled_connection/operator_eq_.html" title="pooled_connection::operator=">operator=</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Move assignment.
+                  Retrieves the connection owned by this object.
                 </p>
               </td>
 </tr>
@@ -97,6 +84,18 @@
 <td>
                 <p>
                   Retrieves the connection owned by this object.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__mysql__pooled_connection/operator_eq_.html" title="pooled_connection::operator=">operator=</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Move assignment.
                 </p>
               </td>
 </tr>
@@ -183,32 +182,42 @@
         safety</a>
       </h5>
 <p>
-        By default, individual connections created by the pool are <span class="bold"><strong>not</strong></span>
-        thread-safe, even if the pool was created using <a class="link" href="boost__mysql__pool_executor_params/thread_safe.html" title="pool_executor_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_executor_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a>.
+        This object and the <a class="link" href="boost__mysql__any_connection.html" title="any_connection"><code class="computeroutput"><span class="identifier">any_connection</span></code></a> object it may point
+        to are <span class="bold"><strong>not thread safe</strong></span>, even if the connection
+        pool used to obtain them was constructed with <a class="link" href="boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a> set to true.
       </p>
 <p>
-        Distinct objects: safe.
+        Functions that return the underlying connection to the pool cause a mutation
+        on the pool state object. Calling such functions on objects obtained from
+        the same pool is thread-safe only if the pool was constructed with <a class="link" href="boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a>
+        set to true.
       </p>
 <p>
-        Shared objects: unsafe.
+        In other words, individual connections can't be shared between threads. Pools
+        can be shared only if they're constructed with <a class="link" href="boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a> set to true.
       </p>
-<h5>
-<a name="mysql.ref.boost__mysql__pooled_connection.h5"></a>
-        <span class="phrase"><a name="mysql.ref.boost__mysql__pooled_connection.experimental"></a></span><a class="link" href="boost__mysql__pooled_connection.html#mysql.ref.boost__mysql__pooled_connection.experimental">Experimental</a>
-      </h5>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+            Distinct objects: safe if the <a class="link" href="boost__mysql__connection_pool.html" title="connection_pool"><code class="computeroutput"><span class="identifier">connection_pool</span></code></a> that was used
+            to obtain the objects was created with <a class="link" href="boost__mysql__pool_params/thread_safe.html" title="pool_params::thread_safe"><code class="computeroutput"><span class="identifier">pool_params</span><span class="special">::</span><span class="identifier">thread_safe</span></code></a> set to true. Otherwise,
+            unsafe.
+          </li>
+<li class="listitem">
+            Shared objects: always unsafe.
+          </li>
+</ul></div>
 <p>
-        This part of the API is experimental, and may change in successive releases
-        without previous notice.
+        Convenience header <code class="literal">&lt;<a href="https://github.com/boostorg/mysql/blob/master/include/boost/mysql.hpp" target="_top">boost/mysql.hpp</a>&gt;</code>
       </p>
 </div>
-<div class="copyright-footer">Copyright © 2019-2023 Ruben Perez<p>
+<div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="boost__mysql__pool_params/ping_timeout.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__pooled_connection/pooled_connection.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="boost__mysql__pool_params/connection_executor.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../pt01.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="boost__mysql__pooled_connection/pooled_connection.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

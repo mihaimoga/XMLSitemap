@@ -6,8 +6,8 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../../boost_asio.html" title="Boost.Asio">
 <link rel="up" href="../basic_waitable_timer.html" title="basic_waitable_timer">
-<link rel="prev" href="cancel/overload2.html" title="basic_waitable_timer::cancel (2 of 2 overloads)">
-<link rel="next" href="cancel_one/overload1.html" title="basic_waitable_timer::cancel_one (1 of 2 overloads)">
+<link rel="prev" href="cancel.html" title="basic_waitable_timer::cancel">
+<link rel="next" href="clock_type.html" title="basic_waitable_timer::clock_type">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="cancel/overload2.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../basic_waitable_timer.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="cancel_one/overload1.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="cancel.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../basic_waitable_timer.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="clock_type.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -32,17 +32,59 @@
 Cancels
           one asynchronous operation that is waiting on the timer.
         </p>
-<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <a class="link" href="cancel_one/overload1.html" title="basic_waitable_timer::cancel_one (1 of 2 overloads)">cancel_one</a><span class="special">();</span>
-  <span class="emphasis"><em>» <a class="link" href="cancel_one/overload1.html" title="basic_waitable_timer::cancel_one (1 of 2 overloads)">more...</a></em></span>
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">cancel_one</span><span class="special">();</span>
 </pre>
 <p>
-          (Deprecated: Use non-error_code overload.) Cancels one asynchronous operation
-          that is waiting on the timer.
+          This function forces the completion of one pending asynchronous wait operation
+          against the timer. Handlers are cancelled in FIFO order. The handler for
+          the cancelled operation will be invoked with the <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">error</span><span class="special">::</span><span class="identifier">operation_aborted</span></code>
+          error code.
         </p>
-<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <a class="link" href="cancel_one/overload2.html" title="basic_waitable_timer::cancel_one (2 of 2 overloads)">cancel_one</a><span class="special">(</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">error_code</span> <span class="special">&amp;</span> <span class="identifier">ec</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="cancel_one/overload2.html" title="basic_waitable_timer::cancel_one (2 of 2 overloads)">more...</a></em></span>
-</pre>
+<p>
+          Cancelling the timer does not change the expiry time.
+        </p>
+<h6>
+<a name="boost_asio.reference.basic_waitable_timer.cancel_one.h0"></a>
+          <span class="phrase"><a name="boost_asio.reference.basic_waitable_timer.cancel_one.return_value"></a></span><a class="link" href="cancel_one.html#boost_asio.reference.basic_waitable_timer.cancel_one.return_value">Return
+          Value</a>
+        </h6>
+<p>
+          The number of asynchronous operations that were cancelled. That is, either
+          0 or 1.
+        </p>
+<h6>
+<a name="boost_asio.reference.basic_waitable_timer.cancel_one.h1"></a>
+          <span class="phrase"><a name="boost_asio.reference.basic_waitable_timer.cancel_one.exceptions"></a></span><a class="link" href="cancel_one.html#boost_asio.reference.basic_waitable_timer.cancel_one.exceptions">Exceptions</a>
+        </h6>
+<div class="variablelist">
+<p class="title"><b></b></p>
+<dl class="variablelist">
+<dt><span class="term">boost::system::system_error</span></dt>
+<dd><p>
+                Thrown on failure.
+              </p></dd>
+</dl>
+</div>
+<h6>
+<a name="boost_asio.reference.basic_waitable_timer.cancel_one.h2"></a>
+          <span class="phrase"><a name="boost_asio.reference.basic_waitable_timer.cancel_one.remarks"></a></span><a class="link" href="cancel_one.html#boost_asio.reference.basic_waitable_timer.cancel_one.remarks">Remarks</a>
+        </h6>
+<p>
+          If the timer has already expired when <code class="computeroutput"><span class="identifier">cancel_one</span><span class="special">()</span></code> is called, then the handlers for asynchronous
+          wait operations will:
+        </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+              have already been invoked; or
+            </li>
+<li class="listitem">
+              have been queued for invocation in the near future.
+            </li>
+</ul></div>
+<p>
+          These handlers can no longer be cancelled, and therefore are passed an
+          error code that indicates the successful completion of the wait operation.
+        </p>
 </div>
 <div class="copyright-footer">Copyright © 2003-2024 Christopher M. Kohlhoff<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
@@ -51,7 +93,7 @@ Cancels
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="cancel/overload2.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../basic_waitable_timer.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="cancel_one/overload1.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="cancel.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../basic_waitable_timer.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../boost_asio.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="clock_type.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

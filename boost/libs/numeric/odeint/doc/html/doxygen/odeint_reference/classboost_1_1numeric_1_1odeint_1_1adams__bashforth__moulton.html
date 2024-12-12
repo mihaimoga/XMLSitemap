@@ -54,7 +54,7 @@
   <span class="keyword">typedef</span> <span class="identifier">InitializingStepper</span>         <a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1a09e8e3d932e6dce221d0f727d7834a6a"></a><span class="identifier">initializing_stepper_type</span><span class="special">;</span>
   <span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">short</span>              <a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1a6912e5c0b74aee6ebcb58bda0554767e"></a><span class="identifier">order_type</span><span class="special">;</span>               
 
-  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#idm25349-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#id53-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1ada87fca67ac7253a5f14daed2443c658"><span class="identifier">adams_bashforth_moulton</span></a><span class="special">(</span><span class="keyword">void</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1a71a9c33dbd243e245401f80e186a3d61"><span class="identifier">adams_bashforth_moulton</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">algebra_type</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="identifier">order_type</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1a4acdbda778f5e18993450cf5c505e38c"><span class="identifier">order</span></a><span class="special">(</span><span class="keyword">void</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
@@ -75,7 +75,7 @@
     <span class="keyword">void</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1adf62823b52593ffe300bebb76d92d81f"><span class="identifier">initialize</span></a><span class="special">(</span><span class="identifier">System</span><span class="special">,</span> <span class="identifier">StateIn</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">time_type</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">time_type</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1af6f905a39ae068a13a95097dd299b6ed"><span class="identifier">reset</span></a><span class="special">(</span><span class="keyword">void</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#idm25529-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#id54-bb">private member functions</a></span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> System<span class="special">,</span> <span class="keyword">typename</span> StateInOut<span class="special">&gt;</span> 
     <span class="keyword">void</span> <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton.html#doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1afc52a261062a5c3e1c2db0356f41a334"><span class="identifier">do_step_impl1</span></a><span class="special">(</span><span class="identifier">System</span><span class="special">,</span> <span class="identifier">StateInOut</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">time_type</span><span class="special">,</span> <span class="identifier">time_type</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> System<span class="special">,</span> <span class="keyword">typename</span> StateIn<span class="special">,</span> <span class="keyword">typename</span> StateInOut<span class="special">&gt;</span> 
@@ -88,13 +88,13 @@
   <span class="keyword">static</span> <span class="keyword">const</span> <span class="identifier">order_type</span> <span class="identifier">order_value</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="idm31829"></a><h2>Description</h2>
+<a name="id33249"></a><h2>Description</h2>
 <p>The Adams-Bashforth method is a multi-step predictor-corrector algorithm with configurable step number. The step number is specified as template parameter Steps and it then uses the result from the previous Steps steps. See also <a href="http://en.wikipedia.org/wiki/Linear_multistep_method" target="_top">en.wikipedia.org/wiki/Linear_multistep_method</a>. Currently, a maximum of Steps=8 is supported. The method is explicit and fulfills the Stepper concept. Step size control or continuous output are not provided.</p>
 <p>This class derives from algebra_base and inherits its interface via CRTP (current recurring template pattern). For more details see algebra_stepper_base.</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="idm31835"></a><h3>Template Parameters</h3>
+<a name="id33255"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="identifier">size_t</span> Steps</pre>
@@ -135,8 +135,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm31933"></a><h3>
-<a name="idm25349-bb"></a><code class="computeroutput">adams_bashforth_moulton</code> public member functions</h3>
+<a name="id33353"></a><h3>
+<a name="id53-bb"></a><code class="computeroutput">adams_bashforth_moulton</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1ada87fca67ac7253a5f14daed2443c658"></a><span class="identifier">adams_bashforth_moulton</span><span class="special">(</span><span class="keyword">void</span><span class="special">)</span><span class="special">;</span></pre>Constructs the <a class="link" href="classboost_1_1numeric_1_1odeint_1_1adams__bashforth.html" title="Class template adams_bashforth">adams_bashforth</a> class. </li>
@@ -382,8 +382,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="idm32300"></a><h3>
-<a name="idm25529-bb"></a><code class="computeroutput">adams_bashforth_moulton</code> private member functions</h3>
+<a name="id33720"></a><h3>
+<a name="id54-bb"></a><code class="computeroutput">adams_bashforth_moulton</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> System<span class="special">,</span> <span class="keyword">typename</span> StateInOut<span class="special">&gt;</span> 
   <span class="keyword">void</span> <a name="doxygen.odeint_reference.classboost_1_1numeric_1_1odeint_1_1adams__bashforth__moulton_1afc52a261062a5c3e1c2db0356f41a334"></a><span class="identifier">do_step_impl1</span><span class="special">(</span><span class="identifier">System</span> system<span class="special">,</span> <span class="identifier">StateInOut</span> <span class="special">&amp;</span> x<span class="special">,</span> <span class="identifier">time_type</span> t<span class="special">,</span> <span class="identifier">time_type</span> dt<span class="special">)</span><span class="special">;</span></pre></li>

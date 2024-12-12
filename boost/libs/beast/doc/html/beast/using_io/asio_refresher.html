@@ -313,6 +313,8 @@
             <span class="identifier">assert</span><span class="special">(</span><span class="identifier">bytes_transferred</span> <span class="special">==</span> <span class="number">13</span><span class="special">);</span>
         <span class="keyword">else</span>
             <span class="identifier">std</span><span class="special">::</span><span class="identifier">cerr</span> <span class="special">&lt;&lt;</span> <span class="string">"Error: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">ec</span><span class="special">.</span><span class="identifier">message</span><span class="special">()</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
+
+        <span class="special">(</span><span class="keyword">void</span><span class="special">)</span><span class="identifier">bytes_transferred</span><span class="special">;</span>
     <span class="special">});</span>
 <span class="comment">// meanwhile, the operation is outstanding and execution continues from here</span>
 </pre>
@@ -404,7 +406,7 @@
       </p>
 <p>
         The function <a href="../../../../../../doc/html/boost_asio/reference/bind_allocator.html" target="_top"><code class="computeroutput"><span class="identifier">net</span><span class="special">::</span><span class="identifier">bind_allocator</span></code></a>
-        can be used when he caller wants to assign a custom allocator to the operation.
+        can be used when the caller wants to assign a custom allocator to the operation.
       </p>
 <p>
         A completion token's associated cancellation_slot can be used to cancel single
