@@ -65,6 +65,7 @@ XML Sitemap. If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <filesystem>
 
 #define SETTINGS_SECTION _T("Settings")
 #define LAST_DOMAIN_NAME _T("Domain")
