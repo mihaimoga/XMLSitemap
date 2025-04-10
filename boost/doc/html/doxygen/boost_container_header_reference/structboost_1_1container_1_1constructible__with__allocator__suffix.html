@@ -40,7 +40,7 @@
   <span class="identifier">BOOST_STATIC_CONSTEXPR</span> <span class="keyword">bool</span> <span class="identifier">value</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.9.14.44.4.4"></a><h2>Description</h2>
+<a name="id-1.3.8.14.44.4.4"></a><h2>Description</h2>
 <p><span class="bold"><strong>Remark</strong></span>: if a specialization constructible_with_allocator_suffix&lt;X&gt;::value is true, indicates that T may be constructed with an allocator as its last constructor argument. Ideally, all constructors of T (including the copy and move constructors) should have a variant that accepts a final argument of allocator_type.</p>
 <p><span class="bold"><strong>Requires</strong></span>: if a specialization constructible_with_allocator_suffix&lt;X&gt;::value is true, T must have a nested type, allocator_type and at least one constructor for which allocator_type is the last parameter. If not all constructors of T can be called with a final allocator_type argument, and if T is used in a context where a container must call such a constructor, then the program is ill-formed.</p>
 <p><code class="computeroutput"> template &lt;class T, class Allocator = allocator&lt;T&gt; &gt; class Z { public: typedef Allocator allocator_type;</code></p>

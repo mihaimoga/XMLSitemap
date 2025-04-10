@@ -39,11 +39,11 @@
 
   <span class="keyword">struct</span> <a class="link" href="a01204.html" title="Struct iterator">iterator</a> <span class="special">{</span>
     <span class="comment">// types</span>
-    <span class="keyword">typedef</span> <span class="keyword">decltype</span><span class="special">(</span><span class="identifier">sample_merge</span><span class="special">(</span><span class="special">*</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">declval</span><span class="special">&lt;</span> <span class="identifier">dataset1_iter</span> <span class="special">&gt;</span><span class="special">(</span><span class="special">)</span><span class="special">,</span> <span class="special">*</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">declval</span><span class="special">&lt;</span> <span class="identifier">dataset2_iter</span> <span class="special">&gt;</span><span class="special">(</span><span class="special">)</span><span class="special">)</span><span class="special">)</span> <a class="link" href="a01204.html#doxygen.a01204_1a20db49ad98af9450c24bca8b56548758"><span class="identifier">iterator_sample</span></a><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">decltype</span><span class="special">(</span> <span class="identifier">sample_merge</span><span class="special">(</span><span class="special">*</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">declval</span><span class="special">&lt;</span> <span class="identifier">dataset1_iter</span> <span class="special">&gt;</span><span class="special">(</span><span class="special">)</span><span class="special">,</span> <span class="special">*</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">declval</span><span class="special">&lt;</span> <span class="identifier">dataset2_iter</span> <span class="special">&gt;</span><span class="special">(</span><span class="special">)</span><span class="special">)</span><span class="special">)</span> <a class="link" href="a01204.html#doxygen.a01204_1ab928f569047174181cb712d6c09580c7"><span class="identifier">iterator_sample</span></a><span class="special">;</span>
 
     <span class="comment">// <a class="link" href="a01204.html#id18-bb">public member functions</a></span>
     <span class="keyword">explicit</span> <a class="link" href="a01204.html#doxygen.a01204_1a4627fb433aa31ab55019aefa045dedf9"><span class="identifier">iterator</span></a><span class="special">(</span><span class="identifier">dataset1_iter</span><span class="special">,</span> <span class="identifier">dataset2_iter</span><span class="special">)</span><span class="special">;</span>
-    <span class="keyword">auto</span> <a class="link" href="a01204.html#doxygen.a01204_1a9c153b436e84795372b090f1e2016f3d"><span class="keyword">operator</span><span class="special">*</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+    <span class="identifier">iterator_sample</span> <a class="link" href="a01204.html#doxygen.a01204_1a9c153b436e84795372b090f1e2016f3d"><span class="keyword">operator</span><span class="special">*</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
     <span class="keyword">void</span> <a class="link" href="a01204.html#doxygen.a01204_1abf0ee5daeb88dc1c7be43812531c882b"><span class="keyword">operator</span><span class="special">++</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="special">}</span><span class="special">;</span>
 
@@ -60,10 +60,10 @@
   <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> <span class="identifier">arity</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id49434"></a><h2>Description</h2>
+<a name="id49423"></a><h2>Description</h2>
 <p>A zip of two datasets is a dataset whose arity is the sum of the operand datasets arity. The size is given by the function creating the instance (see <code class="computeroutput">operator^</code> on datasets). </p>
 <div class="refsect2">
-<a name="id49438"></a><h3>
+<a name="id49427"></a><h3>
 <a name="id19-bb"></a><code class="computeroutput">zip</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -76,7 +76,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id49487"></a><h3>
+<a name="id49476"></a><h3>
 <a name="id20-bb"></a><code class="computeroutput">zip</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><a class="link" href="a01096.html" title="Class size_t">data::size_t</a> <a name="doxygen.a01200_1afaecdba00cbe6205b78b0c4c59b346e0"></a><span class="identifier">zip_size</span><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>Handles the sise of the resulting zipped dataset. </li></ol></div>

@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../index.html" title="Chapter 1. Boost.MySQL">
-<link rel="prev" href="sql_formatting.html" title="Text queries and client-side SQL formatting">
+<link rel="prev" href="text_queries.html" title="Text queries and client-side SQL formatting">
 <link rel="next" href="dynamic_interface.html" title="The dynamic interface">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="sql_formatting.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="dynamic_interface.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="text_queries.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="dynamic_interface.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -29,8 +29,31 @@
 </h2></div></div></div>
 <p>
       This section covers using <a href="https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html" target="_top">server-side
-      prepared statements</a>. You should use them whenever a query contains
-      parameters not known at compile-time.
+      prepared statements</a>, an alternative to <a class="link" href="ref/boost__mysql__with_params.html" title="with_params"><code class="literal">with_params</code></a>.
+      In general, prepared statements are more complex and less flexible than <code class="computeroutput"><span class="identifier">with_params</span></code>, but might provide more efficiency
+      under certain circumstances. Prefer <code class="computeroutput"><span class="identifier">with_params</span></code>
+      if you're not sure. See <a class="link" href="text_queries.html#mysql.text_queries.comparison" title="Prepared statements vs. client-side SQL formatting">this
+      section</a> for a comparison between <code class="computeroutput"><span class="identifier">with_params</span></code>
+      and prepared statements.
+    </p>
+<p>
+      Working with statements involves three networking operations:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          Preparing a statement: <a class="link" href="ref/boost__mysql__any_connection/async_prepare_statement.html" title="any_connection::async_prepare_statement"><code class="literal">any_connection::async_prepare_statement</code></a>.
+        </li>
+<li class="listitem">
+          Executing a statement: <a class="link" href="ref/boost__mysql__any_connection/async_execute.html" title="any_connection::async_execute"><code class="literal">any_connection::async_execute</code></a>
+          or <a class="link" href="ref/boost__mysql__any_connection/async_start_execution.html" title="any_connection::async_start_execution"><code class="literal">any_connection::async_start_execution</code></a>.
+        </li>
+<li class="listitem">
+          Closing a statement (optional): <a class="link" href="ref/boost__mysql__any_connection/async_close_statement.html" title="any_connection::async_close_statement"><code class="literal">any_connection::async_close_statement</code></a>.
+        </li>
+</ul></div>
+<p>
+      The <a class="link" href="ref/boost__mysql__statement.html" title="statement"><code class="literal">statement</code></a>
+      class holds a server-supplied handle to an open prepared statement.
     </p>
 <h4>
 <a name="mysql.prepared_statements.h0"></a>
@@ -38,26 +61,15 @@
       a statement</a>
     </h4>
 <p>
-      To prepare a statement, call <a class="link" href="ref/boost__mysql__connection/prepare_statement.html" title="connection::prepare_statement"><code class="literal">connection::prepare_statement</code></a>
-      or <a class="link" href="ref/boost__mysql__connection/async_prepare_statement.html" title="connection::async_prepare_statement"><code class="literal">connection::async_prepare_statement</code></a>,
-      passing your statement as a string. This yields a <a class="link" href="ref/boost__mysql__statement.html" title="statement"><code class="literal">statement</code></a>
+      Calling <a class="link" href="ref/boost__mysql__any_connection/async_prepare_statement.html" title="any_connection::async_prepare_statement"><code class="literal">async_prepare_statement</code></a>
+      yields a <a class="link" href="ref/boost__mysql__statement.html" title="statement"><code class="literal">statement</code></a>
       object:
     </p>
-<pre class="programlisting"><span class="comment">// Table setup</span>
-<span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">table_definition</span> <span class="special">=</span> <span class="identifier">R</span><span class="string">"%(
-    CREATE TEMPORARY TABLE products (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        description VARCHAR(256),
-        price INT NOT NULL,
-        show_in_store TINYINT
-    )
-)%"</span><span class="special">;</span>
-<span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">table_definition</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
-
-<span class="comment">// Prepare a statement to insert into this table</span>
-<span class="identifier">statement</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">prepare_statement</span><span class="special">(</span>
-    <span class="string">"INSERT INTO products (description, price, show_in_store) VALUES (?, ?, ?)"</span>
+<pre class="programlisting"><span class="comment">// Ask the server to prepare a statement to insert a new employee.</span>
+<span class="comment">// statement is a lightweight handle to the server-side statement.</span>
+<span class="comment">// Each ? is a parameter</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_prepare_statement</span><span class="special">(</span>
+    <span class="string">"INSERT INTO employee (first_name, last_name, salary, company_id) VALUES (?, ?, ?, ?)"</span>
 <span class="special">);</span>
 </pre>
 <p>
@@ -73,36 +85,17 @@
       a statement</a>
     </h4>
 <p>
-      To execute a statement, use any of the following functions:
+      Before executing a statement, you must specify its actual parameters by calling
+      <a class="link" href="ref/boost__mysql__statement/bind.html" title="statement::bind"><code class="literal">statement::bind</code></a>.
+      Binding happens client-side: the statement handle and the passed parameters
+      are packed into an object that can be passed to <a class="link" href="ref/boost__mysql__any_connection/async_execute.html" title="any_connection::async_execute"><code class="literal">async_execute</code></a>,
+      without any communication with the server. The object returned by <code class="computeroutput"><span class="identifier">bind</span></code> can be passed to <code class="computeroutput"><span class="identifier">async_execute</span></code>:
     </p>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem">
-          <a class="link" href="ref/boost__mysql__connection/execute.html" title="connection::execute"><code class="literal">connection::execute</code></a>
-          or <a class="link" href="ref/boost__mysql__connection/async_execute.html" title="connection::async_execute"><code class="literal">connection::async_execute</code></a>,
-          which execute the statement and read the generated rows.
-        </li>
-<li class="listitem">
-          <a class="link" href="ref/boost__mysql__connection/start_execution.html" title="connection::start_execution"><code class="literal">connection::start_execution</code></a>
-          and <a class="link" href="ref/boost__mysql__connection/async_start_execution.html" title="connection::async_start_execution"><code class="literal">connection::async_start_execution</code></a>,
-          which initiate a statement execution as a multi-function operation.
-        </li>
-</ul></div>
-<p>
-      For example:
-    </p>
-<pre class="programlisting"><span class="comment">// description, price and show_in_store are not trusted, since they may</span>
-<span class="comment">// have been read from a file or an HTTP endpoint</span>
-<span class="keyword">void</span> <span class="identifier">insert_product</span><span class="special">(</span>
-    <span class="identifier">tcp_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
-    <span class="keyword">const</span> <span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span>
-    <span class="identifier">string_view</span> <span class="identifier">description</span><span class="special">,</span>
-    <span class="keyword">int</span> <span class="identifier">price</span><span class="special">,</span>
-    <span class="keyword">bool</span> <span class="identifier">show_in_store</span>
-<span class="special">)</span>
-<span class="special">{</span>
-    <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">description</span><span class="special">,</span> <span class="identifier">price</span><span class="special">,</span> <span class="identifier">show_in_store</span><span class="special">),</span> <span class="identifier">result</span><span class="special">);</span>
-<span class="special">}</span>
+<pre class="programlisting"><span class="comment">// Bind and execute the statement. You must pass one parameter per '?' placeholder in the statement.</span>
+<span class="comment">// In the real world, parameters should be runtime values, rather than constants.</span>
+<span class="comment">// Note that bind() does not involve communication with the server</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="number">40000</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">),</span> <span class="identifier">result</span><span class="special">);</span>
 </pre>
 <p>
       Some observations:
@@ -127,111 +120,143 @@
           contains a reference with all the allowed types.
         </li>
 <li class="listitem">
-          You can also use the static interface to execute statements by replacing
-          <a class="link" href="ref/boost__mysql__results.html" title="results"><code class="literal">results</code></a>
+          You can also use <a class="link" href="static_interface.html" title="The static interface">the static interface</a>
+          to execute statements by replacing <a class="link" href="ref/boost__mysql__results.html" title="results"><code class="literal">results</code></a>
           by <a class="link" href="ref/boost__mysql__static_results.html" title="static_results"><code class="literal">static_results</code></a>.
         </li>
 </ul></div>
-<p>
-      You can pass <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span></code> and <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">optional</span></code>
-      for parameters that may be <code class="computeroutput"><span class="identifier">NULL</span></code>.
-      If the optional doesn't have a value, <code class="computeroutput"><span class="identifier">NULL</span></code>
-      will be sent to the server. For example:
-    </p>
-<pre class="programlisting"><span class="comment">// description, price and show_in_store are not trusted, since they may</span>
-<span class="comment">// have been read from a file or an HTTP endpoint</span>
-<span class="keyword">void</span> <span class="identifier">insert_product</span><span class="special">(</span>
-    <span class="identifier">tcp_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
-    <span class="keyword">const</span> <span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">&gt;</span> <span class="identifier">description</span><span class="special">,</span>
-    <span class="keyword">int</span> <span class="identifier">price</span><span class="special">,</span>
-    <span class="keyword">bool</span> <span class="identifier">show_in_store</span>
-<span class="special">)</span>
-<span class="special">{</span>
-    <span class="comment">// If description has a value, a string will be sent to the server; otherwise, a NULL will</span>
-    <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">description</span><span class="special">,</span> <span class="identifier">price</span><span class="special">,</span> <span class="identifier">show_in_store</span><span class="special">),</span> <span class="identifier">result</span><span class="special">);</span>
-<span class="special">}</span>
-</pre>
 <h4>
 <a name="mysql.prepared_statements.h2"></a>
-      <span class="phrase"><a name="mysql.prepared_statements.type_casting_with_statement_para"></a></span><a class="link" href="prepared_statements.html#mysql.prepared_statements.type_casting_with_statement_para">Type casting
-      with statement parameters</a>
-    </h4>
-<p>
-      MySQL is quite permissive with the type of statement parameters. In most cases,
-      it will perform the required casts for you. For example, given this table definition:
-    </p>
-<pre class="programlisting"><span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">table_definition</span> <span class="special">=</span> <span class="string">"CREATE TEMPORARY TABLE my_table(my_field TINYINT)"</span><span class="special">;</span>
-</pre>
-<p>
-      We can write:
-    </p>
-<pre class="programlisting"><span class="keyword">int</span> <span class="identifier">value</span> <span class="special">=</span> <span class="identifier">get_int_value_from_user</span><span class="special">();</span>
-<span class="keyword">auto</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">prepare_statement</span><span class="special">(</span><span class="string">"INSERT INTO my_table VALUES (?)"</span><span class="special">);</span>
-
-<span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">value</span><span class="special">),</span> <span class="identifier">result</span><span class="special">);</span>
-</pre>
-<p>
-      MySQL expects a <code class="computeroutput"><span class="identifier">TINYINT</span></code>, but
-      we're sending an <code class="computeroutput"><span class="keyword">int</span></code>, which is
-      bigger. As long as the value is in range, this won't cause any trouble. If
-      the value is out-of-range, <code class="computeroutput"><span class="identifier">execute</span></code>
-      will fail with an error.
-    </p>
-<h4>
-<a name="mysql.prepared_statements.h3"></a>
-      <span class="phrase"><a name="mysql.prepared_statements.executing_a_statement_with_a_var"></a></span><a class="link" href="prepared_statements.html#mysql.prepared_statements.executing_a_statement_with_a_var">Executing
-      a statement with a variable number of parameters</a>
-    </h4>
-<p>
-      The above approach works when you know at compile time how many parameters
-      the statement has. In some scenarios (e.g. a graphical interface), this may
-      not be the case. For these cases, you can <code class="computeroutput"><span class="identifier">bind</span></code>
-      a statement to a <code class="computeroutput"><span class="identifier">field</span></code> or
-      <code class="computeroutput"><span class="identifier">field_view</span></code> iterator range:
-    </p>
-<pre class="programlisting"><span class="keyword">void</span> <span class="identifier">exec_statement</span><span class="special">(</span><span class="identifier">tcp_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">field</span><span class="special">&gt;&amp;</span> <span class="identifier">params</span><span class="special">)</span>
-<span class="special">{</span>
-    <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-    <span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">params</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">params</span><span class="special">.</span><span class="identifier">end</span><span class="special">()),</span> <span class="identifier">result</span><span class="special">);</span>
-<span class="special">}</span>
-</pre>
-<h4>
-<a name="mysql.prepared_statements.h4"></a>
       <span class="phrase"><a name="mysql.prepared_statements.closing_a_statement"></a></span><a class="link" href="prepared_statements.html#mysql.prepared_statements.closing_a_statement">Closing
       a statement</a>
     </h4>
 <p>
       Prepared statements are created server-side, and thus consume server resources.
-      If you don't need a <a class="link" href="ref/boost__mysql__statement.html" title="statement"><code class="literal">statement</code></a>
-      anymore, you can call <a class="link" href="ref/boost__mysql__connection/close_statement.html" title="connection::close_statement"><code class="literal">connection::close_statement</code></a>
-      or <a class="link" href="ref/boost__mysql__connection/async_close_statement.html" title="connection::async_close_statement"><code class="literal">connection::async_close_statement</code></a>
-      to instruct the server to deallocate it.
+      You can deallocate statements that you don't need anymore by calling <a class="link" href="ref/boost__mysql__any_connection/async_close_statement.html" title="any_connection::async_close_statement"><code class="literal">async_close_statement</code></a>:
+    </p>
+<pre class="programlisting"><span class="comment">// Deallocate the statement from the server.</span>
+<span class="comment">// Note that closing the connection will also deallocate the statement.</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_close_statement</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">);</span>
+</pre>
+<p>
+      Prepared statements are managed by the server on a per-session basis. This
+      is, once you close your connection with the server, any allocated prepared
+      statements will be automatically closed for you. Calling <a class="link" href="ref/boost__mysql__any_connection/async_reset_connection.html" title="any_connection::async_reset_connection"><code class="literal">any_connection::async_reset_connection</code></a>
+      will also close all the statements prepared by the current session. This is
+      used by <a class="link" href="ref/boost__mysql__connection_pool.html" title="connection_pool"><code class="literal">connection_pool</code></a>
+      to clean up sessions.
     </p>
 <p>
-      Prepared statements are managed by the server on a per-connection basis. Once
-      you close your connection with the server, all prepared statements you have
-      created using this connection will be automatically deallocated.
+      In general, avoid closing statements explicitly if you're using <code class="computeroutput"><span class="identifier">async_reset_connection</span></code> or <code class="computeroutput"><span class="identifier">connection_pool</span></code>,
+      or if you're preparing a fixed number of statements at program startup. Closing
+      statements involves network traffic that can be avoided. On the other hand,
+      if you are creating and destroying prepared statements dynamically without
+      using the aforementioned techniques, consider closing statement explicitly
+      to limit server resource consumption.
     </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        <a class="link" href="ref/boost__mysql__statement.html" title="statement"><code class="literal">statement</code></a>'s
+        destructor <span class="bold"><strong>does not deallocate the statement from the
+        server</strong></span>. This is intentional, as closing a statement involves a
+        network operation that may block or fail, and is not required by strategies
+        involving <code class="computeroutput"><span class="identifier">async_reset_connection</span></code>.
+      </p></td></tr>
+</table></div>
+<h4>
+<a name="mysql.prepared_statements.h3"></a>
+      <span class="phrase"><a name="mysql.prepared_statements.nulls_and_optionals"></a></span><a class="link" href="prepared_statements.html#mysql.prepared_statements.nulls_and_optionals">NULLs
+      and optionals</a>
+    </h4>
 <p>
-      If you are creating your prepared statements at the beginning of your program
-      and keeping them alive until the connection is closed, then there is no need
-      to call <code class="computeroutput"><span class="identifier">close_statement</span><span class="special">()</span></code>,
-      as closing the connection will do the cleanup for you. If you are creating
-      and destroying prepared statements dynamically, then it is advised to use
-      <code class="computeroutput"><span class="identifier">close_statement</span><span class="special">()</span></code>
-      to prevent excessive resource usage in the server.
+      You can pass <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span></code> and <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">optional</span></code>
+      for parameters that may be <code class="computeroutput"><span class="identifier">NULL</span></code>:
     </p>
+<pre class="programlisting"><span class="comment">// Inserts a new employee into the database.</span>
+<span class="comment">// We may not have the salary information for some people,</span>
+<span class="comment">// so we represent the value as an optional</span>
+<span class="identifier">asio</span><span class="special">::</span><span class="identifier">awaitable</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;</span> <span class="identifier">insert_employee</span><span class="special">(</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">any_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">first_name</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">last_name</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">salary</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">company_id</span>
+<span class="special">)</span>
+<span class="special">{</span>
+    <span class="comment">// If salary has a value, an integer will be sent to the server.</span>
+    <span class="comment">// Otherwise, a NULL value will be sent</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
+    <span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">last_name</span><span class="special">,</span> <span class="identifier">salary</span><span class="special">,</span> <span class="identifier">company_id</span><span class="special">),</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
+<h4>
+<a name="mysql.prepared_statements.h4"></a>
+      <span class="phrase"><a name="mysql.prepared_statements.parameter_server_side_type_casti"></a></span><a class="link" href="prepared_statements.html#mysql.prepared_statements.parameter_server_side_type_casti">Parameter
+      server-side type casting</a>
+    </h4>
 <p>
-      Finally, note that <a class="link" href="ref/boost__mysql__statement.html" title="statement"><code class="literal">statement</code></a>'s
-      destructor does not perform any server-side deallocation of the statement.
-      This is because closing a statement involves a network operation that may block
-      or fail.
+      MySQL is quite permissive with the type of statement parameters. In most cases,
+      it will perform the required casts for you. For example, the following will
+      work:
     </p>
+<pre class="programlisting"><span class="comment">// Prepare the statement</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span> <span class="identifier">stmt</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_prepare_statement</span><span class="special">(</span>
+    <span class="string">"INSERT INTO employee (first_name, last_name, salary, company_id) VALUES (?, ?, ?, ?)"</span>
+<span class="special">);</span>
+
+<span class="comment">// Execute it, passing an 8 byte unsigned integer as the salary value.</span>
+<span class="comment">// The salary column was created as an INT (4 byte, signed integer).</span>
+<span class="comment">// MySQL will cast the value server-side, and emit an error only if the supplied</span>
+<span class="comment">// value is out of range of the target type</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span> <span class="identifier">salary</span> <span class="special">=</span> <span class="number">45000</span><span class="special">;</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="identifier">salary</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">),</span> <span class="identifier">result</span><span class="special">);</span>
+</pre>
 <h4>
 <a name="mysql.prepared_statements.h5"></a>
+      <span class="phrase"><a name="mysql.prepared_statements.executing_a_statement_with_a_var"></a></span><a class="link" href="prepared_statements.html#mysql.prepared_statements.executing_a_statement_with_a_var">Executing
+      a statement with a variable number of parameters</a>
+    </h4>
+<p>
+      <a class="link" href="ref/boost__mysql__statement/bind.html" title="statement::bind"><code class="literal">statement::bind</code></a>
+      has two forms:
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          A variadic form, where each statement argument is passed as a C++ argument.
+          This is what we've been using until now. It can only be used if the number
+          of arguments a statement has is known at compile time.
+        </li>
+<li class="listitem">
+          A range form, where arguments are passed as a range of variants. This one
+          should only be used if the number of arguments is unknown at compile time.
+        </li>
+</ul></div>
+<p>
+      The range should contain <a class="link" href="ref/boost__mysql__field.html" title="field"><code class="literal">field</code></a>
+      or <a class="link" href="ref/boost__mysql__field_view.html" title="field_view"><code class="literal">field_view</code></a>
+      elements, which can represent any MySQL type. For example:
+    </p>
+<pre class="programlisting"><span class="comment">// Executes the passed statement with the given parameters.</span>
+<span class="identifier">asio</span><span class="special">::</span><span class="identifier">awaitable</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;</span> <span class="identifier">execute_statement</span><span class="special">(</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">any_connection</span><span class="special">&amp;</span> <span class="identifier">conn</span><span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">statement</span><span class="special">&amp;</span> <span class="identifier">stmt</span><span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">field</span><span class="special">&gt;&amp;</span> <span class="identifier">params</span>
+<span class="special">)</span>
+<span class="special">{</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
+    <span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">params</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">params</span><span class="special">.</span><span class="identifier">end</span><span class="special">()),</span> <span class="identifier">result</span><span class="special">);</span>
+
+    <span class="comment">// Do something useful with result</span>
+<span class="special">}</span>
+</pre>
+<h4>
+<a name="mysql.prepared_statements.h6"></a>
       <span class="phrase"><a name="mysql.prepared_statements.type_mapping_reference_for_prepa"></a></span><a class="link" href="prepared_statements.html#mysql.prepared_statements.type_mapping_reference_for_prepa">Type mapping
       reference for prepared statement parameters</a>
     </h4>
@@ -242,7 +267,7 @@
       table shows how a parameter <code class="computeroutput"><span class="identifier">v</span></code>
       in a expression <code class="computeroutput"><span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">stmt</span><span class="special">.</span><span class="identifier">bind</span><span class="special">(</span><span class="identifier">v</span><span class="special">),</span>
       <span class="identifier">result</span><span class="special">)</span></code>
-      is interpreted by MySQL, depeding on <code class="computeroutput"><span class="identifier">v</span></code>'s
+      is interpreted by MySQL, depending on <code class="computeroutput"><span class="identifier">v</span></code>'s
       type.
     </p>
 <div class="informaltable">
@@ -551,7 +576,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="sql_formatting.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="dynamic_interface.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="text_queries.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="dynamic_interface.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

@@ -54,14 +54,14 @@ Adds the same value to each coordinate of a point.
 
 [heading Synopsis]
 ``template<typename Point>
-void add_value(Point & p, typename coordinate_type< Point >::type const & value)``
+void add_value(Point & p, coordinate_type_t< Point > const & value)``
 
 [heading Parameters]
 
 [table
 [[Type] [Concept] [Name] [Description] ]
 [[Point &] [Any type fulfilling a Point Concept ] [p] [point ]]
-[[typename coordinate_type< Point >::type const &] [] [value] [value to add ]]
+[[coordinate_type_t< Point > const &] [] [value] [value to add ]]
 ]
 
 
@@ -119,14 +119,14 @@ Assign each coordinate of a point the same value.
 
 [heading Synopsis]
 ``template<typename Point>
-void assign_value(Point & p, typename coordinate_type< Point >::type const & value)``
+void assign_value(Point & p, coordinate_type_t< Point > const & value)``
 
 [heading Parameters]
 
 [table
 [[Type] [Concept] [Name] [Description] ]
 [[Point &] [Any type fulfilling a Point Concept ] [p] [point ]]
-[[typename coordinate_type< Point >::type const &] [] [value] [value to assign ]]
+[[coordinate_type_t< Point > const &] [] [value] [value to assign ]]
 ]
 
 
@@ -250,14 +250,14 @@ Divides each coordinate of the same point by a value.
 
 [heading Synopsis]
 ``template<typename Point>
-void divide_value(Point & p, typename coordinate_type< Point >::type const & value)``
+void divide_value(Point & p, coordinate_type_t< Point > const & value)``
 
 [heading Parameters]
 
 [table
 [[Type] [Concept] [Name] [Description] ]
 [[Point &] [Any type fulfilling a Point Concept ] [p] [point ]]
-[[typename coordinate_type< Point >::type const &] [] [value] [value to divide by ]]
+[[coordinate_type_t< Point > const &] [] [value] [value to divide by ]]
 ]
 
 
@@ -281,7 +281,7 @@ Computes the dot product (or scalar product) of 2 vectors (points).
 
 [heading Synopsis]
 ``template<typename Point1, typename Point2>
-constexpr select_coordinate_type< Point1, Point2 >::type dot_product(Point1 const & p1, Point2 const & p2)``
+select_coordinate_type< Point1, Point2 >::type dot_product(Point1 const & p1, Point2 const & p2)``
 
 [heading Parameters]
 
@@ -352,14 +352,14 @@ Multiplies each coordinate of a point by the same value.
 
 [heading Synopsis]
 ``template<typename Point>
-void multiply_value(Point & p, typename coordinate_type< Point >::type const & value)``
+void multiply_value(Point & p, coordinate_type_t< Point > const & value)``
 
 [heading Parameters]
 
 [table
 [[Type] [Concept] [Name] [Description] ]
 [[Point &] [Any type fulfilling a Point Concept ] [p] [point ]]
-[[typename coordinate_type< Point >::type const &] [] [value] [value to multiply by ]]
+[[coordinate_type_t< Point > const &] [] [value] [value to multiply by ]]
 ]
 
 
@@ -417,14 +417,14 @@ Subtracts the same value to each coordinate of a point.
 
 [heading Synopsis]
 ``template<typename Point>
-void subtract_value(Point & p, typename coordinate_type< Point >::type const & value)``
+void subtract_value(Point & p, coordinate_type_t< Point > const & value)``
 
 [heading Parameters]
 
 [table
 [[Type] [Concept] [Name] [Description] ]
 [[Point &] [Any type fulfilling a Point Concept ] [p] [point ]]
-[[typename coordinate_type< Point >::type const &] [] [value] [value to subtract ]]
+[[coordinate_type_t< Point > const &] [] [value] [value to subtract ]]
 ]
 
 

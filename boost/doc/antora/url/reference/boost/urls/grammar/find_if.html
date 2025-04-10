@@ -3,13 +3,20 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>boost::urls::grammar::find_if :: Boost Libraries Documentation</title>
+    <title>boost::urls::grammar::find&lowbar;if :: Boost Libraries Documentation</title>
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/reference/boost/urls/grammar/find_if.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
     <link rel="stylesheet" href="../../../../../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../../../../../_'</script>
+<link rel="icon" href="../../../../../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../../../../../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../../../../../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -104,26 +111,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="../../../../reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="../../../../HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -142,17 +133,17 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="find_if.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::find_if</a></li>
+    <li><a href="find_if.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::find&lowbar;if</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
 </div>
 </div>
-    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::find_if</h1>
+    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::find&lowbar;if</h1>
   <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Find the first character in the string that is in the set.</p>
+<p>Find the first character in the string that is in the set&period;</p>
 </div>
 </div>
 </div>
@@ -160,16 +151,16 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/grammar/charset.hpp#L87">boost/url/grammar/charset.hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/grammar/charset.hpp#L144">boost&sol;url&sol;grammar&sol;charset&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">template&lt;class CharSet&gt;
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">template&lt;<a href="CharSet.html" class="xref page">CharSet</a> CS&gt;
 char const*
-find_if(
+find&lowbar;if(
     char const const* first,
     char const const* last,
-    CharSet const&amp; cs) noexcept;</code></pre>
+    CS const&amp; cs) noexcept;</code></pre>
 </div>
 </div>
 </div>
@@ -177,9 +168,14 @@ find_if(
 <div class="sect1">
 <h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_throws_nothing"><a class="anchor" href="#_throws_nothing"></a>Throws nothing.</h3>
 
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exception_safety"><a class="anchor" href="#_exception_safety"></a>Exception Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Throws nothing&period;</p>
 </div>
 </div>
 </div>
@@ -187,8 +183,7 @@ find_if(
 <h2 id="_return_value"><a class="anchor" href="#_return_value"></a>Return Value</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A pointer to the found character,
-otherwise the value <code>last</code>.</p>
+<p>A pointer to the found character, otherwise the value <code>last</code>&period;</p>
 </div>
 </div>
 </div>
@@ -200,32 +195,22 @@ otherwise the value <code>last</code>.</p>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>first</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-A pointer to the first character
-in the string to search.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A pointer to the first character in the string to search&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>last</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-A pointer to one past the last
-character in the string to search.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A pointer to one past the last character in the string to search&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>cs</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The character set to use.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The character set to use&period;</p></td>
 </tr>
 </tbody>
 </table>
@@ -235,8 +220,7 @@ The character set to use.
 <h2 id="_see_also"><a class="anchor" href="#_see_also"></a>See Also</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="find_if_not.html" class="xref page">find_if_not</a>
-.</p>
+<p><a href="find_if_not.html" class="xref page"><code>find&lowbar;if&lowbar;not</code></a>&period;</p>
 </div>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>

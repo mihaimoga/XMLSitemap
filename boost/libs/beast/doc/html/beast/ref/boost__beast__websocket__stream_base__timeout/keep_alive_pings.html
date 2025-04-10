@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__websocket__stream_base__timeout.keep_alive_pings"></a><a class="link" href="keep_alive_pings.html" title="websocket::stream_base::timeout::keep_alive_pings">websocket::stream_base::timeout::keep_alive_pings</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="id64426"></a>
+          <a class="indexterm" name="id65460"></a>
         </p>
 <p>
           Automatic ping setting.
@@ -59,8 +59,9 @@
 <li class="listitem">
               When <code class="computeroutput"><span class="identifier">keep_alive_pings</span></code>
               is <code class="computeroutput"><span class="keyword">false</span></code>, the connection
-              will be closed. An outstanding read operation must be pending, which
-              will complete immediately the error <a class="link" href="../boost__beast__error.html" title="error"><code class="computeroutput"><span class="identifier">beast</span><span class="special">::</span><span class="identifier">error</span><span class="special">::</span><span class="identifier">timeout</span></code></a>.
+              will be closed if there has been no activity. Both websocket message
+              frames and control frames count as activity. An outstanding read operation
+              must be pending, which will complete immediately the error <a class="link" href="../boost__beast__error.html" title="error"><code class="computeroutput"><span class="identifier">beast</span><span class="special">::</span><span class="identifier">error</span><span class="special">::</span><span class="identifier">timeout</span></code></a>.
             </li>
 </ul></div>
 </div>

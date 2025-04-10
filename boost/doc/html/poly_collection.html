@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Chapter 28. Boost.PolyCollection</title>
+<title>Chapter 27. Boost.PolyCollection</title>
 <link rel="stylesheet" href="../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
@@ -27,11 +27,11 @@
 <div class="chapter">
 <div class="titlepage"><div>
 <div><h2 class="title">
-<a name="poly_collection"></a>Chapter 28. Boost.PolyCollection</h2></div>
+<a name="poly_collection"></a>Chapter 27. Boost.PolyCollection</h2></div>
 <div><div class="author"><h3 class="author">
 <span class="firstname">Joaquín M</span> <span class="surname">López Muñoz</span>
 </h3></div></div>
-<div><p class="copyright">Copyright © 2016-2021 Joaquín M López Muñoz</p></div>
+<div><p class="copyright">Copyright © 2016-2025 Joaquín M López Muñoz</p></div>
 <div><div class="legalnotice">
 <a name="poly_collection.legal"></a><p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
@@ -91,6 +91,12 @@
 <dt><span class="section"><a href="poly_collection/reference.html#poly_collection.reference.header_boost_poly_collection_an0">Header
       <code class="computeroutput"><span class="string">"boost/poly_collection/any_collection.hpp"</span></code>
       synopsis</a></span></dt>
+<dt><span class="section"><a href="poly_collection/reference.html#poly_collection.reference.header_boost_poly_collection_var">Header
+      <code class="computeroutput"><span class="string">"boost/poly_collection/variant_collection_fwd.hpp"</span></code>
+      synopsis</a></span></dt>
+<dt><span class="section"><a href="poly_collection/reference.html#poly_collection.reference.header_boost_poly_collection_va0">Header
+      <code class="computeroutput"><span class="string">"boost/poly_collection/variant_collection.hpp"</span></code>
+      synopsis</a></span></dt>
 <dt><span class="section"><a href="poly_collection/reference.html#poly_collection.reference.header_boost_poly_collection_alg">Header
       <code class="computeroutput"><span class="string">"boost/poly_collection/algorithm.hpp"</span></code>
       synopsis</a></span></dt>
@@ -102,12 +108,12 @@
 <dt><span class="section"><a href="poly_collection/future_work.html#poly_collection.future_work.copy_traits">Copy traits</a></span></dt>
 <dt><span class="section"><a href="poly_collection/future_work.html#poly_collection.future_work.parallel_algorithms">Parallel
       algorithms</a></span></dt>
-<dt><span class="section"><a href="poly_collection/future_work.html#poly_collection.future_work.variant_collection"><code class="computeroutput"><span class="identifier">variant_collection</span></code></a></span></dt>
 <dt><span class="section"><a href="poly_collection/future_work.html#poly_collection.future_work.ordered_polymorphic_collections">Ordered
       polymorphic collections</a></span></dt>
 </dl></dd>
 <dt><span class="section"><a href="poly_collection/release_notes.html">Release notes</a></span></dt>
 <dd><dl>
+<dt><span class="section"><a href="poly_collection/release_notes.html#poly_collection.release_notes.boost_1_88">Boost 1.88</a></span></dt>
 <dt><span class="section"><a href="poly_collection/release_notes.html#poly_collection.release_notes.boost_1_76">Boost 1.76</a></span></dt>
 <dt><span class="section"><a href="poly_collection/release_notes.html#poly_collection.release_notes.boost_1_74">Boost 1.74</a></span></dt>
 <dt><span class="section"><a href="poly_collection/release_notes.html#poly_collection.release_notes.boost_1_73">Boost 1.73</a></span></dt>
@@ -119,7 +125,7 @@
 <dt><span class="section"><a href="poly_collection/release_notes.html#poly_collection.release_notes.boost_1_66">Boost 1.66</a></span></dt>
 <dt><span class="section"><a href="poly_collection/release_notes.html#poly_collection.release_notes.boost_1_65">Boost 1.65</a></span></dt>
 </dl></dd>
-<dt><span class="section"><a href="poly_collection/acknowledgments.html">Acknowledgments</a></span></dt>
+<dt><span class="section"><a href="poly_collection/acknowledgements.html">Acknowledgements</a></span></dt>
 </dl>
 </div>
 <div class="section">
@@ -149,7 +155,7 @@
 <p>
       When the particular traversal order is not relevant to the user application,
       Boost.PolyCollection proposes an alternative data structure that restores memory
-      contiguity and packs elements according to their concrete type. Three container
+      contiguity and packs elements according to their concrete type. Four container
       class templates are provided:
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -162,9 +168,12 @@
 <li class="listitem">
           <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">any_collection</span></code>
         </li>
+<li class="listitem">
+          <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code>
+        </li>
 </ul></div>
 <p>
-      respectively dealing with three different types of dynamic polymorphism available
+      respectively dealing with four different types of dynamic polymorphism available
       in C++:
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -177,6 +186,10 @@
 <li class="listitem">
           So-called <a href="https://en.wikipedia.org/wiki/Duck_typing" target="_top"><span class="emphasis"><em>duck
           typing</em></span></a> as implemented by <a href="../../libs/type_erasure" target="_top">Boost.TypeErasure</a>.
+        </li>
+<li class="listitem">
+          <span class="emphasis"><em>Closed polymorphism</em></span> where the list of acceptable types
+          is specified at compile time as in a <a href="https://en.cppreference.com/w/cpp/utility/variant" target="_top"><code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span></code></a>.
         </li>
 </ul></div>
 <p>
@@ -196,7 +209,7 @@
 <tr><td align="left" valign="top"><p>
         Boost.PolyCollection is a header-only library. C++11 support is required.
         The library has been verified to work with Visual Studio 2015, GCC 4.8 and
-        Clang 3.3.
+        Clang 3.5.
       </p></td></tr>
 </table></div>
 </div>

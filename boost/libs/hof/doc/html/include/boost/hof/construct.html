@@ -40,7 +40,7 @@
 <h1>construct<a class="headerlink" href="#construct" title="Permalink to this heading">¶</a></h1>
 <section id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/construct.hpp&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/construct.hpp&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -54,41 +54,41 @@ construct the object from a metafunction.</p>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Construct by decaying each value</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct</span><span class="p">();</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Template</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Template</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct</span><span class="p">();</span>
 
 <span class="c1">// Construct by deducing lvalues by reference and rvalue reference by reference</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_forward</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_forward</span><span class="p">();</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Template</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_forward</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Template</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_forward</span><span class="p">();</span>
 
 <span class="c1">// Construct by deducing lvalues by reference and rvalues by value.</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_basic</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_basic</span><span class="p">();</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Template</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_basic</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Template</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_basic</span><span class="p">();</span>
 
 <span class="c1">// Construct by deducing the object from a metafunction</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">MetafunctionClass</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_meta</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">MetafunctionClass</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_meta</span><span class="p">();</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MetafunctionTemplate</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_meta</span><span class="p">();</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MetafunctionTemplate</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">construct_meta</span><span class="p">();</span>
 </pre></div>
 </div>
 </section>
 <section id="semantics">
 <h2>Semantics<a class="headerlink" href="#semantics" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">assert</span><span class="p">(</span><span class="n">construct</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">T</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">construct</span><span class="o">&lt;</span><span class="n">Template</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Template</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">xs</span><span class="p">)...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">construct_meta</span><span class="o">&lt;</span><span class="n">MetafunctionClass</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MetafunctionClass</span><span class="o">::</span><span class="n">apply</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">xs</span><span class="p">)...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">construct_meta</span><span class="o">&lt;</span><span class="n">MetafunctionTemplate</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MetafunctionTemplate</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">xs</span><span class="p">)...</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">assert</span><span class="p">(</span><span class="n">construct</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">T</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">construct</span><span class="o">&lt;</span><span class="n">Template</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Template</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">xs</span><span class="p">)...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">construct_meta</span><span class="o">&lt;</span><span class="n">MetafunctionClass</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MetafunctionClass</span><span class="o">::</span><span class="n">apply</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">xs</span><span class="p">)...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">construct_meta</span><span class="o">&lt;</span><span class="n">MetafunctionTemplate</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MetafunctionTemplate</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">xs</span><span class="p">)...</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">(</span><span class="n">xs</span><span class="p">...));</span>
 </pre></div>
 </div>
 </section>
@@ -110,14 +110,14 @@ MetafunctionTemplate&lt;Ts…&gt;::type must be:</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">hof</span><span class="o">::</span><span class="n">construct</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">()(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">hof</span><span class="o">::</span><span class="n">construct</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">()(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

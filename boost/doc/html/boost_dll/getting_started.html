@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../boost_dll.html" title="Chapter 12. Boost.DLL">
-<link rel="prev" href="../boost_dll.html" title="Chapter 12. Boost.DLL">
+<link rel="up" href="../boost_dll.html" title="Chapter 11. Boost.DLL">
+<link rel="prev" href="../boost_dll.html" title="Chapter 11. Boost.DLL">
 <link rel="next" href="tutorial.html" title="Tutorial">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -31,9 +31,12 @@
 <p>
       Boost.DLL is a header only library. To start with the library you only need
       to include <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">dll</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span></code> header.
-      After that you are free to import and export functions and variables. Importing
-      code requires linking with <code class="computeroutput"><span class="identifier">boost_filesystem</span></code>
-      and <code class="computeroutput"><span class="identifier">boost_system</span></code> libraries.
+      After that you are free to import and export functions and variables. <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">dll</span><span class="special">::</span><span class="identifier">import</span><span class="special">*</span></code> functions require linking with <code class="computeroutput"><span class="identifier">boost_filesystem</span></code> and <code class="computeroutput"><span class="identifier">boost_system</span></code>
+      libraries, along with some platform specific dynamic load libraries like <code class="computeroutput"><span class="identifier">dl</span></code>. With CMake that burden goes away as
+      <code class="computeroutput"><span class="identifier">find_package</span><span class="special">(</span><span class="identifier">Boost</span> <span class="identifier">COMPONENTS</span>
+      <span class="identifier">dll</span><span class="special">)</span></code>
+      provides a <code class="computeroutput"><span class="identifier">Boost</span><span class="special">::</span><span class="identifier">dll</span></code> target that manages the dependencies
+      to other libraries.
     </p>
 <p>
       If you want to load a library, just construct <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/classboost_1_1dll_1_1shared__library.html" title="Class shared_library">boost::dll::shared_library</a></code>
@@ -46,7 +49,7 @@
       member functions:
 </p>
 <pre class="programlisting"><span class="keyword">int</span> <span class="identifier">plugin_constant</span> <span class="special">=</span> <span class="identifier">lib</span><span class="special">.</span><span class="identifier">get</span><span class="special">&lt;</span><span class="keyword">const</span> <span class="keyword">int</span><span class="special">&gt;(</span><span class="string">"integer_variable"</span><span class="special">);</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">function</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">()&gt;</span> <span class="identifier">f</span> <span class="special">=</span> <span class="identifier">lib</span><span class="special">.</span><span class="identifier">get</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">()&gt;(</span><span class="string">"function_returning_int"</span><span class="special">);</span>
+<span class="keyword">auto</span> <span class="identifier">function_ptr</span> <span class="special">=</span> <span class="identifier">lib</span><span class="special">.</span><span class="identifier">get</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">()&gt;(</span><span class="string">"function_returning_int"</span><span class="special">);</span>
 <span class="keyword">int</span><span class="special">&amp;</span> <span class="identifier">i</span> <span class="special">=</span> <span class="identifier">lib</span><span class="special">.</span><span class="identifier">get_alias</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;(</span><span class="string">"alias_to_int_variable"</span><span class="special">);</span>
 </pre>
 <p>
@@ -55,9 +58,9 @@
     </p>
 <p>
       Query libraries using <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/classboost_1_1dll_1_1library__info.html" title="Class library_info">boost::dll::library_info</a></code>
-      and get symbol infos using <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/runtime__symbol__info_8hpp_1a29896931cf2bfe2efa843c1cd80cfe99.html" title="Function template symbol_location">boost::dll::symbol_location</a></code>,
-      <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/runtime__symbol__info_8hpp_1aac2575f35f5412fbaf3be29131b1f606.html" title="Function this_line_location">boost::dll::this_line_location</a></code>
-      and <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/runtime__symbol__info_8hpp_1a5895fc6b0a1b22247a2179f64fbde75e.html" title="Function program_location">boost::dll::program_location</a></code>.
+      and get symbol infos using <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/runtime__symbol__info_8hpp_1a9ff31447ff4ccf4147d5d8cbbd134652.html" title="Function template symbol_location">boost::dll::symbol_location</a></code>,
+      <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/runtime__symbol__info_8hpp_1a276250d0518256cf5f180a1cfeee1a6c.html" title="Function this_line_location">boost::dll::this_line_location</a></code>
+      and <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/runtime__symbol__info_8hpp_1ad4f62eae484acfa53de57045fd18dde7.html" title="Function program_location">boost::dll::program_location</a></code>.
     </p>
 <p>
       For importing a single function or variable you may use a following one liners:
@@ -130,7 +133,7 @@
               <p>
 </p>
 <pre class="table-programlisting"><span class="comment">// Importing  variable.</span>
-<span class="identifier">shared_ptr</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">cpp_var</span> <span class="special">=</span> <span class="identifier">dll</span><span class="special">::</span><span class="identifier">import_symbol</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;(</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">cpp_var</span> <span class="special">=</span> <span class="identifier">dll</span><span class="special">::</span><span class="identifier">import_symbol</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;(</span>
         <span class="identifier">path_to_shared_library</span><span class="special">,</span> <span class="string">"cpp_variable_name"</span>
     <span class="special">);</span>
 </pre>
@@ -180,7 +183,7 @@
             </td>
 <td>
               <p>
-                <code class="computeroutput"><a class="link" href="../doxygen/shared_library_refcountable_reference/import_8hpp_1a493f0f92429493d46c632e20808cd1df.html" title="Function template import_alias">import_alias&lt;T&gt;(...)</a></code>
+                <code class="computeroutput"><a class="link" href="../doxygen/shared_library_refcountable_reference/import_8hpp_1a7ea7e10c20f83517dcc0acb6a64efa11.html" title="Function template import_alias">import_alias&lt;T&gt;(...)</a></code>
               </p>
               <p>
                 <code class="computeroutput"><a class="link" href="../doxygen/shared_library_reference/alias_8hpp_1ad9f8b1de81ae3b24cd938c7bacb27eef.html" title="Macro BOOST_DLL_ALIAS">BOOST_DLL_ALIAS</a></code>
@@ -193,7 +196,7 @@
 <p>
       It is safe to use imported variable or function because the variables returned
       from <code class="computeroutput">import&lt;T&gt;(...)</code>
-      and <code class="computeroutput"><a class="link" href="../doxygen/shared_library_refcountable_reference/import_8hpp_1a493f0f92429493d46c632e20808cd1df.html" title="Function template import_alias">import_alias&lt;T&gt;(...)</a></code>
+      and <code class="computeroutput"><a class="link" href="../doxygen/shared_library_refcountable_reference/import_8hpp_1a7ea7e10c20f83517dcc0acb6a64efa11.html" title="Function template import_alias">import_alias&lt;T&gt;(...)</a></code>
       functions internally hold a reference to the shared library.
     </p>
 <p>
@@ -212,7 +215,8 @@
       </p></td></tr>
 </table></div>
 </div>
-<div class="copyright-footer">Copyright © 2014 Renato Tegon Forti, Antony Polukhin<br>Copyright © 2015 Antony Polukhin<br>Copyright © 2016 Antony Polukhin, Klemens Morgenstern<br>Copyright © 2017-2024 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2014 Renato Tegon Forti, Antony Polukhin<br>Copyright © 2015 Antony Polukhin<br>Copyright © 2016 Antony Polukhin, Klemens Morgenstern<br>Copyright © 2017-2025 Antony
+      Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
       </p>

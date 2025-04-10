@@ -40,7 +40,7 @@
 <h1>reverse_fold<a class="headerlink" href="#reverse-fold" title="Permalink to this heading">¶</a></h1>
 <section id="header">
 <h2>Header<a class="headerlink" href="#header" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/reverse_fold.hpp&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof/reverse_fold.hpp&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -57,20 +57,20 @@ argument.</p>
 </section>
 <section id="synopsis">
 <h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">F</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="n">reverse_fold_adaptor</span><span class="o">&lt;</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">State</span><span class="o">&gt;</span><span class="w"> </span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">F</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="n">reverse_fold_adaptor</span><span class="o">&lt;</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">State</span><span class="o">&gt;</span><span class="w"> </span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">F</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">constexpr</span><span class="w"> </span><span class="n">reverse_fold_adaptor</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="w"> </span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="n">reverse_fold_adaptor</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="w"> </span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
 <section id="semantics">
 <h2>Semantics<a class="headerlink" href="#semantics" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">z</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)(</span><span class="n">xs</span><span class="p">...),</span><span class="w"> </span><span class="n">x</span><span class="p">));</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">xs</span><span class="p">...),</span><span class="w"> </span><span class="n">x</span><span class="p">));</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">z</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)(</span><span class="n">xs</span><span class="p">...),</span><span class="w"> </span><span class="n">x</span><span class="p">));</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xs</span><span class="p">...)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">f</span><span class="p">)(</span><span class="n">xs</span><span class="p">...),</span><span class="w"> </span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
@@ -88,21 +88,21 @@ argument.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;boost/hof.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">max_f</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">max_f</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">hof</span><span class="o">::</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">max_f</span><span class="p">())(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">hof</span><span class="o">::</span><span class="n">reverse_fold</span><span class="p">(</span><span class="n">max_f</span><span class="p">())(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

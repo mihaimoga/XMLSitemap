@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../poly_collection.html" title="Chapter 28. Boost.PolyCollection">
-<link rel="prev" href="../poly_collection.html" title="Chapter 28. Boost.PolyCollection">
+<link rel="up" href="../poly_collection.html" title="Chapter 27. Boost.PolyCollection">
+<link rel="prev" href="../poly_collection.html" title="Chapter 27. Boost.PolyCollection">
 <link rel="next" href="tutorial.html" title="Tutorial">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -125,11 +125,22 @@
           of OOP, and so there are the same opportunities for efficient container
           data structures as we have described.
         </li>
+<li class="listitem">
+          <span class="emphasis"><em>Closed polymorphism</em></span> is the case where the acceptable
+          types are specified at compile time. <a href="https://en.cppreference.com/w/cpp/utility/variant" target="_top"><code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span></code></a> and <a href="../../../libs/variant2" target="_top">Boost.Variant2</a>
+          are prominent examples of closed polymorphism with underlying types (called
+          <span class="emphasis"><em>alternatives</em></span>) being accessed through <a href="https://en.cppreference.com/w/cpp/utility/variant/visit2" target="_top">visitation</a>.
+          Typical implementations of closed polymorphism do not involve dynamic allocation
+          (alternatives are stored <code class="computeroutput"><span class="keyword">union</span></code>
+          style in shared storage), but grouping same-type objects together still
+          provides performance and space advantages.
+        </li>
 </ul></div>
 <p>
-      Boost.PolyCollection provides three different container class templates dealing
-      with OOP, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">function</span></code>-like polymorphism and duck typing
-      as implemented by Boost.TypeErasure:
+      Boost.PolyCollection provides four different container class templates dealing
+      with OOP, <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">function</span></code>-like polymorphism, duck typing as
+      implemented by Boost.TypeErasure, and closed polymorphism in the spirit of
+      <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span></code>:
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -141,13 +152,16 @@
 <li class="listitem">
           <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">any_collection</span></code>
         </li>
+<li class="listitem">
+          <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code>
+        </li>
 </ul></div>
 <p>
       The interfaces of these containers are mostly the same and follow the usual
       conventions of standard library containers.
     </p>
 </div>
-<div class="copyright-footer">Copyright © 2016-2021 Joaquín M López Muñoz<p>
+<div class="copyright-footer">Copyright © 2016-2025 Joaquín M López Muñoz<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

@@ -150,7 +150,7 @@
 <tr>
 <td>
                 <p>
-                  <a class="link" href="sql_formatting.html" title="Text queries and client-side SQL formatting">Client-side SQL formatting</a>:
+                  <a class="link" href="text_queries.html" title="Text queries and client-side SQL formatting">Client-side SQL formatting</a>:
                 </p>
                 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -208,7 +208,7 @@
 </table></div>
 <p>
         By default, we recommend using <a class="link" href="ref/boost__mysql__with_params.html" title="with_params"><code class="literal">with_params</code></a>
-        because it's simpler and entails less round-trips to the server. See <a class="link" href="sql_formatting.html#mysql.sql_formatting.comparison" title="Prepared statements vs. client-side SQL formatting">the comparison section</a> for
+        because it's simpler and entails less round-trips to the server. See <a class="link" href="text_queries.html#mysql.text_queries.comparison" title="Prepared statements vs. client-side SQL formatting">the comparison section</a> for
         more info.
       </p>
 <p>
@@ -398,19 +398,19 @@
       per connection</a>
 </h3></div></div></div>
 <p>
-        At any given point in time, a <code class="computeroutput"><span class="identifier">any_connection</span></code>
-        may only have a single async operation outstanding. Because MySQL sessions
-        are stateful, and to keep the implementation simple, messages are written
-        to the underlying transport without any locking or queueing. If you perform
-        several async operations concurrently on a single connection without any
-        serialization, messages from different operations will be interleaved, leading
-        to undefined behavior.
+        At any given point in time, an <code class="computeroutput"><span class="identifier">any_connection</span></code>
+        can only have a single async operation outstanding. In other words, connections
+        implement no asynchronous locking or queueing, which keeps code simple and
+        efficient. If you need to perform several operations in parallel, you can
+        open more connections or use <a class="link" href="ref/boost__mysql__connection_pool.html" title="connection_pool"><code class="literal">connection_pool</code></a>.
       </p>
 <p>
-        For example, doing the following is illegal and should be avoided:
+        Trying to run operations concurrently on a single connection is detected
+        at runtime and generates a <code class="computeroutput"><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">operation_in_progress</span></code>
+        error:
       </p>
-<pre class="programlisting"><span class="comment">// Coroutine body</span>
-<span class="comment">// DO NOT DO THIS!!!!</span>
+<pre class="programlisting"><span class="comment">// This is an error: a single connection can't run two operations</span>
+<span class="comment">// in parallel. Create more connections or use connection_pool, instead.</span>
 <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">results</span> <span class="identifier">result1</span><span class="special">,</span> <span class="identifier">result2</span><span class="special">;</span>
 <span class="identifier">co_await</span> <span class="identifier">asio</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">make_parallel_group</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT 1"</span><span class="special">,</span> <span class="identifier">result1</span><span class="special">,</span> <span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span><span class="special">),</span>
@@ -418,10 +418,6 @@
 <span class="special">)</span>
     <span class="special">.</span><span class="identifier">async_wait</span><span class="special">(</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">experimental</span><span class="special">::</span><span class="identifier">wait_for_all</span><span class="special">(),</span> <span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span><span class="special">);</span>
 </pre>
-<p>
-        If you need to perform queries in parallel, open more connections to the
-        server.
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -524,16 +520,18 @@
     <span class="special">}</span>
 <span class="special">}</span>
 </pre>
-<div class="warning"><table border="0" summary="Warning">
+<div class="note"><table border="0" summary="Note">
 <tr>
-<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../../../doc/src/images/warning.png"></td>
-<th align="left">Warning</th>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
 </tr>
 <tr><td align="left" valign="top"><p>
           Once you start a multi-function operation with <a class="link" href="ref/boost__mysql__any_connection/async_start_execution.html" title="any_connection::async_start_execution"><code class="literal">async_start_execution</code></a>,
           the server immediately sends all rows to the client. <span class="bold"><strong>You
-          must read all rows</strong></span> before engaging in further operations. Otherwise,
-          you will encounter packet mismatches, which can lead to bugs and vulnerabilities!
+          must read all rows</strong></span> before engaging in further operations. If
+          you try to initiate an unrelated operation before reading all rows, you
+          will get a <code class="computeroutput"><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">engaged_in_multi_function</span></code>
+          error.
         </p></td></tr>
 </table></div>
 <p>
@@ -569,25 +567,25 @@
 <span class="comment">// You must specify enough information to establish a connection,</span>
 <span class="comment">// including the server address and credentials.</span>
 <span class="comment">// You can configure a lot of other things, like pool limits</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pool_params</span> <span class="identifier">params</span><span class="special">;</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pool_params</span> <span class="identifier">params</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">server_address</span><span class="special">.</span><span class="identifier">emplace_host_and_port</span><span class="special">(</span><span class="identifier">server_hostname</span><span class="special">);</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">username</span> <span class="special">=</span> <span class="identifier">mysql_username</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">password</span> <span class="special">=</span> <span class="identifier">mysql_password</span><span class="special">;</span>
 <span class="identifier">params</span><span class="special">.</span><span class="identifier">database</span> <span class="special">=</span> <span class="string">"boost_mysql_examples"</span><span class="special">;</span>
 
 <span class="comment">// The I/O context, required by all I/O operations</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">io_context</span> <span class="identifier">ctx</span><span class="special">;</span>
+<span class="identifier">asio</span><span class="special">::</span><span class="identifier">io_context</span> <span class="identifier">ctx</span><span class="special">;</span>
 
 <span class="comment">// Construct a pool of connections. The context will be used internally</span>
 <span class="comment">// to create the connections and other I/O objects</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span> <span class="identifier">pool</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">params</span><span class="special">));</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span> <span class="identifier">pool</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">params</span><span class="special">));</span>
 
 <span class="comment">// You need to call async_run on the pool before doing anything useful with it.</span>
 <span class="comment">// async_run creates connections and keeps them healthy. It must be called</span>
 <span class="comment">// only once per pool.</span>
 <span class="comment">// The detached completion token means that we don't want to be notified when</span>
 <span class="comment">// the operation ends. It's similar to a no-op callback.</span>
-<span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_run</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">detached</span><span class="special">);</span>
+<span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_run</span><span class="special">(</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">detached</span><span class="special">);</span>
 </pre>
 <p>
         <a class="link" href="ref/boost__mysql__connection_pool/async_run.html" title="connection_pool::async_run"><code class="literal">connection_pool::async_run</code></a>
@@ -600,15 +598,15 @@
 <pre class="programlisting"><span class="comment">// Use connection pools for functions that will be called</span>
 <span class="comment">// repeatedly during the application lifetime.</span>
 <span class="comment">// An HTTP server handler function is a good candidate.</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">awaitable</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span><span class="special">&gt;</span> <span class="identifier">get_num_employees</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span><span class="special">&amp;</span> <span class="identifier">pool</span><span class="special">)</span>
+<span class="identifier">asio</span><span class="special">::</span><span class="identifier">awaitable</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span><span class="special">&gt;</span> <span class="identifier">get_num_employees</span><span class="special">(</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">connection_pool</span><span class="special">&amp;</span> <span class="identifier">pool</span><span class="special">)</span>
 <span class="special">{</span>
     <span class="comment">// Get a fresh connection from the pool.</span>
     <span class="comment">// pooled_connection is a proxy to an any_connection object.</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">();</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pooled_connection</span> <span class="identifier">conn</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">pool</span><span class="special">.</span><span class="identifier">async_get_connection</span><span class="special">();</span>
 
     <span class="comment">// Use pooled_connection::operator-&gt; to access the underlying any_connection.</span>
     <span class="comment">// Let's use the connection</span>
-    <span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
     <span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">-&gt;</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT COUNT(*) FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
     <span class="identifier">co_return</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">().</span><span class="identifier">at</span><span class="special">(</span><span class="number">0</span><span class="special">).</span><span class="identifier">at</span><span class="special">(</span><span class="number">0</span><span class="special">).</span><span class="identifier">as_int64</span><span class="special">();</span>
 

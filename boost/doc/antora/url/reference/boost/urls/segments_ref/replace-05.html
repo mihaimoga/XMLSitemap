@@ -3,13 +3,20 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>boost::urls::segments_ref::replace :: Boost Libraries Documentation</title>
+    <title>boost::urls::segments&lowbar;ref::replace :: Boost Libraries Documentation</title>
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/reference/boost/urls/segments_ref/replace-05.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
     <link rel="stylesheet" href="../../../../../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../../../../../_'</script>
+<link rel="icon" href="../../../../../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../../../../../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../../../../../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -104,26 +111,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="../../../../reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="../../../../HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -142,13 +133,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="replace-05.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_ref.html">segments_ref</a>::replace</a></li>
+    <li><a href="replace-05.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_ref.html">segments&lowbar;ref</a>::replace</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
 </div>
 </div>
-    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_ref.html">segments_ref</a>::replace</h1>
+    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_ref.html">segments&lowbar;ref</a>::replace</h1>
   <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -160,14 +151,14 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/segments_ref.hpp#L555">boost/url/segments_ref.hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/segments_ref.hpp#L560">boost&sol;url&sol;segments&lowbar;ref&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp"><a href="../segments_base/iterator.html" class="xref page">iterator</a>
 replace(
     <a href="../segments_base/iterator.html" class="xref page">iterator</a> pos,
-    core::string_view s);</code></pre>
+    core::string&lowbar;view s);</code></pre>
 </div>
 </div>
 </div>
@@ -176,24 +167,26 @@ replace(
 <h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This function replaces the segment at
-the specified position.
-Reserved characters in the string are
-automatically escaped.</p>
+<p>This function replaces the segment at the specified position&period; Reserved characters in the string are automatically escaped&period;</p>
 </div>
 <div class="paragraph">
-<p>All iterators that are equal to
-<code>pos</code> or come after are invalidated.</p>
+<p>All iterators that are equal to <code>pos</code> or come after are invalidated&period;</p>
 </div>
-<div class="sect2">
-<h3 id="_linear_in_s_size_this_url_encoded_resouce_size"><a class="anchor" href="#_linear_in_s_size_this_url_encoded_resouce_size"></a>Linear in <code>s.size() + this-&gt;url().encoded_resouce().size()</code>.</h3>
-
 </div>
-<div class="sect2">
-<h3 id="_strong_guarantee"><a class="anchor" href="#_strong_guarantee"></a>Strong guarantee.</h3>
+</div>
+<div class="sect1">
+<h2 id="_complexity"><a class="anchor" href="#_complexity"></a>Complexity</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Calls to allocate may throw.</p>
+<p>Linear in <code>s&period;size() &plus; this&hyphen;&gt;url()&period;encoded&lowbar;resouce()&period;size()</code>&period;</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exception_safety"><a class="anchor" href="#_exception_safety"></a>Exception Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Strong guarantee&period; Calls to allocate may throw&period;</p>
 </div>
 </div>
 </div>
@@ -201,7 +194,7 @@ automatically escaped.</p>
 <h2 id="_return_value"><a class="anchor" href="#_return_value"></a>Return Value</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An iterator to the replaced segment.</p>
+<p>An iterator to the replaced segment&period;</p>
 </div>
 </div>
 </div>
@@ -213,24 +206,18 @@ automatically escaped.</p>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>pos</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-An iterator to the segment.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An iterator to the segment&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>s</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The string to assign.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The string to assign&period;</p></td>
 </tr>
 </tbody>
 </table>

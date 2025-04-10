@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../parser.html" title="Chapter 26. Boost.Parser">
+<link rel="up" href="../parser.html" title="Chapter 25. Boost.Parser">
 <link rel="prev" href="../doxygen/headers/namespaceboost_1_1parser_1af2e6576c852ac796a5bdea3c8ed321b8.html" title="Function template get">
-<link rel="next" href="../boost_pfr.html" title="Chapter 27. Boost.PFR 2.2">
+<link rel="next" href="../boost_pfr.html" title="Chapter 26. Boost.PFR 2.2">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -284,7 +284,7 @@ auto parser_2 = +(bp::char_ - ' ') &gt;&gt; ' ' &gt;&gt; +(bp::char_ - ' ');
 </pre>
 <p>
       I don't know about you, but I've rarely written a parser like <code class="computeroutput">parser_1</code>
-      and wanted to produce a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a>&lt;char,
+      and wanted to produce a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a>&lt;char,
       char, std::optional&lt;char&gt;&gt;</code>. Similarly, I've rarely written
       a parser like <code class="computeroutput">parser_2</code> and wanted a <code class="computeroutput">std::vector&lt;std::string&gt;</code>.
     </p>
@@ -335,7 +335,7 @@ auto parser = -(bp::char_ % ',');
       gets slurped up into the container. I consider this a "damn good reason",
       because this is a very common use case. For other, less-common cases, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1c4c5ec9144e8f4d1e1e1cb848a0ae04.html" title="Global separate">separate[]</a></code> can be used to keep the attributes
       non-combining. So <code class="computeroutput">separate[-int_ &gt;&gt; *int_]</code> has the attribute
-      <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a>&lt;std::optional&lt;int&gt;,
+      <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a>&lt;std::optional&lt;int&gt;,
       std::vector&lt;int&gt;&gt;</code>. This makes opting out of this exception
       very easy, and the intent remains visible in the code.
     </p>

@@ -28,10 +28,11 @@
 <a name="beast.ref.boost__beast__websocket__stream.async_close"></a><a class="link" href="async_close.html" title="websocket::stream::async_close">websocket::stream::async_close</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="id61055"></a>
+          <a class="indexterm" name="id62073"></a>
         </p>
 <p>
-          Send a websocket close control frame asynchronously.
+          Perform the WebSocket closing handshake asynchronously and close the underlying
+          stream.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.async_close.h0"></a>
@@ -49,9 +50,16 @@
           <span class="phrase"><a name="beast.ref.boost__beast__websocket__stream.async_close.description"></a></span><a class="link" href="async_close.html#beast.ref.boost__beast__websocket__stream.async_close.description">Description</a>
         </h6>
 <p>
-          This function is used to asynchronously send a <a href="https://tools.ietf.org/html/rfc6455#section-5.5.1" target="_top">close
-          frame</a>, which begins the websocket closing handshake. The session
-          ends when both ends of the connection have sent and received a close frame.
+          This function sends a <a href="https://tools.ietf.org/html/rfc6455#section-5.5.1" target="_top">close
+          frame</a> to begin the WebSocket closing handshake and waits for a
+          corresponding close frame in response. Once received, it calls <a class="link" href="../boost__beast__websocket__async_teardown.html" title="websocket::async_teardown"><code class="computeroutput"><span class="identifier">async_teardown</span></code></a> to gracefully shut
+          down the underlying stream asynchronously.
+        </p>
+<p>
+          After beginning the closing handshake, the program should not write further
+          message data, pings, or pongs. However, it can still read incoming message
+          data. A read returning <a class="link" href="../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
+          connection closure.
         </p>
 <p>
           This call always returns immediately. The asynchronous operation will continue
@@ -59,23 +67,21 @@
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-              The close frame finishes sending.
+              The closing handshake completes, and <a class="link" href="../boost__beast__websocket__async_teardown.html" title="websocket::async_teardown"><code class="computeroutput"><span class="identifier">async_teardown</span></code></a> finishes.
             </li>
 <li class="listitem">
               An error occurs.
             </li>
 </ul></div>
 <p>
+          If a timeout occurs, <a class="link" href="../boost__beast__close_socket.html" title="close_socket"><code class="computeroutput"><span class="identifier">close_socket</span></code></a> will be called to
+          close the underlying stream.
+        </p>
+<p>
           The algorithm, known as a <span class="emphasis"><em>composed asynchronous operation</em></span>,
           is implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">async_write_some</span></code>
           function. No other operations except for message reading operations should
           be initiated on the stream after a close operation is started.
-        </p>
-<p>
-          After beginning the closing handshake, the program should not write further
-          message data, pings, or pongs. Instead, the program should continue reading
-          message data until an error occurs. A read returning <a class="link" href="../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
-          connection closure.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.async_close.h2"></a>
@@ -174,8 +180,8 @@
           <span class="phrase"><a name="beast.ref.boost__beast__websocket__stream.async_close.remarks"></a></span><a class="link" href="async_close.html#beast.ref.boost__beast__websocket__stream.async_close.remarks">Remarks</a>
         </h6>
 <p>
-          <code class="computeroutput"><span class="identifier">terminal</span></code> cancellation will
-          may close the underlying socket.
+          <code class="computeroutput"><span class="identifier">terminal</span></code> cancellation may
+          close the underlying socket.
         </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.async_close.h5"></a>

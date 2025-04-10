@@ -11615,11 +11615,11 @@ Space complexity: \Omega(4n)</para><para><formalpara><title>See Also:</title><pa
       <template-type-parameter name="T"/>
     </template><purpose>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator">buffer_allocator</link> class allocates memory with buffer objects. </purpose><description><para><formalpara><title>See Also:</title><para>buffer </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a305d120673731e793fbc9715c738840a" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1ae50e115fb1ae5f487f70df056eb162c6" name="pointer"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a19ca0ce091ca8f7c47dbe9f5a708764c" name="const_pointer"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a4d34a02b3f256bc02419f00b27dcb53f" name="size_type"><type>std::size_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a2cc319a66f23b15def873e72fe48c73d" name="difference_type"><type>std::ptrdiff_t</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1ad6f0dd4c3d37a1c6a461bc6ef14a2618" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a9609c377c9807e30f9efc2700eb98962" name="pointer"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a1b06ad4174ecdaa582b9868a2d928eee" name="const_pointer"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a6934acc0e93bc9be0252cc608f834436" name="size_type"><type>std::size_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a10397455007e2d89ede6f5623417bb9f" name="difference_type"><type>std::ptrdiff_t</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a69aaec926bf2536d30c5f3824bae9c26" specifiers="explicit"><parameter name="context"><paramtype>const context &amp;</paramtype></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1buffer__allocator_1a31ae2981384028bc84a2a3a2a11b239d"><parameter name="other"><paramtype>const <classname>buffer_allocator</classname>&lt; T &gt; &amp;</paramtype></parameter></constructor>
@@ -12227,7 +12227,7 @@ Space complexity: \Omega(4n)</para><para><formalpara><title>See Also:</title><pa
 event e = queue.enqueue_nd_range_kernel(...);
 
 // call e.wait() upon exiting the current scope
-wait_guard&lt;event&gt; guard(e);
+<link linkend="doxygen.header_reference.classboost_1_1compute_1_1wait__guard_1ae3710ec0f98885da809e6ea7a8df6952">wait_guard&lt;event&gt;</link> guard(e);
 </programlisting></para><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1wait__list">wait_list</link>, wait_for_all() </para></description><method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1wait__guard_1ae3710ec0f98885da809e6ea7a8df6952"><parameter name="waitable"><paramtype>const Waitable &amp;</paramtype></parameter><purpose>Creates a new <link linkend="doxygen.header_reference.classboost_1_1compute_1_1wait__guard">wait_guard</link> object for <computeroutput>waitable</computeroutput>. </purpose></constructor>
 <destructor id="doxygen.header_reference.classboost_1_1compute_1_1wait__guard_1a2b13b8792da029b7fccfd907f4427d72"><description><para>Destroys the <link linkend="doxygen.header_reference.classboost_1_1compute_1_1wait__guard">wait_guard</link> object. The default implementation will call <computeroutput>wait()</computeroutput> on the stored waitable object. </para></description></destructor>
@@ -12377,18 +12377,18 @@ wait_guard&lt;event&gt; guard(e);
     </template><purpose>A fixed-size container. </purpose><description><para>The array container is very similar to the <link linkend="doxygen.header_reference.classboost_1_1compute_1_1vector">vector</link> container except its size is fixed at compile-time rather than being dynamically resizable at run-time.</para><para>For example, to create a fixed-size array with eight values on the device: <programlisting language="c++"><link linkend="doxygen.header_reference.classboost_1_1compute_1_1array">boost::compute::array&lt;int, 8&gt;</link> values(context);
 </programlisting></para><para>The Boost.Compute <computeroutput>array</computeroutput> class provides a STL-like API and is modeled after the <computeroutput>std::array</computeroutput> class from the C++ standard library.</para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1vector">vector&lt;T&gt;</link> </para>
 </formalpara>
-</para></description><enum id="doxygen.header_reference.classboost_1_1compute_1_1array_1a0e6216a1e186e39398256901e0362fd9" name="@0"><enumvalue id="doxygen.header_reference.classboost_1_1compute_1_1array_1a0e6216a1e186e39398256901e0362fd9a9cebb7ba7a39b8c781d170421909e8b3" name="static_size"><default>N</default></enumvalue></enum>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1ab5bac422dcfafeaed8fa372dc8ed815e" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a73d85bbe220c00e1fafecb1c8e1219b8" name="size_type"><type>std::size_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a1e150234e69dc63c396dc635c5edfd05" name="difference_type"><type>ptrdiff_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a91227cc7e021a68851d4b497e9ae62fc" name="reference"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a0642799ef31ed0af170abf3b137faa3b" name="const_reference"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a081f5ed214a07d2dc45be9a1e584f7c4" name="pointer"><type>T *</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1adac3031d782cedf76df9bc80eae6eb72" name="const_pointer"><type>const T *</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a50f56467d24e32f83e2b416a88f21ca4" name="iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1addea3686f80c007092627d4054980488" name="const_iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1af9792aaaf68a6f6ac94d491c9a82de68" name="reverse_iterator"><type>std::reverse_iterator&lt; <classname>iterator</classname> &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1ada33e63f8dcdbbd3b4dc541d7cf81f08" name="const_reverse_iterator"><type>std::reverse_iterator&lt; <classname>const_iterator</classname> &gt;</type></typedef>
+</para></description><enum id="doxygen.header_reference.classboost_1_1compute_1_1array_1a0e6216a1e186e39398256901e0362fd9" name=""><enumvalue id="doxygen.header_reference.classboost_1_1compute_1_1array_1a0e6216a1e186e39398256901e0362fd9a9cebb7ba7a39b8c781d170421909e8b3" name="static_size"><default>N</default></enumvalue></enum>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a8155aa3971be6ee9e67ddcb531835db8" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a3837c2b83fd5c23325ff4fe78bcafb87" name="size_type"><type>std::size_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1af677420ce52c537c5b5aefe64b013fe4" name="difference_type"><type>ptrdiff_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a4dfeb33c1440a73f9b5a11137b3461b7" name="reference"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1adbf2ae415e97dad25df4226a14592752" name="const_reference"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1aedabb41eeffa7e4aadaa098fb55e602c" name="pointer"><type>T *</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1ac14954906949c4c5589c3616306e5c35" name="const_pointer"><type>const T *</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a1337daac72a1eb435af1a22fbd96c103" name="iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1ae785723fd2f7007b4d406eea700a2f0c" name="const_iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1ac45a3540b93f842524335268f64e551b" name="reverse_iterator"><type>std::reverse_iterator&lt; <classname>iterator</classname> &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1array_1a9b3e49ac647e90359a9c6b16a93ef060" name="const_reverse_iterator"><type>std::reverse_iterator&lt; <classname>const_iterator</classname> &gt;</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1array_1aaa136c9ec02fa5f3bc4710516c36deba" specifiers="explicit"><parameter name="context"><paramtype>const context &amp;</paramtype><default>system::default_context()</default></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1array_1a2ff19e2f02dd1c2b40490d59624b5219"><parameter name="other"><paramtype>const <classname>array</classname>&lt; T, N &gt; &amp;</paramtype></parameter></constructor>
@@ -12574,15 +12574,15 @@ wait_guard&lt;event&gt; guard(e);
     </template><purpose>A template for a dynamically-sized character sequence. </purpose><description><para>The <computeroutput><link linkend="doxygen.header_reference.classboost_1_1compute_1_1basic__string">basic_string</link></computeroutput> class provides a generic template for a dynamically- sized character sequence. This is most commonly used through the <computeroutput>string</computeroutput> typedef (for <computeroutput>basic_string&lt;char&gt;</computeroutput>).</para><para>For example, to create a string on the device with its contents copied from a C-string on the host: <programlisting language="c++"><link linkend="doxygen.header_reference.classboost_1_1compute_1_1basic__string">boost::compute::string</link> str("hello, world!");
 </programlisting></para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1vector">vector&lt;T&gt;</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a8632a58afe12d4b66680350d4c653ef9" name="traits_type"><type>Traits</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a55a7651c18ad821c22d3bc7c497c2360" name="value_type"><type>Traits::char_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1ad1bad7f0d74fba83aed08b41a34c040b" name="size_type"><type>size_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a2a133c117d897ea6aaa49083604ee0b3" name="reference"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a81e72e9bb190a620ba50a12a6ff33bb9" name="const_reference"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::const_reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1ace322944ab925bd458500c032ada6eae" name="iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a0531cdc60b9b908872094c9cb34c0554" name="const_iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::const_iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1ab7959692953a77e711ed255960625abd" name="reverse_iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::reverse_iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a666f4b16485e94e99058817ee5714609" name="const_reverse_iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::const_reverse_iterator</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a5130bd0996663b3e2acc3191aeb077f4" name="traits_type"><type>Traits</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a1b44a03c10f7ca026f7f5f253c10662f" name="value_type"><type>Traits::char_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1ae117317baa876c24341bfa40a018ce41" name="size_type"><type>size_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1ae13235d9cc94f0c3a0a5dd384ac4985b" name="reference"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1ad965663212367e5f60e94c0a76d61804" name="const_reference"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::const_reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1ac7df4c7721c05ded1d63a61e9f6e2ad9" name="iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1aa075da5cbb705f93a1fb11ea6647461b" name="const_iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::const_iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a52c4d812cdcba112d3b9eaf72ae338d8" name="reverse_iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::reverse_iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a85c25ab238c8ce1e039fe4a5d7ca27e2" name="const_reverse_iterator"><type><classname>::boost::compute::vector</classname>&lt; CharT &gt;::const_reverse_iterator</type></typedef>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1afed9ade579b8c50e3d08374b9da63ed4" name="npos" specifiers="static"><type>const size_type</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1basic__string_1a61c004c109ea262114530c5a787b110a"/>
@@ -12778,10 +12778,10 @@ wait_guard&lt;event&gt; guard(e);
     </template><purpose>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset">dynamic_bitset</link> class contains a resizable bit array. </purpose><description><para>For example, to create a dynamic-bitset with space for 1000 bits on the device: <programlisting language="c++"><link linkend="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset">boost::compute::dynamic_bitset&lt;&gt;</link> bits(1000, queue);
 </programlisting></para><para>The Boost.Compute <computeroutput><link linkend="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset">dynamic_bitset</link></computeroutput> class provides a STL-like API and is modeled after the <computeroutput>boost::dynamic_bitset</computeroutput> class from Boost.</para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1vector">vector&lt;T&gt;</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1ae2221d8b60dfc23d3654a3ff64a98de5" name="block_type"><type>Block</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1a8a95239c8f724181f7496a9c0cbf2b10" name="allocator_type"><type>Alloc</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1a8645f5f60fd541823df9d168f2ba680f" name="container_type"><type><classname>vector</classname>&lt; Block, Alloc &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1a915c35536eec26206e362a6060c9bf80" name="size_type"><type>container_type::size_type</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1af44c467422615d79eb5ad7c642529f0f" name="block_type"><type>Block</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1a89568b9689e17c698be944f23825dcde" name="allocator_type"><type>Alloc</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1a900bbd4c191f2572ea4aca0ed91fd5a3" name="container_type"><type><classname>vector</classname>&lt; Block, Alloc &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1a39539a6f8a0b826442ef38955a95a12a" name="size_type"><type>container_type::size_type</type></typedef>
 <method-group name="public member functions">
 <method id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1adc8d38c9b00671deaea206b2721d8a2e" name="BOOST_STATIC_CONSTANT"><type/><parameter name=""><paramtype>size_type</paramtype></parameter><parameter name=""><paramtype>bits_per_block</paramtype><default>sizeof(block_type) *CHAR_BIT</default></parameter></method>
 <method id="doxygen.header_reference.classboost_1_1compute_1_1dynamic__bitset_1a9c705bff0dac22cc6c2e0fa42b9b80cb" name="BOOST_STATIC_CONSTANT"><type/><parameter name=""><paramtype>size_type</paramtype></parameter><parameter name=""><paramtype>npos</paramtype><default>static_cast&lt; size_type &gt;(-1)</default></parameter></method>
@@ -12948,20 +12948,20 @@ wait_guard&lt;event&gt; guard(e);
 <class id="doxygen.header_reference.classboost_1_1compute_1_1flat__map" name="flat_map"><template>
       <template-type-parameter name="Key"/>
       <template-type-parameter name="T"/>
-    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a0224272d77bb216fbe3b6ebf15c75406" name="key_type"><type>Key</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a9774d1668dd8d250cd2150b9696e23b5" name="mapped_type"><type>T</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a669356e635dd8b63b8dd6beb474a59d7" name="vector_type"><type><classname>::boost::compute::vector</classname>&lt; std::pair&lt; Key, T &gt; &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a2bd7f7ca477fa0776af5084313927ed7" name="value_type"><type>vector_type::value_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1ad792f9d2a697ae4cb18fc70a6fff5d08" name="size_type"><type>vector_type::size_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a3c4bdbe8df30cf3d40852b6dcbb5f834" name="difference_type"><type>vector_type::difference_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a636da070582bb912789ba6f1cf5b8ec9" name="reference"><type>vector_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1ac573a6976ecf45be72fea5dc04e99cb6" name="const_reference"><type>vector_type::const_reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a08d89b2e408443ab08a1e55105c05d63" name="pointer"><type>vector_type::pointer</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a60a4e8056701531742cd8983498c47af" name="const_pointer"><type>vector_type::const_pointer</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a29d5f87eac90fd35e1e302cd788ab216" name="iterator"><type><classname>vector_type::iterator</classname></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1ae51d756781dd0b02d6ffd793d60f405c" name="const_iterator"><type><classname>vector_type::const_iterator</classname></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a3db1ca86ff436c5cddf2c4b716552226" name="reverse_iterator"><type>vector_type::reverse_iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a98a0c3a6dc097fad840885f73c803fef" name="const_reverse_iterator"><type>vector_type::const_reverse_iterator</type></typedef>
+    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1ab6974be61a7610dd60e74738b7e3351a" name="key_type"><type>Key</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a53a234e23744bb8c62368970e841590d" name="mapped_type"><type>T</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1aac2209f5438d7f44f7690e7481665717" name="vector_type"><type><classname>::boost::compute::vector</classname>&lt; std::pair&lt; Key, T &gt; &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1acb383872cd5cef4f0eaaa04cd2c53770" name="value_type"><type>vector_type::value_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a553a26eae5aa05fe42cf4e05f8390c8d" name="size_type"><type>vector_type::size_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a7074def5b24339a4a509339434fbe66e" name="difference_type"><type>vector_type::difference_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a27347b23b87aecefbf77ae897dfc54e7" name="reference"><type>vector_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1aed6679384b6f2edc5c3460d2ac165028" name="const_reference"><type>vector_type::const_reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a0a000aec14a937a98003681c965ed7f6" name="pointer"><type>vector_type::pointer</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a564524fe2e3cad32f836d1417e3f164c" name="const_pointer"><type>vector_type::const_pointer</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1add35208a28fe45452bbcbcf8a88188e8" name="iterator"><type><classname>vector_type::iterator</classname></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1abceab0770f46ee85ce40bddd15668dd9" name="const_iterator"><type><classname>vector_type::const_iterator</classname></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a6c94281eac9c581cf7016493f3e78b9f" name="reverse_iterator"><type>vector_type::reverse_iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a78f795590af7820ba76332a5c1675e8a" name="const_reverse_iterator"><type>vector_type::const_reverse_iterator</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a490698bdbda0647a0ca29bb0cbda1c46" specifiers="explicit"><parameter name="context"><paramtype>const context &amp;</paramtype><default>system::default_context()</default></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1flat__map_1a799e79ed2942e5258edafc4457875701"><parameter name="other"><paramtype>const flat_map&lt; Key, T &gt; &amp;</paramtype></parameter></constructor>
@@ -13152,18 +13152,18 @@ wait_guard&lt;event&gt; guard(e);
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1flat__set" name="flat_set"><template>
       <template-type-parameter name="T"/>
-    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1abd185ac1fedbc26f1baf05e014f84cfd" name="key_type"><type>T</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1af1cfaa8208e3d19eacadd37a63e4e323" name="value_type"><type><classname>vector</classname>&lt; T &gt;::value_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a8d11937f747b1811df5523ee130e93c0" name="size_type"><type><classname>vector</classname>&lt; T &gt;::size_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a7a8b7bd64900484c5133fa2e9f698067" name="difference_type"><type><classname>vector</classname>&lt; T &gt;::difference_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1acec590d9e14f2acb0e08d721ce0543a4" name="reference"><type><classname>vector</classname>&lt; T &gt;::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1afa5a23681c4e11590729a49bd4d86258" name="const_reference"><type><classname>vector</classname>&lt; T &gt;::const_reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a420d35869e34b7a45b044c72a328a7d0" name="pointer"><type><classname>vector</classname>&lt; T &gt;::pointer</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a426068fd05a3b35b25e73bc8422148fd" name="const_pointer"><type><classname>vector</classname>&lt; T &gt;::const_pointer</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a399968b5b7a605cb5d2214df87cc5f5c" name="iterator"><type><classname>vector</classname>&lt; T &gt;::iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1aebdbbf447084284bb8143aa487e5c1d5" name="const_iterator"><type><classname>vector</classname>&lt; T &gt;::const_iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1aca99a42424591f7782d6be26bbff2602" name="reverse_iterator"><type><classname>vector</classname>&lt; T &gt;::reverse_iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a10b49cf77ad37b69639ac9c2c0142980" name="const_reverse_iterator"><type><classname>vector</classname>&lt; T &gt;::const_reverse_iterator</type></typedef>
+    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a044dd294699c649f0eb810e8869da271" name="key_type"><type>T</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1aad72f8145812675739b4bd3fad7f2bcf" name="value_type"><type><classname>vector</classname>&lt; T &gt;::value_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a6c557ded9c6d8515a556501b64fadf40" name="size_type"><type><classname>vector</classname>&lt; T &gt;::size_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a6f0ccd7d738eb01ee2791e85d62593a6" name="difference_type"><type><classname>vector</classname>&lt; T &gt;::difference_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a3597285455f0053c270ef6d16a326587" name="reference"><type><classname>vector</classname>&lt; T &gt;::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a67dd955e64f086e915ca377385623231" name="const_reference"><type><classname>vector</classname>&lt; T &gt;::const_reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a38affb4c4e1a35558259fe59d4e4fb7b" name="pointer"><type><classname>vector</classname>&lt; T &gt;::pointer</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a1e7314e2a74a74dae583ce85ac830d06" name="const_pointer"><type><classname>vector</classname>&lt; T &gt;::const_pointer</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1ab4cb2cacd1258ccd3f12b3cf2239f808" name="iterator"><type><classname>vector</classname>&lt; T &gt;::iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a9c5cf55cf1dc655b697d8b5883adbe01" name="const_iterator"><type><classname>vector</classname>&lt; T &gt;::const_iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1ae598552e74aef0f8afaded3253f345a5" name="reverse_iterator"><type><classname>vector</classname>&lt; T &gt;::reverse_iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a83854f2fafa9342ce0d7f638bdb114fd" name="const_reverse_iterator"><type><classname>vector</classname>&lt; T &gt;::const_reverse_iterator</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1ae67dbb5efdd82488a6f2751544416c29" specifiers="explicit"><parameter name="context"><paramtype>const context &amp;</paramtype><default>system::default_context()</default></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1flat__set_1a53f5a436ab0b168b6e8168c2a6d6b607"><parameter name="other"><paramtype>const flat_set&lt; T &gt; &amp;</paramtype></parameter></constructor>
@@ -13355,11 +13355,11 @@ wait_guard&lt;event&gt; guard(e);
       <template-type-parameter name="T"/>
     </template><purpose>A mapped view of host memory. </purpose><description><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1mapped__view">mapped_view</link> class simplifies mapping host-memory to a compute device. This allows for host-allocated memory to be used with the Boost.Compute algorithms.</para><para>The following example shows how to map a simple C-array containing data on the host to the device and run the reduce() algorithm to calculate the sum:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>buffer </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1a163bcbee5fb936df606fe5737073f80f" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1a1503a644c4afe11426da27d3a346f7bc" name="size_type"><type>size_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1abb7740d0b199d52a5780ba9ba8a998b6" name="difference_type"><type>ptrdiff_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1aae2ec158de19ea2e9996a1f9c6796a6e" name="iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1a2d3f6ba6731a456a3d1275e4615cdcb6" name="const_iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1adb2e4a5dcd6ec27beab02749353ee243" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1a8fa651de3cd4e6fd0a014cb1fe3e2670" name="size_type"><type>size_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1aa8e3da53ca9c0bf238a05ca2444f44a6" name="difference_type"><type>ptrdiff_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1af3ce333e299d3ca654ece5905d594732" name="iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1a7a9456b76e18edbaef10e8ec1daf021a" name="const_iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1a04ca49e854e1d71f5c6dfca1c768057e"><purpose>Creates a null <link linkend="doxygen.header_reference.classboost_1_1compute_1_1mapped__view">mapped_view</link> object. </purpose></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1a5e4ad54e102caf6afcb722020c2f8dbc"><parameter name="host_ptr"><paramtype>T *</paramtype></parameter><parameter name="n"><paramtype>size_type</paramtype></parameter><parameter name="context"><paramtype>const context &amp;</paramtype><default>system::default_context()</default></parameter><description><para>Creates a <link linkend="doxygen.header_reference.classboost_1_1compute_1_1mapped__view">mapped_view</link> for <computeroutput>host_ptr</computeroutput> with <computeroutput>n</computeroutput> elements. After constructing a <link linkend="doxygen.header_reference.classboost_1_1compute_1_1mapped__view">mapped_view</link> the data is available for use by a compute device. Use the <computeroutput><link linkend="doxygen.header_reference.classboost_1_1compute_1_1mapped__view_1abeaa10d4a7954c7b167a113c4b61fa67">unmap()</link></computeroutput> method to make the updated data available to the host. </para></description></constructor>
@@ -13527,9 +13527,9 @@ wait_guard&lt;event&gt; guard(e);
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1stack" name="stack"><template>
       <template-type-parameter name="T"/>
-    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1stack_1ab927105069b6f700d321321c8072d4a1" name="container_type"><type><classname>vector</classname>&lt; T &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1stack_1a21fd2e9ee754349c0da41c74140c7d0c" name="size_type"><type>container_type::size_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1stack_1a503179e626675275d3c58e64ec47e291" name="value_type"><type>container_type::value_type</type></typedef>
+    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1stack_1aa3992b7731844adef6ebe3de172f9f75" name="container_type"><type><classname>vector</classname>&lt; T &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1stack_1a14ea8ed55f686f4aee5dfa7ff5886bf1" name="size_type"><type>container_type::size_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1stack_1a5850c542f8bb10fea6c42f1c5d06eb38" name="value_type"><type>container_type::value_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1stack_1ab948902fa53e8fe28649c9044bef3db0"/>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1stack_1aed1dc90be78d1f62cb640142f9394ae0"><parameter name="other"><paramtype>const stack&lt; T &gt; &amp;</paramtype></parameter></constructor>
@@ -13860,8 +13860,8 @@ wait_guard&lt;event&gt; guard(e);
 <method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1a6d771a66e8bed8e4671f5e7592d63854" name="resize"><type>void</type><parameter name="size"><paramtype>size_t</paramtype></parameter><parameter name="value"><paramtype>T</paramtype><default>T()</default></parameter></method>
 <method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1a775892d2e437496a7c144861029ac15e" name="operator[]"><type><emphasis>unspecified</emphasis></type><parameter name="index"><paramtype>size_t</paramtype></parameter></method>
 <method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1ab865902ed9cb04e3710107e705366a16" name="operator[]" cv="const"><type><emphasis>unspecified</emphasis></type><parameter name="index"><paramtype>size_t</paramtype></parameter></method>
-<method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1a1381ff643d7b0e0e921122e3649646e8" name="min" cv="const"><type>T()</type></method>
-<method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1aa9c51c7e0dfab8cc3766d1136b1795d4" name="max" cv="const"><type>T()</type></method>
+<method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1a296a339abf8b50c6fd7c31b76c2df343" name="min" cv="const"><type>T</type></method>
+<method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1a9433866cedc9fa6ac4cb6a64bf5e563e" name="max" cv="const"><type>T</type></method>
 <method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1a097544aa706b22f74cb41399c3ffdcf3" name="sum" cv="const"><type>T</type></method>
 <method id="doxygen.header_reference.classboost_1_1compute_1_1valarray_1a4fc6673771b3a8d36ac1bc930c1dfbe1" name="apply" cv="const"><type>valarray&lt; T &gt;</type><template>
           <template-type-parameter name="UnaryFunction"/>
@@ -14047,18 +14047,18 @@ boost::compute::reverse(vec.begin(), vec.end(), queue);
 boost::compute::fill(vec.begin(), vec.end(), 1, queue);
 </programlisting></para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1array">array&lt;T, N&gt;</link>, buffer </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a734e174ca969dbed7fbe1cd1e142f1c3" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1ae985b1eb2ea400ce94b74e97833cb586" name="allocator_type"><type>Alloc</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1aaa3d7b76bd6aa96c3ffb848c3f873531" name="size_type"><type>allocator_type::size_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a787627eb2c7c28db387d9d1b274df7ad" name="difference_type"><type>allocator_type::difference_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a530f94275abd77b110d9cb9d25b2db88" name="reference"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a5854fb9262fd95ecd03257d4db1e4cc8" name="const_reference"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a581c383fbbee2206ac72654c13ea36fc" name="pointer"><type>allocator_type::pointer</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a982ad490e1b786a9a1024fe2d117fab1" name="const_pointer"><type>allocator_type::const_pointer</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1afab28cb49f566c45a7ee5c57ee02c9a2" name="iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a65c9a837231c4ea06aa9861867f6bac7" name="const_iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a423dffc917a18530d9d198f1a3705215" name="reverse_iterator"><type>std::reverse_iterator&lt; <classname>iterator</classname> &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1af1217f2cfc124e3e1c2bd1b59d8cec6f" name="const_reverse_iterator"><type>std::reverse_iterator&lt; <classname>const_iterator</classname> &gt;</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a2c34ca8a08e03f2a316459d695777356" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1abec312120f4ae9477de3100915621bf8" name="allocator_type"><type>Alloc</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a5cf578688a9b09b3e8c0f2d336ea688f" name="size_type"><type>allocator_type::size_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a1981a15946de337581968e6dc1708527" name="difference_type"><type>allocator_type::difference_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1ab786df24ebcf3a0494f3a3e2ce045724" name="reference"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a8f0b5e7e058612567d6043e5172aa0e6" name="const_reference"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a7e5ebdbb165c0b9eb51a202bbc421752" name="pointer"><type>allocator_type::pointer</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a10ec9ef2eb335994b87a884554e08150" name="const_pointer"><type>allocator_type::const_pointer</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1aef2e48662bd9ed4a866300bbf91d6eb0" name="iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1ad9948dcdaee21c2a90101c786e7ebf4c" name="const_iterator"><type><classname>buffer_iterator</classname>&lt; T &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1ae9095a74b60158333a359764ccb3b06b" name="reverse_iterator"><type>std::reverse_iterator&lt; <classname>iterator</classname> &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a8c98b012e9f498341e9de59908917781" name="const_reverse_iterator"><type>std::reverse_iterator&lt; <classname>const_iterator</classname> &gt;</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1vector_1a6a2ad89d0cfb94c4003d08e2e04e7f2e" specifiers="explicit"><parameter name="context"><paramtype>const context &amp;</paramtype><default>system::default_context()</default></parameter><purpose>Creates an empty vector in <computeroutput>context</computeroutput>. </purpose></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1vector_1ac820db8458a6a7c4ef568b83979ff060" specifiers="explicit"><parameter name="count"><paramtype>size_type</paramtype></parameter><parameter name="context"><paramtype>const context &amp;</paramtype><default>system::default_context()</default></parameter><description><para>Creates a vector with space for <computeroutput>count</computeroutput> elements in <computeroutput>context</computeroutput>.</para><para>Note that unlike <computeroutput>std::vector's</computeroutput> constructor, this will not initialize the values in the container. Either call the vector constructor which takes a value to initialize with or use the fill() algorithm to set the initial values.</para><para>For example: <programlisting language="c++">// create a vector on the device with space for ten ints
@@ -15184,7 +15184,7 @@ int data[] = { 1, 2, 3, 4 };
       <template-type-parameter name="T"/>
     </template><description><para>The <link linkend="doxygen.header_reference.structboost_1_1compute_1_1as">as</link> function converts its argument to type <computeroutput>T</computeroutput> (similar to reinterpret_cast&lt;T&gt;).</para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.structboost_1_1compute_1_1convert">convert&lt;T&gt;</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.structboost_1_1compute_1_1as_1a6fdc3a05e423421abfeb5b00fe7ecf1d" name="result_type"><type>T</type></typedef>
+</para></description><typedef id="doxygen.header_reference.structboost_1_1compute_1_1as_1a106ca83d69fde10404f7ea514bb6ff9b" name="result_type"><type>T</type></typedef>
 <method-group name="public member functions">
 </method-group>
 </struct>
@@ -15815,7 +15815,7 @@ auto less_than_seven = boost::compute::bind(less&lt;int&gt;(), _1, 7);
       <template-type-parameter name="T"/>
     </template><description><para>The <link linkend="doxygen.header_reference.structboost_1_1compute_1_1convert">convert</link> function converts its argument to type <computeroutput>T</computeroutput> (similar to static_cast&lt;T&gt;).</para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.structboost_1_1compute_1_1as">as&lt;T&gt;</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.structboost_1_1compute_1_1convert_1a607e232279a5923f3ca65bc26b166189" name="result_type"><type>T</type></typedef>
+</para></description><typedef id="doxygen.header_reference.structboost_1_1compute_1_1convert_1a1722578b74be474f609d770a3da10326" name="result_type"><type>T</type></typedef>
 <method-group name="public member functions">
 </method-group>
 </struct>
@@ -15959,11 +15959,11 @@ auto less_than_seven = boost::compute::bind(less&lt;int&gt;(), _1, 7);
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1field" name="field"><template>
       <template-type-parameter name="T"/>
-    </template><description><para>Returns the named field from a value.</para><para>The template-type <computeroutput>T</computeroutput> specifies the field's value type. Note that the value type must match the actual type of the field otherwise runtime compilation or logic errors may occur.</para><para>For example, to access the <computeroutput>second</computeroutput> field in a <computeroutput>std::pair&lt;int, float&gt;</computeroutput> object: <programlisting language="c++">field&lt;float&gt;("second");
-</programlisting></para><para>This can also be used with vector types to access individual components as well as perform swizzle operations.</para><para>For example, to access the first and third components of an <computeroutput>int</computeroutput> vector type (e.g. <computeroutput>int4</computeroutput>): <programlisting language="c++">field&lt;int2_&gt;("xz");
+    </template><description><para>Returns the named field from a value.</para><para>The template-type <computeroutput>T</computeroutput> specifies the field's value type. Note that the value type must match the actual type of the field otherwise runtime compilation or logic errors may occur.</para><para>For example, to access the <computeroutput>second</computeroutput> field in a <computeroutput>std::pair&lt;int, float&gt;</computeroutput> object: <programlisting language="c++"><link linkend="doxygen.header_reference.classboost_1_1compute_1_1field_1ad0d6ec22c85930c54542931762d5e0be">field&lt;float&gt;</link>("second");
+</programlisting></para><para>This can also be used with vector types to access individual components as well as perform swizzle operations.</para><para>For example, to access the first and third components of an <computeroutput>int</computeroutput> vector type (e.g. <computeroutput>int4</computeroutput>): <programlisting language="c++"><link linkend="doxygen.header_reference.classboost_1_1compute_1_1field_1ad0d6ec22c85930c54542931762d5e0be">field&lt;int2_&gt;</link>("xz");
 </programlisting></para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.structboost_1_1compute_1_1get">get&lt;N&gt;</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1field_1ab1a48209b7b898f44ba3365167793172" name="result_type"><purpose>Result type. </purpose><type>T</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1field_1aea139c4e0acb5df02dcf21ad3d0d9767" name="result_type"><purpose>Result type. </purpose><type>T</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1field_1ad0d6ec22c85930c54542931762d5e0be"><parameter name="field"><paramtype>const std::string &amp;</paramtype></parameter><purpose>Creates a new field functor with <computeroutput>field</computeroutput>. </purpose></constructor>
 </method-group>
@@ -16536,10 +16536,10 @@ auto less_than_seven = boost::compute::bind(less&lt;int&gt;(), _1, 7);
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1identity" name="identity"><template>
       <template-type-parameter name="T"/>
-    </template><description><para>Identity function which simply returns its input.</para><para>For example, to directly copy values using the transform() algorithm: <programlisting language="c++">transform(input.begin(), input.end(), output.begin(), identity&lt;int&gt;(), queue);
+    </template><description><para>Identity function which simply returns its input.</para><para>For example, to directly copy values using the transform() algorithm: <programlisting language="c++">transform(input.begin(), input.end(), output.begin(), <link linkend="doxygen.header_reference.classboost_1_1compute_1_1identity_1af4f662af3892759ae7a82381e9d64192">identity&lt;int&gt;</link>(), queue);
 </programlisting></para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.structboost_1_1compute_1_1as">as&lt;T&gt;</link>, <link linkend="doxygen.header_reference.structboost_1_1compute_1_1convert">convert&lt;T&gt;</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1identity_1a06b865f44797be4decc140b5678e736c" name="result_type"><purpose>Identity function result type. </purpose><type>T</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1identity_1acdec66a03a462abd1a87ef7d5e32b4e6" name="result_type"><purpose>Identity function result type. </purpose><type>T</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1identity_1af4f662af3892759ae7a82381e9d64192"><purpose>Creates a new identity function. </purpose></constructor>
 </method-group>
@@ -19263,9 +19263,9 @@ auto less_than_seven = boost::compute::bind(less&lt;int&gt;(), _1, 7);
       <template-type-parameter name="T"/>
     </template><purpose>An iterator for values in a buffer. </purpose><description><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator">buffer_iterator</link> class iterates over values in a memory buffer on a compute device. It is the most commonly used iterator in Boost.Compute and is used by the <link linkend="doxygen.header_reference.classboost_1_1compute_1_1vector">vector&lt;T&gt;</link> and <link linkend="doxygen.header_reference.classboost_1_1compute_1_1array">array&lt;T, N&gt;</link> container classes.</para><para>Buffer iterators store a reference to a memory buffer along with an index into that memory buffer.</para><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator">buffer_iterator</link> class allows for arbitrary OpenCL memory objects (including those created outside of Boost.Compute) to be used with the Boost.Compute algorithms (such as transform() and sort()). For example, to reverse the contents of an OpenCL memory buffer containing a set of integers:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>buffer, make_buffer_iterator() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1a00411fd98211d0c053f26b055ecf7438" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1a0ede885cc3648b7d5868ad45cf879822" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1a7b9bd7366cd8e27350d91e6c2c7cb446" name="difference_type"><type>super_type::difference_type</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1a865297b15b42e588bba75be69303bff9" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1a6f893ee136bc35727b289b3a1215f811" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1ac2ebc9bbbb1c54bdcf17020804b8c71c" name="difference_type"><type>super_type::difference_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1a345ccd3293bb1bfc59d2eb3f6bbd74e5"/>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator_1a88c3b774dbb159bfdbc545b96ab7ce02"><parameter name="buffer"><paramtype>const buffer &amp;</paramtype></parameter><parameter name="index"><paramtype>size_t</paramtype></parameter></constructor>
@@ -19427,9 +19427,9 @@ auto less_than_seven = boost::compute::bind(less&lt;int&gt;(), _1, 7);
       <template-type-parameter name="T"/>
     </template><purpose>An iterator for a buffer in the <computeroutput>constant</computeroutput> memory space. </purpose><description><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator">constant_buffer_iterator</link> class provides an iterator for values in a buffer in the <computeroutput>constant</computeroutput> memory space.</para><para>For iterating over values in the <computeroutput>global</computeroutput> memory space (the most common case), use the <link linkend="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator">buffer_iterator</link> class.</para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator">buffer_iterator</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1abcea35892e027d471f7b987a84f8ebe1" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1a46472aaa1df77b522f8a939277b15277" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1a876b98808fabd9a0a19fb1a83184aa22" name="difference_type"><type>super_type::difference_type</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1a0ec79e16772a81ce62ecc94beb824949" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1a522ffb0e050e4460ed0c708f824eb922" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1a43e0a92abd82a9a2d474944d259ddba9" name="difference_type"><type>super_type::difference_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1a83f4644fade3012801246ca892343de4"/>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1constant__buffer__iterator_1a5536d90b3537f9b48016d9083d38f549"><parameter name="buffer"><paramtype>const buffer &amp;</paramtype></parameter><parameter name="index"><paramtype>size_t</paramtype></parameter></constructor>
@@ -19600,9 +19600,9 @@ auto less_than_seven = boost::compute::bind(less&lt;int&gt;(), _1, 7);
       <template-type-parameter name="T"/>
     </template><purpose>An iterator with a constant value. </purpose><description><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator">constant_iterator</link> class provides an iterator which returns a constant value when dereferenced.</para><para>For example, this could be used to implement the fill() algorithm in terms of the copy() algorithm by copying from a range of constant iterators:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>make_constant_iterator() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1a56142a5d82ce527d98b7b084128d0a4c" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1aaa171295a86ac7174eba88f4aa728f91" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1aa3557e8b835341047674d999d05f2214" name="difference_type"><type>super_type::difference_type</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1a048531c4f21f859587b4aebdcc9731a0" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1a3a418336bc993ae80ef72b8201e4bc2d" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1aaf26a557011e39d0e731e9b28f01207a" name="difference_type"><type>super_type::difference_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1ab760b6c866f14a6b22c67cc0f34a2b1d"><parameter name="value"><paramtype>const T &amp;</paramtype></parameter><parameter name="index"><paramtype>size_t</paramtype><default>0</default></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator_1a1b85b06386770ffa1e920e65f063539a"><parameter name="other"><paramtype>const <classname>constant_iterator</classname>&lt; T &gt; &amp;</paramtype></parameter></constructor>
@@ -19760,9 +19760,9 @@ auto less_than_seven = boost::compute::bind(less&lt;int&gt;(), _1, 7);
       <template-type-parameter name="T"/>
     </template><purpose>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator">counting_iterator</link> class implements a counting iterator. </purpose><description><para>A counting iterator returns an internal value (initialized with <computeroutput>init</computeroutput>) which is incremented each time the iterator is incremented.</para><para>For example, this could be used to implement the iota() algorithm in terms of the copy() algorithm by copying from a range of counting iterators:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>make_counting_iterator() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1a58d70d508182ce244554251c96a41abe" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1a498d3fb94cca6864eb38dd22980f154d" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1a4b208c5c748435c4b24df0d55ddf894c" name="difference_type"><type>super_type::difference_type</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1ae334deb308139e8f80e70192fae384a8" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1ac85f715e86292ebe5686382f8aae45f3" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1a9bea7ef264bf02b9d2a2c7e9000a4b12" name="difference_type"><type>super_type::difference_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1a1b0b776810ed79f0acef10b95b0af1f7"><parameter name="init"><paramtype>const T &amp;</paramtype></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1counting__iterator_1a64bd6e5f852947e59f7f93d71639ce3a"><parameter name="other"><paramtype>const <classname>counting_iterator</classname>&lt; T &gt; &amp;</paramtype></parameter></constructor>
@@ -19928,9 +19928,9 @@ For example, to create a counting iterator which returns unsigned integers and i
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator" name="discard_iterator"><purpose>An iterator which discards all values written to it. </purpose><description><para><formalpara><title>See Also:</title><para>make_discard_iterator(), <link linkend="doxygen.header_reference.classboost_1_1compute_1_1constant__iterator">constant_iterator</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1a196ee36257a04ab4e3f86dd22981c172" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1a27fd9e81d8089366756357d6e9f4d5a7" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1ada04d7d8411da8ae7f062c6f5841b2e6" name="difference_type"><type>super_type::difference_type</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1acd28c6f08640b976ef09d42e69147cde" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1a52cb299925159ed7cfb5a1c1ff267708" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1a6bc3a5c3c759e32a2a580dbeef36d9a0" name="difference_type"><type>super_type::difference_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1a08dd9db87707d3ff6ad4fecb423cb886"><parameter name="index"><paramtype>size_t</paramtype><default>0</default></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1discard__iterator_1ab9bf2ea4b59b7fe7143b1e6202315c41"><parameter name="other"><paramtype>const <classname>discard_iterator</classname> &amp;</paramtype></parameter></constructor>
@@ -20086,10 +20086,10 @@ For example, to create a counting iterator which returns unsigned integers and i
       <template-type-parameter name="Function"/>
     </template><purpose>Iterator which returns the result of a function when dereferenced. </purpose><description><para>For example:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>make_function_input_iterator() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1ad75fcd503520b2bab2ee4c6fd6aad432" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a0d0865af242aeb6c323c2367e09c17ac" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1ac65c82cc065c2b500cf3c1620b185d58" name="difference_type"><type>super_type::difference_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a53b60978d9863094dbc020d82dd34d9a" name="function"><type>Function</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a6f6aebf51aed6641d0d71233c5db6881" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a2d3b96ddba8721bc5ec3560b5cf1b280" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a5da16cdb7c98b5bdd2168a85df74b8bd" name="difference_type"><type>super_type::difference_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a43946b1f15a5e162a8f5ed84f5c0d4d0" name="function"><type>Function</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a68f35681634bd54c7c926a948894befc"><parameter name="function"><paramtype>const Function &amp;</paramtype></parameter><parameter name="index"><paramtype>size_t</paramtype><default>0</default></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1function__input__iterator_1a044b53d4d91396bf7903ecd53752e233"><parameter name="other"><paramtype>const <classname>function_input_iterator</classname>&lt; Function &gt; &amp;</paramtype></parameter></constructor>
@@ -20257,12 +20257,12 @@ For example, to create a counting iterator which returns unsigned integers and i
       <template-type-parameter name="IndexIterator"/>
     </template><purpose>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator">permutation_iterator</link> class provides a permuation iterator. </purpose><description><para>A permutation iterator iterates over a value range and an index range. When dereferenced, it returns the value from the value range using the current index from the index range.</para><para>For example, to reverse a range using the copy() algorithm and a permutation sequence:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>make_permutation_iterator() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1af9ad41cb78ee435a89f982030e8c80c6" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1aaa878c409b1731657d344dacf5fc41ed" name="value_type"><type>super_type::value_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a7658f2226d784c005fcd97c06f94ad2b" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a788a33745b609d6c4bd4c089aada46d6" name="base_type"><type>super_type::base_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a0655b6e9ba478ebd83de070013399db3" name="difference_type"><type>super_type::difference_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a1e47223a3b9ef5d6a4e8d5557ddc247c" name="index_iterator"><type>IndexIterator</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a16cc19a1a33e15247b35fe24ca4db602" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1af431b81c292370b3d9e20639c5d3e38e" name="value_type"><type>super_type::value_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a2858a4d18df93ed6f7e74d27fec180d4" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1aa8acad8855f0c7831ca94d18fc90c30d" name="base_type"><type>super_type::base_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a5755999c8827e29f7c4edef0fe25bfc1" name="difference_type"><type>super_type::difference_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a560914245290c01a9053c38728fe41bd" name="index_iterator"><type>IndexIterator</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a46f4d5749474846f737e88c62ddb04fa"><parameter name="e"><paramtype>ElementIterator</paramtype></parameter><parameter name="i"><paramtype>IndexIterator</paramtype></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1permutation__iterator_1a739d3c1a192e8512e24b1bcb135966bd"><parameter name="other"><paramtype>const <classname>permutation_iterator</classname>&lt; ElementIterator, IndexIterator &gt; &amp;</paramtype></parameter></constructor>
@@ -20426,11 +20426,11 @@ For example, to create a counting iterator which returns unsigned integers and i
       <template-type-parameter name="Iterator"/>
     </template><purpose>An iterator adaptor with adjustable iteration step. </purpose><description><para>The strided iterator adaptor skips over multiple elements each time it is incremented or decremented.</para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator">buffer_iterator</link>, make_strided_iterator(), make_strided_iterator_end() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a18521510223b7838b2394409a24aa183" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a4f12b185b632d5cc711f13110c161129" name="value_type"><type>super_type::value_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a50b96585a0e0031bc4fcde4a53235ccf" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a691a0f913349d380b54739af11c58994" name="base_type"><type>super_type::base_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1ab20e87be93b234cbe24ad13f3e8cfd50" name="difference_type"><type>super_type::difference_type</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a7d593d630a965968c92c4c7b1c6821bb" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a96624c20eca81088a352a41f41f8d3d9" name="value_type"><type>super_type::value_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a0bda25b8706c2b608b5c477ab29f4d1d" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a59d3c8c129e59aef1d6ff544f3587c81" name="base_type"><type>super_type::base_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1ad5ed056ef68dc199193a408b30e4123f" name="difference_type"><type>super_type::difference_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a9f120aa66554960116997ae1c4030d2d"><parameter name="iterator"><paramtype>Iterator</paramtype></parameter><parameter name="stride"><paramtype>difference_type</paramtype></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1strided__iterator_1a778ea031986cbbf72ac206d4419ca840"><parameter name="other"><paramtype>const <classname>strided_iterator</classname>&lt; Iterator &gt; &amp;</paramtype></parameter></constructor>
@@ -20616,12 +20616,12 @@ boost::compute::copy(
       <template-type-parameter name="UnaryFunction"/>
     </template><purpose>A transform iterator adaptor. </purpose><description><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator">transform_iterator</link> adaptor applies a unary function to each element produced from the underlying iterator when dereferenced.</para><para>For example, to copy from an input range to an output range while taking the absolute value of each element:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para><link linkend="doxygen.header_reference.classboost_1_1compute_1_1buffer__iterator">buffer_iterator</link>, make_transform_iterator() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1a4e292bdfd5ce958165d67eeb8273367a" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1a0d250d8d5525f1351580292cb03c50b5" name="value_type"><type>super_type::value_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1ab9f08250ac90949fb99bf904893c4ced" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1a32a80d40b6fdc0414d14d6f008840e61" name="base_type"><type>super_type::base_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1a48e8fb8267f306f36ac4ce627e90daff" name="difference_type"><type>super_type::difference_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1af9dbd9b7fa9b9a8557749938d7ccbc4e" name="unary_function"><type>UnaryFunction</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1ac65cff5a3544b7d947e1ef76d40d9279" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1af2fc81472b9fa1fc2e58e0093f3a270f" name="value_type"><type>super_type::value_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1ae5c3d6f0625f0f0b0c1c6a4050aac65c" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1a7351dbb09b223168e262b85eeda41d54" name="base_type"><type>super_type::base_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1aa4944c9902934e381f05ea57082e404d" name="difference_type"><type>super_type::difference_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1a700d9f4e7d3c882ce8014a31550ef9fd" name="unary_function"><type>UnaryFunction</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1acebdc8b40928e7eced007ae3d88465a1"><parameter name="iterator"><paramtype>InputIterator</paramtype></parameter><parameter name="transform"><paramtype>UnaryFunction</paramtype></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1transform__iterator_1a093d71af9e6a794bdcb84394a34390a7"><parameter name="other"><paramtype>const <classname>transform_iterator</classname>&lt; InputIterator, UnaryFunction &gt; &amp;</paramtype></parameter></constructor>
@@ -20786,11 +20786,11 @@ For example, to create an iterator which returns the square-root of each value i
       <template-type-parameter name="IteratorTuple"/>
     </template><purpose>A zip iterator adaptor. </purpose><description><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator">zip_iterator</link> class combines values from multiple input iterators. When dereferenced it returns a tuple containing each value at the current position in each input range.</para><para><formalpara><title>See Also:</title><para>make_zip_iterator() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1afef56f1c03a4f3880ebbbef1052e8058" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1ae64b9c08dfc6a2f2fce6a048ea19924f" name="value_type"><type>super_type::value_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1aa91151ef25564cb9d9404531f42a8643" name="reference"><type>super_type::reference</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1afcf4e2653f7557db6714b40cfc1c5e20" name="difference_type"><type>super_type::difference_type</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1a0593a20c81a935f946006e6b93fb13e6" name="iterator_tuple"><type>IteratorTuple</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1adcf299b0eb99d181ae2b47a7a81160e4" name="super_type"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1a9404e3d03ac56e044d7675f8a99cc926" name="value_type"><type>super_type::value_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1a7ccd08a5e3bd566fb74ba396ec1cd5c2" name="reference"><type>super_type::reference</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1a0ec522916d7548a6c658377daaf1ded9" name="difference_type"><type>super_type::difference_type</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1a5bc2b54fbc83b74a967629e5663f949e" name="iterator_tuple"><type>IteratorTuple</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1a7ae062950c96252178e889afc1d1f7c4"><parameter name="iterators"><paramtype>IteratorTuple</paramtype></parameter></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1zip__iterator_1a94e8c0bb9541539cbe17ec8dadcb9f5f"><parameter name="other"><paramtype>const <classname>zip_iterator</classname>&lt; IteratorTuple &gt; &amp;</paramtype></parameter></constructor>
@@ -20959,7 +20959,7 @@ For example, to zip together iterators from three vectors (<computeroutput>a</co
 <class id="doxygen.header_reference.classboost_1_1compute_1_1local__buffer" name="local_buffer"><template>
       <template-type-parameter name="T"/>
     </template><purpose>Represents a local memory buffer on the device. </purpose><description><para>The <link linkend="doxygen.header_reference.classboost_1_1compute_1_1local__buffer">local_buffer</link> class represents a block of local memory on a compute device.</para><para>This class is most commonly used to set local memory arguments for compute kernels: <programlisting language="c++">// set argument to a local buffer with storage for 32 float's
-kernel.set_arg(0, local_buffer&lt;float&gt;(32));
+kernel.set_arg(0, <link linkend="doxygen.header_reference.classboost_1_1compute_1_1local__buffer_1abfd551a184c9a229f80f432fff414cb6">local_buffer&lt;float&gt;</link>(32));
 </programlisting></para><para><formalpara><title>See Also:</title><para>buffer, kernel </para>
 </formalpara>
 </para></description><method-group name="public member functions">
@@ -21110,11 +21110,11 @@ kernel.set_arg(0, local_buffer&lt;float&gt;(32));
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr" name="svm_ptr"><template>
       <template-type-parameter name="T"/>
-    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1a1d38ca55e96c7739fc163e4fa3e02bff" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1a52beb7ada6967afa1d305090dc7e0540" name="difference_type"><type>std::ptrdiff_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1a6a937b0a4ef83e2b1404d48dc8d99b3b" name="pointer"><type>T *</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1adbd26781028e964e083cc7c2fe523bc2" name="reference"><type>T &amp;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1a04c594dc3b03252b81491b0c634bd1c5" name="iterator_category"><type>std::random_access_iterator_tag</type></typedef>
+    </template><typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1a9c4068a6832123e9e228efb6ef86b4aa" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1ab67087622262c2f680d40681388cfe55" name="difference_type"><type>std::ptrdiff_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1af3b0ca53903c40c5b9e071b102c40e69" name="pointer"><type>T *</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1accc7bab6f984771e91d5d6362707d937" name="reference"><type>T &amp;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1a0f9617a1d4cd9d97839f4e4366f671d0" name="iterator_category"><type>std::random_access_iterator_tag</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1aec9cb7e01e4718997f31fcc431f773fb"/>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1svm__ptr_1a9781e7e844515e9c7d63826a8812e214"><parameter name="ptr"><paramtype>void *</paramtype></parameter><parameter name="context"><paramtype>const context &amp;</paramtype></parameter></constructor>
@@ -21562,7 +21562,7 @@ kernel.set_arg(0, local_buffer&lt;float&gt;(32));
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1discrete__distribution" name="discrete_distribution"><template>
       <template-type-parameter name="IntType"><default>uint_</default></template-type-parameter>
-    </template><purpose>Produces random integers on the interval [0, n), where probability of each integer is given by the weight of the ith integer divided by the sum of all weights. </purpose><description><para>The following example shows how to setup a discrete distribution to produce 0 and 1 with equal probability</para><para><programlisting language="c++"/> </para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1discrete__distribution_1a49114f5b24eb97cdce900cefe7e77d77" name="result_type"><type>IntType</type></typedef>
+    </template><purpose>Produces random integers on the interval [0, n), where probability of each integer is given by the weight of the ith integer divided by the sum of all weights. </purpose><description><para>The following example shows how to setup a discrete distribution to produce 0 and 1 with equal probability</para><para><programlisting language="c++"/> </para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1discrete__distribution_1a7839eaa209d39cea77dcd41dd1c2caa7" name="result_type"><type>IntType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1discrete__distribution_1af583a4c6a1df475bea5c84d921b5cb18"><description><para>Creates a new discrete distribution with a single weight p = { 1 }. This distribution produces only zeroes. </para></description></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1discrete__distribution_1acdd9c33f6008bb10d0be6ac09fbabe8c"><template>
@@ -21721,7 +21721,7 @@ kernel.set_arg(0, local_buffer&lt;float&gt;(32));
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1linear__congruential__engine" name="linear_congruential_engine"><template>
       <template-type-parameter name="T"><default>uint_</default></template-type-parameter>
-    </template><purpose>'Quick and Dirty' linear congruential engine </purpose><description><para>Quick and dirty linear congruential engine to generate low quality random numbers very quickly. For uses in which good quality of random numbers is required(Monte-Carlo Simulations), use other engines like Mersenne Twister instead. </para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1linear__congruential__engine_1a8e513fab05a8bd613e6357a529327617" name="result_type"><type>T</type></typedef>
+    </template><purpose>'Quick and Dirty' linear congruential engine </purpose><description><para>Quick and dirty linear congruential engine to generate low quality random numbers very quickly. For uses in which good quality of random numbers is required(Monte-Carlo Simulations), use other engines like Mersenne Twister instead. </para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1linear__congruential__engine_1a53e00b6e0ce7ca66c3f66c9f1e3ca831" name="result_type"><type>T</type></typedef>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1linear__congruential__engine_1ace2ad91ddb7ff6bc58cfdb618aaf85a1" name="default_seed" specifiers="static"><type>const T</type></data-member>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1linear__congruential__engine_1a2cca4fb9cb4a20a53397c0bd15bfbd09" name="a" specifiers="static"><type>const T</type></data-member>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1linear__congruential__engine_1a0f3e9a941d8a7538dff1f11742981270" name="threads" specifiers="static"><type>const size_t</type></data-member>
@@ -21885,7 +21885,7 @@ If no seed value is provided, <computeroutput>default_seed</computeroutput> is u
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1mersenne__twister__engine" name="mersenne_twister_engine"><template>
       <template-type-parameter name="T"/>
-    </template><purpose>Mersenne twister pseudorandom number generator. </purpose><typedef id="doxygen.header_reference.classboost_1_1compute_1_1mersenne__twister__engine_1aa471c9925edcf8926f7ec0335bc207d7" name="result_type"><type>T</type></typedef>
+    </template><purpose>Mersenne twister pseudorandom number generator. </purpose><typedef id="doxygen.header_reference.classboost_1_1compute_1_1mersenne__twister__engine_1a3c817c9e087d18e73361dedc1bce9c30" name="result_type"><type>T</type></typedef>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1mersenne__twister__engine_1a7fb0eafcf9b4744ad7749b2b68b147c6" name="default_seed" specifiers="static"><type>const T</type></data-member>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1mersenne__twister__engine_1a1ce6818ee2880295c4a5633761eaa8c9" name="n" specifiers="static"><type>const T</type></data-member>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1mersenne__twister__engine_1a6556d0a3a97e042e6a2d0dcf9ce5746b" name="m" specifiers="static"><type>const T</type></data-member>
@@ -22052,7 +22052,7 @@ If no seed value is provided, <computeroutput>default_seed</computeroutput> is u
       <template-type-parameter name="RealType"><default>float</default></template-type-parameter>
     </template><purpose>Produces random, normally-distributed floating-point numbers. </purpose><description><para>The following example shows how to setup a normal distribution to produce random <computeroutput>float</computeroutput> values centered at <computeroutput>5</computeroutput>:</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>default_random_engine, <link linkend="doxygen.header_reference.classboost_1_1compute_1_1uniform__real__distribution">uniform_real_distribution</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1normal__distribution_1ac727aa72992a37aafc777d472b56e956" name="result_type"><type>RealType</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1normal__distribution_1adf2a3fda6c146d2062b545b46f292e16" name="result_type"><type>RealType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1normal__distribution_1acd147377f22af409a34ba163b7b12870"><parameter name="mean"><paramtype>RealType</paramtype><default>0.f</default></parameter><parameter name="stddev"><paramtype>RealType</paramtype><default>1.f</default></parameter><description><para>Creates a new normal distribution producing numbers with the given <computeroutput>mean</computeroutput> and <computeroutput>stddev</computeroutput>. </para></description></constructor>
 <destructor id="doxygen.header_reference.classboost_1_1compute_1_1normal__distribution_1a567290fb1e11bb73b8ecd45dab3eeab9"><purpose>Destroys the normal distribution object. </purpose></destructor>
@@ -22209,7 +22209,7 @@ If no seed value is provided, <computeroutput>default_seed</computeroutput> is u
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1threefry__engine" name="threefry_engine"><template>
       <template-type-parameter name="T"><default>uint_</default></template-type-parameter>
-    </template><purpose>Threefry pseudorandom number generator. </purpose><typedef id="doxygen.header_reference.classboost_1_1compute_1_1threefry__engine_1a388947f6598172c40591fcc3af994908" name="result_type"><type>T</type></typedef>
+    </template><purpose>Threefry pseudorandom number generator. </purpose><typedef id="doxygen.header_reference.classboost_1_1compute_1_1threefry__engine_1a2c9897b4993cc71568a3cae83167e26e" name="result_type"><type>T</type></typedef>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1threefry__engine_1ad9ef78a58751c6a9d90aa756a01f3a1d" name="default_seed" specifiers="static"><type>const ulong_</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1threefry__engine_1abc77fc6a4cf4640f1ece15ce63c17167" specifiers="explicit"><parameter name="queue"><paramtype>command_queue &amp;</paramtype></parameter><parameter name="value"><paramtype>ulong_</paramtype><default>default_seed</default></parameter><purpose>Creates a new <link linkend="doxygen.header_reference.classboost_1_1compute_1_1threefry__engine">threefry_engine</link> and seeds it with <computeroutput>value</computeroutput>. </purpose></constructor>
@@ -22372,7 +22372,7 @@ If no seed value is provided, <computeroutput>default_seed</computeroutput> is u
 <namespace name="compute">
 <class id="doxygen.header_reference.classboost_1_1compute_1_1uniform__int__distribution" name="uniform_int_distribution"><template>
       <template-type-parameter name="IntType"><default>uint_</default></template-type-parameter>
-    </template><purpose>Produces uniformily distributed random integers. </purpose><description><para>The following example shows how to setup a uniform int distribution to produce random integers 0 and 1.</para><para><programlisting language="c++"/> </para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1uniform__int__distribution_1ab70974f1a2130bf98743b2299d4734ea" name="result_type"><type>IntType</type></typedef>
+    </template><purpose>Produces uniformily distributed random integers. </purpose><description><para>The following example shows how to setup a uniform int distribution to produce random integers 0 and 1.</para><para><programlisting language="c++"/> </para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1uniform__int__distribution_1a0782beed8ebeb299b05883acfc85f356" name="result_type"><type>IntType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1uniform__int__distribution_1a0b7b96c42b6e440ba893d37790d51a78" specifiers="explicit"><parameter name="a"><paramtype>IntType</paramtype><default>0</default></parameter><parameter name="b"><paramtype>IntType</paramtype><default>(std::numeric_limits&lt; IntType &gt;::max)()</default></parameter><description><para>Creates a new uniform distribution producing numbers in the range [<computeroutput>a</computeroutput>, <computeroutput>b</computeroutput>]. </para></description></constructor>
 <destructor id="doxygen.header_reference.classboost_1_1compute_1_1uniform__int__distribution_1a7031ca679572552544b1f66ccdc80997"><purpose>Destroys the <link linkend="doxygen.header_reference.classboost_1_1compute_1_1uniform__int__distribution">uniform_int_distribution</link> object. </purpose></destructor>
@@ -22529,7 +22529,7 @@ If no seed value is provided, <computeroutput>default_seed</computeroutput> is u
       <template-type-parameter name="RealType"><default>float</default></template-type-parameter>
     </template><purpose>Produces uniformly distributed random floating-point numbers. </purpose><description><para>The following example shows how to setup a uniform real distribution to produce random <computeroutput>float</computeroutput> values between <computeroutput>1</computeroutput> and <computeroutput>100</computeroutput>.</para><para><programlisting language="c++"/></para><para><formalpara><title>See Also:</title><para>default_random_engine, <link linkend="doxygen.header_reference.classboost_1_1compute_1_1normal__distribution">normal_distribution</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1uniform__real__distribution_1acc99fbf63b4a68a6e2c95d40bde37af2" name="result_type"><type>RealType</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1uniform__real__distribution_1a05fee20a3059b67b7c58e5b990898e26" name="result_type"><type>RealType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1uniform__real__distribution_1a17ded422506c178ba584e6058b832a8d"><parameter name="a"><paramtype>RealType</paramtype><default>0.f</default></parameter><parameter name="b"><paramtype>RealType</paramtype><default>1.f</default></parameter><description><para>Creates a new uniform distribution producing numbers in the range [<computeroutput>a</computeroutput>, <computeroutput>b</computeroutput>). Requires a &lt; b </para></description></constructor>
 <destructor id="doxygen.header_reference.classboost_1_1compute_1_1uniform__real__distribution_1a82f8a8f58c4778785d2ae07a9e35e87c"><purpose>Destroys the <link linkend="doxygen.header_reference.classboost_1_1compute_1_1uniform__real__distribution">uniform_real_distribution</link> object. </purpose></destructor>
@@ -23267,7 +23267,7 @@ make_vector_type&lt;float, 4&gt;::type == float4_
       <template-type-parameter name="Signature"/>
     </template><description><para>Returns the result of <computeroutput>Function</computeroutput> when called with <computeroutput>Args</computeroutput>.</para><para>For example, <programlisting language="c++">// int + int = int
 result_of&lt;plus(int, int)&gt;::type == int
-</programlisting> </para></description><typedef id="doxygen.header_reference.structboost_1_1compute_1_1result__of_1a70a1273db43a1bfe5e073a5365670a17" name="type"><type>::boost::tr1_result_of&lt; Signature &gt;::type</type></typedef>
+</programlisting> </para></description><typedef id="doxygen.header_reference.structboost_1_1compute_1_1result__of_1a1e1ee3a20596343b1d639101f6dd6849" name="type"><type>::boost::tr1_result_of&lt; Signature &gt;::type</type></typedef>
 </struct>
 
 
@@ -23409,7 +23409,7 @@ result_of&lt;plus(int, int)&gt;::type == int
 <namespace name="compute">
 <struct id="doxygen.header_reference.structboost_1_1compute_1_1scalar__type" name="scalar_type"><template>
       <template-type-parameter name="Vector"/>
-    </template><description><para>Meta-function returning the scalar type for a vector type.</para><para>For example, <programlisting language="c++"><link linkend="doxygen.header_reference.structboost_1_1compute_1_1scalar__type_1ae10106dde10db51a18222010f7c8affd">scalar_type&lt;float4_&gt;::type</link> == float
+    </template><description><para>Meta-function returning the scalar type for a vector type.</para><para>For example, <programlisting language="c++"><link linkend="doxygen.header_reference.structboost_1_1compute_1_1scalar__type_1a4ca7bead954f39208ab8fd14c01195ed">scalar_type&lt;float4_&gt;::type</link> == float
 </programlisting> </para></description></struct>
 
 
@@ -24138,15 +24138,15 @@ vector_size&lt;float4_&gt;::value == 4
       <template-nontype-parameter name="N"><type>size_t</type></template-nontype-parameter>
     </template><description><para>The extents class contains an array of n-dimensional extents.</para><para><formalpara><title>See Also:</title><para>dim() </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a04b590206787ac71a3a2753128f73018" name="size_type"><type>size_t</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1aed1468ed0f041de58373c3b58eb7b6e5" name="array_type"><type>boost::array&lt; size_t, N &gt;</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a3aab20f3c69e9000ffc8b46350dc4172" name="iterator"><type>array_type::iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1af4a621a4858210ae95f2e26e452f1253" name="const_iterator"><type>array_type::const_iterator</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1accb3bfab8e3df786b5cf99598ef2dca7" name="size_type"><type>size_t</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a3fc7be8647201cef497d1e4ce11510bf" name="array_type"><type>boost::array&lt; size_t, N &gt;</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1ad916deb7604c388928c90acc89c8cd48" name="iterator"><type>array_type::iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a523dee1f07336992540ac793bb4e7bad" name="const_iterator"><type>array_type::const_iterator</type></typedef>
 <data-member id="doxygen.header_reference.classboost_1_1compute_1_1extents_1ae3467afa6ba66e739bfbc694f249f1f6" name="static_size" specifiers="static"><type>const size_type</type></data-member>
 <method-group name="public member functions">
-<constructor id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a3b690142c5152a19830eec0a0181a077"><description><para>Creates an extents object with each component set to zero.</para><para>For example: <programlisting language="c++">extents&lt;3&gt; exts(); // (0, 0, 0)
+<constructor id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a3b690142c5152a19830eec0a0181a077"><description><para>Creates an extents object with each component set to zero.</para><para>For example: <programlisting language="c++"><link linkend="doxygen.header_reference.classboost_1_1compute_1_1extents_1a3b690142c5152a19830eec0a0181a077">extents&lt;3&gt;</link> exts(); // (0, 0, 0)
 </programlisting> </para></description></constructor>
-<constructor id="doxygen.header_reference.classboost_1_1compute_1_1extents_1ab1e9c402e45fc53b3fa9498f66313b37" specifiers="explicit"><parameter name="value"><paramtype>size_t</paramtype></parameter><description><para>Creates an extents object with each component set to <computeroutput>value</computeroutput>.</para><para>For example: <programlisting language="c++">extents&lt;3&gt; exts(1); // (1, 1, 1)
+<constructor id="doxygen.header_reference.classboost_1_1compute_1_1extents_1ab1e9c402e45fc53b3fa9498f66313b37" specifiers="explicit"><parameter name="value"><paramtype>size_t</paramtype></parameter><description><para>Creates an extents object with each component set to <computeroutput>value</computeroutput>.</para><para>For example: <programlisting language="c++"><link linkend="doxygen.header_reference.classboost_1_1compute_1_1extents_1a3b690142c5152a19830eec0a0181a077">extents&lt;3&gt;</link> exts(1); // (1, 1, 1)
 </programlisting> </para></description></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a0dc627c0b01016ccf7126a12ade2f9f0"><parameter name="values"><paramtype>std::initializer_list&lt; size_t &gt;</paramtype></parameter><purpose>Creates an extents object with <computeroutput>values</computeroutput>. </purpose></constructor>
 <method id="doxygen.header_reference.classboost_1_1compute_1_1extents_1a22e365d98888e189b77f640ad4ec9b12" name="size" cv="const"><type>size_type</type><purpose>Returns the size (i.e. dimensionality) of the extents array. </purpose></method>
@@ -24639,8 +24639,8 @@ kernel square_kernel(square_program, "square");
 clEnqueueNDRangeKernel(..., events.get_event_ptr(), events.size(), ...);
 </programlisting></para><para><formalpara><title>See Also:</title><para>event, <link linkend="doxygen.header_reference.classboost_1_1compute_1_1future">future&lt;T&gt;</link> </para>
 </formalpara>
-</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1wait__list_1a461edba305e0714c9e5374b43eadb051" name="iterator"><type>std::vector&lt; event &gt;::iterator</type></typedef>
-<typedef id="doxygen.header_reference.classboost_1_1compute_1_1wait__list_1aae03602a22333db1251149f7977d362b" name="const_iterator"><type>std::vector&lt; event &gt;::const_iterator</type></typedef>
+</para></description><typedef id="doxygen.header_reference.classboost_1_1compute_1_1wait__list_1a56420babb4a0dd075c1177c7457bc433" name="iterator"><type>std::vector&lt; event &gt;::iterator</type></typedef>
+<typedef id="doxygen.header_reference.classboost_1_1compute_1_1wait__list_1aec1d722d969dbef51e901f6ff4579669" name="const_iterator"><type>std::vector&lt; event &gt;::const_iterator</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1wait__list_1a3682a810134894e12a3fd980351aee20"><purpose>Creates an empty wait-list. </purpose></constructor>
 <constructor id="doxygen.header_reference.classboost_1_1compute_1_1wait__list_1aeb56d694820b95ef7c17297867d0d1b0"><parameter name="event"><paramtype>const event &amp;</paramtype></parameter><purpose>Creates a wait-list containing <computeroutput>event</computeroutput>. </purpose></constructor>

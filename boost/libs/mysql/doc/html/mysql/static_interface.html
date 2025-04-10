@@ -28,6 +28,10 @@
 <a name="mysql.static_interface"></a><a class="link" href="static_interface.html" title="The static interface">The static interface</a>
 </h2></div></div></div>
 <p>
+      We have already covered the static interface basics in <a class="link" href="tutorial_static_interface.html" title="Tutorial 4: the static interface">the
+      tutorials</a>. This section expands on this topic.
+    </p>
+<p>
       To use the static interface, we must first define a data structure that describes
       the shape of our rows. We have several options:
     </p>
@@ -48,47 +52,54 @@
         </li>
 </ul></div>
 <p>
-      We will start with Boost.Describe and explain the other options later. For
-      a comparison, please refer to <a class="link" href="static_interface.html#mysql.static_interface.comparison">this
-      table</a>.
+      We will work with the following table:
     </p>
-<p>
-      For example, given the following table definition:
-    </p>
-<pre class="programlisting"><span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">table_definition</span> <span class="special">=</span> <span class="identifier">R</span><span class="string">"%(
-    CREATE TEMPORARY TABLE posts (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        title VARCHAR (256) NOT NULL,
-        body TEXT NOT NULL
-    )
-)%"</span><span class="special">;</span>
+<pre class="programlisting">CREATE TABLE employee(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    salary INT UNSIGNED,
+    company_id CHAR(10) NOT NULL,
+    FOREIGN KEY (company_id) REFERENCES company(id)
+);
 </pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+        For simplicity, code snippets use C++20 coroutines. You can use the techniques
+        described here with lower C++ standards by using sync functions, callbacks
+        or <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span></code>. The <a class="link" href="static_interface.html#mysql.static_interface.comparison">comparison
+        table</a> shows the C++ standard required by each technique shown here.
+      </p></td></tr>
+</table></div>
 <p>
-      We can define our row type like this:
+      Let's start with Boost.Describe. If we want to query the first three fields,
+      we can define our row type like this:
     </p>
 <pre class="programlisting"><span class="comment">// We can use a plain struct with ints and strings to describe our rows.</span>
-<span class="comment">// This must be placed at the namespace level</span>
-<span class="keyword">struct</span> <span class="identifier">post</span>
+<span class="keyword">struct</span> <span class="identifier">employee_v1</span>
 <span class="special">{</span>
     <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">title</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">body</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
 <span class="special">};</span>
 
-<span class="comment">// We use BOOST_DESCRIBE_STRUCT to add reflection capabilities to post.</span>
-<span class="comment">// We must list all the fields that should be populated by Boost.MySQL</span>
-<span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">post</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">title</span><span class="special">,</span> <span class="identifier">body</span><span class="special">))</span>
+<span class="comment">// This must be placed at the namespace level. It adds reflection capabilities to our struct</span>
+<span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">employee_v1</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">last_name</span><span class="special">))</span>
 </pre>
 <p>
       And write the following to query our table:
     </p>
-<pre class="programlisting"><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">post</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT id, title, body FROM posts"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<pre class="programlisting"><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">employee_v1</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT id, first_name, last_name FROM employee LIMIT 10"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 
-<span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">post</span><span class="special">&amp;</span> <span class="identifier">p</span> <span class="special">:</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">())</span>
+<span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">employee_v1</span><span class="special">&amp;</span> <span class="identifier">emp</span> <span class="special">:</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">())</span>
 <span class="special">{</span>
-    <span class="comment">// Process the post as required</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Title: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">p</span><span class="special">.</span><span class="identifier">title</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span> <span class="special">&lt;&lt;</span> <span class="identifier">p</span><span class="special">.</span><span class="identifier">body</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
+    <span class="comment">// Process the employee as required</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"ID: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">id</span> <span class="special">&lt;&lt;</span> <span class="string">": "</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">first_name</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">last_name</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -134,8 +145,8 @@
     GROUP BY company_id
 )%"</span><span class="special">;</span>
 
-<span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">statistics</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="identifier">sql</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">statistics</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="identifier">sql</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 </pre>
 <h4>
 <a name="mysql.static_interface.h1"></a>
@@ -164,29 +175,33 @@
         </li>
 </ul></div>
 <p>
-      For example, if your table is defined like this:
+      Let's add the <code class="computeroutput"><span class="identifier">salary</span></code> field
+      to our employee query. We might try the following:
     </p>
-<pre class="programlisting"><span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">table_definition</span> <span class="special">=</span> <span class="identifier">R</span><span class="string">"%(
-    CREATE TEMPORARY TABLE posts_v2 (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        title VARCHAR (256) NOT NULL,
-        body TEXT
-    )
-)%"</span><span class="special">;</span>
-</pre>
-<p>
-      Using the <code class="computeroutput"><span class="identifier">post</span></code> type we defined
-      above will cause an error, because the <code class="computeroutput"><span class="identifier">body</span></code>
-      field may be <code class="computeroutput"><span class="identifier">NULL</span></code>, but our
-      type doesn't account for it. In this case, the correct definition would be:
-    </p>
-<pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">post_v2</span>
+<pre class="programlisting"><span class="comment">// If we try to query the employee table with this struct definition,</span>
+<span class="comment">// an error will be issued because salary can be NULL in the database,</span>
+<span class="comment">// but not in the C++ type</span>
+<span class="keyword">struct</span> <span class="identifier">employee_v2</span>
 <span class="special">{</span>
     <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">title</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">body</span><span class="special">;</span>  <span class="comment">// body may be NULL</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
+    <span class="keyword">unsigned</span> <span class="identifier">salary</span><span class="special">;</span>
 <span class="special">};</span>
-<span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">post_v2</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">title</span><span class="special">,</span> <span class="identifier">body</span><span class="special">))</span>
+<span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">employee_v2</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">last_name</span><span class="special">,</span> <span class="identifier">salary</span><span class="special">))</span>
+</pre>
+<p>
+      However, this won't work because of the nullability check. In this case, the
+      correct definition would be:
+    </p>
+<pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">employee_v3</span>
+<span class="special">{</span>
+    <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="keyword">unsigned</span><span class="special">&gt;</span> <span class="identifier">salary</span><span class="special">;</span>  <span class="comment">// salary might be NULL in the database</span>
+<span class="special">};</span>
+<span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">employee_v3</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">last_name</span><span class="special">,</span> <span class="identifier">salary</span><span class="special">))</span>
 </pre>
 <h4>
 <a name="mysql.static_interface.h2"></a>
@@ -197,12 +212,13 @@
       If you're using C++20 or above, you can use Boost.PFR to reflect types without
       the <code class="computeroutput"><span class="identifier">BOOST_DESCRIBE_STRUCT</span></code> macro:
     </p>
-<pre class="programlisting"><span class="comment">// post_v3 doesn't contain any metadata - we're not using BOOST_DESCRIBE_STRUCT here</span>
-<span class="keyword">struct</span> <span class="identifier">post_v3</span>
+<pre class="programlisting"><span class="comment">// employee_v4 doesn't contain any metadata - we're not using BOOST_DESCRIBE_STRUCT here</span>
+<span class="keyword">struct</span> <span class="identifier">employee_v4</span>
 <span class="special">{</span>
     <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">title</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">body</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="keyword">unsigned</span><span class="special">&gt;</span> <span class="identifier">salary</span><span class="special">;</span>
 <span class="special">};</span>
 </pre>
 <p>
@@ -210,20 +226,20 @@
     </p>
 <pre class="programlisting"><span class="comment">// pfr_by_name is a marker type. It tells static_results to use</span>
 <span class="comment">// Boost.PFR for reflection, instead of Boost.Describe.</span>
-<span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">pfr_by_name</span><span class="special">&lt;</span><span class="identifier">post_v3</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pfr_by_name</span><span class="special">&lt;</span><span class="identifier">employee_v4</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
 
 <span class="comment">// As with Boost.Describe, query fields are matched to struct</span>
 <span class="comment">// members by name. This means that the fields in the query</span>
 <span class="comment">// may appear in any order.</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT body, id, title FROM posts"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT * FROM employee LIMIT 10"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 
-<span class="comment">// Note that result.rows() is a span of post_v3 objects,</span>
-<span class="comment">// rather than pfr_by_name&lt;post_v3&gt; objects. post_v3</span>
-<span class="comment">// is the underlying row type for pfr_by_name&lt;post_v3&gt;</span>
-<span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">post_v3</span><span class="special">&amp;</span> <span class="identifier">p</span> <span class="special">:</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">())</span>
+<span class="comment">// Note that result.rows() is a span of employee_v4 objects,</span>
+<span class="comment">// rather than pfr_by_name&lt;employee_v4&gt; objects. employee_v4</span>
+<span class="comment">// is the underlying row type for pfr_by_name&lt;employee_v4&gt;</span>
+<span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">employee_v4</span><span class="special">&amp;</span> <span class="identifier">emp</span> <span class="special">:</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">())</span>
 <span class="special">{</span>
-    <span class="comment">// Process the post as required</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Title: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">p</span><span class="special">.</span><span class="identifier">title</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span> <span class="special">&lt;&lt;</span> <span class="identifier">p</span><span class="special">.</span><span class="identifier">body</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
+    <span class="comment">// Process the employee as required</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"ID: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">id</span> <span class="special">&lt;&lt;</span> <span class="string">": "</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">first_name</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">last_name</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -237,19 +253,19 @@
       <a class="link" href="ref/boost__mysql__pfr_by_position.html" title="pfr_by_position"><code class="literal">pfr_by_position</code></a>
       is similar to <code class="computeroutput"><span class="identifier">pfr_by_name</span></code>,
       but will match columns in the query to struct fields by position, rather than
-      name. It only requires C++14 to work. For instance:
+      name. It only requires C++17 to work. For instance:
     </p>
 <pre class="programlisting"><span class="comment">// pfr_by_position is another marker type.</span>
-<span class="comment">// Fields in post_v3 must appear in the same order as in the query,</span>
+<span class="comment">// Fields in employee_v4 must appear in the same order as in the query,</span>
 <span class="comment">// as matching will be done by position.</span>
-<span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">pfr_by_position</span><span class="special">&lt;</span><span class="identifier">post_v3</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT id, title, body FROM posts"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pfr_by_position</span><span class="special">&lt;</span><span class="identifier">employee_v4</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT id, first_name, last_name, salary FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 
-<span class="comment">// The underlying row type is post_v3</span>
-<span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">post_v3</span><span class="special">&amp;</span> <span class="identifier">p</span> <span class="special">:</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">())</span>
+<span class="comment">// The underlying row type is employee_v4</span>
+<span class="keyword">for</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">employee_v4</span><span class="special">&amp;</span> <span class="identifier">emp</span> <span class="special">:</span> <span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">())</span>
 <span class="special">{</span>
-    <span class="comment">// Process the post as required</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Title: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">p</span><span class="special">.</span><span class="identifier">title</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span> <span class="special">&lt;&lt;</span> <span class="identifier">p</span><span class="special">.</span><span class="identifier">body</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
+    <span class="comment">// Process the employee as required</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"ID: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">id</span> <span class="special">&lt;&lt;</span> <span class="string">": "</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">first_name</span> <span class="special">&lt;&lt;</span> <span class="char">' '</span> <span class="special">&lt;&lt;</span> <span class="identifier">emp</span><span class="special">.</span><span class="identifier">last_name</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -265,8 +281,8 @@
       You can also use <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>s as row types. This can be handy for
       simple queries:
     </p>
-<pre class="programlisting"><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT COUNT(*) FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<pre class="programlisting"><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">co_await</span> <span class="identifier">conn</span><span class="special">.</span><span class="identifier">async_execute</span><span class="special">(</span><span class="string">"SELECT COUNT(*) FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"Number of employees: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">get</span><span class="special">&lt;</span><span class="number">0</span><span class="special">&gt;(</span><span class="identifier">result</span><span class="special">.</span><span class="identifier">rows</span><span class="special">()[</span><span class="number">0</span><span class="special">])</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span>
 </pre>
 <p>
@@ -339,20 +355,20 @@
             </td>
 <td>
 <pre class="table-programlisting"><span class="comment">// Definition should be at namespace scope</span>
-<span class="keyword">struct</span> <span class="identifier">post</span>
+<span class="keyword">struct</span> <span class="identifier">employee</span>
 <span class="special">{</span>
     <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">title</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">body</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
 <span class="special">};</span>
-<span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">post</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">title</span><span class="special">,</span> <span class="identifier">body</span><span class="special">))</span>
+<span class="identifier">BOOST_DESCRIBE_STRUCT</span><span class="special">(</span><span class="identifier">employee</span><span class="special">,</span> <span class="special">(),</span> <span class="special">(</span><span class="identifier">id</span><span class="special">,</span> <span class="identifier">first_name</span><span class="special">,</span> <span class="identifier">last_name</span><span class="special">))</span>
 </pre>
               <p>
                 <br>
               </p>
 <pre class="table-programlisting"><span class="comment">// Usage</span>
-<span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">post</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT title, body, id FROM posts"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT first_name, last_name, id FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 </pre>
             </td>
 <td>
@@ -389,19 +405,19 @@
             </td>
 <td>
 <pre class="table-programlisting"><span class="comment">// Definition should be at namespace scope</span>
-<span class="keyword">struct</span> <span class="identifier">post</span>
+<span class="keyword">struct</span> <span class="identifier">employee</span>
 <span class="special">{</span>
     <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">title</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">body</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
 <span class="special">};</span>
 </pre>
               <p>
                 <br>
               </p>
 <pre class="table-programlisting"><span class="comment">// Usage</span>
-<span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">pfr_by_name</span><span class="special">&lt;</span><span class="identifier">post</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT title, body, id FROM posts"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pfr_by_name</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT first_name, last_name, id FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 </pre>
             </td>
 <td>
@@ -437,19 +453,19 @@
             </td>
 <td>
 <pre class="table-programlisting"><span class="comment">// Definition should be at namespace scope</span>
-<span class="keyword">struct</span> <span class="identifier">post</span>
+<span class="keyword">struct</span> <span class="identifier">employee</span>
 <span class="special">{</span>
     <span class="keyword">int</span> <span class="identifier">id</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">title</span><span class="special">;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">body</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">first_name</span><span class="special">;</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
 <span class="special">};</span>
 </pre>
               <p>
                 <br>
               </p>
 <pre class="table-programlisting"><span class="comment">// Usage</span>
-<span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">pfr_by_position</span><span class="special">&lt;</span><span class="identifier">post</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT id, title, body FROM posts"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">pfr_by_position</span><span class="special">&lt;</span><span class="identifier">employee</span><span class="special">&gt;&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT id, first_name, last_name FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 </pre>
             </td>
 <td>
@@ -493,8 +509,8 @@
             </td>
 <td>
 <pre class="table-programlisting"><span class="keyword">using</span> <span class="identifier">tuple_t</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;;</span>
-<span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">tuple_t</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT id, title, body FROM posts"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">static_results</span><span class="special">&lt;</span><span class="identifier">tuple_t</span><span class="special">&gt;</span> <span class="identifier">result</span><span class="special">;</span>
+<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span><span class="string">"SELECT id, first_name, last_name FROM employee"</span><span class="special">,</span> <span class="identifier">result</span><span class="special">);</span>
 </pre>
             </td>
 <td>

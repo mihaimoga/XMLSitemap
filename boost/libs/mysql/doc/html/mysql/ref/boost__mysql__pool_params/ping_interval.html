@@ -28,7 +28,7 @@
 <a name="mysql.ref.boost__mysql__pool_params.ping_interval"></a><a class="link" href="ping_interval.html" title="pool_params::ping_interval">pool_params::ping_interval</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="id80390"></a>
+          <a class="indexterm" name="id87054"></a>
 The health-check interval.
         </p>
 <h6>
@@ -51,7 +51,7 @@ The health-check interval.
           Set this interval to zero to disable pings.
         </p>
 <p>
-          This value must not be negative. It should be bigger than the server's
+          This value must not be negative. It should be smaller than the server's
           idle timeout (as determined by the <a href="https://dev.mysql.com/doc/refman/8.4/en/server-system-variables.html#sysvar_wait_timeout" target="_top">wait_timeout</a>
           session variable). Otherwise, the server might close connections without
           the pool detecting it.

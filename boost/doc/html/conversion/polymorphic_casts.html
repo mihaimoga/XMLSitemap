@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../conversion.html" title="Chapter 9. The Conversion Library 1.7">
-<link rel="prev" href="../conversion.html" title="Chapter 9. The Conversion Library 1.7">
+<link rel="up" href="../conversion.html" title="Chapter 8. The Conversion Library 1.7">
+<link rel="prev" href="../conversion.html" title="Chapter 8. The Conversion Library 1.7">
 <link rel="next" href="synopsis.html" title="Synopsis">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -169,10 +169,10 @@
 <span class="keyword">class</span> <span class="identifier">Banana</span> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">Fruit</span> <span class="special">{};</span>
 
 <span class="comment">// Use one of these:</span>
-<span class="keyword">typedef</span> <span class="identifier">Fruit</span><span class="special">*</span> <span class="identifier">FruitPtr</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span><span class="identifier">Fruit</span><span class="special">&gt;</span> <span class="identifier">FruitPtr</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span><span class="identifier">Fruit</span><span class="special">&gt;</span> <span class="identifier">FruitPtr</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive_ptr</span><span class="special">&lt;</span><span class="identifier">Fruit</span><span class="special">&gt;</span> <span class="identifier">FruitPtr</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">FruitPtr</span> <span class="special">=</span> <span class="identifier">Fruit</span><span class="special">*;</span>
+<span class="keyword">using</span> <span class="identifier">FruitPtr</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span><span class="identifier">Fruit</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">FruitPtr</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">shared_ptr</span><span class="special">&lt;</span><span class="identifier">Fruit</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">FruitPtr</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">intrusive_ptr</span><span class="special">&lt;</span><span class="identifier">Fruit</span><span class="special">&gt;;</span>
 
 <span class="keyword">void</span> <span class="identifier">f</span><span class="special">(</span><span class="identifier">FruitPtr</span> <span class="identifier">fruit</span><span class="special">)</span> <span class="special">{</span>
   <span class="comment">// ... logic which leads us to believe it is a banana</span>
@@ -182,7 +182,7 @@
 </pre>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2001 Beman Dawes<br>Copyright © 2014-2024 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2001 Beman Dawes<br>Copyright © 2014-2025 Antony Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

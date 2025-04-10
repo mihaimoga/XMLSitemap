@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Boost.Pool">
-<link rel="up" href="pool__alloc_8hpp.html" title="Header &lt;boost/pool/pool_alloc.hpp&gt;">
-<link rel="prev" href="pool__alloc_8hpp.html" title="Header &lt;boost/pool/pool_alloc.hpp&gt;">
-<link rel="next" href="structboost_1_1fast__pool__allocator_1_1rebind.html" title="Struct template rebind">
+<link rel="up" href="poolfwd_8hpp.html" title="Header &lt;boost/pool/poolfwd.hpp&gt;">
+<link rel="prev" href="poolfwd_8hpp.html" title="Header &lt;boost/pool/poolfwd.hpp&gt;">
+<link rel="next" href="classboost_1_1object__pool.html" title="Class template object_pool">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="pool__alloc_8hpp.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="pool__alloc_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1fast__pool__allocator_1_1rebind.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="poolfwd_8hpp.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="poolfwd_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1object__pool.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator"></a><div class="titlepage"></div>
@@ -30,33 +30,14 @@
 <p>boost::fast_pool_allocator — A C++ Standard Library conforming allocator geared towards allocating single chunks. </p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="pool__alloc_8hpp.html" title="Header &lt;boost/pool/pool_alloc.hpp&gt;">boost/pool/pool_alloc.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="poolfwd_8hpp.html" title="Header &lt;boost/pool/poolfwd.hpp&gt;">boost/pool/poolfwd.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span> UserAllocator<span class="special">,</span> <span class="keyword">typename</span> Mutex<span class="special">,</span> 
          <span class="keyword">unsigned</span> NextSize<span class="special">,</span> <span class="keyword">unsigned</span> MaxSize<span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
-  <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">T</span>                                      <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1ad460fe6264c17eda7caa05cccd485611"></a><span class="identifier">value_type</span><span class="special">;</span>     
-  <span class="keyword">typedef</span> <span class="identifier">UserAllocator</span>                          <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a9194490e0656b89b19d56cdc9a5a74e9"></a><span class="identifier">user_allocator</span><span class="special">;</span> 
-  <span class="keyword">typedef</span> <span class="identifier">Mutex</span>                                  <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a346b044d85fb33e9fa58a827b7a5f692"></a><span class="identifier">mutex</span><span class="special">;</span>          
-  <span class="keyword">typedef</span> <span class="identifier">value_type</span> <span class="special">*</span>                           <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1ab140f26fc4b349eb5929a7f973997578"></a><span class="identifier">pointer</span><span class="special">;</span>        
-  <span class="keyword">typedef</span> <span class="keyword">const</span> <span class="identifier">value_type</span> <span class="special">*</span>                     <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a25e48a1e5103fc936bfb22c075cefb43"></a><span class="identifier">const_pointer</span><span class="special">;</span>  
-  <span class="keyword">typedef</span> <span class="identifier">value_type</span> <span class="special">&amp;</span>                           <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a81096fec75145d8ab3827072d09eb04b"></a><span class="identifier">reference</span><span class="special">;</span>      
-  <span class="keyword">typedef</span> <span class="keyword">const</span> <span class="identifier">value_type</span> <span class="special">&amp;</span>                     <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1acd3ba90f75c3edb36537cbc87b507c08"></a><span class="identifier">const_reference</span><span class="special">;</span>
-  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a><span class="special">&lt;</span> <span class="identifier">UserAllocator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">size_type</span>       <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1aebf27aeeb0d25f69b8ec886302b1c780"></a><span class="identifier">size_type</span><span class="special">;</span>      
-  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a><span class="special">&lt;</span> <span class="identifier">UserAllocator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">difference_type</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a31c1714c734667a2ff6165276c561710"></a><span class="identifier">difference_type</span><span class="special">;</span>
 
-  <span class="comment">// member classes/structs/unions</span>
-
-  <span class="comment">// Nested class rebind allows for transformation from fast_pool_allocator&lt;T&gt; to <a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a><span style="color: red">&lt;underline&gt;. &lt;/underline&gt;</span></span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
-  <span class="keyword">struct</span> <a class="link" href="structboost_1_1fast__pool__allocator_1_1rebind.html" title="Struct template rebind">rebind</a> <span class="special">{</span>
-    <span class="comment">// types</span>
-    <span class="keyword">typedef</span> <a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">UserAllocator</span><span class="special">,</span> <span class="identifier">Mutex</span><span class="special">,</span> <span class="identifier">NextSize</span><span class="special">,</span> <span class="identifier">MaxSize</span> <span class="special">&gt;</span> <a class="link" href="structboost_1_1fast__pool__allocator_1_1rebind.html#doxygen.boost_pool_c___reference.structboost_1_1fast__pool__allocator_1_1rebind_1a514530be84fb3e1121f0de3334dd1dc6"><span class="identifier">other</span></a><span class="special">;</span>
-  <span class="special">}</span><span class="special">;</span>
-
-  <span class="comment">// <a class="link" href="classboost_1_1fast__pool__allocator.html#id10-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1fast__pool__allocator.html#id3-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a76bf35d5807690f9d53de468819bf534"><span class="identifier">fast_pool_allocator</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> U<span class="special">&gt;</span> 
     <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1ad4d2b417f488e593db48109d67c6854b"><span class="identifier">fast_pool_allocator</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a><span class="special">&lt;</span> <span class="identifier">U</span><span class="special">,</span> <span class="identifier">UserAllocator</span><span class="special">,</span> <span class="identifier">Mutex</span><span class="special">,</span> <span class="identifier">NextSize</span><span class="special">,</span> <span class="identifier">MaxSize</span> <span class="special">&gt;</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
@@ -65,7 +46,7 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1aee74b929ad2c5abdf37ed8b064ebeb83"><span class="keyword">operator</span><span class="special">==</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a2ce614dae1caab01e51d897666a61f7d"><span class="keyword">operator</span><span class="special">!=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1fast__pool__allocator.html#id11-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1fast__pool__allocator.html#id4-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="identifier">pointer</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1ae49379674da2ca969053428057a8c20d"><span class="identifier">address</span></a><span class="special">(</span><span class="identifier">reference</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="identifier">const_pointer</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a8cec5d79b4b5b040c6c55114d52c7029"><span class="identifier">address</span></a><span class="special">(</span><span class="identifier">const_reference</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a47c89f9d635d4b3becf34d3931877d1b"><span class="identifier">max_size</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -74,12 +55,9 @@
   <span class="keyword">static</span> <span class="identifier">pointer</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1af745b208b9151081937461470f0cf78d"><span class="identifier">allocate</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">void</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a489f11d40d28926627a556da573eed22"><span class="identifier">deallocate</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">pointer</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">void</span> <a class="link" href="classboost_1_1fast__pool__allocator.html#doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1ab43e39f55d8c48a29bf4ed2b4f6b3401"><span class="identifier">deallocate</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">pointer</span><span class="special">)</span><span class="special">;</span>
-
-  <span class="comment">// public data members</span>
-  <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="identifier">next_size</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id5461"></a><h2>Description</h2>
+<a name="id4356"></a><h2>Description</h2>
 <p>While class template <code class="computeroutput"><a class="link" href="classboost_1_1pool__allocator.html" title="Class template pool_allocator">pool_allocator</a></code> is a more general-purpose solution geared towards efficiently servicing requests for any number of contiguous chunks, <code class="computeroutput"><a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a></code> is also a general-purpose solution, but is geared towards efficiently servicing requests for one chunk at a time; it will work for contiguous chunks, but not as well as <code class="computeroutput"><a class="link" href="classboost_1_1pool__allocator.html" title="Class template pool_allocator">pool_allocator</a></code>.</p>
 <p>If you are seriously concerned about performance, use <code class="computeroutput"><a class="link" href="classboost_1_1fast__pool__allocator.html" title="Class template fast_pool_allocator">fast_pool_allocator</a></code> when dealing with containers such as <code class="computeroutput">std::list</code>, and use <code class="computeroutput"><a class="link" href="classboost_1_1pool__allocator.html" title="Class template pool_allocator">pool_allocator</a></code> when dealing with containers such as <code class="computeroutput">std::vector</code>.</p>
 <p>The template parameters are defined as follows:</p>
@@ -98,8 +76,8 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="id5496"></a><h3>
-<a name="id10-bb"></a><code class="computeroutput">fast_pool_allocator</code> public member functions</h3>
+<a name="id4391"></a><h3>
+<a name="id3-bb"></a><code class="computeroutput">fast_pool_allocator</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a76bf35d5807690f9d53de468819bf534"></a><span class="identifier">fast_pool_allocator</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
@@ -120,8 +98,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id5596"></a><h3>
-<a name="id11-bb"></a><code class="computeroutput">fast_pool_allocator</code> public static functions</h3>
+<a name="id4491"></a><h3>
+<a name="id4-bb"></a><code class="computeroutput">fast_pool_allocator</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><span class="keyword">static</span> <span class="identifier">pointer</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1ae49379674da2ca969053428057a8c20d"></a><span class="identifier">address</span><span class="special">(</span><span class="identifier">reference</span> r<span class="special">)</span><span class="special">;</span></pre></li>
 <li class="listitem"><pre class="literallayout"><span class="keyword">static</span> <span class="identifier">const_pointer</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1fast__pool__allocator_1a8cec5d79b4b5b040c6c55114d52c7029"></a><span class="identifier">address</span><span class="special">(</span><span class="identifier">const_reference</span> s<span class="special">)</span><span class="special">;</span></pre></li>
@@ -145,10 +123,6 @@
 </li>
 </ol></div>
 </div>
-<div class="refsect2">
-<a name="id5749"></a><h3>Specializations</h3>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a class="link" href="classboost_1_1fast__pool__allocator_3_01void_00_01UserAllocator_00_01Mutex_00_01NextSize_00_01MaxSize_01_4.html" title="Class template fast_pool_allocator&lt;void, UserAllocator, Mutex, NextSize, MaxSize&gt;">Class template fast_pool_allocator&lt;void, UserAllocator, Mutex, NextSize, MaxSize&gt;</a></p></li></ul></div>
-</div>
 </div>
 </div>
 <div class="copyright-footer">Copyright © 2000-2006 Stephen Cleary<br>Copyright © 2011 Paul A. Bristow<p>
@@ -158,7 +132,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="pool__alloc_8hpp.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="pool__alloc_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1fast__pool__allocator_1_1rebind.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="poolfwd_8hpp.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="poolfwd_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1object__pool.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

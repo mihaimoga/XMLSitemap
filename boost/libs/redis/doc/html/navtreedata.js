@@ -28,28 +28,27 @@ var NAVTREE =
     [ "Connection", "index.html#autotoc_md1", [
       [ "Server pushes", "index.html#autotoc_md2", null ]
     ] ],
-    [ "Requests", "index.html#autotoc_md3", [
-      [ "Config flags", "index.html#autotoc_md4", null ]
+    [ "Requests", "index.html#autotoc_md3", null ],
+    [ "Responses", "index.html#autotoc_md4", [
+      [ "Pushes", "index.html#autotoc_md5", null ],
+      [ "Null", "index.html#autotoc_md6", null ],
+      [ "Transactions", "index.html#autotoc_md7", null ],
+      [ "The general case", "index.html#autotoc_md8", null ]
     ] ],
-    [ "Responses", "index.html#autotoc_md5", [
-      [ "Pushes", "index.html#autotoc_md6", null ],
-      [ "Null", "index.html#autotoc_md7", null ],
-      [ "Transactions", "index.html#autotoc_md8", null ],
-      [ "The general case", "index.html#autotoc_md9", null ]
+    [ "Serialization", "index.html#autotoc_md9", null ],
+    [ "Examples", "index.html#autotoc_md10", null ],
+    [ "Echo server benchmark", "index.html#autotoc_md11", [
+      [ "Without Redis", "index.html#autotoc_md12", null ],
+      [ "With Redis", "index.html#autotoc_md13", null ],
+      [ "Conclusion", "index.html#autotoc_md14", null ]
     ] ],
-    [ "Serialization", "index.html#autotoc_md10", null ],
-    [ "Examples", "index.html#autotoc_md11", null ],
-    [ "Echo server benchmark", "index.html#autotoc_md12", [
-      [ "Without Redis", "index.html#autotoc_md13", null ],
-      [ "With Redis", "index.html#autotoc_md14", null ],
-      [ "Conclusion", "index.html#autotoc_md15", null ]
+    [ "Comparison", "index.html#autotoc_md15", [
+      [ "Boost.Redis vs Redis-plus-plus", "index.html#autotoc_md16", null ]
     ] ],
-    [ "Comparison", "index.html#autotoc_md16", [
-      [ "Boost.Redis vs Redis-plus-plus", "index.html#autotoc_md17", null ]
-    ] ],
-    [ "Reference", "index.html#autotoc_md18", null ],
-    [ "Acknowledgement", "index.html#autotoc_md19", null ],
-    [ "Changelog", "index.html#autotoc_md20", [
+    [ "Reference", "index.html#autotoc_md17", null ],
+    [ "Acknowledgement", "index.html#autotoc_md18", null ],
+    [ "Changelog", "index.html#autotoc_md19", [
+      [ "Boost 1.88", "index.html#autotoc_md20", null ],
       [ "Boost 1.87", "index.html#autotoc_md21", null ],
       [ "Boost 1.85", "index.html#autotoc_md22", null ],
       [ "Boost 1.84 (First release in Boost)", "index.html#autotoc_md23", null ],

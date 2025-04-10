@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['to_5fstring_0',['to_string',['../group__high-level-api.html#ga319e0035f0a58a03a1d9bf233ca7d177',1,'boost::redis::resp3']]],
-  ['type_1',['type',['../group__high-level-api.html#ga436af8b7b98a621d7130e35e53a93cf1',1,'boost::redis::resp3']]]
+  ['level_0',['level',['../group__high-level-api.html#ga4f66f8e4497ccf09e57440515d806feb',1,'boost::redis::logger']]],
+  ['log_5fprefix_1',['log_prefix',['../group__high-level-api.html#aedb28694c3cfe1818d2c52c773a9fc18',1,'boost::redis::config']]],
+  ['logger_2',['logger',['../classboost_1_1redis_1_1logger.html',1,'boost::redis::logger'],['../group__high-level-api.html#ga3388dcdfa5cc11898f76efae273fd1bf',1,'boost::redis::logger::logger()']]]
 ];

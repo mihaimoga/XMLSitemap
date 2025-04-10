@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../parser.html" title="Chapter 26. Boost.Parser">
+<link rel="up" href="../parser.html" title="Chapter 25. Boost.Parser">
 <link rel="prev" href="cheat_sheet.html" title="Cheat Sheet">
 <link rel="next" href="extended_examples.html" title="Extended Examples">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -174,9 +174,9 @@
         <span class="special">&gt;&gt;</span> <span class="identifier">p3</span>
         <span class="special">&gt;&gt;</span> <span class="identifier">p2</span><span class="special">)</span> <span class="special">|</span> <span class="special">(</span><span class="identifier">p2</span> <span class="special">&gt;&gt;</span> <span class="identifier">p1</span> <span class="special">&gt;&gt;</span> <span class="identifier">p3</span><span class="special">)</span> <span class="special">|</span>
         <span class="special">(</span><span class="identifier">p2</span> <span class="special">&gt;&gt;</span> <span class="identifier">p3</span> <span class="special">&gt;&gt;</span> <span class="identifier">p1</span><span class="special">)</span> <span class="special">|</span> <span class="special">(</span><span class="identifier">p3</span> <span class="special">&gt;&gt;</span> <span class="identifier">p1</span> <span class="special">&gt;&gt;</span> <span class="identifier">p2</span><span class="special">)</span> <span class="special">|</span>
-        <span class="special">(</span><span class="identifier">p3</span> <span class="special">&gt;&gt;</span> <span class="identifier">p2</span> <span class="special">&gt;&gt;</span> <span class="identifier">p1</span><span class="special">)</span></code>. Hopefully its terseness is self-explanatory.
-        It matches the input iff all of its subparsers do, regardless of the order
-        they match in.
+        <span class="special">(</span><span class="identifier">p3</span> <span class="special">&gt;&gt;</span> <span class="identifier">p2</span> <span class="special">&gt;&gt;</span> <span class="identifier">p1</span><span class="special">)</span></code>. Hopefully the advantage of its terseness
+        is self-explanatory. It matches the input iff all of its subparsers do, regardless
+        of the order they match in.
       </p>
 <p>
         Boost.Parser parsers each have an <span class="emphasis"><em>attribute</em></span> associated
@@ -353,7 +353,7 @@
 <tr><td align="left" valign="top"><p>
           There's a type trait that can tell you the attribute type for a parser,
           <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1attribute.html" title="Struct template attribute">attribute</a></code>
-          (and an associated alias <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a45a57c9180a85867f92bab400058b847.html" title="Type definition attribute_t">attribute_t</a></code>). We'll discuss
+          (and an associated alias <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1acab73b5438b6bab7862f0409c6845b50.html" title="Type definition attribute_t">attribute_t</a></code>). We'll discuss
           it more in the <a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation" title="Attribute Generation">Attribute
           Generation</a> section.
         </p></td></tr>
@@ -906,7 +906,7 @@ You entered:
         <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aea9a85108e6af1280eccd9135584938d.html" title="Function template _locals">_locals()</a></code> returns a reference to one
         or more values that are local to the current rule being parsed, if any. If
         there are two or more local values, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aea9a85108e6af1280eccd9135584938d.html" title="Function template _locals">_locals()</a></code>
-        returns a reference to a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code>. Rules with locals are
+        returns a reference to a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code>. Rules with locals are
         something we haven't gotten to yet (see <a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules" title="More About Rules">More
         About Rules</a>), but for now all you need to know is that you can provide
         a template parameter (<code class="computeroutput"><span class="identifier">LocalState</span></code>)
@@ -934,7 +934,7 @@ You entered:
         <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a376d70158bb5f8ce13cfcee77bbce958.html" title="Function template _params">_params()</a></code>, like <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aea9a85108e6af1280eccd9135584938d.html" title="Function template _locals">_locals()</a></code>,
         applies to the current rule being used to parse, if any (see <a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules" title="More About Rules">More
         About Rules</a>). It also returns a reference to a single value, if the
-        current rule has only one parameter, or a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code> of multiple values if
+        current rule has only one parameter, or a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code> of multiple values if
         the current rule has multiple parameters. If there is no current rule, or
         the current rule has no parameters, a <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1none.html" title="Struct none">none</a></code> is returned.
       </p>
@@ -1228,7 +1228,7 @@ You entered:
 </pre>
 <p>
         The attribute type for <code class="computeroutput"><span class="identifier">employee_parser</span></code>
-        is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span>
+        is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">double</span><span class="special">&gt;</span></code>.
         That's great, in that you got all the parsed data for the record without
         having to write any semantic actions. It's not so great that you now have
@@ -1246,7 +1246,7 @@ You entered:
       </h5>
 <p>
         If we have a <code class="computeroutput"><span class="keyword">struct</span></code> that has
-        data members of the same types listed in the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code> attribute type for <code class="computeroutput"><span class="identifier">employee_parser</span></code>, it would be nice to parse
+        data members of the same types listed in the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code> attribute type for <code class="computeroutput"><span class="identifier">employee_parser</span></code>, it would be nice to parse
         directly into it, instead of parsing into a tuple and then constructing our
         <code class="computeroutput"><span class="keyword">struct</span></code> later. Fortunately, this
         just works in Boost.Parser. Here is an example of parsing straight into a
@@ -1303,7 +1303,7 @@ You entered:
 <p>
         Unfortunately, this is taking advantage of the loose attribute assignment
         logic; the <code class="computeroutput"><span class="identifier">employee_parser</span></code>
-        parser still has a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code>
+        parser still has a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code>
         attribute. See <a class="link" href="tutorial.html#boost_parser.tutorial.the__parse____api" title="The parse() API">The
         <code class="computeroutput"><span class="identifier">parse</span><span class="special">()</span></code>
         API</a> for a description of attribute out-param compatibility.
@@ -1317,7 +1317,7 @@ You entered:
         simple parser <code class="computeroutput"><span class="identifier">P</span></code> that uses
         the <code class="computeroutput"><span class="identifier">employee_p</span></code> rule, like
         <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="keyword">int</span> <span class="special">&gt;&gt;</span> <span class="identifier">employee_p</span></code>, <code class="computeroutput"><span class="identifier">P</span></code>'s
-        attribute type would be <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">employee</span><span class="special">&gt;</span></code>.
+        attribute type would be <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">employee</span><span class="special">&gt;</span></code>.
       </p>
 <p>
 </p>
@@ -1379,7 +1379,7 @@ You entered:
         you can also pass a tuple as an out-param to <code class="computeroutput"><span class="identifier">parse</span><span class="special">()</span></code> when the parser's attribute type is a struct:
       </p>
 <pre class="programlisting"><span class="comment">// Using the employee_p rule from above, with attribute type employee...</span>
-<code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">tup</span><span class="special">;</span>
+<code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">tup</span><span class="special">;</span>
 <span class="keyword">auto</span> <span class="keyword">const</span> <span class="identifier">result</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">(</span><span class="identifier">input</span><span class="special">,</span> <span class="identifier">employee_p</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">ws</span><span class="special">,</span> <span class="identifier">tup</span><span class="special">);</span> <span class="comment">// Ok!</span>
 </pre>
 <div class="important"><table border="0" summary="Important">
@@ -1465,7 +1465,7 @@ You entered:
       </p>
 <p>
         Here, we use the parser <code class="computeroutput"><span class="identifier">string_uint_uint</span></code>,
-        which produces a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">,</span> <span class="keyword">unsigned</span>
+        which produces a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">,</span> <span class="keyword">unsigned</span>
         <span class="keyword">int</span><span class="special">&gt;</span></code>
         attribute. When we try to parse that into an out-param <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>
         attribute, it just works. This is because <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>
@@ -1489,7 +1489,7 @@ You entered:
       </p>
 <p>
         Now we have the parser <code class="computeroutput"><span class="identifier">uint_string</span></code>,
-        which produces <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
+        which produces <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
         attribute — the two <code class="computeroutput"><span class="keyword">char</span></code>s
         at the end combine into a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>.
         Those two values can be used to construct a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>, via the count, <code class="computeroutput"><span class="identifier">T</span></code>
@@ -1505,7 +1505,7 @@ You entered:
         <span class="bold"><strong>can't</strong></span> substitute a tuple for some <code class="computeroutput"><span class="keyword">class</span></code> type <code class="computeroutput"><span class="identifier">T</span></code>
         just because the tuple could have been used to construct <code class="computeroutput"><span class="identifier">T</span></code>.
         Think of trying to invert the substitution in the second parse above. Converting
-        a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code> into a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
+        a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code> into a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
         makes no sense.
       </p>
 </div>
@@ -1703,6 +1703,26 @@ You entered:
 </pre>
 <p>
       </p>
+<p>
+        Additionally, with each of the forms shown above, you can optionally provide
+        a parser as a final argument, to will be used to parse each character inside
+        the quotes. You have to provide an actual full parser here; you cannot provide
+        a character or string literal. If you do not provide a character parser,
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>
+        is used.
+      </p>
+<p>
+</p>
+<pre class="programlisting"><span class="keyword">auto</span> <span class="identifier">result6</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">(</span>
+    <span class="string">"'some text'"</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">quoted_string</span><span class="special">(</span><span class="string">"'\""</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'g'</span><span class="special">)),</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">ws</span><span class="special">);</span>
+<span class="identifier">assert</span><span class="special">(!</span><span class="identifier">result6</span><span class="special">);</span>
+<span class="identifier">result6</span> <span class="special">=</span>
+    <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">(</span><span class="string">"'gggg'"</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">quoted_string</span><span class="special">(</span><span class="string">"'\""</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'g'</span><span class="special">)),</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">ws</span><span class="special">);</span>
+<span class="identifier">assert</span><span class="special">(</span><span class="identifier">result6</span><span class="special">);</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="special">*</span><span class="identifier">result6</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span> <span class="comment">// Prints: gggg</span>
+</pre>
+<p>
+      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -1750,11 +1770,11 @@ You entered:
         This parser consumes <code class="computeroutput"><span class="string">"2"</span></code>
         and then <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">ws</span></code> skips the subsequent space. Since we've
         finished with <code class="computeroutput"><span class="identifier">int_pair</span></code>'s
-        match, its <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span>
+        match, its <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span>
         <span class="keyword">int</span><span class="special">&gt;</span></code>
         attribute is complete. It's parent is <code class="computeroutput"><span class="special">+</span><span class="identifier">int_pair</span></code>, so this tuple attribute is pushed
         onto the back of <code class="computeroutput"><span class="special">+</span><span class="identifier">int_pair</span></code>'s
-        attribute, which is a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;&gt;</span></code>. Control passes up to the parent
+        attribute, which is a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;&gt;</span></code>. Control passes up to the parent
         of <code class="computeroutput"><span class="identifier">int_pair</span></code>, <code class="computeroutput"><span class="special">+</span><span class="identifier">int_pair</span></code>.
         Since <code class="computeroutput"><span class="special">+</span><span class="identifier">int_pair</span></code>
         is a one-or-more parser, it starts a new iteration; control passes to <code class="computeroutput"><span class="identifier">int_pair</span></code> again.
@@ -1777,7 +1797,7 @@ You entered:
         -&gt; <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">int_</span></code>. This parses the <code class="computeroutput"><span class="string">"3"</span></code>,
         and the parse reaches the end of input. Control passes to <code class="computeroutput"><span class="identifier">int_pairs_plus</span></code>,
         which has just successfully matched with all parser in its sequence. It then
-        produces its attribute, a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;&gt;,</span> <span class="keyword">int</span><span class="special">&gt;</span></code>, which gets returned from <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">()</span></code>.
+        produces its attribute, a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;&gt;,</span> <span class="keyword">int</span><span class="special">&gt;</span></code>, which gets returned from <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">()</span></code>.
       </p>
 <p>
         Something to take note of between Steps #3 and #4: at the beginning of #4,
@@ -2236,7 +2256,7 @@ You entered:
         provided by Boost.Hana, and <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">hana</span><span class="special">::</span><span class="identifier">tuple</span><span class="special">::</span><span class="keyword">operator</span><span class="special">[]()</span></code>. The first attribute, from the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>,
         is <code class="computeroutput"><span class="identifier">_attr</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">)[</span><span class="number">0</span><span class="identifier">_c</span><span class="special">]</span></code>, and
         the second, from the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aebfca0484fcebac2789c946c6a93b116.html" title="Global int_">int_</a></code>, is <code class="computeroutput"><span class="identifier">_attr</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">)[</span><span class="number">1</span><span class="identifier">_c</span><span class="special">]</span></code>
-        (if <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code>
+        (if <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code>
         aliases to <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">tuple</span></code>, you'd use <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">get</span></code> or
         <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1af2e6576c852ac796a5bdea3c8ed321b8.html" title="Function template get">boost::parser::get</a></code>
         instead). To add the symbol to the symbol table, we call <code class="computeroutput"><span class="identifier">insert</span><span class="special">()</span></code>.
@@ -2520,7 +2540,7 @@ You entered:
         </p></td></tr>
 </table></div>
 <div class="table">
-<a name="boost_parser.tutorial.the_parsers_and_their_uses.t0"></a><p class="title"><b>Table 26.6. Parsers and Their Semantics</b></p>
+<a name="boost_parser.tutorial.the_parsers_and_their_uses.t0"></a><p class="title"><b>Table 25.6. Parsers and Their Semantics</b></p>
 <div class="table-contents"><table class="table" summary="Parsers and Their Semantics">
 <colgroup>
 <col>
@@ -2922,6 +2942,26 @@ You entered:
 <td>
                 <p>
                   Matches a single punctuation code point.
+                </p>
+              </td>
+<td>
+                <p>
+                  The code point type in Unicode parsing, or <code class="computeroutput"><span class="keyword">char</span></code>
+                  in non-Unicode parsing. See the entry for <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>.
+                </p>
+              </td>
+<td>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aa22c5cfd498f2947edd319e86d85815f.html" title="Global symb">symb</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Matches a single symbol code point.
                 </p>
               </td>
 <td>
@@ -4287,6 +4327,35 @@ You entered:
         <code class="computeroutput">transform(f)[]</code>
         creates a <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1transform__parser.html" title="Struct template transform_parser">tranform_parser</a></code>.
       </p>
+<h5>
+<a name="boost_parser.tutorial.directives.h11"></a>
+        <span class="phrase"><a name="boost_parser.tutorial.directives._globalname_alt__boost__parser__delimiter___code__phrase_role__identifier__delimiter__phrase__phrase_role__special_____phrase__phrase_role__identifier__p__phrase__phrase_role__special_______phrase___code___globalname_"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.directives._globalname_alt__boost__parser__delimiter___code__phrase_role__identifier__delimiter__phrase__phrase_role__special_____phrase__phrase_role__identifier__p__phrase__phrase_role__special_______phrase___code___globalname_"><code class="computeroutput">delimiter(p)[]</code></a>
+      </h5>
+<p>
+        The <code class="computeroutput">delimiter</code>
+        directive enables the use of a delimiter within a permutation parser. It
+        <span class="bold"><strong>only</strong></span> applies to permutation parsers, just
+        as <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a11728b9935b826cf6a066766b347f17b.html" title="Global merge">merge[]</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1c4c5ec9144e8f4d1e1e1cb848a0ae04.html" title="Global separate">separate[]</a></code>
+        only apply to sequence parsers. Consider this permutation parser.
+      </p>
+<pre class="programlisting"><span class="keyword">constexpr</span> <span class="keyword">auto</span> <span class="identifier">parser</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">int_</span> <span class="special">||</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">string</span><span class="special">(</span><span class="string">"foo"</span><span class="special">)</span> <span class="special">||</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'g'</span><span class="special">);</span>
+</pre>
+<p>
+        This will match all of: an integer, <code class="computeroutput"><span class="string">"foo"</span></code>,
+        and <code class="computeroutput"><span class="char">'g'</span></code>, in any order (for example,
+        <code class="computeroutput"><span class="string">"foo g 42"</span></code>). If you
+        also want for those three elements to be delimited by commas, you could write
+        this parser instead.
+      </p>
+<pre class="programlisting"><span class="keyword">constexpr</span> <span class="keyword">auto</span> <span class="identifier">delimited_parser</span> <span class="special">=</span>
+    <span class="identifier">bp</span><span class="special">::</span><span class="identifier">delimiter</span><span class="special">(</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">lit</span><span class="special">(</span><span class="char">','</span><span class="special">))[</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">int_</span> <span class="special">||</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">string</span><span class="special">(</span><span class="string">"foo"</span><span class="special">)</span> <span class="special">||</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'g'</span><span class="special">)];</span>
+</pre>
+<p>
+        <code class="computeroutput"><span class="identifier">delimited_parser</span></code> will parse
+        the same elements as <code class="computeroutput"><span class="identifier">parser</span></code>,
+        but will also require commas between the elements (as in <code class="computeroutput"><span class="string">"foo,
+        g, 42"</span></code>).
+      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -4333,7 +4402,7 @@ You entered:
         </p></td></tr>
 </table></div>
 <div class="table">
-<a name="boost_parser.tutorial.combining_operations.t0"></a><p class="title"><b>Table 26.7. Combining Operations and Their Semantics</b></p>
+<a name="boost_parser.tutorial.combining_operations.t0"></a><p class="title"><b>Table 25.7. Combining Operations and Their Semantics</b></p>
 <div class="table-contents"><table class="table" summary="Combining Operations and Their Semantics">
 <colgroup>
 <col>
@@ -4500,7 +4569,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code> (See note.)
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code> (See note.)
                 </p>
               </td>
 <td>
@@ -4517,7 +4586,8 @@ You entered:
                   type only applies to the case where <code class="computeroutput"><span class="identifier">p1</span></code>
                   and <code class="computeroutput"><span class="identifier">p2</span></code> both generate
                   attributes; see <a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation" title="Attribute Generation">Attribute
-                  Generation</a> for the full rules.
+                  Generation</a> for the full rules. Differs in precedence from
+                  <code class="computeroutput"><span class="keyword">operator</span><span class="special">&gt;</span></code>.
                 </p>
               </td>
 </tr>
@@ -4580,7 +4650,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code> (See note.)
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code> (See note.)
                 </p>
               </td>
 <td>
@@ -4597,7 +4667,8 @@ You entered:
                   type only applies to the case where <code class="computeroutput"><span class="identifier">p1</span></code>
                   and <code class="computeroutput"><span class="identifier">p2</span></code> both generate
                   attributes; see <a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation" title="Attribute Generation">Attribute
-                  Generation</a> for the full rules.
+                  Generation</a> for the full rules. Differs in precedence from
+                  <code class="computeroutput"><span class="keyword">operator</span><span class="special">&gt;&gt;</span></code>.
                 </p>
               </td>
 </tr>
@@ -4733,7 +4804,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 <td>
@@ -4950,6 +5021,22 @@ You entered:
         <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ae99af5798fd88c0cfd424c181dc13d09.html" title="Global eps">eps</a><span class="special">(</span><span class="identifier">cond</span><span class="special">)</span></code>
         is allowed to appear anywhere within an alternative parser.
       </p>
+<div class="important"><table border="0" summary="Important">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="../../../doc/src/images/important.png"></td>
+<th align="left">Important</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+          The C++ operators <code class="computeroutput"><span class="special">&gt;</span></code> and
+          <code class="computeroutput"><span class="special">&gt;&gt;</span></code> have different precedences.
+          This will sometimes come up in warnings from your compiler. No matter how
+          you do or do not parenthesize chains of parsers separated by <code class="computeroutput"><span class="special">&gt;</span></code> and <code class="computeroutput"><span class="special">&gt;&gt;</span></code>,
+          the resulting expression evaluates the same. Feel free to add parentheses
+          if your compiler complains. More broadly, keep the C++ operator precedence
+          rules in mind when writing your parsers — the simplest thing to
+          write may not have your intended semantics.
+        </p></td></tr>
+</table></div>
 <div class="note"><table border="0" summary="Note">
 <tr>
 <td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
@@ -4974,7 +5061,7 @@ You entered:
 <p>
         So far, we've seen several different types of attributes that come from different
         parsers, <code class="computeroutput"><span class="keyword">int</span></code> for <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aebfca0484fcebac2789c946c6a93b116.html" title="Global int_">int_</a></code>,
-        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">char</span><span class="special">,</span>
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">char</span><span class="special">,</span>
         <span class="keyword">int</span><span class="special">&gt;</span></code>
         for <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span><span class="identifier">char_</span> <span class="special">&gt;&gt;</span>
         <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span><span class="identifier">int_</span></code>, etc. Let's get into how this works
@@ -5020,7 +5107,7 @@ You entered:
       </h5>
 <p>
         You can use <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1attribute.html" title="Struct template attribute">attribute</a></code>
-        (and the associated alias, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a45a57c9180a85867f92bab400058b847.html" title="Type definition attribute_t">attribute_t</a></code>) to determine the
+        (and the associated alias, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1acab73b5438b6bab7862f0409c6845b50.html" title="Type definition attribute_t">attribute_t</a></code>) to determine the
         attribute a parser would have if it were passed to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ab68519dff2a5635d6a11296874fc154d.html" title="Function template parse">parse()</a></code>.
         Since at least one parser (<code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>) has a polymorphic attribute
         type, <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1attribute.html" title="Struct template attribute">attribute</a></code>
@@ -5071,7 +5158,7 @@ You entered:
           </li>
 </ul></div>
 <div class="table">
-<a name="boost_parser.tutorial.attribute_generation.t0"></a><p class="title"><b>Table 26.8. Parsers and Their Attributes</b></p>
+<a name="boost_parser.tutorial.attribute_generation.t0"></a><p class="title"><b>Table 25.8. Parsers and Their Attributes</b></p>
 <div class="table-contents"><table class="table" summary="Parsers and Their Attributes">
 <colgroup>
 <col>
@@ -5519,7 +5606,7 @@ You entered:
           </li>
 </ul></div>
 <div class="table">
-<a name="boost_parser.tutorial.attribute_generation.t1"></a><p class="title"><b>Table 26.9. Combining Operations and Their Attributes</b></p>
+<a name="boost_parser.tutorial.attribute_generation.t1"></a><p class="title"><b>Table 25.9. Combining Operations and Their Attributes</b></p>
 <div class="table-contents"><table class="table" summary="Combining Operations and Their Attributes">
 <colgroup>
 <col>
@@ -5639,7 +5726,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5652,7 +5739,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5666,7 +5753,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5680,7 +5767,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5694,7 +5781,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5708,7 +5795,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5748,7 +5835,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5762,7 +5849,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p2</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p3</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -5908,7 +5995,7 @@ You entered:
             collapse into one attribute; and
           </li>
 <li class="listitem">
-            if the result of all that is a degenerate tuple <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+            if the result of all that is a degenerate tuple <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
             (even if <code class="computeroutput"><span class="identifier">T</span></code> is a type
             that means "no attribute"), the attribute becomes <code class="computeroutput"><span class="identifier">T</span></code>.
           </li>
@@ -5925,7 +6012,7 @@ You entered:
         We get the attribute of <code class="computeroutput"><span class="identifier">p</span></code>
         by evaluating a compile-time left fold operation, <code class="computeroutput"><span class="identifier">left</span><span class="special">-</span><span class="identifier">fold</span><span class="special">({</span><span class="identifier">a1</span><span class="special">,</span> <span class="identifier">a2</span><span class="special">,</span> <span class="special">...,</span> <span class="identifier">an</span><span class="special">},</span> <span class="identifier">tuple</span><span class="special">&lt;</span><span class="identifier">a0</span><span class="special">&gt;,</span> <span class="identifier">OP</span><span class="special">)</span></code>. <code class="computeroutput"><span class="identifier">OP</span></code>
         is the combining operation that takes the current attribute type (initially
-        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">a0</span><span class="special">&gt;</span></code>) and the next attribute type, and returns
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">a0</span><span class="special">&gt;</span></code>) and the next attribute type, and returns
         the new current attribute type. The current attribute type at the end of
         the fold operation is the attribute type for <code class="computeroutput"><span class="identifier">p</span></code>.
       </p>
@@ -5948,7 +6035,7 @@ You entered:
         so the "current attribute <code class="computeroutput"><span class="identifier">X</span></code>"
         refers to the last element of <code class="computeroutput"><span class="identifier">Tup</span></code>,
         not <code class="computeroutput"><span class="identifier">Tup</span></code> itself, except for
-        those rules that explicitly mention <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;&gt;</span></code>
+        those rules that explicitly mention <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;&gt;</span></code>
         as part of <code class="computeroutput"><span class="identifier">X</span></code>'s type.
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -5980,14 +6067,14 @@ You entered:
             <code class="computeroutput"><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span> <span class="special">&gt;&gt;</span> <span class="identifier">C</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span> <span class="special">-&gt;</span> <span class="identifier">C</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">none</span><span class="special">&gt;</span> <span class="special">&gt;&gt;</span>
+            <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">none</span><span class="special">&gt;</span> <span class="special">&gt;&gt;</span>
             <span class="identifier">T</span> <span class="special">-&gt;</span>
-            <a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+            <a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
           </li>
 <li class="listitem">
-            <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">...&gt;</span> <span class="special">&gt;&gt;</span>
+            <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">...&gt;</span> <span class="special">&gt;&gt;</span>
             <span class="identifier">T</span> <span class="special">-&gt;</span>
-            <a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">...,</span> <span class="identifier">T</span><span class="special">&gt;</span></code>
+            <a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">...,</span> <span class="identifier">T</span><span class="special">&gt;</span></code>
           </li>
 </ul></div>
 <p>
@@ -5999,7 +6086,7 @@ You entered:
         is either <code class="computeroutput"><span class="keyword">char</span></code> or <code class="computeroutput"><span class="keyword">char32_t</span></code>, the combination yields a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>.
       </p>
 <p>
-        Again, if the final result is that the attribute is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>,
+        Again, if the final result is that the attribute is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>,
         the attribute becomes <code class="computeroutput"><span class="identifier">T</span></code>.
       </p>
 <div class="note"><table border="0" summary="Note">
@@ -6025,6 +6112,98 @@ You entered:
 </table></div>
 <h5>
 <a name="boost_parser.tutorial.attribute_generation.h4"></a>
+        <span class="phrase"><a name="boost_parser.tutorial.attribute_generation.a_sequence_parser_attribute_example"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.a_sequence_parser_attribute_example">A
+        sequence parser attribute example</a>
+      </h5>
+<p>
+        Note that the application of <code class="computeroutput"><span class="identifier">OP</span></code>
+        is done in the style of a left-fold, and is therefore greedy. This can lead
+        to some non-obvious results. For example, consider this program. Thanks to
+        Duncan Paterson for this very nice example!
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">parser</span><span class="special">/</span><span class="identifier">parser</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">print</span><span class="special">&gt;</span>
+
+<span class="keyword">namespace</span> <span class="identifier">bp</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">;</span>
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span> <span class="special">{</span>
+  <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">id_set_action</span> <span class="special">=</span> <span class="special">[](</span><span class="keyword">auto</span> <span class="special">&amp;</span><span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
+    <span class="keyword">const</span> <span class="keyword">auto</span><span class="special">&amp;</span> <span class="special">[</span><span class="identifier">left</span><span class="special">,</span> <span class="identifier">right</span><span class="special">]</span> <span class="special">=</span> <span class="identifier">_attr</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">);</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">println</span><span class="special">(</span><span class="string">"{} = {}"</span><span class="special">,</span> <span class="identifier">left</span><span class="special">,</span> <span class="identifier">right</span><span class="special">);</span>
+  <span class="special">};</span>
+
+  <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">id_parser</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">)</span> <span class="special">&gt;</span> <span class="special">*</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">);</span>
+
+  <span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">id_set</span> <span class="special">=</span> <span class="special">(</span><span class="identifier">id_parser</span> <span class="special">&gt;&gt;</span> <span class="char">'='</span> <span class="special">&gt;&gt;</span> <span class="identifier">id_parser</span><span class="special">)[</span><span class="identifier">id_set_action</span><span class="special">];</span>
+  <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">(</span><span class="string">"left=right"</span><span class="special">,</span> <span class="identifier">id_set</span><span class="special">);</span>
+  <span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+<span class="special">}</span>
+</pre>
+<p>
+        Perhaps surprisingly, this program prints <code class="computeroutput"><span class="identifier">leftr</span>
+        <span class="special">=</span> <span class="identifier">ight</span></code>!
+        Why is this? This happens because <code class="computeroutput"><span class="identifier">id_parser</span></code>
+        seems to impose structure, but does not. <code class="computeroutput"><span class="identifier">id_set</span></code>
+        is exactly equivalent to this (comments added to clarify which parts are
+        which below).
+      </p>
+<pre class="programlisting"><span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">id_set</span> <span class="special">=</span> <span class="special">(</span>
+  <span class="comment">/*A*/</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">)</span> <span class="special">&gt;</span> <span class="comment">/*B*/</span> <span class="special">*</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">)</span> <span class="special">&gt;&gt;</span>
+  <span class="comment">/*C*/</span> <span class="char">'='</span> <span class="special">&gt;&gt;</span>
+  <span class="comment">/*D*/</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">)</span> <span class="special">&gt;</span> <span class="comment">/*E*/</span> <span class="special">*</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">)</span>
+<span class="special">)[</span><span class="identifier">id_set_action</span><span class="special">];</span>
+</pre>
+<p>
+        As Boost.Parser applies <code class="computeroutput"><span class="identifier">OP</span></code>
+        to this sequence parser, the individual steps are: <code class="computeroutput"><span class="identifier">A</span></code>
+        and <code class="computeroutput"><span class="identifier">B</span></code> get merged into a single
+        <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>; <code class="computeroutput"><span class="identifier">C</span></code>
+        is ignored, since it produces no attribute; and <code class="computeroutput"><span class="identifier">D</span></code>
+        gets merged into the <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>
+        formed earlier by <code class="computeroutput"><span class="identifier">A</span></code> and
+        <code class="computeroutput"><span class="identifier">B</span></code>; finally, we have <code class="computeroutput"><span class="identifier">E</span></code>. <code class="computeroutput"><span class="identifier">E</span></code>
+        does not combine with <code class="computeroutput"><span class="identifier">D</span></code>,
+        as <code class="computeroutput"><span class="identifier">D</span></code> was already consumed.
+        <code class="computeroutput"><span class="identifier">E</span></code> also does not combine with
+        the <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> we formed from <code class="computeroutput"><span class="identifier">A</span></code>,
+        <code class="computeroutput"><span class="identifier">B</span></code>, and <code class="computeroutput"><span class="identifier">D</span></code>,
+        since we don't combine adjacent containers. In the end, we have a 2-tuple
+        of <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>s, in which the first element contains
+        all the characters parsed by <code class="computeroutput"><span class="identifier">A</span></code>,
+        <code class="computeroutput"><span class="identifier">B</span></code>, and <code class="computeroutput"><span class="identifier">D</span></code>,
+        and in which the second element contains all the characters parsed by <code class="computeroutput"><span class="identifier">E</span></code>.
+      </p>
+<p>
+        That's clearly not what we wanted here, though. How do we get a top-level
+        parser that would print <code class="computeroutput"><span class="identifier">left</span> <span class="special">=</span> <span class="identifier">right</span></code>?
+        We use a <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>.
+        The parser used inside a <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code> can never combine with
+        any parser(s) outside the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>. Instances of a rule are
+        inherently separate from all parsers with which they are used, whether those
+        parsers are <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rules</a></code>
+        or non-<code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>
+        parsers. So, consider a <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code> equivalent to the previous
+        <code class="computeroutput"><span class="identifier">id_parser</span></code> above.
+      </p>
+<pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">bp</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">;</span>
+<span class="identifier">bp</span><span class="special">::</span><span class="identifier">rule</span><span class="special">&lt;</span><span class="keyword">struct</span> <span class="identifier">id_parser_tag</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">id_parser</span> <span class="special">=</span> <span class="string">"identifier"</span><span class="special">;</span>
+<span class="keyword">auto</span> <span class="keyword">const</span> <span class="identifier">id_parser_def</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">)</span> <span class="special">&gt;</span> <span class="special">*</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span> <span class="char">'z'</span><span class="special">);</span>
+<span class="identifier">BOOST_PARSER_DEFINE_RULES</span><span class="special">(</span><span class="identifier">id_parser</span><span class="special">);</span>
+</pre>
+<p>
+        Later, we can use it just as we used the previous non-rule version.
+      </p>
+<pre class="programlisting"><span class="keyword">const</span> <span class="keyword">auto</span> <span class="identifier">id_set</span> <span class="special">=</span> <span class="special">(</span><span class="identifier">id_parser</span> <span class="special">&gt;&gt;</span> <span class="char">'='</span> <span class="special">&gt;&gt;</span> <span class="identifier">id_parser</span><span class="special">)[</span><span class="identifier">id_set_action</span><span class="special">];</span>
+</pre>
+<p>
+        This produces the results you might expect, since only the <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span>
+        <span class="char">'z'</span><span class="special">)</span> <span class="special">&gt;</span> <span class="special">*</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">char_</span><span class="special">(</span><span class="char">'a'</span><span class="special">,</span>
+        <span class="char">'z'</span><span class="special">)</span></code>
+        parser inside the <code class="computeroutput"><span class="identifier">id_parser</span></code>
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>
+        is ever eligible for combining via <code class="computeroutput"><span class="identifier">OP</span></code>.
+      </p>
+<h5>
+<a name="boost_parser.tutorial.attribute_generation.h5"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation.alternative_parser_attribute_rules"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.alternative_parser_attribute_rules">Alternative
         parser attribute rules</a>
       </h5>
@@ -6056,7 +6235,7 @@ You entered:
           </li>
 </ul></div>
 <h5>
-<a name="boost_parser.tutorial.attribute_generation.h5"></a>
+<a name="boost_parser.tutorial.attribute_generation.h6"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation.formation_of_containers_in_attributes"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.formation_of_containers_in_attributes">Formation
         of containers in attributes</a>
       </h5>
@@ -6078,7 +6257,7 @@ You entered:
         If you are parsing UTF-8 in the Unicode code path, <code class="computeroutput"><span class="identifier">char_</span></code>'s
         attribute type is <code class="computeroutput"><span class="keyword">char32_t</span></code>,
         and the special rule makes it also produce a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>.
-        Otherwise, the attribute for <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">char_</span> <span class="special">&gt;&gt;</span> <span class="identifier">string</span><span class="special">(</span><span class="string">"str"</span><span class="special">))</span></code> would be <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">char32_t</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>.
+        Otherwise, the attribute for <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">char_</span> <span class="special">&gt;&gt;</span> <span class="identifier">string</span><span class="special">(</span><span class="string">"str"</span><span class="special">))</span></code> would be <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">char32_t</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>.
       </p>
 <p>
         Again, there are no special rules for combining values and containers. Every
@@ -6086,7 +6265,7 @@ You entered:
         special case.
       </p>
 <h5>
-<a name="boost_parser.tutorial.attribute_generation.h6"></a>
+<a name="boost_parser.tutorial.attribute_generation.h7"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation.another_special_case___code__phrase_role__identifier__std__phrase__phrase_role__special______phrase__phrase_role__identifier__string__phrase___code__assignment"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.another_special_case___code__phrase_role__identifier__std__phrase__phrase_role__special______phrase__phrase_role__identifier__string__phrase___code__assignment">Another
         special case: <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> assignment</a>
       </h5>
@@ -6109,7 +6288,7 @@ You entered:
         or whatever to a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>, do it in a semantic action.
       </p>
 <h5>
-<a name="boost_parser.tutorial.attribute_generation.h7"></a>
+<a name="boost_parser.tutorial.attribute_generation.h8"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation.examples_of_attributes_generated_by_sequence_and_alternative_parsers"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.examples_of_attributes_generated_by_sequence_and_alternative_parsers">Examples
         of attributes generated by sequence and alternative parsers</a>
       </h5>
@@ -6121,7 +6300,7 @@ You entered:
         same attribute generation rules.
       </p>
 <div class="table">
-<a name="boost_parser.tutorial.attribute_generation.t2"></a><p class="title"><b>Table 26.10. Sequence and Alternative Combining Operations and Their Attributes</b></p>
+<a name="boost_parser.tutorial.attribute_generation.t2"></a><p class="title"><b>Table 25.10. Sequence and Alternative Combining Operations and Their Attributes</b></p>
 <div class="table-contents"><table class="table" summary="Sequence and Alternative Combining Operations and Their Attributes">
 <colgroup>
 <col>
@@ -6214,7 +6393,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -6227,7 +6406,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -6240,7 +6419,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">),</span> <span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)&gt;</span></code>
                 </p>
               </td>
 </tr>
@@ -6414,7 +6593,7 @@ You entered:
 </table></div>
 </div>
 <br class="table-break"><h5>
-<a name="boost_parser.tutorial.attribute_generation.h8"></a>
+<a name="boost_parser.tutorial.attribute_generation.h9"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation.controlling_attribute_generation_with__globalname_alt__boost__parser__merge___code__phrase_role__identifier__merge__phrase__phrase_role__special______phrase___code___globalname__and__globalname_alt__boost__parser__separate___code__phrase_role__identifier__separate__phrase__phrase_role__special______phrase___code___globalname_"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.controlling_attribute_generation_with__globalname_alt__boost__parser__merge___code__phrase_role__identifier__merge__phrase__phrase_role__special______phrase___code___globalname__and__globalname_alt__boost__parser__separate___code__phrase_role__identifier__separate__phrase__phrase_role__special______phrase___code___globalname_">Controlling
         attribute generation with merge[]
         and separate[]</a>
@@ -6436,7 +6615,7 @@ You entered:
 </pre>
 <p>
         <code class="computeroutput"><span class="identifier">employee_parser</span></code>'s attribute
-        is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span>
+        is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span>
         <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">double</span><span class="special">&gt;</span></code>.
         The two <code class="computeroutput"><span class="identifier">quoted_string</span></code> parsers
         produce <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> attributes, and those attributes
@@ -6490,10 +6669,10 @@ You entered:
 </pre>
 <p>
         With this change, <code class="computeroutput"><span class="identifier">string_and_char</span></code>
-        produces the attribute <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">char32_t</span><span class="special">&gt;</span></code>.
+        produces the attribute <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span> <span class="keyword">char32_t</span><span class="special">&gt;</span></code>.
       </p>
 <h5>
-<a name="boost_parser.tutorial.attribute_generation.h9"></a>
+<a name="boost_parser.tutorial.attribute_generation.h10"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation._globalname_alt__boost__parser__merge___code__phrase_role__identifier__merge__phrase__phrase_role__special______phrase___code___globalname__and__globalname_alt__boost__parser__separate___code__phrase_role__identifier__separate__phrase__phrase_role__special______phrase___code___globalname__in_more_detail"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation._globalname_alt__boost__parser__merge___code__phrase_role__identifier__merge__phrase__phrase_role__special______phrase___code___globalname__and__globalname_alt__boost__parser__separate___code__phrase_role__identifier__separate__phrase__phrase_role__special______phrase___code___globalname__in_more_detail">merge[] and separate[]
         in more detail</a>
       </h5>
@@ -6555,8 +6734,8 @@ You entered:
         Note that <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1c4c5ec9144e8f4d1e1e1cb848a0ae04.html" title="Global separate">separate[]</a></code> is a no-op here; it's only
         being used this way for this example. These parsers have different attribute
         types. <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">parser1</span><span class="special">)</span></code>
-        is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">(</span><span class="keyword">int</span><span class="special">,</span>
-        <span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">)</span></code>. <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">parser2</span><span class="special">)</span></code> is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">(</span><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">(</span><span class="keyword">int</span><span class="special">,</span>
+        is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">(</span><span class="keyword">int</span><span class="special">,</span>
+        <span class="keyword">int</span><span class="special">,</span> <span class="keyword">int</span><span class="special">)</span></code>. <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">parser2</span><span class="special">)</span></code> is <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">(</span><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a><span class="special">(</span><span class="keyword">int</span><span class="special">,</span>
         <span class="keyword">int</span><span class="special">),</span> <span class="keyword">int</span><span class="special">)</span></code>. This
         is because <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">lexeme</span><span class="special">[]</span></code>
         wraps its given parser in a new parser. <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a11728b9935b826cf6a066766b347f17b.html" title="Global merge">merge[]</a></code>
@@ -6565,7 +6744,7 @@ You entered:
         similar, they have different attributes.
       </p>
 <h5>
-<a name="boost_parser.tutorial.attribute_generation.h10"></a>
+<a name="boost_parser.tutorial.attribute_generation.h11"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation._globalname_alt__boost__parser__transform___code__phrase_role__identifier__transform__phrase__phrase_role__special_____phrase__phrase_role__identifier__f__phrase__phrase_role__special_______phrase___code___globalname_"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation._globalname_alt__boost__parser__transform___code__phrase_role__identifier__transform__phrase__phrase_role__special_____phrase__phrase_role__identifier__f__phrase__phrase_role__special_______phrase___code___globalname_"><code class="computeroutput">transform(f)[]</code></a>
       </h5>
 <p>
@@ -6617,7 +6796,7 @@ You entered:
         with no attribute. You may therefore write something like <code class="computeroutput">transform<span class="special">(</span><span class="identifier">f</span><span class="special">)[</span><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ae99af5798fd88c0cfd424c181dc13d09.html" title="Global eps">eps</a><span class="special">]</span></code>, and Boost.Parser will happily call <code class="computeroutput"><span class="identifier">f</span></code> with this special no-attribute type.
       </p>
 <h5>
-<a name="boost_parser.tutorial.attribute_generation.h11"></a>
+<a name="boost_parser.tutorial.attribute_generation.h12"></a>
         <span class="phrase"><a name="boost_parser.tutorial.attribute_generation.other_directives_that_affect_attribute_generation"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.other_directives_that_affect_attribute_generation">Other
         directives that affect attribute generation</a>
       </h5>
@@ -7032,8 +7211,8 @@ You entered:
 <p>
         Again, this works because <code class="computeroutput"><span class="identifier">v</span> <span class="special">=</span> <span class="number">42</span></code> is well-formed.
         However, other kinds of substitutions will not work. In particular, the
-        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code>
-        to aggregate or aggregate to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code> transformations will
+        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code>
+        to aggregate or aggregate to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code> transformations will
         not work. Here's an example.
       </p>
 <pre class="programlisting"><span class="keyword">struct</span> <span class="identifier">key_value</span>
@@ -7227,6 +7406,9 @@ You entered:
 <li class="listitem">
             fix the attribute type produced by a parser to something other than the
             default;
+          </li>
+<li class="listitem">
+            control the attributes generated by adjacent sequence parsers;
           </li>
 <li class="listitem">
             create a parser that produces useful diagnostic text;
@@ -7425,6 +7607,16 @@ You entered:
       </p>
 <h5>
 <a name="boost_parser.tutorial.more_about_rules.h1"></a>
+        <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.controlling_the_attributes_generated"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.controlling_the_attributes_generated">Controlling
+        the attributes generated</a>
+      </h5>
+<p>
+        See the <a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation.a_sequence_parser_attribute_example">A
+        sequence parser attribute example</a> in the <a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation" title="Attribute Generation">Attribute
+        Generation</a> section for details.
+      </p>
+<h5>
+<a name="boost_parser.tutorial.more_about_rules.h2"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.creating_a_parser_for_better_diagnostics"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.creating_a_parser_for_better_diagnostics">Creating
         a parser for better diagnostics</a>
       </h5>
@@ -7506,7 +7698,7 @@ You entered:
         for those other potential uses.
       </p>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h2"></a>
+<a name="boost_parser.tutorial.more_about_rules.h3"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.recursive_rules"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.recursive_rules">Recursive
         rules</a>
       </h5>
@@ -7596,7 +7788,7 @@ You entered:
         a unique value, locals, and parameters.
       </p>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h3"></a>
+<a name="boost_parser.tutorial.more_about_rules.h4"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.mutually_recursive_rules"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.mutually_recursive_rules">Mutually-recursive
         rules</a>
       </h5>
@@ -7632,7 +7824,7 @@ You entered:
         those two parsers to be able to refer to each other.
       </p>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h4"></a>
+<a name="boost_parser.tutorial.more_about_rules.h5"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.callback_parsing"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.callback_parsing">Callback
         parsing</a>
       </h5>
@@ -7644,12 +7836,12 @@ You entered:
         JSON With Callbacks</a> for an extended example of callback parsing.
       </p>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h5"></a>
+<a name="boost_parser.tutorial.more_about_rules.h6"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.accessors_available_in_semantic_actions_on_rules"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.accessors_available_in_semantic_actions_on_rules">Accessors
         available in semantic actions on rules</a>
       </h5>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h6"></a>
+<a name="boost_parser.tutorial.more_about_rules.h7"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules._functionname_alt__boost__parser___val___code__phrase_role__identifier___val__phrase__phrase_role__special______phrase___code___functionname_"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules._functionname_alt__boost__parser___val___code__phrase_role__identifier___val__phrase__phrase_role__special______phrase___code___functionname_">_val()</a>
       </h5>
 <p>
@@ -7682,7 +7874,7 @@ You entered:
         </p></td></tr>
 </table></div>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h7"></a>
+<a name="boost_parser.tutorial.more_about_rules.h8"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.locals"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.locals">Locals</a>
       </h5>
 <p>
@@ -7724,7 +7916,7 @@ You entered:
         to track state as they parse.
       </p>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h8"></a>
+<a name="boost_parser.tutorial.more_about_rules.h9"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.parameters"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.parameters">Parameters</a>
       </h5>
 <p>
@@ -7760,7 +7952,7 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
       </p>
 <p>
         You give parameters to a <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code> by calling its <code class="computeroutput"><span class="identifier">with</span><span class="special">()</span></code>
-        member. The values you pass to <code class="computeroutput"><span class="identifier">with</span><span class="special">()</span></code> are used to create a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code> that is available in
+        member. The values you pass to <code class="computeroutput"><span class="identifier">with</span><span class="special">()</span></code> are used to create a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code> that is available in
         semantic actions attached to the rule, using <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a376d70158bb5f8ce13cfcee77bbce958.html" title="Function template _params">_params</a><span class="special">(</span><span class="identifier">ctx</span><span class="special">)</span></code>.
       </p>
 <p>
@@ -7884,7 +8076,7 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
         if the other rules were implemented, like [138].
       </p>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h9"></a>
+<a name="boost_parser.tutorial.more_about_rules.h10"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.the__globalname_alt__boost__parser___p___code__phrase_role__identifier___p__phrase___code___globalname__variable_template"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.the__globalname_alt__boost__parser___p___code__phrase_role__identifier___p__phrase___code___globalname__variable_template">The
         _p
         variable template</a>
@@ -7913,7 +8105,7 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
         action, you have to call it.
       </p>
 <h5>
-<a name="boost_parser.tutorial.more_about_rules.h10"></a>
+<a name="boost_parser.tutorial.more_about_rules.h11"></a>
         <span class="phrase"><a name="boost_parser.tutorial.more_about_rules.special_forms_of_semantic_actions_usable_within_a_rule"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.more_about_rules.special_forms_of_semantic_actions_usable_within_a_rule">Special
         forms of semantic actions usable within a rule</a>
       </h5>
@@ -7930,7 +8122,7 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
         <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aebfca0484fcebac2789c946c6a93b116.html" title="Global int_">int_</a></code>
         does that, and the thing that I parsed is also the desired attribute. If
         I parse an <code class="computeroutput"><span class="keyword">int</span></code> followed by a
-        <code class="computeroutput"><span class="keyword">double</span></code>, I get a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1792fbe3b24e0dcf5dc9d31005995c1e.html" title="Type definition tuple">boost::parser::tuple</a></code> containing one of each.
+        <code class="computeroutput"><span class="keyword">double</span></code>, I get a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a8a805831f8b910ea5e79472b7af8b016.html" title="Type definition tuple">boost::parser::tuple</a></code> containing one of each.
         But what if I don't want those two values, but some function of those two
         values? I probably write something like this.
       </p>

@@ -3,13 +3,20 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>boost::urls::segments_base::empty :: Boost Libraries Documentation</title>
+    <title>boost::urls::segments&lowbar;base::empty :: Boost Libraries Documentation</title>
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/reference/boost/urls/segments_base/empty.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
     <link rel="stylesheet" href="../../../../../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../../../../../_'</script>
+<link rel="icon" href="../../../../../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../../../../../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../../../../../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -104,26 +111,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="../../../../reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="../../../../HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -142,13 +133,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="empty.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_base.html">segments_base</a>::empty</a></li>
+    <li><a href="empty.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_base.html">segments&lowbar;base</a>::empty</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
 </div>
 </div>
-    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_base.html">segments_base</a>::empty</h1>
+    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/segments_base.html">segments&lowbar;base</a>::empty</h1>
   <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -160,7 +151,7 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/segments_base.hpp#L212">boost/url/segments_base.hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/segments_base.hpp#L220">boost&sol;url&sol;segments&lowbar;base&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -173,20 +164,43 @@ empty() const noexcept;</code></pre>
 <div class="sect1">
 <h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
 <div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">assert( ! url_view( "/index.htm" ).segments().empty() );</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_constant"><a class="anchor" href="#_constant"></a>Constant.</h3>
-
 </div>
-<div class="sect2">
-<h3 id="_throws_nothing"><a class="anchor" href="#_throws_nothing"></a>Throws nothing.</h3>
+</div>
+<div class="sect1">
+<h2 id="_complexity"><a class="anchor" href="#_complexity"></a>Complexity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Constant&period;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exception_safety"><a class="anchor" href="#_exception_safety"></a>Exception Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Throws nothing&period;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_return_value"><a class="anchor" href="#_return_value"></a>Return Value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>true</code> if there are no segments, otherwise <code>false</code>&period;</p>
+</div>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>
-</div>
 </div>
 </div>
 </div>

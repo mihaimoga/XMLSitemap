@@ -40,7 +40,7 @@
         ...
     };
 @endcode
- This <computeroutput>typedef</computeroutput> must be <computeroutput>public</computeroutput> unless  <computeroutput><classname alt="boost::contract::access">boost::contract::access</classname></computeroutput> is used.</para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.tutorial.base_classes__subcontracting_"> Base Classes</link></para>
+</para><para>This <computeroutput>typedef</computeroutput> must be <computeroutput>public</computeroutput> unless  <computeroutput><classname alt="boost::contract::access">boost::contract::access</classname></computeroutput> is used.</para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.tutorial.base_classes__subcontracting_"> Base Classes</link></para>
 </formalpara>
 
 </para></description></macro>
@@ -1398,7 +1398,7 @@ public:
 </programlisting></para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.tutorial.old_values"> Old Values</link></para>
 </formalpara>
 
-</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1aac75a3cf38e3b69de870d42dc129a2e9" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
+</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a77dca6092e64a71132e103aa92883d83" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a699998b265a4267134c29c81cc1cc8be"><purpose>Construct this old value pointer as null. </purpose></constructor>
 <method id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a455c237b49686caea3fe0c84cba8b1ce" name="operator*" cv="const"><type>T const &amp;</type><purpose>Dereference this old value pointer. </purpose><description><para>This will generate a run-time error if this pointer is null and a compile-time error if the pointed type <computeroutput>T</computeroutput> is not copyable (i.e., if <computeroutput>boost::contract::is_old_value_copyable&lt;T&gt;::value</computeroutput> is <computeroutput>false</computeroutput>).</para><para>
@@ -1432,7 +1432,7 @@ public:
         Old Value Requirements</link></para>
 </formalpara>
 
-</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1a9af83c479c61b9b5aaf621cfb114a8ba" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
+</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1af9f1d071df554d53235e27bf647759f8" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1ac91c6fa0ac5d563e9da9f6d16cb98996"><purpose>Construct this old value pointer as null. </purpose></constructor>
 <constructor id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1adcb8a091a60d2d37b6f0005609b8585e"><parameter name="other"><paramtype><classname>old_ptr</classname>&lt; T &gt; const &amp;</paramtype><description><para>Old value pointer that requires the old value type to be copyable. </para></description></parameter><purpose>Construct this old value pointer from an old value pointer that requires the old value type to be copyable. </purpose><description><para>Ownership of the pointed value object is transferred to this pointer. This constructor is implicitly called by this library when assigning an object of this type using  <computeroutput><macroname alt="BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</macroname></computeroutput> (this constructor is usually not explicitly called by user code).</para><para>
@@ -1469,7 +1469,7 @@ public:
     </template><purpose>Trait to copy an old value. </purpose><description><para>By default, the implementation of this trait uses <computeroutput>T's</computeroutput> copy constructor to make one single copy of the specified value. However, programmers can specialize this trait to copy old values using user-specific operations different from <computeroutput>T's</computeroutput> copy constructor. The default implementation of this trait is equivalent to:</para><para><programlisting language="c++">template&lt;typename T&gt;
 class <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ac7334abe57c73ced74e956e439fbb380">old_value_copy</link> {
 public:
-    explicit old_value_copy(T const&amp; <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ae7b1f3045099afee3fedad57e9c4fbb3">old</link>) :
+    explicit <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ac7334abe57c73ced74e956e439fbb380">old_value_copy</link>(T const&amp; <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ae7b1f3045099afee3fedad57e9c4fbb3">old</link>) :
         old_(<link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ae7b1f3045099afee3fedad57e9c4fbb3">old</link>) // One single copy of value using T's copy constructor.
     {}
 

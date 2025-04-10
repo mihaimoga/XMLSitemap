@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>boost::urls::encode :: Boost Libraries Documentation</title>
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/reference/boost/urls/encode-09.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../../../_/css/site.css">
     <link rel="stylesheet" href="../../../../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../../../../_'</script>
+<link rel="icon" href="../../../../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../../../../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../../../../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -104,26 +111,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="../../../reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="../../../concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="../../../HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -152,7 +143,7 @@
   <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Apply percent-encoding to a string</p>
+<p>Apply percent&hyphen;encoding to a string</p>
 </div>
 </div>
 </div>
@@ -160,18 +151,18 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/encode.hpp#L118">boost/url/encode.hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/encode.hpp#L119">boost&sol;url&sol;encode&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">template&lt;class CharSet&gt;
-std::size_t
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">template&lt;<a href="grammar.html" class="xref page">grammar</a>::<a href="grammar/CharSet.html" class="xref page">CharSet</a> CS&gt;
+std::size&lowbar;t
 encode(
     char* dest,
-    std::size_t size,
-    core::string_view s,
-    CharSet const&amp; unreserved,
-    <a href="encoding_opts.html" class="xref page">encoding_opts</a> opt = = {});</code></pre>
+    std::size&lowbar;t size,
+    core::string&lowbar;view s,
+    CS const&amp; unreserved,
+    <a href="encoding_opts.html" class="xref page">encoding&lowbar;opts</a> opt = &lcub;&rcub;);</code></pre>
 </div>
 </div>
 </div>
@@ -180,28 +171,38 @@ encode(
 <h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This function applies percent-encoding
-to the string using the given options and
-character set. The destination buffer
-provided by the caller is used to store
-the result, which may be truncated if
-there is insufficient space.</p>
+<p>This function applies percent&hyphen;encoding to the string using the given options and character set&period; The destination buffer provided by the caller is used to store the result, which may be truncated if there is insufficient space&period;</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">char buf[100];
 assert( encode( buf, sizeof(buf), "Program Files", pchars ) == 15 );</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_throws_nothing"><a class="anchor" href="#_throws_nothing"></a>Throws nothing.</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exception_safety"><a class="anchor" href="#_exception_safety"></a>Exception Safety</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Throws nothing&period;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_specification"><a class="anchor" href="#_specification"></a>Specification</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1">2.1. Percent-Encoding (rfc3986)</a></p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.1" class="bare">https://datatracker.ietf.org/doc/html/rfc3986#section-2.1</a></p>
 </li>
 </ul>
-</div>
 </div>
 </div>
 </div>
@@ -209,8 +210,7 @@ assert( encode( buf, sizeof(buf), "Program Files", pchars ) == 15 );</code></pre
 <h2 id="_return_value"><a class="anchor" href="#_return_value"></a>Return Value</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The number of characters written
-to the destination buffer.</p>
+<p>The number of characters written to the destination buffer&period;</p>
 </div>
 </div>
 </div>
@@ -222,49 +222,30 @@ to the destination buffer.</p>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>dest</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The destination buffer
-to write to.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The destination buffer to write to&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>size</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The number of writable
-characters pointed to by `dest`.
-If this is less than `encoded_size(s)`,
-the result is truncated.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of writable characters pointed to by <code>dest</code>&period; If this is less than <code>encoded&lowbar;size(s)</code>, the result is truncated&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>s</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The string to encode.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The string to encode&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unreserved</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The set of characters
-that is not percent-encoded.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The set of characters that is not percent&hyphen;encoded&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>opt</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The options for encoding. If
-this parameter is omitted, the default
-options are used.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The options for encoding&period; If this parameter is omitted, the default options are used&period;</p></td>
 </tr>
 </tbody>
 </table>
@@ -274,12 +255,7 @@ options are used.
 <h2 id="_see_also"><a class="anchor" href="#_see_also"></a>See Also</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="encode-04.html" class="xref page">encode</a>
-,
-<a href="encoded_size.html" class="xref page">encoded_size</a>
-,
-<a href="make_pct_string_view.html" class="xref page">make_pct_string_view</a>
-.</p>
+<p><a href="encode-04e.html" class="xref page"><code>encode</code></a>, <a href="encoded_size.html" class="xref page"><code>encoded&lowbar;size</code></a>, <a href="make_pct_string_view.html" class="xref page"><code>make&lowbar;pct&lowbar;string&lowbar;view</code></a>&period;</p>
 </div>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>

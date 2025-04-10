@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Chapter 20. Boost.Lockfree</title>
+<title>Chapter 19. Boost.Lockfree</title>
 <link rel="stylesheet" href="../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
@@ -27,7 +27,7 @@
 <div class="chapter">
 <div class="titlepage"><div>
 <div><h2 class="title">
-<a name="lockfree"></a>Chapter 20. Boost.Lockfree</h2></div>
+<a name="lockfree"></a>Chapter 19. Boost.Lockfree</h2></div>
 <div><div class="author"><h3 class="author">
 <span class="firstname">Tim</span> <span class="surname">Blechmann</span>
 </h3></div></div>
@@ -48,7 +48,6 @@
 <dt><span class="section"><a href="lockfree/examples.html">Examples</a></span></dt>
 <dt><span class="section"><a href="lockfree/rationale.html">Rationale</a></span></dt>
 <dd><dl>
-<dt><span class="section"><a href="lockfree/rationale.html#lockfree.rationale.data_structures">Data Structures</a></span></dt>
 <dt><span class="section"><a href="lockfree/rationale.html#lockfree.rationale.memory_management">Memory Management</a></span></dt>
 <dt><span class="section"><a href="lockfree/rationale.html#lockfree.rationale.aba_prevention">ABA Prevention</a></span></dt>
 <dt><span class="section"><a href="lockfree/rationale.html#lockfree.rationale.interprocess_support">Interprocess
@@ -59,13 +58,13 @@
 <dt><span class="section"><a href="lockfree/reference.html#doxygen.policies_8hpp">Header &lt;boost/lockfree/policies.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="lockfree/reference.html#doxygen.queue_8hpp">Header &lt;boost/lockfree/queue.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="lockfree/reference.html#doxygen.spsc__queue_8hpp">Header &lt;boost/lockfree/spsc_queue.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="lockfree/reference.html#doxygen.spsc__value_8hpp">Header &lt;boost/lockfree/spsc_value.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="lockfree/reference.html#doxygen.stack_8hpp">Header &lt;boost/lockfree/stack.hpp&gt;</a></span></dt>
 </dl></dd>
 <dt><span class="section"><a href="lockfree/appendices.html">Appendices</a></span></dt>
 <dd><dl>
 <dt><span class="section"><a href="lockfree/appendices.html#lockfree.appendices.supported_platforms___compilers">Supported
       Platforms &amp; Compilers</a></span></dt>
-<dt><span class="section"><a href="lockfree/appendices.html#lockfree.appendices.future_developments">Future Developments</a></span></dt>
 <dt><span class="section"><a href="lockfree/appendices.html#lockfree.appendices.references">References</a></span></dt>
 </dl></dd>
 </dl>
@@ -202,7 +201,7 @@
       Structures</a>
     </h3>
 <p>
-      <code class="literal">boost.lockfree</code> implements three lock-free data structures:
+      <code class="literal">boost.lockfree</code> implements four lock-free data structures:
     </p>
 <div class="variablelist">
 <p class="title"><b></b></p>
@@ -219,6 +218,11 @@
 <dd><p>
             a wait-free single-producer/single-consumer queue (commonly known as
             ringbuffer)
+          </p></dd>
+<dt><span class="term"><code class="computeroutput"><a class="link" href="doxygen/structboost_1_1lockfree_1_1spsc__value.html" title="Struct template spsc_value">boost::lockfree::spsc_value</a></code></span></dt>
+<dd><p>
+            a wait-free single-producer/single-consumer value (commonly known as
+            triple buffer)
           </p></dd>
 </dl>
 </div>
@@ -250,9 +254,12 @@
           </p></dd>
 <dt><span class="term"><code class="computeroutput"><a class="link" href="doxygen/structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">boost::lockfree::allocator</a></code></span></dt>
 <dd><p>
-            Defines the allocator. <code class="literal">boost.lockfree</code> supports stateful
-            allocator and is compatible with <a href="../../libs/interprocess/index.html" target="_top">Boost.Interprocess</a>
-            allocators.
+            Defines the allocator.
+          </p></dd>
+<dt><span class="term"><code class="computeroutput"><a class="link" href="doxygen/structboost_1_1lockfree_1_1allow__multiple__reads.html" title="Struct template allow_multiple_reads">boost::lockfree::allow_multiple_reads</a></code></span></dt>
+<dd><p>
+            Configures the <code class="computeroutput"><a class="link" href="doxygen/structboost_1_1lockfree_1_1spsc__value.html" title="Struct template spsc_value">boost::lockfree::spsc_value</a></code>
+            to allow the content to be read multiple times.
           </p></dd>
 </dl>
 </div>

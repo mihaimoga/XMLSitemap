@@ -37,16 +37,16 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1date__time_1_1period__parser.html" title="Class template period_parser">period_parser</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_string</span><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span>                <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1aecf8084bbffdacfe78b2360e10a4bcf3"></a><span class="identifier">string_type</span><span class="special">;</span>    
-  <span class="keyword">typedef</span> <span class="identifier">CharT</span>                                     <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a0807785596dc47367b83a2586fce17cb"></a><span class="identifier">char_type</span><span class="special">;</span>      
-  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">istreambuf_iterator</span><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span>         <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a0e8894082d1d48d112a071b00d632062"></a><span class="identifier">stream_itr_type</span><span class="special">;</span>
-  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1date__time_1_1string__parse__tree.html" title="Struct template string_parse_tree">string_parse_tree</a><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span>                <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1ad708692adbf7fd2712d6ead0a2d125d9"></a><span class="identifier">parse_tree_type</span><span class="special">;</span>
-  <span class="keyword">typedef</span> parse_tree_type::parse_match_result_type  <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a47d195943a935e0aa75e8e033c2d7ff0"></a><span class="identifier">match_results</span><span class="special">;</span>  
-  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_string</span><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span> <span class="special">&gt;</span> <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a18ee3b816d55c00e6a32b9d4bebd0950"></a><span class="identifier">collection_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_string</span><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span>                <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a09eaa094f4dfbf52df89e9771bb3db44"></a><span class="identifier">string_type</span><span class="special">;</span>    
+  <span class="keyword">typedef</span> <span class="identifier">CharT</span>                                     <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a97616a4ad2d308a61d95f4c35e7c6392"></a><span class="identifier">char_type</span><span class="special">;</span>      
+  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">istreambuf_iterator</span><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span>         <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a4eb61966e8da5c202ac6d22969ab8bb3"></a><span class="identifier">stream_itr_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1date__time_1_1string__parse__tree.html" title="Struct template string_parse_tree">string_parse_tree</a><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span>                <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a076e104f985a539bbad9c0df437281e5"></a><span class="identifier">parse_tree_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> parse_tree_type::parse_match_result_type  <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1ad1215991206bf75f04464987b3cc2cb6"></a><span class="identifier">match_results</span><span class="special">;</span>  
+  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">basic_string</span><span class="special">&lt;</span> <span class="identifier">CharT</span> <span class="special">&gt;</span> <span class="special">&gt;</span> <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1adc6ab28b20c9dfb04a89107650c4d32d"></a><span class="identifier">collection_type</span><span class="special">;</span>
 
   <span class="keyword">enum</span> <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a930609b6368c1687ca48adb35ab33136"></a>period_range_option <span class="special">{</span> <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a930609b6368c1687ca48adb35ab33136aec1156e864c0940dab2da897349da281"></a>AS_OPEN_RANGE, <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a930609b6368c1687ca48adb35ab33136a078d6d7b21012b0f427d1192448f2269"></a>AS_CLOSED_RANGE <span class="special">}</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1date__time_1_1period__parser.html#id-1_3_12_15_3_38_1_1_1_15-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1date__time_1_1period__parser.html#id-1_3_11_15_3_38_1_1_1_15-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1date__time_1_1period__parser.html#doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a9c5648a95538836f8123f676344352ae"><span class="identifier">period_parser</span></a><span class="special">(</span><span class="identifier">period_range_option</span> <span class="special">=</span> <span class="identifier">AS_CLOSED_RANGE</span><span class="special">,</span> 
                 <span class="keyword">const</span> <span class="identifier">char_type</span> <span class="special">*</span><span class="keyword">const</span> <span class="special">=</span> <span class="identifier">default_period_separator</span><span class="special">,</span> 
                 <span class="keyword">const</span> <span class="identifier">char_type</span> <span class="special">*</span><span class="keyword">const</span> <span class="special">=</span> <span class="identifier">default_period_start_delimeter</span><span class="special">,</span> 
@@ -62,7 +62,7 @@
                            <span class="identifier">std</span><span class="special">::</span><span class="identifier">ios_base</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">period_type</span> <span class="special">&amp;</span><span class="special">,</span> 
                            <span class="keyword">const</span> <span class="identifier">duration_type</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">facet_type</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1date__time_1_1period__parser.html#id-1_3_12_15_3_38_1_1_1_16-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1date__time_1_1period__parser.html#id-1_3_11_15_3_38_1_1_1_16-bb">private member functions</a></span>
   <span class="keyword">void</span> <a class="link" href="classboost_1_1date__time_1_1period__parser.html#doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a787e3be068fb5b0c9d178abb8ee2951b"><span class="identifier">consume_delim</span></a><span class="special">(</span><span class="identifier">stream_itr_type</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">stream_itr_type</span> <span class="special">&amp;</span><span class="special">,</span> 
                      <span class="keyword">const</span> <span class="identifier">string_type</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
@@ -73,7 +73,7 @@
   <span class="keyword">static</span> <span class="keyword">const</span> <span class="identifier">char_type</span> <span class="identifier">default_period_closed_range_end_delimeter</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.12.15.3.37.3.4"></a><h2>Description</h2>
+<a name="id-1.3.11.15.3.37.3.4"></a><h2>Description</h2>
 <p>Provides settings for the following:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>period_separator – default '/'</p></li>
@@ -89,8 +89,8 @@
 </pre>
 <p> where the date format is controlled by the date facet </p>
 <div class="refsect2">
-<a name="id-1.3.12.15.3.37.3.4.4"></a><h3>
-<a name="id-1_3_12_15_3_38_1_1_1_15-bb"></a><code class="computeroutput">period_parser</code> public member functions</h3>
+<a name="id-1.3.11.15.3.37.3.4.4"></a><h3>
+<a name="id-1_3_11_15_3_38_1_1_1_15-bb"></a><code class="computeroutput">period_parser</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a9c5648a95538836f8123f676344352ae"></a><span class="identifier">period_parser</span><span class="special">(</span><span class="identifier">period_range_option</span> range_opt <span class="special">=</span> <span class="identifier">AS_CLOSED_RANGE</span><span class="special">,</span> 
@@ -130,8 +130,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.12.15.3.37.3.4.5"></a><h3>
-<a name="id-1_3_12_15_3_38_1_1_1_16-bb"></a><code class="computeroutput">period_parser</code> private member functions</h3>
+<a name="id-1.3.11.15.3.37.3.4.5"></a><h3>
+<a name="id-1_3_11_15_3_38_1_1_1_16-bb"></a><code class="computeroutput">period_parser</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">void</span> <a name="doxygen.date_time_reference.classboost_1_1date__time_1_1period__parser_1a787e3be068fb5b0c9d178abb8ee2951b"></a><span class="identifier">consume_delim</span><span class="special">(</span><span class="identifier">stream_itr_type</span> <span class="special">&amp;</span> sitr<span class="special">,</span> <span class="identifier">stream_itr_type</span> <span class="special">&amp;</span> stream_end<span class="special">,</span> 
                    <span class="keyword">const</span> <span class="identifier">string_type</span> <span class="special">&amp;</span> delim<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>throws ios_base::failure if delimiter and parsed data do not match </li></ol></div>

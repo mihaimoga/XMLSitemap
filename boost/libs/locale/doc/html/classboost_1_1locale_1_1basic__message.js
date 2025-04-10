@@ -1,8 +1,8 @@
 var classboost_1_1locale_1_1basic__message =
 [
-    [ "char_type", "group__message.html#gaa5d8dcf9d7aa01abbe73c841299345db", null ],
-    [ "facet_type", "group__message.html#gaa63527cb368d0bcd4cb0809138c927df", null ],
-    [ "string_type", "group__message.html#ga529423e08fc9a8ca9ceef5c56181c6d3", null ],
+    [ "char_type", "group__message.html#gafa23344f7cd2bc62a78d9ba2b9bc9df0", null ],
+    [ "facet_type", "group__message.html#ga868a0746a2044119f35887948a6c7107", null ],
+    [ "string_type", "group__message.html#ga397e7b0ca1064084acbb0697c6dffd99", null ],
     [ "basic_message", "group__message.html#ga33bdf7fbb164a96a8685b5747afc2b45", null ],
     [ "basic_message", "group__message.html#gaf120bf2cce553f5b8bef7c9d9b20b82e", null ],
     [ "basic_message", "group__message.html#ga9bfdce873ac7f33c677c6e67fba01a5f", null ],

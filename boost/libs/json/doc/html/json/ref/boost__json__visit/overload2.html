@@ -40,7 +40,7 @@
         </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">class</span> <span class="identifier">Visitor</span><span class="special">&gt;</span>
-<span class="keyword">auto</span>
+<span class="keyword">decltype</span><span class="special">(</span><span class="keyword">static_cast</span><span class="special">&lt;</span> <span class="identifier">Visitor</span> <span class="special">&amp;&amp;</span> <span class="special">&gt;(</span><span class="identifier">v</span><span class="special">)(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">declval</span><span class="special">&lt;</span> <a href="https://en.cppreference.com/w/cpp/types/nullptr_t" target="_top"><code class="literal">std::nullptr_t</code></a> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="special">&gt;()))</span>
 <span class="identifier">visit</span><span class="special">(</span>
     <span class="identifier">Visitor</span><span class="special">&amp;&amp;</span> <span class="identifier">v</span><span class="special">,</span>
     <a class="link" href="../boost__json__value.html" title="value"><code class="literal">value</code></a> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">jv</span><span class="special">);</span>

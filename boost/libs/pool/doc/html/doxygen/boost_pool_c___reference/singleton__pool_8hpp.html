@@ -29,8 +29,10 @@
 <p>The <code class="computeroutput">singleton_pool</code> class allows other pool interfaces for types of the same size to share the same underlying pool. </p>
 <p>Header <a class="link" href="singleton__pool_8hpp.html" title="Header &lt;boost/pool/singleton_pool.hpp&gt;">singleton_pool.hpp</a> provides a template class <code class="computeroutput">singleton_pool</code>, which provides access to a pool as a singleton object. </p>
 <pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
-  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Tag<span class="special">,</span> <span class="keyword">unsigned</span> RequestedSize<span class="special">,</span> <span class="keyword">typename</span> UserAllocator<span class="special">,</span> 
-           <span class="keyword">typename</span> Mutex<span class="special">,</span> <span class="keyword">unsigned</span> NextSize<span class="special">,</span> <span class="keyword">unsigned</span> MaxSize<span class="special">&gt;</span> 
+  <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Tag<span class="special">,</span> <span class="keyword">unsigned</span> RequestedSize<span class="special">,</span> 
+           <span class="keyword">typename</span> UserAllocator <span class="special">=</span> <span class="identifier">default_user_allocator_new_delete</span><span class="special">,</span> 
+           <span class="keyword">typename</span> Mutex <span class="special">=</span> <span class="identifier">details</span><span class="special">::</span><span class="identifier">pool</span><span class="special">::</span><span class="identifier">default_mutex</span><span class="special">,</span> 
+           <span class="keyword">unsigned</span> NextSize <span class="special">=</span> <span class="number">32</span><span class="special">,</span> <span class="keyword">unsigned</span> MaxSize <span class="special">=</span> <span class="number">0</span><span class="special">&gt;</span> 
     <span class="keyword">class</span> <a class="link" href="classboost_1_1singleton__pool.html" title="Class template singleton_pool">singleton_pool</a><span class="special">;</span>
 <span class="special">}</span></pre>
 </div>

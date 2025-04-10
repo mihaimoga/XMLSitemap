@@ -91,8 +91,8 @@
 <namespace name="monomorphic">
 <class id="doxygen.a01128" name="array"><template>
       <template-type-parameter name="T"/>
-    </template><purpose>Dataset view of a C array. </purpose><typedef id="doxygen.a01128_1a0c4bfa5a49dacc7e32cb102cc95bf1e8" name="sample"><type>T</type></typedef>
-<typedef id="doxygen.a01128_1a8ebdd843607f58878ce112fec6bad12e" name="iterator"><type>T const *</type></typedef>
+    </template><purpose>Dataset view of a C array. </purpose><typedef id="doxygen.a01128_1acdfe80517a7f283452fd4e522d78ccfc" name="sample"><type>T</type></typedef>
+<typedef id="doxygen.a01128_1a012e2b23ea236dabfc06ca1d7832b650" name="iterator"><type>T const *</type></typedef>
 <data-member id="doxygen.a01128_1aff66626483c7ee93ed4edd0ac8d2e896" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01128_1aac4ae7aca3d275ec1cef1ca5983aa388"><parameter name="arr_"><paramtype>T const *</paramtype></parameter><parameter name="size_"><paramtype>std::size_t</paramtype></parameter></constructor>
@@ -179,8 +179,8 @@
 <namespace name="monomorphic">
 <class id="doxygen.a01136" name="collection"><template>
       <template-type-parameter name="C"/>
-    </template><purpose>Dataset from a forward iterable container (collection) </purpose><description><para>This dataset is applicable to any container implementing a forward iterator. Note that container with one element will be considered as singletons. This dataset is constructible with the <link linkend="doxygen.a00867_1a75bb4ac1edba62ef731993799fb1474f">boost::unit_test::data::make</link> function. </para></description><typedef id="doxygen.a01136_1a61a2d04d35773588106bbd380cc5f465" name="sample"><type>col_type::value_type</type></typedef>
-<typedef id="doxygen.a01136_1a2e67c24bf6b48501f0f9a256acb67cc1" name="iterator"><type>col_type::const_iterator</type></typedef>
+    </template><purpose>Dataset from a forward iterable container (collection) </purpose><description><para>This dataset is applicable to any container implementing a forward iterator. Note that container with one element will be considered as singletons. This dataset is constructible with the <link linkend="doxygen.a00867_1a75bb4ac1edba62ef731993799fb1474f">boost::unit_test::data::make</link> function. </para></description><typedef id="doxygen.a01136_1a19ff524320dffc8e72404592e5e0fd09" name="sample"><type>col_type::value_type</type></typedef>
+<typedef id="doxygen.a01136_1a43ae8df51ee17682a9f82e1b32714455" name="iterator"><type>col_type::const_iterator</type></typedef>
 <data-member id="doxygen.a01136_1add6dcef71e45ae4b62f80a5f2f1b3130" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01136_1a2ad3f4bfc1b653ef0203ecee611ff815" specifiers="explicit"><parameter name="col"><paramtype>C &amp;&amp;</paramtype></parameter><purpose>Constructor consumed a temporary collection or stores a reference. </purpose></constructor>
@@ -390,7 +390,7 @@
 <namespace name="result_of">
 <struct id="doxygen.a01080" name="make"><template>
       <template-type-parameter name="DataSet"/>
-    </template><purpose>Result of the make call. </purpose><typedef id="doxygen.a01080_1a068b256416b7ab1dab18f90e8b6804c5" name="type"><type>decltype(data::make(declval&lt; DataSet &gt;()))</type></typedef>
+    </template><purpose>Result of the make call. </purpose><typedef id="doxygen.a01080_1aad9683f021a3746a6fe19e7fe012df67" name="type"><type>decltype(data::make(declval&lt; DataSet &gt;()))</type></typedef>
 </struct></namespace>
 <function id="doxygen.a00867_1a75bb4ac1edba62ef731993799fb1474f" name="make"><type>std::enable_if&lt; <classname>monomorphic::is_dataset</classname>&lt; DataSet &gt;::value, DataSet &gt;::type</type><template>
           <template-type-parameter name="DataSet"/>
@@ -490,8 +490,8 @@ template&lt;typename T, std::size_t size&gt; <link linkend="doxygen.a01128">mono
 <method id="doxygen.a01148_1a66f7f98de9d7f165bcc8cda7e1d0083e" name="operator*" cv="const"><type>sample const &amp;</type></method>
 <method id="doxygen.a01148_1a2f735d498b4bc8bf1fb0b0830e75e250" name="operator++"><type>void</type></method>
 </method-group>
-</struct><typedef id="doxygen.a01144_1a707e89fd53aa5968b469bf266bdbca1a" name="sample"><type>Generator::sample</type></typedef>
-<typedef id="doxygen.a01144_1a4afbf9a131c52cead285e26bbd46cd54" name="generator_type"><type>Generator</type></typedef>
+</struct><typedef id="doxygen.a01144_1a94b084f13e5d34305de9d2f33963a15f" name="sample"><type>Generator::sample</type></typedef>
+<typedef id="doxygen.a01144_1a613c4afc2cfc3ff6f728e3e191779382" name="generator_type"><type>Generator</type></typedef>
 <data-member id="doxygen.a01144_1a897127e99dce98f5da6eeb12dace1b47" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01144_1aa4b5c94085749de416106c9d6035a61e" specifiers="explicit"><parameter name="G"><paramtype>Generator &amp;&amp;</paramtype></parameter></constructor>
@@ -642,9 +642,9 @@ template&lt;typename T, std::size_t size&gt; <link linkend="doxygen.a01128">mono
       <template-type-parameter name="SampleType"><default>double</default></template-type-parameter>
       <template-type-parameter name="DistributionType"><default><emphasis>unspecified</emphasis></default></template-type-parameter>
       <template-type-parameter name="EngineType"><default>std::default_random_engine</default></template-type-parameter>
-    </template><purpose>Generator for the random sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a random number generator. </para></description><typedef id="doxygen.a01220_1a52915da7c44060c0f5325a759c421613" name="sample"><type>SampleType</type></typedef>
-<typedef id="doxygen.a01220_1adcd0e22a4a7bc17b0b4684cb3638c4a6" name="distr_type"><type>DistributionType</type></typedef>
-<typedef id="doxygen.a01220_1ae2dd7f606d223cb7476a54cafc403c2a" name="engine_type"><type>EngineType</type></typedef>
+    </template><purpose>Generator for the random sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a random number generator. </para></description><typedef id="doxygen.a01220_1a1459c22718027b93fb24d4ef8063faad" name="sample"><type>SampleType</type></typedef>
+<typedef id="doxygen.a01220_1a4bae67913f6cf83682309477325c05c6" name="distr_type"><type>DistributionType</type></typedef>
+<typedef id="doxygen.a01220_1a42d3191267f84cd404831d37dc79d82c" name="engine_type"><type>EngineType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01220_1a69a4f5d04b859c744418b0f7b79952e5"/>
 <constructor id="doxygen.a01220_1a430b815581262d456976bbe5a7b374be" specifiers="explicit"><parameter name="d"><paramtype>distr_type &amp;&amp;</paramtype></parameter></constructor>
@@ -706,9 +706,9 @@ template&lt;typename T, std::size_t size&gt; <link linkend="doxygen.a01128">mono
 
 
 
-<function id="doxygen.a00867_1a9cee65b532be60fa1710a3fd107b864f" name="random"><type><classname>monomorphic::generated_by</classname>&lt; <classname>monomorphic::random_t</classname>&lt;&gt; &gt;</type><purpose>Returns an infinite sequence of random numbers. </purpose><description><para>The following overloads are available: <programlisting language="c++">auto d = <link linkend="doxygen.a00867_1a9cee65b532be60fa1710a3fd107b864f">random</link>();
-auto d = <link linkend="doxygen.a00867_1a9cee65b532be60fa1710a3fd107b864f">random</link>(begin, end);
-auto d = <link linkend="doxygen.a00867_1a9cee65b532be60fa1710a3fd107b864f">random</link>(params);
+<function id="doxygen.a00867_1aa047482a660068cc9a1b90d4e5341d1f" name="random"><type><classname>monomorphic::generated_by</classname>&lt; <classname>monomorphic::random_t</classname>&lt;&gt; &gt;</type><purpose>Returns an infinite sequence of random numbers. </purpose><description><para>The following overloads are available: <programlisting language="c++">auto d = <link linkend="doxygen.a00867_1aa047482a660068cc9a1b90d4e5341d1f">random</link>();
+auto d = <link linkend="doxygen.a00867_1aa047482a660068cc9a1b90d4e5341d1f">random</link>(begin, end);
+auto d = <link linkend="doxygen.a00867_1aa047482a660068cc9a1b90d4e5341d1f">random</link>(params);
 </programlisting></para><para><itemizedlist>
 <listitem><para>The first overload uses the default distribution, which is uniform and which elements are <computeroutput>double</computeroutput> type (the values are in [0, 1) ).</para>
 </listitem><listitem><para>The second overload generates numbers in the given interval. The distribution is uniform (in [begin, end) for real numbers, and in [begin, end] for integers). The type of the distribution is deduced from the type of the <computeroutput>begin</computeroutput> and <computeroutput>end</computeroutput> parameters.</para>
@@ -751,7 +751,7 @@ auto d = <link linkend="doxygen.a00867_1a9cee65b532be60fa1710a3fd107b864f">rando
 <class id="doxygen.a01228" name="xrange_t"><template>
       <template-type-parameter name="SampleType"/>
       <template-type-parameter name="StepType"><default>SampleType</default></template-type-parameter>
-    </template><purpose>Generator for the range sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a range like sequence of numbers. </para></description><typedef id="doxygen.a01228_1ac1f1f799e55ba314dc4c8cb405d25037" name="sample"><type>SampleType</type></typedef>
+    </template><purpose>Generator for the range sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a range like sequence of numbers. </para></description><typedef id="doxygen.a01228_1acb1bc0e4aa2a8fe6abb81f273ee36a2d" name="sample"><type>SampleType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01228_1a189ed7ba27d670de4b5ffe777da37f6b"><parameter name="begin_"><paramtype>SampleType const &amp;</paramtype></parameter><parameter name="step_"><paramtype>StepType const &amp;</paramtype></parameter><parameter name="size_"><paramtype><classname>data::size_t</classname></paramtype></parameter></constructor>
 <method id="doxygen.a01228_1adff4b22227d0ed8ea3217af51ca355a0" name="capacity" cv="const"><type><classname>data::size_t</classname></type></method>
@@ -868,10 +868,10 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <class id="doxygen.a01156" name="grid"><template>
       <template-type-parameter name="DataSet1"/>
       <template-type-parameter name="DataSet2"/>
-    </template><purpose>Implements the dataset resulting from a cartesian product/grid operation on datasets. </purpose><description><para>The arity of the resulting dataset is the sum of the arity of its operands. </para></description><struct id="doxygen.a01160" name="iterator"><typedef id="doxygen.a01160_1a0fa622dfc333e3a7e5a3eaaef9bfbc16" name="iterator_sample"><type>decltype(sample_merge(*std::declval&lt; dataset1_iter &gt;(), *std::declval&lt; dataset2_iter &gt;()))</type></typedef>
+    </template><purpose>Implements the dataset resulting from a cartesian product/grid operation on datasets. </purpose><description><para>The arity of the resulting dataset is the sum of the arity of its operands. </para></description><struct id="doxygen.a01160" name="iterator"><typedef id="doxygen.a01160_1ad3fa14d859c6e80c13f248647a3644e7" name="iterator_sample"><type>decltype( sample_merge(*std::declval&lt; dataset1_iter &gt;(), *std::declval&lt; dataset2_iter &gt;()))</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01160_1af6dc655a2a78e1324a6f3cd5c0c34b92" specifiers="explicit"><parameter name="iter1"><paramtype>dataset1_iter</paramtype></parameter><parameter name="ds2"><paramtype>DataSet2 const &amp;</paramtype></parameter></constructor>
-<method id="doxygen.a01160_1a3941b3dd4de2b9b91953aa5be6e926ca" name="operator*" cv="const"><type>auto</type></method>
+<method id="doxygen.a01160_1a3941b3dd4de2b9b91953aa5be6e926ca" name="operator*" cv="const"><type>iterator_sample</type></method>
 <method id="doxygen.a01160_1a96b45917e3e6bfa0890358ef2d0a9b0e" name="operator++"><type>void</type></method>
 </method-group>
 </struct><data-member id="doxygen.a01156_1a7d2f69cad07b3dbe5d177e64d1078356" name="arity" specifiers="static"><type>const int</type></data-member>
@@ -888,7 +888,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <struct id="doxygen.a01168" name="grid"><template>
       <template-type-parameter name="DS1Gen"/>
       <template-type-parameter name="DS2Gen"/>
-    </template><purpose>Result type of the grid operation on dataset. </purpose><typedef id="doxygen.a01168_1a063cdf60e011928ed2d2d70722c6c074" name="type"><type><classname>monomorphic::grid</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
+    </template><purpose>Result type of the grid operation on dataset. </purpose><typedef id="doxygen.a01168_1a5a4ef41d5d391a2dc71aae500a2039da" name="type"><type><classname>monomorphic::grid</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
 </struct></namespace>
 <function id="doxygen.a00868_1a225bf43b94a043484a71e05035a7b34f" name="operator*"><type>boost::lazy_enable_if_c&lt; <classname>is_dataset</classname>&lt; DataSet1 &gt;::value &amp;&amp;<classname>is_dataset</classname>&lt; DataSet2 &gt;::value, <classname>result_of::grid</classname>&lt; mpl::identity&lt; DataSet1 &gt;, mpl::identity&lt; DataSet2 &gt; &gt; &gt;::type</type><template>
           <template-type-parameter name="DataSet1"/>
@@ -974,7 +974,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <namespace name="monomorphic">
 <class id="doxygen.a01112" name="init_list"><template>
       <template-type-parameter name="T"/>
-    </template><purpose>Dataset view from an initializer_list or variadic template arguments. </purpose><description><para>The data should be stored in the dataset, and since the elements are passed by an <computeroutput>std::initializer_list</computeroutput> , it implies a copy of the elements. </para></description><typedef id="doxygen.a01112_1acef0a43ea621706f5e60a85df2c7a156" name="iterator"><type>std::vector&lt; T &gt;::const_iterator</type></typedef>
+    </template><purpose>Dataset view from an initializer_list or variadic template arguments. </purpose><description><para>The data should be stored in the dataset, and since the elements are passed by an <computeroutput>std::initializer_list</computeroutput> , it implies a copy of the elements. </para></description><typedef id="doxygen.a01112_1a63f9b5545284be4d1ae60dbb8aba8996" name="iterator"><type>std::vector&lt; T &gt;::const_iterator</type></typedef>
 <data-member id="doxygen.a01112_1acf3c84219814fce2ca7a64eaffc2ea88" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01112_1a1b9df5ea090356954f89a603f4b4df96"><parameter name="il"><paramtype>std::initializer_list&lt; T &gt;</paramtype></parameter><purpose>Constructor copies content of initializer_list. </purpose></constructor>
@@ -990,10 +990,10 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <method-group name="public member functions">
 <constructor id="doxygen.a01120_1ac68dc455cf3eb2678678f5736021558d"><parameter name="it"><paramtype>std::vector&lt; bool &gt;::const_iterator &amp;&amp;</paramtype></parameter></constructor>
 <method id="doxygen.a01120_1afb4df54aa1ac135756e7531cc4db68fb" name="operator*" cv="const"><type>bool</type></method>
-<method id="doxygen.a01120_1a240e08adcf031cbd10972e21db1c9712" name="operator++"><type>non_proxy_iterator &amp;</type></method>
+<method id="doxygen.a01120_1a240e08adcf031cbd10972e21db1c9712" name="operator++"><type><classname>non_proxy_iterator</classname> &amp;</type></method>
 </method-group>
-</struct><typedef id="doxygen.a01116_1a7abb152c9255cfcd9c1f84180fdff721" name="sample"><type>bool</type></typedef>
-<typedef id="doxygen.a01116_1a6aa8a2ebd964a47a79cb2210fe4d72d3" name="iterator"><type>non_proxy_iterator</type></typedef>
+</struct><typedef id="doxygen.a01116_1a8ecf94314709057f44aabdf558627a90" name="sample"><type>bool</type></typedef>
+<typedef id="doxygen.a01116_1aae73366e0b4ef5a0103484ebd2549b8a" name="iterator"><type><classname>non_proxy_iterator</classname></type></typedef>
 <data-member id="doxygen.a01116_1ae23afd5469eb47fd3bd551e0fcfdcfdd" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01116_1ae6fcb0975469de69f898cfff6793e65c"><parameter name="il"><paramtype>std::initializer_list&lt; bool &gt; &amp;&amp;</paramtype></parameter><purpose>Constructor copies content of initializer_list. </purpose></constructor>
@@ -1094,7 +1094,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <method id="doxygen.a01176_1aac217b5d03df1b08a2a1c52a696832a9" name="operator*" cv="const"><type>sample_t</type></method>
 <method id="doxygen.a01176_1ab90a44980939321784acf50faea15b51" name="operator++"><type>void</type></method>
 </method-group>
-</struct><typedef id="doxygen.a01172_1afd1ff58880055f0aba43462d959fb7b5" name="sample_t"><type>typename std::conditional&lt; std::is_reference&lt; iter1_ret &gt;::value &amp;&amp;std::is_reference&lt; iter2_ret &gt;::value &amp;&amp;std::is_same&lt; iter1_ret, iter2_ret &gt;::value, iter1_ret, typename std::remove_reference&lt; iter1_ret &gt;::type &gt;::type</type></typedef>
+</struct><typedef id="doxygen.a01172_1a903c628c45863deef4535d7224f553b8" name="sample_t"><type>typename std::conditional&lt; std::is_reference&lt; iter1_ret &gt;::value &amp;&amp;std::is_reference&lt; iter2_ret &gt;::value &amp;&amp;std::is_same&lt; iter1_ret, iter2_ret &gt;::value, iter1_ret, typename std::remove_reference&lt; iter1_ret &gt;::type &gt;::type</type></typedef>
 <data-member id="doxygen.a01172_1a70ef8a043945915575353165caef69d1" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01172_1a12cd44f060439c635201d42f2976c3f0"><parameter name="ds1"><paramtype>DataSet1 &amp;&amp;</paramtype></parameter><parameter name="ds2"><paramtype>DataSet2 &amp;&amp;</paramtype></parameter><purpose>Constructor. </purpose></constructor>
@@ -1106,7 +1106,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <struct id="doxygen.a01184" name="join"><template>
       <template-type-parameter name="DataSet1Gen"/>
       <template-type-parameter name="DataSet2Gen"/>
-    </template><purpose>Result type of the join operation on datasets. </purpose><typedef id="doxygen.a01184_1a06cf9198ff3ea5d29a4d529d77785ed9" name="type"><type><classname>monomorphic::join</classname>&lt; typename DataSet1Gen::type, typename DataSet2Gen::type &gt;</type></typedef>
+    </template><purpose>Result type of the join operation on datasets. </purpose><typedef id="doxygen.a01184_1af59cbea15014d06e341a1283626d1c2a" name="type"><type><classname>monomorphic::join</classname>&lt; typename DataSet1Gen::type, typename DataSet2Gen::type &gt;</type></typedef>
 </struct></namespace>
 
 
@@ -1288,10 +1288,10 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
     </template><specialization><template-arg>zip&lt; DataSet1</template-arg><template-arg>DataSet2 &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit><purpose>Zipped datasets results in a dataset. </purpose></struct-specialization><class id="doxygen.a01200" name="zip"><template>
       <template-type-parameter name="DataSet1"/>
       <template-type-parameter name="DataSet2"/>
-    </template><purpose>Zip datasets. </purpose><description><para>A zip of two datasets is a dataset whose arity is the sum of the operand datasets arity. The size is given by the function creating the instance (see <computeroutput>operator^</computeroutput> on datasets). </para></description><struct id="doxygen.a01204" name="iterator"><typedef id="doxygen.a01204_1a20db49ad98af9450c24bca8b56548758" name="iterator_sample"><type>decltype(sample_merge(*std::declval&lt; dataset1_iter &gt;(), *std::declval&lt; dataset2_iter &gt;()))</type></typedef>
+    </template><purpose>Zip datasets. </purpose><description><para>A zip of two datasets is a dataset whose arity is the sum of the operand datasets arity. The size is given by the function creating the instance (see <computeroutput>operator^</computeroutput> on datasets). </para></description><struct id="doxygen.a01204" name="iterator"><typedef id="doxygen.a01204_1ab928f569047174181cb712d6c09580c7" name="iterator_sample"><type>decltype( sample_merge(*std::declval&lt; dataset1_iter &gt;(), *std::declval&lt; dataset2_iter &gt;()))</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01204_1a4627fb433aa31ab55019aefa045dedf9" specifiers="explicit"><parameter name="iter1"><paramtype>dataset1_iter</paramtype></parameter><parameter name="iter2"><paramtype>dataset2_iter</paramtype></parameter></constructor>
-<method id="doxygen.a01204_1a9c153b436e84795372b090f1e2016f3d" name="operator*" cv="const"><type>auto</type></method>
+<method id="doxygen.a01204_1a9c153b436e84795372b090f1e2016f3d" name="operator*" cv="const"><type>iterator_sample</type></method>
 <method id="doxygen.a01204_1abf0ee5daeb88dc1c7be43812531c882b" name="operator++"><type>void</type></method>
 </method-group>
 </struct><data-member id="doxygen.a01200_1a7ea34e4892945f6b7bcdd9d7540a601b" name="arity" specifiers="static"><type>const int</type></data-member>
@@ -1308,7 +1308,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <struct id="doxygen.a01212" name="zip"><template>
       <template-type-parameter name="DS1Gen"/>
       <template-type-parameter name="DS2Gen"/>
-    </template><purpose>Result type of the zip operator. </purpose><typedef id="doxygen.a01212_1a2932ed19b97095d95d056e754496b0f7" name="type"><type><classname>monomorphic::zip</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
+    </template><purpose>Result type of the zip operator. </purpose><typedef id="doxygen.a01212_1a9d446fd97ad999bf3e911b95a7707879" name="type"><type><classname>monomorphic::zip</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
 </struct></namespace>
 
 
@@ -1391,7 +1391,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <para>simple dataset size abstraction (can be infinite) </para><namespace name="boost">
 <namespace name="unit_test">
 <namespace name="data">
-<class id="doxygen.a01096" name="size_t"><purpose>Utility for handling the size of a datasets. </purpose><struct id="doxygen.a01100" name="dummy"><method-group name="public member functions">
+<class id="doxygen.a01096" name="size_t"><purpose>Utility for handling the size of a dataset. </purpose><struct id="doxygen.a01100" name="dummy"><method-group name="public member functions">
 <method id="doxygen.a01100_1ab1bcac555faf733d3b92207b1a2b19a0" name="nonnull"><type>void</type></method>
 </method-group>
 </struct><method-group name="public member functions">
@@ -1547,32 +1547,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <header id="doxygen.a00716" name="boost/test/debug.hpp">
 <para>defines portable debug interfaces </para><para>Intended to standardize interface of programs with debuggers </para><namespace name="boost">
 <namespace name="debug">
-<struct id="doxygen.a00896" name="dbg_startup_info"><purpose>Collection of data, which is used by debugger starter routine. </purpose><data-member name="pid"><type>long</type><purpose>pid of a program to attach to </purpose></data-member>
-<data-member name="break_or_continue"><type>bool</type><purpose>what to do after debugger is attached </purpose></data-member>
-<data-member name="binary_path"><type>unit_test::const_string</type><purpose>path to executable for current process </purpose></data-member>
-<data-member name="display"><type>unit_test::const_string</type><purpose>if debugger has a GUI, which display to use (on UNIX) </purpose></data-member>
-<data-member name="init_done_lock"><type>unit_test::const_string</type><purpose>path to a uniquely named lock file, which is used to pause current application while debugger is being initialized </purpose></data-member>
-</struct><typedef id="doxygen.a00852_1ga72ba6330d8545b09d9dc0867e4beaf7f" name="dbg_starter"><purpose>Signature of debugger starter routine. Takes an instance of dbg_startup_into as only argument. </purpose><type>boost::function&lt; void(<classname>dbg_startup_info</classname> const &amp;)&gt;</type></typedef>
-<function id="doxygen.a00852_1ga6a6cbdda5208baded9dab1ca77925599" name="under_debugger"><type>bool</type><purpose>Checks if programs runs under debugger. </purpose><description><para>
-</para></description><returns><para>true if current process is under debugger. False otherwise </para>
-</returns></function>
-<function id="doxygen.a00852_1ga6e86a3fe5eed8e7443b42afe4fb9302d" name="debugger_break"><type>void</type><purpose>Cause program to break execution in debugger at call point. </purpose></function>
-<function id="doxygen.a00852_1ga81d5cee654ae3ac6cf8781e3fe9e0cd3" name="set_debugger"><type>std::string</type><parameter name="dbg_id"><paramtype>unit_test::const_string</paramtype><description><para>Unique id for debugger configuration (for example, gdb) </para></description></parameter><parameter name="s"><paramtype>dbg_starter</paramtype><default>dbg_starter()</default><description><para>Optional starter routine for selected configuration (use only you want to define your own configuration) </para></description></parameter><purpose>Specifies which debugger to use when attaching and optionally what routine to use to start that debugger. </purpose><description><para>There are many different debuggers available for different platforms. Some of them also can be used in a different setups/configuratins. For example, gdb can be used in plain text mode, inside ddd, inside (x)emacs or in a separate xterm window. Boost.Test identifies each configuration with unique string. Also different debuggers configurations require different routines which is specifically tailored to start that debugger configuration. Boost.Test comes with set of predefined configuration names and corresponding routines for these configurations:<itemizedlist>
-<listitem><para>TODO</para>
-</listitem></itemizedlist>
-</para><para>You can use this routine to select which one of the predefined debugger configurations to use in which case you do not need to provide starter routine (the one provided by Boost.Test will be used). You can also use this routine to select your own debugger by providing unique configuration id and starter routine for this configuration.</para><para>
-
-</para></description><returns><para>Id of previously selected debugger configuration </para>
-</returns></function>
-<function id="doxygen.a00852_1ga4f59cddab7c8ffe11698d5cd733319c4" name="attach_debugger"><type>bool</type><parameter name="break_or_continue"><paramtype>bool</paramtype><default>true</default><description><para>tells what we wan to do after the debugger is attached. If true - process execution breaks in the point in invocation of this function. Otherwise execution continues, but now it is under the debugger </para></description></parameter><purpose>Attaches debugger to the current process. </purpose><description><para>Using currently selected debugger, this routine attempts to attach the debugger to this process. 
-
-</para></description><returns><para>true if debugger successfully attached. False otherwise </para>
-</returns></function>
-<function id="doxygen.a00852_1ga0d26be2e424862ec0afd4e9083aaab30" name="detect_memory_leaks"><type>void</type><parameter name="on_off"><paramtype>bool</paramtype><description><para>boolean switch </para></description></parameter><parameter name="report_file"><paramtype>unit_test::const_string</paramtype><default>unit_test::const_string()</default><description><para>file, where the report should be directed to </para></description></parameter><purpose>Switches on/off memory leaks detection. </purpose><description><para>On platforms where memory leak detection is possible inside of running application (at the moment this is only Windows family) you can switch this feature on and off using this interface. In addition you can specify the name of the file to write a report into. Otherwise the report is going to be generated in standard error stream. 
-</para></description></function>
-<function id="doxygen.a00852_1gaaf4a969d2705dacc26d9ecd87f50e957" name="break_memory_alloc"><type>void</type><parameter name="mem_alloc_order_num"><paramtype>long</paramtype><description><para>Specific memory allocation number </para></description></parameter><purpose>Causes program to break execution in debugger at specific allocation point. </purpose><description><para>On some platforms/memory managers (at the moment only on Windows/Visual Studio) one can tell a C Runtime to break on specific memory allocation. This can be used in combination with memory leak detection (which reports leaked memory allocation number) to locate the place where leak initiated. 
-</para></description></function>
-</namespace>
+<struct id="doxygen.a00896" name="dbg_startup_info"><purpose>Collection of data, which is used by debugger starter routine. </purpose></struct></namespace>
 </namespace>
 </header>
 <header id="doxygen.a00710" name="boost/test/debug_config.hpp">
@@ -1650,14 +1625,6 @@ The implementation decides what is a system_fatal_error and what is just a syste
 <formalpara><title>See Also:</title><para><link linkend="doxygen.a00912_1a6e5bb9bb9bceaa52644920790193da9a">execute</link> </para>
 </formalpara>
 </para></description></method>
-<method name="register_exception_translator"><type>void</type><template>
-          <template-type-parameter name="ExceptionType"><purpose><para>type of the exception we register a translator for </para></purpose></template-type-parameter>
-          <template-type-parameter name="ExceptionTranslator"><purpose><para>type of the translator we register for this exception </para></purpose></template-type-parameter>
-        </template><parameter name="tr"><paramtype>ExceptionTranslator const &amp;</paramtype><description><para>translator function object with the signature <emphasis> void (ExceptionType const&amp;)</emphasis> </para></description></parameter><parameter name="tag"><paramtype>const_string</paramtype><default>const_string()</default><description><para>tag associated with this translator </para></description></parameter><parameter name=""><paramtype>boost::type&lt; ExceptionType &gt; *</paramtype><default>0</default></parameter><purpose>Registers custom (user supplied) exception translator. </purpose><description><para>This method template registers a translator for an exception type specified as a first template argument. For example <programlisting language="c++">void myExceptTr( MyException const&amp; ex ) { /*do something with the exception here*/}
-em.register_exception_translator&lt;MyException&gt;( myExceptTr );
-</programlisting> The translator should be any unary function/functor object which accepts MyException const&amp;. This can be free standing function or bound class method. The second argument is an optional string tag you can associate with this translator routine. The only reason to specify the tag is if you plan to erase the translator eventually. This can be useful in scenario when you reuse the same <link linkend="doxygen.a00912">execution_monitor</link> instance to monitor different routines and need to register a translator specific to the routine being monitored. While it is possible to erase the translator based on an exception type it was registered for, tag string provides simpler way of doing this. 
-
-</para></description></method>
 <method id="doxygen.a00912_1a4eff52558e85f85d314208b83cf44750" name="erase_exception_translator"><type>void</type><parameter name="tag"><paramtype>const_string</paramtype><description><para>tag associated with translator you wants to erase </para></description></parameter><purpose>Erases custom exception translator based on a tag. </purpose><description><para>Use the same tag as the one used during translator registration 
 </para></description></method>
 <method id="doxygen.a00912_1aceae7fc819b420cc9c032ae94079c628" name="erase_exception_translator"><type>void</type><template>
@@ -1679,7 +1646,6 @@ em.register_exception_translator&lt;MyException&gt;( myExceptTr );
 </namespace>
 </namespace>
 <macro id="doxygen.a00719_1a51fdd44d8f52e01d58df4f316ff61471" name="BOOST_TEST_DISABLE_ALT_STACK"><purpose>Disables the support of the alternative stack during the compilation of the Boost.test framework. This is especially useful in case it is not possible to detect the lack of alternative stack support for your compiler (for instance, ESXi). </purpose></macro>
-<macro id="doxygen.a00853_1ga23bcddcacf116627347215318b732bce" name="BOOST_TEST_SYS_ASSERT" kind="functionlike"><macro-parameter name="cond"/></macro>
 </header>
 <header id="doxygen.a00722" name="boost/test/framework.hpp">
 <para>Defines Unit Test Framework mono-state interfaces. The framework interfaces are based on Monostate design pattern. </para><namespace name="boost">
@@ -1977,10 +1943,6 @@ em.register_exception_translator&lt;MyException&gt;( myExceptTr );
 </para></description></method>
 <method id="doxygen.a00976_1a78920db01e86b1d0365a9e4b93ebb068" name="entry_context_finish" specifiers="virtual"><type>void</type><parameter name="os"><paramtype>std::ostream &amp;</paramtype><description><para>output stream to write a messages into </para></description></parameter><parameter name="l"><paramtype>log_level</paramtype><description><para>entry log_level, to be used to fine tune the message </para></description></parameter><purpose>Invoked by Unit Test Framework to finish log entry context report. </purpose><description><para>
 <formalpara><title>See Also:</title><para><link linkend="doxygen.a00976_1a22b397b101d4a636846f65c5ba3cb4e2">log_entry_start</link>, entry_context_context </para>
-</formalpara>
-</para></description></method>
-<method id="doxygen.a00976_1ad85bd307b329f3558f47ed7cac6e0f7f" name="log_entry_value" specifiers="virtual"><type>void</type><parameter name="os"><paramtype>std::ostream &amp;</paramtype><description><para>output stream to write a messages into. </para></description></parameter><parameter name="value"><paramtype>const_string</paramtype><description><para>log entry string value </para></description></parameter><purpose>Invoked by Unit Test Framework to report a log entry content. </purpose><description><para>This is one of two overloaded methods to report log entry content. This one is used to report plain string value. 
-<formalpara><title>See Also:</title><para><link linkend="doxygen.a00976_1a22b397b101d4a636846f65c5ba3cb4e2">log_entry_start</link>, <link linkend="doxygen.a00976_1a43dbc9d1e75fd9735e5ab7b697db8c2a">log_entry_finish</link> </para>
 </formalpara>
 </para></description></method>
 <method id="doxygen.a00976_1a5298f47ddf6c5504fb43de904d2ddc9d" name="log_entry_value" specifiers="virtual"><type>void</type><parameter name="os"><paramtype>std::ostream &amp;</paramtype><description><para>output stream to write a messages into </para></description></parameter><parameter name="value"><paramtype>lazy_ostream const &amp;</paramtype><description><para>log entry "lazy" value </para></description></parameter><purpose>Invoked by Unit Test Framework to report a log entry content. </purpose><description><para>This is one of two overloaded methods to report log entry content. This one is used to report some complicated expression passed as an expression template lazy_ostream. In most cases default implementation provided by the framework should work as is (it just converts the lazy expression into a string. 
@@ -2304,7 +2266,7 @@ em.register_exception_translator&lt;MyException&gt;( myExceptTr );
 
 
 
-<function id="doxygen.a00862_1a9dff66abdf41ce9c8544c45cb7bc82da" name="tolerance"><type><emphasis>unspecified</emphasis></type><template>
+<function id="doxygen.a00862_1aee17fecb420ad95dc8c3911007e7c897" name="tolerance"><type><emphasis>unspecified</emphasis></type><template>
           <template-type-parameter name="FPT"/>
         </template><parameter name="v"><paramtype>FPT</paramtype></parameter><description><para>Tolerance manipulator</para><para>These functions return a manipulator that can be used in conjunction with BOOST_TEST in order to specify the tolerance with which floating point comparisons are made. </para></description></function>
 <function id="doxygen.a00862_1a11cedc107ba9e56887cf909b540dfaf8" name="tolerance"><type><emphasis>unspecified</emphasis></type><template>
@@ -2320,7 +2282,7 @@ em.register_exception_translator&lt;MyException&gt;( myExceptTr );
 <namespace name="fpc">
 <class id="doxygen.a01332" name="close_at_tolerance"><template>
       <template-type-parameter name="FPT"/>
-    </template><purpose>Predicate for comparing floating point numbers. </purpose><description><para>This predicate is used to compare floating point numbers. In addition the comparison produces maximum related difference, which can be used to generate detailed error message The methods for comparing floating points are detailed in the documentation. The method is chosen by the <link linkend="doxygen.a00881_1ae51e6d0e8d3818c31a3311f5ec2cac67">boost::math::fpc::strength</link> given at construction.</para><para>This predicate is not suitable for comparing to 0 or to infinity. </para></description><typedef id="doxygen.a01332_1af2b8963d683e6c0ecc76dc6b3219adfe" name="result_type"><type>bool</type></typedef>
+    </template><purpose>Predicate for comparing floating point numbers. </purpose><description><para>This predicate is used to compare floating point numbers. In addition the comparison produces maximum related difference, which can be used to generate detailed error message The methods for comparing floating points are detailed in the documentation. The method is chosen by the <link linkend="doxygen.a00881_1ae51e6d0e8d3818c31a3311f5ec2cac67">boost::math::fpc::strength</link> given at construction.</para><para>This predicate is not suitable for comparing to 0 or to infinity. </para></description><typedef id="doxygen.a01332_1a0d1bfaed99908523eefa78bda5ee85bb" name="result_type"><type>bool</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01332_1adec11957fd9deb9b44bc18ce5c64ff58" specifiers="explicit"><template>
           <template-type-parameter name="ToleranceType"/>
@@ -2354,7 +2316,7 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 </method-group>
 </struct><class id="doxygen.a01336" name="small_with_tolerance"><template>
       <template-type-parameter name="FPT"/>
-    </template><purpose>Predicate for comparing floating point numbers against 0. </purpose><description><para>Serves the same purpose as <link linkend="doxygen.a01332">boost::math::fpc::close_at_tolerance</link>, but used when one of the operand is null. </para></description><typedef id="doxygen.a01336_1a9e130afb060db33d4594383eb5690346" name="result_type"><type>bool</type></typedef>
+    </template><purpose>Predicate for comparing floating point numbers against 0. </purpose><description><para>Serves the same purpose as <link linkend="doxygen.a01332">boost::math::fpc::close_at_tolerance</link>, but used when one of the operand is null. </para></description><typedef id="doxygen.a01336_1a628e53dea0e421672e24051b66459e77" name="result_type"><type>bool</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01336_1a313a1a2e9fdc6358c905d24223f4649b" specifiers="explicit"><parameter name="tolerance"><paramtype>FPT</paramtype></parameter></constructor>
 <method id="doxygen.a01336_1a2f6b77c8e81e15d8e685fe9f54387dd9" name="operator()" cv="const"><type>bool</type><parameter name="fpv"><paramtype>FPT</paramtype></parameter></method>
@@ -2486,8 +2448,8 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <constructor id="doxygen.a01036_1a35760f7e195831a3bc6763505ef381c4"><parameter name=""><paramtype>const <classname>master_test_suite_t</classname> &amp;</paramtype></parameter></constructor>
 <copy-assignment id="doxygen.a01036_1a5cabf1fe8eb5ac1e04dfab966839a4b0"><type><classname>master_test_suite_t</classname> &amp;</type><parameter name=""><paramtype><classname>master_test_suite_t</classname> const &amp;</paramtype></parameter></copy-assignment>
 </method-group>
-<enum name="@2"><enumvalue name="type"><default>TUT_SUITE</default></enumvalue></enum>
-<enum name="@0"><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
+<enum name=""><enumvalue name="type"><default>TUT_SUITE</default></enumvalue></enum>
+<enum name=""><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
 <enum name="run_status"><enumvalue name="RS_DISABLED"/><enumvalue name="RS_ENABLED"/><enumvalue name="RS_INHERIT"/><enumvalue name="RS_INVALID"/></enum>
 <typedef name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
 <typedef name="fixture_list_t"><type>std::vector&lt; test_unit_fixture_ptr &gt;</type></typedef>
@@ -2517,8 +2479,8 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <method name="is_enabled" cv="const"><type>bool</type></method>
 <method name="full_name" cv="const"><type>std::string</type></method>
 </method-group>
-</class><class id="doxygen.a01028" name="test_case"><inherit access="public">boost::unit_test::test_unit</inherit><enum id="doxygen.a01028_1af39d1a6ac66315d309b468b569df7a89" name="@1"><enumvalue id="doxygen.a01028_1af39d1a6ac66315d309b468b569df7a89af931981cdcdd6c3e294ae51a4a504560" name="type"><default>TUT_CASE</default></enumvalue></enum>
-<enum name="@0"><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
+</class><class id="doxygen.a01028" name="test_case"><inherit access="public">boost::unit_test::test_unit</inherit><enum id="doxygen.a01028_1af39d1a6ac66315d309b468b569df7a89" name=""><enumvalue id="doxygen.a01028_1af39d1a6ac66315d309b468b569df7a89af931981cdcdd6c3e294ae51a4a504560" name="type"><default>TUT_CASE</default></enumvalue></enum>
+<enum name=""><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
 <enum name="run_status"><enumvalue name="RS_DISABLED"/><enumvalue name="RS_ENABLED"/><enumvalue name="RS_INHERIT"/><enumvalue name="RS_INVALID"/></enum>
 <typedef name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
 <typedef name="fixture_list_t"><type>std::vector&lt; test_unit_fixture_ptr &gt;</type></typedef>
@@ -2564,8 +2526,8 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <method-group name="private member functions">
 <destructor id="doxygen.a01028_1aecd12128e45bd7250ffef8773d9afd94"/>
 </method-group>
-</class><class id="doxygen.a01032" name="test_suite"><inherit access="public">boost::unit_test::test_unit</inherit><purpose>Class representing test suites. </purpose><enum id="doxygen.a01032_1a1024237889f124c9b416ab065f55833d" name="@2"><enumvalue id="doxygen.a01032_1a1024237889f124c9b416ab065f55833da54df3525c054603f277b140a7a3ea3f1" name="type"><default>TUT_SUITE</default></enumvalue></enum>
-<enum name="@0"><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
+</class><class id="doxygen.a01032" name="test_suite"><inherit access="public">boost::unit_test::test_unit</inherit><purpose>Class representing test suites. </purpose><enum id="doxygen.a01032_1a1024237889f124c9b416ab065f55833d" name=""><enumvalue id="doxygen.a01032_1a1024237889f124c9b416ab065f55833da54df3525c054603f277b140a7a3ea3f1" name="type"><default>TUT_SUITE</default></enumvalue></enum>
+<enum name=""><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
 <enum name="run_status"><enumvalue name="RS_DISABLED"/><enumvalue name="RS_ENABLED"/><enumvalue name="RS_INHERIT"/><enumvalue name="RS_INVALID"/></enum>
 <typedef name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
 <typedef name="fixture_list_t"><type>std::vector&lt; test_unit_fixture_ptr &gt;</type></typedef>
@@ -2618,12 +2580,12 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <data-member name="p_sibling_rank"><type>readwrite_property&lt; counter_t &gt;</type><purpose>rank of this test unit amoung siblings of the same parent </purpose></data-member>
 <data-member name="p_decorators"><type>readwrite_property&lt; decor_list_t &gt;</type><purpose>automatically assigned decorators; execution is delayed till <link linkend="doxygen.a00860_1a6a95564b913ee2b951073568f222762f">framework::finalize_setup_phase</link> function </purpose></data-member>
 <data-member name="p_fixtures"><type>readwrite_property&lt; fixture_list_t &gt;</type><purpose>fixtures associated with this test unit </purpose></data-member>
-</class><class id="doxygen.a01020" name="test_unit"><enum id="doxygen.a01020_1a837bf30fd03cdf98f976d532c219477f" name="@0"><enumvalue id="doxygen.a01020_1a837bf30fd03cdf98f976d532c219477fad8eb7e2c1c1613e4631b82fe33c685de" name="type"><default>TUT_ANY</default></enumvalue></enum>
+</class><class id="doxygen.a01020" name="test_unit"><enum id="doxygen.a01020_1a837bf30fd03cdf98f976d532c219477f" name=""><enumvalue id="doxygen.a01020_1a837bf30fd03cdf98f976d532c219477fad8eb7e2c1c1613e4631b82fe33c685de" name="type"><default>TUT_ANY</default></enumvalue></enum>
 <enum id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71" name="run_status"><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71af693679be9f20176fdf908c32d1323b3" name="RS_DISABLED"/><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71ac79afeda683a7d996874a9ab9b4cf964" name="RS_ENABLED"/><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71a6c5108392f4ae218bb0bdc37ad68dcaa" name="RS_INHERIT"/><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71ae30f2efefdfe3f0c889c90cd9daf2ae7" name="RS_INVALID"/></enum>
-<typedef id="doxygen.a01020_1a1b847289b6ed06602b48dea7a3c54d49" name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
-<typedef id="doxygen.a01020_1a519aaf56181044baea88564d99135468" name="fixture_list_t"><type>std::vector&lt; test_unit_fixture_ptr &gt;</type></typedef>
-<typedef id="doxygen.a01020_1a4cdb0f9bd28c8253c09925f578ec0ca2" name="decor_list_t"><type>std::vector&lt; decorator::base_ptr &gt;</type></typedef>
-<typedef id="doxygen.a01020_1af7294a227b29235a69b5e9b5f6ae1cc6" name="precondition_t"><type>boost::function&lt; <classname>test_tools::assertion_result</classname>(test_unit_id)&gt;</type></typedef>
+<typedef id="doxygen.a01020_1aaa6b5f7afc8de400a2ea146c825bc499" name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
+<typedef id="doxygen.a01020_1ae547203b99cf0d2538e590cf1cee8e24" name="fixture_list_t"><type>std::vector&lt; test_unit_fixture_ptr &gt;</type></typedef>
+<typedef id="doxygen.a01020_1ab0927266592f21c8676463162466d657" name="decor_list_t"><type>std::vector&lt; decorator::base_ptr &gt;</type></typedef>
+<typedef id="doxygen.a01020_1af6db7ec0f56e7294a4887f1c2a8ecdbb" name="precondition_t"><type>boost::function&lt; <classname>test_tools::assertion_result</classname>(test_unit_id)&gt;</type></typedef>
 <data-member id="doxygen.a01020_1a6a089682b7dc30019414f53dfe42b115" name="p_type"><type>test_unit_type const</type><purpose>type for this test unit </purpose></data-member>
 <data-member id="doxygen.a01020_1a0ddea8b39e5907110137614ce097cd77" name="p_type_name"><type>const_string const</type><purpose>"case"/"suite"/"module" </purpose></data-member>
 <data-member id="doxygen.a01020_1a04c5f68ee57f996dff3afd5fe0bebf88" name="p_file_name"><type>const_string const</type></data-member>
@@ -3120,8 +3082,8 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
       <template-nontype-parameter name="is_forward_iterable"><type>bool</type><default>is_forward_iterable&lt;T&gt;::value</default></template-nontype-parameter>
     </template><purpose>Helper structure for accessing the content of a container or an array. </purpose></struct><struct-specialization id="doxygen.a01396" name="bt_iterator_traits"><template>
       <template-type-parameter name="T"/>
-    </template><specialization><template-arg>T</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01396_1a90b8c4e31bfe027c94b254d2d223a6bc" name="const_iterator"><type>decltype(boost::declval&lt; typename boost::add_const&lt; typename boost::remove_reference&lt; T &gt;::type &gt;::type &gt;().begin())</type></typedef>
-<typedef id="doxygen.a01396_1a770fa9108b1d2b5218344773887613bb" name="value_type"><type>std::iterator_traits&lt; const_iterator &gt;::value_type</type></typedef>
+    </template><specialization><template-arg>T</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01396_1a661e16514b7a2d6b6a45e7289f5bf9a3" name="const_iterator"><type>decltype(boost::declval&lt; typename boost::add_const&lt; typename boost::remove_reference&lt; T &gt;::type &gt;::type &gt;().begin())</type></typedef>
+<typedef id="doxygen.a01396_1a2489da4b996f4fc33d16a5bf2736bcf9" name="value_type"><type>std::iterator_traits&lt; const_iterator &gt;::value_type</type></typedef>
 <method-group name="public member functions">
 <method id="doxygen.a01396_1a5eb821efb26679bc4d78e1b41a76026f" name="BOOST_STATIC_ASSERT"><type/><parameter name=""><paramtype>(<classname>is_forward_iterable</classname>&lt; T &gt;::value)</paramtype></parameter></method>
 </method-group>
@@ -3137,9 +3099,9 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </struct-specialization><struct-specialization id="doxygen.a01400" name="bt_iterator_traits"><template>
       <template-type-parameter name="T"/>
       <template-nontype-parameter name="N"><type>std::size_t</type></template-nontype-parameter>
-    </template><specialization><template-arg>T[N]</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01400_1a4e1171e0ec807ba9425c717f28a648f1" name="T_const"><type>boost::add_const&lt; T &gt;::type</type></typedef>
-<typedef id="doxygen.a01400_1a717c95e9a765db92bdd81283d6c9bd51" name="const_iterator"><type>boost::add_pointer&lt; T_const &gt;::type</type></typedef>
-<typedef id="doxygen.a01400_1a24fc39f87633d3bf083626623ddd87f3" name="value_type"><type>T</type></typedef>
+    </template><specialization><template-arg>T[N]</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01400_1a6e948d740104e5307f596eaa91b1b5e2" name="T_const"><type>boost::add_const&lt; T &gt;::type</type></typedef>
+<typedef id="doxygen.a01400_1a5f8ca1437da9512a003b0deda2bbf119" name="const_iterator"><type>boost::add_pointer&lt; T_const &gt;::type</type></typedef>
+<typedef id="doxygen.a01400_1ab056f4aa7d7a46ec87a9f6ea49d7bb0d" name="value_type"><type>T</type></typedef>
 <method-group name="public static functions">
 <method id="doxygen.a01400_1a26db132b0c71436ec71b330bfb85af66" name="begin" specifiers="static"><type>const_iterator</type><parameter name="array"><paramtype>T_const(&amp;)</paramtype></parameter></method>
 <method id="doxygen.a01400_1ae8e58c03c7425b574fa6a7189bd9325d" name="end" specifiers="static"><type>const_iterator</type><parameter name="array"><paramtype>T_const(&amp;)</paramtype></parameter></method>
@@ -3147,16 +3109,16 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </method-group>
 </struct-specialization><struct id="doxygen.a01388" name="is_container_forward_iterable"><template>
       <template-type-parameter name="T"/>
-    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01388_1ab84cd6d5e9ee03670afdd0db2dee8b6b" name="@4"><enumvalue id="doxygen.a01388_1ab84cd6d5e9ee03670afdd0db2dee8b6ba311bbcd8c3d46ca3580b72d0588677fc" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
-<typedef id="doxygen.a01388_1a5d47c7c63bc013e3829604419c383ff2" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
-<typedef id="doxygen.a01388_1a36075c722974a4ad0abbe7d4c93ccd71" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.a01388_1aa507053720a7dcde33d039f9042f21bd" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
+    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01388_1ab84cd6d5e9ee03670afdd0db2dee8b6b" name=""><enumvalue id="doxygen.a01388_1ab84cd6d5e9ee03670afdd0db2dee8b6ba311bbcd8c3d46ca3580b72d0588677fc" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
+<typedef id="doxygen.a01388_1a1a9f34de29b3c900dc1786db25fd4b0b" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
+<typedef id="doxygen.a01388_1acd80d3a2f9ade5db2ff8e7cba201aced" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.a01388_1a0c7f1dc9567aec06be5a0e1ec61a45c7" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
 </struct><struct id="doxygen.a01340" name="is_forward_iterable"><template>
       <template-type-parameter name="T"/>
-    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01340_1a7227c484c23196fd8d148d261f2b3847" name="@3"><enumvalue id="doxygen.a01340_1a7227c484c23196fd8d148d261f2b3847ae721d5b61adac3c01b6ffedb6bf067a1" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
-<typedef id="doxygen.a01340_1a9ab44c3395e96f71048d15cf85d82030" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
-<typedef id="doxygen.a01340_1a862d956bc02b0432dc72e23981f2fa92" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.a01340_1a4af54540bef1568980fb15d2bd16f297" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
+    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01340_1a7227c484c23196fd8d148d261f2b3847" name=""><enumvalue id="doxygen.a01340_1a7227c484c23196fd8d148d261f2b3847ae721d5b61adac3c01b6ffedb6bf067a1" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
+<typedef id="doxygen.a01340_1a942c33e154a2a670ac0802ca08632b78" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
+<typedef id="doxygen.a01340_1a75f1777f78aaf37bf1d9b6f0a8af8d43" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.a01340_1a02dca1429f3525a18e6e720947df42f3" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
 </struct>
 
 
@@ -3188,7 +3150,7 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
     </template><specialization><template-arg>named_parameter_combine&lt; NP</template-arg><template-arg>Rest &gt;</template-arg></specialization><inherit access="public">mpl::true_</inherit></struct-specialization><struct id="doxygen.a01236" name="keyword"><template>
       <template-type-parameter name="unique_id"/>
       <template-nontype-parameter name="required"><type>bool</type><default>false</default></template-nontype-parameter>
-    </template><typedef id="doxygen.a01236_1a887db3c6ea1b4fc456ae00e84798e604" name="id"><type>unique_id</type></typedef>
+    </template><typedef id="doxygen.a01236_1ac0c42909948befb135883778c9648de7" name="id"><type>unique_id</type></typedef>
 <method-group name="public member functions">
 <copy-assignment id="doxygen.a01236_1a3c8e14b6fa15103f67c1dfffdc5ca16f" cv="const"><type><classname>named_parameter</classname>&lt; T const, unique_id &gt;</type><template>
           <template-type-parameter name="T"/>
@@ -3202,9 +3164,9 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
       <template-type-parameter name="T"/>
       <template-type-parameter name="unique_id"/>
       <template-type-parameter name="RefType"/>
-    </template><typedef id="doxygen.a01244_1a4b253cb2d501dba2afca3cc9d178c19d" name="data_type"><type>T</type></typedef>
-<typedef id="doxygen.a01244_1a3c63accef97803a696ef00ce80d54f75" name="ref_type"><type>RefType</type></typedef>
-<typedef id="doxygen.a01244_1a26b59d49c4fbbfdac7cfd6d381522d00" name="id"><type>unique_id</type></typedef>
+    </template><typedef id="doxygen.a01244_1a289b3a22e9f93a7c73af268032b831e1" name="data_type"><type>T</type></typedef>
+<typedef id="doxygen.a01244_1a01104c14233f21cc4455b065671f68fe" name="ref_type"><type>RefType</type></typedef>
+<typedef id="doxygen.a01244_1a1791f176e29b1de4d6f97442dd0c514c" name="id"><type>unique_id</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01244_1ae15fcc86405e893bb4ff96cfb4bad7a8" specifiers="explicit"><parameter name="v"><paramtype>ref_type</paramtype></parameter></constructor>
 <constructor id="doxygen.a01244_1ae1e1d816a9a15dd7edfcb34931739fb0"><parameter name="np"><paramtype><classname>named_parameter</classname> const &amp;</paramtype></parameter></constructor>
@@ -3229,8 +3191,8 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </struct><struct id="doxygen.a01248" name="named_parameter_combine"><template>
       <template-type-parameter name="NP"/>
       <template-type-parameter name="Rest"><default>nil</default></template-type-parameter>
-    </template><inherit access="public">boost::nfp::nil</inherit><typedef id="doxygen.a01248_1ad65de145bdfd233117347a13c9a1d9f2" name="res_type"><type>NP::ref_type</type></typedef>
-<typedef id="doxygen.a01248_1add41acbf6a42f6999ae16e134765db49" name="self_type"><type><classname>named_parameter_combine</classname>&lt; NP, Rest &gt;</type></typedef>
+    </template><inherit access="public">boost::nfp::nil</inherit><typedef id="doxygen.a01248_1a20671017fbc2ae7df9396e18e94695fb" name="res_type"><type>NP::ref_type</type></typedef>
+<typedef id="doxygen.a01248_1a114dc592b45ae13abafe8ef994aadb6a" name="self_type"><type><classname>named_parameter_combine</classname>&lt; NP, Rest &gt;</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01248_1a0fa220c79f3d76cc27ec82be13c339f7"><parameter name="np"><paramtype>NP const &amp;</paramtype></parameter><parameter name="r"><paramtype>Rest const &amp;</paramtype></parameter></constructor>
 <method id="doxygen.a01248_1af0ef5d489d94c022daa5fc6495b2ac5f" name="operator[]" cv="const"><type>res_type</type><parameter name="kw"><paramtype><classname>keyword</classname>&lt; typename NP::id, true &gt;</paramtype></parameter></method>
@@ -3258,9 +3220,7 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
           <template-type-parameter name="Arg2"/>
           <template-type-parameter name="Arg3"/>
         </template><parameter name=""><paramtype>Arg1 const &amp;</paramtype></parameter><parameter name=""><paramtype>Arg2 const &amp;</paramtype></parameter><parameter name=""><paramtype>Arg3 const &amp;</paramtype></parameter></method>
-<method name="operator," cv="const"><type><classname>named_parameter_combine</classname>&lt; NP, Derived &gt;</type><template>
-          <template-type-parameter name="NP"/>
-        </template><parameter name="np"><paramtype>NP const &amp;</paramtype></parameter></method>
+<method name="operator," cv="const"><type><classname>named_parameter_combine</classname>&lt; NP, <classname>named_parameter_combine</classname>&lt; NP, <classname>nil</classname> &gt; &gt;</type><parameter name="np"><paramtype>NP const &amp;</paramtype></parameter></method>
 </method-group>
 <method-group name="public static functions">
 <method name="inst" specifiers="static"><type><classname>nil</classname> &amp;</type></method>
@@ -3315,7 +3275,7 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </struct><struct-specialization id="doxygen.a01292" name="typed_keyword"><template>
       <template-type-parameter name="unique_id"/>
       <template-nontype-parameter name="required"><type>bool</type></template-nontype-parameter>
-    </template><specialization><template-arg>bool</template-arg><template-arg>unique_id</template-arg><template-arg>required</template-arg></specialization><inherit access="public">boost::nfp::keyword&lt; unique_id, required &gt;</inherit><inherit access="public">boost::nfp::named_parameter&lt; bool, unique_id, bool &gt;</inherit><typedef id="doxygen.a01292_1a4dd283e3fc9fa05cf389e3ac77721f0a" name="id"><type>unique_id</type></typedef>
+    </template><specialization><template-arg>bool</template-arg><template-arg>unique_id</template-arg><template-arg>required</template-arg></specialization><inherit access="public">boost::nfp::keyword&lt; unique_id, required &gt;</inherit><inherit access="public">boost::nfp::named_parameter&lt; bool, unique_id, bool &gt;</inherit><typedef id="doxygen.a01292_1a8f1410deac22d6cd64ca3ab2a4ce6935" name="id"><type>unique_id</type></typedef>
 <typedef name="data_type"><type>bool</type></typedef>
 <typedef name="ref_type"><type>bool</type></typedef>
 <method-group name="public member functions">
@@ -3329,9 +3289,7 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 <method name="erase" cv="const"><type>void</type><parameter name=""><paramtype><classname>keyword</classname>&lt; unique_id, false &gt;</paramtype></parameter></method>
 <method name="erase" cv="const"><type>void</type><parameter name=""><paramtype><classname>keyword</classname>&lt; UnknownId, false &gt;</paramtype></parameter></method>
 <method name="apply_to" cv="const"><type>void</type><parameter name="V"><paramtype>Visitor &amp;</paramtype></parameter></method>
-<method name="operator," cv="const"><type><classname>named_parameter_combine</classname>&lt; NP, Derived &gt;</type><template>
-          <template-type-parameter name="NP"/>
-        </template><parameter name="np"><paramtype>NP const &amp;</paramtype></parameter></method>
+<method name="operator," cv="const"><type><classname>named_parameter_combine</classname>&lt; NP, <classname>named_parameter</classname>&lt; bool, unique_id, bool &gt; &gt;</type><parameter name="np"><paramtype>NP const &amp;</paramtype></parameter></method>
 </method-group>
 </struct-specialization><typedef id="doxygen.a00877_1a8265f9a9cd56dcdb61ff5a3f81fca790" name="no_params_type"><type><classname>named_parameter</classname>&lt; char, struct no_params_type_t, char &gt;</type></typedef>
 <function id="doxygen.a00877_1adb0ae577de32dc11161ac04d4c4cff07" name="opt_assign"><type>enable_if_c&lt;!<classname>has_param</classname>&lt; Params, Keyword &gt;::value, void &gt;::type</type><template>

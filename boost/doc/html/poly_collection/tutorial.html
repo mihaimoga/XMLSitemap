@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../poly_collection.html" title="Chapter 28. Boost.PolyCollection">
+<link rel="up" href="../poly_collection.html" title="Chapter 27. Boost.PolyCollection">
 <link rel="prev" href="an_efficient_polymorphic_data_st.html" title="An efficient polymorphic data structure">
 <link rel="next" href="performance.html" title="Performance">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,6 +45,7 @@
 <dt><span class="section"><a href="tutorial.html#poly_collection.tutorial.basics.boost_base_collection"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">base_collection</span></code></a></span></dt>
 <dt><span class="section"><a href="tutorial.html#poly_collection.tutorial.basics.boost_function_collection"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">function_collection</span></code></a></span></dt>
 <dt><span class="section"><a href="tutorial.html#poly_collection.tutorial.basics.boost_any_collection"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">any_collection</span></code></a></span></dt>
+<dt><span class="section"><a href="tutorial.html#poly_collection.tutorial.basics.boost_variant_collection"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code></a></span></dt>
 </dl></div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -411,10 +412,100 @@
           of a <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">any_collection</span><span class="special">&lt;</span><span class="identifier">Concept</span><span class="special">&gt;</span></code>
           is <span class="emphasis"><em>not</em></span> <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">type_erasure</span><span class="special">::</span><span class="identifier">any</span><span class="special">&lt;</span><span class="identifier">Concept</span><span class="special">&gt;</span></code>, but a similarly behaving entity <a href="#ftn.poly_collection.tutorial.basics.boost_any_collection.f0" class="footnote" name="poly_collection.tutorial.basics.boost_any_collection.f0"><sup class="footnote">[13]</sup></a>. In any case, we are not accessing sprites through an abstract
           <code class="computeroutput"><span class="identifier">sprite</span><span class="special">&amp;</span></code>
-          anymore, so we could as well dismantle the virtual hierarchy and implement
+          anymore, so we could in principle dismantle the virtual hierarchy and implement
           each type autonomously: this is left as an exercise to the reader.
         </p>
 </div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="poly_collection.tutorial.basics.boost_variant_collection"></a><a class="link" href="tutorial.html#poly_collection.tutorial.basics.boost_variant_collection" title="boost::variant_collection"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code></a>
+</h4></div></div></div>
+<p>
+          (Code samples from <a href="../../../libs/poly_collection/example/basic_variant.cpp" target="_top"><code class="computeroutput"><span class="identifier">basic_variant</span><span class="special">.</span><span class="identifier">cpp</span></code></a>. C++17 is used for the <code class="computeroutput"><span class="identifier">overloaded</span></code> utility.)
+        </p>
+</div>
+<p>
+        At this point where we have such an heterogeneous list of unrelated types,
+        we may as well specify them at compile time:
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">poly_collection</span><span class="special">/</span><span class="identifier">variant_collection</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="special">...</span>
+
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span><span class="special">&lt;</span>
+  <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_list</span><span class="special">&lt;</span><span class="identifier">warrior</span><span class="special">,</span><span class="identifier">juggernaut</span><span class="special">,</span><span class="identifier">goblin</span><span class="special">,</span><span class="identifier">elf</span><span class="special">,</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span><span class="identifier">window</span><span class="special">&gt;</span>
+<span class="special">&gt;</span> <span class="identifier">c</span><span class="special">;</span>
+</pre>
+<p>
+        <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_list</span></code> is needed to syntactically distinguish
+        the types that go in the collection from the (defaulted) allocator argument
+        that comes next. If no special allocator is specified, the alias template
+        <code class="computeroutput"><span class="identifier">variant_collection_of</span></code> provides
+        a sligthly more convenient syntax:
+      </p>
+<pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection_of</span><span class="special">&lt;</span>
+  <span class="identifier">warrior</span><span class="special">,</span><span class="identifier">juggernaut</span><span class="special">,</span><span class="identifier">goblin</span><span class="special">,</span><span class="identifier">elf</span><span class="special">,</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span><span class="identifier">window</span>
+<span class="special">&gt;</span> <span class="identifier">c</span><span class="special">;</span>
+</pre>
+<p>
+        <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code> behaves as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span></code>
+        of <a href="https://en.cppreference.com/w/cpp/utility/variant" target="_top"><code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span></code></a>s,
+        except that objects of the same type are grouped together. Access to the
+        objects is done through <span class="emphasis"><em>visitation</em></span>:
+      </p>
+<pre class="programlisting"><span class="comment">// usual utility to construct a visitor</span>
+<span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span><span class="special">...</span> <span class="identifier">Ts</span><span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">overloaded</span><span class="special">:</span><span class="identifier">Ts</span><span class="special">...{</span><span class="keyword">using</span> <span class="identifier">Ts</span><span class="special">::</span><span class="keyword">operator</span><span class="special">()...;};</span>
+<span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">class</span><span class="special">...</span> <span class="identifier">Ts</span><span class="special">&gt;</span>
+<span class="identifier">overloaded</span><span class="special">(</span><span class="identifier">Ts</span><span class="special">...)-&gt;</span><span class="identifier">overloaded</span><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">...&gt;;</span>
+
+<span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">comma</span><span class="special">=</span><span class="string">""</span><span class="special">;</span>
+<span class="keyword">for</span><span class="special">(</span><span class="keyword">const</span> <span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">r</span><span class="special">:</span><span class="identifier">c</span><span class="special">){</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">comma</span><span class="special">;</span>
+  <span class="identifier">visit</span><span class="special">(</span><span class="identifier">overloaded</span><span class="special">{</span>
+    <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">sprite</span><span class="special">&amp;</span> <span class="identifier">s</span><span class="special">)</span>       <span class="special">{</span> <span class="identifier">s</span><span class="special">.</span><span class="identifier">render</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">);</span> <span class="special">},</span>
+    <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&amp;</span> <span class="identifier">str</span><span class="special">){</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">str</span><span class="special">;</span> <span class="special">},</span>
+    <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">window</span><span class="special">&amp;</span> <span class="identifier">w</span><span class="special">)</span>       <span class="special">{</span> <span class="identifier">w</span><span class="special">.</span><span class="identifier">display</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">);</span> <span class="special">}</span>
+  <span class="special">},</span><span class="identifier">r</span><span class="special">);</span>
+  <span class="identifier">comma</span><span class="special">=</span><span class="string">","</span><span class="special">;</span>
+<span class="special">}</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"\n"</span><span class="special">;</span>
+</pre>
+<p>
+        Output:
+      </p>
+<pre class="programlisting">warrior 1,warrior 4,juggernaut 2,goblin 0,elf 3,"stamina: 10,000","game over",[pop-up 1],[pop-up 2]
+</pre>
+<p>
+        The alternative visitation function <code class="computeroutput"><span class="identifier">visit_by_index</span></code>
+        may be more convenient in that it doesn't require that we build an overloaded
+        visitor:
+      </p>
+<pre class="programlisting"><span class="keyword">auto</span> <span class="identifier">print_sprite</span><span class="special">=[](</span><span class="keyword">const</span> <span class="identifier">sprite</span><span class="special">&amp;</span> <span class="identifier">s</span><span class="special">)</span>       <span class="special">{</span> <span class="identifier">s</span><span class="special">.</span><span class="identifier">render</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">);</span> <span class="special">};</span>
+<span class="keyword">auto</span> <span class="identifier">print_string</span><span class="special">=[](</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&amp;</span> <span class="identifier">str</span><span class="special">){</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">str</span><span class="special">;</span> <span class="special">};</span>
+<span class="keyword">auto</span> <span class="identifier">print_window</span><span class="special">=[](</span><span class="keyword">const</span> <span class="identifier">window</span><span class="special">&amp;</span> <span class="identifier">w</span><span class="special">)</span>       <span class="special">{</span> <span class="identifier">w</span><span class="special">.</span><span class="identifier">display</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">);</span> <span class="special">};</span>
+
+<span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">comma</span><span class="special">=</span><span class="string">""</span><span class="special">;</span>
+<span class="keyword">for</span><span class="special">(</span><span class="keyword">const</span> <span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">r</span><span class="special">:</span><span class="identifier">c</span><span class="special">){</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">comma</span><span class="special">;</span>
+  <span class="identifier">visit_by_index</span><span class="special">(</span>
+    <span class="identifier">r</span><span class="special">,</span>
+    <span class="identifier">print_sprite</span><span class="special">,</span>  <span class="comment">// type #0: warrior</span>
+    <span class="identifier">print_sprite</span><span class="special">,</span>  <span class="comment">// type #1: juggernaut</span>
+    <span class="identifier">print_sprite</span><span class="special">,</span>  <span class="comment">// type #2: goblin</span>
+    <span class="identifier">print_sprite</span><span class="special">,</span>  <span class="comment">// type #3: elf</span>
+    <span class="identifier">print_string</span><span class="special">,</span>  <span class="comment">// type #4</span>
+    <span class="identifier">print_window</span><span class="special">);</span> <span class="comment">// type #5</span>
+  <span class="identifier">comma</span><span class="special">=</span><span class="string">","</span><span class="special">;</span>
+<span class="special">}</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"\n"</span><span class="special">;</span>
+</pre>
+<p>
+        Note that types are traversed in the exact same order as specified. The
+        <code class="computeroutput"><span class="identifier">value_type</span></code> of a <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mp11</span><span class="special">:</span><span class="identifier">mp_list</span><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">..&gt;&gt;</span></code> behaves as a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">..&gt;</span></code>, with some obvious restrictions such
+        as the impossibility of changing the type of the contained object (for instance,
+        the equivalent of <a href="https://en.cppreference.com/w/cpp/utility/variant/emplace" target="_top"><code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span><span class="special">::</span><span class="identifier">emplace</span></code></a>
+        is not provided).
+      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -511,6 +602,20 @@
 
 <span class="identifier">c1</span><span class="special">.</span><span class="identifier">insert</span><span class="special">(*</span><span class="identifier">c2</span><span class="special">.</span><span class="identifier">begin</span><span class="special">());</span> <span class="comment">// throws: actual type of *c2.begin() not known by c1</span>
 </pre>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code> handles type registration
+            differently: as the acceptable types are specified at compile time, their
+            associated segments are automatically created upon construction of the
+            collection; consequently, <code class="computeroutput"><span class="identifier">is_registered</span></code>
+            and <code class="computeroutput"><span class="identifier">register_types</span></code> are
+            not provided.
+          </p></td></tr>
+</table></div>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -534,7 +639,19 @@
 </pre>
 <p>
           Note that any of these (except <a class="link" href="tutorial.html#poly_collection.tutorial.deeper_into_the_segmented_nature.reserve" title="Reserve"><code class="computeroutput"><span class="identifier">reserve</span></code></a>) will throw <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">poly_collection</span><span class="special">::</span><span class="identifier">unregistered_type</span></code> if the type is not
-          registered. Segment-specific addressability also includes traversal:
+          registered. In the case of <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code>,
+          we use the <span class="emphasis"><em>index number</em></span> of the type rather than <code class="computeroutput"><span class="keyword">typeid</span><span class="special">()</span></code>:
+        </p>
+<pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span><span class="special">&lt;</span>
+  <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_list</span><span class="special">&lt;</span><span class="identifier">warrior</span><span class="special">,</span><span class="identifier">juggernaut</span><span class="special">,</span><span class="identifier">goblin</span><span class="special">,</span><span class="identifier">elf</span><span class="special">,</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span><span class="identifier">window</span><span class="special">&gt;</span>
+<span class="special">&gt;</span> <span class="identifier">c3</span><span class="special">;</span>
+<span class="special">...</span> <span class="comment">// populate c3 some entities</span>
+
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">c3</span><span class="special">.</span><span class="identifier">size</span><span class="special">&lt;</span><span class="identifier">warrior</span><span class="special">&gt;()&lt;&lt;</span><span class="string">"\n"</span><span class="special">;</span> <span class="comment">// same as with other collections</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">c3</span><span class="special">.</span><span class="identifier">size</span><span class="special">(</span><span class="number">0</span><span class="special">)&lt;&lt;</span><span class="string">"\n"</span><span class="special">;</span>         <span class="comment">// list number of warriors (type #0 in the list of types)</span>
+</pre>
+<p>
+          Segment-specific addressability also includes traversal:
         </p>
 </div>
 <div class="section">
@@ -633,6 +750,17 @@
           it can then be explictly converted to a <code class="computeroutput"><span class="identifier">local_iterator</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code> (otherwise the conversion is undefined
           behavior).
         </p>
+<p>
+          The fact that <code class="computeroutput"><span class="identifier">local_iterator</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code> refers directly to a <code class="computeroutput"><span class="identifier">T</span></code> object is more apparent when we are
+          using <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code>:
+        </p>
+<pre class="programlisting"><span class="comment">// traverse all windows in our variant_collection</span>
+
+<span class="keyword">for</span><span class="special">(</span><span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">x</span><span class="special">:</span><span class="identifier">c3</span><span class="special">.</span><span class="identifier">segment</span><span class="special">&lt;</span><span class="identifier">window</span><span class="special">&gt;()){</span>
+  <span class="comment">// visitation not required: we're accessing window directly</span>
+  <span class="identifier">x</span><span class="special">.</span><span class="identifier">display</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">);</span>
+<span class="special">}</span>
+</pre>
 <p>
           The figure shows the action scopes of all the iterators associated to a
           polymorphic collection (<code class="computeroutput"><span class="identifier">const_</span></code>
@@ -937,7 +1065,8 @@
         restitution</a></span></dt></dl></div>
 <p>
         (Code samples from <a href="../../../libs/poly_collection/example/algorithms.cpp" target="_top"><code class="computeroutput"><span class="identifier">algorithms</span><span class="special">.</span><span class="identifier">cpp</span></code></a>. C++14 generic lambda expressions
-        are used.)
+        are used. C++17 used for the <code class="computeroutput"><span class="identifier">overloaded</span></code>
+        utility.)
       </p>
 <p>
         The ultimate purpose of Boost.PolyCollection is to speed up the processing
@@ -970,6 +1099,10 @@
 <li class="listitem">
             <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">type_erasure</span><span class="special">::</span><span class="identifier">any</span><span class="special">&lt;</span><span class="identifier">concept_</span><span class="special">&gt;&gt;</span></code>
             → <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">any_collection</span><span class="special">&lt;</span><span class="identifier">concept_</span><span class="special">&gt;</span></code>
+          </li>
+<li class="listitem">
+            <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">...&gt;&gt;</span></code>
+            → <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">any_collection</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_list</span><span class="special">&lt;</span><span class="identifier">Ts</span><span class="special">...&gt;&gt;</span></code>
           </li>
 </ul></div>
 <p>
@@ -1170,6 +1303,34 @@ juggernaut 7,goblin 1,goblin 3,goblin 5,"stamina: 10,000","game over"
               type, in which case, again, virtual calls are not needed.
             </li>
 </ul></div>
+<p>
+          When using <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span></code>, the convenience marker
+          <code class="computeroutput"><span class="identifier">all_types</span></code> requests that
+          all types be restituted without having to explicitly write them down. This
+          is of course feasible because these types are, again, known at compile
+          time. Note that, since elements are accessed directly according to their
+          type, no <code class="computeroutput"><span class="identifier">visit</span></code> call is
+          made in the example <a href="#ftn.poly_collection.tutorial.algorithms.type_restitution.f1" class="footnote" name="poly_collection.tutorial.algorithms.type_restitution.f1"><sup class="footnote">[20]</sup></a>.
+        </p>
+<pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">variant_collection</span><span class="special">&lt;</span>
+  <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mp11</span><span class="special">::</span><span class="identifier">mp_list</span><span class="special">&lt;</span><span class="identifier">warrior</span><span class="special">,</span><span class="identifier">juggernaut</span><span class="special">,</span><span class="identifier">goblin</span><span class="special">,</span><span class="identifier">elf</span><span class="special">,</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">,</span><span class="identifier">window</span><span class="special">&gt;</span>
+<span class="special">&gt;</span> <span class="identifier">c</span><span class="special">;</span>
+<span class="special">...</span>
+
+<span class="keyword">auto</span> <span class="identifier">print_sprite</span><span class="special">=[](</span><span class="keyword">const</span> <span class="identifier">sprite</span><span class="special">&amp;</span> <span class="identifier">s</span><span class="special">)</span>       <span class="special">{</span> <span class="identifier">s</span><span class="special">.</span><span class="identifier">render</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">);</span> <span class="special">};</span>
+<span class="keyword">auto</span> <span class="identifier">print_string</span><span class="special">=[](</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&amp;</span> <span class="identifier">str</span><span class="special">){</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">str</span><span class="special">;</span> <span class="special">};</span>
+<span class="keyword">auto</span> <span class="identifier">print_window</span><span class="special">=[](</span><span class="keyword">const</span> <span class="identifier">window</span><span class="special">&amp;</span> <span class="identifier">w</span><span class="special">)</span>       <span class="special">{</span> <span class="identifier">w</span><span class="special">.</span><span class="identifier">display</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">);</span> <span class="special">};</span>
+<span class="keyword">auto</span> <span class="identifier">print</span><span class="special">=</span><span class="identifier">overloaded</span><span class="special">{</span><span class="identifier">print_sprite</span><span class="special">,</span><span class="identifier">print_string</span><span class="special">,</span><span class="identifier">print_window</span><span class="special">};</span>
+
+<span class="keyword">const</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">comma</span><span class="special">=</span><span class="string">""</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">poly_collection</span><span class="special">::</span><span class="identifier">for_each</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">poly_collection</span><span class="special">::</span><span class="identifier">all_types</span><span class="special">&gt;(</span>
+  <span class="identifier">c</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span><span class="identifier">c</span><span class="special">.</span><span class="identifier">end</span><span class="special">(),[&amp;](</span><span class="keyword">const</span> <span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">r</span><span class="special">){</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="identifier">comma</span><span class="special">;</span>
+    <span class="identifier">print</span><span class="special">(</span><span class="identifier">r</span><span class="special">);</span>
+    <span class="identifier">comma</span><span class="special">=</span><span class="string">","</span><span class="special">;</span>
+<span class="special">});</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"\n"</span><span class="special">;</span>
+</pre>
 </div>
 </div>
 <div class="footnotes">
@@ -1217,9 +1378,13 @@ juggernaut 7,goblin 1,goblin 3,goblin 5,"stamina: 10,000","game over"
                 providing an equivalent, if more cumbersome, functor with a templatized
                 call operator.
               </p></div>
+<div id="ftn.poly_collection.tutorial.algorithms.type_restitution.f1" class="footnote"><p><a href="#poly_collection.tutorial.algorithms.type_restitution.f1" class="para"><sup class="para">[20] </sup></a>
+            Visitation avoidance is in fact the equivalent thing to devirtualization
+            in the realm of closed polymorphism.
+          </p></div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2016-2021 Joaquín M López Muñoz<p>
+<div class="copyright-footer">Copyright © 2016-2025 Joaquín M López Muñoz<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

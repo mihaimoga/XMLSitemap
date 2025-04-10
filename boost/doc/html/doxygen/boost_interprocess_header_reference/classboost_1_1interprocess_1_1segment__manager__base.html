@@ -37,10 +37,10 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1interprocess_1_1segment__manager__base.html" title="Class template segment_manager_base">segment_manager_base</a> <span class="special">:</span> <span class="keyword">private</span> <span class="identifier">MemoryAlgorithm</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1interprocess_1_1segment__manager__base.html" title="Class template segment_manager_base">segment_manager_base</a><span class="special">&lt;</span> <span class="identifier">MemoryAlgorithm</span> <span class="special">&gt;</span> <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1adf468e4ec92c78cfaa52b6ff108daabb"></a><span class="identifier">segment_manager_base_type</span><span class="special">;</span>
-  <span class="keyword">typedef</span> <span class="identifier">MemoryAlgorithm</span><span class="special">::</span><span class="identifier">void_pointer</span>           <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1a4e14ecfdd2956f9e4cf884f41b75c88f"></a><span class="identifier">void_pointer</span><span class="special">;</span>             
-  <span class="keyword">typedef</span> <span class="identifier">MemoryAlgorithm</span><span class="special">::</span><span class="identifier">mutex_family</span>           <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1a9a3e1e54398a68f5a7e132d7a77ad21e"></a><span class="identifier">mutex_family</span><span class="special">;</span>             
-  <span class="keyword">typedef</span> <span class="identifier">MemoryAlgorithm</span>                         <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1aa200963c129f0410a16e929e9d3c055a"></a><span class="identifier">memory_algorithm</span><span class="special">;</span>         
+  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1interprocess_1_1segment__manager__base.html" title="Class template segment_manager_base">segment_manager_base</a><span class="special">&lt;</span> <span class="identifier">MemoryAlgorithm</span> <span class="special">&gt;</span> <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1a6e67246a0cc96a67d0c6a904b4ec0aff"></a><span class="identifier">segment_manager_base_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">MemoryAlgorithm</span><span class="special">::</span><span class="identifier">void_pointer</span>           <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1a869e6bae5c676dbbac0503e41e18a6c5"></a><span class="identifier">void_pointer</span><span class="special">;</span>             
+  <span class="keyword">typedef</span> <span class="identifier">MemoryAlgorithm</span><span class="special">::</span><span class="identifier">mutex_family</span>           <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1af7d88abde9835ca9dc0d0a0d584c13d7"></a><span class="identifier">mutex_family</span><span class="special">;</span>             
+  <span class="keyword">typedef</span> <span class="identifier">MemoryAlgorithm</span>                         <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1a8d9e989db4663a51eda7d416b1686127"></a><span class="identifier">memory_algorithm</span><span class="special">;</span>         
 
   <span class="comment">// <a class="link" href="classboost_1_1interprocess_1_1segment__manager__base.html#id58-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1interprocess_1_1segment__manager__base.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1ab283b9f4fc35704a0b8600e43696bf7d"><span class="identifier">segment_manager_base</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
@@ -68,11 +68,11 @@
   <span class="keyword">static</span> <span class="keyword">const</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1interprocess_1_1segment__manager__base.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1af35480e8152da4ade86d12828917b446"><span class="identifier">PayloadPerAllocation</span></a><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.17.19.3.45.5.4"></a><h2>Description</h2>
+<a name="id-1.3.16.19.3.45.5.4"></a><h2>Description</h2>
 <p>This object is the public base class of segment manager. This class only depends on the memory allocation algorithm and implements all the allocation features not related to named or unique objects.</p>
 <p>Storing a reference to <a class="link" href="classboost_1_1interprocess_1_1segment__manager.html" title="Class template segment_manager">segment_manager</a> forces the holder class to be dependent on index types and character types. When such dependence is not desirable and only anonymous and raw allocations are needed, <a class="link" href="classboost_1_1interprocess_1_1segment__manager__base.html" title="Class template segment_manager_base">segment_manager_base</a> is the correct answer. </p>
 <div class="refsect2">
-<a name="id-1.3.17.19.3.45.5.4.4"></a><h3>
+<a name="id-1.3.16.19.3.45.5.4.4"></a><h3>
 <a name="id58-bb"></a><code class="computeroutput">segment_manager_base</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -144,7 +144,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.17.19.3.45.5.4.5"></a><h3>
+<a name="id-1.3.16.19.3.45.5.4.5"></a><h3>
 <a name="id59-bb"></a><code class="computeroutput">segment_manager_base</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="identifier">size_type</span> <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__base_1af4054e49520b755f981b14c69a6f0393"></a><span class="identifier">get_min_size</span><span class="special">(</span><span class="identifier">size_type</span> size<span class="special">)</span><span class="special">;</span></pre>
@@ -152,7 +152,7 @@
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.17.19.3.45.5.4.6"></a><h3>
+<a name="id-1.3.16.19.3.45.5.4.6"></a><h3>
 <a name="doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1segment__manager__basepublic-data-members"></a><code class="computeroutput">segment_manager_base</code> 
         public
        public data members</h3>

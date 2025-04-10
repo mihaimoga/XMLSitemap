@@ -41,11 +41,11 @@
 <section id="constfunctionobject">
 <h2>ConstFunctionObject<a class="headerlink" href="#constfunctionobject" title="Permalink to this heading">¶</a></h2>
 <p>Is an object with a <code class="docutils literal notranslate"><span class="pre">const</span></code> call operator:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">ConstFunctionObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="w"> </span><span class="n">Ts</span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">ConstFunctionObject</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="w"> </span><span class="n">Ts</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <section id="requirements">
@@ -76,10 +76,10 @@
 <section id="nullaryfunctionobject">
 <h2>NullaryFunctionObject<a class="headerlink" href="#nullaryfunctionobject" title="Permalink to this heading">¶</a></h2>
 <p>Is an object with a <code class="docutils literal notranslate"><span class="pre">const</span></code> call operator that accepts no parameters:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">NullaryFunctionObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">NullaryFunctionObject</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <section id="id1">
@@ -108,11 +108,11 @@
 <section id="unaryfunctionobject">
 <h2>UnaryFunctionObject<a class="headerlink" href="#unaryfunctionobject" title="Permalink to this heading">¶</a></h2>
 <p>Is an object with a <code class="docutils literal notranslate"><span class="pre">const</span></code> call operator that accepts one parameter:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">UnaryFunctionObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">UnaryFunctionObject</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <section id="id2">
@@ -142,11 +142,11 @@
 <section id="binaryfunctionobject">
 <h2>BinaryFunctionObject<a class="headerlink" href="#binaryfunctionobject" title="Permalink to this heading">¶</a></h2>
 <p>Is an object with a <code class="docutils literal notranslate"><span class="pre">const</span></code> call operator that accepts two parameter:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">UnaryFunctionObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">UnaryFunctionObject</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">U</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <section id="id3">
@@ -177,11 +177,11 @@
 <section id="mutablefunctionobject">
 <h2>MutableFunctionObject<a class="headerlink" href="#mutablefunctionobject" title="Permalink to this heading">¶</a></h2>
 <p>Is an object with a <code class="docutils literal notranslate"><span class="pre">mutable</span></code> call operator:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">MutableFunctionObject</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="w"> </span><span class="n">Ts</span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...);</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">concept</span><span class="w"> </span><span class="nc">MutableFunctionObject</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="p">...</span><span class="w"> </span><span class="n">Ts</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...);</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <section id="id4">

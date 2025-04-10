@@ -121,6 +121,12 @@
             Otherwise, intermediate handlers are executed using <code class="computeroutput"><span class="identifier">token</span></code>'s
             associated executor if it has one, or <code class="computeroutput"><span class="keyword">this</span><span class="special">-&gt;</span><span class="identifier">get_executor</span><span class="special">()</span></code> if it hasn't.
           </p>
+<p>
+            <span class="bold"><strong>Caution</strong></span>: be careful when using thread-safety
+            and <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancel_after</span></code>, as it can result in inadvertent
+            race conditions. Please refer to <a href="../../../../../../../connection_pool.html#mysql.connection_pool.thread_safe" target="_top">this
+            page</a> for more info.
+          </p>
 <h6>
 <a name="mysql.ref.boost__mysql__connection_pool.async_get_connection.overload2.h6"></a>
             <span class="phrase"><a name="mysql.ref.boost__mysql__connection_pool.async_get_connection.overload2.per_operation_cancellation"></a></span><a class="link" href="overload2.html#mysql.ref.boost__mysql__connection_pool.async_get_connection.overload2.per_operation_cancellation">Per-operation

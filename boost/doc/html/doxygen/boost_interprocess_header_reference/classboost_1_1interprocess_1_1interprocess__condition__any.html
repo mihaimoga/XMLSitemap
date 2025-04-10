@@ -37,7 +37,7 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition__any.html" title="Class interprocess_condition_any">interprocess_condition_any</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="../boost_container_header_reference/classboost_1_1container_1_1pmr_1_1memory__resource.html#id78-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="../boost_container_header_reference/classboost_1_1container_1_1pmr_1_1monotonic__buffer__resource.html#id78-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition__any.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1interprocess__condition__any_1a59d7c32c0d1899816dc8c9d43cdb6cc8"><span class="identifier">interprocess_condition_any</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition__any.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1interprocess__condition__any_1aa01d0dfc25737fec265608e189513da4"><span class="special">~</span><span class="identifier">interprocess_condition_any</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition__any.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1interprocess__condition__any_1aa7dc7b5ccc8e982303956909d90a2002"><span class="identifier">notify_one</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -58,12 +58,12 @@
     <span class="keyword">bool</span> <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition__any.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1interprocess__condition__any_1a41def1b6664b2367c9975a74f45a0f16"><span class="identifier">wait_for</span></a><span class="special">(</span><span class="identifier">L</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">Duration</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">Pr</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.17.19.3.59.4.4"></a><h2>Description</h2>
+<a name="id-1.3.16.19.3.59.4.4"></a><h2>Description</h2>
 <p>This class is a condition variable that can be placed in shared memory or memory mapped files.</p>
 <p>The <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition__any.html" title="Class interprocess_condition_any">interprocess_condition_any</a> class is a generalization of <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition.html" title="Class interprocess_condition">interprocess_condition</a>. Whereas <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition.html" title="Class interprocess_condition">interprocess_condition</a> works only on Locks with mutex_type == <a class="link" href="classboost_1_1interprocess_1_1interprocess__mutex.html" title="Class interprocess_mutex">interprocess_mutex</a> <a class="link" href="classboost_1_1interprocess_1_1interprocess__condition__any.html" title="Class interprocess_condition_any">interprocess_condition_any</a> can operate on any user-defined lock that meets the BasicLockable requirements (lock()/unlock() member functions).</p>
 <p>Unlike std::condition_variable_any in C++11, it is NOT safe to invoke the destructor if all threads have been only notified. It is required that they have exited their respective wait functions. </p>
 <div class="refsect2">
-<a name="id-1.3.17.19.3.59.4.4.5"></a><h3>
+<a name="id-1.3.16.19.3.59.4.4.5"></a><h3>
 <a name="id78-bb"></a><code class="computeroutput">interprocess_condition_any</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

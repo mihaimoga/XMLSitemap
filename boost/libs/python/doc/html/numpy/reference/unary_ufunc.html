@@ -24,6 +24,9 @@
     <script type="text/javascript" src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/sphinx_highlight.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="top" title="Boost.Python NumPy extension 1.0 documentation" href="../index.html" />
@@ -91,39 +94,39 @@
 </div></blockquote>
 <section id="synopsis">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">synopsis</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">boost</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="k">namespace</span><span class="w"> </span><span class="nn">python</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="k">namespace</span><span class="w"> </span><span class="nn">numpy</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">boost</span>
+<span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">python</span>
+<span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="p">{</span>
 
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TArgument</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">argument_type</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TResult</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">result_type</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">unary_ufunc</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
+<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="p">,</span>
+<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TArgument</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">argument_type</span><span class="p">,</span>
+<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TResult</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">result_type</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">unary_ufunc</span>
+<span class="p">{</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="n">TUnaryFunctor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">self</span><span class="p">,</span><span class="w"></span>
-<span class="w">                     </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"></span>
-<span class="w">                     </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="n">TUnaryFunctor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">self</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="nf">make</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="nf">make</span><span class="p">();</span>
 
-<span class="p">};</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">};</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="constructors">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">constructors</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">example_unary_ufunc</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">any_valid_type</span><span class="w"> </span><span class="n">argument_type</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">any_valid_type</span><span class="w"> </span><span class="n">result_type</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">example_unary_ufunc</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">any_valid_type</span><span class="w"> </span><span class="n">argument_type</span><span class="p">;</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="n">any_valid_type</span><span class="w"> </span><span class="n">result_type</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -137,12 +140,12 @@
 </section>
 <section id="accessors">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">accessors</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TArgument</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">argument_type</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TResult</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">result_type</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">call</span><span class="p">(</span><span class="n">TUnaryFunctor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">self</span><span class="p">,</span><span class="w"></span>
-<span class="w">                   </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"></span>
-<span class="w">                   </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="p">,</span>
+<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TArgument</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">argument_type</span><span class="p">,</span>
+<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TResult</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">result_type</span><span class="o">&gt;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">call</span><span class="p">(</span><span class="n">TUnaryFunctor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">self</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">input</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">object</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -153,10 +156,10 @@
 <dd class="field-even"><p>Passes a Python object to the underlying C++ functor after broadcasting its arguments</p>
 </dd>
 </dl>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TArgument</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">argument_type</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TResult</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">result_type</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">make</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="p">,</span>
+<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TArgument</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">argument_type</span><span class="p">,</span>
+<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="nc">TResult</span><span class="o">=</span><span class="k">typename</span><span class="w"> </span><span class="nc">TUnaryFunctor</span><span class="o">::</span><span class="n">result_type</span><span class="o">&gt;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">make</span><span class="p">();</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -170,19 +173,19 @@
 </section>
 <section id="example-s">
 <h2><a class="toc-backref" href="#id5" role="doc-backlink">Example(s)</a></h2>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">boost</span><span class="o">::</span><span class="nn">python</span><span class="p">;</span><span class="w"></span>
-<span class="k">namespace</span><span class="w"> </span><span class="nn">np</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">boost</span><span class="o">::</span><span class="nn">python</span><span class="o">::</span><span class="nn">numpy</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">boost</span><span class="o">::</span><span class="nn">python</span><span class="p">;</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">np</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">boost</span><span class="o">::</span><span class="nn">python</span><span class="o">::</span><span class="nn">numpy</span><span class="p">;</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">UnarySquare</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">argument_type</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">result_type</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="nf">operator</span><span class="p">()(</span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="p">;}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">UnarySquare</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">argument_type</span><span class="p">;</span>
+<span class="w">  </span><span class="k">typedef</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">result_type</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="nf">operator</span><span class="p">()(</span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="p">;}</span>
+<span class="p">};</span>
 
-<span class="n">p</span><span class="o">::</span><span class="n">object</span><span class="w"> </span><span class="n">ud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">UnarySquare</span><span class="p">,</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">UnarySquare</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;UnarySquare&quot;</span><span class="p">).</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;__call__&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="o">::</span><span class="n">unary_ufunc</span><span class="o">&lt;</span><span class="n">UnarySquare</span><span class="o">&gt;::</span><span class="n">make</span><span class="p">());</span><span class="w"></span>
-<span class="n">p</span><span class="o">::</span><span class="n">object</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ud</span><span class="p">();</span><span class="w"></span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Square of unary scalar 1.0 is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="o">::</span><span class="n">extract</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="n">str</span><span class="p">(</span><span class="n">inst</span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;__call__&quot;</span><span class="p">)(</span><span class="mf">1.0</span><span class="p">)))</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
+<span class="n">p</span><span class="o">::</span><span class="n">object</span><span class="w"> </span><span class="n">ud</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">UnarySquare</span><span class="p">,</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">UnarySquare</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;UnarySquare&quot;</span><span class="p">).</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;__call__&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="o">::</span><span class="n">unary_ufunc</span><span class="o">&lt;</span><span class="n">UnarySquare</span><span class="o">&gt;::</span><span class="n">make</span><span class="p">());</span>
+<span class="n">p</span><span class="o">::</span><span class="n">object</span><span class="w"> </span><span class="n">inst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ud</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Square of unary scalar 1.0 is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="o">::</span><span class="n">extract</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="n">str</span><span class="p">(</span><span class="n">inst</span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;__call__&quot;</span><span class="p">)(</span><span class="mf">1.0</span><span class="p">)))</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="p">;</span>
 </pre></div>
 </div>
 </section>

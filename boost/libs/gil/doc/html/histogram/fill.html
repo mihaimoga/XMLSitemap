@@ -92,8 +92,8 @@ values that cater from the most simplest to the complex needs that might arise.<
 <li><p>Use operator()</p>
 <blockquote>
 <div><p><strong>Task</strong> - Add value to a particular cell / key / bin in histogram</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
-<span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -103,8 +103,8 @@ values that cater from the most simplest to the complex needs that might arise.<
 <div><p>This requires to input the indices in a format the histogram internally stores its keys,
 which is of <code class="docutils literal notranslate"><span class="pre">std::tuple</span></code> due to its simple interface.</p>
 <p><strong>Task</strong> - Output value of a bin</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
-<span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <span class="n">h</span><span class="p">[{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Note the curly braces reqd. to construct a tuple</span>
 <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">h</span><span class="p">[{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">}];</span><span class="w"> </span><span class="c1">// Output - 2</span>
 </pre></div>
@@ -114,12 +114,12 @@ which is of <code class="docutils literal notranslate"><span class="pre">std::tu
 <li><p>Use another histogram (copy constructor or assignment)</p>
 <blockquote>
 <div><p><strong>Task</strong> - Fill a histogram using another</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">A</span><span class="p">;</span>
 <span class="cm">/*</span>
 <span class="cm">Fill value in A</span>
-<span class="cm">*/</span><span class="w"></span>
-<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="w"> </span><span class="n">C</span><span class="p">;</span><span class="w"></span>
-<span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"></span>
+<span class="cm">*/</span>
+<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="w"> </span><span class="n">C</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -128,12 +128,12 @@ which is of <code class="docutils literal notranslate"><span class="pre">std::tu
 <blockquote>
 <div><p>You can also use GIL images to directly fill histograms.</p>
 <p><strong>Task</strong> - Fill histogram using GIL image view</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gil</span><span class="o">::</span><span class="n">gray8_image_t</span><span class="w"> </span><span class="n">img</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gil</span><span class="o">::</span><span class="n">gray8_image_t</span><span class="w"> </span><span class="n">img</span><span class="p">;</span>
 <span class="cm">/*</span>
 <span class="cm">Fill img ...</span>
-<span class="cm">*/</span><span class="w"></span>
-<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
-<span class="n">h</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">img</span><span class="p">));</span><span class="w"></span>
+<span class="cm">*/</span>
+<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="n">h</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">img</span><span class="p">));</span>
 <span class="c1">// OR</span>
 <span class="n">gil</span><span class="o">::</span><span class="n">fill_histogram</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">img</span><span class="p">),</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// false if histogram needs to be cleared before filling</span>
 </pre></div>
@@ -148,11 +148,11 @@ which is of <code class="docutils literal notranslate"><span class="pre">std::tu
 <li><p>Fill histogram using only a few dimensions of image</p>
 <blockquote>
 <div><p><strong>Task</strong> - Make an histogram over Red and Blue channel of an rgb image</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gil</span><span class="o">::</span><span class="n">rgb8_image_t</span><span class="w"> </span><span class="n">img</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gil</span><span class="o">::</span><span class="n">rgb8_image_t</span><span class="w"> </span><span class="n">img</span><span class="p">;</span>
 <span class="cm">/*</span>
 <span class="cm">Fill img ...</span>
-<span class="cm">*/</span><span class="w"></span>
-<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
+<span class="cm">*/</span>
+<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
 <span class="n">fill_histogram</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">img</span><span class="p">),</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0 - red, 1 - green, 2 - blue</span>
 </pre></div>
 </div>
@@ -161,14 +161,14 @@ which is of <code class="docutils literal notranslate"><span class="pre">std::tu
 <li><p>Fill histogram using GIL pixel</p>
 <blockquote>
 <div><p><strong>Task</strong> - Fill histogram bin using pixel construct in GIL</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gil</span><span class="o">::</span><span class="n">gray8_image_t</span><span class="w"> </span><span class="n">img</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gil</span><span class="o">::</span><span class="n">gray8_image_t</span><span class="w"> </span><span class="n">img</span><span class="p">;</span>
 <span class="cm">/*</span>
 <span class="cm">Fill img ...</span>
-<span class="cm">*/</span><span class="w"></span>
-<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"></span>
-<span class="n">gil</span><span class="o">::</span><span class="n">for_each_pixel</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">img</span><span class="p">),</span><span class="w"> </span><span class="p">[](</span><span class="n">gil</span><span class="o">::</span><span class="n">gray8_pixel_t</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="o">++</span><span class="n">h</span><span class="p">[</span><span class="n">h</span><span class="p">.</span><span class="n">key_from_pixel</span><span class="p">(</span><span class="n">p</span><span class="p">)];</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<span class="cm">*/</span>
+<span class="n">histogram</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<span class="n">gil</span><span class="o">::</span><span class="n">for_each_pixel</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">img</span><span class="p">),</span><span class="w"> </span><span class="p">[](</span><span class="n">gil</span><span class="o">::</span><span class="n">gray8_pixel_t</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">){</span>
+<span class="w">    </span><span class="o">++</span><span class="n">h</span><span class="p">[</span><span class="n">h</span><span class="p">.</span><span class="n">key_from_pixel</span><span class="p">(</span><span class="n">p</span><span class="p">)];</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -188,7 +188,7 @@ which is of <code class="docutils literal notranslate"><span class="pre">std::tu
     </div>
     </div>
     <div class="footer" role="contentinfo">
-      Last updated on 2024-12-05 00:12:31.
+      Last updated on 2025-04-03 11:04:11.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>

@@ -283,6 +283,12 @@
         state handle, and thus interact only with the pool state.
       </p>
 <p>
+        If configured to be thread-safe, the protection applies only to the pool's
+        state. In particular, be careful when using <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancel_after</span></code>
+        and similar tokens. Please read <a href="../../../connection_pool.html#mysql.connection_pool.thread_safe" target="_top">this
+        page</a> for more info.
+      </p>
+<p>
         In summary:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">

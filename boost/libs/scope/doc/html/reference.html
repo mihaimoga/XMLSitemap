@@ -158,10 +158,7 @@
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">auto</span> DefaultValue<span class="special">,</span> <span class="keyword">auto</span><span class="special">...</span> UnallocatedValues<span class="special">&gt;</span> 
       <span class="keyword">struct</span> <a class="link" href="doxygen/reference/structboost_1_1scope_1_1unallocated__resource.html" title="Struct template unallocated_resource">unallocated_resource</a><span class="special">;</span>
 
-    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Resource<span class="special">,</span> <span class="keyword">typename</span> Deleter<span class="special">,</span> <span class="keyword">typename</span> Traits <span class="special">=</span> <span class="keyword">void</span><span class="special">&gt;</span> 
-      <span class="keyword">class</span> <a class="link" href="doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a><span class="special">;</span>
-
-    <span class="keyword">constexpr</span> <span class="identifier">default_resource_t</span> <a class="link" href="doxygen/reference/unique__resource_8hpp_1a970dcf160d71b25082989f9bc8e5bff3.html" title="Global default_resource">default_resource</a><span class="special">;</span>    <span class="comment">// Keyword representing default, unallocated resource argument. </span>
+    <span class="identifier">default_resource_t</span> <a class="link" href="doxygen/reference/unique__resource_8hpp_1a970dcf160d71b25082989f9bc8e5bff3.html" title="Global default_resource">default_resource</a><span class="special">;</span>    <span class="comment">// Keyword representing default, unallocated resource argument. </span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Resource<span class="special">,</span> <span class="keyword">typename</span> Deleter<span class="special">,</span> 
              <span class="keyword">typename</span> Invalid <span class="special">=</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">decay</span><span class="special">&lt;</span> <span class="identifier">Resource</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">&gt;</span> 
       <a class="link" href="doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">decay</span><span class="special">&lt;</span> <span class="identifier">Resource</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span><span class="special">,</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">decay</span><span class="special">&lt;</span> <span class="identifier">Deleter</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <span class="special">&gt;</span> 
@@ -173,6 +170,12 @@
 <div class="titlepage"><div><div><h3 class="title">
 <a name="doxygen.reference.unique__resource__fwd_8hpp"></a>Header &lt;<a href="../../../../boost/scope/unique_resource_fwd.hpp" target="_top">boost/scope/unique_resource_fwd.hpp</a>&gt;</h3></div></div></div>
 <p>This header contains forward declaration of <code class="computeroutput">unique_resource</code> template. </p>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">scope</span> <span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Resource<span class="special">,</span> <span class="keyword">typename</span> Deleter<span class="special">,</span> <span class="keyword">typename</span> Traits <span class="special">=</span> <span class="keyword">void</span><span class="special">&gt;</span> 
+      <span class="keyword">class</span> <a class="link" href="doxygen/reference/classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a><span class="special">;</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
 </div>
 </div>
 <div class="copyright-footer">Copyright © 2022-2024 Andrey Semashev<p>

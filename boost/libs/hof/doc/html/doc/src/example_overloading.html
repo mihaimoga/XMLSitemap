@@ -51,40 +51,40 @@ stackoverflow <a class="reference external" href="http://stackoverflow.com/quest
 and fallback on using <code class="docutils literal notranslate"><span class="pre">sstream</span></code> to convert to a string. Most of the top
 answers usually involve some amount of metaprogramming using either <code class="docutils literal notranslate"><span class="pre">void_t</span></code>
 or <code class="docutils literal notranslate"><span class="pre">is_detected</span></code>(see <a class="reference external" href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4502.pdf">n4502</a>):</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">to_string_t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()));</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">to_string_t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()));</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">using</span><span class="w"> </span><span class="n">has_to_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">is_detected</span><span class="o">&lt;</span><span class="n">to_string_t</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">has_to_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">is_detected</span><span class="o">&lt;</span><span class="n">to_string_t</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span>
 <span class="k">typename</span><span class="w"> </span><span class="nc">std</span><span class="o">::</span><span class="n">enable_if</span><span class="o">&lt;</span><span class="n">has_to_string</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{},</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">type</span><span class="w"> </span>
-<span class="n">stringify</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">stringify</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="p">}</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span>
 <span class="k">typename</span><span class="w"> </span><span class="nc">std</span><span class="o">::</span><span class="n">enable_if</span><span class="o">&lt;!</span><span class="n">has_to_string</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{},</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">type</span><span class="w"> </span>
-<span class="n">stringify</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">).</span><span class="n">str</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">stringify</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">).</span><span class="n">str</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>However, with Boost.HigherOrderFunctions it can simply be written like
 this:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">stringify</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_of</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span><span class="w"></span>
-<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">).</span><span class="n">str</span><span class="p">())</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">stringify</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_of</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">).</span><span class="n">str</span><span class="p">())</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>So, using <a class="reference internal" href="../../include/boost/hof/returns.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_RETURNS</span></code></span></a> not only deduces the return type for the function, but it also constrains the function on whether the expression is valid or not. So by writing <code class="docutils literal notranslate"><span class="pre">BOOST_HOF_RETURNS(std::to_string(x))</span></code> then the first function will try to call <code class="docutils literal notranslate"><span class="pre">std::to_string</span></code> function if possible. If not, then the second function will be called.</p>
 <p>The second function still uses <a class="reference internal" href="../../include/boost/hof/returns.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">BOOST_HOF_RETURNS</span></code></span></a>, so the function will still be constrained by whether the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code> stream operator can be used. Although it may seem unnecessary because there is not another function, however, this makes the function composable. So we could use this to define a <code class="docutils literal notranslate"><span class="pre">serialize</span></code> function that tries to call <code class="docutils literal notranslate"><span class="pre">stringify</span></code> first, otherwise it looks for the member <code class="docutils literal notranslate"><span class="pre">.serialize()</span></code>:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">serialize</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_of</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="n">stringify</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span><span class="w"></span>
-<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">serialize</span><span class="p">())</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">serialize</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_of</span><span class="p">(</span>
+<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="n">stringify</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">BOOST_HOF_RETURNS</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">serialize</span><span class="p">())</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -93,30 +93,30 @@ this:</p>
 <p>In addition, this can be used with the <a class="reference internal" href="../../include/boost/hof/if.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">boost::hof::if_</span></code></span></a> decorator to create <code class="docutils literal notranslate"><span class="pre">static_if</span></code>-like
 constructs on pre-C++17 compilers. For example, Baptiste Wicht discusses how one could write <code class="docutils literal notranslate"><span class="pre">static_if</span></code> in C++ <a class="reference external" href="http://baptiste-wicht.com/posts/2015/07/simulate-static_if-with-c11c14.html">here</a>.</p>
 <p>He wants to be able to write this:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">decrement_kindof</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">()){</span><span class="w"></span>
-<span class="w">        </span><span class="n">value</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="o">--</span><span class="n">value</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">decrement_kindof</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">()){</span>
+<span class="w">        </span><span class="n">value</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="o">--</span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>However, that isn’t possible before C++17. With Boost.HigherOrderFunctions one can simply write
 this:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">decrement_kindof</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">eval</span><span class="p">(</span><span class="n">first_of</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="n">if_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">())([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">).</span><span class="n">pop_back</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}),</span><span class="w"></span>
-<span class="w">        </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="o">--</span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">decrement_kindof</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">eval</span><span class="p">(</span><span class="n">first_of</span><span class="p">(</span>
+<span class="w">        </span><span class="n">if_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">())([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span>
+<span class="w">            </span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">).</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span>
+<span class="w">            </span><span class="o">--</span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">id</span></code> parameter passed to the lambda is the <a class="reference internal" href="../../include/boost/hof/identity.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">identity</span></code></span></a> function. As explained in the article, this is used to delay the lookup of types by making it a dependent type(i.e. the type depends on a template parameter), which is necessary to avoid compile errors. The <a class="reference internal" href="../../include/boost/hof/eval.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">eval</span></code></span></a> function that is called will pass this <code class="docutils literal notranslate"><span class="pre">identity</span></code> function to the lambdas.</p>
@@ -124,21 +124,21 @@ this:</p>
 Wicht’s blog, is that <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">first_of</span></code></span> allows more than just two conditions. So if
 there was another trait to be checked, such as <code class="docutils literal notranslate"><span class="pre">is_stack</span></code>, it could be written
 like this:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">decrement_kindof</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">eval</span><span class="p">(</span><span class="n">first_of</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="n">if_</span><span class="p">(</span><span class="n">is_stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">())([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">).</span><span class="n">pop</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}),</span><span class="w"></span>
-<span class="w">        </span><span class="n">if_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">())([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">).</span><span class="n">pop_back</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="p">}),</span><span class="w"></span>
-<span class="w">        </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span><span class="w"></span>
-<span class="w">            </span><span class="o">--</span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">decrement_kindof</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">eval</span><span class="p">(</span><span class="n">first_of</span><span class="p">(</span>
+<span class="w">        </span><span class="n">if_</span><span class="p">(</span><span class="n">is_stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">())([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span>
+<span class="w">            </span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">).</span><span class="n">pop</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="n">if_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">())([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span>
+<span class="w">            </span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">).</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}),</span>
+<span class="w">        </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">id</span><span class="p">){</span>
+<span class="w">            </span><span class="o">--</span><span class="n">id</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -149,23 +149,23 @@ Weller was looking for a way to define a general purpose detection for pointer
 operands(such as <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>). One way to accomplish this is like
 this:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check that T has member function for operator* and ope</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">auto</span><span class="w"> </span><span class="n">has_pointer_member</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="o">&amp;</span><span class="n">T</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="o">&amp;</span><span class="n">T</span><span class="o">::</span><span class="k">operator</span><span class="o">-&gt;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">true_type</span><span class="p">{}</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">has_pointer_member</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="n">T</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="p">,</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="n">T</span><span class="o">::</span><span class="k">operator</span><span class="o">-&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">true_type</span><span class="p">{}</span>
+<span class="p">);</span>
 
-<span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">has_pointer_operators</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_of</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">BOOST_HOF_LIFT</span><span class="p">(</span><span class="n">has_pointer_member</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">bool_constant</span><span class="o">&lt;</span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">is_void</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span><span class="p">())</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="n">always</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">false_type</span><span class="p">{})</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<span class="n">BOOST_HOF_STATIC_LAMBDA_FUNCTION</span><span class="p">(</span><span class="n">has_pointer_operators</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_of</span><span class="p">(</span>
+<span class="w">    </span><span class="n">BOOST_HOF_LIFT</span><span class="p">(</span><span class="n">has_pointer_member</span><span class="p">),</span>
+<span class="w">    </span><span class="p">[](</span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">bool_constant</span><span class="o">&lt;</span><span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">is_void</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span><span class="p">())</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="n">always</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">false_type</span><span class="p">{})</span>
+<span class="p">);</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">is_dereferenceable</span><span class="w"></span>
-<span class="o">:</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">has_pointer_operators</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()))</span><span class="w"></span>
-<span class="p">{};</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">is_dereferenceable</span>
+<span class="o">:</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">has_pointer_operators</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()))</span>
+<span class="p">{};</span>
 </pre></div>
 </div>
 <p>Which is much simpler than the other implementations that were written, which were

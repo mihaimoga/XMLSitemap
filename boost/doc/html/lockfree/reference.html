@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../lockfree.html" title="Chapter 20. Boost.Lockfree">
+<link rel="up" href="../lockfree.html" title="Chapter 19. Boost.Lockfree">
 <link rel="prev" href="rationale.html" title="Rationale">
 <link rel="next" href="../doxygen/structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,6 +31,7 @@
 <dt><span class="section"><a href="reference.html#doxygen.policies_8hpp">Header &lt;boost/lockfree/policies.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.queue_8hpp">Header &lt;boost/lockfree/queue.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.spsc__queue_8hpp">Header &lt;boost/lockfree/spsc_queue.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#doxygen.spsc__value_8hpp">Header &lt;boost/lockfree/spsc_value.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.stack_8hpp">Header &lt;boost/lockfree/stack.hpp&gt;</a></span></dt>
 </dl></div>
 <div class="section">
@@ -39,6 +40,7 @@
 <pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
   <span class="keyword">namespace</span> <span class="identifier">lockfree</span> <span class="special">{</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Alloc<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">allocator</a><span class="special">;</span>
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">bool</span> AllowMultipleReads<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1lockfree_1_1allow__multiple__reads.html" title="Struct template allow_multiple_reads">allow_multiple_reads</a><span class="special">;</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">size_t</span> Size<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity</a><span class="special">;</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">bool</span> IsFixedSized<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1lockfree_1_1fixed__sized.html" title="Struct template fixed_sized">fixed_sized</a><span class="special">;</span>
   <span class="special">}</span>
@@ -59,6 +61,15 @@
 <pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
   <span class="keyword">namespace</span> <span class="identifier">lockfree</span> <span class="special">{</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span><span class="special">...</span> Options<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1lockfree_1_1spsc__queue.html" title="Class template spsc_queue">spsc_queue</a><span class="special">;</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="doxygen.spsc__value_8hpp"></a>Header &lt;<a href="../../../boost/lockfree/spsc_value.hpp" target="_top">boost/lockfree/spsc_value.hpp</a>&gt;</h3></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">lockfree</span> <span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span><span class="special">...</span> Options<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1lockfree_1_1spsc__value.html" title="Struct template spsc_value">spsc_value</a><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>

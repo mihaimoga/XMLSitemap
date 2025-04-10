@@ -7,7 +7,7 @@
 <link rel="home" href="../../index.html" title="Spirit X3 3.10">
 <link rel="up" href="../tutorials.html" title="Tutorials">
 <link rel="prev" href="rexpr.html" title="RExpressions - Recursive ASTs!">
-<link rel="next" href="../quick_reference.html" title="Quick Reference">
+<link rel="next" href="non_throwing_expectations.html" title="Non-throwing Expectations">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="rexpr.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../tutorials.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../quick_reference.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="rexpr.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../tutorials.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="non_throwing_expectations.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -134,6 +134,17 @@
         Using on_error(), that exception can be handled by calling a handler with
         the context at which the parsing failed can be reported.
       </p>
+<div class="tip"><table border="0" summary="Tip">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../../images/tip.png"></td>
+<th align="left">Tip</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+          Check the <a class="link" href="non_throwing_expectations.html" title="Non-throwing Expectations">Non-throwing
+          Expectations Tutorial</a> for information on switching to more efficient
+          error handling without using C++ exceptions.
+        </p></td></tr>
+</table></div>
 <h5>
 <a name="spirit_x3.tutorials.error_handling.h2"></a>
         <span class="phrase"><a name="spirit_x3.tutorials.error_handling.on_error"></a></span><a class="link" href="error_handling.html#spirit_x3.tutorials.error_handling.on_error">on_error</a>
@@ -151,7 +162,7 @@
         handlers have access to the iterators, the context and the exception that
         was thrown.
       </p>
-<h5>
+<a name="__tutorial_error_handling__"></a><h5>
 <a name="spirit_x3.tutorials.error_handling.h3"></a>
         <span class="phrase"><a name="spirit_x3.tutorials.error_handling.error_handling"></a></span><a class="link" href="error_handling.html#spirit_x3.tutorials.error_handling.error_handling">Error
         Handling</a>
@@ -180,8 +191,8 @@ ____^_
       <span class="special">,</span> <span class="identifier">Exception</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">x</span><span class="special">,</span> <span class="identifier">Context</span> <span class="keyword">const</span><span class="special">&amp;</span> <span class="identifier">context</span><span class="special">)</span>
     <span class="special">{</span>
         <span class="keyword">auto</span><span class="special">&amp;</span> <span class="identifier">error_handler</span> <span class="special">=</span> <span class="identifier">x3</span><span class="special">::</span><span class="identifier">get</span><span class="special">&lt;</span><span class="identifier">x3</span><span class="special">::</span><span class="identifier">error_handler_tag</span><span class="special">&gt;(</span><span class="identifier">context</span><span class="special">).</span><span class="identifier">get</span><span class="special">();</span>
-        <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">message</span> <span class="special">=</span> <span class="string">"Error! Expecting: "</span> <span class="special">+</span> <span class="identifier">x</span><span class="special">.</span><span class="identifier">which</span><span class="special">()</span> <span class="special">+</span> <span class="string">" here:"</span><span class="special">;</span>
-        <span class="identifier">error_handler</span><span class="special">(</span><span class="identifier">x</span><span class="special">.</span><span class="identifier">where</span><span class="special">(),</span> <span class="identifier">message</span><span class="special">);</span>
+        <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">message</span> <span class="special">=</span> <span class="string">"Error! Expecting: "</span> <span class="special">+</span> <span class="identifier">x3</span><span class="special">::</span><span class="identifier">which</span><span class="special">(</span><span class="identifier">x</span><span class="special">)</span> <span class="special">+</span> <span class="string">" here:"</span><span class="special">;</span>
+        <span class="identifier">error_handler</span><span class="special">(</span><span class="identifier">x3</span><span class="special">::</span><span class="identifier">where</span><span class="special">(</span><span class="identifier">x</span><span class="special">),</span> <span class="identifier">message</span><span class="special">);</span>
         <span class="keyword">return</span> <span class="identifier">x3</span><span class="special">::</span><span class="identifier">error_handler_result</span><span class="special">::</span><span class="identifier">fail</span><span class="special">;</span>
     <span class="special">}</span>
 <span class="special">};</span>
@@ -200,7 +211,7 @@ ____^_
         from the <code class="computeroutput"><span class="identifier">expectation_failure</span></code>
         exception:
       </p>
-<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">message</span> <span class="special">=</span> <span class="string">"Error! Expecting: "</span> <span class="special">+</span> <span class="identifier">x</span><span class="special">.</span><span class="identifier">which</span><span class="special">()</span> <span class="special">+</span> <span class="string">" here:"</span><span class="special">;</span>
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">message</span> <span class="special">=</span> <span class="string">"Error! Expecting: "</span> <span class="special">+</span> <span class="identifier">x3</span><span class="special">::</span><span class="identifier">which</span><span class="special">(</span><span class="identifier">x</span><span class="special">)</span> <span class="special">+</span> <span class="string">" here:"</span><span class="special">;</span>
 </pre>
 <p>
         Then, we return <code class="computeroutput"><span class="identifier">x3</span><span class="special">::</span><span class="identifier">error_handler_result</span><span class="special">::</span><span class="identifier">fail</span></code> to tell X3 that we want to fail the
@@ -485,7 +496,7 @@ Parsing failed
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="rexpr.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../tutorials.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../quick_reference.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="rexpr.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../tutorials.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="non_throwing_expectations.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

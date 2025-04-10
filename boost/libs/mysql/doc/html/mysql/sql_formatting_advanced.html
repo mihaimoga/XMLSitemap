@@ -49,7 +49,7 @@
 <span class="comment">// format_opts returns a system::result&lt;format_options&gt;,</span>
 <span class="comment">// contains settings like the current character set.</span>
 <span class="comment">// If the connection is using an unknown character set, this will throw an error.</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"SELECT id, salary FROM employee WHERE last_name = {}"</span><span class="special">,</span>
     <span class="string">"Doe"</span>
@@ -73,23 +73,23 @@
 <pre class="programlisting"><span class="comment">// Compose a query that retrieves all employees in a company,</span>
 <span class="comment">// with an optional limit</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">compose_select_query</span><span class="special">(</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_options</span> <span class="identifier">opts</span><span class="special">,</span>
-    <span class="identifier">string_view</span> <span class="identifier">company_id</span><span class="special">,</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_options</span> <span class="identifier">opts</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span> <span class="identifier">company_id</span><span class="special">,</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="keyword">long</span><span class="special">&gt;</span> <span class="identifier">limit</span>
 <span class="special">)</span>
 <span class="special">{</span>
     <span class="comment">// format_context will accumulate the query as we compose it</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">opts</span><span class="special">);</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">opts</span><span class="special">);</span>
 
     <span class="comment">// format_sql_to expands a format string and appends the result</span>
     <span class="comment">// to a format context. This way, we can build our query in smaller pieces</span>
     <span class="comment">// Add all the query except for the LIMIT clause</span>
-    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT * FROM employee WHERE company_id = {}"</span><span class="special">,</span> <span class="identifier">company_id</span><span class="special">);</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT * FROM employee WHERE company_id = {}"</span><span class="special">,</span> <span class="identifier">company_id</span><span class="special">);</span>
 
     <span class="keyword">if</span> <span class="special">(</span><span class="identifier">limit</span><span class="special">)</span>
     <span class="special">{</span>
         <span class="comment">// Add the LIMIT clause</span>
-        <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">" LIMIT {}"</span><span class="special">,</span> <span class="special">*</span><span class="identifier">limit</span><span class="special">);</span>
+        <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">" LIMIT {}"</span><span class="special">,</span> <span class="special">*</span><span class="identifier">limit</span><span class="special">);</span>
     <span class="special">}</span>
 
     <span class="comment">// Retrieve the generated query string.</span>
@@ -138,9 +138,9 @@
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"INSERT INTO employee (first_name, last_name, company_id) VALUES {}"</span><span class="special">,</span>
-    <span class="identifier">sequence</span><span class="special">(</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">sequence</span><span class="special">(</span>
         <span class="identifier">employees</span><span class="special">,</span>
-        <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">employee</span><span class="special">&amp;</span> <span class="identifier">e</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
+        <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">employee</span><span class="special">&amp;</span> <span class="identifier">e</span><span class="special">,</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
             <span class="comment">// This function will be called for each element in employees,</span>
             <span class="comment">// and should format a single element into the passed ctx.</span>
             <span class="comment">// Commas will be inserted separating elements.</span>
@@ -158,7 +158,7 @@
         By default, elements are separated by commas, but this is configurable:
       </p>
 <pre class="programlisting"><span class="comment">// A collection of filters to apply to a query</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">,</span> <span class="identifier">string_view</span><span class="special">&gt;&gt;</span> <span class="identifier">filters</span><span class="special">{</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span><span class="special">&gt;&gt;</span> <span class="identifier">filters</span><span class="special">{</span>
     <span class="special">{</span><span class="string">"company_id"</span><span class="special">,</span> <span class="string">"HGS"</span> <span class="special">},</span>
     <span class="special">{</span><span class="string">"first_name"</span><span class="special">,</span> <span class="string">"John"</span><span class="special">},</span>
 <span class="special">};</span>
@@ -166,9 +166,9 @@
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"SELECT * FROM employee WHERE {}"</span><span class="special">,</span>
-    <span class="identifier">sequence</span><span class="special">(</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">sequence</span><span class="special">(</span>
         <span class="identifier">filters</span><span class="special">,</span>
-        <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span><span class="identifier">string_view</span><span class="special">,</span> <span class="identifier">string_view</span><span class="special">&gt;&amp;</span> <span class="identifier">f</span><span class="special">,</span> <span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
+        <span class="special">[](</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string_view</span><span class="special">&gt;&amp;</span> <span class="identifier">f</span><span class="special">,</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context_base</span><span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
             <span class="comment">// Compose a single filter</span>
             <span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"{:i} = {}"</span><span class="special">,</span> <span class="identifier">f</span><span class="special">.</span><span class="identifier">first</span><span class="special">,</span> <span class="identifier">f</span><span class="special">.</span><span class="identifier">second</span><span class="special">);</span>
         <span class="special">},</span>
@@ -204,7 +204,7 @@
         If you use the <code class="computeroutput"><span class="special">{:</span><span class="identifier">i</span><span class="special">}</span></code> specifier, you can obtain dynamic SQL identifiers,
         instead:
       </p>
-<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"SELECT id, last_name FROM employee ORDER BY {:i} DESC"</span><span class="special">,</span>
     <span class="string">"company_id"</span>
@@ -216,7 +216,7 @@
         Specifiers are compatible with explicit indices and named arguments, too.
         This is equivalent to the previous snippet:
       </p>
-<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"SELECT id, last_name FROM employee ORDER BY {0:i} DESC"</span><span class="special">,</span>
     <span class="string">"company_id"</span>
@@ -239,7 +239,6 @@
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">last_name</span><span class="special">;</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">company_id</span><span class="special">;</span>
 <span class="special">};</span>
-
 <span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
 <span class="keyword">namespace</span> <span class="identifier">mysql</span> <span class="special">{</span>
 
@@ -277,7 +276,7 @@
         and <a class="link" href="ref/boost__mysql__with_params.html" title="with_params"><code class="literal">with_params</code></a>:
       </p>
 <pre class="programlisting"><span class="comment">// We can now use employee as a built-in value</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"INSERT INTO employee (first_name, last_name, company_id) VALUES ({}), ({})"</span><span class="special">,</span>
     <span class="identifier">employee</span><span class="special">{</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">},</span>
@@ -350,7 +349,7 @@
         We can now use it like this:
       </p>
 <pre class="programlisting"><span class="comment">// We can now use the 'u' specifier with employee</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"UPDATE employee SET {:u} WHERE id = {}"</span><span class="special">,</span>
     <span class="identifier">employee</span><span class="special">{</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">},</span>
@@ -362,7 +361,7 @@
 <span class="special">);</span>
 
 <span class="comment">// If no format specifier is provided, we get the old behavior</span>
-<span class="identifier">query</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
+<span class="identifier">query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span>
     <span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span>
     <span class="string">"INSERT INTO employee (first_name, last_name, company_id) VALUES ({}), ({})"</span><span class="special">,</span>
     <span class="identifier">employee</span><span class="special">{</span><span class="string">"John"</span><span class="special">,</span> <span class="string">"Doe"</span><span class="special">,</span> <span class="string">"HGS"</span><span class="special">},</span>
@@ -403,36 +402,28 @@
       indexing</strong></span> replacement field. Arguments are replaced in the order
       they were provided to the format function. For instance:
     </p>
-<pre class="programlisting"><span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}, {}, {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">,</span> <span class="string">"abc"</span><span class="special">,</span> <span class="keyword">nullptr</span><span class="special">)</span> <span class="special">==</span> <span class="string">"SELECT 42, 'abc', NULL"</span><span class="special">);</span>
+<pre class="programlisting"><span class="identifier">BOOST_TEST</span><span class="special">(</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}, {}, {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">,</span> <span class="string">"abc"</span><span class="special">,</span> <span class="keyword">nullptr</span><span class="special">)</span> <span class="special">==</span> <span class="string">"SELECT 42, 'abc', NULL"</span>
+<span class="special">);</span>
 </pre>
 <p>
       A field index can be included within the braces. This is called <span class="bold"><strong>manual
       indexing</strong></span>. Indices can appear in any order, and can be repeated:
     </p>
-<pre class="programlisting"><span class="comment">// Recall that you need to set connect_params::multi_queries to true when connecting</span>
-<span class="comment">// before running semicolon-separated queries. Executes:</span>
-<span class="comment">// "UPDATE employee SET first_name = 'John' WHERE id = 42; SELECT * FROM employee WHERE id = 42"</span>
-<span class="identifier">results</span> <span class="identifier">result</span><span class="special">;</span>
-<span class="identifier">conn</span><span class="special">.</span><span class="identifier">execute</span><span class="special">(</span>
-    <span class="identifier">with_params</span><span class="special">(</span>
-        <span class="string">"UPDATE employee SET first_name = {1} WHERE id = {0}; SELECT * FROM employee WHERE id = {0}"</span><span class="special">,</span>
-        <span class="number">42</span><span class="special">,</span>
-        <span class="string">"John"</span>
-    <span class="special">),</span>
-    <span class="identifier">result</span>
-<span class="special">);</span>
-</pre>
+<p>
+      [sql_formatting_manual_indices]
+    </p>
 <p>
       Format strings can use either manual or automatic indexing, but can't mix them:
     </p>
 <pre class="programlisting"><span class="keyword">try</span>
 <span class="special">{</span>
     <span class="comment">// Mixing manual and auto indexing is illegal. This will throw an exception.</span>
-    <span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {0}, {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
+    <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {0}, {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
 <span class="special">}</span>
 <span class="keyword">catch</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span><span class="special">&amp;</span> <span class="identifier">err</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">format_string_manual_auto_mix</span><span class="special">);</span>
+    <span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">format_string_manual_auto_mix</span><span class="special">);</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -440,7 +431,7 @@
       format arguments than required:
     </p>
 <pre class="programlisting"><span class="comment">// This is OK</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">,</span> <span class="string">"abc"</span><span class="special">);</span>
+<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">,</span> <span class="string">"abc"</span><span class="special">);</span>
 </pre>
 <p>
       You can output a brace literal by doubling it:
@@ -493,11 +484,11 @@
 <span class="special">{</span>
     <span class="comment">// We're trying to format a double infinity value, which is not</span>
     <span class="comment">// supported by MySQL. This will throw an exception.</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">formatted_query</span> <span class="special">=</span> <span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}"</span><span class="special">,</span> <span class="identifier">HUGE_VAL</span><span class="special">);</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">formatted_query</span> <span class="special">=</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql</span><span class="special">(</span><span class="identifier">opts</span><span class="special">,</span> <span class="string">"SELECT {}"</span><span class="special">,</span> <span class="identifier">HUGE_VAL</span><span class="special">);</span>
 <span class="special">}</span>
 <span class="keyword">catch</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">system_error</span><span class="special">&amp;</span> <span class="identifier">err</span><span class="special">)</span>
 <span class="special">{</span>
-    <span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
+    <span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">err</span><span class="special">.</span><span class="identifier">code</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -517,18 +508,18 @@
       not:
     </p>
 <pre class="programlisting"><span class="comment">// ctx contains an error code that tracks whether any error happened</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">opts</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">opts</span><span class="special">);</span>
 
 <span class="comment">// We're trying to format a infinity, which is an error. This</span>
 <span class="comment">// will set the error state, but won't throw.</span>
-<span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT {}, {}"</span><span class="special">,</span> <span class="identifier">HUGE_VAL</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT {}, {}"</span><span class="special">,</span> <span class="identifier">HUGE_VAL</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
 
 <span class="comment">// The error state gets checked at this point. Since it is set,</span>
 <span class="comment">// res will contain an error.</span>
 <span class="identifier">boost</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">result</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">res</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">).</span><span class="identifier">get</span><span class="special">();</span>
 <span class="identifier">BOOST_TEST</span><span class="special">(!</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">has_value</span><span class="special">());</span>
 <span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">has_error</span><span class="special">());</span>
-<span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">error</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
+<span class="identifier">BOOST_TEST</span><span class="special">(</span><span class="identifier">res</span><span class="special">.</span><span class="identifier">error</span><span class="special">()</span> <span class="special">==</span> <span class="identifier">mysql</span><span class="special">::</span><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">unformattable_value</span><span class="special">);</span>
 <span class="comment">// res.value() would throw an error, like format_sql would</span>
 </pre>
 <p>
@@ -609,10 +600,10 @@
       specifying the string type:
     </p>
 <pre class="programlisting"><span class="comment">// Create a format context that uses std::pmr::string</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">basic_format_context</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">());</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">basic_format_context</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">string</span><span class="special">&gt;</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">());</span>
 
 <span class="comment">// Compose your query as usual</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT * FROM employee WHERE id = {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT * FROM employee WHERE id = {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
 
 <span class="comment">// Retrieve the query as usual</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">pmr</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">).</span><span class="identifier">get</span><span class="special">().</span><span class="identifier">value</span><span class="special">();</span>
@@ -630,10 +621,10 @@
 
 <span class="comment">// storage is moved into ctx by the constructor. If any memory</span>
 <span class="comment">// had been allocated by the string, it will be re-used.</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">storage</span><span class="special">));</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_context</span> <span class="identifier">ctx</span><span class="special">(</span><span class="identifier">conn</span><span class="special">.</span><span class="identifier">format_opts</span><span class="special">().</span><span class="identifier">value</span><span class="special">(),</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">storage</span><span class="special">));</span>
 
 <span class="comment">// Use ctx as you normally would</span>
-<span class="identifier">boost</span><span class="special">::</span><span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
+<span class="identifier">mysql</span><span class="special">::</span><span class="identifier">format_sql_to</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">,</span> <span class="string">"SELECT {}"</span><span class="special">,</span> <span class="number">42</span><span class="special">);</span>
 
 <span class="comment">// When calling get(), the string is moved out of the context</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">query</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">).</span><span class="identifier">get</span><span class="special">().</span><span class="identifier">value</span><span class="special">();</span>

@@ -50,22 +50,20 @@
 
 
 
-
-
 <function id="doxygen.algorithm_8hpp_1ae5eb786e4ac80314c2a4ea020f99f0d4" name="identity_operation"><type>BOOST_CXX14_CONSTEXPR T</type><template>
           <template-type-parameter name="T"/>
         </template><parameter name=""><paramtype>std::multiplies&lt; T &gt;</paramtype></parameter></function>
 <function id="doxygen.algorithm_8hpp_1a7530742452c46b228c39787e52abb3d3" name="identity_operation"><type>BOOST_CXX14_CONSTEXPR T</type><template>
           <template-type-parameter name="T"/>
         </template><parameter name=""><paramtype>std::plus&lt; T &gt;</paramtype></parameter></function>
-<function id="doxygen.algorithm_8hpp_1a9763121898ea18d84a532c1040d7ab5b" name="power"><type>BOOST_CXX14_CONSTEXPR boost::enable_if&lt; boost::is_integral&lt; Integer &gt;, T &gt;::type</type><template>
+<function id="doxygen.algorithm_8hpp_1a26e8c8c934f09bd82f19b3c88959edfd" name="power"><type>BOOST_CXX14_CONSTEXPR boost::enable_if&lt; boost::is_integral&lt; Integer &gt;, T &gt;::type</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="Integer"/>
         </template><parameter name="x"><paramtype>T</paramtype><description><para>The value to be exponentiated </para></description></parameter><parameter name="n"><paramtype>Integer</paramtype><description><para>The exponent (must be &gt;= 0) </para></description></parameter><description><para>
 
 </para></description><returns><para>the value "x" raised to the power "n"</para>
 </returns></function>
-<function id="doxygen.algorithm_8hpp_1ae01b4a52fc2d6a17e1140f2c2f9b1fab" name="power"><type>BOOST_CXX14_CONSTEXPR boost::enable_if&lt; boost::is_integral&lt; Integer &gt;, T &gt;::type</type><template>
+<function id="doxygen.algorithm_8hpp_1aca19a3e51e4d73859c8b03bf2a2d38fb" name="power"><type>BOOST_CXX14_CONSTEXPR boost::enable_if&lt; boost::is_integral&lt; Integer &gt;, T &gt;::type</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="Integer"/>
           <template-type-parameter name="Operation"/>
@@ -201,8 +199,6 @@
 
 </para><namespace name="boost">
 <namespace name="algorithm">
-
-
 
 
 
@@ -429,9 +425,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.clamp_8hpp_1a03ee61a7f741076b4ddeec3bc2bc9ffc" name="clamp"><type>BOOST_CXX14_CONSTEXPR T const &amp;</type><template>
+<function id="doxygen.clamp_8hpp_1ae2fef069d1ebddd0d5f525d56cdb33c6" name="clamp"><type>BOOST_CXX14_CONSTEXPR T const &amp;</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="Pred"/>
         </template><parameter name="val"><paramtype>T const &amp;</paramtype><description><para>The value to be clamped </para></description></parameter><parameter name="lo"><paramtype>typename boost::type_identity&lt; T &gt;::type const &amp;</paramtype><description><para>The lower bound of the range to be clamped to </para></description></parameter><parameter name="hi"><paramtype>typename boost::type_identity&lt; T &gt;::type const &amp;</paramtype><description><para>The upper bound of the range to be clamped to </para></description></parameter><parameter name="p"><paramtype>Pred</paramtype><description><para>A predicate to use to compare the values. p ( a, b ) returns a boolean. </para></description></parameter><description><para>
@@ -445,7 +439,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype></parameter><parameter name="last"><paramtype>InputIterator</paramtype></parameter><parameter name="out"><paramtype>OutputIterator</paramtype></parameter><parameter name="lo"><paramtype>typename std::iterator_traits&lt; InputIterator &gt;::value_type const &amp;</paramtype></parameter><parameter name="hi"><paramtype>typename std::iterator_traits&lt; InputIterator &gt;::value_type const &amp;</paramtype></parameter></function>
-<function id="doxygen.clamp_8hpp_1a9f4a252035efd3ef42c11844ed207279" name="clamp_range"><type>BOOST_CXX14_CONSTEXPR boost::disable_if_c&lt; boost::is_same&lt; Range, OutputIterator &gt;::value, OutputIterator &gt;::type</type><template>
+<function id="doxygen.clamp_8hpp_1af0cb2580ec7e06ed3310dc1a343aa9c9" name="clamp_range"><type>BOOST_CXX14_CONSTEXPR boost::disable_if_c&lt; boost::is_same&lt; Range, OutputIterator &gt;::value, OutputIterator &gt;::type</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The range of values to be clamped </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to write the clamped values into </para></description></parameter><parameter name="lo"><paramtype>typename std::iterator_traits&lt; typename boost::range_iterator&lt; const Range &gt;::type &gt;::value_type const &amp;</paramtype><description><para>The lower bound of the range to be clamped to </para></description></parameter><parameter name="hi"><paramtype>typename std::iterator_traits&lt; typename boost::range_iterator&lt; const Range &gt;::type &gt;::value_type const &amp;</paramtype><description><para>The upper bound of the range to be clamped to </para></description></parameter><description><para>
@@ -457,7 +451,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Pred"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype></parameter><parameter name="last"><paramtype>InputIterator</paramtype></parameter><parameter name="out"><paramtype>OutputIterator</paramtype></parameter><parameter name="lo"><paramtype>typename std::iterator_traits&lt; InputIterator &gt;::value_type const &amp;</paramtype></parameter><parameter name="hi"><paramtype>typename std::iterator_traits&lt; InputIterator &gt;::value_type const &amp;</paramtype></parameter><parameter name="p"><paramtype>Pred</paramtype></parameter></function>
-<function id="doxygen.clamp_8hpp_1ab511b5952955a8cb3354f884eda9188b" name="clamp_range"><type>BOOST_CXX14_CONSTEXPR boost::disable_if_c&lt; boost::is_same&lt; Range, OutputIterator &gt;::value, OutputIterator &gt;::type</type><template>
+<function id="doxygen.clamp_8hpp_1a3c62ac56f5201460725262a98b6615ad" name="clamp_range"><type>BOOST_CXX14_CONSTEXPR boost::disable_if_c&lt; boost::is_same&lt; Range, OutputIterator &gt;::value, OutputIterator &gt;::type</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Pred"/>
@@ -723,9 +717,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.all__of_8hpp_1a2c10f0912d02c5a8bbebfc71094fc124" name="all_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.all__of_8hpp_1af281797b267d07cbeb14aafb2942f818" name="all_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the sequence</para></description></parameter><description><para>
@@ -736,7 +728,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if all elements in [first, last) satisfy the predicate 'p' </para>
 </returns></function>
-<function id="doxygen.all__of_8hpp_1a0dae61ac0e6929341aaad792e5fd1603" name="all_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.all__of_8hpp_1a4d8a7d950ae23b3b19247441a3dcbe5e" name="all_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the range </para></description></parameter><description><para>
@@ -745,7 +737,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if all elements in the range satisfy the predicate 'p' </para>
 </returns></function>
-<function id="doxygen.all__of_8hpp_1a81021938328454cadfa6a1a792394a85" name="all_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.all__of_8hpp_1a1b8c96293030c950d494660d3f0e87f2" name="all_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="T"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="val"><paramtype>const T &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
@@ -754,7 +746,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if all elements in [first, last) are equal to 'val' </para>
 </returns></function>
-<function id="doxygen.all__of_8hpp_1a77d594da88347c9222f49eb2d87b65ac" name="all_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.all__of_8hpp_1ac7b8b223e3f155d5716e9e22c097c159" name="all_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="T"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="val"><paramtype>const T &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
@@ -933,9 +925,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.any__of_8hpp_1a4a71c3320e583bbc4c5fbd19b73cbad8" name="any_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.any__of_8hpp_1afdcdfeec37ebcfc0c57f82f5c7dd1ffe" name="any_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the sequence </para></description></parameter><description><para>
@@ -944,7 +934,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if any of the elements in [first, last) satisfy the predicate </para>
 </returns></function>
-<function id="doxygen.any__of_8hpp_1a89d39a9cf486c4df45fa9be9016bff66" name="any_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.any__of_8hpp_1acfc1b095315fdb763c7cd0cbda15d0d8" name="any_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the range </para></description></parameter><description><para>
@@ -953,7 +943,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if any elements in the range satisfy the predicate 'p' </para>
 </returns></function>
-<function id="doxygen.any__of_8hpp_1a09605055796d8215ec6561fb18745743" name="any_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.any__of_8hpp_1a16696177fd2580607b707c90ab98573e" name="any_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="V"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="val"><paramtype>const V &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
@@ -962,7 +952,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if any of the elements in [first, last) are equal to 'val' </para>
 </returns></function>
-<function id="doxygen.any__of_8hpp_1ac5d5e992bc22bfb8427c4ed5fe25c207" name="any_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.any__of_8hpp_1a64432c755d2c9289d8adff758c17b86c" name="any_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="V"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="val"><paramtype>const V &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
@@ -1135,9 +1125,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.copy__if_8hpp_1ab570b927337e821c3678a7837d513e49" name="copy_if"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
+<function id="doxygen.copy__if_8hpp_1a07e439504ff98fc8c4bb3f588a7db686" name="copy_if"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Predicate"/>
@@ -1147,7 +1135,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1aeebfa43af61afe62403573e8e78ffdbd" name="copy_if"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
+<function id="doxygen.copy__if_8hpp_1ac9c7bd1fe2d8ec57c0b3630558bee4c8" name="copy_if"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Predicate"/>
@@ -1155,7 +1143,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated output iterator</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1a7a0a091a1945a56babc0a409e582913b" name="copy_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1a851ad241bcb2d929c5744677f94aa5d7" name="copy_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Predicate"/>
@@ -1163,7 +1151,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated input and output iterators</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1a76490c506a5987d26ab5d10b3bb3f3d1" name="copy_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1a36dcd992f30087c16319bad5a4e739c8" name="copy_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Predicate"/>
@@ -1171,7 +1159,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated input and output iterators</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1aaf28aeebc489fe9053a1983dfe35217c" name="copy_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1a81256db40d2551cce337b58d7fdbe22b" name="copy_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Predicate"/>
@@ -1179,7 +1167,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated output iterator</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1aee3e4f9ba4ee0cdda5efcfa7fb902cbe" name="copy_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1a6c486177fc7627129066d427306f9413" name="copy_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="Predicate"/>
@@ -1187,7 +1175,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated output iterator</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1ac3ce8c6cb6c98a90603d68ca72dc5691" name="copy_if_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1afe264854a0de2073fbd14362e60fca0f" name="copy_if_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="CopyPredicate"/>
@@ -1196,7 +1184,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated output iterator</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1af13538583adf7d4e49f72e769cd113aa" name="copy_if_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1a241d01c57f172b364dca8854d3836178" name="copy_if_while"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="CopyPredicate"/>
@@ -1205,7 +1193,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated output iterator</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1af35bc280150bef34a489c0afd7ee45ad" name="copy_if_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1a4f6b051e8810740046b2623fab57e4bf" name="copy_if_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator, OutputIterator &gt;</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="CopyPredicate"/>
@@ -1214,7 +1202,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>The updated output iterator</para>
 </returns></function>
-<function id="doxygen.copy__if_8hpp_1af910f18bdb371c96494120a5e126a906" name="copy_if_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
+<function id="doxygen.copy__if_8hpp_1a459d1a926144a045039f887d0e7e6b6e" name="copy_if_until"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; typename boost::range_iterator&lt; const Range &gt;::type, OutputIterator &gt;</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="CopyPredicate"/>
@@ -1390,9 +1378,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.copy__n_8hpp_1a6350cb49f031cebab1d5c67fe4cde109" name="copy_n"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
+<function id="doxygen.copy__n_8hpp_1a6ca80976a0e4ff4dec4233c3fcf5735c" name="copy_n"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="Size"/>
           <template-type-parameter name="OutputIterator"/>
@@ -1577,9 +1563,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.find__if__not_8hpp_1a9a9f3d64bddf413076b90d6bc5e1dab6" name="find_if_not"><type>BOOST_CXX14_CONSTEXPR InputIterator</type><template>
+<function id="doxygen.find__if__not_8hpp_1a45e90fc55fa77f6eed9ab173af263789" name="find_if_not"><type>BOOST_CXX14_CONSTEXPR InputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the range </para></description></parameter><purpose>Finds the first element in the sequence that does not satisfy the predicate. </purpose><description><para>
@@ -1588,7 +1572,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The iterator pointing to the desired element.</para>
 </returns></function>
-<function id="doxygen.find__if__not_8hpp_1a125ee8121370eaf3d77ff20d245f83ed" name="find_if_not"><type>BOOST_CXX14_CONSTEXPR boost::range_iterator&lt; constRange &gt;::type</type><template>
+<function id="doxygen.find__if__not_8hpp_1a2c6a8ba433b41b0194a9b76254f65631" name="find_if_not"><type>BOOST_CXX14_CONSTEXPR boost::range_iterator&lt; constRange &gt;::type</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the range </para></description></parameter><purpose>Finds the first element in the sequence that does not satisfy the predicate. </purpose><description><para>
@@ -1768,21 +1752,19 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.iota_8hpp_1a7ef32ce164c7674c6855f6aa6b485725" name="iota"><type>BOOST_CXX14_CONSTEXPR void</type><template>
+<function id="doxygen.iota_8hpp_1a2d9177f87e32440dd85bf4af7b7b8836" name="iota"><type>BOOST_CXX14_CONSTEXPR void</type><template>
           <template-type-parameter name="ForwardIterator"/>
           <template-type-parameter name="T"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="value"><paramtype>T</paramtype><description><para>The initial value of the sequence to be generated </para></description></parameter><purpose>Generates an increasing sequence of values, and stores them in [first, last) </purpose><description><para>
 <note><para>This function is part of the C++2011 standard library. </para>
 </note>
 </para></description></function>
-<function id="doxygen.iota_8hpp_1a62f3431ddde5430d51d129d879b20c31" name="iota"><type>BOOST_CXX14_CONSTEXPR void</type><template>
+<function id="doxygen.iota_8hpp_1a79e5b0fb12705726211c0ecebab2c33d" name="iota"><type>BOOST_CXX14_CONSTEXPR void</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="T"/>
         </template><parameter name="r"><paramtype>Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="value"><paramtype>T</paramtype><description><para>The initial value of the sequence to be generated </para></description></parameter><purpose>Generates an increasing sequence of values, and stores them in the input Range. </purpose><description><para>
 </para></description></function>
-<function id="doxygen.iota_8hpp_1ac9065b411cec49109fcd6406c44f70fb" name="iota_n"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
+<function id="doxygen.iota_8hpp_1a83f90b863f3df8101d3ad981c0714261" name="iota_n"><type>BOOST_CXX14_CONSTEXPR OutputIterator</type><template>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="T"/>
         </template><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to write the results into </para></description></parameter><parameter name="value"><paramtype>T</paramtype><description><para>The initial value of the sequence to be generated </para></description></parameter><parameter name="n"><paramtype>std::size_t</paramtype><description><para>The number of items to write </para></description></parameter><purpose>Generates an increasing sequence of values, and stores them in the input Range. </purpose><description><para>
@@ -1960,16 +1942,14 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.is__partitioned_8hpp_1a0faf37d9c4365430d56ba1aa50e02d36" name="is_partitioned"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__partitioned_8hpp_1a6b405bf3239b452fa3a4e001193c8529" name="is_partitioned"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="UnaryPredicate"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>UnaryPredicate</paramtype><description><para>The predicate to test the values with </para></description></parameter><purpose>Tests to see if a sequence is partitioned according to a predicate. In other words, all the items in the sequence that satisfy the predicate are at the beginning of the sequence. </purpose><description><para>
 <note><para>This function is part of the C++2011 standard library. </para>
 </note>
 </para></description></function>
-<function id="doxygen.is__partitioned_8hpp_1aaba075662456f8c155028fa93f29fe37" name="is_partitioned"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__partitioned_8hpp_1a110111e98ef836f3954cb4d0157ccb16" name="is_partitioned"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="UnaryPredicate"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>UnaryPredicate</paramtype><description><para>The predicate to test the values with </para></description></parameter><purpose>Tests to see if a sequence is partitioned according to a predicate. In other words, all the items in the sequence that satisfy the predicate are at the beginning of the sequence. </purpose><description><para>
@@ -2146,9 +2126,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.cxx11_2is__permutation_8hpp_1a1f77677e9b7dcd71bddb387b87bdac71" name="is_permutation"><type>bool</type><template>
+<function id="doxygen.cxx11_2is__permutation_8hpp_1ae283e4f1f72ce39ce6f1d8b6fc522127" name="is_permutation"><type>bool</type><template>
           <template-type-parameter name="ForwardIterator1"/>
           <template-type-parameter name="ForwardIterator2"/>
           <template-type-parameter name="BinaryPredicate"/>
@@ -2156,19 +2134,19 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 <note><para>This function is part of the C++2011 standard library. </para>
 </note>
 </para></description></function>
-<function id="doxygen.cxx11_2is__permutation_8hpp_1a7e0bcba410642be1d60ca594b9ae72f7" name="is_permutation"><type>bool</type><template>
+<function id="doxygen.cxx11_2is__permutation_8hpp_1ad36231afcf0cb3103b0f0434bb405162" name="is_permutation"><type>bool</type><template>
           <template-type-parameter name="ForwardIterator1"/>
           <template-type-parameter name="ForwardIterator2"/>
         </template><parameter name="first1"><paramtype>ForwardIterator1</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last1"><paramtype>ForwardIterator1</paramtype></parameter><parameter name="first2"><paramtype>ForwardIterator2</paramtype><description><para>The start of the second sequence </para></description></parameter><purpose>Tests to see if the sequence [first,last) is a permutation of the sequence starting at first2. </purpose><description><para>
 <note><para>This function is part of the C++2011 standard library. </para>
 </note>
 </para></description></function>
-<function id="doxygen.cxx11_2is__permutation_8hpp_1a07169b57d756fb42679cc028c59f83d7" name="is_permutation"><type>bool</type><template>
+<function id="doxygen.cxx11_2is__permutation_8hpp_1a7efe794b353d4eb0a6112a8a0e94535c" name="is_permutation"><type>bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="ForwardIterator"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="first2"><paramtype>ForwardIterator</paramtype><description><para>The start of the second sequence </para></description></parameter><purpose>Tests to see if the sequence [first,last) is a permutation of the sequence starting at first2. </purpose><description><para>
 </para></description></function>
-<function id="doxygen.cxx11_2is__permutation_8hpp_1aebca04c91ca9b165673d62d7812144f2" name="is_permutation"><type>boost::disable_if_c&lt; boost::is_same&lt; Range, ForwardIterator &gt;::value, bool &gt;::type</type><template>
+<function id="doxygen.cxx11_2is__permutation_8hpp_1a47b63c32c08a7d025059b1d3df3ff17a" name="is_permutation"><type>boost::disable_if_c&lt; boost::is_same&lt; Range, ForwardIterator &gt;::value, bool &gt;::type</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="ForwardIterator"/>
           <template-type-parameter name="BinaryPredicate"/>
@@ -2380,16 +2358,14 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.cxx14_2is__permutation_8hpp_1a27358f3b075a78f08de2f83c4dd24579" name="is_permutation"><type>bool</type><template>
+<function id="doxygen.cxx14_2is__permutation_8hpp_1a92f944ba39a3e4df4e6ff1d8a902a1c1" name="is_permutation"><type>bool</type><template>
           <template-type-parameter name="ForwardIterator1"/>
           <template-type-parameter name="ForwardIterator2"/>
         </template><parameter name="first1"><paramtype>ForwardIterator1</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last1"><paramtype>ForwardIterator1</paramtype><description><para>One past the end of the second sequence </para></description></parameter><parameter name="first2"><paramtype>ForwardIterator2</paramtype><description><para>The start of the second sequence </para></description></parameter><parameter name="last2"><paramtype>ForwardIterator2</paramtype><description><para>One past the end of the input sequence </para></description></parameter><purpose>Tests to see if the sequence [first,last) is a permutation of the sequence starting at first2. </purpose><description><para>
 <note><para>This function is part of the C++2014 standard library. </para>
 </note>
 </para></description></function>
-<function id="doxygen.cxx14_2is__permutation_8hpp_1a825859459fbf0d99fd7a85613514cc3f" name="is_permutation"><type>bool</type><template>
+<function id="doxygen.cxx14_2is__permutation_8hpp_1aaac2ab337ba01d152cdca1aea8ba49a0" name="is_permutation"><type>bool</type><template>
           <template-type-parameter name="ForwardIterator1"/>
           <template-type-parameter name="ForwardIterator2"/>
           <template-type-parameter name="BinaryPredicate"/>
@@ -2523,61 +2499,59 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.is__sorted_8hpp_1a8cb4f93a99a1fd52273acb6e99b9839f" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR ForwardIterator</type><template>
+<function id="doxygen.is__sorted_8hpp_1a829b035cf5aae9bcae35d1796f0634c5" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR ForwardIterator</type><template>
           <template-type-parameter name="ForwardIterator"/>
           <template-type-parameter name="Pred"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence </para></description></parameter><parameter name="p"><paramtype>Pred</paramtype><description><para>A binary predicate that returns true if two elements are ordered. </para></description></parameter><description><para>
 
 </para></description><returns><para>the point in the sequence [first, last) where the elements are unordered (according to the comparison predicate 'p').</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1aee4693ccf0d6ce5f49f0ffddcb07ae4b" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR ForwardIterator</type><template>
+<function id="doxygen.is__sorted_8hpp_1af7bbaee938c36b12b32c11ce4ebc9620" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR ForwardIterator</type><template>
           <template-type-parameter name="ForwardIterator"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence </para></description></parameter><description><para>
 
 </para></description><returns><para>the point in the sequence [first, last) where the elements are unordered</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1aaf5cd0912dd265bf13df79f33579165c" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a6742b8df3babf61539b8b338ae8b17c7" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="ForwardIterator"/>
           <template-type-parameter name="Pred"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence </para></description></parameter><parameter name="p"><paramtype>Pred</paramtype><description><para>A binary predicate that returns true if two elements are ordered. </para></description></parameter><description><para>
 
 </para></description><returns><para>whether or not the entire sequence is sorted</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1a47fc03a09ea42feb2609c6559409dcaf" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1ae2bf696316119d8036ba2a2687338fce" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="ForwardIterator"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence </para></description></parameter><description><para>
 
 </para></description><returns><para>whether or not the entire sequence is sorted</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1a3fe21207a79d423e85cc3d04d57ee9af" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR boost::lazy_disable_if_c&lt; boost::is_same&lt; R, Pred &gt;::value, typenameboost::range_iterator&lt; constR &gt; &gt;::type</type><template>
+<function id="doxygen.is__sorted_8hpp_1a6bd7cc2d4e7dfa6a14b4977db4401f68" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR boost::lazy_disable_if_c&lt; boost::is_same&lt; R, Pred &gt;::value, typenameboost::range_iterator&lt; constR &gt; &gt;::type</type><template>
           <template-type-parameter name="R"/>
           <template-type-parameter name="Pred"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested. </para></description></parameter><parameter name="p"><paramtype>Pred</paramtype><description><para>A binary predicate that returns true if two elements are ordered. </para></description></parameter><description><para>– Range based versions of the C++11 functions</para><para>
 
 </para></description><returns><para>the point in the range R where the elements are unordered (according to the comparison predicate 'p').</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1ab15c8125b0941bb0216c87d1afb11393" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR boost::range_iterator&lt; constR &gt;::type</type><template>
+<function id="doxygen.is__sorted_8hpp_1ab93833a1188e2e4b2ed54dae512ed570" name="is_sorted_until"><type>BOOST_CXX14_CONSTEXPR boost::range_iterator&lt; constR &gt;::type</type><template>
           <template-type-parameter name="R"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested. </para></description></parameter><description><para>
 
 </para></description><returns><para>the point in the range R where the elements are unordered</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1adb7fdb06f3532311b0ac11323cbddac6" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR boost::lazy_disable_if_c&lt; boost::is_same&lt; R, Pred &gt;::value, boost::type_identity&lt; bool &gt; &gt;::type</type><template>
+<function id="doxygen.is__sorted_8hpp_1ab866912c2d16041a741ba305bfd8df89" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR boost::lazy_disable_if_c&lt; boost::is_same&lt; R, Pred &gt;::value, boost::type_identity&lt; bool &gt; &gt;::type</type><template>
           <template-type-parameter name="R"/>
           <template-type-parameter name="Pred"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested. </para></description></parameter><parameter name="p"><paramtype>Pred</paramtype><description><para>A binary predicate that returns true if two elements are ordered. </para></description></parameter><description><para>
 
 </para></description><returns><para>whether or not the entire range R is sorted (according to the comparison predicate 'p').</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1a8d484b729a9ac23861bc028afefae0cc" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a8a93df6251cd1bfc6fedd1ef7ca0af93" name="is_sorted"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="R"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested. </para></description></parameter><description><para>
 
 </para></description><returns><para>whether or not the entire range R is sorted</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1a8b76c64019b7f0a801b2cc65d2e887c3" name="is_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a450d383f53df5effa60358e152be2cee" name="is_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="ForwardIterator"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence</para></description></parameter><description><para>– Range based versions of the C++11 functions</para><para>
 
@@ -2586,7 +2560,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </para></description><returns><para>true if the entire sequence is increasing; i.e, each item is greater than or <sbr/>
  equal to the previous one.</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1ae230700ad6a18c821dc70aa621dac285" name="is_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a9e8a89688e6b771f2b8a07adb55588f7" name="is_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="R"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested.</para></description></parameter><description><para>
 
@@ -2595,7 +2569,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </para></description><returns><para>true if the entire sequence is increasing; i.e, each item is greater than or <sbr/>
  equal to the previous one.</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1ab2e692b64a10962abff688900537d5b7" name="is_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1abb49e90115f6a11e71d5f3d173f74386" name="is_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="ForwardIterator"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence</para></description></parameter><description><para>
 
@@ -2603,7 +2577,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is decreasing; i.e, each item is less than or equal to the previous one.</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1a62e0992366a0a760c538cf3672bfce38" name="is_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a76bfea954bb6ef105f5d855ffc23440f" name="is_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="R"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested.</para></description></parameter><description><para>
 
@@ -2611,7 +2585,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is decreasing; i.e, each item is less than or equal to the previous one.</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1a1cda96ed1c5d92c74de5ab82c7c81d2c" name="is_strictly_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a8082dbd055d166a8198ea7bb8321af5b" name="is_strictly_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="ForwardIterator"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence</para></description></parameter><description><para>
 
@@ -2619,7 +2593,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is strictly increasing; i.e, each item is greater than the previous one</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1ae7797326192c40abc1a7e3fe28ddba89" name="is_strictly_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a6d69edc4581af4ed186003d29477dc0a" name="is_strictly_increasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="R"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested.</para></description></parameter><description><para>
 
@@ -2627,7 +2601,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is strictly increasing; i.e, each item is greater than the previous one</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1ad1c39536c9f84ff94fa0587242832a78" name="is_strictly_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a401d4de0a30a62053b8c66c1505343ff" name="is_strictly_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="ForwardIterator"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the sequence to be tested. </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the sequence</para></description></parameter><description><para>
 
@@ -2635,7 +2609,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is strictly decreasing; i.e, each item is less than the previous one</para>
 </returns></function>
-<function id="doxygen.is__sorted_8hpp_1a3ab88da04370e6a17a800ccd48745f3d" name="is_strictly_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__sorted_8hpp_1a9f35e3ee8ca37e073bef57303ab4eb37" name="is_strictly_decreasing"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="R"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested.</para></description></parameter><description><para>
 
@@ -2801,9 +2775,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.none__of_8hpp_1aed3d34d2db159dc55e082b92aa7cb273" name="none_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.none__of_8hpp_1a883d9e7927e3d3b72db4bca83d29afd7" name="none_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the sequence </para></description></parameter><description><para>
@@ -2812,7 +2784,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if none of the elements in [first, last) satisfy the predicate 'p' </para>
 </returns></function>
-<function id="doxygen.none__of_8hpp_1a7ddecfdce5253c453b2d96a6b21fca0f" name="none_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.none__of_8hpp_1a9673aee2252ad872ed01ffa94c4cd96e" name="none_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the range </para></description></parameter><description><para>
@@ -2821,7 +2793,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if none of the elements in the range satisfy the predicate 'p' </para>
 </returns></function>
-<function id="doxygen.none__of_8hpp_1a2698672e5fb33d845ced564af04a1e94" name="none_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.none__of_8hpp_1a387f0387cc2f046aa3fbbdc9c9becc89" name="none_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="V"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="val"><paramtype>const V &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
@@ -2830,7 +2802,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if none of the elements in [first, last) are equal to 'val' </para>
 </returns></function>
-<function id="doxygen.none__of_8hpp_1aa1f4d384827a8b02b8480125f93c044c" name="none_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.none__of_8hpp_1a1d9f2cd3e7bd89e530c9cccb5d2fc1e6" name="none_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="V"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="val"><paramtype>const V &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
@@ -3009,30 +2981,28 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.one__of_8hpp_1a20969730db3609d38ab460c8d031b910" name="one_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.one__of_8hpp_1a13b09bf3e2dc916b89dad5fa5c12482c" name="one_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the sequence </para></description></parameter><description><para>
 
 </para></description><returns><para>true if the predicate 'p' is true for exactly one item in [first, last).</para>
 </returns></function>
-<function id="doxygen.one__of_8hpp_1ab2427cd53b1c537d546f2315d65a9c1d" name="one_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.one__of_8hpp_1ac5ab52e59bd95cdf590a2f4d16b54b1d" name="one_of"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate for testing the elements of the range </para></description></parameter><description><para>
 
 </para></description><returns><para>true if the predicate 'p' is true for exactly one item in the range.</para>
 </returns></function>
-<function id="doxygen.one__of_8hpp_1aa89ff84fa602e0379c19d7d791e5e541" name="one_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.one__of_8hpp_1a8ce6e75d2f5b25cfbe0857eb15254a6e" name="one_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="V"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="val"><paramtype>const V &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
 
 </para></description><returns><para>true if the value 'val' exists only once in [first, last).</para>
 </returns></function>
-<function id="doxygen.one__of_8hpp_1aabfe0770ae3a90a160b2aa8f7a424e7d" name="one_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.one__of_8hpp_1aca3b87d36bb2eb04e1e4a9b9977ccfb8" name="one_of_equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="V"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="val"><paramtype>const V &amp;</paramtype><description><para>A value to compare against </para></description></parameter><description><para>
@@ -3211,9 +3181,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.partition__copy_8hpp_1a78a338dd346e6e350305c74785e01b6b" name="partition_copy"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; OutputIterator1, OutputIterator2 &gt;</type><template>
+<function id="doxygen.partition__copy_8hpp_1a97ca4abd1bc9d6e4d7eb9e805f52adb7" name="partition_copy"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; OutputIterator1, OutputIterator2 &gt;</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator1"/>
           <template-type-parameter name="OutputIterator2"/>
@@ -3222,7 +3190,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 <note><para>This function is part of the C++2011 standard library. </para>
 </note>
 </para></description></function>
-<function id="doxygen.partition__copy_8hpp_1ae9eefbc85f14954f41dba04d15626acd" name="partition_copy"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; OutputIterator1, OutputIterator2 &gt;</type><template>
+<function id="doxygen.partition__copy_8hpp_1ae611121873a28993eaa4592812452327" name="partition_copy"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; OutputIterator1, OutputIterator2 &gt;</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator1"/>
           <template-type-parameter name="OutputIterator2"/>
@@ -3403,16 +3371,14 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.partition__point_8hpp_1a091fbc69ba946a2b0abd50b0096a4e6f" name="partition_point"><type>ForwardIterator</type><template>
+<function id="doxygen.partition__point_8hpp_1a45eba6be24e5645d3c3beaf148405aac" name="partition_point"><type>ForwardIterator</type><template>
           <template-type-parameter name="ForwardIterator"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="first"><paramtype>ForwardIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>ForwardIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>The predicate to test the values with </para></description></parameter><purpose>Given a partitioned range, returns the partition point, i.e, the first element that does not satisfy p. </purpose><description><para>
 <note><para>This function is part of the C++2011 standard library. </para>
 </note>
 </para></description></function>
-<function id="doxygen.partition__point_8hpp_1ae40d3dcdfbe6bc39c36d77d3902757cf" name="partition_point"><type>boost::range_iterator&lt; Range &gt;::type</type><template>
+<function id="doxygen.partition__point_8hpp_1a281fc2fe41da071125988f63bf75f64d" name="partition_point"><type>boost::range_iterator&lt; Range &gt;::type</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="r"><paramtype>Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>The predicate to test the values with </para></description></parameter><purpose>Given a partitioned range, returns the partition point. </purpose><description><para>
@@ -3655,9 +3621,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.equal_8hpp_1aebe41f3a5fc7dc7e77baa1c2c45f0a23" name="equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.equal_8hpp_1a273587c9ff2e7157ee71e346f0390040" name="equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator1"/>
           <template-type-parameter name="InputIterator2"/>
           <template-type-parameter name="BinaryPredicate"/>
@@ -3665,7 +3629,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>true if all elements in the two ranges are equal</para>
 </returns></function>
-<function id="doxygen.equal_8hpp_1a1515c7a4d315cb7d7fe7ac93c9f67936" name="equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.equal_8hpp_1a44cd22d0dfe15ec529be6efde2393356" name="equal"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="InputIterator1"/>
           <template-type-parameter name="InputIterator2"/>
         </template><parameter name="first1"><paramtype>InputIterator1</paramtype><description><para>The start of the first range. </para></description></parameter><parameter name="last1"><paramtype>InputIterator1</paramtype><description><para>One past the end of the first range. </para></description></parameter><parameter name="first2"><paramtype>InputIterator2</paramtype><description><para>The start of the second range. </para></description></parameter><parameter name="last2"><paramtype>InputIterator2</paramtype><description><para>One past the end of the second range. </para></description></parameter><description><para>
@@ -3844,9 +3808,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.mismatch_8hpp_1a441f47ef1f63174a1a27a24d4b128c7d" name="mismatch"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator1, InputIterator2 &gt;</type><template>
+<function id="doxygen.mismatch_8hpp_1a7ff787a12f3c0b8c6901569bdde01c0b" name="mismatch"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator1, InputIterator2 &gt;</type><template>
           <template-type-parameter name="InputIterator1"/>
           <template-type-parameter name="InputIterator2"/>
           <template-type-parameter name="BinaryPredicate"/>
@@ -3854,7 +3816,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>a pair of iterators pointing to the first elements in the sequence that do not match</para>
 </returns></function>
-<function id="doxygen.mismatch_8hpp_1a8d9429a55dbe7a99e8c485da5a9c726d" name="mismatch"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator1, InputIterator2 &gt;</type><template>
+<function id="doxygen.mismatch_8hpp_1a6f15e19b3db0e15b328085be6caacac8" name="mismatch"><type>BOOST_CXX14_CONSTEXPR std::pair&lt; InputIterator1, InputIterator2 &gt;</type><template>
           <template-type-parameter name="InputIterator1"/>
           <template-type-parameter name="InputIterator2"/>
         </template><parameter name="first1"><paramtype>InputIterator1</paramtype><description><para>The start of the first range. </para></description></parameter><parameter name="last1"><paramtype>InputIterator1</paramtype><description><para>One past the end of the first range. </para></description></parameter><parameter name="first2"><paramtype>InputIterator2</paramtype><description><para>The start of the second range. </para></description></parameter><parameter name="last2"><paramtype>InputIterator2</paramtype><description><para>One past the end of the second range. </para></description></parameter><description><para>
@@ -3911,8 +3873,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para><namespace name="boost">
 <namespace name="algorithm">
-
-
 
 
 
@@ -4247,9 +4207,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.for__each__n_8hpp_1a0f25d8329085158713c61aef63b1fee7" name="for_each_n"><type>InputIterator</type><template>
+<function id="doxygen.for__each__n_8hpp_1ac8a7b718e68d9f54c382fd6eb8dc3a56" name="for_each_n"><type>InputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="Size"/>
           <template-type-parameter name="Function"/>
@@ -4287,8 +4245,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 <header id="doxygen.inclusive__scan_8hpp" name="boost/algorithm/cxx17/inclusive_scan.hpp">
 <namespace name="boost">
 <namespace name="algorithm">
-
-
 
 
 
@@ -4479,8 +4435,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para><namespace name="boost">
 <namespace name="algorithm">
-
-
 
 
 
@@ -4814,8 +4768,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
 <function id="doxygen.transform__exclusive__scan_8hpp_1a835bdb248596360faf2bb9f69129c737" name="transform_exclusive_scan"><type>OutputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
@@ -4996,9 +4948,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.transform__inclusive__scan_8hpp_1a77104cc8d9d22a297fd80aeff9bec5aa" name="transform_inclusive_scan"><type>OutputIterator</type><template>
+<function id="doxygen.transform__inclusive__scan_8hpp_1ad69d8497eb8f1a9b2f3e09b778e27921" name="transform_inclusive_scan"><type>OutputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
           <template-type-parameter name="BinaryOperation"/>
@@ -5194,8 +5144,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
 <function id="doxygen.transform__reduce_8hpp_1aa64c69515bf761c06ba771ed2f82cb93" name="transform_reduce"><type>T</type><template>
           <template-type-parameter name="InputIterator1"/>
           <template-type-parameter name="InputIterator2"/>
@@ -5255,8 +5203,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 <header id="doxygen.find__backward_8hpp" name="boost/algorithm/find_backward.hpp">
 <namespace name="boost">
 <namespace name="algorithm">
-
-
 
 
 
@@ -5483,8 +5429,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
 <function id="doxygen.find__not_8hpp_1a5b4b5b16be71455bbfdc297bc8615d50" name="find_not"><type>BOOST_CXX14_CONSTEXPR InputIter</type><template>
           <template-type-parameter name="InputIter"/>
           <template-type-parameter name="Sentinel"/>
@@ -5668,14 +5612,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-<function id="doxygen.group__gather_1ga29f606e172cbc6cb7041823492ff3f1e" name="gather"><type>std::pair&lt; BidirectionalIterator, BidirectionalIterator &gt;</type><template>
-          <template-type-parameter name="BidirectionalIterator"/>
-          <template-type-parameter name="Pred"/>
-        </template><parameter name="first"><paramtype>BidirectionalIterator</paramtype></parameter><parameter name="last"><paramtype>BidirectionalIterator</paramtype></parameter><parameter name="pivot"><paramtype>BidirectionalIterator</paramtype></parameter><parameter name="pred"><paramtype>Pred</paramtype></parameter><purpose>iterator-based gather implementation </purpose></function>
-<function id="doxygen.group__gather_1ga98885e5373eb630387a09f5c3e1ff4ed" name="gather"><type>std::pair&lt; typename boost::range_iterator&lt; BidirectionalRange &gt;::type, typename boost::range_iterator&lt; BidirectionalRange &gt;::type &gt;</type><template>
-          <template-type-parameter name="BidirectionalRange"/>
-          <template-type-parameter name="Pred"/>
-        </template><parameter name="range"><paramtype>BidirectionalRange &amp;</paramtype></parameter><parameter name="pivot"><paramtype>typename boost::range_iterator&lt; BidirectionalRange &gt;::type</paramtype></parameter><parameter name="pred"><paramtype>Pred</paramtype></parameter><purpose>range-based gather implementation </purpose></function>
 
 
 
@@ -5843,7 +5779,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-<function id="doxygen.hex_8hpp_1a1b9ef0d2aa875ac4d01273a6a3d55442" name="hex"><type><emphasis>unspecified</emphasis></type><template>
+<function id="doxygen.hex_8hpp_1af4bb24f90549af734cdf3cd5dbd110c8" name="hex"><type><emphasis>unspecified</emphasis></type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of integral types into a hexadecimal sequence of characters. </purpose><description><para>
@@ -5852,7 +5788,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator </para>
 </returns></function>
-<function id="doxygen.hex_8hpp_1a30e8dd2729770c1568754a283a9c4422" name="hex_lower"><type><emphasis>unspecified</emphasis></type><template>
+<function id="doxygen.hex_8hpp_1aa4e2c993c8c94c85de729e0ac29b5dfb" name="hex_lower"><type><emphasis>unspecified</emphasis></type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of integral types into a lower case hexadecimal sequence of characters. </purpose><description><para>
@@ -5861,7 +5797,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator </para>
 </returns></function>
-<function id="doxygen.hex_8hpp_1a7d1b658021a00920b5776d42a23fc121" name="hex"><type>boost::enable_if&lt; boost::is_integral&lt; T &gt;, OutputIterator &gt;::type</type><template>
+<function id="doxygen.hex_8hpp_1a90173edf6ec232dbd9f6fd2e74478cef" name="hex"><type>boost::enable_if&lt; boost::is_integral&lt; T &gt;, OutputIterator &gt;::type</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="ptr"><paramtype>const T *</paramtype><description><para>A pointer to a 0-terminated sequence of data. </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of integral types into a hexadecimal sequence of characters. </purpose><description><para>
@@ -5870,7 +5806,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator </para>
 </returns></function>
-<function id="doxygen.hex_8hpp_1a3fcf0d636b7dad5776d50fc856fab594" name="hex_lower"><type>boost::enable_if&lt; boost::is_integral&lt; T &gt;, OutputIterator &gt;::type</type><template>
+<function id="doxygen.hex_8hpp_1a861697390543e72c3536cf821dbcc604" name="hex_lower"><type>boost::enable_if&lt; boost::is_integral&lt; T &gt;, OutputIterator &gt;::type</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="ptr"><paramtype>const T *</paramtype><description><para>A pointer to a 0-terminated sequence of data. </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of integral types into a lower case hexadecimal sequence of characters. </purpose><description><para>
@@ -5879,7 +5815,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator </para>
 </returns></function>
-<function id="doxygen.hex_8hpp_1a1f99f48dbb9f1b3238ed719b9df6bb12" name="hex"><type><emphasis>unspecified</emphasis></type><template>
+<function id="doxygen.hex_8hpp_1af52d86eefbeb78765ae487cf3941392a" name="hex"><type><emphasis>unspecified</emphasis></type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of integral types into a hexadecimal sequence of characters. </purpose><description><para>
@@ -5888,7 +5824,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator </para>
 </returns></function>
-<function id="doxygen.hex_8hpp_1a9351d900ef5f0291a9cd0d3b351f25d7" name="hex_lower"><type><emphasis>unspecified</emphasis></type><template>
+<function id="doxygen.hex_8hpp_1aee70cd086d672438967565abd1edf285" name="hex_lower"><type><emphasis>unspecified</emphasis></type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of integral types into a lower case hexadecimal sequence of characters. </purpose><description><para>
@@ -5897,7 +5833,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator </para>
 </returns></function>
-<function id="doxygen.hex_8hpp_1aebfb4e9297b7263b4114c98312b266e2" name="unhex"><type>OutputIterator</type><template>
+<function id="doxygen.hex_8hpp_1a3ac2036de806a9f1d6f1a1cfed128d60" name="unhex"><type>OutputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of hexadecimal characters into a sequence of integers. </purpose><description><para>
@@ -5906,7 +5842,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>The updated output iterator </para>
 </returns></function>
-<function id="doxygen.hex_8hpp_1a2093b84f83e45f137fa8d18970514edd" name="unhex"><type>OutputIterator</type><template>
+<function id="doxygen.hex_8hpp_1ada6232d744d315d4f800f8d26fc52a1f" name="unhex"><type>OutputIterator</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="OutputIterator"/>
         </template><parameter name="ptr"><paramtype>const T *</paramtype><description><para>A pointer to a null-terminated input sequence. </para></description></parameter><parameter name="out"><paramtype>OutputIterator</paramtype><description><para>An output iterator to the results into </para></description></parameter><purpose>Converts a sequence of hexadecimal characters into a sequence of integers. </purpose><description><para>
@@ -5942,8 +5878,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 </para></description><returns><para>A container with the decoded text </para>
 </returns></function>
-
-
 
 
 
@@ -6108,21 +6042,19 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-<function id="doxygen.is__clamped_8hpp_1adf7080c21937c5df97ab26f327e05753" name="is_clamped"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__clamped_8hpp_1aa16b733619caf46d17c4d0e05fdf649c" name="is_clamped"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="T"/>
           <template-type-parameter name="Pred"/>
         </template><parameter name="val"><paramtype>T const &amp;</paramtype><description><para>The value to be checked </para></description></parameter><parameter name="lo"><paramtype>typename boost::type_identity&lt; T &gt;::type const &amp;</paramtype><description><para>The lower bound of the range </para></description></parameter><parameter name="hi"><paramtype>typename boost::type_identity&lt; T &gt;::type const &amp;</paramtype><description><para>The upper bound of the range </para></description></parameter><parameter name="p"><paramtype>Pred</paramtype><description><para>A predicate to use to compare the values. p ( a, b ) returns a boolean. </para></description></parameter><description><para>
 
 </para></description><returns><para>true if value "val" is in the range [ lo, hi ] using the comparison predicate p. If p ( val, lo ) return false. If p ( hi, val ) return false. Otherwise, returns true.</para>
 </returns></function>
-<function id="doxygen.is__clamped_8hpp_1a0a4b0ed4fbe0b21973d84c32adb15998" name="is_clamped"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
+<function id="doxygen.is__clamped_8hpp_1a2dc5eb5c4de7b076780eef2a5f9c909b" name="is_clamped"><type>BOOST_CXX14_CONSTEXPR bool</type><template>
           <template-type-parameter name="T"/>
         </template><parameter name="val"><paramtype>const T &amp;</paramtype><description><para>The value to be checked </para></description></parameter><parameter name="lo"><paramtype>typename boost::type_identity&lt; T &gt;::type const &amp;</paramtype><description><para>The lower bound of the range </para></description></parameter><parameter name="hi"><paramtype>typename boost::type_identity&lt; T &gt;::type const &amp;</paramtype><description><para>The upper bound of the range </para></description></parameter><description><para>
 
 </para></description><returns><para>true if value "val" is in the range [ lo, hi ] using operator &lt; for comparison. If the value is less than lo, return false. If the value is greater than hi, return false. Otherwise, returns true.</para>
 </returns></function>
-
-
 
 
 
@@ -6293,7 +6225,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-<function id="doxygen.is__palindrome_8hpp_1a3a44aeaa967fab2b1315902af602fb6e" name="is_palindrome"><type>bool</type><template>
+<function id="doxygen.is__palindrome_8hpp_1ae6261190d819577274b9e60e8a5391bf" name="is_palindrome"><type>bool</type><template>
           <template-type-parameter name="BidirectionalIterator"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="begin"><paramtype>BidirectionalIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="end"><paramtype>BidirectionalIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate used to compare the values.</para></description></parameter><description><para>
@@ -6302,7 +6234,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is palindrome</para>
 </returns></function>
-<function id="doxygen.is__palindrome_8hpp_1acf698720548980646517554017212a85" name="is_palindrome"><type>bool</type><template>
+<function id="doxygen.is__palindrome_8hpp_1a98e9ccc0e8ab81189e85c34c29179533" name="is_palindrome"><type>bool</type><template>
           <template-type-parameter name="BidirectionalIterator"/>
         </template><parameter name="begin"><paramtype>BidirectionalIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="end"><paramtype>BidirectionalIterator</paramtype><description><para>One past the end of the input sequence</para></description></parameter><description><para>
 
@@ -6310,7 +6242,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is palindrome</para>
 </returns></function>
-<function id="doxygen.is__palindrome_8hpp_1a8d73bf26c434b611d39a85b908988bc8" name="is_palindrome"><type>bool</type><template>
+<function id="doxygen.is__palindrome_8hpp_1a9f49f71fa48647e56a1238131711f42d" name="is_palindrome"><type>bool</type><template>
           <template-type-parameter name="R"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested.</para></description></parameter><description><para>
 
@@ -6318,7 +6250,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is palindrome</para>
 </returns></function>
-<function id="doxygen.is__palindrome_8hpp_1a2fa607abe5e6644d4eb36d5906315728" name="is_palindrome"><type>bool</type><template>
+<function id="doxygen.is__palindrome_8hpp_1aa7e4a60b69d2fdf66ae430dba200d5bf" name="is_palindrome"><type>bool</type><template>
           <template-type-parameter name="R"/>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="range"><paramtype>const R &amp;</paramtype><description><para>The range to be tested. </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate used to compare the values.</para></description></parameter><description><para>
@@ -6327,13 +6259,13 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is palindrome</para>
 </returns></function>
-<function id="doxygen.is__palindrome_8hpp_1a81130bcc2e590517849d5cbbbb3133e0" name="is_palindrome"><type>bool</type><parameter name="str"><paramtype>const char *</paramtype><description><para>C-string to be tested.</para></description></parameter><description><para>
+<function id="doxygen.is__palindrome_8hpp_1afc9dc187e76e0186d895341b95da7785" name="is_palindrome"><type>bool</type><parameter name="str"><paramtype>const char *</paramtype><description><para>C-string to be tested.</para></description></parameter><description><para>
 
 <note><para>This function will return true for empty sequences and for palindromes. For other sequences function will return false. Complexity: O(N). </para>
 </note>
 </para></description><returns><para>true if the entire sequence is palindrome</para>
 </returns></function>
-<function id="doxygen.is__palindrome_8hpp_1a9b9fb8dc39df30fbb7b7dfdb1420f860" name="is_palindrome"><type>bool</type><template>
+<function id="doxygen.is__palindrome_8hpp_1ae68b111db71e135586213349d30629fe" name="is_palindrome"><type>bool</type><template>
           <template-type-parameter name="Predicate"/>
         </template><parameter name="str"><paramtype>const char *</paramtype><description><para>C-string to be tested. </para></description></parameter><parameter name="p"><paramtype>Predicate</paramtype><description><para>A predicate used to compare the values.</para></description></parameter><description><para>
 
@@ -6341,8 +6273,6 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 </note>
 </para></description><returns><para>true if the entire sequence is palindrome</para>
 </returns></function>
-
-
 
 
 
@@ -6513,22 +6443,20 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-<function id="doxygen.is__partitioned__until_8hpp_1a94a2391f9b4bd1e42963b854be6404f5" name="is_partitioned_until"><type>InputIterator</type><template>
+<function id="doxygen.is__partitioned__until_8hpp_1a9f889b9404a7ee87493bfdddffacfc38" name="is_partitioned_until"><type>InputIterator</type><template>
           <template-type-parameter name="InputIterator"/>
           <template-type-parameter name="UnaryPredicate"/>
         </template><parameter name="first"><paramtype>InputIterator</paramtype><description><para>The start of the input sequence </para></description></parameter><parameter name="last"><paramtype>InputIterator</paramtype><description><para>One past the end of the input sequence </para></description></parameter><parameter name="p"><paramtype>UnaryPredicate</paramtype><description><para>The predicate to test the values with</para></description></parameter><purpose>Tests to see if a sequence is partitioned according to a predicate. In other words, all the items in the sequence that satisfy the predicate are at the beginning of the sequence. </purpose><description><para>
 <note><para>Returns the first iterator 'it' in the sequence [first, last) for which is_partitioned(first, it, p) is false. Returns last if the entire sequence is partitioned. Complexity: O(N). </para>
 </note>
 </para></description></function>
-<function id="doxygen.is__partitioned__until_8hpp_1a3b807f00d323dd8d92eab64511564bfb" name="is_partitioned_until"><type>boost::range_iterator&lt; constRange &gt;::type</type><template>
+<function id="doxygen.is__partitioned__until_8hpp_1afd1de6d8364923ee3c6bbf9bf1ae6066" name="is_partitioned_until"><type>boost::range_iterator&lt; constRange &gt;::type</type><template>
           <template-type-parameter name="Range"/>
           <template-type-parameter name="UnaryPredicate"/>
         </template><parameter name="r"><paramtype>const Range &amp;</paramtype><description><para>The input range </para></description></parameter><parameter name="p"><paramtype>UnaryPredicate</paramtype><description><para>The predicate to test the values with</para></description></parameter><purpose>Tests to see if a sequence is partitioned according to a predicate. In other words, all the items in the sequence that satisfy the predicate are at the beginning of the sequence. </purpose><description><para>
 <note><para>Returns the first iterator 'it' in the sequence [first, last) for which is_partitioned(first, it, p) is false. Returns last if the entire sequence is partitioned. Complexity: O(N). </para>
 </note>
 </para></description></function>
-
-
 
 
 
@@ -6872,9 +6800,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.boyer__moore_8hpp_1a168aaed9d4ecc6f30d79cf14663f2b00" name="boyer_moore_search"><type>std::pair&lt; corpusIter, corpusIter &gt;</type><template>
+<function id="doxygen.boyer__moore_8hpp_1a55ca5cd6ae86754e31a9f4f83e80659b" name="boyer_moore_search"><type>std::pair&lt; corpusIter, corpusIter &gt;</type><template>
           <template-type-parameter name="patIter"/>
           <template-type-parameter name="corpusIter"/>
         </template><parameter name="corpus_first"><paramtype>corpusIter</paramtype><description><para>The start of the data to search (Random Access Iterator) </para></description></parameter><parameter name="corpus_last"><paramtype>corpusIter</paramtype><description><para>One past the end of the data to search </para></description></parameter><parameter name="pat_first"><paramtype>patIter</paramtype><description><para>The start of the pattern to search for (Random Access Iterator) </para></description></parameter><parameter name="pat_last"><paramtype>patIter</paramtype><description><para>One past the end of the data to search for </para></description></parameter><purpose>Searches the corpus for the pattern. </purpose><description><para>
@@ -7074,9 +7000,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.boyer__moore__horspool_8hpp_1ac0fdb9655adb726365646a982ce7c8ca" name="boyer_moore_horspool_search"><type>std::pair&lt; corpusIter, corpusIter &gt;</type><template>
+<function id="doxygen.boyer__moore__horspool_8hpp_1a8a77a18b694a0083a2756c33a62288cd" name="boyer_moore_horspool_search"><type>std::pair&lt; corpusIter, corpusIter &gt;</type><template>
           <template-type-parameter name="patIter"/>
           <template-type-parameter name="corpusIter"/>
         </template><parameter name="corpus_first"><paramtype>corpusIter</paramtype><description><para>The start of the data to search (Random Access Iterator) </para></description></parameter><parameter name="corpus_last"><paramtype>corpusIter</paramtype><description><para>One past the end of the data to search </para></description></parameter><parameter name="pat_first"><paramtype>patIter</paramtype><description><para>The start of the pattern to search for (Random Access Iterator) </para></description></parameter><parameter name="pat_last"><paramtype>patIter</paramtype><description><para>One past the end of the data to search for </para></description></parameter><purpose>Searches the corpus for the pattern. </purpose><description><para>
@@ -7275,9 +7199,7 @@ Suggested by olafvdspek in <ulink url="https://svn.boost.org/trac/boost/ticket/3
 
 
 
-
-
-<function id="doxygen.knuth__morris__pratt_8hpp_1a9dfa1e01dfae55fee1c63e067ada8aa5" name="knuth_morris_pratt_search"><type>std::pair&lt; corpusIter, corpusIter &gt;</type><template>
+<function id="doxygen.knuth__morris__pratt_8hpp_1a03369098894b6abfd0cbb9c6e851e78c" name="knuth_morris_pratt_search"><type>std::pair&lt; corpusIter, corpusIter &gt;</type><template>
           <template-type-parameter name="patIter"/>
           <template-type-parameter name="corpusIter"/>
         </template><parameter name="corpus_first"><paramtype>corpusIter</paramtype><description><para>The start of the data to search (Random Access Iterator) </para></description></parameter><parameter name="corpus_last"><paramtype>corpusIter</paramtype><description><para>One past the end of the data to search </para></description></parameter><parameter name="pat_first"><paramtype>patIter</paramtype><description><para>The start of the pattern to search for (Random Access Iterator) </para></description></parameter><parameter name="pat_last"><paramtype>patIter</paramtype><description><para>One past the end of the data to search for </para></description></parameter><purpose>Searches the corpus for the pattern. </purpose><description><para>
@@ -7436,8 +7358,6 @@ Suggested by Sean Parent in his CppCon 2015 keynote </para><namespace name="boos
 <function id="doxygen.sort__subrange_8hpp_1ab9b05c12ab19c739e08ddde6ada611b4" name="partition_subrange"><type>void</type><template>
           <template-type-parameter name="Iterator"/>
         </template><parameter name="first"><paramtype>Iterator</paramtype></parameter><parameter name="last"><paramtype>Iterator</paramtype></parameter><parameter name="sub_first"><paramtype>Iterator</paramtype></parameter><parameter name="sub_last"><paramtype>Iterator</paramtype></parameter></function>
-
-
 
 
 

@@ -13,6 +13,6 @@ var classboost_1_1locale_1_1ios__info =
     [ "get", "classboost_1_1locale_1_1ios__info.html#a1da70b74d5c31cbe76c8b795b12ca144", null ],
     [ "time_flags", "classboost_1_1locale_1_1ios__info.html#a55d75980cb329a50055e7cb3953690e9", null ],
     [ "time_flags", "classboost_1_1locale_1_1ios__info.html#a06bdad5c9b11e57c16ad623776ce5096", null ],
-    [ "time_zone", "classboost_1_1locale_1_1ios__info.html#a764613a352f4ecffa1170cd9b8d14d71", null ],
+    [ "time_zone", "classboost_1_1locale_1_1ios__info.html#ad7dc481b8766a8e6c4413f15a22d6c99", null ],
     [ "time_zone", "classboost_1_1locale_1_1ios__info.html#a2626e056c872e7c81b21bde22525d189", null ]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['next_5flayer_5ftype_0',['next_layer_type',['../classboost_1_1redis_1_1detail_1_1connection__base.html#a8333d807901c8123adb0ab4c2a5ce28a',1,'boost::redis::detail::connection_base']]],
-  ['node_1',['node',['../group__high-level-api.html#ga4cce198a78c8f3ff23aaba06fbefdc50',1,'boost::redis::resp3']]]
+  ['next_5flayer_5ftype_0',['next_layer_type',['../classboost_1_1redis_1_1basic__connection.html#a03016ca5dd2c46e146215cdb0d4c1192',1,'boost::redis::basic_connection']]],
+  ['node_1',['node',['../group__high-level-api.html#gaa9f64eabc9ddfbdbb942e18a233a5113',1,'boost::redis::resp3']]],
+  ['node_5fview_2',['node_view',['../group__high-level-api.html#gaa6fb7a7c2dd027849bdb8b40293395b4',1,'boost::redis::resp3']]]
 ];

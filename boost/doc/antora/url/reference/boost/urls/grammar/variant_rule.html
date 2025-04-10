@@ -3,13 +3,20 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>boost::urls::grammar::variant_rule :: Boost Libraries Documentation</title>
+    <title>boost::urls::grammar::variant&lowbar;rule :: Boost Libraries Documentation</title>
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/reference/boost/urls/grammar/variant_rule.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
     <link rel="stylesheet" href="../../../../../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../../../../../_'</script>
+<link rel="icon" href="../../../../../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../../../../../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../../../../../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -104,26 +111,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="../../../../reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="../../../../HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -142,13 +133,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="variant_rule.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::variant_rule</a></li>
+    <li><a href="variant_rule.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::variant&lowbar;rule</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
 </div>
 </div>
-    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::variant_rule</h1>
+    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/grammar.html">grammar</a>::variant&lowbar;rule</h1>
   <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -160,18 +151,18 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/grammar/variant_rule.hpp#L157">boost/url/grammar/variant_rule.hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/grammar/variant_rule.hpp#L105">boost&sol;url&sol;grammar&sol;variant&lowbar;rule&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">template&lt;
-    class R0,
-    class... Rn&gt;
+    <a href="Rule.html" class="xref page">Rule</a> R0,
+    <a href="Rule.html" class="xref page">Rule</a>&period;&period;&period; Rn&gt;
 constexpr
-    _implementation-defined_
-variant_rule(
+&sol;&ast; implementation-defined &ast;&sol;
+variant&lowbar;rule(
     R0 const&amp; r0,
-    Rn const&amp;... rn) noexcept;</code></pre>
+    Rn const&amp;&period;&period;&period; rn) noexcept;</code></pre>
 </div>
 </div>
 </div>
@@ -180,21 +171,25 @@ variant_rule(
 <h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Each specified rule is tried in sequence.
-When the first match occurs, the result
-is stored and returned in the variant. If
-no match occurs, an error is returned.</p>
+<p>Each specified rule is tried in sequence&period; When the first match occurs, the result is stored and returned in the variant&period; If no match occurs, an error is returned&period;</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_value_type"><a class="anchor" href="#_value_type"></a>Value Type</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">using value_type = variant&lt; typename Rules::value_type... &gt;;</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_rules_are_used_with_the_function"><a class="anchor" href="#_rules_are_used_with_the_function"></a>Rules are used with the function</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><a href="parse-02.html" class="xref page">parse</a>
-.</p>
+<p>Rules are used with the function <a href="parse-0d.html" class="xref page"><code>parse</code></a>&period;</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -212,40 +207,71 @@ system::result&lt; variant&lt; url_view, url_view, authority_view, core::string_
         delim_rule('*') ) );</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bnf"><a class="anchor" href="#_bnf"></a>BNF</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">variant     = rule1 / rule2 / rule3...</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_specification"><a class="anchor" href="#_specification"></a>Specification</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://datatracker.ietf.org/doc/html/rfc5234#section-3.2">3.2.  Alternatives (rfc5234)</a></p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc5234#section-3.2" class="bare">https://datatracker.ietf.org/doc/html/rfc5234#section-3.2</a></p>
 </li>
 <li>
-<p><a href="https://datatracker.ietf.org/doc/html/rfc7230#section-5.3">5.3.  Request Target (rfc7230)</a></p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7230#section-5.3" class="bare">https://datatracker.ietf.org/doc/html/rfc7230#section-5.3</a></p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_return_value"><a class="anchor" href="#_return_value"></a>Return Value</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The variant rule</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>r0</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The first rule to match</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>rn</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of one or more rules to match</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_see_also"><a class="anchor" href="#_see_also"></a>See Also</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="../absolute_uri_rule.html" class="xref page">absolute_uri_rule</a>
-,
-<a href="../authority_rule.html" class="xref page">authority_rule</a>
-,
-<a href="delim_rule-0a.html" class="xref page">delim_rule</a>
-,
-<a href="parse-02.html" class="xref page">parse</a>
-,
-<a href="../origin_form_rule.html" class="xref page">origin_form_rule</a>
-,
-<a href="../url_view.html" class="xref page">url_view</a>
-.</p>
+<p><a href="../absolute_uri_rule.html" class="xref page"><code>absolute&lowbar;uri&lowbar;rule</code></a>, <a href="../authority_rule.html" class="xref page"><code>authority&lowbar;rule</code></a>, <a href="delim_rule-011.html" class="xref page"><code>delim&lowbar;rule</code></a>, <a href="parse-0d.html" class="xref page"><code>parse</code></a>, <a href="../origin_form_rule.html" class="xref page"><code>origin&lowbar;form&lowbar;rule</code></a>, <a href="../url_view.html" class="xref page"><code>url&lowbar;view</code></a>&period;</p>
 </div>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>

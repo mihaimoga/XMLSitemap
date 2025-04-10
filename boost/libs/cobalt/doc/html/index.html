@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Klemens Morgenstern">
 <title>Documentation boost.cobalt</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -85,10 +85,10 @@ code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;
 ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -141,7 +141,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -163,6 +163,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -209,13 +210,10 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
 .sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
 .literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
@@ -331,7 +329,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -394,7 +392,7 @@ b.conum *{color:inherit!important}
 dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
 h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
 p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
 .exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
@@ -440,216 +438,119 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <style>
 pre.rouge table td { padding: 5px; }
 pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
-  font-style: italic;
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
 }
-pre.rouge .cp {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
 }
 pre.rouge .gr {
-  color: #aa0000;
+  color: #f6f8fa;
 }
-pre.rouge .gh {
-  color: #999999;
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
 }
 pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
+  color: #116329;
+  background-color: #dafbe1;
 }
-pre.rouge .go {
-  color: #888888;
+pre.rouge .ges {
+  font-weight: bold;
+  font-style: italic;
 }
-pre.rouge .gp {
-  color: #555555;
+pre.rouge .kc {
+  color: #0550ae;
 }
-pre.rouge .gs {
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
   font-weight: bold;
 }
 pre.rouge .gu {
-  color: #aaaaaa;
-}
-pre.rouge .gt {
-  color: #aa0000;
-}
-pre.rouge .kc {
-  color: #000000;
+  color: #0550ae;
   font-weight: bold;
 }
-pre.rouge .kd {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sa {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #008080;
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
 }
 pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
+  color: #8250df;
 }
 pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
   font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .o {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #bbbbbb;
-}
-pre.rouge {
-  background-color: #f8f8f8;
 }
 </style>
 </head>
@@ -831,7 +732,6 @@ pre.rouge {
 <li><a href="#pmr">pmr</a></li>
 </ul>
 </li>
-<li><a href="#leaf">cobalt/leaf.hpp</a></li>
 <li><a href="#context">cobalt/experimental/context.hpp</a>
 <ul class="sectlevel3">
 <li><a href="#reference_2">Reference</a></li>
@@ -1112,8 +1012,8 @@ This library (boost.cobalt) provides a way to manage this all through coroutines
 <span class="p">{</span>
     <span class="k">auto</span> <span class="p">[</span><span class="n">res</span><span class="p">,</span> <span class="n">other_res</span><span class="p">]</span> <span class="o">=</span>
             <span class="n">cobalt</span><span class="o">::</span><span class="n">join</span><span class="p">(</span>
-                <span class="n">http_cobalt_get</span><span class="p">((</span><span class="s">"https://boost.org"</span><span class="p">),</span>
-                <span class="n">http_cobalt_get</span><span class="p">((</span><span class="s">"https://cppalliance.org"</span><span class="p">)</span>
+                <span class="n">http_cobalt_get</span><span class="p">(</span><span class="s">"https://boost.org"</span><span class="p">),</span>
+                <span class="n">http_cobalt_get</span><span class="p">(</span><span class="s">"https://cppalliance.org"</span><span class="p">)</span>
             <span class="p">);</span>
 
     <span class="n">printf</span><span class="p">(</span><span class="s">"%s"</span><span class="p">,</span> <span class="n">res</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
@@ -1298,7 +1198,7 @@ and "actual_awaitable" to refer to type conforming to the above prototype.
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/awaitables.png" alt="awaitables">
+<img src="../images/awaitables.png" alt="awaitables">
 </div>
 </div>
 <div class="paragraph">
@@ -1426,7 +1326,7 @@ with the library. The easiest way to achieve this is by using <a href="#spawn">s
     <span class="k">co_return</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="k">auto</span> <span class="n">t</span> <span class="o">=</span> <span class="n">my_thread</span><span class="p">();</span>
     <span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
@@ -1450,7 +1350,7 @@ with the library. The easiest way to achieve this is by using <a href="#spawn">s
    <span class="k">co_return</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="n">cobalt</span><span class="o">::</span><span class="n">run</span><span class="p">(</span><span class="n">my_task</span><span class="p">());</span> <span class="c1">// sync</span>
     <span class="n">asio</span><span class="o">::</span><span class="n">io_context</span> <span class="n">ctx</span><span class="p">;</span>
@@ -1475,7 +1375,7 @@ They&#8217;re eager and thus easily usable for ad-hoc concurrecy.</p>
    <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="c1">// start the promise here</span>
     <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">my_promise</span><span class="p">();</span>
@@ -1502,7 +1402,7 @@ They&#8217;re eager and thus easily usable for ad-hoc concurrecy.</p>
    <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="c1">// create the task here</span>
     <span class="k">auto</span> <span class="n">t</span> <span class="o">=</span> <span class="n">my_task</span><span class="p">();</span>
@@ -1533,7 +1433,7 @@ the <code>cobalt::generator</code> can <code>co_await</code> and thus is asynchr
    <span class="k">co_return</span> <span class="mi">10</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="c1">// create the generator</span>
     <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">my_generator</span><span class="p">();</span>
@@ -1555,7 +1455,7 @@ the <code>cobalt::generator</code> can <code>co_await</code> and thus is asynchr
    <span class="k">co_return</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="c1">// create the generator</span>
     <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">my_generator</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
@@ -1586,7 +1486,7 @@ the <code>cobalt::generator</code> can <code>co_await</code> and thus is asynchr
     <span class="k">co_return</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="c1">// create the generator</span>
     <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">my_generator</span><span class="p">();</span> <span class="c1">// lazy, so the generator waits for the first pushed value</span>
@@ -2098,7 +1998,7 @@ data coming from the websocket and a channel to handle new subscriptions.</p>
 <span class="p">{</span>
     <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">context</span> <span class="n">ctx</span><span class="p">{</span><span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">context_base</span><span class="o">::</span><span class="n">tls_client</span><span class="p">};</span>
     <span class="n">websocket_type</span> <span class="n">ws</span><span class="p">{</span><span class="k">co_await</span> <span class="n">connect</span><span class="p">(</span><span class="s">"blockchain.info"</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)};</span>
-    <span class="k">co_await</span> <span class="n">connect_to_blockchain_info</span><span class="p">(</span><span class="n">ws</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="k">co_await</span> <span class="nf">connect_to_blockchain_info</span><span class="p">(</span><span class="n">ws</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
 
     <span class="n">subscription_map</span> <span class="n">subs</span><span class="p">;</span>
     <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">unconfirmed</span><span class="p">;</span>
@@ -2300,7 +2200,7 @@ We&#8217;re using <code>as_tuple</code> to ignore potential errors.</p>
     <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// allow 10 ongoing sessions</span>
     <span class="n">cobalt</span><span class="o">::</span><span class="n">channel</span><span class="o">&lt;</span><span class="n">subscription</span><span class="o">&gt;</span> <span class="n">sub_manager</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
 
-    <span class="k">co_await</span> <span class="n">join</span><span class="p">(</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="k">co_await</span> <span class="nf">join</span><span class="p">(</span> <i class="conum" data-value="2"></i><b>(2)</b>
       <span class="n">run_blockchain_info</span><span class="p">(</span><span class="n">sub_manager</span><span class="p">),</span>
       <span class="n">cobalt</span><span class="o">::</span><span class="n">with</span><span class="p">(</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="n">cobalt</span><span class="o">::</span><span class="n">wait_group</span><span class="p">(</span>
@@ -2381,23 +2281,23 @@ Unlike immediate completion, the coroutine will never suspend when <code>await_r
 <span class="p">{</span>
   <span class="n">asio</span><span class="o">::</span><span class="n">steady_timer</span> <span class="o">&amp;</span> <span class="n">tim</span><span class="p">;</span>
   <span class="n">wait_op</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">steady_timer</span> <span class="o">&amp;</span> <span class="n">tim</span><span class="p">)</span> <span class="o">:</span> <span class="n">tim</span><span class="p">(</span><span class="n">tim</span><span class="p">)</span> <span class="p">{}</span>
-  <span class="kt">void</span> <span class="n">ready</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">h</span> <span class="p">)</span> <span class="k">override</span> <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="kt">void</span> <span class="nf">ready</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">h</span> <span class="p">)</span> <span class="k">override</span> <i class="conum" data-value="2"></i><b>(2)</b>
   <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">tim</span><span class="p">.</span><span class="n">expiry</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">())</span>
       <span class="n">h</span><span class="p">(</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">{});</span>
   <span class="p">}</span>
-  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">complete</span><span class="p">)</span> <span class="k">override</span> <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="kt">void</span> <span class="nf">initiate</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">complete</span><span class="p">)</span> <span class="k">override</span> <i class="conum" data-value="3"></i><b>(3)</b>
   <span class="p">{</span>
     <span class="n">tim</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">complete</span><span class="p">));</span>
   <span class="p">}</span>
 <span class="p">};</span>
 
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">asio</span><span class="o">::</span><span class="n">steady_timer</span> <span class="n">tim</span><span class="p">{</span><span class="k">co_await</span> <span class="n">asio</span><span class="o">::</span><span class="n">this_coro</span><span class="o">::</span><span class="n">executor</span><span class="p">,</span>
                          <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">stoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]))};</span>
-  <span class="k">co_await</span> <span class="n">wait_op</span><span class="p">(</span><span class="n">tim</span><span class="p">);</span> <i class="conum" data-value="4"></i><b>(4)</b>
+  <span class="k">co_await</span> <span class="nf">wait_op</span><span class="p">(</span><span class="n">tim</span><span class="p">);</span> <i class="conum" data-value="4"></i><b>(4)</b>
   <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//</span>
 <span class="p">}</span></code></pre>
 </div>
@@ -2958,12 +2858,12 @@ That is, it has three associators that are member functions of an awaiting promi
         <span class="k">if</span> <span class="k">constexpr</span> <span class="p">(</span><span class="k">requires</span>  <span class="p">(</span><span class="n">Promise</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="n">p</span><span class="p">.</span><span class="n">get_executor</span><span class="p">();})</span>
             <span class="n">handle_executor</span><span class="p">(</span><span class="n">h</span><span class="p">.</span><span class="n">promise</span><span class="p">().</span><span class="n">get_executor</span><span class="p">();</span>
 
-        <span class="k">if</span> <span class="k">constexpr</span> <span class="p">(</span><span class="k">requires</span> <span class="p">(</span><span class="n">Promise</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="n">p</span><span class="p">.</span><span class="n">get_cancellation_slot</span><span class="p">();})</span>
+        <span class="k">if</span> <span class="nf">constexpr</span> <span class="p">(</span><span class="k">requires</span> <span class="p">(</span><span class="n">Promise</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span><span class="n">p</span><span class="p">.</span><span class="n">get_cancellation_slot</span><span class="p">();})</span>
             <span class="k">if</span> <span class="p">((</span><span class="n">cl</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">promise</span><span class="p">().</span><span class="n">get_cancellation_slot</span><span class="p">()).</span><span class="n">is_connected</span><span class="p">())</span>
                 <span class="n">cl</span><span class="p">.</span><span class="n">emplace</span><span class="o">&lt;</span><span class="n">my_cancellation</span><span class="o">&gt;</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">await_resume</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">await_resume</span><span class="p">();</span>
 <span class="p">};</span></code></pre>
 </div>
 </div>
@@ -3158,7 +3058,7 @@ Depending on the coroutine properties different things can be <code>co_await</co
   <span class="k">co_await</span> <span class="n">tim</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">use_op</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="k">co_await</span> <span class="n">delay</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">50</span><span class="p">));</span>
   <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span>
@@ -3316,7 +3216,7 @@ unless a <code>std::allocator_arg</code> is used in any position followed by a <
   <span class="k">co_return</span> <span class="mi">4</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">"In main 0</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">example</span><span class="p">();</span> <span class="c1">// call and let it run until the first co_yield</span>
@@ -3342,7 +3242,7 @@ In main 4</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/generators1.png" alt="generators1">
+<img src="../images/generators1.png" alt="generators1">
 </div>
 </div>
 <div class="paragraph">
@@ -3358,7 +3258,7 @@ In main 4</pre>
   <span class="k">co_return</span> <span class="mi">4</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">"In main 0</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">example</span><span class="p">();</span> <span class="c1">// call and let it run until the first co_yield</span>
@@ -3406,7 +3306,7 @@ and then process the newly pushed value and resume at the next co_yield.</p>
   <span class="k">co_return</span> <span class="mi">4</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">"In main 0</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
   <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">example</span><span class="p">();</span> <span class="c1">// call and let it run until the first co_yield</span>
@@ -3432,7 +3332,7 @@ In main 4</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/generators2.png" alt="generators2">
+<img src="../images/generators2.png" alt="generators2">
 </div>
 </div>
 </div>
@@ -3559,7 +3459,7 @@ unless a <code>std::allocator_arg</code> is used in any position followed by a <
   <span class="k">co_await</span> <span class="n">tim</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">use_op</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="k">co_await</span> <span class="n">delay</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">50</span><span class="p">));</span>
   <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span>
@@ -3674,7 +3574,7 @@ That is, it cannot be resumed and is usually not awaited.</p>
   <span class="n">printf</span><span class="p">(</span><span class="s">"Hello world</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">delayed_print</span><span class="p">();</span>
   <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span>
@@ -3715,7 +3615,7 @@ That is, it cannot be resumed and is usually not awaited.</p>
    <span class="c1">// do somework</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">asio</span><span class="o">::</span><span class="n">cancellation_signal</span> <span class="n">sig</span><span class="p">;</span>
   <span class="n">my_task</span><span class="p">(</span><span class="n">sig</span><span class="p">.</span><span class="n">slot</span><span class="p">());</span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -3899,12 +3799,12 @@ i.e. a condition that avoids suspension of coroutines altogether.</p>
 
   <span class="n">wait_op</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">steady_timer</span> <span class="o">&amp;</span> <span class="n">tim</span><span class="p">)</span> <span class="o">:</span> <span class="n">tim</span><span class="p">(</span><span class="n">tim</span><span class="p">)</span> <span class="p">{}</span>
 
-  <span class="kt">bool</span> <span class="n">ready</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="kt">bool</span> <span class="nf">ready</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
   <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">tim</span><span class="p">.</span><span class="n">expiry</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">())</span>
         <span class="n">h</span><span class="p">(</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">{});</span>
   <span class="p">}</span>
-  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">complete</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="kt">void</span> <span class="nf">initiate</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">complete</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
   <span class="p">{</span>
     <span class="n">tim</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">complete</span><span class="p">));</span>
   <span class="p">}</span>
@@ -3994,22 +3894,22 @@ that would be <code>co_await</code>-able in the absence of any <code>await_trans
 <span class="k">constexpr</span> <span class="n">cancellation_state_t</span> <span class="n">cancellation_state</span><span class="p">;</span>
 
 <span class="c1">// Reset the cancellation state with custom or default filters.</span>
-<span class="k">constexpr</span> <span class="n"><em>unspecified</em></span> <span class="n">reset_cancellation_state</span><span class="p">();</span>
+<span class="k">constexpr</span> <span class="n"><em>unspecified</em></span> <span class="nf">reset_cancellation_state</span><span class="p">();</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Filter</span><span class="p">&gt;</span>
-<span class="k">constexpr</span> <span class="n"><em>unspecified</em></span> <span class="n">reset_cancellation_state</span><span class="p">(</span>
+<span class="k">constexpr</span> <span class="n"><em>unspecified</em></span> <span class="nf">reset_cancellation_state</span><span class="p">(</span>
     <span class="n">Filter</span> <span class="o">&amp;&amp;</span> <span class="n">filter</span><span class="p">);</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">InFilter</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">OutFilter</span><span class="p">&gt;</span>
-<span class="k">constexpr</span> <span class="n"><em>unspecified</em></span> <span class="n">reset_cancellation_state</span><span class="p">(</span>
+<span class="k">constexpr</span> <span class="n"><em>unspecified</em></span> <span class="nf">reset_cancellation_state</span><span class="p">(</span>
     <span class="n">InFilter</span> <span class="o">&amp;&amp;</span> <span class="n">in_filter</span><span class="p">,</span>
     <span class="n">OutFilter</span> <span class="o">&amp;&amp;</span> <span class="n">out_filter</span><span class="p">);</span>
 
 <span class="c1">// get &amp; set the throw_if_cancelled setting.</span>
-<span class="n"><em>unspecified</em></span> <span class="n">throw_if_cancelled</span><span class="p">();</span>
-<span class="n"><em>unspecified</em></span> <span class="n">throw_if_cancelled</span><span class="p">(</span><span class="kt">bool</span> <span class="n">value</span><span class="p">);</span>
+<span class="n"><em>unspecified</em></span> <span class="nf">throw_if_cancelled</span><span class="p">();</span>
+<span class="n"><em>unspecified</em></span> <span class="nf">throw_if_cancelled</span><span class="p">(</span><span class="kt">bool</span> <span class="n">value</span><span class="p">);</span>
 
 <span class="c1">// Set the cancellation source in a detached.</span>
-<span class="n"><em>unspecified</em></span> <span class="n">reset_cancellation_source</span><span class="p">();</span>
-<span class="n"><em>unspecified</em></span> <span class="n">reset_cancellation_source</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_slot</span> <span class="n">slot</span><span class="p">);</span>
+<span class="n"><em>unspecified</em></span> <span class="nf">reset_cancellation_source</span><span class="p">();</span>
+<span class="n"><em>unspecified</em></span> <span class="nf">reset_cancellation_source</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_slot</span> <span class="n">slot</span><span class="p">);</span>
 
 
 <span class="c1">// get the allocator the promise</span>
@@ -4354,7 +4254,7 @@ This makes them usable with <a href="#race">race</a>.</p>
   <span class="n">chan</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">cobalt</span><span class="o">::</span><span class="n">channel</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
 
@@ -4426,7 +4326,7 @@ that returns an <a href="#awaitable">awaitable</a> or by providing the teardown 
 
 <span class="n">cobalt</span><span class="o">::</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">run_session</span><span class="p">(</span><span class="n">ws_stream</span> <span class="o">&amp;</span> <span class="n">ws</span><span class="p">);</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="k">co_await</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">with</span><span class="p">(</span><span class="k">co_await</span> <span class="n">connect</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="o">&amp;</span><span class="n">run_session</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">teardown</span><span class="p">);</span>
   <span class="k">co_return</span> <span class="mi">0</span><span class="p">;</span>
@@ -4503,20 +4403,20 @@ NOTE: It&#8217;s legal for the <code>exit</code> functions to take the <code>exc
 
 <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">rdm</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span>
 <span class="c1">// if everything returns void race returns the index</span>
-<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">pv1</span><span class="p">,</span> <span class="n">pv2</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">pv1</span><span class="p">,</span> <span class="n">pv2</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r3</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">pvv</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r4</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">pvv</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">pv1</span><span class="p">,</span> <span class="n">pv2</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">pv1</span><span class="p">,</span> <span class="n">pv2</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r3</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">pvv</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r4</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">pvv</span><span class="p">);</span>
 
 <span class="c1">// variant if not everything is void. void become monostate</span>
 <span class="k">extern</span> <span class="n">promise</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pi1</span><span class="p">,</span> <span class="n">pi2</span><span class="p">;</span>
-<span class="n">variant2</span><span class="o">::</span><span class="n">variant</span><span class="o">&lt;</span><span class="n">monostate</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r5</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">pv1</span><span class="p">,</span> <span class="n">pi1</span><span class="p">,</span> <span class="n">pi2</span><span class="p">);</span>
-<span class="n">variant2</span><span class="o">::</span><span class="n">variant</span><span class="o">&lt;</span><span class="n">monostate</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r6</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">pv1</span><span class="p">,</span> <span class="n">pi1</span><span class="p">,</span> <span class="n">pi2</span><span class="p">);</span>
+<span class="n">variant2</span><span class="o">::</span><span class="n">variant</span><span class="o">&lt;</span><span class="n">monostate</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r5</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">pv1</span><span class="p">,</span> <span class="n">pi1</span><span class="p">,</span> <span class="n">pi2</span><span class="p">);</span>
+<span class="n">variant2</span><span class="o">::</span><span class="n">variant</span><span class="o">&lt;</span><span class="n">monostate</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r6</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">pv1</span><span class="p">,</span> <span class="n">pi1</span><span class="p">,</span> <span class="n">pi2</span><span class="p">);</span>
 
 <span class="c1">// a range returns a pair of the index and the result if non-void</span>
 <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">piv</span><span class="p">;</span>
-<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r7</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">piv</span><span class="p">);</span>
-<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r8</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">piv</span><span class="p">);</span></code></pre>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r7</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">piv</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">r8</span> <span class="o">=</span> <span class="k">co_await</span> <span class="nf">race</span><span class="p">(</span><span class="n">rdm</span><span class="p">,</span> <span class="n">piv</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -4590,28 +4490,28 @@ be useful for prioritization if proper care is taken.</p>
 <span class="c1">// Variadic race with a custom random number generator</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span> <span class="n">Ct</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span><span class="o">::</span><span class="n">all</span><span class="p">,</span>
          <span class="n">uniform_random_bit_generator</span> <span class="n">URBG</span><span class="p">,</span> <span class="n">awaitable</span> <span class="p">...</span> <span class="n">Promise</span><span class="p">&gt;</span>
-<span class="n"><em>awaitable</em></span> <span class="n">race</span><span class="p">(</span><span class="n">URBG</span> <span class="o">&amp;&amp;</span> <span class="n">g</span><span class="p">,</span> <span class="n">Promise</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">p</span><span class="p">);</span>
+<span class="n"><em>awaitable</em></span> <span class="nf">race</span><span class="p">(</span><span class="n">URBG</span> <span class="o">&amp;&amp;</span> <span class="n">g</span><span class="p">,</span> <span class="n">Promise</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">p</span><span class="p">);</span>
 
 <span class="c1">// Ranged race with a custom random number generator</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span> <span class="n">Ct</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span><span class="o">::</span><span class="n">all</span><span class="p">,</span>
          <span class="n">uniform_random_bit_generator</span> <span class="n">URBG</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="n">awaitable</span><span class="p">&gt;</span> <span class="n">PromiseRange</span><span class="o">&gt;</span>
-<span class="n"><em>awaitable</em></span> <span class="n">race</span><span class="p">(</span><span class="n">URBG</span> <span class="o">&amp;&amp;</span> <span class="n">g</span><span class="p">,</span> <span class="n">PromiseRange</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">);</span>
+<span class="n"><em>awaitable</em></span> <span class="nf">race</span><span class="p">(</span><span class="n">URBG</span> <span class="o">&amp;&amp;</span> <span class="n">g</span><span class="p">,</span> <span class="n">PromiseRange</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">);</span>
 
 <span class="c1">// Variadic race with the default random number generator</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span> <span class="n">Ct</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span><span class="o">::</span><span class="n">all</span><span class="p">,</span> <span class="n">awaitable</span><span class="p">...</span> <span class="n">Promise</span><span class="p">&gt;</span>
-<span class="n"><em>awaitable</em></span> <span class="n">race</span><span class="p">(</span><span class="n">Promise</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">p</span><span class="p">);</span>
+<span class="n"><em>awaitable</em></span> <span class="nf">race</span><span class="p">(</span><span class="n">Promise</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">p</span><span class="p">);</span>
 
 <span class="c1">// Ranged race with the default random number generator</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span> <span class="n">Ct</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span><span class="o">::</span><span class="n">all</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="n">awaitable</span><span class="p">&gt;</span><span class="o">&gt;</span>
-<span class="n"><em>awaitable</em></span> <span class="n">race</span><span class="p">(</span><span class="n">PromiseRange</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">);</span>
+<span class="n"><em>awaitable</em></span> <span class="nf">race</span><span class="p">(</span><span class="n">PromiseRange</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">);</span>
 
 <span class="c1">// Variadic left race</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span> <span class="n">Ct</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span><span class="o">::</span><span class="n">all</span><span class="p">,</span> <span class="n">awaitable</span><span class="p">...</span> <span class="n">Promise</span><span class="p">&gt;</span>
-<span class="n"><em>awaitable</em></span> <span class="n">left_race</span><span class="p">(</span><span class="n">Promise</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">p</span><span class="p">);</span>
+<span class="n"><em>awaitable</em></span> <span class="nf">left_race</span><span class="p">(</span><span class="n">Promise</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">p</span><span class="p">);</span>
 
 <span class="c1">// Ranged left race</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span> <span class="n">Ct</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">cancellation_type</span><span class="o">::</span><span class="n">all</span><span class="p">,</span> <span class="n">range</span><span class="o">&lt;</span><span class="n">awaitable</span><span class="p">&gt;</span><span class="o">&gt;</span>
-<span class="n"><em>awaitable</em></span> <span class="n">left_race</span><span class="p">(</span><span class="n">PromiseRange</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">);</span></code></pre>
+<span class="n"><em>awaitable</em></span> <span class="nf">left_race</span><span class="p">(</span><span class="n">PromiseRange</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="p">);</span></code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -4886,7 +4786,7 @@ That is, <code>spawn</code> can be used to cross threads.</p>
 </td>
 <td class="content">
 The caller needs to make sure that the executor is not running on multiple threads
-concurrently, e,g, by using a single-threaded <code>asio::io_context</code> or a <code>strand</code>.
+concurrently, e,g, by using a single-threaded <code>asio::io_context</code>.
 </td>
 </tr>
 </table>
@@ -5193,7 +5093,7 @@ can be awaited again. This is the case for <a href="#generator">generator</a> an
 <span class="p">};</span>
 
 <span class="n">system</span><span class="o">::</span><span class="n">error_category</span> <span class="o">&amp;</span> <span class="n">cobalt_category</span><span class="p">();</span>
-<span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="n">make_error_code</span><span class="p">(</span><span class="n">error</span> <span class="n">e</span><span class="p">);</span></code></pre>
+<span class="n">system</span><span class="o">::</span><span class="n">error_code</span> <span class="nf">make_error_code</span><span class="p">(</span><span class="n">error</span> <span class="n">e</span><span class="p">);</span></code></pre>
 </div>
 </div>
 </div>
@@ -5262,42 +5162,6 @@ synchronization functions (<a href="#race">race</a>, <a href="#gather">gather</a
 </div>
 </div>
 <div class="sect2">
-<h3 id="leaf">cobalt/leaf.hpp</h3>
-<div class="paragraph">
-<p>Async provides integration with boost.leaf.
-It provides functions similar to leaf that take an <a href="#awaitable">awaitables</a>
-instead of a function object and return an <a href="#awaitable">awaitable</a>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="n">awaitable</span> <span class="n">TryAwaitable</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">H</span> <span class="p">&gt;</span>
-<span class="k">auto</span> <span class="nf">try_catch</span><span class="p">(</span><span class="n">TryAwaitable</span> <span class="o">&amp;&amp;</span> <span class="n">try_coro</span><span class="p">,</span> <span class="n">H</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">h</span> <span class="p">);</span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="n">awaitable</span> <span class="n">TryAwaitable</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">H</span> <span class="p">&gt;</span>
-<span class="k">auto</span> <span class="nf">try_handle_all</span><span class="p">(</span><span class="n">TryAwaitable</span> <span class="o">&amp;&amp;</span> <span class="n">try_coro</span><span class="p">,</span> <span class="n">H</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">h</span> <span class="p">);</span>
-
-<span class="k">template</span><span class="o">&lt;</span><span class="n">awaitable</span> <span class="n">TryAwaitable</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">H</span> <span class="p">&gt;</span>
-<span class="k">auto</span> <span class="nf">try_handle_some</span><span class="p">(</span><span class="n">TryAwaitable</span> <span class="o">&amp;&amp;</span> <span class="n">try_coro</span><span class="p">,</span> <span class="n">H</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">h</span> <span class="p">);</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>See the leaf documentation for details.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://www.boost.org/doc/libs/master/libs/leaf/doc/html/index.html#try_catch">try_catch</a></p>
-</li>
-<li>
-<p><a href="https://www.boost.org/doc/libs/master/libs/leaf/doc/html/index.html#try_handle_all">try_handle_all</a></p>
-</li>
-<li>
-<p><a href="https://www.boost.org/doc/libs/master/libs/leaf/doc/html/index.html#try_handle_some">try_handle_some</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
 <h3 id="context">cobalt/experimental/context.hpp</h3>
 <div class="admonitionblock warning">
 <table>
@@ -5325,7 +5189,7 @@ Likewise the implementation uses a C20 coroutine promise and runs is as if it wa
   <span class="n">h</span><span class="p">.</span><span class="n">await</span><span class="p">(</span><span class="n">tim</span><span class="p">.</span><span class="n">async_wait</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">use_op</span><span class="p">));</span> <span class="c1">// instead of co_await.</span>
 <span class="p">}</span>
 
-<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="n">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="n">cobalt</span><span class="o">::</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">dl</span> <span class="o">=</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">make_context</span><span class="p">(</span><span class="o">&amp;</span><span class="n">delay</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
   <span class="k">co_await</span> <span class="n">dl</span><span class="p">;</span>
@@ -5361,19 +5225,19 @@ Likewise the implementation uses a C20 coroutine promise and runs is as if it wa
 
 <span class="c1">// Create a fiber with a custom stack allocator (see boost.fiber for details) and explicit result (e.g. `promise&lt;void&gt;`)</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Return</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">invocable</span><span class="o">&lt;</span><span class="n">context</span><span class="o">&lt;</span><span class="n">Return</span><span class="p">,</span> <span class="n">Args</span><span class="p">...&gt;,</span> <span class="n">Args</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="n">StackAlloc</span><span class="o">&gt;</span>
-<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator_arg_t</span><span class="p">,</span> <span class="n">StackAlloc</span>  <span class="o">&amp;&amp;</span> <span class="n">salloc</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+<span class="k">auto</span> <span class="nf">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator_arg_t</span><span class="p">,</span> <span class="n">StackAlloc</span>  <span class="o">&amp;&amp;</span> <span class="n">salloc</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
 
 <span class="c1">// Create a fiber with the default allocator and explicit result (e.g. `promise&lt;void&gt;`)</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Return</span><span class="p">,</span> <span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">invocable</span><span class="o">&lt;</span><span class="n">context</span><span class="o">&lt;</span><span class="n">Return</span><span class="p">,</span> <span class="n">Args</span><span class="p">...&gt;,</span> <span class="n">Args</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">Func</span><span class="o">&gt;</span>
-<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+<span class="k">auto</span> <span class="nf">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
 
 <span class="c1">// Create a fiber with a custom stack allocator and implicit result (deduced from the first argument to func).</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Func</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">StackAlloc</span><span class="p">&gt;</span>
-<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator_arg_t</span><span class="p">,</span> <span class="n">StackAlloc</span>  <span class="o">&amp;&amp;</span> <span class="n">salloc</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+<span class="k">auto</span> <span class="nf">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator_arg_t</span><span class="p">,</span> <span class="n">StackAlloc</span>  <span class="o">&amp;&amp;</span> <span class="n">salloc</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
 
 <span class="c1">// Create a fiber with the default stack allocator and implicit result (deduced from the first argument to func).</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Func</span><span class="p">&gt;</span>
-<span class="k">auto</span> <span class="n">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span></code></pre>
+<span class="k">auto</span> <span class="nf">make_context</span><span class="p">(</span><span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span></code></pre>
 </div>
 </div>
 </div>
@@ -5432,12 +5296,12 @@ which supports properties (see below) is equality comparable and has an <code>ex
   <span class="p">}</span>
 
   <span class="c1">// require an executor with a new property</span>
-  <span class="n">never_blocking_executor</span> <span class="n">require</span><span class="p">(</span><span class="k">const</span> <span class="n">execution</span><span class="o">::</span><span class="n">blocking_t</span><span class="o">::</span><span class="n">never_t</span><span class="p">);</span>
+  <span class="n">never_blocking_executor</span> <span class="nf">require</span><span class="p">(</span><span class="k">const</span> <span class="n">execution</span><span class="o">::</span><span class="n">blocking_t</span><span class="o">::</span><span class="n">never_t</span><span class="p">);</span>
 
   <span class="c1">// prefer an executor with a new property. the executor may or may not support it.</span>
-  <span class="n">never_blocking_executor</span> <span class="n">prefer</span><span class="p">(</span><span class="k">const</span> <span class="n">execution</span><span class="o">::</span><span class="n">blocking_t</span><span class="o">::</span><span class="n">never_t</span><span class="p">);</span>
+  <span class="n">never_blocking_executor</span> <span class="nf">prefer</span><span class="p">(</span><span class="k">const</span> <span class="n">execution</span><span class="o">::</span><span class="n">blocking_t</span><span class="o">::</span><span class="n">never_t</span><span class="p">);</span>
   <span class="c1">// not supported</span>
-  <span class="n">example_executor</span> <span class="n">prefer</span><span class="p">(</span><span class="k">const</span> <span class="n">execution</span><span class="o">::</span><span class="n">blocking_t</span><span class="o">::</span><span class="n">always_t</span><span class="p">);</span>
+  <span class="n">example_executor</span> <span class="nf">prefer</span><span class="p">(</span><span class="k">const</span> <span class="n">execution</span><span class="o">::</span><span class="n">blocking_t</span><span class="o">::</span><span class="n">always_t</span><span class="p">);</span>
 <span class="p">};</span></code></pre>
 </div>
 </div>
@@ -5727,9 +5591,9 @@ The size of a function frame is known at compile time, but not outside the compi
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="cpp"><span class="kt">int</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="mi">0</span><span class="p">;}</span> <span class="c1">// the deepest point of the stack</span>
-<span class="kt">int</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">bar</span><span class="p">();}</span>
+<span class="kt">int</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">bar</span><span class="p">();}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">return</span> <span class="n">foo</span><span class="p">();</span>
 <span class="p">}</span></code></pre>
@@ -5747,11 +5611,11 @@ The size of a function frame is known at compile time, but not outside the compi
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/stackless1.png" alt="stackless1">
+<img src="../images/stackless1.png" alt="stackless1">
 </div>
 </div>
 <div class="paragraph">
-<p>Coroutines can be implemented a stackful, which means that it allocates a fixes chunk of memory and stacks function frames similar to a thread.
+<p>Coroutines can be implemented as stackful, which means that it allocates a fixes chunk of memory and stacks function frames similar to a thread.
 C++20 coroutines are stackless, i.e. they only allocate their own frame and use the callers stack on resumption. Using our previous example:</p>
 </div>
 <div class="listingblock">
@@ -5762,12 +5626,12 @@ C++20 coroutines are stackless, i.e. they only allocate their own frame and use 
     <span class="k">co_yield</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">nested_resume</span><span class="p">(</span><span class="n">fictional_eager_coro_type</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">f</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">nested_resume</span><span class="p">(</span><span class="n">fictional_eager_coro_type</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">f</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">f</span><span class="p">.</span><span class="n">resume</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">example</span><span class="p">();</span>
     <span class="n">nested_resume</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
@@ -5790,7 +5654,7 @@ C++20 coroutines are stackless, i.e. they only allocate their own frame and use 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/stackless2.png" alt="stackless2">
+<img src="../images/stackless2.png" alt="stackless2">
 </div>
 </div>
 <div class="paragraph">
@@ -5811,7 +5675,7 @@ C++20 coroutines are stackless, i.e. they only allocate their own frame and use 
     <span class="n">printf</span><span class="p">(</span><span class="s">"Coro done</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"enter main</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
     <span class="k">auto</span> <span class="n">lazy</span> <span class="o">=</span> <span class="n">co_example</span><span class="p">();</span>
@@ -5839,7 +5703,7 @@ C++20 coroutines are stackless, i.e. they only allocate their own frame and use 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/lazy_eager1.png" alt="lazy eager1">
+<img src="../images/lazy_eager1.png" alt="lazy eager1">
 </div>
 </div>
 <div class="paragraph">
@@ -5854,7 +5718,7 @@ C++20 coroutines are stackless, i.e. they only allocate their own frame and use 
     <span class="n">printf</span><span class="p">(</span><span class="s">"Coro done</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"enter main</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
     <span class="k">auto</span> <span class="n">lazy</span> <span class="o">=</span> <span class="n">co_example</span><span class="p">();</span>
@@ -5879,7 +5743,7 @@ C++20 coroutines are stackless, i.e. they only allocate their own frame and use 
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/lazy_eager2.png" alt="lazy eager2">
+<img src="../images/lazy_eager2.png" alt="lazy eager2">
 </div>
 </div>
 </div>
@@ -6263,7 +6127,7 @@ Vinnie trusted me enough to let me work on this project, while himself having ve
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2024-12-05 00:53:11 UTC
+Last updated 2025-04-03 11:37:16 UTC
 </div>
 </div>
 </body>

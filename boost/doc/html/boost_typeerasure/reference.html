@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../boost_typeerasure.html" title="Chapter 40. Boost.TypeErasure">
+<link rel="up" href="../boost_typeerasure.html" title="Chapter 38. Boost.TypeErasure">
 <link rel="prev" href="predef.html" title="Predefined Concepts">
 <link rel="next" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,9 +75,9 @@
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Concept<span class="special">,</span> <span class="keyword">typename</span> T<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any_3_01Concept_00_01T_01_6_01_4.html" title="Class template any&lt;Concept, T &amp;&gt;">any</a><span class="special">&lt;</span><span class="identifier">Concept</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&amp;</span><span class="special">&gt;</span><span class="special">;</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Concept<span class="special">,</span> <span class="keyword">typename</span> T<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any_3_01Concept_00_01T_01_6_6_01_4.html" title="Class template any&lt;Concept, T &amp;&amp;&gt;">any</a><span class="special">&lt;</span><span class="identifier">Concept</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&amp;&amp;</span><span class="special">&gt;</span><span class="special">;</span>
 
-    <span class="keyword">typedef</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a><span class="special">&lt;</span> <span class="identifier">Concept</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&amp;</span> <span class="special">&gt;</span> <a name="doxygen.any_8hpp_1a450551c9531f95f98a97c8193164ac43"></a><span class="identifier">any_ref</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a><span class="special">&lt;</span> <span class="identifier">Concept</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> <span class="special">&gt;</span> <a name="doxygen.any_8hpp_1ad242b4c6e512f2789fb869e3e889e2ca"></a><span class="identifier">any_cref</span><span class="special">;</span>
-    <span class="keyword">typedef</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a><span class="special">&lt;</span> <span class="identifier">Concept</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&amp;&amp;</span> <span class="special">&gt;</span> <a name="doxygen.any_8hpp_1a1da185f45ab7217e818f404b77038b44"></a><span class="identifier">any_rvref</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a><span class="special">&lt;</span> <span class="identifier">Concept</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&amp;</span> <span class="special">&gt;</span> <a name="doxygen.any_8hpp_1ad9706cb83eeae6db9178fe66485db8ff"></a><span class="identifier">any_ref</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a><span class="special">&lt;</span> <span class="identifier">Concept</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> <span class="special">&gt;</span> <a name="doxygen.any_8hpp_1a558a5825c3d73c5b077a8aaf1164111e"></a><span class="identifier">any_cref</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1any.html" title="Class template any">any</a><span class="special">&lt;</span> <span class="identifier">Concept</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&amp;&amp;</span> <span class="special">&gt;</span> <a name="doxygen.any_8hpp_1a27063fa4e53b36c072997f113162c113"></a><span class="identifier">any_rvref</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
@@ -177,7 +177,7 @@
   <span class="keyword">namespace</span> <span class="identifier">type_erasure</span> <span class="special">{</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1type__erasure_1_1concept__of.html" title="Struct template concept_of">concept_of</a><span class="special">;</span>
 
-    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::concept_of<span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.concept__of_8hpp_1a0d5eb8e33f41ffe7f1e826d8d0fd8d58"></a><span class="identifier">concept_of_t</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::concept_of<span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.concept__of_8hpp_1a40ff50094a6f87ccf11d7c1596e1ca53"></a><span class="identifier">concept_of_t</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
@@ -215,7 +215,7 @@
   <span class="keyword">namespace</span> <span class="identifier">type_erasure</span> <span class="special">{</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1type__erasure_1_1derived.html" title="Struct template derived">derived</a><span class="special">;</span>
 
-    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">T</span><span class="special">::</span><span class="identifier">_boost_type_erasure_derived_type</span> <a name="doxygen.derived_8hpp_1a69d6e2a1e00ad579898034f969cea0f5"></a><span class="identifier">derived_t</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">T</span><span class="special">::</span><span class="identifier">_boost_type_erasure_derived_type</span> <a name="doxygen.derived_8hpp_1abbef04b8944770f6705dd3c3fdf78199"></a><span class="identifier">derived_t</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
@@ -235,7 +235,7 @@
 <a name="doxygen.dynamic__binding_8hpp"></a>Header &lt;<a href="../../../boost/type_erasure/dynamic_binding.hpp" target="_top">boost/type_erasure/dynamic_binding.hpp</a>&gt;</h3></div></div></div>
 <pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
   <span class="keyword">namespace</span> <span class="identifier">type_erasure</span> <span class="special">{</span>
-    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> PlaceholderList<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1dynamic__binding.html" title="Class template dynamic_binding">dynamic_binding</a><span class="special">;</span>
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> P<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1dynamic__binding.html" title="Class template dynamic_binding">dynamic_binding</a><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
@@ -368,7 +368,7 @@
 
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Concept<span class="special">,</span> <span class="keyword">typename</span> T<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1type__erasure_1_1param.html" title="Class template param">param</a><span class="special">;</span>
 
-    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::as_param<span class="special">&lt;</span> <span class="identifier">Any</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.param_8hpp_1a5d5acc083b3f15b3d0fc3659d145341c"></a><span class="identifier">as_param_t</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::as_param<span class="special">&lt;</span> <span class="identifier">Any</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.param_8hpp_1a452ee83cbd2acb2fed51cb4719a13d68"></a><span class="identifier">as_param_t</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
@@ -396,7 +396,7 @@
   <span class="keyword">namespace</span> <span class="identifier">type_erasure</span> <span class="special">{</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1type__erasure_1_1placeholder__of.html" title="Struct template placeholder_of">placeholder_of</a><span class="special">;</span>
 
-    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::placeholder_of<span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.placeholder__of_8hpp_1acabdc71b95b878c3a8a2488f6b1d6af5"></a><span class="identifier">placeholder_of_t</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::placeholder_of<span class="special">&lt;</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.placeholder__of_8hpp_1a877a95f7c73ee41421726bfed69c5ea4"></a><span class="identifier">placeholder_of_t</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
@@ -407,7 +407,7 @@
   <span class="keyword">namespace</span> <span class="identifier">type_erasure</span> <span class="special">{</span>
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Any<span class="special">,</span> <span class="keyword">typename</span> T<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1type__erasure_1_1rebind__any.html" title="Struct template rebind_any">rebind_any</a><span class="special">;</span>
 
-    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::rebind_any<span class="special">&lt;</span> <span class="identifier">Any</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.rebind__any_8hpp_1aef5b97826270ae1fbf43d0da62666b82"></a><span class="identifier">rebind_any_t</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <span class="keyword">typename</span> ::boost::type_erasure::rebind_any<span class="special">&lt;</span> <span class="identifier">Any</span><span class="special">,</span> <span class="identifier">T</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.rebind__any_8hpp_1ab2a11cf59d0871171cdc5524e70baf34"></a><span class="identifier">rebind_any_t</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>

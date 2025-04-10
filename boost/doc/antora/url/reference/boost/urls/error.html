@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>boost::urls::error :: Boost Libraries Documentation</title>
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/reference/boost/urls/error.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../../../_/css/site.css">
     <link rel="stylesheet" href="../../../../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../../../../_'</script>
+<link rel="icon" href="../../../../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../../../../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../../../../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -104,26 +111,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="../../../reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="../../../concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="../../../HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -160,11 +151,11 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/error.hpp#L22">boost/url/error.hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/error.hpp#L22">boost&sol;url&sol;error&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">enum error : int;</code></pre>
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">enum class error : int;</code></pre>
 </div>
 </div>
 </div>
@@ -184,52 +175,38 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>success</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The operation completed successfully.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The operation completed successfully&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>illegal_null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-Null encountered in pct-encoded.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>illegal&lowbar;null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Null encountered in pct&hyphen;encoded&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>illegal_reserved_char</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-Illegal reserved character in encoded string.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>illegal&lowbar;reserved&lowbar;char</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Illegal reserved character in encoded string&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>non_canonical</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-A grammar element was not in canonical form.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>non&lowbar;canonical</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A grammar element was not in canonical form&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bad_pct_hexdig</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-Bad hexadecimal digit.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bad&lowbar;pct&lowbar;hexdig</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bad hexadecimal digit&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>incomplete_encoding</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The percent-encoded sequence is incomplete.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>incomplete&lowbar;encoding</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The percent&hyphen;encoded sequence is incomplete&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>missing_pct_hexdig</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-Missing hexadecimal digit.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>missing&lowbar;pct&lowbar;hexdig</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Missing hexadecimal digit&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no_space</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no&lowbar;space</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No space in output buffer</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>not_a_base</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>not&lowbar;a&lowbar;base</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The URL is not a base URL</p></td>
 </tr>
 </tbody>

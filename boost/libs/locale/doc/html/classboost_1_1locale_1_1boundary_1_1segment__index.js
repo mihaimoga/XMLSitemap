@@ -1,9 +1,9 @@
 var classboost_1_1locale_1_1boundary_1_1segment__index =
 [
-    [ "base_iterator", "group__boundary.html#ga06f2faacb9d196ebc659ad5382ea2ca5", null ],
-    [ "const_iterator", "group__boundary.html#ga5f8e61b5babc3f0fa95f5fb8acae3724", null ],
-    [ "iterator", "group__boundary.html#gaf7a775e77dbbca3495e11d646df96fd2", null ],
-    [ "value_type", "group__boundary.html#ga067c663d18faee08adb3355701ae72ba", null ],
+    [ "base_iterator", "group__boundary.html#gab16799d00890843191bd33351c1cd6ce", null ],
+    [ "const_iterator", "group__boundary.html#gae7f551dfbb73d0a488365c786fb285e9", null ],
+    [ "iterator", "group__boundary.html#ga98705e4840c2b8d994eee990a9fb7940", null ],
+    [ "value_type", "group__boundary.html#gae65acde77977cbb3961aaf8486dd63e6", null ],
     [ "segment_index", "group__boundary.html#ga2c354f4cc03677b58c97038cd84dc465", null ],
     [ "segment_index", "group__boundary.html#ga77241a89e32aa94ef4f21088c3a3db34", null ],
     [ "segment_index", "group__boundary.html#gaaf7dde1641324683fa717094e5487c41", null ],

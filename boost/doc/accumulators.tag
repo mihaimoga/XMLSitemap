@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile doxygen_version="1.9.5" doxygen_gitid="2f6875a5ca481a69a6f32650c77a667f87d25e88">
+<tagfile doxygen_version="1.12.0" doxygen_gitid="c73f5d30f9e8b1df5ba15a1d064ff2067cbb8267">
   <compound kind="struct">
     <name>boost::accumulators::detail::accumulator_set_result</name>
     <filename>structboost_1_1accumulators_1_1detail_1_1accumulator__set__result.html</filename>
@@ -16,7 +16,7 @@
     <name>boost::accumulators::detail::contains_feature_of_::apply</name>
     <filename>structboost_1_1accumulators_1_1detail_1_1contains__feature__of___1_1apply.html</filename>
     <templarg>typename Accumulator</templarg>
-    <base>boost::accumulators::detail::contains_feature_of</base>
+    <base>boost::accumulators::detail::contains_feature_of&lt; Features, Accumulator &gt;</base>
   </compound>
   <compound kind="struct">
     <name>boost::accumulators::detail::matches_feature::apply</name>
@@ -28,7 +28,7 @@
     <filename>structboost_1_1accumulators_1_1detail_1_1argument__pack__result.html</filename>
     <templarg>typename Args</templarg>
     <templarg>typename Feature</templarg>
-    <base>accumulator_set_result&lt; boost::remove_reference&lt; parameter::binding&lt; boost::remove_const&lt; boost::remove_reference&lt; Args &gt;::type &gt;::type, tag::accumulator &gt;::type &gt;::type, Feature &gt;</base>
+    <base>boost::accumulators::detail::accumulator_set_result&lt; boost::remove_reference&lt; parameter::binding&lt; boost::remove_const&lt; boost::remove_reference&lt; Args &gt;::type &gt;::type, tag::accumulator &gt;::type &gt;::type, Feature &gt;</base>
   </compound>
   <compound kind="struct">
     <name>boost::accumulators::as_feature</name>
@@ -103,7 +103,7 @@
     <templarg>typename Feature1</templarg>
     <templarg>typename Feature2</templarg>
     <templarg>...</templarg>
-    <base>depends_on_base&lt; mpl::transform&lt; mpl::vector&lt; Feature1, Feature2,... &gt;, as_feature&lt; mpl::_1 &gt; &gt;::type &gt;</base>
+    <base>boost::accumulators::detail::depends_on_base&lt; mpl::transform&lt; mpl::vector&lt; Feature1, Feature2,... &gt;, as_feature&lt; mpl::_1 &gt; &gt;::type &gt;</base>
   </compound>
   <compound kind="struct">
     <name>boost::accumulators::detail::depends_on_base</name>
@@ -184,7 +184,7 @@
     <name>boost::accumulators::detail::meta::make_acc_list</name>
     <filename>structboost_1_1accumulators_1_1detail_1_1meta_1_1make__acc__list.html</filename>
     <templarg>typename Sequence</templarg>
-    <base>build_acc_list&lt; fusion::result_of::begin&lt; Sequence &gt;::type, fusion::result_of::end&lt; Sequence &gt;::type &gt;</base>
+    <base>boost::accumulators::detail::build_acc_list&lt; fusion::result_of::begin&lt; Sequence &gt;::type, fusion::result_of::end&lt; Sequence &gt;::type &gt;</base>
   </compound>
   <compound kind="struct">
     <name>boost::accumulators::detail::make_accumulator_tuple</name>
@@ -208,7 +208,7 @@
     <name>boost::accumulators::extractor::result&lt; this_type(A1)&gt;</name>
     <filename>structboost_1_1accumulators_1_1extractor_1_1result_3_01this__type_07A1_08_4.html</filename>
     <templarg>typename A1</templarg>
-    <base>extractor_result&lt; A1, Feature &gt;</base>
+    <base>boost::accumulators::detail::extractor_result&lt; A1, Feature &gt;</base>
   </compound>
   <compound kind="struct">
     <name>boost::accumulators::detail::set_insert_range</name>

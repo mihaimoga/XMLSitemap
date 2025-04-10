@@ -64,7 +64,7 @@
 </ul></div>
 <p>
       This protocol is intentionally overly simplistic, and shouldn't be used in
-      production. See our <a class="link" href="examples/connection_pool.html" title="A REST API server that uses connection pooling">HTTP examples</a>
+      production. See our <a class="link" href="examples/http_server_cpp20.html" title="A REST API server that uses C++20 coroutines">HTTP examples</a>
       for more advanced use cases.
     </p>
 <h4>
@@ -281,7 +281,7 @@
         <span class="keyword">auto</span> <span class="identifier">sock</span> <span class="special">=</span> <span class="identifier">co_await</span> <span class="identifier">acc</span><span class="special">.</span><span class="identifier">async_accept</span><span class="special">();</span>
 
         <span class="comment">// Function implementing our session logic.</span>
-        <span class="comment">// Take ownership of the socket.</span>
+        <span class="comment">// Takes ownership of the socket.</span>
         <span class="comment">// Having this as a named variable workarounds a gcc bug</span>
         <span class="comment">// (https://gcc.gnu.org/bugzilla/show_bug.cgi?id=107288)</span>
         <span class="keyword">auto</span> <span class="identifier">session_logic</span> <span class="special">=</span> <span class="special">[&amp;</span><span class="identifier">pool</span><span class="special">,</span> <span class="identifier">s</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">sock</span><span class="special">)]()</span> <span class="keyword">mutable</span> <span class="special">{</span>

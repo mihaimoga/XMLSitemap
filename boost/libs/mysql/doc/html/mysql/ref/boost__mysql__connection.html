@@ -518,6 +518,16 @@
       </p>
 <h5>
 <a name="mysql.ref.boost__mysql__connection.h4"></a>
+        <span class="phrase"><a name="mysql.ref.boost__mysql__connection.single_outstanding_async_operati"></a></span><a class="link" href="boost__mysql__connection.html#mysql.ref.boost__mysql__connection.single_outstanding_async_operati">Single
+        outstanding async operation per connection</a>
+      </h5>
+<p>
+        At any given point in time, only one async operation can be outstanding per
+        connection. If an async operation is initiated while another one is in progress,
+        it will fail with <a class="link" href="boost__mysql__client_errc.html" title="client_errc"><code class="computeroutput"><span class="identifier">client_errc</span><span class="special">::</span><span class="identifier">operation_in_progress</span></code></a>.
+      </p>
+<h5>
+<a name="mysql.ref.boost__mysql__connection.h5"></a>
         <span class="phrase"><a name="mysql.ref.boost__mysql__connection.thread_safety"></a></span><a class="link" href="boost__mysql__connection.html#mysql.ref.boost__mysql__connection.thread_safety">Thread
         safety</a>
       </h5>
@@ -533,7 +543,7 @@
         you will get a race condition.
       </p>
 <h5>
-<a name="mysql.ref.boost__mysql__connection.h5"></a>
+<a name="mysql.ref.boost__mysql__connection.h6"></a>
         <span class="phrase"><a name="mysql.ref.boost__mysql__connection.legacy"></a></span><a class="link" href="boost__mysql__connection.html#mysql.ref.boost__mysql__connection.legacy">Legacy</a>
       </h5>
 <p>

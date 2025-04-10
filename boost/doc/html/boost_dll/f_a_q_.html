@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../boost_dll.html" title="Chapter 12. Boost.DLL">
+<link rel="up" href="../boost_dll.html" title="Chapter 11. Boost.DLL">
 <link rel="prev" href="limitations.html" title="Limitations">
 <link rel="next" href="design_rationale.html" title="Design Rationale">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -131,6 +131,29 @@
         </li></ul></div>
 <pre class="programlisting"></pre>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+          <span class="bold"><strong>Question:</strong></span> Is there a <code class="computeroutput"><span class="identifier">RTLD_NODELETE</span></code>
+          mode? Is there a built in way to skip unload or "leak" a dynamically
+          loaded library?
+          <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+                <span class="bold"><strong>Answer:</strong></span> No. Boost tries to support
+                best practices and leaking resources is not one of them. If you are
+                dynamically loading a third party library that fails to unload, try
+                the following:
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">dll</span><span class="special">::</span><span class="identifier">shared_library</span><span class="special">&gt;&amp;</span> <span class="identifier">late_unload_registry</span><span class="special">()</span> <span class="special">{</span>
+    <span class="keyword">static</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">dll</span><span class="special">::</span><span class="identifier">shared_library</span><span class="special">&gt;</span> <span class="identifier">registry</span><span class="special">;</span>
+    <span class="keyword">return</span> <span class="identifier">registry</span><span class="special">;</span>
+<span class="special">}</span>
+</pre>
+                and push the library to that registry <code class="computeroutput"><span class="identifier">late_unload_registry</span><span class="special">().</span><span class="identifier">emplace_back</span><span class="special">(</span><span class="identifier">third_party_shared_library</span><span class="special">)</span></code>. It will force the library to not
+                unload till the end of program.
+              </li></ul></div>
+        </li></ul></div>
+<p>
+      If the above <code class="computeroutput"><span class="identifier">late_unload_registry</span><span class="special">()</span></code> does not help - ask the vendor of the library
+      for support to dynamically load/unload the library.
+    </p>
+<pre class="programlisting"></pre>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
           <span class="bold"><strong>Question:</strong></span> How to load a shared object
           from memory??
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
@@ -198,7 +221,8 @@
               </li></ul></div>
         </li></ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2014 Renato Tegon Forti, Antony Polukhin<br>Copyright © 2015 Antony Polukhin<br>Copyright © 2016 Antony Polukhin, Klemens Morgenstern<br>Copyright © 2017-2024 Antony Polukhin<p>
+<div class="copyright-footer">Copyright © 2014 Renato Tegon Forti, Antony Polukhin<br>Copyright © 2015 Antony Polukhin<br>Copyright © 2016 Antony Polukhin, Klemens Morgenstern<br>Copyright © 2017-2025 Antony
+      Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
       </p>

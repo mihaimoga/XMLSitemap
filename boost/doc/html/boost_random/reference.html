@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../boost_random.html" title="Chapter 33. Boost.Random">
+<link rel="up" href="../boost_random.html" title="Chapter 31. Boost.Random">
 <link rel="prev" href="tutorial.html" title="Tutorial">
 <link rel="next" href="../doxygen/headers/classboost_1_1random_1_1additive__combine__engine.html" title="Class template additive_combine_engine">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -143,7 +143,7 @@
           of type T, and v is a const value of X.
         </p>
 <div class="table">
-<a name="boost_random.reference.concepts.uniform_random_number_generator.uniformrandomnumbergenerator_requirements"></a><p class="title"><b>Table 33.1. UniformRandomNumberGenerator requirements</b></p>
+<a name="boost_random.reference.concepts.uniform_random_number_generator.uniformrandomnumbergenerator_requirements"></a><p class="title"><b>Table 31.1. UniformRandomNumberGenerator requirements</b></p>
 <div class="table-contents"><table class="table" summary="UniformRandomNumberGenerator requirements">
 <colgroup>
 <col>
@@ -379,7 +379,7 @@
           <span class="keyword">long</span></code>.
         </p>
 <div class="table">
-<a name="boost_random.reference.concepts.pseudo_random_number_generator.pseudorandomnumbergenerator_requirements"></a><p class="title"><b>Table 33.2. PseudoRandomNumberGenerator requirements</b></p>
+<a name="boost_random.reference.concepts.pseudo_random_number_generator.pseudorandomnumbergenerator_requirements"></a><p class="title"><b>Table 31.2. PseudoRandomNumberGenerator requirements</b></p>
 <div class="table-contents"><table class="table" summary="PseudoRandomNumberGenerator requirements">
 <colgroup>
 <col>
@@ -598,7 +598,7 @@
           <span class="keyword">long</span></code>.
         </p>
 <div class="table">
-<a name="boost_random.reference.concepts.quasi_random_number_generator.quasirandomnumbergenerator_requirements"></a><p class="title"><b>Table 33.3. QuasiRandomNumberGenerator requirements</b></p>
+<a name="boost_random.reference.concepts.quasi_random_number_generator.quasirandomnumbergenerator_requirements"></a><p class="title"><b>Table 31.3. QuasiRandomNumberGenerator requirements</b></p>
 <div class="table-contents"><table class="table" summary="QuasiRandomNumberGenerator requirements">
 <colgroup>
 <col>
@@ -758,7 +758,7 @@
           is an unsigned integer type with at least 32 bits.
         </p>
 <div class="table">
-<a name="boost_random.reference.concepts.seed_sequence.seedseq_requirements"></a><p class="title"><b>Table 33.4. SeedSeq requirements</b></p>
+<a name="boost_random.reference.concepts.seed_sequence.seedseq_requirements"></a><p class="title"><b>Table 31.4. SeedSeq requirements</b></p>
 <div class="table-contents"><table class="table" summary="SeedSeq requirements">
 <colgroup>
 <col>
@@ -839,7 +839,7 @@
           returning values of type <code class="computeroutput"><span class="identifier">U</span></code>.
         </p>
 <div class="table">
-<a name="boost_random.reference.concepts.random_distribution.random_distribution_requirements__in_addition_to_copyconstructible__and_assignable_"></a><p class="title"><b>Table 33.5. Random distribution requirements (in addition to CopyConstructible,
+<a name="boost_random.reference.concepts.random_distribution.random_distribution_requirements__in_addition_to_copyconstructible__and_assignable_"></a><p class="title"><b>Table 31.5. Random distribution requirements (in addition to CopyConstructible,
           and Assignable)</b></p>
 <div class="table-contents"><table class="table" summary="Random distribution requirements (in addition to CopyConstructible,
           and Assignable)">
@@ -1281,7 +1281,7 @@
         faster random number generation.
       </p>
 <div class="table">
-<a name="boost_random.reference.generators.generators"></a><p class="title"><b>Table 33.6. generators</b></p>
+<a name="boost_random.reference.generators.generators"></a><p class="title"><b>Table 31.6. generators</b></p>
 <div class="table-contents"><table class="table" summary="generators">
 <colgroup>
 <col>
@@ -1591,7 +1591,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><a class="link" href="reference.html#doxygen.headers.mersenne__twister_8hpp_1a3c69012a633dc02f508c441ee7aea064">mt19937_64</a></code>
+                  <code class="computeroutput"><a class="link" href="reference.html#doxygen.headers.mersenne__twister_8hpp_1a8e5f4c469e0d6ddf305dcac72157cdd8">mt19937_64</a></code>
                 </p>
               </td>
 <td>
@@ -2158,7 +2158,7 @@
 <tr>
 <td>
                 <p>
-                  __splitmix64
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1splitmix64.html" title="Class splitmix64">splitmix64</a></code>
                 </p>
               </td>
 <td>
@@ -2173,12 +2173,258 @@
               </td>
 <td>
                 <p>
-                  <span class="strikethrough"></span>
+                  155%
                 </p>
               </td>
 <td>
                 <p>
-                  -
+                  See: https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256pp.html" title="Class xoshiro256pp">xoshiro256pp</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>256</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">4</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint64_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  132%
+                </p>
+              </td>
+<td>
+                <p>
+                  xoshiro256++ from https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256d.html" title="Class xoshiro256d">xoshiro256d</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>256</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">4</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint64_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  139%
+                </p>
+              </td>
+<td>
+                <p>
+                  This generator returns doubles instead of uint64_t. It is modified
+                  xoshiro256+ from https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256mm.html" title="Class xoshiro256mm">xoshiro256mm</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>256</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">4</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint64_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  116%
+                </p>
+              </td>
+<td>
+                <p>
+                  xoshiro256** from https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro512pp.html" title="Class xoshiro512pp">xoshiro512pp</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>512</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">8</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint64_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  133%
+                </p>
+              </td>
+<td>
+                <p>
+                  xoshiro512++ from https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro512d.html" title="Class xoshiro512d">xoshiro512d</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>512</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">8</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint64_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  144%
+                </p>
+              </td>
+<td>
+                <p>
+                  This generator returns doubles instead of uint64_t. It is modified
+                  xoshiro512+ from https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro512mm.html" title="Class xoshiro512mm">xoshiro512mm</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>512</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">8</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint64_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  113%
+                </p>
+              </td>
+<td>
+                <p>
+                  xoshiro512** from https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128pp.html" title="Class xoshiro128pp">xoshiro128pp</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>128</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">4</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint32_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  133%
+                </p>
+              </td>
+<td>
+                <p>
+                  xoshiro128++ from https://prng.di.unimi.it. Returns uint32_t
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128f.html" title="Class xoshiro128f">xoshiro128f</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>128</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">4</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint32_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  145%
+                </p>
+              </td>
+<td>
+                <p>
+                  This generator returns float instead of uint32_t. It is modified
+                  xoshiro128+ from https://prng.di.unimi.it
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128mm.html" title="Class xoshiro128mm">xoshiro128mm</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  2<sup>128</sup>
+                </p>
+              </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="number">4</span><span class="special">*</span><span class="keyword">sizeof</span><span class="special">(</span><span class="identifier">uint32_t</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  116%
+                </p>
+              </td>
+<td>
+                <p>
+                  xoshiro128** from https://prng.di.unimi.it. Returns uint32_t
                 </p>
               </td>
 </tr>
@@ -2196,8 +2442,15 @@
       </p>
 <p>
         If the names of the generators don't ring any bell and you have no idea which
-        generator to use, it is reasonable to employ <code class="computeroutput"><a class="link" href="../doxygen/headers/mersenne__twister_8hpp_1a313d63e0721b6a6bba3a1be507e9e6a2.html" title="Type definition mt19937">mt19937</a></code>
-        for a start: It is fast and has acceptable quality.
+        generator to use, it is reasonable to employ <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256pp.html" title="Class xoshiro256pp">xoshiro256pp</a></code>
+        for a start: It is fast and of high quality.
+      </p>
+<p>
+        If you need a 32-bit return instead of 64-bit prefer <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128pp.html" title="Class xoshiro128pp">xoshiro128pp</a></code>.
+      </p>
+<p>
+        If you need either double or float as the return type prefer <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256d.html" title="Class xoshiro256d">xoshiro256d</a></code>
+        or <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128f.html" title="Class xoshiro128f">xoshiro128f</a></code> respectively.
       </p>
 <div class="note"><table border="0" summary="Note">
 <tr>
@@ -2231,7 +2484,7 @@
         to it are not acceptable.
       </p>
 <div class="table">
-<a name="boost_random.reference.distributions.uniform_distributions"></a><p class="title"><b>Table 33.7. Uniform Distributions</b></p>
+<a name="boost_random.reference.distributions.uniform_distributions"></a><p class="title"><b>Table 31.7. Uniform Distributions</b></p>
 <div class="table-contents"><table class="table" summary="Uniform Distributions">
 <colgroup>
 <col>
@@ -2334,7 +2587,7 @@
 </table></div>
 </div>
 <br class="table-break"><div class="table">
-<a name="boost_random.reference.distributions.bernoulli_distributions"></a><p class="title"><b>Table 33.8. Bernoulli Distributions</b></p>
+<a name="boost_random.reference.distributions.bernoulli_distributions"></a><p class="title"><b>Table 31.8. Bernoulli Distributions</b></p>
 <div class="table-contents"><table class="table" summary="Bernoulli Distributions">
 <colgroup>
 <col>
@@ -2435,7 +2688,7 @@
 </table></div>
 </div>
 <br class="table-break"><div class="table">
-<a name="boost_random.reference.distributions.poisson_distributions"></a><p class="title"><b>Table 33.9. Poisson Distributions</b></p>
+<a name="boost_random.reference.distributions.poisson_distributions"></a><p class="title"><b>Table 31.9. Poisson Distributions</b></p>
 <div class="table-contents"><table class="table" summary="Poisson Distributions">
 <colgroup>
 <col>
@@ -2603,7 +2856,7 @@
 </table></div>
 </div>
 <br class="table-break"><div class="table">
-<a name="boost_random.reference.distributions.normal_distributions"></a><p class="title"><b>Table 33.10. Normal Distributions</b></p>
+<a name="boost_random.reference.distributions.normal_distributions"></a><p class="title"><b>Table 31.10. Normal Distributions</b></p>
 <div class="table-contents"><table class="table" summary="Normal Distributions">
 <colgroup>
 <col>
@@ -2752,7 +3005,7 @@
 </table></div>
 </div>
 <br class="table-break"><div class="table">
-<a name="boost_random.reference.distributions.sampling_distributions"></a><p class="title"><b>Table 33.11. Sampling Distributions</b></p>
+<a name="boost_random.reference.distributions.sampling_distributions"></a><p class="title"><b>Table 31.11. Sampling Distributions</b></p>
 <div class="table-contents"><table class="table" summary="Sampling Distributions">
 <colgroup>
 <col>
@@ -2832,7 +3085,7 @@
 </table></div>
 </div>
 <br class="table-break"><div class="table">
-<a name="boost_random.reference.distributions.miscellaneous_distributions"></a><p class="title"><b>Table 33.12. Miscellaneous Distributions</b></p>
+<a name="boost_random.reference.distributions.miscellaneous_distributions"></a><p class="title"><b>Table 31.12. Miscellaneous Distributions</b></p>
 <div class="table-contents"><table class="table" summary="Miscellaneous Distributions">
 <colgroup>
 <col>
@@ -2892,6 +3145,42 @@
                 </p>
               </td>
 </tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput">inverse_gaussian_distribution</code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Inverse Gaussian Distribution
+                </p>
+              </td>
+<td>
+                <p>
+                  The distribution is used to model non-negative, positively skewed
+                  data and has a wide variety of applications in business, survival
+                  analysis, finance, medicine, and even in labor dispute resolution.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><a class="link" href="../doxygen/headers/classboost_1_1random_1_1generalized__inverse__gaussian__distribution.html" title="Class template generalized_inverse_gaussian_distribution">generalized_inverse_gaussian_distribution</a></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Generalized inverse Gaussian Distribution
+                </p>
+              </td>
+<td>
+                <p>
+                  -
+                </p>
+              </td>
+</tr>
 </tbody>
 </table></div>
 </div>
@@ -2902,7 +3191,7 @@
 <a name="boost_random.reference.utilities"></a><a class="link" href="reference.html#boost_random.reference.utilities" title="Utilities">Utilities</a>
 </h3></div></div></div>
 <div class="table">
-<a name="boost_random.reference.utilities.utilities"></a><p class="title"><b>Table 33.13. Utilities</b></p>
+<a name="boost_random.reference.utilities.utilities"></a><p class="title"><b>Table 31.13. Utilities</b></p>
 <div class="table-contents"><table class="table" summary="Utilities">
 <colgroup>
 <col>
@@ -2981,10 +3270,12 @@
 <dt><span class="section"><a href="reference.html#doxygen.headers.faure_8hpp">Header &lt;boost/random/faure.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.fisher__f__distribution_8hpp">Header &lt;boost/random/fisher_f_distribution.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.gamma__distribution_8hpp">Header &lt;boost/random/gamma_distribution.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#doxygen.headers.generalized__inverse__gaussian__distribution_8hpp">Header &lt;boost/random/generalized_inverse_gaussian_distribution.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.generate__canonical_8hpp">Header &lt;boost/random/generate_canonical.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.geometric__distribution_8hpp">Header &lt;boost/random/geometric_distribution.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.hyperexponential__distribution_8hpp">Header &lt;boost/random/hyperexponential_distribution.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.independent__bits_8hpp">Header &lt;boost/random/independent_bits.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#doxygen.headers.inverse__gaussian__distribution_8hpp">Header &lt;boost/random/inverse_gaussian_distribution.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.inversive__congruential_8hpp">Header &lt;boost/random/inversive_congruential.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.lagged__fibonacci_8hpp">Header &lt;boost/random/lagged_fibonacci.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.laplace__distribution_8hpp">Header &lt;boost/random/laplace_distribution.hpp&gt;</a></span></dt>
@@ -3006,6 +3297,7 @@
 <dt><span class="section"><a href="reference.html#doxygen.headers.seed__seq_8hpp">Header &lt;boost/random/seed_seq.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.shuffle__order_8hpp">Header &lt;boost/random/shuffle_order.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.sobol_8hpp">Header &lt;boost/random/sobol.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#doxygen.headers.splitmix64_8hpp">Header &lt;boost/random/splitmix64.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.student__t__distribution_8hpp">Header &lt;boost/random/student_t_distribution.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.subtract__with__carry_8hpp">Header &lt;boost/random/subtract_with_carry.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.taus88_8hpp">Header &lt;boost/random/taus88.hpp&gt;</a></span></dt>
@@ -3019,6 +3311,7 @@
 <dt><span class="section"><a href="reference.html#doxygen.headers.variate__generator_8hpp">Header &lt;boost/random/variate_generator.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.weibull__distribution_8hpp">Header &lt;boost/random/weibull_distribution.hpp&gt;</a></span></dt>
 <dt><span class="section"><a href="reference.html#doxygen.headers.xor__combine_8hpp">Header &lt;boost/random/xor_combine.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="reference.html#doxygen.headers.xoshiro_8hpp">Header &lt;boost/random/xoshiro.hpp&gt;</a></span></dt>
 </dl></div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -3147,6 +3440,16 @@
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
+<a name="doxygen.headers.generalized__inverse__gaussian__distribution_8hpp"></a>Header &lt;<a href="../../../boost/random/generalized_inverse_gaussian_distribution.hpp" target="_top">boost/random/generalized_inverse_gaussian_distribution.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">random</span> <span class="special">{</span>
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> RealType <span class="special">=</span> <span class="keyword">double</span><span class="special">&gt;</span> 
+      <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1generalized__inverse__gaussian__distribution.html" title="Class template generalized_inverse_gaussian_distribution">generalized_inverse_gaussian_distribution</a><span class="special">;</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
 <a name="doxygen.headers.generate__canonical_8hpp"></a>Header &lt;<a href="../../../boost/random/generate_canonical.hpp" target="_top">boost/random/generate_canonical.hpp</a>&gt;</h4></div></div></div>
 <pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
   <span class="keyword">namespace</span> <span class="identifier">random</span> <span class="special">{</span>
@@ -3184,6 +3487,8 @@
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
+<div class="section"><div class="titlepage"><div><div><h4 class="title">
+<a name="doxygen.headers.inverse__gaussian__distribution_8hpp"></a>Header &lt;<a href="../../../boost/random/inverse_gaussian_distribution.hpp" target="_top">boost/random/inverse_gaussian_distribution.hpp</a>&gt;</h4></div></div></div></div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
 <a name="doxygen.headers.inversive__congruential_8hpp"></a>Header &lt;<a href="../../../boost/random/inversive_congruential.hpp" target="_top">boost/random/inversive_congruential.hpp</a>&gt;</h4></div></div></div>
@@ -3272,7 +3577,7 @@
       <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1mersenne__twister__engine.html" title="Class template mersenne_twister_engine">mersenne_twister_engine</a><span class="special">;</span>
     <span class="keyword">typedef</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1mersenne__twister__engine.html" title="Class template mersenne_twister_engine">mersenne_twister_engine</a><span class="special">&lt;</span> <span class="identifier">uint32_t</span><span class="special">,</span> <span class="number">32</span><span class="special">,</span> <span class="number">351</span><span class="special">,</span> <span class="number">175</span><span class="special">,</span> <span class="number">19</span><span class="special">,</span> <span class="number">0xccab8ee7</span><span class="special">,</span> <span class="number">11</span><span class="special">,</span> <span class="number">0xffffffff</span><span class="special">,</span> <span class="number">7</span><span class="special">,</span> <span class="number">0x31b6ab00</span><span class="special">,</span> <span class="number">15</span><span class="special">,</span> <span class="number">0xffe50000</span><span class="special">,</span> <span class="number">17</span><span class="special">,</span> <span class="number">1812433253</span> <span class="special">&gt;</span> <a class="link" href="../doxygen/headers/mersenne__twister_8hpp_1a29ac4e21d84adda27beb1803a0525ca5.html" title="Type definition mt11213b"><span class="identifier">mt11213b</span></a><span class="special">;</span>
     <span class="keyword">typedef</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1mersenne__twister__engine.html" title="Class template mersenne_twister_engine">mersenne_twister_engine</a><span class="special">&lt;</span> <span class="identifier">uint32_t</span><span class="special">,</span> <span class="number">32</span><span class="special">,</span> <span class="number">624</span><span class="special">,</span> <span class="number">397</span><span class="special">,</span> <span class="number">31</span><span class="special">,</span> <span class="number">0x9908b0df</span><span class="special">,</span> <span class="number">11</span><span class="special">,</span> <span class="number">0xffffffff</span><span class="special">,</span> <span class="number">7</span><span class="special">,</span> <span class="number">0x9d2c5680</span><span class="special">,</span> <span class="number">15</span><span class="special">,</span> <span class="number">0xefc60000</span><span class="special">,</span> <span class="number">18</span><span class="special">,</span> <span class="number">1812433253</span> <span class="special">&gt;</span> <a class="link" href="../doxygen/headers/mersenne__twister_8hpp_1a313d63e0721b6a6bba3a1be507e9e6a2.html" title="Type definition mt19937"><span class="identifier">mt19937</span></a><span class="special">;</span>
-    <span class="keyword">typedef</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1mersenne__twister__engine.html" title="Class template mersenne_twister_engine">mersenne_twister_engine</a><span class="special">&lt;</span> <span class="identifier">uint64_t</span><span class="special">,</span> <span class="number">64</span><span class="special">,</span> <span class="number">312</span><span class="special">,</span> <span class="number">156</span><span class="special">,</span> <span class="number">31</span><span class="special">,</span> <span class="number">0xb5026f5aa96619e9ull</span><span class="special">,</span> <span class="number">29</span><span class="special">,</span> <span class="number">0x5555555555555555ull</span><span class="special">,</span> <span class="number">17</span><span class="special">,</span> <span class="number">0x71d67fffeda60000ull</span><span class="special">,</span> <span class="number">37</span><span class="special">,</span> <span class="number">0xfff7eee000000000ull</span><span class="special">,</span> <span class="number">43</span><span class="special">,</span> <span class="number">6364136223846793005ull</span> <span class="special">&gt;</span> <a name="doxygen.headers.mersenne__twister_8hpp_1a3c69012a633dc02f508c441ee7aea064"></a><span class="identifier">mt19937_64</span><span class="special">;</span>
+    <span class="keyword">typedef</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1mersenne__twister__engine.html" title="Class template mersenne_twister_engine">mersenne_twister_engine</a><span class="special">&lt;</span> <span class="identifier">uint64_t</span><span class="special">,</span> <span class="number">64</span><span class="special">,</span> <span class="number">312</span><span class="special">,</span> <span class="number">156</span><span class="special">,</span> <span class="number">31</span><span class="special">,</span> <span class="number">0xb5026f5aa96619e9ull</span><span class="special">,</span><span class="number">29</span><span class="special">,</span> <span class="number">0x5555555555555555ull</span><span class="special">,</span><span class="number">17</span><span class="special">,</span> <span class="number">0x71d67fffeda60000ull</span><span class="special">,</span><span class="number">37</span><span class="special">,</span> <span class="number">0xfff7eee000000000ull</span><span class="special">,</span><span class="number">43</span><span class="special">,</span> <span class="number">6364136223846793005ull</span> <span class="special">&gt;</span> <a name="doxygen.headers.mersenne__twister_8hpp_1a8e5f4c469e0d6ddf305dcac72157cdd8"></a><span class="identifier">mt19937_64</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
@@ -3281,7 +3586,7 @@
 <a name="doxygen.headers.mixmax_8hpp"></a>Header &lt;<a href="../../../boost/random/mixmax.hpp" target="_top">boost/random/mixmax.hpp</a>&gt;</h4></div></div></div>
 <pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
   <span class="keyword">namespace</span> <span class="identifier">random</span> <span class="special">{</span>
-    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">int</span> Ndim<span class="special">,</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> SPECIALMUL<span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">int64_t</span> SPECIAL<span class="special">&gt;</span> 
+    <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">int</span> Ndim<span class="special">,</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> SPECIALMUL<span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span> SPECIAL<span class="special">&gt;</span> 
       <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1mixmax__engine.html" title="Class template mixmax_engine">mixmax_engine</a><span class="special">;</span>
     <span class="keyword">typedef</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1mixmax__engine.html" title="Class template mixmax_engine">mixmax_engine</a><span class="special">&lt;</span> <span class="number">17</span><span class="special">,</span> <span class="number">36</span><span class="special">,</span> <span class="number">0</span> <span class="special">&gt;</span> <a class="link" href="../doxygen/headers/mixmax_8hpp_1a36615ac97c022873de935ce4b1374318.html" title="Type definition mixmax"><span class="identifier">mixmax</span></a><span class="special">;</span>
   <span class="special">}</span>
@@ -3435,6 +3740,15 @@
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
+<a name="doxygen.headers.splitmix64_8hpp"></a>Header &lt;<a href="../../../boost/random/splitmix64.hpp" target="_top">boost/random/splitmix64.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">random</span> <span class="special">{</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1splitmix64.html" title="Class splitmix64">splitmix64</a><span class="special">;</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
 <a name="doxygen.headers.student__t__distribution_8hpp"></a>Header &lt;<a href="../../../boost/random/student_t_distribution.hpp" target="_top">boost/random/student_t_distribution.hpp</a>&gt;</h4></div></div></div>
 <pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
   <span class="keyword">namespace</span> <span class="identifier">random</span> <span class="special">{</span>
@@ -3559,9 +3873,27 @@
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="doxygen.headers.xoshiro_8hpp"></a>Header &lt;<a href="../../../boost/random/xoshiro.hpp" target="_top">boost/random/xoshiro.hpp</a>&gt;</h4></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">random</span> <span class="special">{</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128f.html" title="Class xoshiro128f">xoshiro128f</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128mm.html" title="Class xoshiro128mm">xoshiro128mm</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro128pp.html" title="Class xoshiro128pp">xoshiro128pp</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256d.html" title="Class xoshiro256d">xoshiro256d</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256mm.html" title="Class xoshiro256mm">xoshiro256mm</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro256pp.html" title="Class xoshiro256pp">xoshiro256pp</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro512d.html" title="Class xoshiro512d">xoshiro512d</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro512mm.html" title="Class xoshiro512mm">xoshiro512mm</a><span class="special">;</span>
+    <span class="keyword">class</span> <a class="link" href="../doxygen/headers/classboost_1_1random_1_1xoshiro512pp.html" title="Class xoshiro512pp">xoshiro512pp</a><span class="special">;</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2000-2005 Jens Maurer<br>Copyright © 2009, 2010 Steven Watanabe<p>
+</div>
+<div class="copyright-footer">Copyright © 2000-2005 Jens Maurer<br>Copyright © 2009, 2010 Steven Watanabe<br>Copyright © 2022-2025 Matt
+      Borland<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

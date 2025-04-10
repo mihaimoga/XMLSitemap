@@ -6,7 +6,12 @@
 <namespace name="lockfree">
 <struct id="doxygen.structboost_1_1lockfree_1_1allocator" name="allocator"><template>
       <template-type-parameter name="Alloc"/>
-    </template><description><para>Defines the <emphasis role="bold">allocator</emphasis> type of a data structure. </para></description></struct><struct id="doxygen.structboost_1_1lockfree_1_1capacity" name="capacity"><template>
+    </template><description><para>Defines the <emphasis role="bold">allocator</emphasis> type of a data structure. </para></description></struct><struct id="doxygen.structboost_1_1lockfree_1_1allow__multiple__reads" name="allow_multiple_reads"><template>
+      <template-nontype-parameter name="AllowMultipleReads"><type>bool</type></template-nontype-parameter>
+    </template><description><para>Configures the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> to consume the value multiple times</para><para>Caveats:<itemizedlist>
+<listitem><para>one cannot move the value out </para>
+</listitem></itemizedlist>
+</para></description></struct><struct id="doxygen.structboost_1_1lockfree_1_1capacity" name="capacity"><template>
       <template-nontype-parameter name="Size"><type>size_t</type></template-nontype-parameter>
     </template><description><para>Sets the <emphasis role="bold">capacity</emphasis> of a data structure at compile-time.</para><para>This implies that a data structure is bounded and fixed-sized. </para></description></struct><struct id="doxygen.structboost_1_1lockfree_1_1fixed__sized" name="fixed_sized"><template>
       <template-nontype-parameter name="IsFixedSized"><type>bool</type></template-nontype-parameter>
@@ -34,9 +39,9 @@
 </listitem><listitem><para>T must have a trivial assignment operator</para>
 </listitem><listitem><para>T must have a trivial destructor </para>
 </listitem></itemizedlist>
-</para></description><typedef id="doxygen.classboost_1_1lockfree_1_1queue_1ac1adebc2934285377a0e5d5c0fdd929f" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.classboost_1_1lockfree_1_1queue_1a67d1f7b5de911eff69e8bc316fdfe6e1" name="allocator"><type>implementation_defined::allocator</type></typedef>
-<typedef id="doxygen.classboost_1_1lockfree_1_1queue_1af35bfb85ac297fdf1387f9a06999aa30" name="size_type"><type>implementation_defined::size_type</type></typedef>
+</para></description><typedef id="doxygen.classboost_1_1lockfree_1_1queue_1a8f4aad9d490257236a06071a5da6bb4d" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.classboost_1_1lockfree_1_1queue_1a215fe1438c23a2331a09a2db64bdeee2" name="allocator"><type>implementation_defined::allocator</type></typedef>
+<typedef id="doxygen.classboost_1_1lockfree_1_1queue_1af063f76a61cfff493afb85950ea2bff7" name="size_type"><type>implementation_defined::size_type</type></typedef>
 <method-group name="public member functions">
 <method id="doxygen.classboost_1_1lockfree_1_1queue_1ac4fbc6def019dcd45b8b320c5763eda5" name="is_lock_free" cv="const"><type>bool</type><parameter name=""><paramtype>void</paramtype></parameter><description><para>
 <warning><para>It only checks, if the queue head and tail nodes and the freelist can be modified in a lock-free manner. On most platforms, the whole implementation is lock-free, if this is true. Using c++0x-style atomics, there is no possibility to provide a completely accurate implementation, because one would need to test every internal node, which is impossible if further nodes will be allocated from the operating system. </para>
@@ -78,12 +83,12 @@
 <constructor id="doxygen.classboost_1_1lockfree_1_1queue_1af08a5e30da3585a9cad5192d78270862" cv="= delete"><parameter name=""><paramtype><classname>queue</classname> &amp;&amp;</paramtype></parameter></constructor>
 <copy-assignment id="doxygen.classboost_1_1lockfree_1_1queue_1a6f997f3ace8679541d053c7e3b081bed" cv="= delete"><type><classname>queue</classname> &amp;</type><parameter name=""><paramtype><classname>queue</classname> &amp;&amp;</paramtype></parameter></copy-assignment>
 <method id="doxygen.classboost_1_1lockfree_1_1queue_1a250c1e1b9a42754c7a91da4eff915f42" name="reserve"><type>void</type><parameter name="n"><paramtype>size_type</paramtype></parameter><description><para>Allocate n nodes for freelist</para><para>
-<note><para>thread-safe, may block if memory allocator blocks  </para>
+<note><para>thread-safe, may block if memory allocator blocks    </para>
 </note>
 </para></description><requires><para>only valid if no capacity&lt;&gt; argument given </para>
 </requires></method>
 <method id="doxygen.classboost_1_1lockfree_1_1queue_1ab12e9c1ece7fc978134fda443d2bbbbf" name="reserve_unsafe"><type>void</type><parameter name="n"><paramtype>size_type</paramtype></parameter><description><para>Allocate n nodes for freelist</para><para>
-<note><para>not thread-safe, may block if memory allocator blocks  </para>
+<note><para>not thread-safe, may block if memory allocator blocks    </para>
 </note>
 </para></description><requires><para>only valid if no capacity&lt;&gt; argument given </para>
 </requires></method>
@@ -102,7 +107,7 @@
 </returns></method>
 <method id="doxygen.classboost_1_1lockfree_1_1queue_1ae5bbb96ac92dd9f6f32dfcb3b530dd00" name="push"><type>bool</type><parameter name="t"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>Pushes object t to the queue.</para><para>
 
-<note><para>Thread-safe. If internal memory pool is exhausted and the memory pool is not fixed-sized, a new node will be allocated from the OS. This may not be lock-free.  </para>
+<note><para>Thread-safe. If internal memory pool is exhausted and the memory pool is not fixed-sized, a new node will be allocated from the OS. This may not be lock-free.    </para>
 </note>
 </para></description><postconditions><para>object will be pushed to the queue, if internal node can be allocated </para>
 </postconditions><returns><para>true, if the push operation is successful.</para>
@@ -123,7 +128,7 @@
 
 </para></description><postconditions><para>object will be pushed to the queue, if internal node can be allocated </para>
 </postconditions><returns><para>true, if the push operation is successful.</para>
-</returns><throws><simpara><classname>if</classname> memory allocator throws  </simpara>
+</returns><throws><simpara><classname>if</classname> memory allocator throws    </simpara>
 </throws></method>
 <method id="doxygen.classboost_1_1lockfree_1_1queue_1a2aa150439aa763cfa234315c70a5ac02" name="unsynchronized_push"><type>bool</type><parameter name="t"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>Pushes object t to the queue.</para><para>
 
@@ -218,9 +223,9 @@
 <listitem><para>T must have a default constructor</para>
 </listitem><listitem><para>T must be copyable or movable </para>
 </listitem></itemizedlist>
-</para></description><typedef id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a6070e12a1f3ea8e4f3859de66fc84eec" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a5751e860c22c414f590d917dd20fa708" name="allocator"><type>implementation_defined::allocator</type></typedef>
-<typedef id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a3656daf232ddb60584e9daab0b0df118" name="size_type"><type>implementation_defined::size_type</type></typedef>
+</para></description><typedef id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1acbb9d9c08ea6cef4a285500301b07472" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a4423191ca16619fda460cc10a72ba2b2" name="allocator"><type>implementation_defined::allocator</type></typedef>
+<typedef id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a7ed080433338d693b2e0e0b9717cd7f4" name="size_type"><type>implementation_defined::size_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a37ec8638a88eb65bb6d6bc00c65b5274"><parameter name=""><paramtype>void</paramtype></parameter><description><para>Constructs a <link linkend="doxygen.classboost_1_1lockfree_1_1spsc__queue">spsc_queue</link></para><para>
 </para></description><requires><para><link linkend="doxygen.classboost_1_1lockfree_1_1spsc__queue">spsc_queue</link> must be configured to be sized at compile-time </para>
@@ -272,7 +277,7 @@
 <method id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a49f5614dddc839ae53562444155d65e1" name="push"><type>bool</type><parameter name="t"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>Pushes object t to the ringbuffer.</para><para>
 
 
-<note><para>Thread-safe and wait-free  </para>
+<note><para>Thread-safe and wait-free    </para>
 </note>
 </para></description><requires><para>only one thread is allowed to push data to the <link linkend="doxygen.classboost_1_1lockfree_1_1spsc__queue">spsc_queue</link> </para>
 </requires><postconditions><para>object will be pushed to the <link linkend="doxygen.classboost_1_1lockfree_1_1spsc__queue">spsc_queue</link>, unless it is full. </para>
@@ -408,7 +413,7 @@
 <method id="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a273996034ecf7211d429b1f1c0d32ba7" name="front"><type>T &amp;</type><description><para>get reference to element in the front of the queue</para><para>Availability of front element can be checked using <link linkend="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a0652dcc180b385a352beaf6e57b37b29">read_available()</link>.</para><para>
 
 
-<note><para>Thread-safe and wait-free  </para>
+<note><para>Thread-safe and wait-free    </para>
 </note>
 </para></description><requires><para>only a consuming thread is allowed to check front element </para>
 </requires><requires><para><link linkend="doxygen.classboost_1_1lockfree_1_1spsc__queue_1a0652dcc180b385a352beaf6e57b37b29">read_available()</link> &gt; 0. If ringbuffer is empty, it's undefined behaviour to invoke this method. </para>
@@ -419,6 +424,60 @@
 </para></description></method>
 </method-group>
 </class></namespace>
+</namespace>
+</header>
+<header id="doxygen.spsc__value_8hpp" name="boost/lockfree/spsc_value.hpp">
+<namespace name="boost">
+<namespace name="lockfree">
+<struct id="doxygen.structboost_1_1lockfree_1_1spsc__value" name="spsc_value"><template>
+      <template-type-parameter name="T"/>
+      <template-nontype-parameter name="Options"><type>typename...</type></template-nontype-parameter>
+    </template><description><para>The spcs_value provides a single-writer/single-reader value, implemented by a triple buffer</para><para><emphasis role="bold">Policies:</emphasis> <itemizedlist>
+<listitem><para><link linkend="doxygen.structboost_1_1lockfree_1_1allow__multiple__reads">boost::lockfree::allow_multiple_reads</link>, defaults to <link linkend="doxygen.structboost_1_1lockfree_1_1allow__multiple__reads">boost::lockfree::allow_multiple_reads&lt;false&gt;</link> <sbr/>
+ If multiple reads are allowed, a value written to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> can be read multiple times, but not moved out of the instance. If multiple reads are not allowed, the class works as single-element queue that overwrites on write </para>
+</listitem></itemizedlist>
+</para></description><method-group name="public member functions">
+<constructor id="doxygen.structboost_1_1lockfree_1_1spsc__value_1a4c6b925b4b2edb416cae64c44b8946e7" specifiers="explicit"><description><para>Construct a <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link></para><para>If configured with <link linkend="doxygen.structboost_1_1lockfree_1_1allow__multiple__reads">boost::lockfree::allow_multiple_reads&lt;true&gt;</link> it is initialized to a default-constructed value </para></description></constructor>
+<constructor id="doxygen.structboost_1_1lockfree_1_1spsc__value_1a33b4e7293e9742a3dff96f8d05065fc8" specifiers="explicit"><parameter name="value"><paramtype>T</paramtype></parameter><description><para>Construct a <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link>, initialized to a value </para></description></constructor>
+<method id="doxygen.structboost_1_1lockfree_1_1spsc__value_1ae85164906d8ca09ba69f0ab8ff2b6ea1" name="write"><type>void</type><parameter name="value"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>Writes <computeroutput>value</computeroutput> to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link></para><para>
+
+<note><para>Thread-safe and wait-free </para>
+</note>
+</para></description><requires><para>only one thread is allowed to write data to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> </para>
+</requires><postconditions><para>object will be written to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link></para>
+</postconditions></method>
+<method id="doxygen.structboost_1_1lockfree_1_1spsc__value_1ae9186734931d3b30e4419823deb2107b" name="write"><type>void</type><parameter name="value"><paramtype>const T &amp;</paramtype></parameter><description><para>Writes <computeroutput>value</computeroutput> to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link></para><para>
+
+<note><para>Thread-safe and wait-free    </para>
+</note>
+</para></description><requires><para>only one thread is allowed to write data to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> </para>
+</requires><postconditions><para>object will be written to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link></para>
+</postconditions></method>
+<method id="doxygen.structboost_1_1lockfree_1_1spsc__value_1af1b3a149503d128d5ef9718362f6f096" name="read"><type>bool</type><parameter name="ret"><paramtype>T &amp;</paramtype></parameter><description><para>Reads content of the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link></para><para>
+
+
+<note><para>Thread-safe and wait-free </para>
+</note>
+</para></description><requires><para>only one thread is allowed to write data to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> </para>
+</requires><postconditions><para>if read operation is successful, object will be copied to <computeroutput>ret</computeroutput>. </para>
+</postconditions><returns><para><computeroutput>true</computeroutput>, if the read operation is successful, false if the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> is configured with <link linkend="doxygen.structboost_1_1lockfree_1_1allow__multiple__reads">boost::lockfree::allow_multiple_reads&lt;false&gt;</link> and no value is available for reading</para>
+</returns></method>
+<method id="doxygen.structboost_1_1lockfree_1_1spsc__value_1a021678ba2fc48fffcd81b9d989498d2a" name="read"><type>std::optional&lt; T &gt;</type><parameter name=""><paramtype>uses_optional_t</paramtype></parameter><description><para>Reads content of the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link>, returning an optional</para><para>
+
+<note><para>Thread-safe and wait-free </para>
+</note>
+</para></description><requires><para>only one thread is allowed to write data to the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> </para>
+</requires><returns><para><computeroutput>std::optional</computeroutput> with value if successful, <computeroutput>std::nullopt</computeroutput> if <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> is configured with <link linkend="doxygen.structboost_1_1lockfree_1_1allow__multiple__reads">boost::lockfree::allow_multiple_reads&lt;false&gt;</link> and no value is available for reading</para>
+</returns></method>
+<method id="doxygen.structboost_1_1lockfree_1_1spsc__value_1aed68570925dad49b4b443f378279f31a" name="consume"><type>bool</type><template>
+          <template-type-parameter name="Functor"/>
+        </template><parameter name="f"><paramtype>Functor &amp;&amp;</paramtype></parameter><description><para>consumes value via a functor</para><para>reads element from the <link linkend="doxygen.structboost_1_1lockfree_1_1spsc__value">spsc_value</link> and applies the functor on this object</para><para>
+<note><para>Thread-safe and non-blocking, if functor is thread-safe and non-blocking </para>
+</note>
+</para></description><returns><para><computeroutput>true</computeroutput>, if element was consumed</para>
+</returns></method>
+</method-group>
+</struct></namespace>
 </namespace>
 </header>
 <header id="doxygen.stack_8hpp" name="boost/lockfree/stack.hpp">
@@ -440,9 +499,9 @@
 </para><para><emphasis role="bold">Requirements:</emphasis> <itemizedlist>
 <listitem><para>T must have a copy constructor or a move constructor </para>
 </listitem></itemizedlist>
-</para></description><typedef id="doxygen.classboost_1_1lockfree_1_1stack_1a15a90cacfe2eab8e6735e2d28c09026d" name="value_type"><type>T</type></typedef>
-<typedef id="doxygen.classboost_1_1lockfree_1_1stack_1aa07fd8df78777638ef0c6f6107761a85" name="allocator"><type>implementation_defined::allocator</type></typedef>
-<typedef id="doxygen.classboost_1_1lockfree_1_1stack_1af6a1187ab6b1472268466602072e9eaf" name="size_type"><type>implementation_defined::size_type</type></typedef>
+</para></description><typedef id="doxygen.classboost_1_1lockfree_1_1stack_1a435f644d17c98e11dddc779d0324e5ce" name="value_type"><type>T</type></typedef>
+<typedef id="doxygen.classboost_1_1lockfree_1_1stack_1a53386a748761f06f65d8d3385de6c1b6" name="allocator"><type>implementation_defined::allocator</type></typedef>
+<typedef id="doxygen.classboost_1_1lockfree_1_1stack_1a171bd41d885323121adab7942a2cddbe" name="size_type"><type>implementation_defined::size_type</type></typedef>
 <method-group name="public member functions">
 <method id="doxygen.classboost_1_1lockfree_1_1stack_1a9534a04c81419a8183e94b181928b5e2" name="is_lock_free" cv="const"><type>bool</type><parameter name=""><paramtype>void</paramtype></parameter><description><para>
 <warning><para>It only checks, if the top stack node and the freelist can be modified in a lock-free manner. On most platforms, the whole implementation is lock-free, if this is true. Using c++0x-style atomics, there is no possibility to provide a completely accurate implementation, because one would need to test every internal node, which is impossible if further nodes will be allocated from the operating system. </para>
@@ -516,7 +575,7 @@
 
 </para></description><postconditions><para>object will be pushed to the stack, if internal node can be allocated </para>
 </postconditions><returns><para>true, if the push operation is successful.</para>
-</returns><throws><simpara><classname>if</classname> memory allocator throws  </simpara>
+</returns><throws><simpara><classname>if</classname> memory allocator throws    </simpara>
 </throws></method>
 <method id="doxygen.classboost_1_1lockfree_1_1stack_1a2638ccd040bbb8160c0590b735fad91f" name="bounded_push"><type>bool</type><parameter name="v"><paramtype>const T &amp;</paramtype></parameter><description><para>Pushes object t to the stack.</para><para>
 
@@ -527,7 +586,7 @@
 </returns></method>
 <method id="doxygen.classboost_1_1lockfree_1_1stack_1ae2577ab2c10cb0ad6e1a7b7bb240ff3a" name="bounded_push"><type>bool</type><parameter name="v"><paramtype>T &amp;&amp;</paramtype></parameter><description><para>Pushes object t to the stack.</para><para>
 
-<note><para>Thread-safe and non-blocking. If internal memory pool is exhausted, the push operation will fail  </para>
+<note><para>Thread-safe and non-blocking. If internal memory pool is exhausted, the push operation will fail    </para>
 </note>
 </para></description><postconditions><para>object will be pushed to the stack, if internal node can be allocated </para>
 </postconditions><returns><para>true, if the push operation is successful.</para>
@@ -592,7 +651,7 @@
 
 </para></description><postconditions><para>object will be pushed to the stack, if internal node can be allocated </para>
 </postconditions><returns><para>true, if the push operation is successful.</para>
-</returns><throws><simpara><classname>if</classname> memory allocator throws  </simpara>
+</returns><throws><simpara><classname>if</classname> memory allocator throws    </simpara>
 </throws></method>
 <method id="doxygen.classboost_1_1lockfree_1_1stack_1a148ce971a2eb34e015b39587ee5fb784" name="unsynchronized_push"><type>ConstIterator</type><template>
           <template-type-parameter name="ConstIterator"/>

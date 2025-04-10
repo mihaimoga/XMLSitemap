@@ -29,7 +29,7 @@
           (1 of 2 overloads)</a>
 </h6></div></div></div>
 <p>
-            Send a websocket close control frame.
+            Perform the WebSocket closing handshake and close the underlying stream.
           </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.close.overload1.h0"></a>
@@ -44,17 +44,23 @@
             <span class="phrase"><a name="beast.ref.boost__beast__websocket__stream.close.overload1.description"></a></span><a class="link" href="overload1.html#beast.ref.boost__beast__websocket__stream.close.overload1.description">Description</a>
           </h6>
 <p>
-            This function is used to send a <a href="https://tools.ietf.org/html/rfc6455#section-5.5.1" target="_top">close
-            frame</a>, which begins the websocket closing handshake. The session
-            ends when both ends of the connection have sent and received a close
-            frame.
+            This function sends a <a href="https://tools.ietf.org/html/rfc6455#section-5.5.1" target="_top">close
+            frame</a> to begin the WebSocket closing handshake and waits for
+            a corresponding close frame in response. Once received, it calls <a class="link" href="../../boost__beast__websocket__teardown.html" title="websocket::teardown"><code class="computeroutput"><span class="identifier">teardown</span></code></a>
+            to gracefully shut down the underlying stream.
+          </p>
+<p>
+            After beginning the closing handshake, the program should not write further
+            message data, pings, or pongs. However, it can still read incoming message
+            data. A read returning <a class="link" href="../../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
+            connection closure.
           </p>
 <p>
             The call blocks until one of the following conditions is true:
           </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-                The close frame is written.
+                The closing handshake completes, and <a class="link" href="../../boost__beast__websocket__teardown.html" title="websocket::teardown"><code class="computeroutput"><span class="identifier">teardown</span></code></a> finishes.
               </li>
 <li class="listitem">
                 An error occurs.
@@ -64,12 +70,6 @@
             The algorithm, known as a <span class="emphasis"><em>composed operation</em></span>, is
             implemented in terms of calls to the next layer's <code class="computeroutput"><span class="identifier">write_some</span></code>
             function.
-          </p>
-<p>
-            After beginning the closing handshake, the program should not write further
-            message data, pings, or pongs. Instead, the program should continue reading
-            message data until an error occurs. A read returning <a class="link" href="../../boost__beast__websocket__error.html" title="websocket::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">closed</span></code></a> indicates a successful
-            connection closure.
           </p>
 <h6>
 <a name="beast.ref.boost__beast__websocket__stream.close.overload1.h2"></a>

@@ -7,10 +7,10 @@ var appendix =
       [ "Why an ICU wrapper and not an implementation-from-scratch?", "rationale.html#why_icu_wrapper", null ],
       [ "Why is the ICU API not exposed to the user?", "rationale.html#why_icu_api_is_hidden", null ],
       [ "Why use GNU Gettext catalogs for message formatting?", "rationale.html#why_gnu_gettext", null ],
-      [ "Why is a plain number used for the representation of a date-time, instead of a Boost.DateTime date or Boost.DateTime ptime?", "rationale.html#why_plain_number", null ],
+      [ "Why is a plain number used for the representation of a date-time, instead of a Boost....", "rationale.html#why_plain_number", null ],
       [ "Why are POSIX locale names used and not something like the BCP-47 IETF language tag?", "rationale.html#why_posix_names", null ],
       [ "Why do most parts of Boost.Locale work only on linear/contiguous chunks of text?", "rationale.html#why_linear_chunks", null ],
-      [ "Why is all Boost.Locale implementation hidden behind abstract interfaces instead of using template metaprogramming?", "rationale.html#why_abstract_api", null ],
+      [ "Why is all Boost.Locale implementation hidden behind abstract interfaces instead of using template me...", "rationale.html#why_abstract_api", null ],
       [ "Why doesn't Boost.Locale provide char16_t/char32_t for non-C++11 platforms?", "rationale.html#why_no_special_character_type", null ]
     ] ],
     [ "Frequently Asked Questions", "faq.html", null ],

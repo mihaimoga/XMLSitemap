@@ -125,15 +125,15 @@ the cumulative histogram of the image to the cumulative histogram of a flat hist
 <h2>Demo</h2>
 <p>Usage Syntax:</p>
 <blockquote>
-<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gray8_image_t</span><span class="w"> </span><span class="n">inp_img</span><span class="p">;</span><span class="w"></span>
-<span class="n">read_image</span><span class="p">(</span><span class="s">&quot;your_image.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inp_img</span><span class="p">,</span><span class="w"> </span><span class="n">png_tag</span><span class="p">{});</span><span class="w"></span>
-<span class="n">gray8_image_t</span><span class="w"> </span><span class="nf">dst_img</span><span class="p">(</span><span class="n">inp_img</span><span class="p">.</span><span class="n">dimensions</span><span class="p">());</span><span class="w"></span>
-<span class="n">histogram_equalization</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">inp_img</span><span class="p">),</span><span class="w"> </span><span class="n">view</span><span class="p">(</span><span class="n">dst_img</span><span class="p">));</span><span class="w"></span>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">gray8_image_t</span><span class="w"> </span><span class="n">inp_img</span><span class="p">;</span>
+<span class="n">read_image</span><span class="p">(</span><span class="s">&quot;your_image.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">inp_img</span><span class="p">,</span><span class="w"> </span><span class="n">png_tag</span><span class="p">{});</span>
+<span class="n">gray8_image_t</span><span class="w"> </span><span class="nf">dst_img</span><span class="p">(</span><span class="n">inp_img</span><span class="p">.</span><span class="n">dimensions</span><span class="p">());</span>
+<span class="n">histogram_equalization</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">inp_img</span><span class="p">),</span><span class="w"> </span><span class="n">view</span><span class="p">(</span><span class="n">dst_img</span><span class="p">));</span>
 
 <span class="c1">// To specify mask over input image</span>
 
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mask</span><span class="p">(</span><span class="n">inp_img</span><span class="p">.</span><span class="n">height</span><span class="p">(),</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">inp_img</span><span class="p">.</span><span class="n">width</span><span class="p">(),</span><span class="w"> </span><span class="nb">true</span><span class="p">));</span><span class="w"></span>
-<span class="n">histogram_equalization</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">inp_img</span><span class="p">),</span><span class="w"> </span><span class="n">view</span><span class="p">(</span><span class="n">dst_img</span><span class="p">),</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">);</span><span class="w"></span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mask</span><span class="p">(</span><span class="n">inp_img</span><span class="p">.</span><span class="n">height</span><span class="p">(),</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">inp_img</span><span class="p">.</span><span class="n">width</span><span class="p">(),</span><span class="w"> </span><span class="nb">true</span><span class="p">));</span>
+<span class="n">histogram_equalization</span><span class="p">(</span><span class="n">view</span><span class="p">(</span><span class="n">inp_img</span><span class="p">),</span><span class="w"> </span><span class="n">view</span><span class="p">(</span><span class="n">dst_img</span><span class="p">),</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -153,7 +153,7 @@ before trying the histogram equalization algorithm.</p>
     </div>
     </div>
     <div class="footer" role="contentinfo">
-      Last updated on 2024-12-05 00:12:31.
+      Last updated on 2025-04-03 11:04:11.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>

@@ -28,7 +28,7 @@
 <a name="beast.ref.boost__beast__http__error"></a><a class="link" href="boost__beast__http__error.html" title="http::error">http::error</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="id75165"></a>
+        <a class="indexterm" name="id76217"></a>
       </p>
 <p>
         Error codes returned from HTTP algorithms and operations.
@@ -127,10 +127,13 @@
                 </p>
                 <p>
                   This error is returned when attempting to parse body octets into
-                  a message container which has the @ref empty_body body type.
+                  a message container which has the <a class="link" href="boost__beast__http__empty_body.html" title="http::empty_body"><code class="computeroutput"><span class="identifier">empty_body</span></code></a> body type.
                 </p>
                 <p>
-                  @see empty_body
+                  See Also
+                </p>
+                <p>
+                  <a class="link" href="boost__beast__http__empty_body.html" title="http::empty_body"><code class="computeroutput"><span class="identifier">empty_body</span></code></a>
                 </p>
               </td>
 </tr>
@@ -147,16 +150,16 @@
                 <p>
                   This error is returned under the following conditions:
                 </p>
-                <p>
-                  @li During serialization when using @ref buffer_body. The caller
-                  should update the body to point to a new buffer or indicate that
-                  there are no more octets in the body.
-                </p>
-                <p>
-                  @li During parsing when using @ref buffer_body. The caller should
-                  update the body to point to a new storage area to receive additional
-                  body octets.
-                </p>
+                <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+                      During serialization when using <a class="link" href="boost__beast__http__buffer_body.html" title="http::buffer_body"><code class="computeroutput"><span class="identifier">buffer_body</span></code></a>. The caller
+                      should update the body to point to a new buffer or indicate
+                      that there are no more octets in the body.
+                    </li></ul></div>
+                <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+                      During parsing when using <a class="link" href="boost__beast__http__buffer_body.html" title="http::buffer_body"><code class="computeroutput"><span class="identifier">buffer_body</span></code></a>. The caller
+                      should update the body to point to a new storage area to receive
+                      additional body octets.
+                    </li></ul></div>
               </td>
 </tr>
 <tr>
@@ -231,8 +234,8 @@
                   A memory allocation failed.
                 </p>
                 <p>
-                  When basic_fields throws std::bad_alloc, it is converted into this
-                  error by @ref parser.
+                  When <a class="link" href="boost__beast__http__basic_fields.html" title="http::basic_fields"><code class="computeroutput"><span class="identifier">basic_fields</span></code></a> throws std::bad_alloc,
+                  it is converted into this error by <a class="link" href="boost__beast__http__parser.html" title="http::parser"><code class="computeroutput"><span class="identifier">parser</span></code></a>.
                 </p>
               </td>
 </tr>
@@ -433,9 +436,9 @@
                   The message body is shorter than expected.
                 </p>
                 <p>
-                  This error is returned by @ref file_body when an unexpected unexpected
-                  end-of-file condition is encountered while trying to read from
-                  the file.
+                  This error is returned by <a class="link" href="boost__beast__http__file_body.html" title="http::file_body"><code class="computeroutput"><span class="identifier">file_body</span></code></a> when an unexpected
+                  unexpected end-of-file condition is encountered while trying to
+                  read from the file.
                 </p>
               </td>
 </tr>

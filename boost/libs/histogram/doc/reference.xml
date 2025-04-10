@@ -47,7 +47,7 @@
           <template-nontype-parameter name="As"><type>class...</type></template-nontype-parameter>
           <template-type-parameter name=""><default><emphasis>unspecified</emphasis></default></template-type-parameter>
         </template><parameter name="as"><paramtype>As &amp;&amp;...</paramtype></parameter></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1histogram_1ac1c0e40216335192038d8392ad336e23" name="rank" cv="const noexcept"><type>constexpr unsigned</type><purpose>Number of axes (dimensions). </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1histogram_1ac1c0e40216335192038d8392ad336e23" name="rank" cv="const noexcept"><type>unsigned</type><purpose>Number of axes (dimensions). </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1histogram_1aa4ef494e128534ef7053f97747fa4632" name="size" cv="const noexcept"><type>std::size_t</type><purpose>Total number of bins (including underflow/overflow). </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1histogram_1ab4b91b277b08ba4e1416c8d615d2a7c0" name="reset"><type>void</type><purpose>Reset all bins to default initialized values. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1histogram_1aa9b1242c3eaa1014b81ba5918ce90294" name="axis" cv="const"><type>decltype(auto)</type><template>
@@ -273,7 +273,7 @@
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1aa68ec8871cb52b5c3c6f67c794a5d5a3" name="operator&gt;=" cv="const noexcept"><type>bool</type><parameter name="rhs"><paramtype>const <classname>count</classname> &amp;</paramtype></parameter></method>
 </method-group>
 <method-group name="public static functions">
-<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a00fdd84fbfaba5fad47ac3103e9d86bc" name="thread_safe" cv="noexcept" specifiers="static"><type>constexpr bool</type></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a00fdd84fbfaba5fad47ac3103e9d86bc" name="thread_safe" cv="noexcept" specifiers="static"><type>bool</type></method>
 </method-group>
 </class></namespace>
 
@@ -313,7 +313,7 @@
       <template-type-parameter name="ValueType"/>
     </template><purpose>Accumulate boolean samples and compute the fraction of true samples. </purpose><description><para>This accumulator should be used to calculate the efficiency or success fraction of a random process as a function of process parameters. It returns the fraction of successes, the variance of this fraction, and a two-sided confidence interval with 68.3 % confidence level for this fraction.</para><para>There is no unique way to compute an interval for a success fraction. This class returns the Wilson score interval, because it is widely recommended in the literature for general use. More interval computers can be found in <computeroutput>boost/histogram/utility</computeroutput>, which can be used to compute intervals for other confidence levels. </para></description><typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1fraction_1ab3ff9a6d4baa500b520b00064f17658b" name="value_type"><type>ValueType</type></typedef>
 <typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1fraction_1a3813473fd99c09fdd8921e6c1a1e4b07" name="const_reference"><type>const value_type &amp;</type></typedef>
-<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1fraction_1a42ada83ada909d46bf7d7149b4c67d27" name="real_type"><type>typename std::conditional&lt; std::is_floating_point&lt; value_type &gt;::value, value_type, double &gt;::type</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1fraction_1a6844a6316b61798d4b3eab4845d43326" name="real_type"><type>typename std::conditional&lt; std::is_floating_point&lt; value_type &gt;::value, value_type, double &gt;::type</type></typedef>
 <typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1fraction_1a6ce69bd77032fad8335751f0dad323c8" name="interval_type"><type>typename <classname>utility::wilson_interval</classname>&lt; real_type &gt;::interval_type</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.classboost_1_1histogram_1_1accumulators_1_1fraction_1a7a9a1b0a604c3db59768f26c30843320"/>
@@ -421,9 +421,9 @@
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a5a78508ec70d4bc555faab6ef0aabe08" name="operator*=" cv="noexcept"><type><classname>mean</classname> &amp;</type><parameter name="s"><paramtype>const_reference</paramtype></parameter><purpose>Scale by value. </purpose><description><para>This acts as if all samples were scaled by the value. </para></description></method>
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a84358dd01330400d9bca38eb26e7b1a2" name="operator==" cv="const noexcept"><type>bool</type><parameter name="rhs"><paramtype>const <classname>mean</classname> &amp;</paramtype></parameter></method>
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1adfede2705c4d8778f7636d1d0b87bfe5" name="operator!=" cv="const noexcept"><type>bool</type><parameter name="rhs"><paramtype>const <classname>mean</classname> &amp;</paramtype></parameter></method>
-<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1ab5cd7c52777c9041b0ad9c0c33e22c65" name="count" cv="const noexcept"><type>const_reference</type><purpose>Return how many samples were accumulated. </purpose><description><para>count() should be used to check whether <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a555fd7491a041f40d4773b769d5a69b4">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac">variance()</link> are defined, see documentation of <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a555fd7491a041f40d4773b769d5a69b4">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac">variance()</link>. count() can be used to compute the variance of the mean by dividing <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac">variance()</link> by count(). </para></description></method>
-<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a555fd7491a041f40d4773b769d5a69b4" name="value" cv="const noexcept"><type>const_reference</type><purpose>Return mean value of accumulated samples. </purpose><description><para>The result is undefined, if <computeroutput>count() &lt; 1</computeroutput>. </para></description></method>
-<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac" name="variance" cv="const noexcept"><type>value_type</type><purpose>Return variance of accumulated samples. </purpose><description><para>The result is undefined, if <computeroutput>count() &lt; 2</computeroutput>. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1ab5cd7c52777c9041b0ad9c0c33e22c65" name="count" cv="const noexcept"><type>const_reference</type><purpose>Return how many samples were accumulated. </purpose><description><para><link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1ab5cd7c52777c9041b0ad9c0c33e22c65">count()</link> should be used to check whether <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a555fd7491a041f40d4773b769d5a69b4">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac">variance()</link> are defined, see documentation of <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a555fd7491a041f40d4773b769d5a69b4">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac">variance()</link>. <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1ab5cd7c52777c9041b0ad9c0c33e22c65">count()</link> can be used to compute the variance of the mean by dividing <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac">variance()</link> by <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1ab5cd7c52777c9041b0ad9c0c33e22c65">count()</link>. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a555fd7491a041f40d4773b769d5a69b4" name="value" cv="const noexcept"><type>const_reference</type><purpose>Return mean value of accumulated samples. </purpose><description><para>The result is undefined, if <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1ab5cd7c52777c9041b0ad9c0c33e22c65">count()</link> &lt; 1</computeroutput>. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a14665b9189c136b3ac7fd4498254f9ac" name="variance" cv="const noexcept"><type>value_type</type><purpose>Return variance of accumulated samples. </purpose><description><para>The result is undefined, if <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1ab5cd7c52777c9041b0ad9c0c33e22c65">count()</link> &lt; 2</computeroutput>. </para></description></method>
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1mean_1a50eb77d790c3d668c1e3a67b2e73e9b1" name="serialize"><type>void</type><template>
           <template-type-parameter name="Archive"/>
         </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name="version"><paramtype>unsigned</paramtype></parameter></method>
@@ -618,9 +618,9 @@ for (auto&amp;&amp; x : indexed(hist))
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aeebdf63c05ee1b5d06b42a260efd9697" name="operator!=" cv="const noexcept"><type>bool</type><parameter name="rhs"><paramtype>const <classname>weighted_mean</classname> &amp;</paramtype></parameter></method>
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aa6f4efef83646fdbd34ba00813027d90" name="sum_of_weights" cv="const noexcept"><type>const_reference</type><purpose>Return sum of weights. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1ae1b8d35829dd4d0dd1e06e70602fcaa3" name="sum_of_weights_squared" cv="const noexcept"><type>const_reference</type><purpose>Return sum of weights squared (variance of weight distribution). </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6" name="count" cv="const noexcept"><type>value_type</type><purpose>Return effective counts. </purpose><description><para>This corresponds to the equivalent number of unweighted samples that would have the same variance as this sample. count() should be used to check whether <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aca5921b1f4bc84e9172fe4386570dfee">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f">variance()</link> are defined, see documentation of <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aca5921b1f4bc84e9172fe4386570dfee">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f">variance()</link>. count() can be used to compute the variance of the mean by dividing <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f">variance()</link> by count(). </para></description></method>
-<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aca5921b1f4bc84e9172fe4386570dfee" name="value" cv="const noexcept"><type>const_reference</type><purpose>Return mean value of accumulated weighted samples. </purpose><description><para>The result is undefined, if count() == 0. </para></description></method>
-<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f" name="variance" cv="const"><type>value_type</type><purpose>Return variance of accumulated weighted samples. </purpose><description><para>The result is undefined, if count() == 0 or count() == 1. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6" name="count" cv="const noexcept"><type>value_type</type><purpose>Return effective counts. </purpose><description><para>This corresponds to the equivalent number of unweighted samples that would have the same variance as this sample. <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6">count()</link> should be used to check whether <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aca5921b1f4bc84e9172fe4386570dfee">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f">variance()</link> are defined, see documentation of <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aca5921b1f4bc84e9172fe4386570dfee">value()</link> and <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f">variance()</link>. <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6">count()</link> can be used to compute the variance of the mean by dividing <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f">variance()</link> by <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6">count()</link>. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1aca5921b1f4bc84e9172fe4386570dfee" name="value" cv="const noexcept"><type>const_reference</type><purpose>Return mean value of accumulated weighted samples. </purpose><description><para>The result is undefined, if <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6">count()</link> == 0. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a438cdc5cde9ffbd8eb950892a9b2d34f" name="variance" cv="const"><type>value_type</type><purpose>Return variance of accumulated weighted samples. </purpose><description><para>The result is undefined, if <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6">count()</link> == 0 or <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a52422d337bf6228059d9cd8527ffbed6">count()</link> == 1. </para></description></method>
 <method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1weighted__mean_1a1d52c07319d037b7bee70ea2e40040b3" name="serialize"><type>void</type><template>
           <template-type-parameter name="Archive"/>
         </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name=""><paramtype>unsigned</paramtype></parameter></method>
@@ -842,7 +842,7 @@ for (auto&amp;&amp; x : indexed(hist))
 <namespace name="histogram">
 <namespace name="algorithm">
 <enum id="doxygen.reduce_8hpp_1a71c2df3fd5222ccc79d2fe6f5251bb6e" name="slice_mode"><enumvalue id="doxygen.reduce_8hpp_1a71c2df3fd5222ccc79d2fe6f5251bb6ea91808da94826016395b10b662ed4363b" name="shrink"/><enumvalue id="doxygen.reduce_8hpp_1a71c2df3fd5222ccc79d2fe6f5251bb6eaa634e7960e04b1633c103382004fe526" name="crop"/><purpose>Whether to behave like <computeroutput>shrink</computeroutput> or <computeroutput>crop</computeroutput> regarding removed bins. </purpose></enum>
-<typedef id="doxygen.reduce_8hpp_1aa6016ff014f3dd5abc672882a2658aba" name="reduce_command"><purpose>Holder for a reduce command. </purpose><description><para>Use this type to store reduce commands in a container. The internals of this type are an implementation detail. </para></description><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.reduce_8hpp_1a44cf4430a6d397b9db89fe2373e24d22" name="reduce_command"><purpose>Holder for a reduce command. </purpose><description><para>Use this type to store reduce commands in a container. The internals of this type are an implementation detail. </para></description><type><emphasis>unspecified</emphasis></type></typedef>
 
 <function id="doxygen.reduce_8hpp_1a5d449c1f0dac72332f2189afbc9531ad" name="shrink"><type>reduce_command</type><parameter name="iaxis"><paramtype>unsigned</paramtype><description><para>which axis to operate on. </para></description></parameter><parameter name="lower"><paramtype>double</paramtype><description><para>bin which contains lower is first to be kept. </para></description></parameter><parameter name="upper"><paramtype>double</paramtype><description><para>bin which contains upper is last to be kept, except if upper is equal to the lower edge. </para></description></parameter><purpose>Shrink command to be used in <computeroutput>reduce</computeroutput>. </purpose><description><para>Command is applied to axis with given index.</para><para>Shrinking is based on an inclusive value interval. The bin which contains the first value starts the range of bins to keep. The bin which contains the second value is the last included in that range. When the second value is exactly equal to a lower bin edge, then the previous bin is the last in the range.</para><para>The counts in removed bins are added to the corresponding underflow and overflow bins, if they are present. If they are not present, the counts are discarded. Also see <computeroutput>crop</computeroutput>, which always discards the counts.</para><para>
 </para></description></function>
@@ -929,7 +929,7 @@ for (auto&amp;&amp; x : indexed(hist))
       <template-type-parameter name="MetaData"><purpose><para>type to store meta data. </para></purpose></template-type-parameter>
     </template><inherit access="public">boost::histogram::axis::iterator_mixin&lt; boolean&lt; MetaData &gt; &gt;</inherit><inherit access="public">metadata_base_t&lt; MetaData &gt;</inherit><purpose>Discrete axis for boolean data. </purpose><description><para>Binning is a pass-though operation with zero cost, making this the fastest possible axis. The axis has no internal state apart from the optional metadata state. The axis has no under- and overflow bins. It cannot grow and cannot be reduced.</para><para>
 </para></description><method-group name="public member functions">
-<constructor id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1a02a2a5b4c9bc317a0476343af4fb4cb1" specifiers="explicit" cv="noexcept(std::is_nothrow_move_constructible&lt; metadata_type &gt;::value)"><parameter name="meta"><paramtype>metadata_type</paramtype><default>{}</default><description><para>description of the axis.</para></description></parameter><purpose>Construct a boolean axis. </purpose><description><para>
+<constructor id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1a02a2a5b4c9bc317a0476343af4fb4cb1" specifiers="explicit"><parameter name="meta"><paramtype>metadata_type</paramtype><default>{}</default><description><para>description of the axis.</para></description></parameter><purpose>Construct a boolean axis. </purpose><description><para>
 The constructor is nothrow if meta is nothrow move constructible. </para></description></constructor>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1ac3eb3966a721a406292028f9ef64dd36" name="index" cv="const noexcept"><type>index_type</type><parameter name="x"><paramtype>value_type</paramtype></parameter><purpose>Return index for value argument. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1a0effed709188d3632f9d1b40833f302f" name="value" cv="const noexcept"><type>value_type</type><parameter name="i"><paramtype>index_type</paramtype></parameter><purpose>Return value for index argument. </purpose></method>
@@ -946,8 +946,8 @@ The constructor is nothrow if meta is nothrow move constructible. </para></descr
         </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name=""><paramtype>unsigned</paramtype></parameter></method>
 </method-group>
 <method-group name="public static functions">
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1aab5db55c402d7debdc5fd095cdd16a1b" name="inclusive" cv="noexcept" specifiers="static"><type>constexpr bool</type><purpose>Whether the axis is inclusive (see <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive">axis::traits::is_inclusive</link>). </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1adaf3214baf3c0352ec2e0161afbe3d4f" name="options" cv="noexcept" specifiers="static"><type>constexpr unsigned</type><purpose>Returns the options. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1aab5db55c402d7debdc5fd095cdd16a1b" name="inclusive" cv="noexcept" specifiers="static"><type>bool</type><purpose>Whether the axis is inclusive (see <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive">axis::traits::is_inclusive</link>). </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1boolean_1adaf3214baf3c0352ec2e0161afbe3d4f" name="options" cv="noexcept" specifiers="static"><type>unsigned</type><purpose>Returns the options. </purpose></method>
 </method-group>
 </class>
 
@@ -1045,7 +1045,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
 <constructor id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a2e6f003713af14f95cd8be619533230d"><parameter name="src"><paramtype>const <classname>category</classname> &amp;</paramtype></parameter><parameter name="begin"><paramtype>index_type</paramtype></parameter><parameter name="end"><paramtype>index_type</paramtype></parameter><parameter name="merge"><paramtype>unsigned</paramtype></parameter><purpose>Constructor used by algorithm::reduce to shrink and rebin (not for users). </purpose></constructor>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a30460b03a5f51b6741961e0029b43e1e" name="index" cv="const noexcept"><type>index_type</type><parameter name="x"><paramtype>const value_type &amp;</paramtype></parameter><purpose>Return index for value argument. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a29459e51914d148034522a8b4ee63b32" name="update"><type>std::pair&lt; index_type, index_type &gt;</type><parameter name="x"><paramtype>const value_type &amp;</paramtype></parameter><purpose>Returns index and shift (if axis has grown) for the passed argument. </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a23472115723bd6dcdedf2af182f13d7c" name="value" cv="const"><type>auto</type><parameter name="idx"><paramtype>index_type</paramtype></parameter><purpose>Return value for index argument. </purpose><description><para>Throws <computeroutput>std::out_of_range</computeroutput> if the index is out of bounds. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a23472115723bd6dcdedf2af182f13d7c" name="value" cv="const"><type>std::conditional_t&lt; std::is_scalar&lt; value_type &gt;::value, value_type, const value_type &amp; &gt;</type><parameter name="idx"><paramtype>index_type</paramtype></parameter><purpose>Return value for index argument. </purpose><description><para>Throws <computeroutput>std::out_of_range</computeroutput> if the index is out of bounds. </para></description></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1ad97cdc32770a30b26bfd7c08db87db08" name="bin" cv="const"><type>decltype(auto)</type><parameter name="idx"><paramtype>index_type</paramtype></parameter><purpose>Return value for index argument; alias for value(...). </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a6be3ebcf5c6be2de767effdb4f653b75" name="size" cv="const noexcept"><type>index_type</type><purpose>Returns the number of bins, without over- or underflow. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1ae1c9b2c199c126ce67a106a7777746d4" name="operator==" cv="const noexcept"><type>bool</type><template>
@@ -1066,9 +1066,9 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
         </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name=""><paramtype>unsigned</paramtype></parameter></method>
 </method-group>
 <method-group name="public static functions">
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a0a315e1d985f1d016589140c0cee73ef" name="options" cv="noexcept" specifiers="static"><type>constexpr unsigned</type><purpose>Returns the options. </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a951cf83c2510132f26c55478ed76083f" name="inclusive" cv="noexcept" specifiers="static"><type>constexpr bool</type><purpose>Whether the axis is inclusive (see <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive">axis::traits::is_inclusive</link>). </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a5b72b4d5bccf2adeeedc2d6b561cdd80" name="ordered" cv="noexcept" specifiers="static"><type>constexpr bool</type><purpose>Indicate that the axis is not ordered. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a0a315e1d985f1d016589140c0cee73ef" name="options" cv="noexcept" specifiers="static"><type>unsigned</type><purpose>Returns the options. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a951cf83c2510132f26c55478ed76083f" name="inclusive" cv="noexcept" specifiers="static"><type>bool</type><purpose>Whether the axis is inclusive (see <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive">axis::traits::is_inclusive</link>). </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1category_1a5b72b4d5bccf2adeeedc2d6b561cdd80" name="ordered" cv="noexcept" specifiers="static"><type>bool</type><purpose>Indicate that the axis is not ordered. </purpose></method>
 </method-group>
 </class>
 
@@ -1153,8 +1153,8 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
         </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name=""><paramtype>unsigned</paramtype></parameter></method>
 </method-group>
 <method-group name="public static functions">
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1integer_1a3548a2e7489ae5869dfc2b354a1c7831" name="options" cv="noexcept" specifiers="static"><type>constexpr unsigned</type><purpose>Returns the options. </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1integer_1a46c0aca0f19e1532da73bafef4f09846" name="inclusive" cv="noexcept" specifiers="static"><type>constexpr bool</type><purpose>Whether the axis is inclusive (see <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive">axis::traits::is_inclusive</link>). </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1integer_1a3548a2e7489ae5869dfc2b354a1c7831" name="options" cv="noexcept" specifiers="static"><type>unsigned</type><purpose>Returns the options. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1integer_1a46c0aca0f19e1532da73bafef4f09846" name="inclusive" cv="noexcept" specifiers="static"><type>bool</type><purpose>Whether the axis is inclusive (see <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive">axis::traits::is_inclusive</link>). </purpose></method>
 </method-group>
 <method-group name="private member functions">
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1integer_1a91af32a98fdde21eec466b9d3554d256" name="index_impl" cv="const noexcept"><type>index_type</type><template>
@@ -1431,29 +1431,29 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
 </para></description></struct><struct id="doxygen.structboost_1_1histogram_1_1axis_1_1option_1_1bitset" name="bitset"><template>
       <template-nontype-parameter name="Bits"><type>unsigned</type></template-nontype-parameter>
     </template><inherit access="public">std::integral_constant&lt; unsigned, Bits &gt;</inherit><purpose>Holder of axis options. </purpose><method-group name="public static functions">
-<method id="doxygen.structboost_1_1histogram_1_1axis_1_1option_1_1bitset_1a78b126bbf20747c7fbb3cd40df9e088e" name="test" specifiers="static"><type>constexpr auto</type><template>
+<method id="doxygen.structboost_1_1histogram_1_1axis_1_1option_1_1bitset_1a78b126bbf20747c7fbb3cd40df9e088e" name="test" specifiers="static"><type>auto</type><template>
           <template-nontype-parameter name="B"><type>unsigned</type></template-nontype-parameter>
         </template><parameter name=""><paramtype><classname>bitset</classname>&lt; B &gt;</paramtype></parameter><purpose>Returns true if all option flags in the argument are set and false otherwise. </purpose></method>
 </method-group>
-</struct><typedef id="doxygen.option_8hpp_1ab0934eae4e18ae6a3334f451a94aa476" name="none_t"><purpose>All options off. </purpose><type><classname>bitset</classname>&lt; 0 &gt;</type></typedef>
-<typedef id="doxygen.option_8hpp_1a48f0e2d8471fff92cadf9ea040f49840" name="underflow_t"><purpose>Axis has an underflow bin. Mutually exclusive with <computeroutput>circular</computeroutput>. </purpose><type><classname>bit</classname>&lt; 0 &gt;</type></typedef>
-<typedef id="doxygen.option_8hpp_1af618a7511209d2f721d119808a2e6b6d" name="overflow_t"><purpose>Axis has overflow bin. </purpose><type><classname>bit</classname>&lt; 1 &gt;</type></typedef>
-<typedef id="doxygen.option_8hpp_1a7df8bd1729321150fe169371cdc299b4" name="circular_t"><purpose>Axis is circular. Mutually exclusive with <computeroutput>growth</computeroutput> and <computeroutput>underflow</computeroutput>. </purpose><type><classname>bit</classname>&lt; 2 &gt;</type></typedef>
-<typedef id="doxygen.option_8hpp_1ae2c45dd5855f5f31d1e8c32790cd62d1" name="growth_t"><purpose>Axis can grow. Mutually exclusive with <computeroutput>circular</computeroutput>. </purpose><type><classname>bit</classname>&lt; 3 &gt;</type></typedef>
-<data-member id="doxygen.option_8hpp_1ac18858a972340f9f5a670b134cbe7587" name="none"><type>constexpr none_t</type><purpose>Instance of <computeroutput>none_t</computeroutput>. </purpose></data-member>
-<data-member id="doxygen.option_8hpp_1aec72c6a97716379c1dd0cbf455cd8250" name="underflow"><type>constexpr underflow_t</type><purpose>Instance of <computeroutput>underflow_t</computeroutput>. </purpose></data-member>
-<data-member id="doxygen.option_8hpp_1a8c45da01f1e41797d360a24f0f24e3ee" name="overflow"><type>constexpr overflow_t</type><purpose>Instance of <computeroutput>overflow_t</computeroutput>. </purpose></data-member>
-<data-member id="doxygen.option_8hpp_1ab165a9b43e66aa29ba86702a85c352e5" name="circular"><type>constexpr circular_t</type><purpose>Instance of <computeroutput>circular_t</computeroutput>. </purpose></data-member>
-<data-member id="doxygen.option_8hpp_1a1b96ce8408202839209b648cd55774bf" name="growth"><type>constexpr growth_t</type><purpose>Instance of <computeroutput>growth_t</computeroutput>. </purpose></data-member>
-<function id="doxygen.option_8hpp_1a8b8fdea63f93e046071f37bcf0cf7a91" name="operator|"><type>constexpr auto</type><template>
+</struct><typedef id="doxygen.option_8hpp_1ae95eb6d114028cd2da70cfdd2f0b4ced" name="none_t"><purpose>All options off. </purpose><type><classname>bitset</classname>&lt; 0 &gt;</type></typedef>
+<typedef id="doxygen.option_8hpp_1af9269f2e4a14e5751489e7ef6692737e" name="underflow_t"><purpose>Axis has an underflow bin. Mutually exclusive with <computeroutput>circular</computeroutput>. </purpose><type><classname>bit</classname>&lt; 0 &gt;</type></typedef>
+<typedef id="doxygen.option_8hpp_1a86c3ec36c5729f11a16f194927fd1331" name="overflow_t"><purpose>Axis has overflow bin. </purpose><type><classname>bit</classname>&lt; 1 &gt;</type></typedef>
+<typedef id="doxygen.option_8hpp_1a372e8b40fe1233eb04b05ec50049ea1a" name="circular_t"><purpose>Axis is circular. Mutually exclusive with <computeroutput>growth</computeroutput> and <computeroutput>underflow</computeroutput>. </purpose><type><classname>bit</classname>&lt; 2 &gt;</type></typedef>
+<typedef id="doxygen.option_8hpp_1ae3ebf8733ed9cc848803f6b4bf7b3c2f" name="growth_t"><purpose>Axis can grow. Mutually exclusive with <computeroutput>circular</computeroutput>. </purpose><type><classname>bit</classname>&lt; 3 &gt;</type></typedef>
+<data-member id="doxygen.option_8hpp_1ac18858a972340f9f5a670b134cbe7587" name="none"><type>none_t</type><purpose>Instance of <computeroutput>none_t</computeroutput>. </purpose></data-member>
+<data-member id="doxygen.option_8hpp_1aec72c6a97716379c1dd0cbf455cd8250" name="underflow"><type>underflow_t</type><purpose>Instance of <computeroutput>underflow_t</computeroutput>. </purpose></data-member>
+<data-member id="doxygen.option_8hpp_1a8c45da01f1e41797d360a24f0f24e3ee" name="overflow"><type>overflow_t</type><purpose>Instance of <computeroutput>overflow_t</computeroutput>. </purpose></data-member>
+<data-member id="doxygen.option_8hpp_1ab165a9b43e66aa29ba86702a85c352e5" name="circular"><type>circular_t</type><purpose>Instance of <computeroutput>circular_t</computeroutput>. </purpose></data-member>
+<data-member id="doxygen.option_8hpp_1a1b96ce8408202839209b648cd55774bf" name="growth"><type>growth_t</type><purpose>Instance of <computeroutput>growth_t</computeroutput>. </purpose></data-member>
+<function id="doxygen.option_8hpp_1a8b8fdea63f93e046071f37bcf0cf7a91" name="operator|"><type>auto</type><template>
           <template-nontype-parameter name="B1"><type>unsigned</type></template-nontype-parameter>
           <template-nontype-parameter name="B2"><type>unsigned</type></template-nontype-parameter>
         </template><parameter name=""><paramtype><classname>bitset</classname>&lt; B1 &gt;</paramtype></parameter><parameter name=""><paramtype><classname>bitset</classname>&lt; B2 &gt;</paramtype></parameter><purpose>Set union of the axis option arguments. </purpose></function>
-<function id="doxygen.option_8hpp_1af61479f4e5f061c243854b09a9f1920d" name="operator&amp;"><type>constexpr auto</type><template>
+<function id="doxygen.option_8hpp_1af61479f4e5f061c243854b09a9f1920d" name="operator&amp;"><type>auto</type><template>
           <template-nontype-parameter name="B1"><type>unsigned</type></template-nontype-parameter>
           <template-nontype-parameter name="B2"><type>unsigned</type></template-nontype-parameter>
         </template><parameter name=""><paramtype><classname>bitset</classname>&lt; B1 &gt;</paramtype></parameter><parameter name=""><paramtype><classname>bitset</classname>&lt; B2 &gt;</paramtype></parameter><purpose>Set intersection of the option arguments. </purpose></function>
-<function id="doxygen.option_8hpp_1a1f060d114fddefcf1265e2d2c0fff4dc" name="operator-"><type>constexpr auto</type><template>
+<function id="doxygen.option_8hpp_1a1f060d114fddefcf1265e2d2c0fff4dc" name="operator-"><type>auto</type><template>
           <template-nontype-parameter name="B1"><type>unsigned</type></template-nontype-parameter>
           <template-nontype-parameter name="B2"><type>unsigned</type></template-nontype-parameter>
         </template><parameter name=""><paramtype><classname>bitset</classname>&lt; B1 &gt;</paramtype></parameter><parameter name=""><paramtype><classname>bitset</classname>&lt; B2 &gt;</paramtype></parameter><purpose>Set difference of the option arguments. </purpose></function>
@@ -1642,7 +1642,7 @@ The axis computes the number of bins as n = abs(stop - start) / step, rounded do
         </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name=""><paramtype>unsigned</paramtype></parameter></method>
 </method-group>
 <method-group name="public static functions">
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1regular_1a4c02c6a3ee352218d5fb882c42768cb7" name="options" cv="noexcept" specifiers="static"><type>constexpr unsigned</type><purpose>Returns the options. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1regular_1a4c02c6a3ee352218d5fb882c42768cb7" name="options" cv="noexcept" specifiers="static"><type>unsigned</type><purpose>Returns the options. </purpose></method>
 </method-group>
 </class><namespace name="transform">
 <struct id="doxygen.structboost_1_1histogram_1_1axis_1_1transform_1_1id" name="id"><purpose>Identity transform for equidistant bins. </purpose><method-group name="public static functions">
@@ -1758,7 +1758,7 @@ The axis computes the number of bins as n = abs(stop - start) / step, rounded do
 <namespace name="traits">
 <struct id="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1get__options" name="get_options"><template>
       <template-type-parameter name="Axis"><purpose><para>axis type </para></purpose></template-type-parameter>
-    </template><purpose>Get axis options for axis type. </purpose><description><para>Doxygen does not render this well. This is a meta-function (template alias), it accepts an axis type and returns the <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1option_1_1bitset">boost::histogram::axis::option::bitset</link>.</para><para>If Axis::options() is valid and constexpr, <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1get__options">get_options</link> is the corresponding option type. Otherwise, it is <link linkend="doxygen.option_8hpp_1ae2c45dd5855f5f31d1e8c32790cd62d1">boost::histogram::axis::option::growth_t</link>, if the axis has a method <computeroutput>update</computeroutput>, else <link linkend="doxygen.option_8hpp_1ab0934eae4e18ae6a3334f451a94aa476">boost::histogram::axis::option::none_t</link>.</para><para>
+    </template><purpose>Get axis options for axis type. </purpose><description><para>Doxygen does not render this well. This is a meta-function (template alias), it accepts an axis type and returns the <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1option_1_1bitset">boost::histogram::axis::option::bitset</link>.</para><para>If Axis::options() is valid and constexpr, <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1get__options">get_options</link> is the corresponding option type. Otherwise, it is <link linkend="doxygen.option_8hpp_1ae3ebf8733ed9cc848803f6b4bf7b3c2f">boost::histogram::axis::option::growth_t</link>, if the axis has a method <computeroutput>update</computeroutput>, else <link linkend="doxygen.option_8hpp_1ae95eb6d114028cd2da70cfdd2f0b4ced">boost::histogram::axis::option::none_t</link>.</para><para>
 </para></description></struct><struct id="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__continuous" name="is_continuous"><template>
       <template-type-parameter name="Axis"/>
     </template><purpose>Whether axis is continuous or discrete. </purpose><description><para>Doxygen does not render this well. This is a meta-function (template alias), it accepts an axis type and returns a compile-time boolean.</para><para>If the boolean is true, the axis is continuous (covers a continuous range of values). Otherwise it is discrete (covers discrete values). </para></description></struct><struct id="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive" name="is_inclusive"><template>
@@ -1773,28 +1773,28 @@ The axis computes the number of bins as n = abs(stop - start) / step, rounded do
 </para></description></struct><struct id="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1value__type" name="value_type"><template>
       <template-type-parameter name="Axis"><purpose><para>axis type. </para></purpose></template-type-parameter>
     </template><purpose>Value type for axis type. </purpose><description><para>Doxygen does not render this well. This is a meta-function (template alias), it accepts an axis type and returns the value type.</para><para>The value type is deduced from the argument of the <computeroutput>Axis::index</computeroutput> method. Const references are decayed to the their value types, for example, the type deduced for <computeroutput>Axis::index(const int&amp;)</computeroutput> is <computeroutput>int</computeroutput>.</para><para>The deduction always succeeds if the axis type models the Axis concept correctly. Errors come from violations of the concept, in particular, an index method that is templated or overloaded is not allowed.</para><para>
-</para></description></struct><function id="doxygen.traits_8hpp_1a3efa2769458d2b867f3e9b960c392b26" name="options"><type>constexpr unsigned</type><template>
+</para></description></struct><function id="doxygen.traits_8hpp_1a3efa2769458d2b867f3e9b960c392b26" name="options"><type>unsigned</type><template>
           <template-type-parameter name="Axis"/>
         </template><parameter name="axis"><paramtype>const Axis &amp;</paramtype><description><para>any axis instance </para></description></parameter><purpose>Returns axis options as unsigned integer. </purpose><description><para>See <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1get__options">get_options</link> for details.</para><para>
 </para></description></function>
 <function id="doxygen.traits_8hpp_1a482a938ac9271a55db384fd24cca6bba" name="options"><type>unsigned</type><template>
           <template-nontype-parameter name="Ts"><type>class...</type></template-nontype-parameter>
         </template><parameter name="axis"><paramtype>const <classname>variant</classname>&lt; Ts... &gt; &amp;</paramtype></parameter></function>
-<function id="doxygen.traits_8hpp_1a001e46d611a7a56374b162a7d30d1dc9" name="inclusive"><type>constexpr bool</type><template>
+<function id="doxygen.traits_8hpp_1a001e46d611a7a56374b162a7d30d1dc9" name="inclusive"><type>bool</type><template>
           <template-type-parameter name="Axis"/>
         </template><parameter name="axis"><paramtype>const Axis &amp;</paramtype><description><para>any axis instance </para></description></parameter><purpose>Returns true if axis is inclusive or false. </purpose><description><para>See <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__inclusive">is_inclusive</link> for details.</para><para>
 </para></description></function>
 <function id="doxygen.traits_8hpp_1af99050f48d249276fd89d1a24bc0b1f3" name="inclusive"><type>bool</type><template>
           <template-nontype-parameter name="Ts"><type>class...</type></template-nontype-parameter>
         </template><parameter name="axis"><paramtype>const <classname>variant</classname>&lt; Ts... &gt; &amp;</paramtype></parameter></function>
-<function id="doxygen.traits_8hpp_1a583de2246a3fb545bfebd6d478ec9869" name="ordered"><type>constexpr bool</type><template>
+<function id="doxygen.traits_8hpp_1a583de2246a3fb545bfebd6d478ec9869" name="ordered"><type>bool</type><template>
           <template-type-parameter name="Axis"/>
         </template><parameter name="axis"><paramtype>const Axis &amp;</paramtype><description><para>any axis instance </para></description></parameter><purpose>Returns true if axis is ordered or false. </purpose><description><para>See <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__ordered">is_ordered</link> for details.</para><para>
 </para></description></function>
 <function id="doxygen.traits_8hpp_1ab096b468d05a62c7dc037e95e21049f2" name="ordered"><type>bool</type><template>
           <template-nontype-parameter name="Ts"><type>class...</type></template-nontype-parameter>
         </template><parameter name="axis"><paramtype>const <classname>variant</classname>&lt; Ts... &gt; &amp;</paramtype></parameter></function>
-<function id="doxygen.traits_8hpp_1a6a8a7a45e15e09618c1863e3ad2e9126" name="continuous"><type>constexpr bool</type><template>
+<function id="doxygen.traits_8hpp_1a6a8a7a45e15e09618c1863e3ad2e9126" name="continuous"><type>bool</type><template>
           <template-type-parameter name="Axis"/>
         </template><parameter name="axis"><paramtype>const Axis &amp;</paramtype><description><para>any axis instance </para></description></parameter><purpose>Returns true if axis is continuous or false. </purpose><description><para>See <link linkend="doxygen.structboost_1_1histogram_1_1axis_1_1traits_1_1is__continuous">is_continuous</link> for details.</para><para>
 </para></description></function>
@@ -1828,7 +1828,7 @@ The axis computes the number of bins as n = abs(stop - start) / step, rounded do
           <template-nontype-parameter name="Ts"><type>class...</type></template-nontype-parameter>
           <template-type-parameter name="U"/>
         </template><parameter name="axis"><paramtype>const <classname>variant</classname>&lt; Ts... &gt; &amp;</paramtype></parameter><parameter name="value"><paramtype>const U &amp;</paramtype></parameter></function>
-<function id="doxygen.traits_8hpp_1a9b50b6a62cf2fd3c404d56f42e2a9b8f" name="rank"><type>constexpr unsigned int</type><template>
+<function id="doxygen.traits_8hpp_1a9b50b6a62cf2fd3c404d56f42e2a9b8f" name="rank"><type>unsigned int</type><template>
           <template-type-parameter name="Axis"/>
         </template><parameter name="axis"><paramtype>const Axis &amp;</paramtype><description><para>any axis instance </para></description></parameter><purpose>Return axis rank (how many arguments it processes). </purpose><description><para>
 </para></description></function>
@@ -1971,7 +1971,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
         </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name=""><paramtype>unsigned</paramtype></parameter></method>
 </method-group>
 <method-group name="public static functions">
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1variable_1ab4cadb050437d806fe921a0aea8f225c" name="options" cv="noexcept" specifiers="static"><type>constexpr unsigned</type><purpose>Returns the options. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1variable_1ab4cadb050437d806fe921a0aea8f225c" name="options" cv="noexcept" specifiers="static"><type>unsigned</type><purpose>Returns the options. </purpose></method>
 </method-group>
 </class>
 
@@ -2049,7 +2049,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
           <template-nontype-parameter name="Us"><type>class...</type></template-nontype-parameter>
         </template><parameter name="u"><paramtype>const <classname>variant</classname>&lt; Us... &gt; &amp;</paramtype></parameter></copy-assignment>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1variant_1a61bae04815e0cfc5ce8fbc47448b6e1a" name="size" cv="const"><type>index_type</type><purpose>Return size of axis. </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1axis_1_1variant_1a5454015222bbb13952d9d65dc393b5f8" name="options" cv="const"><type>unsigned</type><purpose>Return options of axis or <link linkend="doxygen.option_8hpp_1ab0934eae4e18ae6a3334f451a94aa476">option::none_t</link> if axis has no options. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1axis_1_1variant_1a5454015222bbb13952d9d65dc393b5f8" name="options" cv="const"><type>unsigned</type><purpose>Return options of axis or <link linkend="doxygen.option_8hpp_1ae95eb6d114028cd2da70cfdd2f0b4ced">option::none_t</link> if axis has no options. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1variant_1a96ebe8ba487fbfaedebd0e9ccd6e8c8f" name="inclusive" cv="const"><type>bool</type><purpose>Returns true if the axis is inclusive or false. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1variant_1a65b52477bf5e9301e9b4db04779ed4c7" name="ordered" cv="const"><type>bool</type><purpose>Returns true if the axis is ordered or false. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1axis_1_1variant_1ae393f49e43884993f87438b07fcbf86a" name="continuous" cv="const"><type>bool</type><purpose>Returns true if the axis is continuous or false. </purpose></method>
@@ -2177,9 +2177,9 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
           <template-type-parameter name="Archive"/>
         </template><parameter name=""><paramtype>Archive &amp;</paramtype></parameter><parameter name=""><paramtype>unsigned</paramtype></parameter></method>
 </method-group>
-</struct><typedef id="doxygen.fwd_8hpp_1a9f1aebb118b832d8f15454525faa7c84" name="index_type"><purpose>Integral type for axis indices. </purpose><type>int</type></typedef>
-<typedef id="doxygen.fwd_8hpp_1a66ab868f73a86bef31bed15b9ab0f78a" name="real_index_type"><purpose>Real type for axis indices. </purpose><type>double</type></typedef>
-<typedef id="doxygen.fwd_8hpp_1af876b1fb28b78795428195c2f751a025" name="empty_type"><purpose>Another alias for an empty metadata type. </purpose><type><classname>null_type</classname></type></typedef>
+</struct><typedef id="doxygen.fwd_8hpp_1aab4842e3e52a24f2363784c59e47988f" name="index_type"><purpose>Integral type for axis indices. </purpose><type>int</type></typedef>
+<typedef id="doxygen.fwd_8hpp_1a33c5f7b095fa0d7ed18bc7fed4bdb2f6" name="real_index_type"><purpose>Real type for axis indices. </purpose><type>double</type></typedef>
+<typedef id="doxygen.fwd_8hpp_1a6ce2f3a29c482bc19ed2f1a21eded413" name="empty_type"><purpose>Another alias for an empty metadata type. </purpose><type><classname>null_type</classname></type></typedef>
 
 
 
@@ -2201,12 +2201,45 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
 
 </namespace>
 <namespace name="utility">
-</namespace>
-<typedef id="doxygen.fwd_8hpp_1a71719797441c7c7e8be0a14303b4a871" name="dense_storage"><purpose>Vector-like storage for fast zero-overhead access to cells. </purpose><type><classname>storage_adaptor</classname>&lt; std::vector&lt; T, A &gt; &gt;</type></typedef>
-<typedef id="doxygen.fwd_8hpp_1af203fa4dfd13c5b83968910ae9f6d3c7" name="default_storage"><purpose>Default storage, optimized for unweighted histograms. </purpose><type><classname>unlimited_storage</classname>&lt;&gt;</type></typedef>
-<typedef id="doxygen.fwd_8hpp_1a39512894e092a83d266b7b6976691b21" name="weight_storage"><purpose>Dense storage which tracks sums of weights and a variance estimate. </purpose><type>dense_storage&lt; <classname>accumulators::weighted_sum</classname>&lt;&gt; &gt;</type></typedef>
-<typedef id="doxygen.fwd_8hpp_1a378985a72fee31f759c4f6d4da5ba13c" name="profile_storage"><purpose>Dense storage which tracks means of samples in each cell. </purpose><type>dense_storage&lt; <classname>accumulators::mean</classname>&lt;&gt; &gt;</type></typedef>
-<typedef id="doxygen.fwd_8hpp_1af5fb6820a289f3d670098e57328929e8" name="weighted_profile_storage"><purpose>Dense storage which tracks means of weighted samples in each cell. </purpose><type>dense_storage&lt; <classname>accumulators::weighted_mean</classname>&lt;&gt; &gt;</type></typedef>
+<class id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval" name="clopper_pearson_interval"><template>
+      <template-type-parameter name="ValueType"/>
+    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Clopper-Pearson interval. </purpose><description><para>This is the classic frequentist interval obtained with the Neyman construction. It is therefore often called the 'exact' interval. It is guaranteed to have at least the requested confidence level for all values of the fraction.</para><para>The interval is wider than others that produce coverage closer to the expected confidence level over a random ensemble of factions. The Clopper-Pearson interval essentially always overcovers for such a random ensemble, which is undesirable in practice. The Clopper-Pearson interval is recommended when it is important to be conservative, but the Wilson interval should be preferred in most applications.</para><para>C. Clopper, E.S. Pearson (1934), Biometrika 26 (4): 404-413. doi:10.1093/biomet/26.4.404. </para></description><method-group name="public member functions">
+<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a075dc68f01c2ecb48e7d56610111e67b" specifiers="explicit" cv="noexcept"><parameter name="cl"><paramtype><classname>confidence_level</classname></paramtype><default>deviation{1}</default><description><para>Confidence level for the interval. The default value produces a confidence level of 68 % equivalent to one standard deviation. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Clopper-Pearson interval computer. </purpose><description><para>
+</para></description></constructor>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1abb03b5b488b993ea5841354088c9f91d" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+</para></description></method>
+</method-group>
+</class><class id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval" name="jeffreys_interval"><template>
+      <template-type-parameter name="ValueType"/>
+    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Jeffreys interval. </purpose><description><para>This is the Bayesian credible interval with a Jeffreys prior. Although it has a Bayesian derivation, it has good coverage. The interval boundaries are close to the Wilson interval. A special property of this interval is that it is equal-tailed; the probability of the true value to be above or below the interval is approximately equal.</para><para>To avoid coverage probability tending to zero when the fraction approaches 0 or 1, this implementation uses a modification described in section 4.1.2 of the paper by L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133, doi:10.1214/ss/1009213286. </para></description><method-group name="public member functions">
+<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1ab797348bd255fcd856b2fc570c91f91d" specifiers="explicit" cv="noexcept"><parameter name="cl"><paramtype><classname>confidence_level</classname></paramtype><default>deviation{1}</default><description><para>Confidence level for the interval. The default value produces a confidence level of 68 % equivalent to one standard deviation. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Jeffreys interval computer. </purpose><description><para>
+</para></description></constructor>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a2d0fddacf2580f4b7499b44912ddd98a" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+</para></description></method>
+</method-group>
+</class><class id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval" name="wald_interval"><template>
+      <template-type-parameter name="ValueType"/>
+    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Wald interval or normal approximation interval. </purpose><description><para>The Wald interval is a symmetric interval. It is simple to compute, but has poor statistical properties and is universally rejected by statisticians. It should always be replaced by another iternal, for example, the Wilson interval.</para><para>The Wald interval can be derived easily using the plug-in estimate of the variance for the binomial distribution, which is likely a reason for its omnipresence. Without further insight into statistical theory, it is not obvious that this derivation is flawed and that better alternatives exist.</para><para>The Wald interval undercovers on average. It is unsuitable when the sample size is small or when the fraction is close to 0 or 1. e. Its limits are not naturally bounded by 0 or 1. It produces empty intervals if the number of successes or failures is zero.</para><para>For a critique of the Wald interval, see (a selection):</para><para>L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133. R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </para></description><method-group name="public member functions">
+<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ac9f3062738f5850e8799dfd9297159e5" specifiers="explicit" cv="noexcept"><parameter name="d"><paramtype><classname>deviation</classname></paramtype><default>deviation{1.0}</default><description><para>Number of standard deviations for the interval. The default value 1 corresponds to a confidence level of 68 %. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Wald interval computer. </purpose><description><para>
+</para></description></constructor>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ad359db775c6b01d9bb60d346ccd58bec" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+</para></description></method>
+</method-group>
+</class><class id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval" name="wilson_interval"><template>
+      <template-type-parameter name="ValueType"/>
+    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Wilson interval. </purpose><description><para>The Wilson score interval is simple to compute, has good coverage. Intervals are automatically bounded between 0 and 1 and never empty. The interval is asymmetric.</para><para>Wilson, E. B. (1927). "Probable inference, the law of succession, and statistical
+inference". Journal of the American Statistical Association. 22 (158): 209-212. doi:10.1080/01621459.1927.10502953. JSTOR 2276774.</para><para>The coverage probability for a random ensemble of fractions is close to the nominal value. Unlike the Clopper-Pearson interval, the Wilson score interval is not conservative. For some values of the fractions, the interval undercovers and overcovers for neighboring values. This is a shared property of all alternatives to the Clopper-Pearson interval.</para><para>The Wilson score intervals is widely recommended for general use in the literature. For a review of the literature, see R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </para></description><method-group name="public member functions">
+<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a289f8f69018e6613c95ff87864c11ff3" specifiers="explicit" cv="noexcept"><parameter name="d"><paramtype><classname>deviation</classname></paramtype><default>deviation{1.0}</default><description><para>Number of standard deviations for the interval. The default value 1 corresponds to a confidence level of 68 %. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Wilson interval computer. </purpose><description><para>
+</para></description></constructor>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1ac26663768de3b3914b0095ae673a9b38" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+</para></description></method>
+</method-group>
+</class></namespace>
+<typedef id="doxygen.fwd_8hpp_1a82fdb3718a59fbf92938381691e5b104" name="dense_storage"><purpose>Vector-like storage for fast zero-overhead access to cells. </purpose><type><classname>storage_adaptor</classname>&lt; std::vector&lt; T, A &gt; &gt;</type></typedef>
+<typedef id="doxygen.fwd_8hpp_1a1602924a28c2b1bf5b47cb7ca528fa67" name="default_storage"><purpose>Default storage, optimized for unweighted histograms. </purpose><type><classname>unlimited_storage</classname>&lt;&gt;</type></typedef>
+<typedef id="doxygen.fwd_8hpp_1a34d6226b06764e0d2bfcc7922c91678d" name="weight_storage"><purpose>Dense storage which tracks sums of weights and a variance estimate. </purpose><type>dense_storage&lt; <classname>accumulators::weighted_sum</classname>&lt;&gt; &gt;</type></typedef>
+<typedef id="doxygen.fwd_8hpp_1ac98faa5dffbbf069ad025bf14d8fbaa6" name="profile_storage"><purpose>Dense storage which tracks means of samples in each cell. </purpose><type>dense_storage&lt; <classname>accumulators::mean</classname>&lt;&gt; &gt;</type></typedef>
+<typedef id="doxygen.fwd_8hpp_1a3173f6213c275412e0a723a83a6bf965" name="weighted_profile_storage"><purpose>Dense storage which tracks means of weighted samples in each cell. </purpose><type>dense_storage&lt; <classname>accumulators::weighted_mean</classname>&lt;&gt; &gt;</type></typedef>
 
 
 
@@ -2265,7 +2298,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
           <template-type-parameter name="T"/>
         </template><parameter name="x"><paramtype>const T &amp;</paramtype></parameter></copy-assignment>
 <method id="doxygen.classboost_1_1histogram_1_1indexed__range_1_1accessor_1aac4527b64b63f15ac7efeb9eeae5ba99" name="get" cv="const noexcept"><type>value_reference</type><purpose>Returns the cell reference. </purpose></method>
-<method id="doxygen.classboost_1_1histogram_1_1indexed__range_1_1accessor_1afb621d8c4a3f28eebf8aa2960e571292" name="operator*" cv="const noexcept"><type>value_reference</type></method>
+<method id="doxygen.classboost_1_1histogram_1_1indexed__range_1_1accessor_1afb621d8c4a3f28eebf8aa2960e571292" name="operator*" cv="const noexcept"><type>value_reference</type><purpose>Returns the cell reference.    </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1indexed__range_1_1accessor_1aa99f183e10c5bd8576b7c7baecf25f88" name="operator-&gt;" cv="const noexcept"><type>value_iterator</type><purpose>Access fields and methods of the cell object. </purpose></method>
 <method id="doxygen.classboost_1_1histogram_1_1indexed__range_1_1accessor_1a277934741c9b32f11c19b4e325123f87" name="index" cv="const noexcept"><type>axis::index_type</type><parameter name="d"><paramtype>unsigned</paramtype><default>0</default><description><para>axis dimension. </para></description></parameter><purpose>Access current index. </purpose><description><para>
 </para></description></method>
@@ -2347,7 +2380,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
 <method-group name="private member functions">
 <constructor id="doxygen.classboost_1_1histogram_1_1indexed__range_1_1iterator_1aac1d0e1545ca923fcb1dcf07c61cc56e"><parameter name="i"><paramtype>value_iterator</paramtype></parameter><parameter name="h"><paramtype>histogram_type &amp;</paramtype></parameter></constructor>
 </method-group>
-</class><typedef id="doxygen.classboost_1_1histogram_1_1indexed__range_1aef99d9bde92c82e96f8e82211e8140d8" name="value_iterator"><purpose>implementation detail </purpose><type>std::conditional_t&lt; std::is_const&lt; histogram_type &gt;::value, typename histogram_type::const_iterator, typename histogram_type::iterator &gt;</type></typedef>
+</class><typedef id="doxygen.classboost_1_1histogram_1_1indexed__range_1a23e193a5e66304a0dc762b6a7b587dfe" name="value_iterator"><purpose>implementation detail </purpose><type>std::conditional_t&lt; std::is_const&lt; histogram_type &gt;::value, typename histogram_type::const_iterator, typename histogram_type::iterator &gt;</type></typedef>
 <typedef id="doxygen.classboost_1_1histogram_1_1indexed__range_1a09b6be800c9500ab2daa873bd2e2c8eb" name="value_reference"><purpose>implementation detail </purpose><type>typename std::iterator_traits&lt; value_iterator &gt;::reference</type></typedef>
 <typedef id="doxygen.classboost_1_1histogram_1_1indexed__range_1a890b555f67ec4fc8628a6b8532a49976" name="value_type"><purpose>implementation detail </purpose><type>typename std::iterator_traits&lt; value_iterator &gt;::value_type</type></typedef>
 <method-group name="public member functions">
@@ -2391,8 +2424,8 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
           <template-type-parameter name="Histogram"/>
           <template-type-parameter name="Iterable"/>
           <template-type-parameter name=""><default><emphasis>unspecified</emphasis></default></template-type-parameter>
-        </template><parameter name="hist"><paramtype>Histogram &amp;&amp;</paramtype><description><para>Reference to the histogram. </para></description></parameter><parameter name="range"><paramtype>Iterable &amp;&amp;</paramtype><description><para>Iterable over items with two <link linkend="doxygen.fwd_8hpp_1a9f1aebb118b832d8f15454525faa7c84">axis::index_type</link> values, which mark the begin and end index of each axis. The length of the iterable must be equal to the rank of the histogram. The begin index must be smaller than the end index. Index ranges wider than the actual range are reduced to the actual range including underflow and overflow indices. </para></description></parameter><purpose>Generates and indexed range <ulink url="https://en.cppreference.com/w/cpp/named_req/ForwardIterator">forward iterators</ulink> over a rectangular region of histogram cells. </purpose><description><para>Use this in a range-based for loop. Example: <programlisting language="c++">auto hist = <link linkend="doxygen.make__histogram_8hpp_1a45ad5d817a45ac701a9d52a91dbf811b">make_histogram</link>(<link linkend="doxygen.classboost_1_1histogram_1_1axis_1_1integer">axis::integer&lt;&gt;</link>(0, 4), <link linkend="doxygen.classboost_1_1histogram_1_1axis_1_1integer">axis::integer&lt;&gt;</link>(2, 6));
-<link linkend="doxygen.fwd_8hpp_1a9f1aebb118b832d8f15454525faa7c84">axis::index_type</link> range[2] = {{1, 3}, {0, 2}};
+        </template><parameter name="hist"><paramtype>Histogram &amp;&amp;</paramtype><description><para>Reference to the histogram. </para></description></parameter><parameter name="range"><paramtype>Iterable &amp;&amp;</paramtype><description><para>Iterable over items with two <link linkend="doxygen.fwd_8hpp_1aab4842e3e52a24f2363784c59e47988f">axis::index_type</link> values, which mark the begin and end index of each axis. The length of the iterable must be equal to the rank of the histogram. The begin index must be smaller than the end index. Index ranges wider than the actual range are reduced to the actual range including underflow and overflow indices. </para></description></parameter><purpose>Generates and indexed range <ulink url="https://en.cppreference.com/w/cpp/named_req/ForwardIterator">forward iterators</ulink> over a rectangular region of histogram cells. </purpose><description><para>Use this in a range-based for loop. Example: <programlisting language="c++">auto hist = <link linkend="doxygen.make__histogram_8hpp_1a45ad5d817a45ac701a9d52a91dbf811b">make_histogram</link>(<link linkend="doxygen.classboost_1_1histogram_1_1axis_1_1integer">axis::integer&lt;&gt;</link>(0, 4), <link linkend="doxygen.classboost_1_1histogram_1_1axis_1_1integer">axis::integer&lt;&gt;</link>(2, 6));
+<link linkend="doxygen.fwd_8hpp_1aab4842e3e52a24f2363784c59e47988f">axis::index_type</link> range[2] = {{1, 3}, {0, 2}};
 for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 </programlisting> This skips the first and last index of the first axis, and the last two indices of the second.</para><para>
 
@@ -2590,7 +2623,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 <typedef id="doxygen.structboost_1_1histogram_1_1multi__index_1a9309164974421c08d3f37e68446dffd3" name="const_iterator"><type>const value_type *</type></typedef>
 <method-group name="public static functions">
 <method id="doxygen.structboost_1_1histogram_1_1multi__index_1acafecba1778d97b6d3e8c3c218166faa" name="create" specifiers="static"><type><classname>multi_index</classname></type><parameter name="s"><paramtype>std::size_t</paramtype></parameter></method>
-<method id="doxygen.structboost_1_1histogram_1_1multi__index_1a87d349c902cb4d568e6628121b65799d" name="size" cv="noexcept" specifiers="static"><type>constexpr std::size_t</type></method>
+<method id="doxygen.structboost_1_1histogram_1_1multi__index_1a87d349c902cb4d568e6628121b65799d" name="size" cv="noexcept" specifiers="static"><type>std::size_t</type></method>
 </method-group>
 <method-group name="public member functions">
 <constructor id="doxygen.structboost_1_1histogram_1_1multi__index_1a9c065fff48cf6c13d18424ecc4c00b93"><template>
@@ -2849,7 +2882,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 <data-member id="doxygen.structboost_1_1histogram_1_1unlimited__storage_1_1buffer__type_1a39bcb35d5d8c1d8b70866088963b7e8f" name="type"><type>unsigned</type></data-member>
 <data-member id="doxygen.structboost_1_1histogram_1_1unlimited__storage_1_1buffer__type_1a6780e3fa02bb49629882943b615ed117" name="ptr" specifiers="mutable"><type>void *</type></data-member>
 <method-group name="public static functions">
-<method id="doxygen.structboost_1_1histogram_1_1unlimited__storage_1_1buffer__type_1a7f7671411c4f7cba52393f5bab1eeccf" name="type_index" cv="noexcept" specifiers="static"><type>constexpr unsigned</type><template>
+<method id="doxygen.structboost_1_1histogram_1_1unlimited__storage_1_1buffer__type_1a7f7671411c4f7cba52393f5bab1eeccf" name="type_index" cv="noexcept" specifiers="static"><type>unsigned</type><template>
           <template-type-parameter name="T"/>
         </template></method>
 </method-group>
@@ -2959,10 +2992,10 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 </method-group>
 </class><typedef id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1a2e6f319463c83bd9fca3b386e7abe048" name="allocator_type"><type>Allocator</type></typedef>
 <typedef id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1a3371b06b1ba50c17e23f6696ef0935e5" name="value_type"><type>double</type></typedef>
-<typedef id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1a99c8bde3c6a0fc71560efa196941f084" name="large_int"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1acf402b0e36cd76d4aaa57789586aaff4" name="large_int"><type><emphasis>unspecified</emphasis></type></typedef>
 <typedef id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1af51021a2a1381669dfbce9fced71b482" name="const_iterator"><type>iterator_impl&lt; const value_type, <classname>const_reference</classname> &gt;</type></typedef>
 <typedef id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1aa92b97efa56b350677f1667f0bc1ea1f" name="iterator"><type>iterator_impl&lt; value_type, <classname>reference</classname> &gt;</type></typedef>
-<data-member id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1af3edbb735421ce15d27269511af9f93b" name="has_threading_support" specifiers="static"><type>constexpr bool</type></data-member>
+<data-member id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1af3edbb735421ce15d27269511af9f93b" name="has_threading_support" specifiers="static"><type>bool</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1a85416abfb32ff37aa94f599df5ec62b0" specifiers="explicit"><parameter name="a"><paramtype>const allocator_type &amp;</paramtype><default>{}</default></parameter></constructor>
 <constructor id="doxygen.classboost_1_1histogram_1_1unlimited__storage_1afba71afaad6cabfb772fdaa3fa7e8320" cv="= default"><parameter name=""><paramtype>const <classname>unlimited_storage</classname> &amp;</paramtype></parameter></constructor>
@@ -3037,7 +3070,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 </para></description></method>
 <method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1a1f2cc00a6c93c99988ac40ea05a75c27" name="axes" specifiers="static"><type>const auto &amp;</type><template>
           <template-type-parameter name="Histogram"/>
-        </template><parameter name="hist"><paramtype>const Histogram &amp;</paramtype><description><para>histogram.  </para></description></parameter><purpose>Get axes.  </purpose><description><para>
+        </template><parameter name="hist"><paramtype>const Histogram &amp;</paramtype><description><para>histogram.    </para></description></parameter><purpose>Get axes.    </purpose><description><para>
 </para></description></method>
 <method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1ad0133b24ae3ae12e46ff93ec0adf8d82" name="axis" specifiers="static"><type>decltype(auto)</type><template>
           <template-type-parameter name="Histogram"/>
@@ -3055,7 +3088,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 </para></description></method>
 <method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1afcfebaecdb3b3215dd2c0e0f015af136" name="storage" specifiers="static"><type>const auto &amp;</type><template>
           <template-type-parameter name="Histogram"/>
-        </template><parameter name="hist"><paramtype>const Histogram &amp;</paramtype><description><para>histogram.  </para></description></parameter><purpose>Get storage.  </purpose><description><para>
+        </template><parameter name="hist"><paramtype>const Histogram &amp;</paramtype><description><para>histogram.    </para></description></parameter><purpose>Get storage.    </purpose><description><para>
 </para></description></method>
 <method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1ad5eb95573f55fdddd57bbd9da2c052b3" name="offset" specifiers="static"><type>auto &amp;</type><template>
           <template-type-parameter name="Histogram"/>
@@ -3063,13 +3096,13 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 </para></description></method>
 <method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1adc82274258e42abbdfbb737feb7fab71" name="offset" specifiers="static"><type>const auto &amp;</type><template>
           <template-type-parameter name="Histogram"/>
-        </template><parameter name="hist"><paramtype>const Histogram &amp;</paramtype><description><para>histogram  </para></description></parameter><purpose>Get index offset.  </purpose><description><para>
+        </template><parameter name="hist"><paramtype>const Histogram &amp;</paramtype><description><para>histogram    </para></description></parameter><purpose>Get index offset.    </purpose><description><para>
 </para></description></method>
-<method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1a53b0e73944c1ab8b7d274c9a86706a28" name="unlimited_storage_buffer" specifiers="static"><type>constexpr auto &amp;</type><template>
+<method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1a53b0e73944c1ab8b7d274c9a86706a28" name="unlimited_storage_buffer" specifiers="static"><type>auto &amp;</type><template>
           <template-type-parameter name="Allocator"/>
         </template><parameter name="storage"><paramtype><classname>unlimited_storage</classname>&lt; Allocator &gt; &amp;</paramtype><description><para>instance of <link linkend="doxygen.classboost_1_1histogram_1_1unlimited__storage">unlimited_storage</link>. </para></description></parameter><purpose>Get buffer of <link linkend="doxygen.classboost_1_1histogram_1_1unlimited__storage">unlimited_storage</link>. </purpose><description><para>
 </para></description></method>
-<method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1a0888666ef10049758d7778df98a68704" name="storage_adaptor_impl" specifiers="static"><type>constexpr auto &amp;</type><template>
+<method id="doxygen.structboost_1_1histogram_1_1unsafe__access_1a0888666ef10049758d7778df98a68704" name="storage_adaptor_impl" specifiers="static"><type>auto &amp;</type><template>
           <template-type-parameter name="T"/>
         </template><parameter name="storage"><paramtype><classname>storage_adaptor</classname>&lt; T &gt; &amp;</paramtype><description><para>instance of <link linkend="doxygen.classboost_1_1histogram_1_1storage__adaptor">storage_adaptor</link>. </para></description></parameter><purpose>Get implementation of <link linkend="doxygen.classboost_1_1histogram_1_1storage__adaptor">storage_adaptor</link>. </purpose><description><para>
 </para></description></method>
@@ -3169,17 +3202,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 <namespace name="boost">
 <namespace name="histogram">
 <namespace name="utility">
-<class id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval" name="clopper_pearson_interval"><template>
-      <template-type-parameter name="ValueType"/>
-    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Clopper-Pearson interval. </purpose><description><para>This is the classic frequentist interval obtained with the Neyman construction. It is therefore often called the 'exact' interval. It is guaranteed to have at least the requested confidence level for all values of the fraction.</para><para>The interval is wider than others that produce coverage closer to the expected confidence level over a random ensemble of factions. The Clopper-Pearson interval essentially always overcovers for such a random ensemble, which is undesirable in practice. The Clopper-Pearson interval is recommended when it is important to be conservative, but the Wilson interval should be preferred in most applications.</para><para>C. Clopper, E.S. Pearson (1934), Biometrika 26 (4): 404-413. doi:10.1093/biomet/26.4.404. </para></description><typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a690cde8b9671f13c501c185792ae2c02" name="value_type"><type>typename clopper_pearson_interval::value_type</type></typedef>
-<typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a311d1b279d67fb3f1bd7cf4f3dc25410" name="interval_type"><type>typename clopper_pearson_interval::interval_type</type></typedef>
-<method-group name="public member functions">
-<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a075dc68f01c2ecb48e7d56610111e67b" specifiers="explicit" cv="noexcept"><parameter name="cl"><paramtype><classname>confidence_level</classname></paramtype><default>deviation{1}</default><description><para>Confidence level for the interval. The default value produces a confidence level of 68 % equivalent to one standard deviation. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Clopper-Pearson interval computer. </purpose><description><para>
-</para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1abb03b5b488b993ea5841354088c9f91d" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
-</para></description></method>
-</method-group>
-</class></namespace>
+</namespace>
 
 
 
@@ -3213,17 +3236,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 <namespace name="boost">
 <namespace name="histogram">
 <namespace name="utility">
-<class id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval" name="jeffreys_interval"><template>
-      <template-type-parameter name="ValueType"/>
-    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Jeffreys interval. </purpose><description><para>This is the Bayesian credible interval with a Jeffreys prior. Although it has a Bayesian derivation, it has good coverage. The interval boundaries are close to the Wilson interval. A special property of this interval is that it is equal-tailed; the probability of the true value to be above or below the interval is approximately equal.</para><para>To avoid coverage probability tending to zero when the fraction approaches 0 or 1, this implementation uses a modification described in section 4.1.2 of the paper by L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133, doi:10.1214/ss/1009213286. </para></description><typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a0849e5bc5919da6ff789d14cf7a91822" name="value_type"><type>typename jeffreys_interval::value_type</type></typedef>
-<typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a8e0f12d950ea9c369f30b41c2b22689e" name="interval_type"><type>typename jeffreys_interval::interval_type</type></typedef>
-<method-group name="public member functions">
-<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1ab797348bd255fcd856b2fc570c91f91d" specifiers="explicit" cv="noexcept"><parameter name="cl"><paramtype><classname>confidence_level</classname></paramtype><default>deviation{1}</default><description><para>Confidence level for the interval. The default value produces a confidence level of 68 % equivalent to one standard deviation. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Jeffreys interval computer. </purpose><description><para>
-</para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a2d0fddacf2580f4b7499b44912ddd98a" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
-</para></description></method>
-</method-group>
-</class></namespace>
+</namespace>
 
 
 
@@ -3257,17 +3270,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 <namespace name="boost">
 <namespace name="histogram">
 <namespace name="utility">
-<class id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval" name="wald_interval"><template>
-      <template-type-parameter name="ValueType"/>
-    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Wald interval or normal approximation interval. </purpose><description><para>The Wald interval is a symmetric interval. It is simple to compute, but has poor statistical properties and is universally rejected by statisticians. It should always be replaced by another iternal, for example, the Wilson interval.</para><para>The Wald interval can be derived easily using the plug-in estimate of the variance for the binomial distribution, which is likely a reason for its omnipresence. Without further insight into statistical theory, it is not obvious that this derivation is flawed and that better alternatives exist.</para><para>The Wald interval undercovers on average. It is unsuitable when the sample size is small or when the fraction is close to 0 or 1. e. Its limits are not naturally bounded by 0 or 1. It produces empty intervals if the number of successes or failures is zero.</para><para>For a critique of the Wald interval, see (a selection):</para><para>L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133. R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </para></description><typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1a33df74f970e0e4285c9f0f0e0a67ef79" name="value_type"><type>typename wald_interval::value_type</type></typedef>
-<typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1aa2f66a335f438dd45f32a3bcb0e1f2a1" name="interval_type"><type>typename wald_interval::interval_type</type></typedef>
-<method-group name="public member functions">
-<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ac9f3062738f5850e8799dfd9297159e5" specifiers="explicit" cv="noexcept"><parameter name="d"><paramtype><classname>deviation</classname></paramtype><default>deviation{1.0}</default><description><para>Number of standard deviations for the interval. The default value 1 corresponds to a confidence level of 68 %. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Wald interval computer. </purpose><description><para>
-</para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ad359db775c6b01d9bb60d346ccd58bec" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
-</para></description></method>
-</method-group>
-</class></namespace>
+</namespace>
 
 
 
@@ -3301,18 +3304,7 @@ for (auto&amp;&amp; x : indexed(hist, range)) { ... }
 <namespace name="boost">
 <namespace name="histogram">
 <namespace name="utility">
-<class id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval" name="wilson_interval"><template>
-      <template-type-parameter name="ValueType"/>
-    </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Wilson interval. </purpose><description><para>The Wilson score interval is simple to compute, has good coverage. Intervals are automatically bounded between 0 and 1 and never empty. The interval is asymmetric.</para><para>Wilson, E. B. (1927). "Probable inference, the law of succession, and statistical
-inference". Journal of the American Statistical Association. 22 (158): 209-212. doi:10.1080/01621459.1927.10502953. JSTOR 2276774.</para><para>The coverage probability for a random ensemble of fractions is close to the nominal value. Unlike the Clopper-Pearson interval, the Wilson score interval is not conservative. For some values of the fractions, the interval undercovers and overcovers for neighboring values. This is a shared property of all alternatives to the Clopper-Pearson interval.</para><para>The Wilson score intervals is widely recommended for general use in the literature. For a review of the literature, see R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </para></description><typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a0c27d35aeb6fc7211aba9a9ea9aeab2f" name="value_type"><type>typename wilson_interval::value_type</type></typedef>
-<typedef id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a100c42a2443a6bb13d6f2f016945bfde" name="interval_type"><type>typename wilson_interval::interval_type</type></typedef>
-<method-group name="public member functions">
-<constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a289f8f69018e6613c95ff87864c11ff3" specifiers="explicit" cv="noexcept"><parameter name="d"><paramtype><classname>deviation</classname></paramtype><default>deviation{1.0}</default><description><para>Number of standard deviations for the interval. The default value 1 corresponds to a confidence level of 68 %. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Wilson interval computer. </purpose><description><para>
-</para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1ac26663768de3b3914b0095ae673a9b38" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
-</para></description></method>
-</method-group>
-</class></namespace>
+</namespace>
 
 
 

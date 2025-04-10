@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1contract_1_1old__ptr.html" title="Class template old_ptr">old_ptr</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">T</span> <a name="doxygen.reference.classboost_1_1contract_1_1old__ptr_1aac75a3cf38e3b69de870d42dc129a2e9"></a><span class="identifier">element_type</span><span class="special">;</span>  <span class="comment">// Pointed old value type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">T</span> <a name="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a77dca6092e64a71132e103aa92883d83"></a><span class="identifier">element_type</span><span class="special">;</span>  <span class="comment">// Pointed old value type. </span>
 
   <span class="comment">// <a class="link" href="classboost_1_1contract_1_1old__ptr.html#id28-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1contract_1_1old__ptr.html#doxygen.reference.classboost_1_1contract_1_1old__ptr_1a699998b265a4267134c29c81cc1cc8be"><span class="identifier">old_ptr</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -45,7 +45,7 @@
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1contract_1_1old__ptr.html#doxygen.reference.classboost_1_1contract_1_1old__ptr_1afe584409c22c36afd34e97d8465f098a"><span class="keyword">operator</span> <span class="keyword">bool</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id42938"></a><h2>Description</h2>
+<a name="id42939"></a><h2>Description</h2>
 <p>This pointer can be set to point an actual old value copy using either  <code class="computeroutput"><a class="link" href="old_8hpp_1a07326d65350421d14684447dec36d1ba.html" title="Macro BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</a></code> or  <code class="computeroutput"><a class="link" href="old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2.html" title="Function make_old">boost::contract::make_old</a></code> (that is why this class does not have public non-default constructors):</p>
 <pre class="programlisting"><span class="keyword">class</span> <span class="identifier">u</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
@@ -63,14 +63,14 @@
 
 </p>
 <div class="refsect2">
-<a name="id43000"></a><h3>Template Parameters</h3>
+<a name="id43001"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> T</pre>
 <p>Type of the pointed old value. This type must be copyable (i.e., <code class="computeroutput">boost::contract::is_old_value_copyable&lt;T&gt;::value</code> must be <code class="computeroutput">true</code>), otherwise this pointer will always be null and this library will generate a compile-time error when the pointer is dereferenced. </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="id43011"></a><h3>
+<a name="id43012"></a><h3>
 <a name="id28-bb"></a><code class="computeroutput">old_ptr</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

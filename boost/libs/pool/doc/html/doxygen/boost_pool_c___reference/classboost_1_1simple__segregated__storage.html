@@ -32,11 +32,11 @@
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
 <div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="simple__segregated__storage_8hpp.html" title="Header &lt;boost/pool/simple_segregated_storage.hpp&gt;">boost/pool/simple_segregated_storage.hpp</a>&gt;
 
-</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> SizeType<span class="special">&gt;</span> 
+</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> SizeType <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span><span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1simple__segregated__storage.html" title="Class template simple_segregated_storage">simple_segregated_storage</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">SizeType</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1abbdc7f4c2fc49c7dddc6ab8b54d7fd68"></a><span class="identifier">size_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">SizeType</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1ab4b473ba89b8c5cba04b986a843f890f"></a><span class="identifier">size_type</span><span class="special">;</span>
 
   <span class="comment">// <a class="link" href="classboost_1_1simple__segregated__storage.html#id14-bb">private member functions</a></span>
   <a class="link" href="classboost_1_1simple__segregated__storage.html#doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1a75ab1f5ebcdcbd31bb2a9187d4fec332"><span class="identifier">simple_segregated_storage</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1simple__segregated__storage.html" title="Class template simple_segregated_storage">simple_segregated_storage</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
@@ -67,11 +67,11 @@
   <span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span> <a class="link" href="classboost_1_1simple__segregated__storage.html#doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1ae3c3bcdafd3f30d6e0ff9194f340d1f9"><span class="identifier">segregate</span></a><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span><span class="special">,</span> <span class="identifier">size_type</span><span class="special">,</span> <span class="identifier">size_type</span><span class="special">,</span> <span class="keyword">void</span> <span class="special">*</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id6856"></a><h2>Description</h2>
+<a name="id6499"></a><h2>Description</h2>
 <p>Template class <a class="link" href="classboost_1_1simple__segregated__storage.html" title="Class template simple_segregated_storage">simple_segregated_storage</a> controls access to a free list of memory chunks. Please note that this is a very simple class, with preconditions on almost all its functions. It is intended to be the fastest and smallest possible quick memory allocator - e.g., something to use in embedded systems. This class delegates many difficult preconditions to the user (i.e., alignment issues).</p>
 <p>An object of type simple_segregated_storage&lt;SizeType&gt; is empty if its free list is empty. If it is not empty, then it is ordered if its free list is ordered. A free list is ordered if repeated calls to <code class="computeroutput"><a class="link" href="classboost_1_1simple__segregated__storage.html#doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1a39f01a838f1928cba031cae6d3826444">malloc()</a></code> will result in a constantly-increasing sequence of values, as determined by <code class="computeroutput">std::less&lt;void *&gt;</code>. A member function is <span class="emphasis"><em>order-preserving</em></span> if the free list maintains its order orientation (that is, an ordered free list is still ordered after the member function call). </p>
 <div class="refsect2">
-<a name="id6865"></a><h3>
+<a name="id6508"></a><h3>
 <a name="id14-bb"></a><code class="computeroutput">simple_segregated_storage</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><a name="doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1a75ab1f5ebcdcbd31bb2a9187d4fec332"></a><span class="identifier">simple_segregated_storage</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1simple__segregated__storage.html" title="Class template simple_segregated_storage">simple_segregated_storage</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span></pre></li>
@@ -79,7 +79,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id6894"></a><h3>
+<a name="id6537"></a><h3>
 <a name="id15-bb"></a><code class="computeroutput">simple_segregated_storage</code> private static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span> 
@@ -106,7 +106,7 @@
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="id6927"></a><h3>
+<a name="id6570"></a><h3>
 <a name="id16-bb"></a><code class="computeroutput">simple_segregated_storage</code> protected member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">void</span> <span class="special">*</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1acfc346dce5955df4c48a9bab9b0c2e06"></a><span class="identifier">find_prev</span><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span> ptr<span class="special">)</span><span class="special">;</span></pre>
@@ -134,7 +134,7 @@
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="id6952"></a><h3>
+<a name="id6595"></a><h3>
 <a name="id17-bb"></a><code class="computeroutput">simple_segregated_storage</code> protected static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span><span class="special">&amp;</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1simple__segregated__storage_1a4ee181a8a1d3fdabb78b49a7c57875bf"></a><span class="identifier">nextof</span><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span><span class="keyword">const</span> ptr<span class="special">)</span><span class="special">;</span></pre>
@@ -154,7 +154,7 @@
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="id6979"></a><h3>
+<a name="id6622"></a><h3>
 <a name="id18-bb"></a><code class="computeroutput">simple_segregated_storage</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -336,7 +336,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id7197"></a><h3>
+<a name="id6840"></a><h3>
 <a name="id19-bb"></a><code class="computeroutput">simple_segregated_storage</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span> 

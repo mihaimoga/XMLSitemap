@@ -194,7 +194,7 @@
 <td>
                   <p>
                     Using the relation: <span class="emphasis"><em>pdf = 1 / (π * γ * (1 + ((x - x<sub>0 </sub>)
-                    / γ)<sup>2</sup>) </em></span>
+                    / γ)<sup>2</sup>)) </em></span>
                   </p>
                 </td>
 </tr>
@@ -212,30 +212,21 @@
                       <span class="serif_italic">p = 0.5 + atan(x)/π</span>
                     </p></blockquote></div>
                   <p>
-                    But that suffers from cancellation error as x -&gt; -∞. So recall
-                    that for <code class="computeroutput"><span class="identifier">x</span> <span class="special">&lt;</span>
-                    <span class="number">0</span></code>:
+                    But that suffers from cancellation error as x -&gt; -∞.
+                  </p>
+                  <p>
+                    Instead, the mathematically equivalent expression based on the
+                    function atan2 is used:
                   </p>
                   <div class="blockquote"><blockquote class="blockquote"><p>
-                      <span class="serif_italic">atan(x) = -π/2 - atan(1/x)</span>
+                      <span class="serif_italic">p = atan2(1, -x)/π</span>
                     </p></blockquote></div>
                   <p>
-                    Substituting into the above we get:
+                    By symmetry, the complement is
                   </p>
                   <div class="blockquote"><blockquote class="blockquote"><p>
-                      <span class="serif_italic">p = -atan(1/x) / π  ; x &lt; 0</span>
+                      <span class="serif_italic">q = atan2(1, x)/π</span>
                     </p></blockquote></div>
-                  <p>
-                    So the procedure is to calculate the cdf for -fabs(x) using the
-                    above formula. Note that to factor in the location and scale
-                    parameters you must substitute (x - x<sub>0 </sub>) / γ for x in the above.
-                  </p>
-                  <p>
-                    This procedure yields the smaller of <span class="emphasis"><em>p</em></span> and
-                    <span class="emphasis"><em>q</em></span>, so the result may need subtracting from
-                    1 depending on whether we want the complement or not, and whether
-                    <span class="emphasis"><em>x</em></span> is less than x<sub>0 </sub> or not.
-                  </p>
                 </td>
 </tr>
 <tr>

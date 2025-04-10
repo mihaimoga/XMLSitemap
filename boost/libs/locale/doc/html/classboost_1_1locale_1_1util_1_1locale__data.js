@@ -8,6 +8,7 @@ var classboost_1_1locale_1_1util_1_1locale__data =
     [ "is_utf8", "classboost_1_1locale_1_1util_1_1locale__data.html#a638209b0d507dc68516a8da35bc4229c", null ],
     [ "language", "classboost_1_1locale_1_1util_1_1locale__data.html#a64bff39f4e9eb4c31e7b6bfa873c3f3c", null ],
     [ "parse", "classboost_1_1locale_1_1util_1_1locale__data.html#a15c6a223cbeba74e94942dc524851e54", null ],
+    [ "script", "classboost_1_1locale_1_1util_1_1locale__data.html#abb966e3f6a99bb24dda162928ce90e6f", null ],
     [ "to_string", "classboost_1_1locale_1_1util_1_1locale__data.html#a05d49850b85608b40d1b423ceab7f1e4", null ],
     [ "variant", "classboost_1_1locale_1_1util_1_1locale__data.html#ae73efa6c24af251dfa1235820368af78", null ]
 ];

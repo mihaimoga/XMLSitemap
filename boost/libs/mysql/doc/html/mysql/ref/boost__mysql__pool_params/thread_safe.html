@@ -28,7 +28,7 @@
 <a name="mysql.ref.boost__mysql__pool_params.thread_safe"></a><a class="link" href="thread_safe.html" title="pool_params::thread_safe">pool_params::thread_safe</a>
 </h5></div></div></div>
 <p>
-          <a class="indexterm" name="id80476"></a>
+          <a class="indexterm" name="id87140"></a>
 Enables or disables thread-safety.
         </p>
 <h6>
@@ -54,7 +54,10 @@ Enables or disables thread-safety.
         </p>
 <p>
           Thread-safety doesn't extend to individual connections: <a class="link" href="../boost__mysql__pooled_connection.html" title="pooled_connection"><code class="computeroutput"><span class="identifier">pooled_connection</span></code></a> objects can't
-          be shared between threads.
+          be shared between threads. Thread-safety does not protect objects that
+          don't belong to the pool. For instance, <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">cancel_after</span></code>
+          creates a timer that must be protected with a strand. Refer to <a href="../../../../../connection_pool.html#mysql.connection_pool.thread_safe" target="_top">this
+          page</a> for more info.
         </p>
 </div>
 <div class="copyright-footer">Copyright © 2019-2024 Ruben Perez<p>

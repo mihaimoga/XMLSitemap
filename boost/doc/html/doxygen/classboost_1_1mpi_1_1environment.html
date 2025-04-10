@@ -37,14 +37,14 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1mpi_1_1environment.html" title="Class environment">environment</a> <span class="special">:</span> <span class="keyword">private</span> <span class="identifier">noncopyable</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1mpi_1_1environment.html#id-1_3_25_7_10_2_1_1_4-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1mpi_1_1environment.html#id-1_3_24_7_10_2_1_1_4-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1a3f5a502f2d6774468496b21a23150476"><span class="identifier">environment</span></a><span class="special">(</span><span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1a14059820844eae5d1d0977f962bb7d88"><span class="identifier">environment</span></a><span class="special">(</span><span class="identifier">threading</span><span class="special">::</span><span class="identifier">level</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1ab9529740f040d9591cdfd298e0c0842f"><span class="identifier">environment</span></a><span class="special">(</span><span class="keyword">int</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="special">*</span><span class="special">&amp;</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1a9909e4331fbbcdc996c6480236b2bbf6"><span class="identifier">environment</span></a><span class="special">(</span><span class="keyword">int</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="special">*</span><span class="special">&amp;</span><span class="special">,</span> <span class="identifier">threading</span><span class="special">::</span><span class="identifier">level</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1ac65111e181e56bb4d2f800108d2d6ca0"><span class="special">~</span><span class="identifier">environment</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1mpi_1_1environment.html#id-1_3_25_7_10_2_1_1_5-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1mpi_1_1environment.html#id-1_3_24_7_10_2_1_1_5-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="keyword">void</span> <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1a356d0625ed204a4d5e247f02e293aca8"><span class="identifier">abort</span></a><span class="special">(</span><span class="keyword">int</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1ad6bd6dc64e8ad163ac68580c2e66a897"><span class="identifier">initialized</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1a42548bf6f3df241a519187be15c97d47"><span class="identifier">finalized</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -59,7 +59,7 @@
   <span class="keyword">static</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <a class="link" href="classboost_1_1mpi_1_1environment.html#doxygen.classboost_1_1mpi_1_1environment_1a8292a99726c340e84de722151648319c"><span class="identifier">library_version</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.25.7.11.7.4"></a><h2>Description</h2>
+<a name="id-1.3.24.7.11.7.4"></a><h2>Description</h2>
 <p>The <code class="computeroutput">environment</code> class is used to initialize, finalize, and query the MPI environment. It will typically be used in the <code class="computeroutput">main()</code> function of a program, which will create a single instance of <code class="computeroutput">environment</code> initialized with the arguments passed to the program:</p>
 <pre class="programlisting"><span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span><span class="special">*</span> <span class="identifier">argv</span><span class="special">[</span><span class="special">]</span><span class="special">)</span>
 <span class="special">{</span>
@@ -69,8 +69,8 @@
 <p>The instance of <code class="computeroutput">environment</code> will initialize MPI (by calling <code class="computeroutput">MPI_Init</code>) in its constructor and finalize MPI (by calling <code class="computeroutput">MPI_Finalize</code> for normal termination or <code class="computeroutput">MPI_Abort</code> for an uncaught exception) in its destructor.</p>
 <p>The use of <code class="computeroutput">environment</code> is not mandatory. Users may choose to invoke <code class="computeroutput">MPI_Init</code> and <code class="computeroutput">MPI_Finalize</code> manually. In this case, no <code class="computeroutput">environment</code> object is needed. If one is created, however, it will do nothing on either construction or destruction. </p>
 <div class="refsect2">
-<a name="id-1.3.25.7.11.7.4.6"></a><h3>
-<a name="id-1_3_25_7_10_2_1_1_4-bb"></a><code class="computeroutput">environment</code> public member functions</h3>
+<a name="id-1.3.24.7.11.7.4.6"></a><h3>
+<a name="id-1_3_24_7_10_2_1_1_4-bb"></a><code class="computeroutput">environment</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1mpi_1_1environment_1a3f5a502f2d6774468496b21a23150476"></a><span class="identifier">environment</span><span class="special">(</span><span class="keyword">bool</span> abort_on_exception <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span></pre>
@@ -216,8 +216,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.25.7.11.7.4.7"></a><h3>
-<a name="id-1_3_25_7_10_2_1_1_5-bb"></a><code class="computeroutput">environment</code> public static functions</h3>
+<a name="id-1.3.24.7.11.7.4.7"></a><h3>
+<a name="id-1_3_24_7_10_2_1_1_5-bb"></a><code class="computeroutput">environment</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">void</span> <a name="doxygen.classboost_1_1mpi_1_1environment_1a356d0625ed204a4d5e247f02e293aca8"></a><span class="identifier">abort</span><span class="special">(</span><span class="keyword">int</span> errcode<span class="special">)</span><span class="special">;</span></pre>

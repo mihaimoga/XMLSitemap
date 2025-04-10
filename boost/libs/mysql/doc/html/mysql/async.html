@@ -7,7 +7,7 @@
 <link rel="home" href="../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="up" href="../index.html" title="Chapter 1. Boost.MySQL">
 <link rel="prev" href="connection_pool.html" title="Connection pools">
-<link rel="next" href="error_handling.html" title="Error handling and available overloads">
+<link rel="next" href="interfacing_sync_async.html" title="Interfacing sync and async code: using connection_pool in sync code">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="connection_pool.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="error_handling.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="connection_pool.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="interfacing_sync_async.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
@@ -160,10 +160,18 @@
       is a completion token adapter that you can use with async operations when using
       exceptions. <code class="computeroutput"><span class="identifier">with_diagnostics</span></code>
       makes your operations throw <a class="link" href="ref/boost__mysql__error_with_diagnostics.html" title="error_with_diagnostics"><code class="literal">error_with_diagnostics</code></a>,
-      like sync functions do. For example:
+      like sync functions do.
     </p>
 <p>
-      [async_with_diagnostics_cpp20] [async_with_diagnostics_cpp11]
+      <code class="computeroutput"><span class="identifier">with_diagnostics</span><span class="special">(</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">deferred</span><span class="special">)</span></code> is the default completion token for most operations
+      in this library. If you're using C++20 coroutines as suggested in the tutorials,
+      you're already using it.
+    </p>
+<p>
+      When using other completion styles that involve exceptions, like <code class="computeroutput"><span class="identifier">asio</span><span class="special">::</span><span class="identifier">yield_context</span></code>,
+      you may need to use <code class="computeroutput"><span class="identifier">with_diagnostics</span></code>
+      explicitly. <a class="link" href="examples/coroutines_cpp11.html" title="Stackful coroutines (async functions in C++11)">This example</a>
+      shows how to do it.
     </p>
 <p>
       <code class="computeroutput"><span class="identifier">with_diagnostics</span></code> only makes
@@ -205,7 +213,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="connection_pool.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="error_handling.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="connection_pool.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="interfacing_sync_async.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

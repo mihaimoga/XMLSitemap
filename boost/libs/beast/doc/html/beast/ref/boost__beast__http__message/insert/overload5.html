@@ -95,9 +95,9 @@
                   </td>
 <td>
                     <p>
-                      The literal text corresponding to the field name. If <code class="computeroutput"><span class="identifier">name</span> <span class="special">!=</span>
-                      <span class="identifier">field</span><span class="special">::</span><span class="identifier">unknown</span></code>, then this value
-                      must be equal to <code class="computeroutput"><span class="identifier">to_string</span><span class="special">(</span><span class="identifier">name</span><span class="special">)</span></code> using a case-insensitive comparison,
+                      The literal text corresponding to the field name. If name !=
+                      <a class="link" href="../../boost__beast__http__field.html" title="http::field"><code class="computeroutput"><span class="identifier">field</span><span class="special">::</span><span class="identifier">unknown</span></code></a>, then this
+                      value must be equal to <code class="computeroutput"><span class="identifier">to_string</span><span class="special">(</span><span class="identifier">name</span><span class="special">)</span></code> using a case-insensitive comparison,
                       otherwise the behavior is undefined.
                     </p>
                   </td>
@@ -150,11 +150,13 @@
                     <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
                           If the size of <code class="computeroutput"><span class="identifier">name_string</span></code>
-                          exceeds max_name_size, the error code will be error::header_field_name_too_large.
+                          exceeds <a class="link" href="../max_name_size.html" title="http::message::max_name_size"><code class="computeroutput"><span class="identifier">max_name_size</span></code></a>,
+                          the error code will be <a class="link" href="../../boost__beast__http__error.html" title="http::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">header_field_name_too_large</span></code></a>.
                         </li>
 <li class="listitem">
                           If the size of <code class="computeroutput"><span class="identifier">value</span></code>
-                          exceeds max_value_size, the error code will be error::header_field_value_too_large.
+                          exceeds <a class="link" href="../max_value_size.html" title="http::message::max_value_size"><code class="computeroutput"><span class="identifier">max_value_size</span></code></a>,
+                          the error code will be <a class="link" href="../../boost__beast__http__error.html" title="http::error"><code class="computeroutput"><span class="identifier">error</span><span class="special">::</span><span class="identifier">header_field_value_too_large</span></code></a>.
                         </li>
 </ul></div>
                   </td>

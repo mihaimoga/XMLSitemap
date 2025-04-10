@@ -7,11 +7,18 @@
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/quicklook.html">
     <link rel="prev" href="index.html">
     <link rel="next" href="urls/index.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../_/css/boostlook.css">
     <link rel="stylesheet" href="../_/css/site.css">
     <link rel="stylesheet" href="../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../_'</script>
+<link rel="icon" href="../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -106,26 +113,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -217,10 +208,10 @@ instructions, that&#8217;s already been done for you.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In this example, we use the <code><a href="https://www.boost.org/doc/libs/master/libs/core/doc/html/" target="_blank" rel="noopener">string_view</a></code> type provided by <a href="https://www.boost.org/libs/core">Boost.Core</a>.
+<p>In this example, we use the <code><a href="reference/boost/urls/string_view.html" class="xref page">string_view</a></code> type provided by <a href="https://www.boost.org/libs/core">Boost.Core</a>.
 This is a
-<code><a href="https://www.boost.org/doc/libs/master/libs/core/doc/html/" target="_blank" rel="noopener">string_view</a></code> implementation that is implicitly convertible to <code><a href="https://en.cppreference.com/w/cpp/string/basic_string_view" target="_blank" rel="noopener">std::string_view</a></code>.
-The library namespace includes the aliases <code><a href="https://www.boost.org/doc/libs/master/libs/core/doc/html/" target="_blank" rel="noopener">string_view</a></code>, <code><a href="https://www.boost.org/doc/libs/master/libs/system/doc/html/system.html#ref_error_code" target="_blank" rel="noopener">error_code</a></code>, and
+<code><a href="reference/boost/urls/string_view.html" class="xref page">string_view</a></code> implementation that is implicitly convertible to <code><a href="https://en.cppreference.com/w/cpp/string/basic_string_view" target="_blank" rel="noopener">std::string_view</a></code>.
+The library namespace includes the aliases <code><a href="reference/boost/urls/string_view.html" class="xref page">string_view</a></code>, <code><a href="https://www.boost.org/doc/libs/master/libs/system/doc/html/system.html#ref_error_code" target="_blank" rel="noopener">error_code</a></code>, and
 <code><a href="https://www.boost.org/doc/libs/master/libs/system/doc/html/system.html#ref_resultt_e" target="_blank" rel="noopener">result</a></code>.</p>
 </div>
 <div class="paragraph">
@@ -271,7 +262,7 @@ throws an exception on a parsing error.</p>
 <td class="content">
 <div class="paragraph">
 <p>It is worth noting that <code><a href="reference/boost/urls/parse_uri.html" class="xref page">parse_uri</a></code> does not allocate any memory dynamically.
-Like a <code><a href="https://www.boost.org/doc/libs/master/libs/core/doc/html/" target="_blank" rel="noopener">string_view</a></code>, a <code><a href="reference/boost/urls/url_view.html" class="xref page">url_view</a></code> does not retain ownership of the underlying string buffer.</p>
+Like a <code><a href="reference/boost/urls/string_view.html" class="xref page">string_view</a></code>, a <code><a href="reference/boost/urls/url_view.html" class="xref page">url_view</a></code> does not retain ownership of the underlying string buffer.</p>
 </div>
 <div class="paragraph">
 <p>As long as the contents of the original string are unmodified, constructed URL views always contain a valid URL in its correctly serialized form.</p>
@@ -308,7 +299,7 @@ assert(u.fragment() == "page anchor");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>URL paths can be further divided into path segments with the function <code><a href="reference/boost/urls/url_view.html" class="xref page">url_view::segments</a></code>.
+<p>URL paths can be further divided into path segments with the function <code><a href="reference/boost/urls/url_view_base/segments.html" class="xref page">url_view::segments</a></code>.
 Although URL query strings are often used to represent key/value pairs, this interpretation is not defined by <a href="https://tools.ietf.org/html/rfc3986" target="blank_">rfc3986</a>.
 Users can treat the query as a single entity.
 <code><a href="reference/boost/urls/url_view.html" class="xref page">url_view</a></code> provides the function
@@ -395,12 +386,12 @@ assert(u2.has_fragment());</code></pre>
 </div>
 <div class="paragraph">
 <p>Many components do not have corresponding functions such as
-<code><a href="reference/boost/urls/url_view.html" class="xref page">url_view::has_authority</a></code>
+<code><a href="reference/boost/urls/url_view_base/has_authority.html" class="xref page">url_view::has_authority</a></code>
 to check for their existence.
 This happens because some URL components are mandatory.</p>
 </div>
 <div class="paragraph">
-<p>When applicable, the encoded components can also be directly accessed through a <code><a href="https://www.boost.org/doc/libs/master/libs/core/doc/html/" target="_blank" rel="noopener">string_view</a></code> without any need to allocate memory:</p>
+<p>When applicable, the encoded components can also be directly accessed through a <code><a href="reference/boost/urls/string_view.html" class="xref page">string_view</a></code> without any need to allocate memory:</p>
 </div>
 <div id="_tabs_2" class="openblock tabs is-loading">
 <div class="content">
@@ -581,7 +572,7 @@ While they can be accessed as individual encoded strings, they can also be acces
 </div>
 <div class="paragraph">
 <p>This code calls
-<code><a href="reference/boost/urls/url_view.html" class="xref page">url_view::encoded_segments</a></code>
+<code><a href="reference/boost/urls/url_view_base/encoded_segments.html" class="xref page">url_view::encoded_segments</a></code>
 to obtain the path segments as a container that returns encoded strings:</p>
 </div>
 <div id="_tabs_5" class="openblock tabs is-loading">

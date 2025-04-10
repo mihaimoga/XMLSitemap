@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../stacktrace.html" title="Chapter 36. Boost.Stacktrace 1.0">
+<link rel="up" href="../stacktrace.html" title="Chapter 34. Boost.Stacktrace 1.0">
 <link rel="prev" href="configuration_and_build.html" title="Configuration and Build">
 <link rel="next" href="acknowledgments.html" title="Acknowledgments">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,13 +39,13 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
           Looks like a page fault while dumping the trace on a containerized/virtualized
-          Windows system has a chance to deadlock. Page fault could happen easily
-          as we have to write the dump either to memory or to a file.
+          Windows system has a chance to deadlock. Page fault can happen easily as
+          we have to write the dump either to memory or to a file.
         </li>
 <li class="listitem">
-          On POSIX systems a deadlock could happen if a signal is received when throwing
+          On POSIX systems a deadlock can happen if a signal is received when throwing
           an exception <a href="https://github.com/boostorg/stacktrace/issues/131" target="_top">#131</a>.
-          Theoretically this could be worked around by bypassing the mutex locking
+          Theoretically this can be worked around by bypassing the mutex locking
           in C++-runtime at exception throw (<a href="https://github.com/userver-framework/userver/blob/4246909c99506d3ab34bd130a5154b4acc8e87de/core/src/engine/task/exception_hacks.cpp#L241-L244" target="_top">sample
           implementation</a> in the 🐙 userver framework), or by using a very
           modern runtime (glibc-2.35+ with <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=71744#c32" target="_top">modern</a>
@@ -64,8 +64,7 @@
       all of its source codes.
     </p>
 </div>
-<div class="copyright-footer">Copyright © 2016-2024 Antony
-      Polukhin<p>
+<div class="copyright-footer">Copyright © 2016-2025 Antony Polukhin<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

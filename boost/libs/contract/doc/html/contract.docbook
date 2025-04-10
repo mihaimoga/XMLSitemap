@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
-<chapter xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" id="boost_contract" rev:last-revision="$Date: 2024/12/05 01:00:36 $">
+<chapter xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" id="boost_contract" rev:last-revision="$Date: 2025/04/03 11:45:16 $">
   <chapterinfo><author>
       <firstname>Lorenzo</firstname> <surname>Caminiti <email>lorcaminiti@gmail.com</email></surname>
     </author><copyright>
@@ -13954,7 +13954,7 @@ $ ./introduction
         ...
     };
 @endcode
- This <computeroutput>typedef</computeroutput> must be <computeroutput>public</computeroutput> unless  <computeroutput><link linkend="doxygen.reference.classboost_1_1contract_1_1access">boost::contract::access</link></computeroutput> is used.</para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.tutorial.base_classes__subcontracting_"> Base Classes</link></para>
+</para><para>This <computeroutput>typedef</computeroutput> must be <computeroutput>public</computeroutput> unless  <computeroutput><link linkend="doxygen.reference.classboost_1_1contract_1_1access">boost::contract::access</link></computeroutput> is used.</para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.tutorial.base_classes__subcontracting_"> Base Classes</link></para>
 </formalpara>
 
 </para><variablelist spacing="compact"><?dbhtml 
@@ -15462,7 +15462,7 @@ In general, it is not recommended to define this macro because these compile-tim
 <phrase role="keyword">class</phrase> <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">old_ptr</link> <phrase role="special">{</phrase>
 <phrase role="keyword">public</phrase><phrase role="special">:</phrase>
   <phrase role="comment">// types</phrase>
-  <phrase role="keyword">typedef</phrase> <phrase role="identifier">T</phrase> <anchor id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1aac75a3cf38e3b69de870d42dc129a2e9"/><phrase role="identifier">element_type</phrase><phrase role="special">;</phrase>  <phrase role="comment">// Pointed old value type. </phrase>
+  <phrase role="keyword">typedef</phrase> <phrase role="identifier">T</phrase> <anchor id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a77dca6092e64a71132e103aa92883d83"/><phrase role="identifier">element_type</phrase><phrase role="special">;</phrase>  <phrase role="comment">// Pointed old value type. </phrase>
 
   <phrase role="comment">// <link linkend="id28-bb">public member functions</link></phrase>
   <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a699998b265a4267134c29c81cc1cc8be"><phrase role="identifier">old_ptr</phrase></link><phrase role="special">(</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
@@ -15499,7 +15499,7 @@ In general, it is not recommended to define this macro because these compile-tim
 <phrase role="keyword">class</phrase> <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable">old_ptr_if_copyable</link> <phrase role="special">{</phrase>
 <phrase role="keyword">public</phrase><phrase role="special">:</phrase>
   <phrase role="comment">// types</phrase>
-  <phrase role="keyword">typedef</phrase> <phrase role="identifier">T</phrase> <anchor id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1a9af83c479c61b9b5aaf621cfb114a8ba"/><phrase role="identifier">element_type</phrase><phrase role="special">;</phrase>  <phrase role="comment">// Pointed old value type. </phrase>
+  <phrase role="keyword">typedef</phrase> <phrase role="identifier">T</phrase> <anchor id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1af9f1d071df554d53235e27bf647759f8"/><phrase role="identifier">element_type</phrase><phrase role="special">;</phrase>  <phrase role="comment">// Pointed old value type. </phrase>
 
   <phrase role="comment">// <link linkend="id30-bb">public member functions</link></phrase>
   <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1ac91c6fa0ac5d563e9da9f6d16cb98996"><phrase role="identifier">old_ptr_if_copyable</phrase></link><phrase role="special">(</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
@@ -15587,7 +15587,7 @@ In general, it is not recommended to define this macro because these compile-tim
 <phrase role="special">}</phrase><phrase role="special">;</phrase></synopsis></refsynopsisdiv><refsect1><title>Description</title><para>By default, the implementation of this trait uses <computeroutput>T's</computeroutput> copy constructor to make one single copy of the specified value. However, programmers can specialize this trait to copy old values using user-specific operations different from <computeroutput>T's</computeroutput> copy constructor. The default implementation of this trait is equivalent to:</para><para><programlisting><phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="keyword">typename</phrase> <phrase role="identifier">T</phrase><phrase role="special">&gt;</phrase>
 <phrase role="keyword">class</phrase> <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ac7334abe57c73ced74e956e439fbb380"><phrase role="identifier">old_value_copy</phrase></link> <phrase role="special">{</phrase>
 <phrase role="keyword">public</phrase><phrase role="special">:</phrase>
-    <phrase role="keyword">explicit</phrase> <phrase role="identifier">old_value_copy</phrase><phrase role="special">(</phrase><phrase role="identifier">T</phrase> <phrase role="keyword">const</phrase><phrase role="special">&amp;</phrase> <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ae7b1f3045099afee3fedad57e9c4fbb3"><phrase role="identifier">old</phrase></link><phrase role="special">)</phrase> <phrase role="special">:</phrase>
+    <phrase role="keyword">explicit</phrase> <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ac7334abe57c73ced74e956e439fbb380"><phrase role="identifier">old_value_copy</phrase></link><phrase role="special">(</phrase><phrase role="identifier">T</phrase> <phrase role="keyword">const</phrase><phrase role="special">&amp;</phrase> <link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ae7b1f3045099afee3fedad57e9c4fbb3"><phrase role="identifier">old</phrase></link><phrase role="special">)</phrase> <phrase role="special">:</phrase>
         <phrase role="identifier">old_</phrase><phrase role="special">(</phrase><link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy_1ae7b1f3045099afee3fedad57e9c4fbb3"><phrase role="identifier">old</phrase></link><phrase role="special">)</phrase> <phrase role="comment">// One single copy of value using T's copy constructor.</phrase>
     <phrase role="special">{</phrase><phrase role="special">}</phrase>
 

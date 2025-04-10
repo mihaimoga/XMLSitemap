@@ -3,13 +3,20 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>boost::urls::params_base::find_last :: Boost Libraries Documentation</title>
+    <title>boost::urls::params&lowbar;base::find&lowbar;last :: Boost Libraries Documentation</title>
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/reference/boost/urls/params_base/find_last-04.html">
-  <meta name="generator" content="Antora 3.1.9">
+  <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../../../../_/css/site.css">
     <link rel="stylesheet" href="../../../../../_/css/vendor/tabs.css">
     <script>var uiRootPath = '../../../../../_'</script>
+<link rel="icon" href="../../../../../_/img/favicons/favicon.ico" type="image/x-icon">
+    <!-- Favicon configuration -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../_/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../_/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../_/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../../../../../_/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../../../../../_/img/favicons/favicon.ico">
   </head>
   <body class="article toc2 toc-left">
     <div class="boostlook">
@@ -104,26 +111,10 @@
         <li class="" data-depth="1">
             <a class="nav-link" href="../../../../reference.html">Reference</a>
         </li>
-        <ul class="nav-list">
-        <li class="" data-depth="2">
-            <span class="nav-text">Concepts</span>
-        </li>
-        <ul class="nav-list">
-        <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/CharSet.html">CharSet</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/Rule.html">Rule</a>
-        </li>
-              <li class="" data-depth="3">
-            <a class="nav-link" href="../../../../concepts/StringToken.html">StringToken</a>
-        </li>
-        </ul>
-        <li class="" data-depth="2">
+              <li class="" data-depth="1">
             <a class="nav-link" href="../../../../HelpCard.html">Help Card</a>
         </li>
         </ul>
-  </ul>
   </ul>
   </nav>
 </div>
@@ -142,13 +133,13 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="find_last-04.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/params_base.html">params_base</a>::find_last</a></li>
+    <li><a href="find_last-04.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/params_base.html">params&lowbar;base</a>::find&lowbar;last</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
 </div>
 </div>
-    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/params_base.html">params_base</a>::find_last</h1>
+    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/urls.html">urls</a>::<a href="../../../boost/urls/params_base.html">params&lowbar;base</a>::find&lowbar;last</h1>
   <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -160,14 +151,14 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/params_base.hpp#L458">boost/url/params_base.hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/params_base.hpp#L446">boost&sol;url&sol;params&lowbar;base&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp"><a href="iterator.html" class="xref page">iterator</a>
-find_last(
-    core::string_view key,
-    <a href="../ignore_case_param.html" class="xref page">ignore_case_param</a> ic = = {}) const noexcept;</code></pre>
+find&lowbar;last(
+    core::string&lowbar;view key,
+    <a href="../ignore_case_param.html" class="xref page">ignore&lowbar;case&lowbar;param</a> ic = &lcub;&rcub;) const noexcept;</code></pre>
 </div>
 </div>
 </div>
@@ -176,27 +167,28 @@ find_last(
 <h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This function examines the
-parameters in the container to
-find a match for the specified key.
-The comparison is performed as if all
-escaped characters were decoded first.</p>
+<p>This function examines the parameters in the container to find a match for the specified key&period; The comparison is performed as if all escaped characters were decoded first&period;</p>
 </div>
 <div class="paragraph">
-<p>The search starts from the last param
-and proceeds backwards until either the
-key is found or the beginning of the
-range is reached, in which case <code>end()</code>
-is returned.</p>
+<p>The search starts from the last param and proceeds backwards until either the key is found or the beginning of the range is reached, in which case <code>end()</code> is returned&period;</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">assert( (*url_view( "?first=John&amp;last=Doe" ).params().find_last( "last" )).value == "Doe" );</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_linear_in_this_buffer_size"><a class="anchor" href="#_linear_in_this_buffer_size"></a>Linear in <code>this-&gt;buffer().size()</code>.</h3>
-
+</div>
+</div>
+<div class="sect1">
+<h2 id="_complexity"><a class="anchor" href="#_complexity"></a>Complexity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Linear in <code>this&hyphen;&gt;buffer()&period;size()</code>&period;</p>
 </div>
 </div>
 </div>
@@ -216,31 +208,18 @@ is returned.</p>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>key</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-The key to match.
-By default, a case-sensitive
-comparison is used.
-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The key to match&period; By default, a case&hyphen;sensitive comparison is used&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ic</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">
-An optional parameter. If
-the value
-xref:/boost/urls/ignore_case.adoc[ignore_case
-is passed
-here, the comparison is
-case-insensitive.
-]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An optional parameter&period; If the value <a href="../ignore_case.html" class="xref page"><code>ignore&lowbar;case</code></a> is passed here, the comparison is case&hyphen;insensitive&period;</p></td>
 </tr>
 </tbody>
 </table>

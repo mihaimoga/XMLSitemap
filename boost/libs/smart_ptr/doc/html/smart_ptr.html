@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="author" content="Greg Colvin, Beman Dawes, Peter Dimov, Glen Fernandes">
 <title>Boost.SmartPtr: The Smart Pointer Library</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -85,10 +85,10 @@ code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;
 ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -141,7 +141,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -163,6 +163,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -209,13 +210,10 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
-.exampleblock>.content>:first-child{margin-top:0}
-.exampleblock>.content>:last-child{margin-bottom:0}
 .sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
-.sidebarblock>:first-child{margin-top:0}
-.sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
-.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
 .literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
@@ -331,7 +329,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -394,7 +392,7 @@ b.conum *{color:inherit!important}
 dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
 h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
 p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
-p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
 .exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
@@ -439,216 +437,119 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <style>
 pre.rouge table td { padding: 5px; }
 pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
-  font-style: italic;
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
 }
-pre.rouge .cp {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
 }
 pre.rouge .gr {
-  color: #aa0000;
+  color: #f6f8fa;
 }
-pre.rouge .gh {
-  color: #999999;
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
 }
 pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
+  color: #116329;
+  background-color: #dafbe1;
 }
-pre.rouge .go {
-  color: #888888;
+pre.rouge .ges {
+  font-weight: bold;
+  font-style: italic;
 }
-pre.rouge .gp {
-  color: #555555;
+pre.rouge .kc {
+  color: #0550ae;
 }
-pre.rouge .gs {
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
   font-weight: bold;
 }
 pre.rouge .gu {
-  color: #aaaaaa;
-}
-pre.rouge .gt {
-  color: #aa0000;
-}
-pre.rouge .kc {
-  color: #000000;
+  color: #0550ae;
   font-weight: bold;
 }
-pre.rouge .kd {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sa {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #008080;
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
 }
 pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
+  color: #8250df;
 }
 pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
   font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .o {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #bbbbbb;
-}
-pre.rouge {
-  background-color: #f8f8f8;
 }
 </style>
 </head>
@@ -664,6 +565,7 @@ pre.rouge {
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#changelog">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changelog_changes_in_1_88_0">Changes in 1.88.0</a></li>
 <li><a href="#changelog_changes_in_1_87_0">Changes in 1.87.0</a></li>
 <li><a href="#changelog_changes_in_1_79_0">Changes in 1.79.0</a></li>
 <li><a href="#changelog_changes_in_1_74_0">Changes in 1.74.0</a></li>
@@ -977,6 +879,16 @@ are not allowed to throw exceptions.</p>
 <div class="sect1">
 <h2 id="changelog">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changelog_changes_in_1_88_0">Changes in 1.88.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Fix <code>operator&lt;&lt;</code> for wide streams (accidentally broken in 1.87.0)</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changelog_changes_in_1_87_0">Changes in 1.87.0</h3>
 <div class="ulist">
@@ -1330,10 +1242,10 @@ On C++03 compilers, the return value is of an unspecified type.
     <span class="n">boost</span><span class="o">::</span><span class="n">scoped_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ptr</span><span class="p">;</span>
   <span class="nl">public:</span>
     <span class="n">MyClass</span><span class="p">()</span> <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">add_one</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">++*</span><span class="n">ptr</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="nf">add_one</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="o">++*</span><span class="n">ptr</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">scoped_ptr</span><span class="o">&lt;</span><span class="n">Shoe</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">(</span><span class="k">new</span> <span class="n">Shoe</span><span class="p">);</span>
     <span class="n">MyClass</span> <span class="n">my_instance</span><span class="p">;</span>
@@ -1736,7 +1648,7 @@ arguments to the constructor of <code>Y</code> is also OK.</p>
     <span class="n">f</span><span class="p">(</span> <span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">()</span> <span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="n">bad</span><span class="p">()</span>
+<span class="kt">void</span> <span class="nf">bad</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">f</span><span class="p">(</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span> <span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">),</span> <span class="n">g</span><span class="p">()</span> <span class="p">);</span>
 <span class="p">}</span></code></pre>
@@ -2836,6 +2748,9 @@ and the implementation is free to meet the effects (and the implied guarantees) 
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2847,9 +2762,6 @@ This conversion operator allows <code>shared_ptr</code> objects to be used in bo
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3178,6 +3090,9 @@ The rest of the comparison operators are omitted by design.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3189,9 +3104,6 @@ Provided as an aid to generic programming. Used by <code>mem_fn</code>.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -3414,6 +3326,9 @@ The function in this section are atomic with respect to the first <code>shared_p
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3425,9 +3340,6 @@ This implementation is not lock-free.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3451,6 +3363,9 @@ This implementation is not lock-free.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3463,9 +3378,6 @@ The <code>int</code> argument is the <code>memory_order</code>, but this impleme
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4070,6 +3982,9 @@ These constructors are an extension, not present in <code>std::weak_ptr</code>.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4081,9 +3996,6 @@ The implementation is free to meet the effects (and the implied guarantees) via 
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -4151,6 +4063,9 @@ The implementation is free to meet the effects (and the implied guarantees) via 
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4162,9 +4077,6 @@ This function is an extension, not present in <code>std::weak_ptr</code>.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -4958,7 +4870,7 @@ corresponding <code>weak_ptr</code>.</p>
     <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Y</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="n">Y</span><span class="p">);</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Y</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">f</span><span class="p">();</span>
@@ -5022,6 +4934,9 @@ corresponding <code>weak_ptr</code>.</p>
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5033,9 +4948,6 @@ corresponding <code>weak_ptr</code>.</p>
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5054,6 +4966,9 @@ corresponding <code>weak_ptr</code>.</p>
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5065,9 +4980,6 @@ corresponding <code>weak_ptr</code>.</p>
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5091,6 +5003,9 @@ corresponding <code>weak_ptr</code>.</p>
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5102,9 +5017,6 @@ These members throw <code>bad_weak_ptr</code> when <code>*this</code> is not own
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5121,7 +5033,7 @@ For example, in the following code:</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="k">class</span> <span class="nc">Y</span><span class="o">:</span> <span class="k">public</span> <span class="n">boost</span><span class="o">::</span><span class="n">enable_shared_from_this</span><span class="o">&lt;</span><span class="n">Y</span><span class="o">&gt;</span> <span class="p">{};</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Y</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="n">Y</span><span class="p">);</span>
 <span class="p">}</span></code></pre>
@@ -5156,6 +5068,9 @@ For example, in the following code:</p>
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5169,9 +5084,6 @@ Unlike <code>shared_from_this()</code>, <code>weak_from_this()</code> is valid i
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -5209,7 +5121,7 @@ that it&#8217;s not a template, and is its recommended replacement for new code.
     <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Y</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="n">Y</span><span class="p">);</span>
     <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Y</span><span class="o">&gt;</span> <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">f</span><span class="p">();</span>
@@ -5257,6 +5169,9 @@ that it&#8217;s not a template, and is its recommended replacement for new code.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5268,9 +5183,6 @@ Throws <code>bad_weak_ptr</code> when <code>p</code> is not owned by a <code>sha
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5289,6 +5201,9 @@ Throws <code>bad_weak_ptr</code> when <code>p</code> is not owned by a <code>sha
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5302,9 +5217,6 @@ Unlike <code>shared_from(this)</code>, <code>weak_from(this)</code> is valid in 
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -6646,6 +6558,9 @@ the implications are thoroughly understood.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -6658,9 +6573,6 @@ like <code>if (p &amp;&amp; p-&gt;valid()) {}</code>.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6847,6 +6759,9 @@ On C++03 compilers, the return value is of an unspecified type.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -6858,9 +6773,6 @@ Allows <code>intrusive_ptr</code> objects to be used as keys in associative cont
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -6905,6 +6817,9 @@ Allows <code>intrusive_ptr</code> objects to be used as keys in associative cont
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -6916,9 +6831,6 @@ Provided as an aid to generic programming. Used by <code>mem_fn</code>.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -7118,6 +7030,9 @@ support for threading is common, the default counter policy is
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -7131,9 +7046,6 @@ would increment the reference counter.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -7155,6 +7067,9 @@ would increment the reference counter.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -7167,9 +7082,6 @@ through the <code>Derived</code> class.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -7214,6 +7126,9 @@ through the <code>Derived</code> class.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -7225,9 +7140,6 @@ The returned value may not be actual in multi-threaded applications.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -8242,6 +8154,9 @@ wraps it into an outer <code>shared_ptr</code> with a non-atomic use count (conc
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -8253,9 +8168,6 @@ On C++03 compilers, the return value is of an unspecified type.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8578,6 +8490,9 @@ The rest of the comparison operators are omitted by design.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -8589,9 +8504,6 @@ Provided as an aid to generic programming. Used by <code>mem_fn</code>.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -9261,12 +9173,12 @@ create pointer independent code.</p>
 <span class="k">class</span> <span class="nc">derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">base</span> <span class="p">{</span> <span class="p">};</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Ptr</span><span class="p">&gt;</span>
-<span class="kt">void</span> <span class="n">check_if_it_is_derived</span><span class="p">(</span><span class="k">const</span> <span class="n">Ptr</span><span class="o">&amp;</span> <span class="n">ptr</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">check_if_it_is_derived</span><span class="p">(</span><span class="k">const</span> <span class="n">Ptr</span><span class="o">&amp;</span> <span class="n">ptr</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">assert</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">dynamic_pointer_cast</span><span class="o">&lt;</span><span class="n">derived</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">base</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">derived</span><span class="p">;</span>
   <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">&gt;</span> <span class="n">sptr</span><span class="p">(</span><span class="k">new</span> <span class="n">derived</span><span class="p">);</span>
@@ -9539,6 +9451,9 @@ is not a data race.</p>
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -9550,9 +9465,6 @@ This implementation is not lock-free.
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9576,6 +9488,9 @@ This implementation is not lock-free.
 </dd>
 </dl>
 </div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -9588,9 +9503,6 @@ The <code>int</code> argument is intended to be of type <code>memory_order</code
 </td>
 </tr>
 </table>
-</div>
-</li>
-</ul>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9986,10 +9898,10 @@ already use ownership-based equality.)</p>
 
     <span class="n">impl</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">mode</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
     <span class="o">~</span><span class="n">impl</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">read</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">read</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="n">file</span><span class="o">::</span><span class="n">file</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">mode</span><span class="p">)</span><span class="o">:</span> <span class="n">pimpl_</span><span class="p">(</span><span class="k">new</span> <span class="n">impl</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="p">))</span>
+<span class="n">file</span><span class="o">::</span><span class="n">file</span><span class="p">(</span><span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">mode</span><span class="p">)</span><span class="o">:</span> <span class="n">pimpl_</span><span class="p">(</span><span class="k">new</span> <span class="nf">impl</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="p">))</span>
 <span class="p">{</span>
 <span class="p">}</span>
 
@@ -10044,7 +9956,7 @@ The abstract classes are sometimes called "interfaces" and the pattern is known 
       <span class="c1">// ...</span>
     <span class="p">}</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">g</span><span class="p">()</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">g</span><span class="p">()</span>
     <span class="p">{</span>
       <span class="c1">// ...</span>
     <span class="p">}</span>
@@ -10087,7 +9999,7 @@ The abstract classes are sometimes called "interfaces" and the pattern is known 
         <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="n">X</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">p</span><span class="p">;</span> <span class="p">}</span>
     <span class="p">};</span>
 
-<span class="nl">public:</span>
+<span class="k">public</span><span class="o">:</span>
 
     <span class="k">static</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">create</span><span class="p">()</span>
     <span class="p">{</span>
@@ -10245,7 +10157,7 @@ they will share the single reference created in <code>make_shared_from_COM</code
     <span class="p">{</span>
     <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">void</span> <span class="k">const</span> <span class="o">*</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="nf">operator</span><span class="p">()(</span><span class="kt">void</span> <span class="k">const</span> <span class="o">*</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">p_</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
     <span class="p">}</span>
@@ -10375,7 +10287,7 @@ If <code>X</code> is supposed to always live on the heap, and be managed by a <c
 
     <span class="n">X</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
-<span class="nl">public:</span>
+<span class="k">public</span><span class="o">:</span>
 
     <span class="k">static</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">create</span><span class="p">()</span>
     <span class="p">{</span>
@@ -10428,7 +10340,7 @@ The transformations <a href="#techniques_from_raw">described in the previous tec
 
     <span class="n">impl</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
     <span class="k">virtual</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">getX</span><span class="p">()</span>
     <span class="p">{</span>
@@ -10454,7 +10366,7 @@ The transformations <a href="#techniques_from_raw">described in the previous tec
 
     <span class="n">impl</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
-<span class="nl">public:</span>
+<span class="k">public</span><span class="o">:</span>
 
     <span class="k">static</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">impl</span><span class="o">&gt;</span> <span class="n">create</span><span class="p">()</span>
     <span class="p">{</span>
@@ -10463,7 +10375,7 @@ The transformations <a href="#techniques_from_raw">described in the previous tec
         <span class="k">return</span> <span class="n">pi</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 
     <span class="k">virtual</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">getX</span><span class="p">()</span>
     <span class="p">{</span>
@@ -10685,7 +10597,7 @@ used to non-intrusively associate arbitrary data with objects managed by <code>s
     <span class="kt">void</span> <span class="n">g</span><span class="p">();</span>
 <span class="p">};</span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="n">X</span> <span class="n">x</span><span class="p">;</span>
 
@@ -11576,7 +11488,7 @@ mandates that relational operations on pointers are unspecified (5.9
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-12-05 00:53:18 UTC
+Last updated 2025-04-03 11:37:23 UTC
 </div>
 </div>
 <style>
