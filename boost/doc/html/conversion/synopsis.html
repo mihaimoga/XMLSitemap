@@ -33,17 +33,17 @@
 <span class="comment">// Throws: std::bad_cast if ( dynamic_cast&lt;Derived&gt;(x) == 0 )</span>
 <span class="comment">// Returns: dynamic_cast&lt;Derived&gt;(x)</span>
 <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">Derived</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Base</span><span class="special">&gt;</span>
-<span class="keyword">inline</span> <span class="identifier">Derived</span> <span class="identifier">polymorphic_cast</span><span class="special">(</span><span class="identifier">Base</span><span class="special">*</span> <span class="identifier">x</span><span class="special">);</span>
+<span class="keyword">constexpr</span> <span class="identifier">Derived</span> <span class="identifier">polymorphic_cast</span><span class="special">(</span><span class="identifier">Base</span><span class="special">*</span> <span class="identifier">x</span><span class="special">);</span>
 
 <span class="comment">// Effects: assert( dynamic_cast&lt;Derived&gt;(x) == x );</span>
 <span class="comment">// Returns: static_cast&lt;Derived&gt;(x)</span>
 <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">Derived</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Base</span><span class="special">&gt;</span>
-<span class="keyword">inline</span> <span class="identifier">Derived</span> <span class="identifier">polymorphic_downcast</span><span class="special">(</span><span class="identifier">Base</span><span class="special">*</span> <span class="identifier">x</span><span class="special">);</span>
+<span class="keyword">constexpr</span> <span class="identifier">Derived</span> <span class="identifier">polymorphic_downcast</span><span class="special">(</span><span class="identifier">Base</span><span class="special">*</span> <span class="identifier">x</span><span class="special">);</span>
 
 <span class="comment">// Effects: assert( dynamic_cast&lt;Derived&gt;(&amp;x) == &amp;x );</span>
 <span class="comment">// Returns: static_cast&lt;Derived&gt;(x)</span>
 <span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">Derived</span><span class="special">,</span> <span class="keyword">class</span> <span class="identifier">Base</span><span class="special">&gt;</span>
-<span class="keyword">inline</span> <span class="identifier">Derived</span> <span class="identifier">polymorphic_downcast</span><span class="special">(</span><span class="identifier">Base</span><span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
+<span class="keyword">constexpr</span> <span class="identifier">Derived</span> <span class="identifier">polymorphic_downcast</span><span class="special">(</span><span class="identifier">Base</span><span class="special">&amp;</span> <span class="identifier">x</span><span class="special">);</span>
 
 <span class="comment">// Throws: std::bad_cast if ( dynamic_pointer_cast&lt;Derived&gt;(x) == 0 )</span>
 <span class="comment">// Returns: dynamic_pointer_cast&lt;Derived&gt;(x)</span>

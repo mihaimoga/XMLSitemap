@@ -73,7 +73,7 @@
 <li class="listitem">
 <p>
           Automatic connection management is now achieved through the use of
-          <code class="computeroutput"><a class="link" href="../doxygen/boost_typeindex_header_reference/classboost_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>/<code class="computeroutput">weak_ptr</code>
+          <code class="computeroutput">shared_ptr</code>/<code class="computeroutput">weak_ptr</code>
           and <code class="computeroutput"><a class="link" href="../boost/signals2/slot.html#id-1_3_34_6_12_5_1_1_17_1-bb">signals2::slot::track</a></code>(), as described in the
           <a class="link" href="tutorial.html#signals2.tutorial.connection-management" title="Automatic Connection Management (Intermediate)">tutorial</a>.
           However, the old (thread-unsafe) Boost.Signals scheme of automatic connection management
@@ -89,7 +89,7 @@
         </p>
 </li>
 <li class="listitem">
-<p>Support for postconstructors (and predestructors) on objects managed by <code class="computeroutput"><a class="link" href="../doxygen/boost_typeindex_header_reference/classboost_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code>
+<p>Support for postconstructors (and predestructors) on objects managed by <code class="computeroutput">shared_ptr</code>
           has been added with
           the <code class="computeroutput"><a class="link" href="../boost/signals2/deconstruct.html" title="Function deconstruct">deconstruct</a></code> factory function.
           This was motivated by the importance of
@@ -107,7 +107,7 @@
           wish to use the new automatic connection management scheme.  You could then
           move the connection creation from the constructor to to the an
           <code class="computeroutput">adl_postconstruct</code> function, where
-          a reference to the owning <code class="computeroutput"><a class="link" href="../doxygen/boost_typeindex_header_reference/classboost_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code> is available for
+          a reference to the owning <code class="computeroutput">shared_ptr</code> is available for
           passing to <code class="computeroutput"><a class="link" href="../boost/signals2/slot.html#id-1_3_34_6_12_5_1_1_17_1-bb">signals2::slot::track</a></code>.
           The <code class="computeroutput"><a class="link" href="../boost/signals2/deconstruct.html" title="Function deconstruct">deconstruct</a></code> function would be used create objects
           of the class and run their associated <code class="computeroutput">adl_postconstruct</code> function.
@@ -273,7 +273,7 @@
 <a name="signals2.api_history.1-45"></a>Version 1.45</h4></div></div></div>
 <p>
         Version 1.45 added <code class="computeroutput"><a class="link" href="../boost/signals2/slot.html#id-1_3_34_6_12_5_1_1_17_2-bb">slot::track_foreign</a></code>().  This method allows tracking
-        of objects owned by <code class="computeroutput">shared_ptr</code> classes other than <code class="computeroutput"><a class="link" href="../doxygen/boost_typeindex_header_reference/classboost_1_1shared__ptr.html" title="Class template shared_ptr">boost::shared_ptr</a></code>,
+        of objects owned by <code class="computeroutput">shared_ptr</code> classes other than <code class="computeroutput">boost::shared_ptr</code>,
         for example <code class="computeroutput">std::shared_ptr</code>.
       </p>
 </div>

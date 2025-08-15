@@ -33,10 +33,10 @@
 <div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../boost_compute/reference.html#doxygen.header_reference.image__object_8hpp" title="Header &lt;boost/compute/image/image_object.hpp&gt;">boost/compute/image/image_object.hpp</a>&gt;
 
 </span>
-<span class="keyword">class</span> <a class="link" href="classboost_1_1compute_1_1image__object.html" title="Class image_object">image_object</a> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">memory_object</span> <span class="special">{</span>
+<span class="keyword">class</span> <a class="link" href="classboost_1_1compute_1_1image__object.html" title="Class image_object">image_object</a> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">memory_object</span> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1image__object.html#id48-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1image__object.html#id54-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1ae4dc3801397f5849c4b1506cf84564a9"><span class="identifier">image_object</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1afe7f79eb3d0d87842349fdd43ad46e30"><span class="identifier">image_object</span></a><span class="special">(</span><span class="identifier">cl_mem</span><span class="special">,</span> <span class="keyword">bool</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1a13e850d8a10f52a66fdfcaf0836b8ff5"><span class="identifier">image_object</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1image__object.html" title="Class image_object">image_object</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
@@ -49,23 +49,23 @@
   <span class="identifier">size_t</span> <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1aa616686c6233f84c7f3529299a8d0604"><span class="identifier">height</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="identifier">size_t</span> <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1adb5f1855c216fa71e8dc8c7e1366eccc"><span class="identifier">depth</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1image__object.html#id49-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1compute_1_1image__object.html#id55-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <a class="link" href="classboost_1_1compute_1_1image__format.html" title="Class image_format">image_format</a> <span class="special">&gt;</span> 
-  <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1ab102addb73fefdd1836ee142ba939711"><span class="identifier">get_supported_formats</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">context</span> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">cl_mem_object_type</span><span class="special">,</span> 
+  <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1ab102addb73fefdd1836ee142ba939711"><span class="identifier">get_supported_formats</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a> <span class="special">&amp;</span><span class="special">,</span> <span class="identifier">cl_mem_object_type</span><span class="special">,</span> 
                         <span class="identifier">cl_mem_flags</span> <span class="special">=</span> <span class="identifier">read_write</span><span class="special">)</span><span class="special">;</span>
-  <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1ad5301be5c21d5032f1198fe9f802adf5"><span class="identifier">is_supported_format</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1image__format.html" title="Class image_format">image_format</a> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">context</span> <span class="special">&amp;</span><span class="special">,</span> 
+  <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1compute_1_1image__object.html#doxygen.header_reference.classboost_1_1compute_1_1image__object_1ad5301be5c21d5032f1198fe9f802adf5"><span class="identifier">is_supported_format</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1image__format.html" title="Class image_format">image_format</a> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a> <span class="special">&amp;</span><span class="special">,</span> 
                                   <span class="identifier">cl_mem_object_type</span><span class="special">,</span> 
                                   <span class="identifier">cl_mem_flags</span> <span class="special">=</span> <span class="identifier">read_write</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id29185"></a><h2>Description</h2>
+<a name="id36376"></a><h2>Description</h2>
 <p>The <a class="link" href="classboost_1_1compute_1_1image__object.html" title="Class image_object">image_object</a> class is the base-class for image objects on compute devices.</p>
 <p><b>See Also: </b><a class="link" href="classboost_1_1compute_1_1image1d.html" title="Class image1d">image1d</a>, <a class="link" href="classboost_1_1compute_1_1image2d.html" title="Class image2d">image2d</a>, <a class="link" href="classboost_1_1compute_1_1image3d.html" title="Class image3d">image3d</a> </p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id29196"></a><h3>
-<a name="id48-bb"></a><code class="computeroutput">image_object</code> public member functions</h3>
+<a name="id36387"></a><h3>
+<a name="id54-bb"></a><code class="computeroutput">image_object</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><a name="doxygen.header_reference.classboost_1_1compute_1_1image__object_1ae4dc3801397f5849c4b1506cf84564a9"></a><span class="identifier">image_object</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre></li>
 <li class="listitem"><pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.header_reference.classboost_1_1compute_1_1image__object_1afe7f79eb3d0d87842349fdd43ad46e30"></a><span class="identifier">image_object</span><span class="special">(</span><span class="identifier">cl_mem</span> mem<span class="special">,</span> <span class="keyword">bool</span> retain <span class="special">=</span> <span class="keyword">true</span><span class="special">)</span><span class="special">;</span></pre></li>
@@ -96,19 +96,19 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id29331"></a><h3>
-<a name="id49-bb"></a><code class="computeroutput">image_object</code> public static functions</h3>
+<a name="id36522"></a><h3>
+<a name="id55-bb"></a><code class="computeroutput">image_object</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span> <a class="link" href="classboost_1_1compute_1_1image__format.html" title="Class image_format">image_format</a> <span class="special">&gt;</span> 
-<a name="doxygen.header_reference.classboost_1_1compute_1_1image__object_1ab102addb73fefdd1836ee142ba939711"></a><span class="identifier">get_supported_formats</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">context</span> <span class="special">&amp;</span> context<span class="special">,</span> <span class="identifier">cl_mem_object_type</span> type<span class="special">,</span> 
+<a name="doxygen.header_reference.classboost_1_1compute_1_1image__object_1ab102addb73fefdd1836ee142ba939711"></a><span class="identifier">get_supported_formats</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a> <span class="special">&amp;</span> context<span class="special">,</span> <span class="identifier">cl_mem_object_type</span> type<span class="special">,</span> 
                       <span class="identifier">cl_mem_flags</span> flags <span class="special">=</span> <span class="identifier">read_write</span><span class="special">)</span><span class="special">;</span></pre>
 <p>Returns the supported image formats for the <code class="computeroutput">type</code> in <code class="computeroutput">context</code>.</p>
 <p>See the documentation for </p>
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">bool</span> <a name="doxygen.header_reference.classboost_1_1compute_1_1image__object_1ad5301be5c21d5032f1198fe9f802adf5"></a><span class="identifier">is_supported_format</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1image__format.html" title="Class image_format">image_format</a> <span class="special">&amp;</span> format<span class="special">,</span> 
-                                <span class="keyword">const</span> <span class="identifier">context</span> <span class="special">&amp;</span> context<span class="special">,</span> 
+                                <span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a> <span class="special">&amp;</span> context<span class="special">,</span> 
                                 <span class="identifier">cl_mem_object_type</span> type<span class="special">,</span> 
                                 <span class="identifier">cl_mem_flags</span> flags <span class="special">=</span> <span class="identifier">read_write</span><span class="special">)</span><span class="special">;</span></pre>
 <p>Returns <code class="computeroutput">true</code> if <code class="computeroutput">format</code> is a supported image format for <code class="computeroutput">type</code> in <code class="computeroutput">context</code> with <code class="computeroutput">flags</code>. </p>

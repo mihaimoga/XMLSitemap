@@ -617,6 +617,7 @@ pre.rouge .gs {
 <li><a href="#design:interrupt_await">interrupt_await</a></li>
 <li><a href="#associators">Associators</a></li>
 <li><a href="#threading">Threading</a></li>
+<li><a href="#design:io">IO</a></li>
 </ul>
 </li>
 <li><a href="#reference">Reference</a>
@@ -726,12 +727,53 @@ pre.rouge .gs {
 <li><a href="#result">cobalt/result.hpp</a></li>
 <li><a href="#async_for">cobalt/async_for.hpp</a></li>
 <li><a href="#error">cobalt/error.hpp</a></li>
+<li><a href="#detached">cobalt/composition.hpp</a></li>
 <li><a href="#config">cobalt/config.hpp</a>
 <ul class="sectlevel3">
 <li><a href="#executor_type">executor_type</a></li>
 <li><a href="#pmr">pmr</a></li>
 </ul>
 </li>
+<li><a href="#cobaltiobuffer_hpp">cobalt/io/buffer.hpp</a>
+<ul class="sectlevel3">
+<li><a href="#mutable_buffer_sequence">mutable_buffer_sequence</a></li>
+<li><a href="#const_buffer_sequence">const_buffer_sequence</a></li>
+</ul>
+</li>
+<li><a href="#cobaltioops_hpp">cobalt/io/ops.hpp</a></li>
+<li><a href="#cobaltiosteady_timer_hpp">cobalt/io/steady_timer.hpp</a></li>
+<li><a href="#cobaltiosystem_timer_hpp">cobalt/io/system_timer.hpp</a></li>
+<li><a href="#cobaltiosleep_hpp">cobalt/io/sleep.hpp</a></li>
+<li><a href="#cobaltiosignal_set_hpp">cobalt/io/signal_set.hpp</a>
+<ul class="sectlevel3">
+<li><a href="#outline_2">Outline</a></li>
+<li><a href="#example_3">Example</a></li>
+</ul>
+</li>
+<li><a href="#cobaltiostream_hpp">cobalt/io/stream.hpp</a></li>
+<li><a href="#cobaltiorandom_access_device_hpp">cobalt/io/random_access_device.hpp</a></li>
+<li><a href="#cobaltioread_hpp">cobalt/io/read.hpp</a></li>
+<li><a href="#cobaltioread_hpp_2">cobalt/io/read.hpp</a></li>
+<li><a href="#cobaltiofile_hpp">cobalt/io/file.hpp</a></li>
+<li><a href="#cobaltiostream_file_hpp">cobalt/io/stream_file.hpp</a></li>
+<li><a href="#cobaltiorandom_access_file_hpp">cobalt/io/random_access_file.hpp</a></li>
+<li><a href="#cobaltioserial_port_hpp">cobalt/io/serial_port.hpp</a></li>
+<li><a href="#cobaltioendpoint_hpp">cobalt/io/endpoint.hpp</a>
+<ul class="sectlevel3">
+<li><a href="#protocol_type">protocol_type</a></li>
+<li><a href="#static_protocol">static_protocol</a></li>
+<li><a href="#ip_address">ip_address</a></li>
+<li><a href="#make_endpoint_get_endpoint">make_endpoint / get_endpoint</a></li>
+<li><a href="#endpoint">endpoint</a></li>
+</ul>
+</li>
+<li><a href="#cobaltiosocket_hpp">cobalt/io/socket.hpp</a></li>
+<li><a href="#cobaltiosocket_hpp_2">cobalt/io/socket.hpp</a></li>
+<li><a href="#cobaltiosocket_hpp_3">cobalt/io/socket.hpp</a></li>
+<li><a href="#cobaltiosocket_hpp_4">cobalt/io/socket.hpp</a></li>
+<li><a href="#cobaltioresolver_hpp">cobalt/io/resolver.hpp</a></li>
+<li><a href="#cobaltioacceptor_hpp">cobalt/io/acceptor.hpp</a></li>
+<li><a href="#cobaltiossl_hpp">cobalt/io/ssl.hpp</a></li>
 <li><a href="#context">cobalt/experimental/context.hpp</a>
 <ul class="sectlevel3">
 <li><a href="#reference_2">Reference</a></li>
@@ -999,7 +1041,7 @@ with synchronous code.</p>
 <div class="paragraph">
 <p>This works, but our program will spend most of the time waiting for input.
 Operating systems provide APIs that allow IO to be performed asynchronously,
-and libraries such as <a href="https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio.html">boost.asio</a>
+and libraries such as <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio.html">boost.asio</a>
 provide portable ways to manage asynchronous operations.
 Asio itself does not dictate a way to handle the completions.
 This library (boost.cobalt) provides a way to manage this all through coroutines/awaitables.</p>
@@ -1392,7 +1434,7 @@ They&#8217;re eager and thus easily usable for ad-hoc concurrecy.</p>
 <div class="sect2">
 <h3 id="tasks">Tasks</h3>
 <div class="paragraph">
-<p><a href="#task">Tasks</a> are lazy, which means they won&#8217;t do anything before awaited or spwaned.</p>
+<p><a href="#task">Tasks</a> are lazy, which means they won&#8217;t do anything before awaited or spawned.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1446,13 +1488,19 @@ the <code>cobalt::generator</code> can <code>co_await</code> and thus is asynchr
 <div class="paragraph">
 <p>Values can be pushed into the generator, that will be returned from the <code>co_yield</code>.</p>
 </div>
+<div class="paragraph">
+<p>An eager generator will produce the first result before being awaited.
+That is, when we call <code>co_await g(4)</code> the result from the initial co_yield is ready.
+The generator then receives the value <code>4</code> that got passed in as a return from the co_yield,
+and processes it.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">generator</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">my_eager_push_generator</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">generator</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">my_eager_push_generator</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
 <span class="p">{</span>
    <span class="k">while</span> <span class="p">(</span><span class="n">value</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-       <span class="n">value</span> <span class="o">=</span> <span class="k">co_yield</span> <span class="n">value</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">;</span>
-   <span class="k">co_return</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
+       <span class="n">value</span> <span class="o">=</span> <span class="k">co_yield</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+   <span class="k">co_return</span> <span class="s">""</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
@@ -1460,11 +1508,11 @@ the <code>cobalt::generator</code> can <code>co_await</code> and thus is asynchr
     <span class="c1">// create the generator</span>
     <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">my_generator</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span> <span class="c1">// result of 5</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.4</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// result of 4</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="c1">// result of 3</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.2</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// result of 2</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span> <span class="c1">// result of 1</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"5"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span> <span class="c1">// result of 5</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"4"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// result of 4</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"3"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="c1">// result of 3</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"2"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// result of 2</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"1"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span> <span class="c1">// result of 1</span>
 
     <span class="c1">// we let the coroutine go out of scope while suspended</span>
     <span class="c1">// no need for another co_await of `g`</span>
@@ -1476,25 +1524,30 @@ the <code>cobalt::generator</code> can <code>co_await</code> and thus is asynchr
 <div class="paragraph">
 <p>A coroutine can also be made lazy using <a href="#initial"><code>this_coro::initial</code></a>.</p>
 </div>
+<div class="paragraph">
+<p>A lazy generator does wait for the first <code>co_await</code> to start work,
+i.e. it suspends when <code>initial</code> gets awaited.
+The data processing is not a step ahead, but happens when <code>co_await</code>-ed.</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">generator</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">my_eager_push_generator</span><span class="p">()</span>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">generator</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">my_eager_push_generator</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">auto</span> <span class="n">value</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">this_coro</span><span class="o">::</span><span class="n">initial</span><span class="p">;</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">value</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="k">co_yield</span> <span class="n">value</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">;</span>
-    <span class="k">co_return</span> <span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">quiet_NaN</span><span class="p">();</span>
+       <span class="n">value</span> <span class="o">=</span> <span class="k">co_yield</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+    <span class="k">co_return</span> <span class="s">""</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">cobalt</span><span class="o">::</span><span class="n">main</span> <span class="nf">co_main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
     <span class="c1">// create the generator</span>
     <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">my_generator</span><span class="p">();</span> <span class="c1">// lazy, so the generator waits for the first pushed value</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span> <span class="c1">// result of 5</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.4</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span> <span class="c1">// result of 4</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// result of 3</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.2</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="c1">// result of 2</span>
-    <span class="n">assert</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// result of 1</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"5"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span> <span class="c1">// result of 5</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"4"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span> <span class="c1">// result of 4</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"3"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// result of 3</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"2"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span> <span class="c1">// result of 2</span>
+    <span class="n">assert</span><span class="p">(</span><span class="s">"1"</span> <span class="o">==</span> <span class="k">co_await</span> <span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// result of 1</span>
 
     <span class="c1">// we let the coroutine go out of scope while suspended</span>
     <span class="c1">// no need for another co_await of `g`</span>
@@ -1659,10 +1712,6 @@ so we&#8217;re using a <a href="https://www.boost.org/doc/libs/master/doc/html/b
 <div class="title">example/echo_server.cpp declarations</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="cpp"><span class="k">namespace</span> <span class="n">cobalt</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">cobalt</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">detached</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">tcp_acceptor</span> <span class="o">=</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">use_op_t</span><span class="o">::</span><span class="n">as_default_on_t</span><span class="o">&lt;</span><span class="n">tcp</span><span class="o">::</span><span class="n">acceptor</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">tcp_socket</span>   <span class="o">=</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">use_op_t</span><span class="o">::</span><span class="n">as_default_on_t</span><span class="o">&lt;</span><span class="n">tcp</span><span class="o">::</span><span class="n">socket</span><span class="o">&gt;</span><span class="p">;</span>
 <span class="k">namespace</span> <span class="n">this_coro</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">cobalt</span><span class="o">::</span><span class="n">this_coro</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -1674,15 +1723,15 @@ in case a lazy coro is needed, <a href="#task">task</a> is available.</p>
 <div class="listingblock">
 <div class="title">example/echo_server.cpp echo function</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">echo</span><span class="p">(</span><span class="n">tcp_socket</span> <span class="n">socket</span><span class="p">)</span>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">promise</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">echo</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stream_socket</span> <span class="n">socket</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">try</span> <i class="conum" data-value="1"></i><b>(1)</b>
   <span class="p">{</span>
     <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">4096</span><span class="p">];</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="p">{</span>
-      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">socket</span><span class="p">.</span><span class="n">async_read_some</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">));</span> <i class="conum" data-value="3"></i><b>(3)</b>
-      <span class="k">co_await</span> <span class="n">async_write</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span> <i class="conum" data-value="4"></i><b>(4)</b>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">socket</span><span class="p">.</span><span class="n">read_some</span><span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">));</span> <i class="conum" data-value="3"></i><b>(3)</b>
+      <span class="k">co_await</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">write</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">));</span> <i class="conum" data-value="4"></i><b>(4)</b>
     <span class="p">}</span>
   <span class="p">}</span>
   <span class="k">catch</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
@@ -1725,15 +1774,15 @@ This is a coroutine that can be co_awaited multiple times, until a <code>co_retu
 <div class="listingblock">
 <div class="title">example/echo_server.cpp listen function</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">generator</span><span class="o">&lt;</span><span class="n">tcp_socket</span><span class="o">&gt;</span> <span class="n">listen</span><span class="p">()</span>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">generator</span><span class="o">&lt;</span><span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stream_socket</span><span class="o">&gt;</span> <span class="n">listen</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="n">tcp_acceptor</span> <span class="n">acceptor</span><span class="p">({</span><span class="k">co_await</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">this_coro</span><span class="o">::</span><span class="n">executor</span><span class="p">},</span> <span class="p">{</span><span class="n">tcp</span><span class="o">::</span><span class="n">v4</span><span class="p">(),</span> <span class="mi">55555</span><span class="p">});</span>
+  <span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">acceptor</span> <span class="n">acceptor</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">endpoint</span><span class="p">{</span><span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">tcp_v4</span><span class="p">,</span> <span class="s">"0.0.0.0"</span><span class="p">,</span> <span class="mi">55555</span><span class="p">});</span>
   <span class="k">for</span> <span class="p">(;;)</span> <i class="conum" data-value="1"></i><b>(1)</b>
   <span class="p">{</span>
-    <span class="n">tcp_socket</span> <span class="n">sock</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">acceptor</span><span class="p">.</span><span class="n">async_accept</span><span class="p">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stream_socket</span> <span class="n">sock</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">acceptor</span><span class="p">.</span><span class="n">accept</span><span class="p">();</span> <i class="conum" data-value="2"></i><b>(2)</b>
     <span class="k">co_yield</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sock</span><span class="p">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
   <span class="p">}</span>
-  <span class="k">co_return</span> <span class="n">tcp_socket</span><span class="p">{</span><span class="n">acceptor</span><span class="p">.</span><span class="n">get_executor</span><span class="p">()};</span> <i class="conum" data-value="4"></i><b>(4)</b>
+  <span class="k">co_return</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stream_socket</span><span class="p">{};</span> <i class="conum" data-value="4"></i><b>(4)</b>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -2918,6 +2967,13 @@ and may return the handle of reading (and thus suspended) coroutine
 from a write_operation&#8217;s <code>await_suspend</code>.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="design:io">IO</h3>
+<div class="paragraph">
+<p>The <code>cobalt::io</code> namespace provides a wrapper library for boost.asio.
+It is simplified and compiled to speedup development and compilation times.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3413,6 +3469,18 @@ unless a <code>std::allocator_arg</code> is used in any position followed by a <
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>A cancelled generator maybe be resumable</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The destruction of an eager generator will be deferred, a lazy will be destroyed immediately.
+</td>
 </tr>
 </table>
 </div>
@@ -5098,6 +5166,48 @@ can be awaited again. This is the case for <a href="#generator">generator</a> an
 </div>
 </div>
 <div class="sect2">
+<h3 id="detached">cobalt/composition.hpp</h3>
+<div class="paragraph">
+<p>Including the <code>cobalt/composition.hpp</code> provides definitions to turn any function that
+takes a <code>cobalt::completion_handler</code> as it&#8217;s last argument. This allows simple creation of composed operations.</p>
+</div>
+<div class="paragraph">
+<p>Results of <code>co_await</code> statements automatically get turned into tuples (akin to used <code>as_tuple</code>) to avoid exceptions.</p>
+</div>
+<div class="paragraph">
+<p>The results need to be <code>co_return</code>-ed. The Handler passed into the coroutine must not be touched.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">echo_op</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">echo_op</span><span class="p">(</span><span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stream</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="o">:</span> <span class="n">stream</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+  <span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stream</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="n">echo_op</span><span class="o">::</span><span class="n">initiate</span><span class="p">(</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">4096</span><span class="p">];</span>
+  <span class="k">auto</span> <span class="p">[</span><span class="n">ec</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">str</span><span class="p">.</span><span class="n">read_some</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+
+  <span class="k">auto</span> <span class="n">buf</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">ec</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">buf</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="o">!!</span><span class="k">co_await</span> <span class="n">this_coro</span><span class="o">::</span><span class="n">cancelled</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">tie</span><span class="p">(</span><span class="n">ec</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">str</span><span class="p">.</span><span class="n">write_some</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+    <span class="n">buf</span> <span class="o">+=</span> <span class="n">n</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!!</span><span class="k">co_await</span> <span class="n">this_coro</span><span class="o">::</span><span class="n">cancelled</span><span class="p">)</span>
+    <span class="k">co_return</span> <span class="p">{</span><span class="n">asio</span><span class="o">::</span><span class="n">error</span><span class="o">::</span><span class="n">operation_aborted</span><span class="p">,</span> <span class="n">m</span><span class="p">};</span>
+  <span class="k">else</span>
+    <span class="k">co_return</span> <span class="p">{</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">{},</span> <span class="n">m</span><span class="p">};</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="config">cobalt/config.hpp</h3>
 <div class="paragraph">
 <p>The config adder allows to config some implementation details of boost.cobalt.</p>
@@ -5162,6 +5272,1243 @@ synchronization functions (<a href="#race">race</a>, <a href="#gather">gather</a
 </div>
 </div>
 <div class="sect2">
+<h3 id="cobaltiobuffer_hpp">cobalt/io/buffer.hpp</h3>
+<div class="paragraph">
+<p>The buffer headers provide a generic buffer sequence representation for use with io functions.
+It is implemented as a single buffer followed by a span of buffers. This allows dropping bytes from the front
+and also using a single <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio/reference/buffer.html"><code>buffer</code></a>,
+a <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio/reference/register_buffers.html"><code>registered_buffer</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>const_buffer_sequence</code> implements a <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio/reference/ConstBufferSequence.html"><code>ConstBufferSequence</code></a>
+and the <code>mutable_buffer_sequence</code> implements a <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio/reference/MutableBufferSequence.html"><code>MutableBufferSequence</code></a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">namespace</span> <span class="n">io</span>
+<span class="p">{</span>
+
+<span class="c1">// Aliases for the asio functions.</span>
+<span class="k">using</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer_copy</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer_size</span><span class="p">;</span>
+
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mutable_buffer_sequence">mutable_buffer_sequence</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">namespace</span> <span class="n">io</span>
+<span class="p">{</span>
+
+<span class="k">using</span> <span class="n">asio</span><span class="o">::</span><span class="n">buffer</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">asio</span><span class="o">::</span><span class="n">mutable_buffer</span><span class="p">;</span>
+
+
+<span class="k">struct</span> <span class="nc">mutable_buffer_sequence</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">buffer_count</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">mutable_buffer_sequence</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">mutable_registered_buffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="p">{});</span>
+  <span class="n">mutable_buffer_sequence</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">mutable_buffer</span> <span class="n">head</span><span class="p">);</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="k">requires</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">constructible_from</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">asio</span><span class="o">::</span><span class="n">mutable_buffer</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">T</span><span class="o">&amp;&amp;&gt;</span><span class="p">)</span>
+  <span class="n">mutable_buffer_sequence</span><span class="p">(</span><span class="n">T</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="p">);</span>
+  <span class="n">mutable_buffer_sequence</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">asio</span><span class="o">::</span><span class="n">mutable_buffer</span><span class="o">&gt;</span> <span class="n">spn</span><span class="p">);</span>
+
+  <span class="c1">// drop n bytes from the buffer sequence</span>
+  <span class="n">mutable_buffer_sequence</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span>
+  <span class="c1">// a random access iterator over the buffers</span>
+  <span class="k">struct</span> <span class="nc">const_iterator</span><span class="p">;</span>
+
+  <span class="n">const_iterator</span> <span class="n">begin</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">const_iterator</span>   <span class="n">end</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="c1">// is this a registered buffer</span>
+  <span class="kt">bool</span> <span class="n">is_registered</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Invokes Func either with the mutable_buffer_sequence, an `asio::mutable_registered_buffer` or a `asio::mutable_buffer`.</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Func</span><span class="p">&gt;</span>
+<span class="k">auto</span> <span class="nf">visit</span><span class="p">(</span><span class="k">const</span> <span class="n">mutable_buffer_sequence</span> <span class="o">&amp;</span> <span class="n">seq</span><span class="p">,</span> <span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="const_buffer_sequence">const_buffer_sequence</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">using</span> <span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">const_buffer_sequence</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">buffer_count</span><span class="p">();</span>
+  <span class="n">const_buffer_sequence</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">const_registered_buffer</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="n">const_buffer_sequence</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">mutable_registered_buffer</span> <span class="n">buffer</span><span class="p">);</span>
+
+  <span class="n">const_buffer_sequence</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span> <span class="n">head</span><span class="p">)</span>  <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">head_</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">const_buffer_sequence</span><span class="p">(</span><span class="n">asio</span><span class="o">::</span><span class="n">mutable_buffer</span> <span class="n">head</span><span class="p">)</span>  <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">head_</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+    <span class="k">requires</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">constructible_from</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">T</span><span class="o">&amp;&amp;&gt;</span><span class="p">)</span>
+  <span class="n">const_buffer_sequence</span><span class="p">(</span><span class="n">T</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="p">);</span>
+  <span class="n">const_buffer_sequence</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">asio</span><span class="o">::</span><span class="n">const_buffer</span><span class="o">&gt;</span> <span class="n">spn</span><span class="p">);</span>
+
+  <span class="c1">// drop bytes from the front, i.e. advance the buffer</span>
+  <span class="n">const_buffer_sequence</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span>
+
+  <span class="c1">// a random access iterator over the buffers</span>
+  <span class="k">struct</span> <span class="nc">const_iterator</span><span class="p">;</span>
+
+  <span class="c1">// Access the sequence as a range.</span>
+  <span class="n">const_iterator</span> <span class="n">begin</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">const_iterator</span>   <span class="n">end</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="c1">// is this a registered buffer</span>
+  <span class="kt">bool</span> <span class="n">is_registered</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Invokes Func either with the const_buffer_sequence, an `asio::const_registered_buffer` or a `asio::const_buffer.</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Func</span><span class="p">&gt;</span>
+<span class="k">auto</span> <span class="nf">visit</span><span class="p">(</span><span class="k">const</span> <span class="n">const_buffer_sequence</span> <span class="o">&amp;</span> <span class="n">seq</span><span class="p">,</span> <span class="n">Func</span> <span class="o">&amp;&amp;</span> <span class="n">func</span><span class="p">);</span>
+
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltioops_hpp">cobalt/io/ops.hpp</h3>
+<div class="paragraph">
+<p>Most functionality in this wrapper is implemented with operations.</p>
+</div>
+<div class="paragraph">
+<p>They are type-erase, but not by using <code>virtual</code>.
+This makes devirtualization easier.
+The <code>implementation</code> function must be provided, where as <code>try_implementation_t</code> is optional and will be used in the <code>ready</code> function.
+Both will be called with <code>void *this</code> as the first parameter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">write_op</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">;</span>
+
+  <span class="k">using</span>     <span class="n">implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">const_buffer_sequence</span><span class="p">,</span> <span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="k">using</span> <span class="n">try_implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">const_buffer_sequence</span><span class="p">,</span>            <span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+
+  <span class="n">write_op</span><span class="p">(</span><span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">,</span>
+           <span class="kt">void</span> <span class="o">*</span> <span class="n">this_</span><span class="p">,</span>
+           <span class="n">implementation_t</span> <span class="o">*</span><span class="n">implementation</span><span class="p">,</span>
+           <span class="n">try_implementation_t</span> <span class="o">*</span> <span class="n">try_implementation</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
+
+
+  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="n">ready</span><span class="p">(</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+
+<span class="k">struct</span> <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">read_op</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">;</span>
+
+  <span class="k">using</span>     <span class="n">implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span><span class="p">,</span> <span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="k">using</span> <span class="n">try_implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span><span class="p">,</span>            <span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+
+  <span class="n">read_op</span><span class="p">(</span><span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">,</span>
+           <span class="kt">void</span> <span class="o">*</span> <span class="n">this_</span><span class="p">,</span>
+           <span class="n">implementation_t</span> <span class="o">*</span><span class="n">implementation</span><span class="p">,</span>
+           <span class="n">try_implementation_t</span> <span class="o">*</span> <span class="n">try_implementation</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
+
+  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="n">ready</span><span class="p">(</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">write_at_op</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">;</span>
+  <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">;</span>
+
+  <span class="k">using</span>     <span class="n">implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="n">const_buffer_sequence</span><span class="p">,</span> <span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="k">using</span> <span class="n">try_implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="n">const_buffer_sequence</span><span class="p">,</span>            <span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+
+  <span class="n">write_at_op</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span>
+           <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">,</span>
+           <span class="kt">void</span> <span class="o">*</span> <span class="n">this_</span><span class="p">,</span>
+           <span class="n">implementation_t</span> <span class="o">*</span><span class="n">implementation</span><span class="p">,</span>
+           <span class="n">try_implementation_t</span> <span class="o">*</span> <span class="n">try_implementation</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
+
+  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="n">ready</span><span class="p">(</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">read_at_op</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">;</span>
+  <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">;</span>
+
+  <span class="k">using</span>     <span class="n">implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span><span class="p">,</span> <span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="k">using</span> <span class="n">try_implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span><span class="p">,</span>            <span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">);</span>
+
+  <span class="n">read_at_op</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span>
+          <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">,</span>
+          <span class="kt">void</span> <span class="o">*</span> <span class="n">this_</span><span class="p">,</span>
+          <span class="n">implementation_t</span> <span class="o">*</span><span class="n">implementation</span><span class="p">,</span>
+          <span class="n">try_implementation_t</span> <span class="o">*</span> <span class="n">try_implementation</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
+
+
+  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="n">ready</span><span class="p">(</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="k">struct</span> <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">wait_op</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="k">using</span>     <span class="n">implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span><span class="p">);</span>
+  <span class="k">using</span> <span class="n">try_implementation_t</span> <span class="o">=</span> <span class="kt">void</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span>            <span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span><span class="p">);</span>
+
+  <span class="n">wait_op</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="n">this_</span><span class="p">,</span>
+          <span class="n">implementation_t</span> <span class="o">*</span><span class="n">implementation</span><span class="p">,</span>
+          <span class="n">try_implementation_t</span> <span class="o">*</span> <span class="n">try_implementation</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
+
+  <span class="kt">void</span> <span class="n">initiate</span><span class="p">(</span><span class="n">completion_handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="n">ready</span><span class="p">(</span><span class="n">handler</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="o">&gt;</span> <span class="n">handler</span><span class="p">)</span> <span class="k">final</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The ops can be reused and public members (such as buffer)
+can be modified when the op is not awaited. E.g. like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">write_op</span> <span class="n">wo</span> <span class="o">=</span> <span class="n">do_w</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">sz</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">wo</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">sz</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">wo</span><span class="p">.</span><span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+    <span class="n">sz</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">wo</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosteady_timer_hpp">cobalt/io/steady_timer.hpp</h3>
+<div class="paragraph">
+<p>The steady_timer is a simple wrapper around an <code>asio::steady_timer</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the timer is already expired, the <code>co_await t.wait()</code> does not suspend.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">steady_timer</span>
+<span class="p">{</span>
+  <span class="c1">/// The clock type.</span>
+  <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span> <span class="n">clock_type</span><span class="p">;</span>
+
+  <span class="c1">/// The duration type of the clock.</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">clock_type</span><span class="o">::</span><span class="n">duration</span> <span class="n">duration</span><span class="p">;</span>
+
+  <span class="c1">/// The time point type of the clock.</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">clock_type</span><span class="o">::</span><span class="n">time_point</span> <span class="n">time_point</span><span class="p">;</span>
+
+  <span class="n">steady_timer</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">steady_timer</span><span class="p">(</span><span class="k">const</span> <span class="n">time_point</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">,</span> <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">steady_timer</span><span class="p">(</span><span class="k">const</span> <span class="n">duration</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">,</span>   <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+  <span class="c1">// cancel the timer. This is safe to call from another thread</span>
+  <span class="kt">void</span> <span class="n">cancel</span><span class="p">();</span>
+
+  <span class="c1">// The current expiration time.</span>
+  <span class="n">time_point</span> <span class="n">expiry</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="c1">// Rest the expiry time, either with an absolute time or a duration.</span>
+  <span class="kt">void</span> <span class="n">reset</span><span class="p">(</span><span class="k">const</span> <span class="n">time_point</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">reset</span><span class="p">(</span><span class="k">const</span> <span class="n">duration</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">);</span>
+
+  <span class="c1">// Check if the timer is already expired.</span>
+  <span class="kt">bool</span> <span class="n">expired</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="c1">// Get the wait operation.</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">wait_op</span> <span class="n">wait</span><span class="p">();</span>
+
+
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosystem_timer_hpp">cobalt/io/system_timer.hpp</h3>
+<div class="paragraph">
+<p>The system_timer is a simple wrapper around an <code>asio::system_timer</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the timer is already expired, the <code>co_await t.wait()</code> does not suspend.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">system_timer</span>
+<span class="p">{</span>
+  <span class="c1">/// The clock type.</span>
+  <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span> <span class="n">clock_type</span><span class="p">;</span>
+
+  <span class="c1">/// The duration type of the clock.</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">clock_type</span><span class="o">::</span><span class="n">duration</span> <span class="n">duration</span><span class="p">;</span>
+
+  <span class="c1">/// The time point type of the clock.</span>
+  <span class="k">typedef</span> <span class="k">typename</span> <span class="n">clock_type</span><span class="o">::</span><span class="n">time_point</span> <span class="n">time_point</span><span class="p">;</span>
+
+  <span class="n">system_timer</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">system_timer</span><span class="p">(</span><span class="k">const</span> <span class="n">time_point</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">,</span> <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">system_timer</span><span class="p">(</span><span class="k">const</span> <span class="n">duration</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">,</span>   <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+  <span class="c1">// cancel the timer. This is safe to call from another thread</span>
+  <span class="kt">void</span> <span class="n">cancel</span><span class="p">();</span>
+
+  <span class="c1">// The current expiration time.</span>
+  <span class="n">time_point</span> <span class="n">expiry</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="c1">// Rest the expiry time, either with an absolute time or a duration.</span>
+  <span class="kt">void</span> <span class="n">reset</span><span class="p">(</span><span class="k">const</span> <span class="n">time_point</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="n">reset</span><span class="p">(</span><span class="k">const</span> <span class="n">duration</span><span class="o">&amp;</span> <span class="n">expiry_time</span><span class="p">);</span>
+
+  <span class="c1">// Check if the timer is already expired.</span>
+  <span class="kt">bool</span> <span class="n">expired</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="c1">// Get the wait operation.</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">wait_op</span> <span class="n">wait</span><span class="p">();</span>
+
+
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosleep_hpp">cobalt/io/sleep.hpp</h3>
+<div class="paragraph">
+<p>The sleep operations are convenience wrappers for timers.
+Every sleep operation creates a timer,
+so it is generally more efficient to reuse a timer.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="c1">// Waits using a steady_timer.</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Duration</span><span class="p">&gt;</span>
+<span class="kr">inline</span> <span class="k">auto</span> <span class="nf">sleep</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="p">,</span> <span class="n">Duration</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">tp</span><span class="p">);</span>
+
+<span class="c1">// Waits using a system_timer.</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Duration</span><span class="p">&gt;</span>
+<span class="kr">inline</span> <span class="k">auto</span>  <span class="nf">sleep</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="p">,</span> <span class="n">Duration</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">tp</span><span class="p">);</span>
+
+<span class="c1">// Waits using a steady_timer.</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Rep</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">Period</span><span class="p">&gt;</span>
+<span class="kr">inline</span> <span class="k">auto</span> <span class="nf">sleep</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration</span><span class="o">&lt;</span><span class="n">Rep</span><span class="p">,</span> <span class="n">Period</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">dur</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosignal_set_hpp">cobalt/io/signal_set.hpp</h3>
+<div class="paragraph">
+<p>The signal_set is a wrapper around <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio/reference/signal_set.html">signal_set</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="outline_2">Outline</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">signal_set</span>
+<span class="p">{</span>
+  <span class="n">signal_set</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">signal_set</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sigs</span><span class="p">,</span> <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+  <span class="c1">// Cancel all operations associated with the signal set.</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">cancel</span><span class="p">();</span>
+  <span class="c1">// Remove all signals from a signal_set.</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">clear</span><span class="p">();</span>
+  <span class="c1">// Add a signal to a signal_set.</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">signal_number</span><span class="p">);</span>
+  <span class="c1">// Remove a signal from a signal_set.</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">signal_number</span><span class="p">);</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="example_3">Example</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">io</span><span class="o">::</span><span class="n">signal_set</span> <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">SIGTERM</span><span class="p">};</span>
+<span class="kt">int</span> <span class="n">sig</span> <span class="o">=</span> <span class="k">co_await</span> <span class="n">s</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="n">SIGINT</span><span class="p">)</span>
+  <span class="n">interrupt</span><span class="p">();</span>
+<span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">==</span> <span class="n">SIGTERM</span><span class="p">)</span>
+  <span class="n">terminate</span><span class="p">();</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiostream_hpp">cobalt/io/stream.hpp</h3>
+<div class="paragraph">
+<p>A stream is an io object that allows reads and writes, such as a tcp socket.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">BOOST_SYMBOL_VISIBLE</span> <span class="n">write_stream</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">write_stream</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">virtual</span> <span class="n">write_op</span> <span class="n">write_some</span><span class="p">(</span><span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">BOOST_SYMBOL_VISIBLE</span> <span class="n">read_stream</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">read_stream</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">virtual</span> <span class="n">read_op</span> <span class="n">read_some</span><span class="p">(</span><span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">stream</span> <span class="o">:</span> <span class="n">read_stream</span><span class="p">,</span> <span class="n">write_stream</span>
+<span class="p">{</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiorandom_access_device_hpp">cobalt/io/random_access_device.hpp</h3>
+<div class="paragraph">
+<p>A random_access_device is an io object that allows reads and writes at a random position.
+E.g. a file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">BOOST_SYMBOL_VISIBLE</span> <span class="n">random_access_write_device</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">random_access_write_device</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">virtual</span> <span class="n">write_at_op</span> <span class="n">write_some_at</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">BOOST_SYMBOL_VISIBLE</span> <span class="n">random_access_read_device</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">random_access_read_device</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">virtual</span> <span class="n">read_at_op</span> <span class="n">read_some_at</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">random_access_device</span> <span class="o">:</span> <span class="n">random_access_read_device</span><span class="p">,</span> <span class="n">random_access_write_device</span>
+<span class="p">{</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltioread_hpp">cobalt/io/read.hpp</h3>
+<div class="paragraph">
+<p>The <code>read</code> and <code>read_at</code> functions read until a buffer is full.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">read_all</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">read_op</span> <span class="n">step</span><span class="p">;</span>
+  <span class="n">read_all</span><span class="p">(</span><span class="n">read_op</span> <span class="n">op</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">read_all</span> <span class="nf">read</span><span class="p">(</span><span class="n">stream</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+
+
+<span class="k">struct</span> <span class="nc">read_all_at</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">read_at_op</span> <span class="n">step</span><span class="p">;</span>
+  <span class="n">read_all_at</span><span class="p">(</span><span class="n">read_at_op</span> <span class="n">op</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">read_all_at</span> <span class="nf">read_at</span><span class="p">(</span><span class="n">stream</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltioread_hpp_2">cobalt/io/read.hpp</h3>
+<div class="paragraph">
+<p>The <code>write</code> and <code>write_at</code> write the full buffer to a stream.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">write_all</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">read_op</span> <span class="n">step</span><span class="p">;</span>
+  <span class="n">write_all</span><span class="p">(</span><span class="n">read_op</span> <span class="n">op</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">write_all</span> <span class="nf">write</span><span class="p">(</span><span class="n">stream</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+
+
+<span class="k">struct</span> <span class="nc">write_all_at</span> <span class="k">final</span> <span class="o">:</span> <span class="n">op</span><span class="o">&lt;</span><span class="n">system</span><span class="o">::</span><span class="n">error_code</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="n">write_at_op</span> <span class="n">step</span><span class="p">;</span>
+  <span class="n">write_all_at</span><span class="p">(</span><span class="n">write</span> <span class="n">op</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">write_all_at</span> <span class="nf">write_at</span><span class="p">(</span><span class="n">stream</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiofile_hpp">cobalt/io/file.hpp</h3>
+<div class="paragraph">
+<p>The file object provides file IO, that may be asynchronous depending on how asio is configured.
+If asio does not support asynchronous file IO the cobalt will fall back on synchronous operations.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">file</span>
+<span class="p">{</span>
+
+  <span class="k">enum</span> <span class="n">flags</span>
+  <span class="p">{</span>
+    <span class="n">read_only</span> <span class="o">=</span> <span class="n">O_RDONLY</span><span class="p">,</span>
+    <span class="n">write_only</span> <span class="o">=</span> <span class="n">O_WRONLY</span><span class="p">,</span>
+    <span class="n">read_write</span> <span class="o">=</span> <span class="n">O_RDWR</span><span class="p">,</span>
+    <span class="n">append</span> <span class="o">=</span> <span class="n">O_APPEND</span><span class="p">,</span>
+    <span class="n">create</span> <span class="o">=</span> <span class="n">O_CREAT</span><span class="p">,</span>
+    <span class="n">exclusive</span> <span class="o">=</span> <span class="n">O_EXCL</span><span class="p">,</span>
+    <span class="n">truncate</span> <span class="o">=</span> <span class="n">O_TRUNC</span><span class="p">,</span>
+    <span class="n">sync_all_on_write</span> <span class="o">=</span> <span class="n">O_SYNC</span>
+  <span class="p">};</span>
+
+  <span class="c1">// Implement bitmask operations as shown in C++ Std [lib.bitmask.types].</span>
+  <span class="k">friend</span> <span class="n">flags</span> <span class="k">operator</span><span class="o">&amp;</span><span class="p">(</span><span class="n">flags</span> <span class="n">x</span><span class="p">,</span> <span class="n">flags</span> <span class="n">y</span><span class="p">);</span>
+  <span class="k">friend</span> <span class="n">flags</span> <span class="k">operator</span><span class="o">|</span><span class="p">(</span><span class="n">flags</span> <span class="n">x</span><span class="p">,</span> <span class="n">flags</span> <span class="n">y</span><span class="p">);</span>
+  <span class="k">friend</span> <span class="n">flags</span> <span class="k">operator</span><span class="o">^</span><span class="p">(</span><span class="n">flags</span> <span class="n">x</span><span class="p">,</span> <span class="n">flags</span> <span class="n">y</span><span class="p">);</span>
+
+  <span class="k">friend</span> <span class="n">flags</span> <span class="k">operator</span><span class="o">~</span><span class="p">(</span><span class="n">flags</span> <span class="n">x</span><span class="p">);</span>
+  <span class="k">friend</span> <span class="n">flags</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&amp;=</span><span class="p">(</span><span class="n">flags</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="n">flags</span> <span class="n">y</span><span class="p">);</span>
+  <span class="k">friend</span> <span class="n">flags</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">|=</span><span class="p">(</span><span class="n">flags</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="n">flags</span> <span class="n">y</span><span class="p">);</span>
+  <span class="k">friend</span> <span class="n">flags</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">^=</span><span class="p">(</span><span class="n">flags</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="n">flags</span> <span class="n">y</span><span class="p">);</span>
+
+  <span class="c1">/// Basis for seeking in a file.</span>
+  <span class="k">enum</span> <span class="n">seek_basis</span>
+  <span class="p">{</span>
+    <span class="n">seek_set</span> <span class="o">=</span> <span class="n">SEEK_SET</span><span class="p">,</span>
+    <span class="n">seek_cur</span> <span class="o">=</span> <span class="n">SEEK_CUR</span><span class="p">,</span>
+    <span class="n">seek_end</span> <span class="o">=</span> <span class="n">SEEK_END</span>
+  <span class="p">};</span>
+
+
+  <span class="k">using</span> <span class="n">native_handle_type</span> <span class="o">=</span> <span class="n">__unspecified__</span><span class="p">;</span>
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">assign</span><span class="p">(</span><span class="k">const</span> <span class="n">native_handle_type</span> <span class="o">&amp;</span> <span class="n">native_file</span><span class="p">);</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">cancel</span><span class="p">();</span>
+
+  <span class="n">executor</span> <span class="nf">get_executor</span><span class="p">();</span>
+  <span class="kt">bool</span> <span class="n">is_open</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">close</span><span class="p">();</span>
+  <span class="n">native_handle_type</span> <span class="nf">native_handle</span><span class="p">();</span>
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">open</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">path</span><span class="p">,</span>        <span class="n">flags</span> <span class="n">open_flags</span><span class="p">);</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">open</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">path</span><span class="p">,</span> <span class="n">flags</span> <span class="n">open_flags</span><span class="p">);</span>
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">native_handle_type</span><span class="o">&gt;</span> <span class="n">release</span><span class="p">();</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">resize</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">n</span><span class="p">);</span>
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span><span class="o">&gt;</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">sync_all</span><span class="p">();</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">sync_data</span><span class="p">();</span>
+
+  <span class="k">explicit</span> <span class="nf">file</span><span class="p">(</span><span class="n">executor</span> <span class="n">exec</span><span class="p">);</span>
+  <span class="n">file</span><span class="p">(</span><span class="n">executor</span> <span class="n">exec</span><span class="p">,</span> <span class="n">native_handle_type</span> <span class="n">fd</span><span class="p">);</span>
+
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiostream_file_hpp">cobalt/io/stream_file.hpp</h3>
+<div class="paragraph">
+<p>The <code>stream_file</code> provides stream access to file.
+If asio does not support asynchronous file IO the cobalt will fall back on synchronous operations.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">stream_file</span> <span class="o">:</span> <span class="n">file</span><span class="p">,</span> <span class="n">stream</span>
+<span class="p">{</span>
+  <span class="n">stream_file</span><span class="p">(</span><span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream_file</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="o">::</span><span class="n">flags</span> <span class="n">open_flags</span><span class="p">,</span>
+              <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream_file</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="o">::</span><span class="n">flags</span> <span class="n">open_flags</span><span class="p">,</span>
+              <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream_file</span><span class="p">(</span><span class="k">const</span> <span class="n">native_handle_type</span> <span class="o">&amp;</span> <span class="n">native_file</span><span class="p">,</span>
+              <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream_file</span><span class="p">(</span><span class="n">stream_file</span> <span class="o">&amp;&amp;</span> <span class="n">sf</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+
+  <span class="n">write_op</span> <span class="n">write_some</span><span class="p">(</span><span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="n">read_op</span> <span class="n">read_some</span><span class="p">(</span><span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+
+  <span class="c1">// advance the position in the file</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span><span class="o">&gt;</span> <span class="n">seek</span><span class="p">(</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">int64_t</span> <span class="n">offset</span><span class="p">,</span>
+      <span class="n">seek_basis</span> <span class="n">whence</span><span class="p">);</span>
+
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiorandom_access_file_hpp">cobalt/io/random_access_file.hpp</h3>
+<div class="paragraph">
+<p>The <code>stream_file</code> provides random access to file.
+If asio does not support asynchronous file IO the cobalt will fall back on synchronous operations.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">random_access_file</span> <span class="o">:</span> <span class="n">file</span><span class="p">,</span> <span class="n">random_access_device</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">native_handle_type</span> <span class="o">=</span> <span class="n">file</span><span class="o">::</span><span class="n">native_handle_type</span><span class="p">;</span>
+
+  <span class="n">random_access_file</span><span class="p">(</span><span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">random_access_file</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="o">::</span><span class="n">flags</span> <span class="n">open_flags</span><span class="p">,</span>
+                     <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">random_access_file</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="o">::</span><span class="n">flags</span> <span class="n">open_flags</span><span class="p">,</span>
+                     <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">random_access_file</span><span class="p">(</span><span class="k">const</span> <span class="n">native_handle_type</span> <span class="o">&amp;</span> <span class="n">native_file</span><span class="p">,</span>
+                     <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">random_access_file</span><span class="p">(</span><span class="n">random_access_file</span> <span class="o">&amp;&amp;</span> <span class="n">sf</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+
+  <span class="n">write_at_op</span> <span class="n">write_some_at</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="n">read_at_op</span> <span class="n">read_some_at</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltioserial_port_hpp">cobalt/io/serial_port.hpp</h3>
+<div class="paragraph">
+<p>The serial_port is a simple wrapper around an <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio/reference/serial_port.html"><code>asio::serial_port</code></a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">serial_port</span>
+<span class="p">{</span>
+  <span class="c1">// The underlying handle</span>
+  <span class="k">using</span> <span class="n">native_handle_type</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">asio</span><span class="o">::</span><span class="n">basic_serial_port</span><span class="o">&lt;</span><span class="n">executor</span><span class="o">&gt;::</span><span class="n">native_handle_type</span><span class="p">;</span>
+  <span class="n">native_handle_type</span> <span class="n">native_handle</span><span class="p">();</span>
+
+
+  <span class="n">serial_port</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">serial_port</span><span class="p">(</span><span class="n">serial_port</span> <span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">serial_port</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">device</span><span class="p">,</span>         <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">serial_port</span><span class="p">(</span><span class="n">native_handle_type</span> <span class="n">native_handle</span><span class="p">,</span> <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">close</span><span class="p">();</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">cancel</span><span class="p">();</span>
+  <span class="kt">bool</span> <span class="n">is_open</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="c1">// Send a break sequence to the serial port.</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">send_break</span><span class="p">();</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>     <span class="n">set_baud_rate</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">rate</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">get_baud_rate</span><span class="p">();</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>     <span class="n">set_character_size</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">rate</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">get_character_size</span><span class="p">();</span>
+
+  <span class="c1">// An enumerator {none, software, hardware}</span>
+  <span class="k">using</span> <span class="n">flow_control</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">serial_port_base</span><span class="o">::</span><span class="n">flow_control</span><span class="o">::</span><span class="n">type</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>         <span class="n">set_flow_control</span><span class="p">(</span><span class="n">flow_control</span> <span class="n">rate</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">flow_control</span><span class="o">&gt;</span> <span class="n">get_flow_control</span><span class="p">();</span>
+
+  <span class="c1">// An enumerator {none, odd, even}</span>
+  <span class="k">using</span> <span class="n">parity</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">serial_port_base</span><span class="o">::</span><span class="n">parity</span><span class="o">::</span><span class="n">type</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>   <span class="n">set_parity</span><span class="p">(</span><span class="n">parity</span> <span class="n">rate</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">parity</span><span class="o">&gt;</span> <span class="n">get_parity</span><span class="p">();</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">assign</span><span class="p">(</span><span class="n">native_handle_type</span> <span class="n">native_handle</span><span class="p">);</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">open</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">device</span><span class="p">);</span>
+
+  <span class="c1">// read &amp; write some data. Yields the number of bytes transferred.</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">write_op</span> <span class="n">write_some</span><span class="p">(</span><span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span>  <span class="n">read_op</span> <span class="n">read_some</span> <span class="p">(</span><span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltioendpoint_hpp">cobalt/io/endpoint.hpp</h3>
+<div class="paragraph">
+<p>The endpoint header provides a generic asio compatible endpoint type &amp; protocols.</p>
+</div>
+<div class="sect3">
+<h4 id="protocol_type">protocol_type</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">protocol_type</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">family_t</span>   <span class="o">=</span> <span class="n">__unspecified__</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">type_t</span>     <span class="o">=</span> <span class="n">__unspecified__</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">protocol_t</span> <span class="o">=</span> <span class="n">__unspecified__</span><span class="p">;</span>
+
+  <span class="k">constexpr</span> <span class="n">family_t</span>     <span class="n">family</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+  <span class="k">constexpr</span> <span class="n">type_t</span>         <span class="n">type</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+  <span class="k">constexpr</span> <span class="n">protocol_t</span> <span class="n">protocol</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+
+  <span class="c1">// explicitly construct protocol type.</span>
+  <span class="k">constexpr</span> <span class="k">explicit</span>
+  <span class="n">protocol_type</span><span class="p">(</span><span class="n">family_t</span> <span class="n">family</span>     <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">family_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="n">type_t</span> <span class="n">type</span>         <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">type_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="n">protocol_t</span> <span class="n">protocol</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">protocol_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="k">noexcept</span><span class="p">;</span>
+
+  <span class="c1">// allows construction from other procols, e.g. asio</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">OtherProtocol</span><span class="p">&gt;</span>
+    <span class="k">requires</span> <span class="k">requires</span> <span class="p">(</span><span class="k">const</span> <span class="n">OtherProtocol</span> <span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="p">{</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">family_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">op</span><span class="p">.</span><span class="n">family</span><span class="p">())};</span>
+        <span class="p">{</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">type_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">op</span><span class="p">.</span><span class="n">type</span><span class="p">())};</span>
+        <span class="p">{</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">protocol_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">op</span><span class="p">.</span><span class="n">protocol</span><span class="p">())};</span>
+      <span class="p">}</span>
+  <span class="k">constexpr</span> <span class="n">protocol_type</span><span class="p">(</span><span class="k">const</span> <span class="n">OtherProtocol</span> <span class="o">&amp;</span> <span class="n">op</span><span class="p">)</span> <span class="k">noexcept</span>
+
+  <span class="c1">// make the orderable</span>
+  <span class="k">friend</span>
+  <span class="k">constexpr</span> <span class="k">auto</span> <span class="k">operator</span><span class="o">&lt;=&gt;</span><span class="p">(</span><span class="k">const</span> <span class="n">protocol_type</span> <span class="o">&amp;</span> <span class="p">,</span> <span class="k">const</span> <span class="n">protocol_type</span> <span class="o">&amp;</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">protocol_type</span> <span class="n">tcp_v4</span><span class="p">{</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">IPPROTO_TCP</span><span class="p">};</span>
+
+<span class="c1">// from asio</span>
+<span class="n">protocol_type</span> <span class="n">tcp_v6</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">ip</span><span class="o">::</span><span class="n">tcp</span><span class="o">::</span><span class="n">v6</span><span class="p">();</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="static_protocol">static_protocol</h4>
+<div class="paragraph">
+<p>The static protocol provides protocol definitions for compile-time usage.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span>   <span class="n">Family</span>   <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span><span class="p">&gt;(</span><span class="mi">0</span><span class="p">),</span>
+         <span class="n">protocol_type</span><span class="o">::</span><span class="n">type_t</span>     <span class="n">Type</span>     <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">type_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+         <span class="n">protocol_type</span><span class="o">::</span><span class="n">protocol_t</span> <span class="n">Protocol</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">protocol_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="nc">static_protocol</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">family_t</span>   <span class="o">=</span> <span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span>  <span class="p">;</span>
+  <span class="k">using</span> <span class="n">type_t</span>     <span class="o">=</span> <span class="n">protocol_type</span><span class="o">::</span><span class="n">type_t</span>    <span class="p">;</span>
+  <span class="k">using</span> <span class="n">protocol_t</span> <span class="o">=</span> <span class="n">protocol_type</span><span class="o">::</span><span class="n">protocol_t</span><span class="p">;</span>
+
+  <span class="k">constexpr</span> <span class="n">family_t</span>   <span class="n">family</span><span class="p">()</span>   <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span><span class="k">return</span> <span class="n">Family</span><span class="p">;};</span>
+  <span class="k">constexpr</span> <span class="n">type_t</span>     <span class="n">type</span><span class="p">()</span>     <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span><span class="k">return</span> <span class="n">Type</span><span class="p">;};</span>
+  <span class="k">constexpr</span> <span class="n">protocol_t</span> <span class="n">protocol</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span><span class="k">return</span> <span class="n">Protocol</span><span class="p">;};</span>
+
+  <span class="k">using</span> <span class="n">endpoint</span> <span class="o">=</span> <span class="n">io</span><span class="o">::</span><span class="n">endpoint</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">ip</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">ip_v4</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">ip_v6</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">tcp</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">tcp_v4</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">tcp_v6</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">udp</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">udp_v4</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">udp_v6</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">icmp</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">local_stream</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">local_datagram</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">local_seqpacket</span><span class="p">;</span>
+<span class="k">constexpr</span> <span class="n">static_protocol</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">local_protocol</span><span class="p">;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ip_address">ip_address</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">ip_address</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">is_ipv6</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">is_ipv4</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">,</span> <span class="mi">16u</span><span class="o">&gt;</span> <span class="n">addr</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">static_string</span><span class="o">&lt;</span><span class="mi">45</span><span class="o">&gt;</span> <span class="n">addr_str</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">ip_address_v4</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint32_t</span> <span class="n">addr</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">static_string</span><span class="o">&lt;</span><span class="mi">15</span><span class="o">&gt;</span> <span class="n">addr_str</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">ip_address_v6</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">,</span> <span class="mi">16u</span><span class="o">&gt;</span> <span class="n">addr</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">static_string</span><span class="o">&lt;</span><span class="mi">45</span><span class="o">&gt;</span> <span class="n">addr_str</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="make_endpoint_get_endpoint">make_endpoint / get_endpoint</h4>
+<div class="paragraph">
+<p>The <code>make_endpoint_tag</code> is used with a <code>tag_invoke</code> for the <code>make_endpoint</code> function.
+A user can define another <code>tag_invoke</code> functions to support custom endpoints.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span> <span class="n">Family</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">make_endpoint_tag</span> <span class="p">{};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span> <span class="n">Family</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">get_endpoint_tag</span> <span class="p">{};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following functions are provided:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">make_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_UNIX</span><span class="o">&gt;</span><span class="p">,</span>
+                       <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">socket_addr_type</span><span class="o">*</span> <span class="n">base</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">sv</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="n">local_endpoint</span><span class="o">*</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">get_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_UNIX</span><span class="o">&gt;</span><span class="p">,</span>
+                                 <span class="n">protocol_type</span> <span class="n">actual</span><span class="p">,</span>
+                                 <span class="k">const</span> <span class="n">endpoint</span><span class="o">::</span><span class="n">addr_type</span> <span class="o">*</span> <span class="n">addr</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">make_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_INET</span><span class="o">&gt;</span><span class="p">,</span>
+                       <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">socket_addr_type</span><span class="o">*</span> <span class="n">base</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="kt">uint32_t</span> <span class="n">address</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">make_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_INET</span><span class="o">&gt;</span><span class="p">,</span>
+                       <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">socket_addr_type</span><span class="o">*</span> <span class="n">base</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">address</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="n">ip_address_v4</span><span class="o">*</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">get_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_INET</span><span class="o">&gt;</span><span class="p">,</span>
+                                 <span class="n">protocol_type</span> <span class="n">actual</span><span class="p">,</span>
+                                 <span class="k">const</span> <span class="n">endpoint</span><span class="o">::</span><span class="n">addr_type</span> <span class="o">*</span> <span class="n">addr</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">make_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_INET6</span><span class="o">&gt;</span><span class="p">,</span>
+                       <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">socket_addr_type</span><span class="o">*</span> <span class="n">base</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">,</span> <span class="mi">16</span><span class="o">&gt;</span> <span class="n">address</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">make_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_INET6</span><span class="o">&gt;</span><span class="p">,</span>
+                       <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">socket_addr_type</span><span class="o">*</span> <span class="n">base</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">address</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="n">ip_address_v6</span><span class="o">*</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">get_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_INET6</span><span class="o">&gt;</span><span class="p">,</span>
+                                <span class="n">protocol_type</span> <span class="n">actual</span><span class="p">,</span>
+                                <span class="k">const</span> <span class="n">endpoint</span><span class="o">::</span><span class="n">addr_type</span> <span class="o">*</span> <span class="n">addr</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">make_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_UNSPEC</span><span class="o">&gt;</span><span class="p">,</span>
+                       <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">socket_addr_type</span><span class="o">*</span> <span class="n">base</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">address</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">);</span>
+
+<span class="k">const</span> <span class="n">ip_address</span><span class="o">*</span> <span class="nf">tag_invoke</span><span class="p">(</span><span class="n">get_endpoint_tag</span><span class="o">&lt;</span><span class="n">AF_UNSPEC</span><span class="o">&gt;</span><span class="p">,</span>
+                                <span class="n">protocol_type</span> <span class="n">actual</span><span class="p">,</span>
+                                <span class="k">const</span> <span class="n">endpoint</span><span class="o">::</span><span class="n">addr_type</span> <span class="o">*</span> <span class="n">addr</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="endpoint">endpoint</h4>
+<div class="paragraph">
+<p>The endpoint function holds and</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">endpoint</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">storage_type</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">sockaddr_storage_type</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">addr_type</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">socket_addr_type</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">);</span>
+
+        <span class="kt">void</span> <span class="o">*</span> <span class="n">data</span><span class="p">()</span>       <span class="p">{</span><span class="k">return</span> <span class="o">&amp;</span><span class="n">storage_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">data</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="o">&amp;</span><span class="n">storage_</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">size_</span><span class="p">;}</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">capacity</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">storage_</span><span class="p">);}</span>
+
+  <span class="kt">void</span> <span class="nf">set_type</span>    <span class="p">(</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">type_t</span> <span class="n">type</span><span class="p">)</span>         <span class="p">{</span> <span class="n">type_</span> <span class="o">=</span> <span class="n">type</span><span class="p">;}</span>
+  <span class="kt">void</span> <span class="nf">set_protocol</span><span class="p">(</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">protocol_t</span> <span class="n">protocol</span><span class="p">)</span> <span class="p">{</span> <span class="n">protocol_</span> <span class="o">=</span> <span class="n">protocol</span><span class="p">;}</span>
+
+  <span class="n">protocol_type</span> <span class="n">protocol</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="n">endpoint</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">endpoint</span><span class="p">(</span><span class="k">const</span> <span class="n">endpoint</span> <span class="o">&amp;</span> <span class="n">ep</span><span class="p">);</span>
+
+  <span class="c1">// Construct a endpoint using make_endpoint_tag</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span>   <span class="n">Family</span><span class="p">,</span>
+           <span class="n">protocol_type</span><span class="o">::</span><span class="n">type_t</span>     <span class="n">Type</span><span class="p">,</span>
+           <span class="n">protocol_type</span><span class="o">::</span><span class="n">protocol_t</span> <span class="n">Protocol</span><span class="p">,</span>
+           <span class="k">typename</span> <span class="o">...</span> <span class="nc">Args</span><span class="p">&gt;</span>
+      <span class="k">requires</span> <span class="nf">requires</span> <span class="p">(</span><span class="n">make_endpoint_tag</span><span class="o">&lt;</span><span class="n">Family</span><span class="o">&gt;</span> <span class="n">proto</span><span class="p">,</span>
+                         <span class="n">addr_type</span><span class="o">*</span> <span class="n">addr</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="p">{</span><span class="n">tag_invoke</span><span class="p">(</span><span class="n">proto</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Args</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...)}</span> <span class="o">-&gt;</span> <span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="n">endpoint</span><span class="p">(</span><span class="n">static_protocol</span><span class="o">&lt;</span><span class="n">Family</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Protocol</span><span class="o">&gt;</span> <span class="n">proto</span><span class="p">,</span> <span class="n">Args</span> <span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+
+  <span class="c1">// allows constructing an endpoint from an asio type</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">OtherEndpoint</span><span class="p">&gt;</span>
+  <span class="k">requires</span> <span class="nf">requires</span> <span class="p">(</span><span class="n">OtherEndpoint</span> <span class="n">oe</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="p">{</span><span class="n">oe</span><span class="p">.</span><span class="n">protocol</span><span class="p">()}</span> <span class="o">-&gt;</span> <span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">&gt;</span><span class="p">;</span>
+        <span class="p">{</span><span class="n">oe</span><span class="p">.</span><span class="n">data</span><span class="p">()}</span> <span class="o">-&gt;</span> <span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">;</span>
+        <span class="p">{</span><span class="n">oe</span><span class="p">.</span><span class="n">size</span><span class="p">()}</span> <span class="o">-&gt;</span> <span class="n">std</span><span class="o">::</span><span class="n">convertible_to</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="n">endpoint</span><span class="p">(</span><span class="n">OtherEndpoint</span> <span class="o">&amp;&amp;</span> <span class="n">oe</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+<span class="k">class</span> <span class="nc">bad_endpoint_access</span> <span class="o">:</span> <span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span>
+<span class="p">{</span>
+ <span class="nl">public:</span>
+  <span class="n">bad_endpoint_access</span><span class="p">()</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">what</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Uses `get_endpoint_tag&lt;Protocol&gt; to return a `pointer` to the result.</span>
+<span class="c1">// Throws `bad_endpoint_access` if it's the wrong type</span>
+<span class="k">auto</span> <span class="nf">get</span><span class="p">(</span><span class="k">const</span> <span class="n">endpoint</span> <span class="o">&amp;</span> <span class="n">ep</span><span class="p">);</span>
+
+<span class="c1">// Uses `get_endpoint_tag&lt;Protocol&gt; to return a `pointer` to the result.</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="n">static_protocol</span> <span class="n">Protocol</span><span class="p">&gt;</span>
+<span class="k">friend</span> <span class="k">auto</span> <span class="nf">get_if</span><span class="p">(</span><span class="k">const</span> <span class="n">endpoint</span> <span class="o">*</span> <span class="n">ep</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">{</span><span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">tcp_v4</span><span class="p">,</span> <span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="mi">8080</span><span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosocket_hpp">cobalt/io/socket.hpp</h3>
+<div class="paragraph">
+<p>The socket class is the base for any socket.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">socket</span>
+<span class="p">{</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">open</span><span class="p">(</span><span class="n">protocol_type</span> <span class="n">prot</span> <span class="o">=</span> <span class="n">protocol_type</span> <span class="p">{});</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">close</span><span class="p">();</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">cancel</span><span class="p">();</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="kt">bool</span> <span class="n">is_open</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="c1">// asio acceptor compatibility</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+  <span class="k">struct</span> <span class="nc">rebind_executor</span> <span class="p">{</span><span class="k">using</span> <span class="n">other</span> <span class="o">=</span> <span class="n">socket</span><span class="p">;};</span>
+
+  <span class="k">using</span> <span class="n">shutdown_type</span>      <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">shutdown_type</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">wait_type</span>          <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">wait_type</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">message_flags</span>      <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">message_flags</span><span class="p">;</span>
+  <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">message_peek</span>          <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">message_peek</span><span class="p">;</span>
+  <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">message_out_of_band</span>   <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">message_out_of_band</span><span class="p">;</span>
+  <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">message_do_not_route</span>  <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">message_do_not_route</span><span class="p">;</span>
+  <span class="k">constexpr</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">message_end_of_record</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">message_end_of_record</span><span class="p">;</span>
+
+  <span class="k">using</span> <span class="n">native_handle_type</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">basic_socket</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="p">,</span> <span class="n">executor</span><span class="o">&gt;::</span><span class="n">native_handle_type</span><span class="p">;</span>
+  <span class="n">native_handle_type</span> <span class="nf">native_handle</span><span class="p">();</span>
+
+  <span class="c1">// Drop the connection</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">shutdown</span><span class="p">(</span><span class="n">shutdown_type</span> <span class="o">=</span> <span class="n">shutdown_type</span><span class="o">::</span><span class="n">shutdown_both</span><span class="p">);</span>
+
+  <span class="c1">// endpoint of a connected endpiotn</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">endpoint</span><span class="o">&gt;</span> <span class="n">local_endpoint</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">endpoint</span><span class="o">&gt;</span> <span class="n">remote_endpoint</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">assign</span><span class="p">(</span><span class="n">protocol_type</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">native_handle_type</span> <span class="n">native_handle</span><span class="p">);</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">native_handle_type</span><span class="o">&gt;</span> <span class="n">release</span><span class="p">();</span>
+
+  <span class="c1">/// socket options</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">bytes_readable</span><span class="p">();</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_debug</span><span class="p">(</span><span class="kt">bool</span> <span class="n">debug</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">get_debug</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_do_not_route</span><span class="p">(</span><span class="kt">bool</span> <span class="n">do_not_route</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">get_do_not_route</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_enable_connection_aborted</span><span class="p">(</span><span class="kt">bool</span> <span class="n">enable_connection_aborted</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">get_enable_connection_aborted</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_keep_alive</span><span class="p">(</span><span class="kt">bool</span> <span class="n">keep_alive</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">get_keep_alive</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_linger</span><span class="p">(</span><span class="kt">bool</span> <span class="n">linger</span><span class="p">,</span> <span class="kt">int</span> <span class="n">timeout</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">get_linger</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>        <span class="n">set_receive_buffer_size</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">receive_buffer_size</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">get_receive_buffer_size</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>        <span class="n">set_send_buffer_size</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">send_buffer_size</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">get_send_buffer_size</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>        <span class="n">set_receive_low_watermark</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">receive_low_watermark</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">get_receive_low_watermark</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span>        <span class="n">set_send_low_watermark</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">send_low_watermark</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">get_send_low_watermark</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_reuse_address</span><span class="p">(</span><span class="kt">bool</span> <span class="n">reuse_address</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">get_reuse_address</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_no_delay</span><span class="p">(</span><span class="kt">bool</span> <span class="n">reuse_address</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">get_no_delay</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+
+  <span class="n">wait_op</span>     <span class="nf">wait</span><span class="p">(</span><span class="n">wait_type</span> <span class="n">wt</span> <span class="o">=</span> <span class="n">wait_type</span><span class="o">::</span><span class="n">wait_read</span><span class="p">);</span>
+  <span class="c1">// Connect to a specific endpoint</span>
+  <span class="n">connect_op</span> <span class="nf">connect</span><span class="p">(</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">);</span>
+  <span class="c1">// connect to one of the given endpoints. Returns the one connected to.</span>
+  <span class="n">ranged_connect_op</span> <span class="nf">connect</span><span class="p">(</span><span class="n">endpoint_sequence</span> <span class="n">ep</span><span class="p">);</span>
+
+ <span class="k">protected</span><span class="o">:</span>
+  <span class="c1">// Adopt the under-specified endpoint. E.g. to tcp from an endpoint specified as ip_address</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">adopt_endpoint_</span><span class="p">(</span><span class="n">endpoint</span> <span class="o">&amp;</span> <span class="p">)</span> <span class="p">{}</span>
+
+<span class="p">};</span>
+
+<span class="c1">// Connect to sockets using the given protocol</span>
+<span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">connect_pair</span><span class="p">(</span><span class="n">protocol_type</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">socket</span> <span class="o">&amp;</span> <span class="n">socket1</span><span class="p">,</span> <span class="n">socket</span> <span class="o">&amp;</span> <span class="n">socket2</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosocket_hpp_2">cobalt/io/socket.hpp</h3>
+<div class="paragraph">
+<p>The socket class for a stream socket, e.g. TCP.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">stream_socket</span> <span class="k">final</span> <span class="o">:</span> <span class="n">socket</span><span class="p">,</span> <span class="n">stream</span>
+<span class="p">{</span>
+
+  <span class="n">stream_socket</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream_socket</span><span class="p">(</span><span class="n">stream_socket</span> <span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">);</span>
+  <span class="n">stream_socket</span><span class="p">(</span><span class="n">native_handle_type</span> <span class="n">h</span><span class="p">,</span> <span class="n">protocol_type</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol_type</span><span class="p">(),</span>
+                <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream_socket</span><span class="p">(</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">,</span>
+                <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+  <span class="n">write_op</span> <span class="n">write_some</span><span class="p">(</span><span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="n">read_op</span> <span class="n">read_some</span><span class="p">(</span><span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);};</span>
+
+<span class="c1">// Connect to sockets using the given protocol</span>
+<span class="kr">inline</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">stream_socket</span><span class="p">,</span> <span class="n">stream_socket</span><span class="o">&gt;&gt;</span> <span class="n">make_pair</span><span class="p">(</span><span class="k">decltype</span><span class="p">(</span><span class="n">local_stream</span><span class="p">)</span> <span class="n">protocol</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosocket_hpp_3">cobalt/io/socket.hpp</h3>
+<div class="paragraph">
+<p>This socket class implements a datagram socket, such as UDP.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">datagram_socket</span> <span class="k">final</span> <span class="o">:</span> <span class="n">socket</span>
+<span class="p">{</span>
+  <span class="n">datagram_socket</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">datagram_socket</span><span class="p">(</span><span class="n">datagram_socket</span> <span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">);</span>
+  <span class="n">datagram_socket</span><span class="p">(</span><span class="n">native_handle_type</span> <span class="n">h</span><span class="p">,</span> <span class="n">protocol_type</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol_type</span><span class="p">(),</span>
+                  <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">datagram_socket</span><span class="p">(</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">,</span>
+                  <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+  <span class="n">write_op</span> <span class="n">send</span><span class="p">(</span><span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="n">read_op</span> <span class="n">receive</span><span class="p">(</span><span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+<span class="c1">// Create a pair of connected sockets.</span>
+<span class="kr">inline</span> <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">datagram_socket</span><span class="p">,</span> <span class="n">datagram_socket</span><span class="o">&gt;&gt;</span> <span class="n">make_pair</span><span class="p">(</span><span class="k">decltype</span><span class="p">(</span><span class="n">local_datagram</span><span class="p">)</span> <span class="n">protocol</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiosocket_hpp_4">cobalt/io/socket.hpp</h3>
+<div class="paragraph">
+<p>The socket class for a seq packet socket, e.g. SCTP.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">seq_packet_socket</span> <span class="o">:</span> <span class="n">socket</span>
+<span class="p">{</span>
+  <span class="n">seq_packet_socket</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">seq_packet_socket</span><span class="p">(</span><span class="n">seq_packet_socket</span> <span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">);</span>
+  <span class="n">seq_packet_socket</span><span class="p">(</span><span class="n">native_handle_type</span> <span class="n">h</span><span class="p">,</span> <span class="n">protocol_type</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol_type</span><span class="p">(),</span>
+                    <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">seq_packet_socket</span><span class="p">(</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">,</span> <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+  <span class="n">receive_op</span> <span class="n">receive</span><span class="p">(</span><span class="n">message_flags</span> <span class="n">in_flags</span><span class="p">,</span> <span class="n">message_flags</span><span class="o">&amp;</span> <span class="n">out_flags</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="n">send_op</span> <span class="n">send</span><span class="p">(</span><span class="n">message_flags</span> <span class="n">in_flags</span><span class="p">,</span> <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="n">receive_op</span> <span class="n">receive</span><span class="p">(</span><span class="n">message_flags</span> <span class="n">in_flags</span><span class="p">,</span> <span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// Connect to sockets using the given protocol</span>
+<span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">make_pair</span><span class="p">(</span><span class="k">decltype</span><span class="p">(</span><span class="n">local_seqpacket</span><span class="p">)</span> <span class="n">protocol</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltioresolver_hpp">cobalt/io/resolver.hpp</h3>
+<div class="paragraph">
+<p>The resolver allows looking up the endpoints for a given address and service.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">resolver</span>
+<span class="p">{</span>
+  <span class="n">resolver</span><span class="p">(</span><span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">exec</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">resolver</span><span class="p">(</span><span class="n">resolver</span> <span class="o">&amp;&amp;</span> <span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+
+  <span class="kt">void</span> <span class="n">cancel</span><span class="p">();</span>
+
+  <span class="c1">// Produces a endpoint_sequence</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">auto</span> <span class="n">resolve</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">host</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">service</span><span class="p">);</span>
+<span class="p">};</span>
+
+
+<span class="c1">// Short hand for performing a single lookup.</span>
+<span class="k">auto</span> <span class="nf">lookup</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">host</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string_view</span> <span class="n">service</span><span class="p">,</span>
+         <span class="k">const</span> <span class="n">executor</span> <span class="o">&amp;</span> <span class="n">exec</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltioacceptor_hpp">cobalt/io/acceptor.hpp</h3>
+<div class="paragraph">
+<p>The acceptor can be used to accept a connection.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">acceptor</span>
+<span class="p">{</span>
+  <span class="k">using</span> <span class="n">wait_type</span>          <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">wait_type</span><span class="p">;</span>
+  <span class="k">constexpr</span> <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">max_listen_connections</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">socket_base</span><span class="o">::</span><span class="n">max_listen_connections</span><span class="p">;</span>
+
+  <span class="n">acceptor</span><span class="p">(</span><span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">acceptor</span><span class="p">(</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">,</span> <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">bind</span><span class="p">(</span><span class="n">endpoint</span> <span class="n">ep</span><span class="p">);</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">listen</span><span class="p">(</span><span class="kt">int</span> <span class="n">backlog</span> <span class="o">=</span> <span class="n">max_listen_connections</span><span class="p">);</span> <span class="c1">// int backlog = net::max_backlog()</span>
+  <span class="n">endpoint</span> <span class="n">local_endpoint</span><span class="p">();</span>
+
+  <span class="c1">// accept any connection and assign it to `sock`</span>
+  <span class="n">accept_op</span> <span class="n">accept</span><span class="p">(</span><span class="n">socket</span> <span class="o">&amp;</span> <span class="n">sock</span><span class="p">);</span>
+
+  <span class="c1">// Accept a connection of a stream_socket</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span> <span class="n">F</span> <span class="o">=</span> <span class="n">tcp</span><span class="p">.</span><span class="n">family</span><span class="p">(),</span> <span class="n">protocol_type</span><span class="o">::</span><span class="n">protocol_t</span> <span class="n">P</span> <span class="o">=</span> <span class="n">tcp</span><span class="p">.</span><span class="n">protocol</span><span class="p">()&gt;</span>
+  <span class="n">accept_op</span> <span class="n">accept</span><span class="p">(</span><span class="n">static_protocol</span><span class="o">&lt;</span><span class="n">F</span><span class="p">,</span> <span class="n">tcp</span><span class="p">.</span><span class="n">type</span><span class="p">(),</span> <span class="n">P</span><span class="o">&gt;</span> <span class="n">stream_proto</span> <span class="o">=</span> <span class="n">tcp</span><span class="p">);</span>
+
+  <span class="c1">// Accept a connection of a seq_packet</span>
+  <span class="k">template</span><span class="o">&lt;</span><span class="n">protocol_type</span><span class="o">::</span><span class="n">family_t</span> <span class="n">F</span><span class="p">,</span> <span class="n">protocol_type</span><span class="o">::</span><span class="n">protocol_t</span> <span class="n">P</span><span class="p">&gt;</span>
+  <span class="n">accept_op</span> <span class="n">accept</span><span class="p">(</span><span class="n">static_protocol</span><span class="o">&lt;</span><span class="n">F</span><span class="p">,</span> <span class="n">local_seqpacket</span><span class="p">.</span><span class="n">type</span><span class="p">(),</span> <span class="n">P</span><span class="o">&gt;</span> <span class="n">stream_proto</span> <span class="o">=</span> <span class="n">tcp</span><span class="p">);</span>
+
+  <span class="c1">// For a connection to be ready</span>
+  <span class="n">wait_op</span>     <span class="n">wait</span><span class="p">(</span><span class="n">wait_type</span> <span class="n">wt</span> <span class="o">=</span> <span class="n">wait_type</span><span class="o">::</span><span class="n">wait_read</span><span class="p">);</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cobaltiossl_hpp">cobalt/io/ssl.hpp</h3>
+<div class="paragraph">
+<p>An ssl stream is a stream_socket that can be upgraded to ssl.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">namespace</span> <span class="n">ssl</span>
+<span class="p">{</span>
+
+<span class="k">enum</span> <span class="k">class</span> <span class="nc">verify</span>
+<span class="p">{</span>
+  <span class="n">none</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">verify_none</span><span class="p">,</span>
+  <span class="n">peer</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">verify_peer</span><span class="p">,</span>
+  <span class="n">fail_if_no_peer_cert</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">verify_fail_if_no_peer_cert</span><span class="p">,</span>
+  <span class="n">client_once</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">verify_client_once</span>
+<span class="p">};</span>
+
+
+<span class="k">using</span> <span class="n">context</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">context</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">verify_mode</span> <span class="o">=</span> <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">verify_mode</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">stream</span> <span class="k">final</span> <span class="o">:</span> <span class="n">socket</span><span class="p">,</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stream</span><span class="p">,</span> <span class="n">asio</span><span class="o">::</span><span class="n">ssl</span><span class="o">::</span><span class="n">stream_base</span>
+<span class="p">{</span>
+  <span class="n">stream</span><span class="p">(</span><span class="n">context</span> <span class="o">&amp;</span> <span class="n">ctx</span><span class="p">,</span> <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream</span><span class="p">(</span><span class="n">context</span> <span class="o">&amp;</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">native_handle_type</span> <span class="n">h</span><span class="p">,</span> <span class="n">protocol_type</span> <span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol_type</span><span class="p">(),</span>
+             <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+  <span class="n">stream</span><span class="p">(</span><span class="n">context</span> <span class="o">&amp;</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">endpoint</span> <span class="n">ep</span><span class="p">,</span>
+             <span class="k">const</span> <span class="n">cobalt</span><span class="o">::</span><span class="n">executor</span> <span class="o">&amp;</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">this_thread</span><span class="o">::</span><span class="n">get_executor</span><span class="p">());</span>
+
+  <span class="n">write_op</span> <span class="n">write_some</span><span class="p">(</span><span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+  <span class="n">read_op</span> <span class="n">read_some</span><span class="p">(</span><span class="n">mutable_buffer_sequence</span> <span class="n">buffer</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+
+  <span class="c1">// Indicates whether or not an ssl upgrade has been performed</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="kt">bool</span> <span class="n">secure</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">upgraded_</span><span class="p">;}</span>
+
+  <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">VerifyCallback</span><span class="p">&gt;</span>
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_verify_callback</span><span class="p">(</span><span class="n">VerifyCallback</span> <span class="n">vc</span><span class="p">);</span>
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_verify_depth</span><span class="p">(</span><span class="kt">int</span> <span class="n">depth</span><span class="p">);</span>
+
+  <span class="n">system</span><span class="o">::</span><span class="n">result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">set_verify_mode</span><span class="p">(</span><span class="n">verify</span> <span class="n">depth</span><span class="p">);</span>
+
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">auto</span> <span class="nf">handshake</span><span class="p">(</span><span class="n">handshake_type</span> <span class="n">type</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">auto</span> <span class="nf">handshake</span><span class="p">(</span><span class="n">handshake_type</span> <span class="n">type</span><span class="p">,</span> <span class="n">const_buffer_sequence</span> <span class="n">buffer</span><span class="p">);</span>
+  <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="k">auto</span> <span class="nf">shutdown</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The build scripts cerate a separate library (boost_cobalt_io_ssl) for this class, so that boost_cobalt_io can be used without OpenSSL.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
 <h3 id="context">cobalt/experimental/context.hpp</h3>
 <div class="admonitionblock warning">
 <table>
@@ -5170,7 +6517,7 @@ synchronization functions (<a href="#race">race</a>, <a href="#gather">gather</a
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-This is (most likely) undefined behaviour, since the violates a precondition in the standard. A paper to address this can be found here (<a href="https://isocpp.org/files/papers/P3203R0.html" class="bare">https://isocpp.org/files/papers/P3203R0.html</a>).
+This is undefined behaviour, since the violates a precondition in the standard.
 </td>
 </tr>
 </table>
@@ -5178,7 +6525,7 @@ This is (most likely) undefined behaviour, since the violates a precondition in 
 <div class="paragraph">
 <p>This header provides <code>experimental</code> support for using <code>boost.fiber</code> based stackful coroutines
 as if they were C20 coroutines. That is, they can use `awaitables` by being able to be put into a `coroutine_handle`.
-Likewise the implementation uses a C20 coroutine promise and runs is as if it was a C++20 coroutine.</p>
+Like-wise the implementation uses a C20 coroutine promise and runs is as if it was a C++20 coroutine.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5250,7 +6597,7 @@ Likewise the implementation uses a C20 coroutine promise and runs is as if it wa
 <div class="sect2">
 <h3 id="custom_executors">Custom Executors</h3>
 <div class="paragraph">
-<p>One of the reasons cobalt defaults to <a href="https://www.boost.org/doc/libs/1_83_0/doc/html/boost_asio/reference/any_io_executor.html::"><code>asio::any_io_executor</code></a>
+<p>One of the reasons cobalt defaults to <a href="https://www.boost.org/doc/libs/master/doc/html/boost_asio/reference/any_io_executor.html::"><code>asio::any_io_executor</code></a>
 is that it is a type-erased executor, i.e. you can provide your own event-loop without needing to recompile <code>cobalt</code>.</p>
 </div>
 <div class="paragraph">
@@ -6050,7 +7397,7 @@ as can be seen [here](<a href="https://godbolt.org/z/6adGcqP1z" class="bare">htt
 </table>
 </div>
 <div class="paragraph">
-<p>Clang only added <code>std::pmr</code> support in 16, so older clang versions use <code>boost::contianer::pmr</code> as a drop-in replacement.</p>
+<p>Clang only added <code>std::pmr</code> support in 16, so older clang versions use <code>boost::container::pmr</code> as a drop-in replacement.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -6127,7 +7474,7 @@ Vinnie trusted me enough to let me work on this project, while himself having ve
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2025-04-03 11:37:16 UTC
+Last updated 2025-08-06 18:48:52 UTC
 </div>
 </div>
 </body>

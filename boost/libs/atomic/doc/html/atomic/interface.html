@@ -38,6 +38,7 @@
 <dt><span class="section"><a href="interface.html#atomic.interface.interface_ipc">Atomic types for inter-process
       communication</a></span></dt>
 <dt><span class="section"><a href="interface.html#atomic.interface.interface_fences">Fences</a></span></dt>
+<dt><span class="section"><a href="interface.html#atomic.interface.thread_pause">SMT Pause Hint</a></span></dt>
 <dt><span class="section"><a href="interface.html#atomic.interface.feature_macros">Feature testing macros</a></span></dt>
 </dl></div>
 <div class="section">
@@ -213,7 +214,7 @@
         Started guide</a>. For example, you can build <span class="bold"><strong>Boost.Atomic</strong></span>
         with the following command line:
       </p>
-<pre class="programlisting">bjam --with-atomic variant=release instruction-set=core2 stage
+<pre class="programlisting">b2 --with-atomic variant=release instruction-set=core2 stage
 </pre>
 </div>
 <div class="section">
@@ -223,8 +224,8 @@
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">memory_order</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
 <p>
-        The enumeration <code class="literal">boost::memory_order</code> defines the following
-        values to represent memory ordering constraints:
+        The scoped enumeration <code class="literal">boost::memory_order</code> defines the
+        following values to represent memory ordering constraints:
       </p>
 <div class="informaltable"><table class="table">
 <colgroup>
@@ -247,7 +248,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_relaxed</span></code>
+                  <code class="computeroutput"><span class="identifier">relaxed</span></code>
                 </p>
               </td>
 <td>
@@ -266,7 +267,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_release</span></code>
+                  <code class="computeroutput"><span class="identifier">release</span></code>
                 </p>
               </td>
 <td>
@@ -280,7 +281,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>
+                  <code class="computeroutput"><span class="identifier">acquire</span></code>
                 </p>
               </td>
 <td>
@@ -294,17 +295,17 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_consume</span></code>
+                  <code class="computeroutput"><span class="identifier">consume</span></code>
                 </p>
               </td>
 <td>
                 <p>
                   Perform <code class="computeroutput"><span class="identifier">consume</span></code>
                   operation. More relaxed (and on some architectures potentially
-                  more efficient) than <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>
+                  more efficient) than <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span></code>
                   as it only affects succeeding operations that are computationally-dependent
                   on the value retrieved from an atomic variable. Currently equivalent
-                  to <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>
+                  to <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span></code>
                   on all supported architectures (see <a class="link" href="limitations.html" title="Limitations">Limitations</a>
                   section for an explanation).
                 </p>
@@ -313,7 +314,7 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_acq_rel</span></code>
+                  <code class="computeroutput"><span class="identifier">acq_rel</span></code>
                 </p>
               </td>
 <td>
@@ -326,12 +327,12 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>
+                  <code class="computeroutput"><span class="identifier">seq_cst</span></code>
                 </p>
               </td>
 <td>
                 <p>
-                  Enforce sequential consistency. Implies <code class="computeroutput"><span class="identifier">memory_order_acq_rel</span></code>,
+                  Enforce sequential consistency. Implies <code class="computeroutput"><span class="identifier">acq_rel</span></code>,
                   but additionally enforces total order for all operations such qualified.
                 </p>
               </td>
@@ -339,8 +340,9 @@
 </tbody>
 </table></div>
 <p>
-        For compilers that support C++11 scoped enums, the library also defines scoped
-        synonyms that are preferred in modern programs:
+        For backward compatibility with code that was written for compilers that
+        lacked support for C++11 scoped enums, the library also defines unscoped
+        synonyms:
       </p>
 <div class="informaltable"><table class="table">
 <colgroup>
@@ -350,12 +352,12 @@
 <thead><tr>
 <th>
                 <p>
-                  Pre-C++11 constant
+                  C++11 constant
                 </p>
               </th>
 <th>
                 <p>
-                  C++11 equivalent
+                  Pre-C++11 constant
                 </p>
               </th>
 </tr></thead>
@@ -363,77 +365,80 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_relaxed</span></code>
+                  <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span></code>
                 </p>
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span></code>
+                  <code class="computeroutput"><span class="identifier">memory_order_relaxed</span></code>
                 </p>
               </td>
 </tr>
 <tr>
-<td>
-                <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_release</span></code>
-                </p>
-              </td>
 <td>
                 <p>
                   <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span></code>
                 </p>
               </td>
-</tr>
-<tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>
+                  <code class="computeroutput"><span class="identifier">memory_order_release</span></code>
                 </p>
               </td>
+</tr>
+<tr>
 <td>
                 <p>
                   <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span></code>
                 </p>
               </td>
-</tr>
-<tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_consume</span></code>
+                  <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>
                 </p>
               </td>
+</tr>
+<tr>
 <td>
                 <p>
                   <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span></code>
                 </p>
               </td>
-</tr>
-<tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_acq_rel</span></code>
+                  <code class="computeroutput"><span class="identifier">memory_order_consume</span></code>
                 </p>
               </td>
+</tr>
+<tr>
 <td>
                 <p>
                   <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acq_rel</span></code>
                 </p>
               </td>
-</tr>
-<tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>
+                  <code class="computeroutput"><span class="identifier">memory_order_acq_rel</span></code>
                 </p>
               </td>
+</tr>
+<tr>
 <td>
                 <p>
                   <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code>
                 </p>
               </td>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>
+                </p>
+              </td>
 </tr>
 </tbody>
 </table></div>
+<p>
+        New code should prefer the C++11 spelling.
+      </p>
 <p>
         See section <a class="link" href="thread_coordination.html" title="Thread coordination using Boost.Atomic"><span class="emphasis"><em>happens-before</em></span></a>
         for explanation of the various ordering constraints.
@@ -571,6 +576,50 @@
 <tr>
 <td>
                 <p>
+                  <code class="computeroutput"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Clock</span><span class="special">,</span> <span class="keyword">typename</span>
+                  <span class="identifier">Duration</span><span class="special">&gt;</span>
+                  <span class="identifier">wait_result</span><span class="special">&lt;</span><span class="keyword">bool</span><span class="special">&gt;</span>
+                  <span class="identifier">wait_until</span><span class="special">(</span><span class="keyword">bool</span> <span class="identifier">old_val</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span><span class="special">&lt;</span><span class="identifier">Clock</span><span class="special">,</span> <span class="identifier">Duration</span><span class="special">&gt;</span> <span class="identifier">timeout</span><span class="special">,</span> <span class="identifier">memory_order</span>
+                  <span class="identifier">order</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Potentially blocks the calling thread until either unblocked by
+                  a notifying operation and <code class="computeroutput"><span class="identifier">test</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code> returns value other than <code class="computeroutput"><span class="identifier">old_val</span></code>, or <code class="computeroutput"><span class="identifier">timeout</span></code>
+                  expires. Returns a <code class="computeroutput"><span class="identifier">wait_result</span><span class="special">&lt;</span><span class="keyword">bool</span><span class="special">&gt;</span></code> object <code class="computeroutput"><span class="identifier">r</span></code>,
+                  where <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">value</span></code> is the result of <code class="computeroutput"><span class="identifier">test</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code>
+                  and <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">timeout</span></code> is contextually convertible
+                  to <code class="computeroutput"><span class="keyword">true</span></code> if <code class="computeroutput"><span class="identifier">timeout</span></code> expired and <code class="computeroutput"><span class="keyword">false</span></code> otherwise.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Rep</span><span class="special">,</span> <span class="keyword">typename</span>
+                  <span class="identifier">Period</span><span class="special">&gt;</span>
+                  <span class="identifier">wait_result</span><span class="special">&lt;</span><span class="keyword">bool</span><span class="special">&gt;</span>
+                  <span class="identifier">wait_for</span><span class="special">(</span><span class="keyword">bool</span> <span class="identifier">old_val</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">duration</span><span class="special">&lt;</span><span class="identifier">Rep</span><span class="special">,</span> <span class="identifier">Period</span><span class="special">&gt;</span> <span class="identifier">timeout</span><span class="special">,</span> <span class="identifier">memory_order</span>
+                  <span class="identifier">order</span><span class="special">)</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Potentially blocks the calling thread until either unblocked by
+                  a notifying operation and <code class="computeroutput"><span class="identifier">test</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code> returns value other than <code class="computeroutput"><span class="identifier">old_val</span></code>, or <code class="computeroutput"><span class="identifier">timeout</span></code>
+                  expires. <code class="computeroutput"><span class="identifier">timeout</span></code>
+                  is tracked against an unspecified steady clock. Returns a <code class="computeroutput"><span class="identifier">wait_result</span><span class="special">&lt;</span><span class="keyword">bool</span><span class="special">&gt;</span></code>
+                  object <code class="computeroutput"><span class="identifier">r</span></code>, where
+                  <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">value</span></code> is the result of <code class="computeroutput"><span class="identifier">test</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code>
+                  and <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">timeout</span></code> is contextually convertible
+                  to <code class="computeroutput"><span class="keyword">true</span></code> if <code class="computeroutput"><span class="identifier">timeout</span></code> expired and <code class="computeroutput"><span class="keyword">false</span></code> otherwise.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
                   <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">notify_one</span><span class="special">()</span></code>
                 </p>
               </td>
@@ -624,7 +673,7 @@
 </tbody>
 </table></div>
 <p>
-        <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code> as default parameter.
+        <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code> as default parameter.
       </p>
 <p>
         Waiting and notifying operations are described in detail in <a class="link" href="interface.html#atomic.interface.interface_wait_notify_ops" title="Waiting and notifying operations">this</a>
@@ -663,10 +712,6 @@
       </p>
 <pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic_flag</span> <span class="identifier">flag</span> <span class="special">=</span> <span class="identifier">BOOST_ATOMIC_FLAG_INIT</span><span class="special">;</span> <span class="comment">// constant initialization</span>
 </pre>
-<p>
-        This macro will only be implemented on a C++11 compiler. When this macro
-        is not available, the library defines <code class="computeroutput"><span class="identifier">BOOST_ATOMIC_NO_ATOMIC_FLAG_INIT</span></code>.
-      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -677,12 +722,14 @@
         template class</a></span></dt>
 <dt><span class="section"><a href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_integral"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>integral</em></span>&gt;</code>
         template class</a></span></dt>
+<dt><span class="section"><a href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_enum"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>enumeration</em></span>&gt;</code>
+        template class</a></span></dt>
 <dt><span class="section"><a href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_floating_point"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>floating-point</em></span>&gt;</code>
         template class</a></span></dt>
 <dt><span class="section"><a href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_pointer"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>pointer</em></span>&gt;</code>
         template class</a></span></dt>
 <dt><span class="section"><a href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_convenience_typedefs"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
-        convenience typedefs</a></span></dt>
+        convenience type aliases</a></span></dt>
 </dl></div>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">atomic</span><span class="special">/</span><span class="identifier">atomic</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 </pre>
@@ -976,6 +1023,50 @@
 <tr>
 <td>
                   <p>
+                    <code class="computeroutput"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Clock</span><span class="special">,</span> <span class="keyword">typename</span>
+                    <span class="identifier">Duration</span><span class="special">&gt;</span>
+                    <span class="identifier">wait_result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span>
+                    <span class="identifier">wait_until</span><span class="special">(</span><span class="identifier">T</span> <span class="identifier">old_val</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">time_point</span><span class="special">&lt;</span><span class="identifier">Clock</span><span class="special">,</span> <span class="identifier">Duration</span><span class="special">&gt;</span> <span class="identifier">timeout</span><span class="special">,</span> <span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Potentially blocks the calling thread until either unblocked
+                    by a notifying operation and <code class="computeroutput"><span class="identifier">load</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code> returns value other than <code class="computeroutput"><span class="identifier">old_val</span></code>, or <code class="computeroutput"><span class="identifier">timeout</span></code>
+                    expires. Returns a <code class="computeroutput"><span class="identifier">wait_result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code> object <code class="computeroutput"><span class="identifier">r</span></code>,
+                    where <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">value</span></code> is the result of <code class="computeroutput"><span class="identifier">load</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code>
+                    and <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">timeout</span></code> is contextually convertible
+                    to <code class="computeroutput"><span class="keyword">true</span></code> if <code class="computeroutput"><span class="identifier">timeout</span></code> expired and <code class="computeroutput"><span class="keyword">false</span></code> otherwise.
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">Rep</span><span class="special">,</span> <span class="keyword">typename</span>
+                    <span class="identifier">Period</span><span class="special">&gt;</span>
+                    <span class="identifier">wait_result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span>
+                    <span class="identifier">wait_for</span><span class="special">(</span><span class="identifier">T</span> <span class="identifier">old_val</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span><span class="special">::</span><span class="identifier">duration</span><span class="special">&lt;</span><span class="identifier">Rep</span><span class="special">,</span> <span class="identifier">Period</span><span class="special">&gt;</span> <span class="identifier">timeout</span><span class="special">,</span> <span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Potentially blocks the calling thread until either unblocked
+                    by a notifying operation and <code class="computeroutput"><span class="identifier">load</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code> returns value other than <code class="computeroutput"><span class="identifier">old_val</span></code>, or <code class="computeroutput"><span class="identifier">timeout</span></code>
+                    expires. <code class="computeroutput"><span class="identifier">timeout</span></code>
+                    is tracked against an unspecified steady clock. Returns a <code class="computeroutput"><span class="identifier">wait_result</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code>
+                    object <code class="computeroutput"><span class="identifier">r</span></code>, where
+                    <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">value</span></code> is the result of <code class="computeroutput"><span class="identifier">load</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code>
+                    and <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">timeout</span></code> is contextually convertible
+                    to <code class="computeroutput"><span class="keyword">true</span></code> if <code class="computeroutput"><span class="identifier">timeout</span></code> expired and <code class="computeroutput"><span class="keyword">false</span></code> otherwise.
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
                     <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">notify_one</span><span class="special">()</span></code>
                   </p>
                 </td>
@@ -1030,7 +1121,7 @@
 </tbody>
 </table></div>
 <p>
-          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code> as default parameter.
+          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code> as default parameter.
         </p>
 <p>
           The default constructor of <code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
@@ -1077,11 +1168,25 @@
           fails.
         </p>
 <p>
+          It must be noted that <code class="computeroutput"><span class="identifier">compare_exchange_weak</span></code>/<code class="computeroutput"><span class="identifier">compare_exchange_strong</span></code> in <span class="bold"><strong>Boost.Atomic</strong></span> differ from C++11 <code class="literal">std::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
+          in that <code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
+          is allowed to write to the <code class="computeroutput"><span class="identifier">expected</span></code>
+          argument even if the operation returns <code class="computeroutput"><span class="keyword">true</span></code>
+          while <code class="literal">std::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code> writes
+          to that argument only if the operation returns <code class="computeroutput"><span class="keyword">false</span></code>.
+          The difference may be significant if the caller passes in the <code class="computeroutput"><span class="identifier">expected</span></code> argument a reference to data
+          that must be protected by the <code class="computeroutput"><span class="identifier">compare_exchange_</span><span class="special">*</span></code> operation, because the write to <code class="computeroutput"><span class="identifier">expected</span></code> may happen after the atomic
+          update with the <code class="computeroutput"><span class="identifier">success_order</span></code>
+          constraint and constitute a data race. Users are advised to avoid passing
+          references to protected data as <code class="computeroutput"><span class="identifier">expected</span></code>
+          arguments.
+        </p>
+<p>
           In addition to these explicit operations, each <code class="literal">atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
           object also supports implicit <code class="literal">store</code> and <code class="literal">load</code>
           through the use of "assignment" and "conversion to <code class="literal">T</code>"
           operators. Avoid using these operators, as they do not allow to specify
-          a memory ordering constraint which always defaults to <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>.
+          a memory ordering constraint which always defaults to <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code>.
         </p>
 </div>
 <div class="section">
@@ -1630,7 +1735,7 @@
           </p></td></tr>
 </table></div>
 <p>
-          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code> as default parameter.
+          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code> as default parameter.
         </p>
 <p>
           The <code class="literal">opaque_<span class="emphasis"><em>op</em></span></code> and <code class="literal"><span class="emphasis"><em>op</em></span>_and_test</code>
@@ -1647,7 +1752,445 @@
           the operators <code class="computeroutput"><span class="special">+=</span></code>, <code class="computeroutput"><span class="special">-=</span></code>, <code class="computeroutput"><span class="special">&amp;=</span></code>,
           <code class="computeroutput"><span class="special">|=</span></code> and <code class="computeroutput"><span class="special">^=</span></code>.
           Avoid using these operators, as they do not allow to specify a memory ordering
-          constraint which always defaults to <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>.
+          constraint which always defaults to <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code>.
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="atomic.interface.interface_atomic_object.interface_atomic_enum"></a><a class="link" href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_enum" title="boost::atomic&lt;enumeration&gt; template class"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>enumeration</em></span>&gt;</code>
+        template class</a>
+</h4></div></div></div>
+<p>
+          In addition to the operations listed in the <a class="link" href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_generic" title="boost::atomic&lt;T&gt; template class">common
+          template</a>, <code class="literal">boost::atomic&lt;<span class="emphasis"><em>E</em></span>&gt;</code>
+          for enumeration types <code class="literal"><span class="emphasis"><em>E</em></span></code>, supports
+          the following operations:
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Syntax
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Description
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">fetch_and</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "and" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning previous value
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">fetch_or</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "or" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning previous value
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">fetch_xor</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "xor" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning previous value
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">fetch_complement</span><span class="special">(</span><span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Set the variable to the one's complement of the current value,
+                    returning previous value
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">bitwise_and</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "and" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning the result
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">bitwise_or</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "or" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning the result
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">bitwise_xor</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "xor" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning the result
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">E</span> <span class="identifier">bitwise_complement</span><span class="special">(</span><span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Set the variable to the one's complement of the current value,
+                    returning the result
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">opaque_and</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "and" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning nothing
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">opaque_or</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "or" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning nothing
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">opaque_xor</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "xor" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning nothing
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">opaque_complement</span><span class="special">(</span><span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Set the variable to the one's complement of the current value,
+                    returning nothing
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span> <span class="identifier">and_and_test</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "and" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning <code class="computeroutput"><span class="keyword">true</span></code>
+                    if the result is non-zero and <code class="computeroutput"><span class="keyword">false</span></code>
+                    otherwise
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span> <span class="identifier">or_and_test</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "or" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning <code class="computeroutput"><span class="keyword">true</span></code>
+                    if the result is non-zero and <code class="computeroutput"><span class="keyword">false</span></code>
+                    otherwise
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span> <span class="identifier">xor_and_test</span><span class="special">(</span><span class="identifier">E</span>
+                    <span class="identifier">v</span><span class="special">,</span>
+                    <span class="identifier">memory_order</span> <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Apply bit-wise "xor" with <code class="computeroutput"><span class="identifier">v</span></code>
+                    to variable, returning <code class="computeroutput"><span class="keyword">true</span></code>
+                    if the result is non-zero and <code class="computeroutput"><span class="keyword">false</span></code>
+                    otherwise
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span> <span class="identifier">complement_and_test</span><span class="special">(</span><span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Set the variable to the one's complement of the current value,
+                    returning <code class="computeroutput"><span class="keyword">true</span></code> if
+                    the result is non-zero and <code class="computeroutput"><span class="keyword">false</span></code>
+                    otherwise
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span> <span class="identifier">bit_test_and_set</span><span class="special">(</span><span class="keyword">unsigned</span>
+                    <span class="keyword">int</span> <span class="identifier">n</span><span class="special">,</span> <span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Set bit number <code class="computeroutput"><span class="identifier">n</span></code>
+                    in the variable to 1, returning <code class="computeroutput"><span class="keyword">true</span></code>
+                    if the bit was previously set to 1 and <code class="computeroutput"><span class="keyword">false</span></code>
+                    otherwise
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span> <span class="identifier">bit_test_and_reset</span><span class="special">(</span><span class="keyword">unsigned</span>
+                    <span class="keyword">int</span> <span class="identifier">n</span><span class="special">,</span> <span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Set bit number <code class="computeroutput"><span class="identifier">n</span></code>
+                    in the variable to 0, returning <code class="computeroutput"><span class="keyword">true</span></code>
+                    if the bit was previously set to 1 and <code class="computeroutput"><span class="keyword">false</span></code>
+                    otherwise
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span> <span class="identifier">bit_test_and_complement</span><span class="special">(</span><span class="keyword">unsigned</span>
+                    <span class="keyword">int</span> <span class="identifier">n</span><span class="special">,</span> <span class="identifier">memory_order</span>
+                    <span class="identifier">order</span><span class="special">)</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Change bit number <code class="computeroutput"><span class="identifier">n</span></code>
+                    in the variable to the opposite value, returning <code class="computeroutput"><span class="keyword">true</span></code> if the bit was previously
+                    set to 1 and <code class="computeroutput"><span class="keyword">false</span></code>
+                    otherwise
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<p>
+          All operations listed above are <span class="bold"><strong>Boost.Atomic</strong></span>
+          extensions. <code class="computeroutput"><span class="identifier">order</span></code> always
+          has <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code> as default parameter.
+        </p>
+<div class="tip"><table border="0" summary="Tip">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../../../../../doc/src/images/tip.png"></td>
+<th align="left">Tip</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Bitwise operations can be useful if the enumeration is used to implement
+            a bit mask or a set of flags.
+          </p></td></tr>
+</table></div>
+<p>
+          The effect of the atomic operations is as if the input values of the enumeration
+          type are converted to the underlying type of the enumeration, then the
+          operation is performed on the values of the underlying type, then, where
+          applicable, the result of the operation is converted back to the enumeration
+          type.
+        </p>
+<div class="warning"><table border="0" summary="Warning">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../../../../../doc/src/images/warning.png"></td>
+<th align="left">Warning</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Formally, some of these operations may produce values outside the range
+            of valid values of the enumeration, as defined by the C++ standard. Specifically,
+            for enumerations whose underlying type is not fixed (i.e. unscoped <code class="computeroutput"><span class="keyword">enum</span></code>s without the base type specification),
+            the C++ standard defines the range of values supported by the enum as
+            the values that can fit in the minimum number of bits that are used by
+            all named constants of the enumeration. For example, atomic complement
+            operations may produce values outside this range. Although most compilers
+            will likely handle such values as expected, users are recommended to
+            avoid using enumerations with non-fixed underlying type with these operations
+            or ensure that the operations don't produce values outside the valid
+            range.
+          </p></td></tr>
+</table></div>
+<p>
+          The above means no user-defined operators will be called to implement the
+          atomic operations. This is similar to the <code class="computeroutput"><span class="identifier">compare_exchange_weak</span></code>/<code class="computeroutput"><span class="identifier">compare_exchange_strong</span></code> operations, which
+          also do not invoke any user-defined <code class="computeroutput"><span class="keyword">operator</span><span class="special">==</span></code> to compare the values. If user-defined
+          operators are defined for the enumeration, their behavior may differ from
+          the atomic operations. If the behavior of the user-defined operators is
+          preferable, it can be achieved with a compare-exchange loop.
+        </p>
+<p>
+</p>
+<pre class="programlisting"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="identifier">flags</span> <span class="special">:</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">uint32_t</span>
+<span class="special">{</span>
+    <span class="identifier">none</span> <span class="special">=</span> <span class="number">0u</span><span class="special">,</span>
+    <span class="identifier">one</span> <span class="special">=</span> <span class="number">1u</span><span class="special">,</span>
+    <span class="identifier">two</span> <span class="special">=</span> <span class="number">1u</span> <span class="special">&lt;&lt;</span> <span class="number">1u</span><span class="special">,</span>
+    <span class="identifier">four</span> <span class="special">=</span> <span class="number">1u</span> <span class="special">&lt;&lt;</span> <span class="number">2u</span><span class="special">,</span>
+    <span class="identifier">all</span> <span class="special">=</span> <span class="special">(</span><span class="number">1u</span> <span class="special">&lt;&lt;</span> <span class="number">3u</span><span class="special">)</span> <span class="special">-</span> <span class="number">1u</span>
+<span class="special">};</span>
+
+<span class="identifier">flags</span> <span class="keyword">operator</span><span class="special">~</span> <span class="special">(</span><span class="identifier">flags</span> <span class="identifier">value</span><span class="special">)</span>
+<span class="special">{</span>
+    <span class="comment">// Only invert bits that are named in the enum</span>
+    <span class="keyword">return</span> <span class="keyword">static_cast</span><span class="special">&lt;</span><span class="identifier">flags</span><span class="special">&gt;(</span><span class="keyword">static_cast</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint32_t</span><span class="special">&gt;(</span><span class="identifier">value</span><span class="special">)</span> <span class="special">^</span> <span class="keyword">static_cast</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint32_t</span><span class="special">&gt;(</span><span class="identifier">flags</span><span class="special">::</span><span class="identifier">all</span><span class="special">));</span>
+<span class="special">}</span>
+
+<span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">flags</span><span class="special">&gt;</span> <span class="identifier">atomic_flags</span><span class="special">(</span><span class="identifier">flags</span><span class="special">::</span><span class="identifier">none</span><span class="special">);</span>
+
+<span class="comment">// bitwise_complement() operates on the value of the underlying type</span>
+<span class="identifier">assert</span><span class="special">(</span><span class="identifier">atomic_flags</span><span class="special">.</span><span class="identifier">bitwise_complement</span><span class="special">()</span> <span class="special">==</span> <span class="special">(</span><span class="identifier">flags</span><span class="special">)</span><span class="number">0xFFFFFFFF</span><span class="special">);</span>
+
+<span class="identifier">atomic_flags</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">flags</span><span class="special">::</span><span class="identifier">none</span><span class="special">);</span>
+
+<span class="comment">// Enforce behavior of the user-defined operator~</span>
+<span class="special">{</span>
+    <span class="identifier">flags</span> <span class="identifier">old_val</span> <span class="special">=</span> <span class="identifier">atomic_flags</span><span class="special">.</span><span class="identifier">load</span><span class="special">(),</span> <span class="identifier">new_val</span><span class="special">;</span>
+    <span class="keyword">do</span>
+    <span class="special">{</span>
+        <span class="identifier">new_val</span> <span class="special">=</span> <span class="special">~</span><span class="identifier">old_val</span><span class="special">;</span>
+    <span class="special">}</span>
+    <span class="keyword">while</span> <span class="special">(!</span><span class="identifier">atomic_flags</span><span class="special">.</span><span class="identifier">compare_exchange_weak</span><span class="special">(</span><span class="identifier">old_val</span><span class="special">,</span> <span class="identifier">new_val</span><span class="special">));</span>
+
+    <span class="identifier">assert</span><span class="special">(</span><span class="identifier">new_val</span> <span class="special">==</span> <span class="identifier">flags</span><span class="special">::</span><span class="identifier">all</span><span class="special">);</span>
+<span class="special">}</span>
+
+<span class="identifier">atomic_flags</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">flags</span><span class="special">::</span><span class="identifier">none</span><span class="special">);</span>
+
+<span class="comment">// Achieve the behavior similar to the user-defined operator~ through other atomic operations</span>
+<span class="identifier">assert</span><span class="special">(</span><span class="identifier">atomic_flags</span><span class="special">.</span><span class="identifier">bitwise_xor</span><span class="special">(</span><span class="identifier">flags</span><span class="special">::</span><span class="identifier">all</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">flags</span><span class="special">::</span><span class="identifier">all</span><span class="special">);</span>
+</pre>
+<p>
+        </p>
+<p>
+          The <code class="literal">opaque_<span class="emphasis"><em>op</em></span></code> and <code class="literal"><span class="emphasis"><em>op</em></span>_and_test</code>
+          variants of the operations may result in a more efficient code on some
+          architectures because the original value of the atomic variable is not
+          preserved. In the <code class="literal">bit_test_and_<span class="emphasis"><em>op</em></span></code>
+          operations, the bit number <code class="computeroutput"><span class="identifier">n</span></code>
+          starts from 0, which means the least significand bit, and must not exceed
+          <code class="literal">std::numeric_limits&lt;std::underlying_type&lt;<span class="emphasis"><em>E</em></span>&gt;::type&gt;::digits
+          - 1</code> for enumerations with fixed underlying type or the index
+          of the most significant bit that contributes to the value for enumerations
+          with non-fixed underlying type.
+        </p>
+<p>
+          In addition to these explicit operations, each <code class="literal">boost::atomic&lt;<span class="emphasis"><em>E</em></span>&gt;</code>
+          object also supports the operators <code class="computeroutput"><span class="special">&amp;=</span></code>,
+          <code class="computeroutput"><span class="special">|=</span></code> and <code class="computeroutput"><span class="special">^=</span></code>.
+          Avoid using these operators, as they do not allow to specify a memory ordering
+          constraint which always defaults to <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code>.
         </p>
 </div>
 <div class="section">
@@ -1847,7 +2390,7 @@
 </tbody>
 </table></div>
 <p>
-          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code> as default parameter.
+          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code> as default parameter.
         </p>
 <p>
           The <code class="literal">opaque_<span class="emphasis"><em>op</em></span></code> variants of the operations
@@ -1859,7 +2402,7 @@
           object also supports operators <code class="computeroutput"><span class="special">+=</span></code>
           and <code class="computeroutput"><span class="special">-=</span></code>. Avoid using these
           operators, as they do not allow to specify a memory ordering constraint
-          which always defaults to <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>.
+          which always defaults to <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code>.
         </p>
 <p>
           When using atomic operations with floating point types, bear in mind that
@@ -2067,83 +2610,87 @@
 </tbody>
 </table></div>
 <p>
-          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code> as default parameter.
+          <code class="computeroutput"><span class="identifier">order</span></code> always has <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code> as default parameter.
         </p>
 <p>
           In addition to these explicit operations, each <code class="literal">boost::atomic&lt;<span class="emphasis"><em>P</em></span>&gt;</code>
           object also supports implicit pre-/post- increment/decrement, as well as
           the operators <code class="computeroutput"><span class="special">+=</span></code>, <code class="computeroutput"><span class="special">-=</span></code>. Avoid using these operators, as they
           do not allow explicit specification of a memory ordering constraint which
-          always defaults to <code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>.
+          always defaults to <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code>.
         </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
-<a name="atomic.interface.interface_atomic_object.interface_atomic_convenience_typedefs"></a><a class="link" href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_convenience_typedefs" title="boost::atomic&lt;T&gt; convenience typedefs"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
-        convenience typedefs</a>
+<a name="atomic.interface.interface_atomic_object.interface_atomic_convenience_typedefs"></a><a class="link" href="interface.html#atomic.interface.interface_atomic_object.interface_atomic_convenience_typedefs" title="boost::atomic&lt;T&gt; convenience type aliases"><code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
+        convenience type aliases</a>
 </h4></div></div></div>
 <p>
-          For convenience, the following shorthand typedefs of <code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
+          For convenience, the following shorthand type aliases of <code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
           are provided:
         </p>
-<pre class="programlisting"><span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">char</span> <span class="special">&gt;</span> <span class="identifier">atomic_char</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="special">&gt;</span> <span class="identifier">atomic_uchar</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">signed</span> <span class="keyword">char</span> <span class="special">&gt;</span> <span class="identifier">atomic_schar</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="special">&gt;</span> <span class="identifier">atomic_ushort</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">short</span> <span class="special">&gt;</span> <span class="identifier">atomic_short</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">int</span> <span class="special">&gt;</span> <span class="identifier">atomic_int</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="special">&gt;</span> <span class="identifier">atomic_ulong</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">long</span> <span class="special">&gt;</span> <span class="identifier">atomic_long</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="special">&gt;</span> <span class="identifier">atomic_ullong</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="special">&gt;</span> <span class="identifier">atomic_llong</span><span class="special">;</span>
+<p>
+</p>
+<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">atomic_char</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">char</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uchar</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">char</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_schar</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">signed</span> <span class="keyword">char</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_ushort</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">short</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_short</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">short</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_ulong</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">long</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_long</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">long</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_ullong</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_llong</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">long</span> <span class="keyword">long</span><span class="special">&gt;;</span>
 
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">void</span><span class="special">*</span> <span class="special">&gt;</span> <span class="identifier">atomic_address</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">bool</span> <span class="special">&gt;</span> <span class="identifier">atomic_bool</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">wchar_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_wchar_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">char8_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_char8_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">char16_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_char16_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">char32_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_char32_t</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_address</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">*&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_bool</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">bool</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_wchar_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">wchar_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_char8_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">char8_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_char16_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">char16_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_char32_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">char32_t</span><span class="special">&gt;;</span>
 
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint8_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint8_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int8_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int8_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint16_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint16_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int16_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int16_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint32_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint32_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int32_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int32_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint64_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint64_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int64_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int64_t</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint8_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint8_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int8_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int8_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint16_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint16_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int16_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int16_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint32_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint32_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int32_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int32_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint64_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint64_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int64_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int64_t</span><span class="special">&gt;;</span>
 
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_least8_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_least8_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_least8_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_least8_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_least16_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_least16_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_least16_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_least16_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_least32_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_least32_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_least32_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_least32_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_least64_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_least64_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_least64_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_least64_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_fast8_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_fast8_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_fast8_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_fast8_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_fast16_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_fast16_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_fast16_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_fast16_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_fast32_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_fast32_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_fast32_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_fast32_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">int_fast64_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_int_fast64_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uint_fast64_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uint_fast64_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">intmax_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_intmax_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uintmax_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uintmax_t</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_least8_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_least8_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_least8_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_least8_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_least16_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_least16_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_least16_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_least16_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_least32_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_least32_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_least32_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_least32_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_least64_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_least64_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_least64_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_least64_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_fast8_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_fast8_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_fast8_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_fast8_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_fast16_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_fast16_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_fast16_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_fast16_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_fast32_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_fast32_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_fast32_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_fast32_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_int_fast64_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">int_fast64_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uint_fast64_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uint_fast64_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_intmax_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">intmax_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uintmax_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uintmax_t</span><span class="special">&gt;;</span>
 
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_size_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_ptrdiff_t</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_size_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_ptrdiff_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span><span class="special">&gt;;</span>
 
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">intptr_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_intptr_t</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="identifier">uintptr_t</span> <span class="special">&gt;</span> <span class="identifier">atomic_uintptr_t</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_intptr_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">intptr_t</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_uintptr_t</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">uintptr_t</span><span class="special">&gt;;</span>
 
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">unsigned</span> <span class="identifier">integral</span> <span class="special">&gt;</span> <span class="identifier">atomic_unsigned_lock_free</span><span class="special">;</span>
-<span class="keyword">typedef</span> <span class="identifier">atomic</span><span class="special">&lt;</span> <span class="keyword">signed</span> <span class="identifier">integral</span> <span class="special">&gt;</span> <span class="identifier">atomic_signed_lock_free</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_unsigned_lock_free</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="identifier">integral</span><span class="special">&gt;;</span>
+<span class="keyword">using</span> <span class="identifier">atomic_signed_lock_free</span> <span class="special">=</span> <span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">signed</span> <span class="identifier">integral</span><span class="special">&gt;;</span>
 </pre>
 <p>
-          The typedefs are provided only if the corresponding value type is available.
+        </p>
+<p>
+          The type aliases are provided only if the corresponding value type is available.
         </p>
 <p>
           The <code class="computeroutput"><span class="identifier">atomic_unsigned_lock_free</span></code>
@@ -2422,41 +2969,75 @@
 <a name="atomic.interface.interface_wait_notify_ops"></a><a class="link" href="interface.html#atomic.interface.interface_wait_notify_ops" title="Waiting and notifying operations">Waiting and
       notifying operations</a>
 </h3></div></div></div>
+<div class="toc"><dl class="toc"><dt><span class="section"><a href="interface.html#atomic.interface.interface_wait_notify_ops.posix_clocks">Improving
+        performance of custom clocks on POSIX systems</a></span></dt></dl></div>
 <p>
         <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic_flag</span></code>, <code class="literal">boost::atomic&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
         and <code class="literal">boost::atomic_ref&lt;<span class="emphasis"><em>T</em></span>&gt;</code> support
         <span class="emphasis"><em>waiting</em></span> and <span class="emphasis"><em>notifying</em></span> operations
         that were introduced in C++20. Waiting operations have the following forms:
       </p>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
             <code class="literal"><span class="emphasis"><em>T</em></span> wait(<span class="emphasis"><em>T</em></span> old_val,
-            memory_order order)</code> (where <span class="emphasis"><em>T</em></span> is <code class="computeroutput"><span class="keyword">bool</span></code> for <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic_flag</span></code>)
-          </li></ul></div>
+            memory_order order)</code>
+          </li>
+<li class="listitem">
+            <code class="literal">template&lt;typename Clock, typename Duration&gt; wait_result&lt;<span class="emphasis"><em>T</em></span>&gt;
+            wait_until(<span class="emphasis"><em>T</em></span> old_val, std::chrono::time_point&lt;Clock,
+            Duration&gt; timeout, memory_order order)</code>
+          </li>
+<li class="listitem">
+            <code class="literal">template&lt;typename Rep, typename Period&gt; wait_result&lt;<span class="emphasis"><em>T</em></span>&gt;
+            wait_for(<span class="emphasis"><em>T</em></span> old_val, std::chrono::duration&lt;Rep,
+            Period&gt; timeout, memory_order order)</code>
+          </li>
+</ul></div>
 <p>
-        Here, <code class="computeroutput"><span class="identifier">order</span></code> must not be
-        <code class="computeroutput"><span class="identifier">memory_order_release</span></code> or
-        <code class="computeroutput"><span class="identifier">memory_order_acq_rel</span></code>. Note
-        that unlike C++20, the <code class="computeroutput"><span class="identifier">wait</span></code>
-        operation returns <span class="emphasis"><em>T</em></span> instead of <code class="computeroutput"><span class="keyword">void</span></code>.
-        This is a <span class="bold"><strong>Boost.Atomic</strong></span> extension.
+        For <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic_flag</span></code>, <span class="emphasis"><em>T</em></span> is
+        <code class="computeroutput"><span class="keyword">bool</span></code>. Here, <code class="computeroutput"><span class="identifier">order</span></code>
+        must not be <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span></code>
+        or <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acq_rel</span></code>. Note that unlike C++20, the <code class="computeroutput"><span class="identifier">wait</span></code> operation returns <span class="emphasis"><em>T</em></span>
+        instead of <code class="computeroutput"><span class="keyword">void</span></code>. This is a
+        <span class="bold"><strong>Boost.Atomic</strong></span> extension. <code class="computeroutput"><span class="identifier">wait_until</span></code>
+        and <code class="computeroutput"><span class="identifier">wait_for</span></code> are <span class="emphasis"><em>timed
+        waiting operations</em></span> and are also <span class="bold"><strong>Boost.Atomic</strong></span>
+        extensions.
       </p>
 <p>
-        The waiting operation performs the following steps repeatedly:
+        The waiting operations perform the following steps repeatedly:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
             Loads the current value <code class="computeroutput"><span class="identifier">new_val</span></code>
-            of the atomic object using the memory ordering constraint <code class="computeroutput"><span class="identifier">order</span></code>.
+            of the atomic object using the memory ordering constraint <code class="computeroutput"><span class="identifier">order</span></code>. For <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic_flag</span></code>,
+            the load is performed as if by <code class="computeroutput"><span class="identifier">test</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code>, for other atomic objects - as if by
+            <code class="computeroutput"><span class="identifier">load</span><span class="special">(</span><span class="identifier">order</span><span class="special">)</span></code>.
           </li>
 <li class="listitem">
             If the <code class="computeroutput"><span class="identifier">new_val</span></code> representation
             is different from <code class="computeroutput"><span class="identifier">old_val</span></code>
             (i.e. when compared as if by <code class="computeroutput"><span class="identifier">memcmp</span></code>),
-            returns <code class="computeroutput"><span class="identifier">new_val</span></code>.
+            returns. For <code class="computeroutput"><span class="identifier">wait</span></code>, the
+            returned value is <code class="computeroutput"><span class="identifier">new_val</span></code>.
+            For timed waiting operations, the returned value is a <code class="literal">wait_result&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
+            object <code class="computeroutput"><span class="identifier">r</span></code>, where <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">value</span></code> is <code class="computeroutput"><span class="identifier">new_val</span></code>
+            and <code class="computeroutput"><span class="identifier">t</span><span class="special">.</span><span class="identifier">timeout</span></code> is contextually convertible
+            to <code class="computeroutput"><span class="keyword">false</span></code>.
+          </li>
+<li class="listitem">
+            For timed waiting operations, if <code class="computeroutput"><span class="identifier">timeout</span></code>
+            has expired, returns a <code class="literal">wait_result&lt;<span class="emphasis"><em>T</em></span>&gt;</code>
+            object <code class="computeroutput"><span class="identifier">r</span></code>, where <code class="computeroutput"><span class="identifier">r</span><span class="special">.</span><span class="identifier">value</span></code> is <code class="computeroutput"><span class="identifier">new_val</span></code>
+            and <code class="computeroutput"><span class="identifier">t</span><span class="special">.</span><span class="identifier">timeout</span></code> is contextually convertible
+            to <code class="computeroutput"><span class="keyword">true</span></code>. <code class="computeroutput"><span class="identifier">wait_for</span></code>
+            tracks <code class="computeroutput"><span class="identifier">timeout</span></code> against
+            an unspecified steady clock.
           </li>
 <li class="listitem">
             Blocks the calling thread until unblocked by a notifying operation or
-            spuriously.
+            spuriously or, for timed waiting operations, <code class="computeroutput"><span class="identifier">timeout</span></code>
+            expires.
           </li>
 </ul></div>
 <p>
@@ -2464,7 +3045,13 @@
         a corresponding notifying operation. It is also allowed to <span class="emphasis"><em>not</em></span>
         return if the atomic object value is different from <code class="computeroutput"><span class="identifier">old_val</span></code>
         only momentarily (this is known as <a href="https://en.wikipedia.org/wiki/ABA_problem" target="_top">ABA
-        problem</a>).
+        problem</a>). For timed waiting operations, the precision of tracking
+        the timeout is dependent on hardware and the underlying operating system
+        and may be different for different clock types. For clocks that support time
+        adjustments, it is unspecified whether the adjustments unblock the waiting
+        threads (for example, if the clock is adjusted forward while a thread is
+        waiting, the thread may not get unblocked until after the timeout expires
+        as if no adjustment happened).
       </p>
 <p>
         Notifying operations have the following forms:
@@ -2506,6 +3093,110 @@
         in shared memory) or when the atomic object is mapped at different memory
         addresses in the same process.
       </p>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="atomic.interface.interface_wait_notify_ops.posix_clocks"></a><a class="link" href="interface.html#atomic.interface.interface_wait_notify_ops.posix_clocks" title="Improving performance of custom clocks on POSIX systems">Improving
+        performance of custom clocks on POSIX systems</a>
+</h4></div></div></div>
+<p>
+          Although timed waiting operations will work by default for any clock types
+          (subject to the caveats outlined in the <a class="link" href="interface.html#atomic.interface.interface_wait_notify_ops" title="Waiting and notifying operations">previous</a>
+          section), the implementation will track the timout against one of the known
+          and available clock types internally, which on POSIX systems is typically
+          <code class="computeroutput"><span class="identifier">CLOCK_MONOTONIC</span></code> or <code class="computeroutput"><span class="identifier">CLOCK_REALTIME</span></code>. Coordinating between
+          user-specified and internal clocks incurs performance overhead, as the
+          waiting operation will have to query clock timestamps and may perform multiple
+          blocking operations and wake ups as it tries to exhaust the alotted timeout.
+        </p>
+<p>
+          Users may improve performance when they use custom clock types that map
+          onto one of the POSIX clocks (see e.g. <a href="https://pubs.opengroup.org/onlinepubs/9799919799/functions/clock_getres.html" target="_top"><code class="computeroutput"><span class="identifier">clock_gettime</span></code></a>) that are supported
+          by the operating system for blocking timeouts by providing a specialization
+          of the <code class="computeroutput"><span class="identifier">posix_clock_traits</span></code>
+          class template as follows:
+        </p>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">atomic</span><span class="special">/</span><span class="identifier">posix_clock_traits_fwd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+<span class="keyword">namespace</span> <span class="identifier">atomics</span> <span class="special">{</span>
+
+<span class="keyword">template</span><span class="special">&lt;</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">posix_clock_traits</span><span class="special">&lt;</span><span class="identifier">my_clock</span><span class="special">&gt;</span>
+<span class="special">{</span>
+    <span class="comment">// POSIX clock identifier (e.g. CLOCK_MONOTONIC) onto which my_clock maps</span>
+    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="identifier">clockid_t</span> <span class="identifier">clock_id</span> <span class="special">=</span> <span class="special">...;</span>
+
+    <span class="comment">// Function that converts a my_clock time point to a POSIX timespec structure that corresponds to clock_id</span>
+    <span class="keyword">static</span> <span class="identifier">timespec</span> <span class="identifier">to_timespec</span><span class="special">(</span><span class="identifier">my_clock</span><span class="special">::</span><span class="identifier">time_point</span> <span class="identifier">time_point</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+<span class="special">};</span>
+
+<span class="special">}</span> <span class="comment">// namespace atomics</span>
+<span class="special">}</span> <span class="comment">// namespace boost</span>
+</pre>
+<p>
+        </p>
+<p>
+          Here, <code class="computeroutput"><span class="identifier">my_clock</span></code> is the user-defined
+          clock type that satisfies the C++11 chrono clock requirements (20.11.3,
+          [time.clock.req]). Note that <code class="computeroutput"><span class="identifier">posix_clock_traits</span></code>
+          must be specialized in namespace <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomics</span></code>.
+          The <code class="computeroutput"><span class="identifier">to_timespec</span></code> function
+          must be able to convert any valid time point to the <code class="computeroutput"><span class="identifier">timespec</span></code>
+          structure, and therefore must not throw.
+        </p>
+<p>
+          When this specialization is provided, and <code class="computeroutput"><span class="identifier">posix_clock_traits</span><span class="special">&lt;</span><span class="identifier">my_clock</span><span class="special">&gt;::</span><span class="identifier">clock_id</span></code>
+          is supported by the underlying OS, the waiting operation will be able to
+          convert the passed <code class="computeroutput"><span class="identifier">my_clock</span></code>
+          time points to the native format supported by the OS and use them directly.
+        </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+            Users need not specialize the <code class="computeroutput"><span class="identifier">posix_clock_traits</span></code>
+            class template for <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">chrono</span></code>
+            clocks. <span class="bold"><strong>Boost.Atomic</strong></span> already contains
+            the necessary support for standard library clocks.
+          </p></td></tr>
+</table></div>
+<p>
+          Advanced users may use the second template argument of <code class="computeroutput"><span class="identifier">posix_clock_traits</span></code>,
+          which is a type that is <code class="computeroutput"><span class="keyword">void</span></code>
+          by default, to leverage SFINAE and define partial <code class="computeroutput"><span class="identifier">posix_clock_traits</span></code>
+          template specializations that apply to subsets of clock types that satisfy
+          certain conditions. For example, if there is a number of clock types that
+          all derive from <code class="computeroutput"><span class="identifier">my_clock_base</span></code>,
+          it is possible to provide a single specialization for them using <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_base_of</span></code> as the limiting criteria.
+        </p>
+<p>
+</p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">type_traits</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">atomic</span><span class="special">/</span><span class="identifier">posix_clock_traits_fwd</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+<span class="keyword">namespace</span> <span class="identifier">atomics</span> <span class="special">{</span>
+
+<span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">MyClock</span><span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">posix_clock_traits</span><span class="special">&lt;</span><span class="identifier">MyClock</span><span class="special">,</span> <span class="keyword">typename</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">enable_if</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">is_base_of</span><span class="special">&lt;</span><span class="identifier">my_clock_base</span><span class="special">,</span> <span class="identifier">MyClock</span><span class="special">&gt;::</span><span class="identifier">value</span><span class="special">&gt;::</span><span class="identifier">type</span><span class="special">&gt;</span>
+<span class="special">{</span>
+    <span class="comment">// POSIX clock identifier onto which MyClock maps</span>
+    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="identifier">clockid_t</span> <span class="identifier">clock_id</span> <span class="special">=</span> <span class="identifier">MyClock</span><span class="special">::</span><span class="identifier">clock_id</span><span class="special">;</span>
+
+    <span class="comment">// Function that converts a MyClock time point to a POSIX timespec structure that corresponds to clock_id</span>
+    <span class="keyword">static</span> <span class="identifier">timespec</span> <span class="identifier">to_timespec</span><span class="special">(</span><span class="keyword">typename</span> <span class="identifier">MyClock</span><span class="special">::</span><span class="identifier">time_point</span> <span class="identifier">time_point</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
+<span class="special">};</span>
+
+<span class="special">}</span> <span class="comment">// namespace atomics</span>
+<span class="special">}</span> <span class="comment">// namespace boost</span>
+</pre>
+<p>
+        </p>
+</div>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -2663,6 +3354,65 @@
         code reordering by the compiler (but not by CPU). The <code class="computeroutput"><span class="identifier">order</span></code>
         argument here specifies the direction, in which the fence prevents the compiler
         to reorder code.
+      </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="atomic.interface.thread_pause"></a><a class="link" href="interface.html#atomic.interface.thread_pause" title="SMT Pause Hint">SMT Pause Hint</a>
+</h3></div></div></div>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">atomic</span><span class="special">/</span><span class="identifier">thread_pause</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        Atomic operations are often used in tight loops, also called spin loops,
+        where the same sequence of operations is attempted repeatedly until the atomic
+        object is successfully updated. On modern processors with <a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading" target="_top">SMT</a>
+        such tight loops may result in suboptimal performance as they may be utilizing
+        CPU core resources that could otherwise be used by a sibling thread of the
+        same core. The <code class="computeroutput"><span class="identifier">thread_pause</span></code>
+        operation that is described in this section may help in this case:
+      </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Syntax
+                </p>
+              </th>
+<th>
+                <p>
+                  Description
+                </p>
+              </th>
+</tr></thead>
+<tbody><tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">thread_pause</span><span class="special">()</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  Hint the CPU core to reallocate hardware resources to favor other
+                  sibling threads it is currently running.
+                </p>
+              </td>
+</tr></tbody>
+</table></div>
+<p>
+        The intended use case of <code class="computeroutput"><span class="identifier">thread_pause</span></code>
+        is to call it within a spin loop, after a failed iteration, as a backoff
+        measure. The effects of this hint are CPU architecture dependent and may
+        vary between CPU models and manufacturers. It may also be a no-op. When not
+        a no-op, it will typically suspend the calling therad execution for a number
+        of CPU clock cycles, giving the sibling threads the opportunity to use the
+        freed hardware resources to progress further and possibly allow the calling
+        thread to succeed on the next spin loop iteration. From the operating system
+        perspective, <code class="computeroutput"><span class="identifier">thread_pause</span></code>
+        does not block the thread.
       </p>
 </div>
 <div class="section">
@@ -2972,21 +3722,6 @@
 <tr>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">BOOST_ATOMIC_NO_ATOMIC_FLAG_INIT</span></code>
-                </p>
-              </td>
-<td>
-                <p>
-                  Defined after including <code class="computeroutput"><span class="identifier">atomic_flag</span><span class="special">.</span><span class="identifier">hpp</span></code>,
-                  if the implementation does not support the <code class="computeroutput"><span class="identifier">BOOST_ATOMIC_FLAG_INIT</span></code>
-                  macro for static initialization of <code class="computeroutput"><span class="identifier">atomic_flag</span></code>.
-                  This macro is typically defined for pre-C++11 compilers.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
                   <code class="computeroutput"><span class="identifier">BOOST_ATOMIC_NO_CLEAR_PADDING</span></code>
                 </p>
               </td>
@@ -3088,7 +3823,7 @@
       </p>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013, 2017, 2018, 2020-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013-2025 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

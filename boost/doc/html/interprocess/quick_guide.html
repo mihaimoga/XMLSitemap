@@ -54,7 +54,7 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstdlib</span><span class="special">&gt;</span> <span class="comment">//std::system</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">sstream</span><span class="special">&gt;</span>
 
-<span class="keyword">int</span> <span class="identifier">main</span> <span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span>[2] "MyName"<span class="special">[])</span>
+<span class="keyword">int</span> <span class="identifier">main</span> <span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">argv</span><span class="special">[])</span>
 <span class="special">{</span>
    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
    <span class="keyword">if</span><span class="special">(</span><span class="identifier">argc</span> <span class="special">==</span> <span class="number">1</span><span class="special">){</span>  <span class="comment">//Parent process</span>
@@ -80,7 +80,7 @@
       <span class="comment">//memory segment even if it is mapped in different base addresses</span>
       <span class="identifier">managed_shared_memory</span><span class="special">::</span><span class="identifier">handle_t</span> <span class="identifier">handle</span> <span class="special">=</span> <span class="identifier">segment</span><span class="special">.</span><span class="identifier">get_handle_from_address</span><span class="special">(</span><span class="identifier">shptr</span><span class="special">);</span>
       <span class="identifier">std</span><span class="special">::</span><span class="identifier">stringstream</span> <span class="identifier">s</span><span class="special">;</span>
-      <span class="identifier">s</span> <span class="special">&lt;&lt;</span> [2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">]</span> <span class="special">&lt;&lt;</span> <span class="string">" "</span> <span class="special">&lt;&lt;</span> <span class="identifier">handle</span><span class="special">;</span>
+      <span class="identifier">s</span> <span class="special">&lt;&lt;</span> <span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]</span> <span class="special">&lt;&lt;</span> <span class="string">" "</span> <span class="special">&lt;&lt;</span> <span class="identifier">handle</span><span class="special">;</span>
       <span class="identifier">s</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ends</span><span class="special">;</span>
       <span class="comment">//Launch child process</span>
       <span class="keyword">if</span><span class="special">(</span><span class="number">0</span> <span class="special">!=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">system</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">str</span><span class="special">().</span><span class="identifier">c_str</span><span class="special">()))</span>
@@ -91,14 +91,14 @@
    <span class="special">}</span>
    <span class="keyword">else</span><span class="special">{</span>
       <span class="comment">//Open managed segment</span>
-      <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> [2] "MyName"<span class="special">[</span><span class="number">2</span><span class="special">]);</span>
+      <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> "MyName"<span class="special">);</span>
 
       <span class="comment">//An handle from the base address can identify any byte of the shared</span>
       <span class="comment">//memory segment even if it is mapped in different base addresses</span>
       <span class="identifier">managed_shared_memory</span><span class="special">::</span><span class="identifier">handle_t</span> <span class="identifier">handle</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span>
 
       <span class="comment">//Obtain handle value</span>
-      <span class="identifier">std</span><span class="special">::</span><span class="identifier">stringstream</span> <span class="identifier">s</span><span class="special">;</span> <span class="identifier">s</span> <span class="special">&lt;&lt;</span> [2] "MyName"<span class="special">[</span><span class="number">1</span><span class="special">];</span> <span class="identifier">s</span> <span class="special">&gt;&gt;</span> <span class="identifier">handle</span><span class="special">;</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">stringstream</span> <span class="identifier">s</span><span class="special">;</span> <span class="identifier">s</span> <span class="special">&lt;&lt;</span> <span class="identifier">argv</span><span class="special">[</span><span class="number">1</span><span class="special">];</span> <span class="identifier">s</span> <span class="special">&gt;&gt;</span> <span class="identifier">handle</span><span class="special">;</span>
 
       <span class="comment">//Get buffer local address from handle</span>
       <span class="keyword">void</span> <span class="special">*</span><span class="identifier">msg</span> <span class="special">=</span> <span class="identifier">segment</span><span class="special">.</span><span class="identifier">get_address_from_handle</span><span class="special">(</span><span class="identifier">handle</span><span class="special">);</span>
@@ -126,7 +126,7 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">utility</span><span class="special">&gt;</span>
 
-<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span>[2] "MyName"<span class="special">[])</span>
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">argv</span><span class="special">[])</span>
 <span class="special">{</span>
    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
    <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">,</span> <span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">MyType</span><span class="special">;</span>
@@ -165,7 +165,7 @@
          <span class="special">,</span> <span class="special">&amp;</span><span class="identifier">int_initializer</span><span class="special">[</span><span class="number">0</span><span class="special">]);</span>    <span class="comment">//Iterator for the 2nd ctor argument</span>
 
       <span class="comment">//Launch child process</span>
-      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
       <span class="keyword">if</span><span class="special">(</span><span class="number">0</span> <span class="special">!=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">system</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">c_str</span><span class="special">()))</span>
          <span class="keyword">return</span> <span class="number">1</span><span class="special">;</span>
 
@@ -178,7 +178,7 @@
    <span class="special">}</span>
    <span class="keyword">else</span><span class="special">{</span>
       <span class="comment">//Open managed shared memory</span>
-      <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> [2] "MyName"<span class="special">[</span><span class="number">2</span><span class="special">]);</span>
+      <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> "MyName"<span class="special">);</span>
 
       <span class="identifier">std</span><span class="special">::</span><span class="identifier">pair</span><span class="special">&lt;</span><span class="identifier">MyType</span><span class="special">*,</span> <span class="identifier">managed_shared_memory</span><span class="special">::</span><span class="identifier">size_type</span><span class="special">&gt;</span> <span class="identifier">res</span><span class="special">;</span>
 
@@ -316,7 +316,7 @@
 <span class="keyword">typedef</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">container</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">,</span> <span class="identifier">ShmemAllocator</span><span class="special">&gt;</span> <span class="identifier">MyVector</span><span class="special">;</span>
 
 <span class="comment">//Main function. For parent process argc == 1, for child process argc == 2</span>
-<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span>[2] "MyName"<span class="special">[])</span>
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">argv</span><span class="special">[])</span>
 <span class="special">{</span>
    <span class="keyword">if</span><span class="special">(</span><span class="identifier">argc</span> <span class="special">==</span> <span class="number">1</span><span class="special">){</span> <span class="comment">//Parent process</span>
       <span class="comment">//Remove shared memory on construction and destruction</span>
@@ -339,7 +339,7 @@
          <span class="identifier">myvector</span><span class="special">-&gt;</span><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">i</span><span class="special">);</span>
 
       <span class="comment">//Launch child process</span>
-      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
       <span class="keyword">if</span><span class="special">(</span><span class="number">0</span> <span class="special">!=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">system</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">c_str</span><span class="special">()))</span>
          <span class="keyword">return</span> <span class="number">1</span><span class="special">;</span>
 
@@ -349,7 +349,7 @@
    <span class="special">}</span>
    <span class="keyword">else</span><span class="special">{</span> <span class="comment">//Child process</span>
       <span class="comment">//Open the managed segment</span>
-      <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> [2] "MyName"<span class="special">[</span><span class="number">2</span><span class="special">]);</span>
+      <span class="identifier">managed_shared_memory</span> <span class="identifier">segment</span><span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> "MyName"<span class="special">);</span>
 
       <span class="comment">//Find the vector using the c-string name</span>
       <span class="identifier">MyVector</span> <span class="special">*</span><span class="identifier">myvector</span> <span class="special">=</span> <span class="identifier">segment</span><span class="special">.</span><span class="identifier">find</span><span class="special">&lt;</span><span class="identifier">MyVector</span><span class="special">&gt;(</span><span class="string">"MyVector"</span><span class="special">).</span><span class="identifier">first</span><span class="special">;</span>

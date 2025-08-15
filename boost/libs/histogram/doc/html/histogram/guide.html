@@ -57,6 +57,8 @@
         axes</a></span></dt>
 <dt><span class="section"><a href="guide.html#histogram.guide.expert.axis_with_several_arguments">Axis
         with several arguments</a></span></dt>
+<dt><span class="section"><a href="guide.html#histogram.guide.expert.axis_multiple_value_types">Axis
+        which accepts multiple value types</a></span></dt>
 <dt><span class="section"><a href="guide.html#histogram.guide.expert.user_defined_storage_class">User-defined
         storage class</a></span></dt>
 <dt><span class="section"><a href="guide.html#histogram.guide.expert.parallelisation_options">Parallelisation
@@ -726,6 +728,7 @@
         the histogram.
       </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">histogram</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">core</span><span class="special">/</span><span class="identifier">span</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">functional</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">numeric</span><span class="special">&gt;</span>
@@ -748,7 +751,16 @@
   <span class="identifier">h</span><span class="special">(</span><span class="identifier">xy</span><span class="special">);</span>
 
   <span class="comment">// chunk-wise filling is also supported and more efficient, make some data...</span>
-  <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">xy2</span><span class="special">[</span><span class="number">2</span><span class="special">]</span> <span class="special">=</span> <span class="special">{{</span><span class="number">0</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">5</span><span class="special">},</span> <span class="special">{</span><span class="number">0.8</span><span class="special">,</span> <span class="number">0.4</span><span class="special">,</span> <span class="number">0.7</span><span class="special">}};</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">x</span> <span class="special">=</span> <span class="special">{</span><span class="number">0</span><span class="special">,</span> <span class="number">2</span><span class="special">,</span> <span class="number">5</span><span class="special">};</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">y</span> <span class="special">=</span> <span class="special">{</span><span class="number">0.8</span><span class="special">,</span> <span class="number">0.4</span><span class="special">,</span> <span class="number">0.7</span><span class="special">};</span>
+
+  <span class="comment">// fill accepts an iterable over iterables, to avoid copying data we use</span>
+  <span class="comment">// std::vector&lt;boost::span&lt;double&gt;&gt; and not std::vector&lt;std::vector&lt;double&gt;&gt;</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">span</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;&gt;</span> <span class="identifier">xy2</span> <span class="special">=</span> <span class="special">{</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">make_span</span><span class="special">(</span><span class="identifier">x</span><span class="special">),</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">make_span</span><span class="special">(</span><span class="identifier">y</span><span class="special">)};</span>
+
+  <span class="comment">// alternatively, if the number of axes is known at compile-time,</span>
+  <span class="comment">// it is better to use an array of spans, which avoids the heap allocation</span>
+  <span class="comment">// std::array&lt;boost::span&lt;double&gt;, 2&gt; xy2 = {boost::make_span(x), boost::make_span(y)};</span>
 
   <span class="comment">// ... and call fill method</span>
   <span class="identifier">h</span><span class="special">.</span><span class="identifier">fill</span><span class="special">(</span><span class="identifier">xy2</span><span class="special">);</span>
@@ -1621,6 +1633,8 @@
         axes</a></span></dt>
 <dt><span class="section"><a href="guide.html#histogram.guide.expert.axis_with_several_arguments">Axis
         with several arguments</a></span></dt>
+<dt><span class="section"><a href="guide.html#histogram.guide.expert.axis_multiple_value_types">Axis
+        which accepts multiple value types</a></span></dt>
 <dt><span class="section"><a href="guide.html#histogram.guide.expert.user_defined_storage_class">User-defined
         storage class</a></span></dt>
 <dt><span class="section"><a href="guide.html#histogram.guide.expert.parallelisation_options">Parallelisation
@@ -1797,6 +1811,87 @@
   <span class="identifier">assert</span><span class="special">(</span><span class="identifier">h2</span><span class="special">.</span><span class="identifier">at</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="number">1</span><span class="special">)</span> <span class="special">==</span> <span class="number">0</span><span class="special">);</span> <span class="comment">// in, blue</span>
 <span class="special">}</span>
 </pre>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="histogram.guide.expert.axis_multiple_value_types"></a><a class="link" href="guide.html#histogram.guide.expert.axis_multiple_value_types" title="Axis which accepts multiple value types">Axis
+        which accepts multiple value types</a>
+</h4></div></div></div>
+<p>
+          Can you make an axis that accepts more than one type of value? Sort of,
+          with a workaround.
+        </p>
+<p>
+          What is the issue here? A basic assumption during the design of this library
+          was that <code class="computeroutput"><span class="identifier">Axis</span><span class="special">::</span><span class="identifier">index</span></code> only needs to handle a single value
+          type, and thus the implementation does not allow <code class="computeroutput"><span class="identifier">Axis</span><span class="special">::</span><span class="identifier">index</span></code>
+          to be overloaded or templated. For example, data for one particular axis
+          of the histogram may have type <code class="computeroutput"><span class="keyword">double</span></code>
+          or type <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>, but not a mix of the two. Value
+          types which are implicitly convertible also work, for example, <code class="computeroutput"><span class="keyword">double</span></code> and <code class="computeroutput"><span class="keyword">int</span></code>.
+        </p>
+<p>
+          But what if you really need to accept more than one value type, and those
+          types are not implicitly convertible? Then you can make it work with a
+          special converter type, like in the following example.
+        </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">histogram</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">histogram</span><span class="special">;</span>
+
+<span class="keyword">struct</span> <span class="identifier">fraction</span> <span class="special">{</span>
+  <span class="keyword">int</span> <span class="identifier">numerator</span><span class="special">;</span>
+  <span class="keyword">int</span> <span class="identifier">denominator</span><span class="special">;</span>
+<span class="special">};</span>
+
+<span class="comment">// We can use a converter type to accept multiple value types.</span>
+<span class="keyword">struct</span> <span class="identifier">my_axis</span> <span class="special">:</span> <span class="identifier">axis</span><span class="special">::</span><span class="identifier">regular</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="special">{</span>
+  <span class="keyword">using</span> <span class="identifier">base_type</span> <span class="special">=</span> <span class="identifier">axis</span><span class="special">::</span><span class="identifier">regular</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;;</span>
+
+  <span class="keyword">using</span> <span class="identifier">base_type</span><span class="special">::</span><span class="identifier">regular</span><span class="special">;</span> <span class="comment">// inherit constructors</span>
+
+  <span class="keyword">struct</span> <span class="identifier">converter_type</span> <span class="special">{</span>
+    <span class="keyword">double</span> <span class="identifier">val_</span><span class="special">;</span>
+    <span class="comment">// put overloads to handle multiple data types here or use a template</span>
+    <span class="identifier">converter_type</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">fraction</span><span class="special">&amp;</span> <span class="identifier">x</span><span class="special">)</span>
+        <span class="special">:</span> <span class="identifier">val_</span><span class="special">{</span><span class="keyword">static_cast</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="identifier">x</span><span class="special">.</span><span class="identifier">numerator</span><span class="special">)</span> <span class="special">/</span> <span class="identifier">x</span><span class="special">.</span><span class="identifier">denominator</span><span class="special">}</span> <span class="special">{}</span>
+    <span class="identifier">converter_type</span><span class="special">(</span><span class="keyword">double</span> <span class="identifier">x</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">val_</span><span class="special">{</span><span class="identifier">x</span><span class="special">}</span> <span class="special">{}</span>
+  <span class="special">};</span>
+
+  <span class="identifier">axis</span><span class="special">::</span><span class="identifier">index_type</span> <span class="identifier">index</span><span class="special">(</span><span class="identifier">converter_type</span> <span class="identifier">x</span><span class="special">)</span> <span class="keyword">const</span> <span class="special">{</span>
+    <span class="keyword">return</span> <span class="identifier">base_type</span><span class="special">::</span><span class="identifier">index</span><span class="special">(</span><span class="identifier">x</span><span class="special">.</span><span class="identifier">val_</span><span class="special">);</span>
+  <span class="special">}</span>
+<span class="special">};</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">()</span> <span class="special">{</span>
+  <span class="keyword">auto</span> <span class="identifier">h</span> <span class="special">=</span> <span class="identifier">make_histogram</span><span class="special">(</span><span class="identifier">my_axis</span><span class="special">(</span><span class="number">4</span><span class="special">,</span> <span class="number">0.0</span><span class="special">,</span> <span class="number">1.0</span><span class="special">));</span>
+
+  <span class="identifier">h</span><span class="special">(</span><span class="identifier">fraction</span><span class="special">{</span><span class="number">1</span><span class="special">,</span> <span class="number">3</span><span class="special">});</span> <span class="comment">// 0.3333</span>
+  <span class="identifier">h</span><span class="special">(</span><span class="number">0.8</span><span class="special">);</span>
+
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">fraction</span><span class="special">&gt;</span> <span class="identifier">a</span> <span class="special">=</span> <span class="special">{</span>
+      <span class="special">{</span><span class="number">1</span><span class="special">,</span> <span class="number">5</span><span class="special">},</span> <span class="comment">// 0.2</span>
+      <span class="special">{</span><span class="number">3</span><span class="special">,</span> <span class="number">5</span><span class="special">},</span> <span class="comment">// 0.6</span>
+  <span class="special">};</span>
+  <span class="identifier">h</span><span class="special">.</span><span class="identifier">fill</span><span class="special">(</span><span class="identifier">a</span><span class="special">);</span>
+
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;</span> <span class="identifier">b</span> <span class="special">=</span> <span class="special">{</span><span class="number">0.2</span><span class="special">,</span> <span class="number">0.4</span><span class="special">};</span>
+  <span class="identifier">h</span><span class="special">.</span><span class="identifier">fill</span><span class="special">(</span><span class="identifier">b</span><span class="special">);</span>
+
+  <span class="identifier">assert</span><span class="special">(</span><span class="identifier">h</span><span class="special">.</span><span class="identifier">at</span><span class="special">(</span><span class="number">0</span><span class="special">)</span> <span class="special">==</span> <span class="number">2</span><span class="special">);</span> <span class="comment">// 0.0 ... 0.25</span>
+  <span class="identifier">assert</span><span class="special">(</span><span class="identifier">h</span><span class="special">.</span><span class="identifier">at</span><span class="special">(</span><span class="number">1</span><span class="special">)</span> <span class="special">==</span> <span class="number">2</span><span class="special">);</span> <span class="comment">// 0.25 ... 0.5</span>
+  <span class="identifier">assert</span><span class="special">(</span><span class="identifier">h</span><span class="special">.</span><span class="identifier">at</span><span class="special">(</span><span class="number">2</span><span class="special">)</span> <span class="special">==</span> <span class="number">1</span><span class="special">);</span> <span class="comment">// 0.5 ... 0.75</span>
+  <span class="identifier">assert</span><span class="special">(</span><span class="identifier">h</span><span class="special">.</span><span class="identifier">at</span><span class="special">(</span><span class="number">3</span><span class="special">)</span> <span class="special">==</span> <span class="number">1</span><span class="special">);</span> <span class="comment">// 0.75 ... 1.0</span>
+<span class="special">}</span>
+</pre>
+<p>
+          In other words, the solution here was to make a type towards which the
+          other value types are implicitly convertible. This is as efficient as making
+          overloads, although formally a temporary object is created here, because
+          the optimizer will inline the calls and never create that temporary object.
+        </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
@@ -2057,6 +2152,16 @@
               because it is not a contiguous sequence of boolean values, but any
               other container of booleans works and any sequence of values convertible
               to bool.
+            </li>
+<li class="listitem">
+              <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1histogram_1_1accumulators_1_1collector.html" title="Class template collector">collector</a></code>
+              consists of a collection of containers, one per bin. It accepts samples
+              and sorts the sample value into the corresponding container. The memory
+              consumption of this accumulator is unbounded, since it stores each
+              input value. It is useful to compute custom estimators, in particular,
+              those which require access to the full sample, like a kernel density
+              estimate, or which do not have online update algorithms (for example,
+              the median).
             </li>
 </ul></div>
 <p>

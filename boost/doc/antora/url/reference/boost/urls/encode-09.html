@@ -137,8 +137,10 @@
   </ul>
 </nav>
 <div class="spirit-nav">
-</div>
-</div>
+    <a class="disabled" accesskey="u" aria-disabled="true" tabindex="-1">
+      <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
+    </a>
+</div></div>
     <h1 class="page"><a href="../../boost.html">boost</a>::<a href="../../boost/urls.html">urls</a>::encode</h1>
   <div id="preamble">
 <div class="sectionbody">
@@ -155,13 +157,13 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">template&lt;<a href="grammar.html" class="xref page">grammar</a>::<a href="grammar/CharSet.html" class="xref page">CharSet</a> CS&gt;
+<pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">template&lt;<a href="grammar/CharSet.html" class="xref page">grammar::CharSet</a> CS&gt;
 std::size&lowbar;t
 encode(
     char* dest,
     std::size&lowbar;t size,
     core::string&lowbar;view s,
-    CS const&amp; unreserved,
+    CS const&amp; allowed,
     <a href="encoding_opts.html" class="xref page">encoding&lowbar;opts</a> opt = &lcub;&rcub;);</code></pre>
 </div>
 </div>
@@ -240,7 +242,7 @@ assert( encode( buf, sizeof(buf), "Program Files", pchars ) == 15 );</code></pre
 <td class="tableblock halign-left valign-top"><p class="tableblock">The string to encode&period;</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>unreserved</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>allowed</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The set of characters that is not percent&hyphen;encoded&period;</p></td>
 </tr>
 <tr>
@@ -255,7 +257,7 @@ assert( encode( buf, sizeof(buf), "Program Files", pchars ) == 15 );</code></pre
 <h2 id="_see_also"><a class="anchor" href="#_see_also"></a>See Also</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="encode-04e.html" class="xref page"><code>encode</code></a>, <a href="encoded_size.html" class="xref page"><code>encoded&lowbar;size</code></a>, <a href="make_pct_string_view.html" class="xref page"><code>make&lowbar;pct&lowbar;string&lowbar;view</code></a>&period;</p>
+<p><a href="encode-0d.html" class="xref page"><code>encode</code></a>, <a href="encoded_size.html" class="xref page"><code>encoded&lowbar;size</code></a>, <a href="make_pct_string_view.html" class="xref page"><code>make&lowbar;pct&lowbar;string&lowbar;view</code></a>&period;</p>
 </div>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>

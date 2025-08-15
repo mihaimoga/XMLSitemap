@@ -41,7 +41,7 @@
       multi-threaded environment.
       This is achieved primarily through two changes from the original Boost.Signals
       API.  One is the introduction of a new automatic connection management scheme
-      relying on <code class="computeroutput"><a class="link" href="../doxygen/boost_typeindex_header_reference/classboost_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code> and <code class="computeroutput">weak_ptr</code>,
+      relying on <code class="computeroutput">shared_ptr</code> and <code class="computeroutput">weak_ptr</code>,
       as described in the <a class="link" href="tutorial.html#signals2.tutorial.connection-management" title="Automatic Connection Management (Intermediate)">tutorial</a>.
       The second change was the introduction of a <code class="computeroutput">Mutex</code> template type
       parameter to the <code class="computeroutput"><a class="link" href="../boost/signals2/signal.html" title="Class template signal">signal</a></code> class.  This section details how
@@ -87,7 +87,7 @@
 <li class="listitem"><p>The <code class="computeroutput">Mutex</code> associated with the connection to the
           slot is locked.</p></li>
 <li class="listitem"><p>All the tracked <code class="computeroutput">weak_ptr</code> associated with the
-          slot are copied into temporary <code class="computeroutput"><a class="link" href="../doxygen/boost_typeindex_header_reference/classboost_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code> which
+          slot are copied into temporary <code class="computeroutput">shared_ptr</code> which
           will be kept alive until the invocation is done with the slot.  If this fails due
           to any of the
           <code class="computeroutput">weak_ptr</code> being expired, the connection is
@@ -183,7 +183,7 @@
       and unblocked.  The internal reference counting which is used to keep track of
       how many <code class="computeroutput"><a class="link" href="../boost/signals2/shared_connection_block.html" title="Class shared_connection_block">shared_connection_block</a></code> objects are asserting
       blocks on their underlying connection is also thread-safe (the implementation
-      relies on <code class="computeroutput"><a class="link" href="../doxygen/boost_typeindex_header_reference/classboost_1_1shared__ptr.html" title="Class template shared_ptr">shared_ptr</a></code> for the reference counting).
+      relies on <code class="computeroutput">shared_ptr</code> for the reference counting).
       However, individual <code class="computeroutput"><a class="link" href="../boost/signals2/shared_connection_block.html" title="Class shared_connection_block">shared_connection_block</a></code> objects
       should not be accessed concurrently by multiple threads.  As long as two
       threads each have their own <code class="computeroutput"><a class="link" href="../boost/signals2/shared_connection_block.html" title="Class shared_connection_block">shared_connection_block</a></code> object,

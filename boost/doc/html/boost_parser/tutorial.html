@@ -1019,7 +1019,7 @@ You entered:
           </li>
 <li class="listitem">
             We've given <code class="computeroutput"><span class="identifier">doubles</span></code> the
-            diagnstic text <code class="computeroutput"><span class="string">"doubles"</span></code>
+            diagnostic text <code class="computeroutput"><span class="string">"doubles"</span></code>
             so that Boost.Parser knows how to refer to it when producing a trace
             of the parser during debugging.
           </li>
@@ -1124,7 +1124,7 @@ You entered:
         <span class="identifier">SkipParser</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="identifier">skip</span><span class="special">,</span>                                               <span class="special">\</span>
         <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span><span class="identifier">detail</span><span class="special">::</span><span class="identifier">flags</span> <span class="identifier">flags</span><span class="special">,</span>                                    <span class="special">\</span>
         <span class="keyword">bool</span> <span class="special">&amp;</span> <span class="identifier">success</span><span class="special">,</span>                                                        <span class="special">\</span>
-        <span class="keyword">bool</span> <span class="special">&amp;</span> <span class="identifier">dont_assign</span><span class="special">,</span>                                                    <span class="special">\</span>
+        <span class="keyword">bool</span> <span class="special">&amp;</span> <span class="comment">/*dont_assign*/</span><span class="special">,</span>                                                <span class="special">\</span>
         <span class="identifier">Attribute</span> <span class="special">&amp;</span> <span class="identifier">retval</span><span class="special">)</span>                                                    <span class="special">\</span>
     <span class="special">{</span>                                                                          <span class="special">\</span>
         <span class="keyword">auto</span> <span class="keyword">const</span> <span class="special">&amp;</span> <span class="identifier">parser</span> <span class="special">=</span> <span class="identifier">BOOST_PARSER_PP_CAT</span><span class="special">(</span><span class="identifier">rule_name_</span><span class="special">,</span> <span class="identifier">_def</span><span class="special">);</span>           <span class="special">\</span>
@@ -1637,10 +1637,9 @@ You entered:
 <span class="identifier">assert</span><span class="special">(</span><span class="identifier">result1</span><span class="special">);</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="special">*</span><span class="identifier">result1</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span> <span class="comment">// Prints: some text</span>
 
-<span class="keyword">auto</span> <span class="identifier">result2</span> <span class="special">=</span>
-    <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">(</span><span class="string">"\"some \\\"text\\\"\""</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">quoted_string</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">ws</span><span class="special">);</span>
-<span class="identifier">assert</span><span class="special">(</span><span class="identifier">result2</span><span class="special">);</span>
-<span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="special">*</span><span class="identifier">result2</span> <span class="special">&lt;&lt;</span> <span class="string">"\n"</span><span class="special">;</span> <span class="comment">// Prints: some "text"</span>
+<span class="keyword">auto</span> <span class="identifier">result2</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">(</span><span class="identifier">R</span><span class="string">"("</span><span class="identifier">some</span> <span class="special">\</span><span class="string">"text\""</span><span class="special">)</span><span class="string">", bp::quoted_string, bp::ws);
+assert(result2);
+std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span class="identifier">n</span><span class="string">"; // Prints: some "</span><span class="identifier">text</span><span class="error">"</span>
 </pre>
 <p>
       </p>
@@ -1675,7 +1674,7 @@ You entered:
       </p>
 <p>
         Another common thing to do in a quoted string parser is to recognize escape
-        sequences. If you have simple escape sequencecs that do not require any real
+        sequences. If you have simple escape sequences that do not require any real
         parsing, like say the simple escape sequences from C++, you can provide a
         <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code>
         object as well. The template parameter <code class="computeroutput"><span class="identifier">T</span></code>
@@ -1705,10 +1704,10 @@ You entered:
       </p>
 <p>
         Additionally, with each of the forms shown above, you can optionally provide
-        a parser as a final argument, to will be used to parse each character inside
-        the quotes. You have to provide an actual full parser here; you cannot provide
-        a character or string literal. If you do not provide a character parser,
-        <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>
+        a parser as a final argument, which will be used to parse each character
+        inside the quotes. You have to provide an actual full parser here; you cannot
+        provide a character or string literal. If you do not provide a character
+        parser, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>
         is used.
       </p>
 <p>
@@ -2346,12 +2345,18 @@ You entered:
         subsequent parses. The full set of operations can be found in the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code>
         API docs.
       </p>
-<p>
-        [mpte There are two versions of each of the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code> <code class="computeroutput"><span class="special">*</span><span class="identifier">_for_next_parse</span><span class="special">()</span></code>
-        functions — one that takes a context, and one that does not. The one
-        with the context is meant to be used within a semantic action. The one without
-        the context is for use outside of any parse.]
-      </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+          There are two versions of each of the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code> <code class="computeroutput"><span class="special">*</span><span class="identifier">_for_next_parse</span><span class="special">()</span></code>
+          functions — one that takes a context, and one that does not. The
+          one with the context is meant to be used within a semantic action. The
+          one without the context is for use outside of any parse.
+        </p></td></tr>
+</table></div>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -3377,6 +3382,14 @@ You entered:
                 </p>
               </td>
 <td>
+                <p>
+                  To specify a base/radix of <code class="computeroutput"><span class="identifier">N</span></code>,
+                  use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a5a7399c57e54ceedc43f5978ac51618a.html" title="Global uint_">uint_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">&gt;()</span></code>. To specify exactly <code class="computeroutput"><span class="identifier">D</span></code> digits, use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a5a7399c57e54ceedc43f5978ac51618a.html" title="Global uint_">uint_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="identifier">D</span><span class="special">&gt;()</span></code>. To specify a minimum of
+                  <code class="computeroutput"><span class="identifier">LO</span></code> digits and a
+                  maximum of <code class="computeroutput"><span class="identifier">HI</span></code> digits,
+                  use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a5a7399c57e54ceedc43f5978ac51618a.html" title="Global uint_">uint_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="identifier">LO</span><span class="special">,</span> <span class="identifier">HI</span><span class="special">&gt;()</span></code>. These calls can be chained,
+                  as in <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a5a7399c57e54ceedc43f5978ac51618a.html" title="Global uint_">uint_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">2</span><span class="special">&gt;().</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">8</span><span class="special">&gt;()</span></code>.
+                </p>
               </td>
 </tr>
 <tr>
@@ -3531,6 +3544,14 @@ You entered:
                 </p>
               </td>
 <td>
+                <p>
+                  To specify a base/radix of <code class="computeroutput"><span class="identifier">N</span></code>,
+                  use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aebfca0484fcebac2789c946c6a93b116.html" title="Global int_">int_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">&gt;()</span></code>. To specify exactly <code class="computeroutput"><span class="identifier">D</span></code> digits, use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aebfca0484fcebac2789c946c6a93b116.html" title="Global int_">int_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="identifier">D</span><span class="special">&gt;()</span></code>. To specify a minimum of
+                  <code class="computeroutput"><span class="identifier">LO</span></code> digits and a
+                  maximum of <code class="computeroutput"><span class="identifier">HI</span></code> digits,
+                  use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aebfca0484fcebac2789c946c6a93b116.html" title="Global int_">int_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="identifier">LO</span><span class="special">,</span> <span class="identifier">HI</span><span class="special">&gt;()</span></code>. These calls can be chained,
+                  as in <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aebfca0484fcebac2789c946c6a93b116.html" title="Global int_">int_</a></code><code class="computeroutput"><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">2</span><span class="special">&gt;().</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">8</span><span class="special">&gt;()</span></code>.
+                </p>
               </td>
 </tr>
 <tr>
@@ -4006,30 +4027,33 @@ You entered:
 </table></div>
 <p>
         If you have an integral type <code class="computeroutput"><span class="identifier">IntType</span></code>
-        that is not covered by any of the Boost.Parser parsers, you can use a more
-        verbose declaration to declare a parser for <code class="computeroutput"><span class="identifier">IntType</span></code>.
-        If <code class="computeroutput"><span class="identifier">IntType</span></code> were unsigned,
-        you would use <code class="computeroutput"><span class="identifier">uint_parser</span></code>.
-        If it were signed, you would use <code class="computeroutput"><span class="identifier">int_parser</span></code>.
+        that is not covered by any of the Boost.Parser parsers, you can explicitly
+        specify a base/radix or bounds on the number of digits. You do this by calling
+        the <code class="computeroutput"><span class="identifier">base</span><span class="special">()</span></code>
+        and <code class="computeroutput"><span class="identifier">digits</span><span class="special">()</span></code>
+        member functions on an existing parser of the right integral type. So if
+        <code class="computeroutput"><span class="identifier">IntType</span></code> were unsigned, you
+        would use <code class="computeroutput"><span class="identifier">uint_</span></code>. If it were
+        signed, you would use <code class="computeroutput"><span class="identifier">int_</span></code>.
         For example:
       </p>
-<pre class="programlisting"><span class="keyword">constexpr</span> <span class="identifier">parser_interface</span><span class="special">&lt;</span><span class="identifier">int_parser</span><span class="special">&lt;</span><span class="identifier">IntType</span><span class="special">&gt;&gt;</span> <span class="identifier">hex_int</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">constexpr</span> <span class="keyword">auto</span> <span class="identifier">hex_int</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">uint_</span><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">16</span><span class="special">&gt;();</span>
 </pre>
 <p>
-        <code class="computeroutput"><span class="identifier">uint_parser</span></code> and <code class="computeroutput"><span class="identifier">int_parser</span></code> accept three more non-type template
-        parameters after the type parameter. They are <code class="computeroutput"><span class="identifier">Radix</span></code>,
-        <code class="computeroutput"><span class="identifier">MinDigits</span></code>, and <code class="computeroutput"><span class="identifier">MaxDigits</span></code>. <code class="computeroutput"><span class="identifier">Radix</span></code>
-        defaults to <code class="computeroutput"><span class="number">10</span></code>, <code class="computeroutput"><span class="identifier">MinDigits</span></code> to <code class="computeroutput"><span class="number">1</span></code>,
-        and <code class="computeroutput"><span class="identifier">MaxDigits</span></code> to <code class="computeroutput"><span class="special">-</span><span class="number">1</span></code>, which is
-        a sentinel value meaning that there is no max number of digits.
+        You simply chain together the constraints you want to use, like <code class="computeroutput"><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">16</span><span class="special">&gt;().</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">2</span><span class="special">&gt;()</span></code>
+        or .digits&lt;4&gt;().base&lt;8&gt;()`.
       </p>
 <p>
         So, if you wanted to parse exactly eight hexadecimal digits in a row in order
         to recognize Unicode character literals like C++ has (e.g. <code class="computeroutput"><span class="special">\</span><span class="identifier">Udeadbeef</span></code>),
         you could use this parser for the digits at the end:
       </p>
-<pre class="programlisting"><span class="keyword">constexpr</span> <span class="identifier">parser_interface</span><span class="special">&lt;</span><span class="identifier">uint_parser</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">,</span> <span class="number">16</span><span class="special">,</span> <span class="number">8</span><span class="special">,</span> <span class="number">8</span><span class="special">&gt;&gt;</span> <span class="identifier">hex_int</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">constexpr</span> <span class="keyword">auto</span> <span class="identifier">hex_4_def</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">uint_</span><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">16</span><span class="special">&gt;().</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">8</span><span class="special">&gt;();</span>
 </pre>
+<p>
+        If you want to specify an acceptable range of digits, use <code class="computeroutput"><span class="special">.</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="identifier">LO</span><span class="special">,</span> <span class="identifier">HI</span><span class="special">&gt;()</span></code>. Both <code class="computeroutput"><span class="identifier">HI</span></code>
+        and <code class="computeroutput"><span class="identifier">LO</span></code> are inclusive bounds.
+      </p>
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -4057,7 +4081,7 @@ You entered:
       </h5>
 <p>
         Sequence, alternative, and permutation parsers do not nest in most cases.
-        (Let's consider just sequence parsers to keep thinkgs simple, but most of
+        (Let's consider just sequence parsers to keep things simple, but most of
         this logic applies to alternative parsers as well.) <code class="computeroutput"><span class="identifier">a</span>
         <span class="special">&gt;&gt;</span> <span class="identifier">b</span>
         <span class="special">&gt;&gt;</span> <span class="identifier">c</span></code>
@@ -5567,7 +5591,7 @@ You entered:
 <p>
         The good news is that usually you don't parse characters individually. When
         you parse with <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>,
-        you usually parse repetition of then, which will produce a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>,
+        you usually parse repetition of them, which will produce a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>,
         regardless of whether you're in Unicode parsing mode or not. If you do need
         to parse individual characters, and want to lock down their attribute type,
         you can use <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a3d982dd5003327f579e689e9fbbf7cb4.html" title="Global cp">cp</a></code>
@@ -5862,7 +5886,7 @@ You entered:
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> if <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)</span></code> is <code class="computeroutput"><span class="keyword">char</span></code>
+                  <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> if <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">)</span></code> is <code class="computeroutput"><span class="keyword">char</span></code>
                   or <code class="computeroutput"><span class="keyword">char32_t</span></code>, otherwise
                   <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p1</span><span class="special">)&gt;</span></code>
                 </p>
@@ -6224,7 +6248,7 @@ You entered:
 <li class="listitem">
             duplicates in the <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span></code>
             template parameters <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T1</span><span class="special">,</span> <span class="identifier">T2</span><span class="special">,</span> <span class="special">...</span> <span class="identifier">Tn</span><span class="special">&gt;</span></code> are removed; every type that appears
-            does so exacly once;
+            does so exactly once;
           </li>
 <li class="listitem">
             if the attribute is <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;</span></code> or <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span><span class="special">&lt;</span><span class="identifier">T</span><span class="special">&gt;&gt;</span></code>, the attribute becomes instead
@@ -7665,8 +7689,8 @@ You entered:
 <p>
         Not nearly as nice. The problem is that the expectation is on <code class="computeroutput"><span class="special">(</span><span class="identifier">value</span> <span class="special">%</span> <span class="char">','</span><span class="special">)</span></code>.
         So, even thought we gave <code class="computeroutput"><span class="identifier">value</span></code>
-        reasonable dianostic text, we put the text on the wrong thing. We can introduce
-        a new rule to put the diagnstic text in the right place.
+        reasonable diagnostic text, we put the text on the wrong thing. We can introduce
+        a new rule to put the diagnostic text in the right place.
       </p>
 <pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">bp</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">;</span>
 
@@ -7763,7 +7787,8 @@ You entered:
 <span class="keyword">auto</span> <span class="keyword">const</span> <span class="identifier">ints_def</span> <span class="special">=</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">int_</span> <span class="special">&gt;&gt;</span> <span class="identifier">ints</span> <span class="special">|</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">eps</span><span class="special">;</span>
 </pre>
 <p>
-        What is the default attribute type for ints_def? It sure looks like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;&gt;</span></code>.
+        What is the default attribute type for <code class="computeroutput"><span class="identifier">ints_def</span></code>?
+        It sure looks like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;&gt;</span></code>.
         Inside the evaluation of <code class="computeroutput"><span class="identifier">ints</span></code>,
         Boost.Parser must evaluate <code class="computeroutput"><span class="identifier">ints_def</span></code>,
         and then produce a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;</span></code> —
@@ -7774,7 +7799,7 @@ You entered:
         this simple example and the general case is certainly beyond me.
       </p>
 <p>
-        Boost.Parser has a specific semantic for what consitutes a recursive rule.
+        Boost.Parser has a specific semantic for what constitutes a recursive rule.
         Each rule has a tag type associated with it, and if Boost.Parser enters a
         rule with a certain tag <code class="computeroutput"><span class="identifier">Tag</span></code>,
         and the currently-evaluating rule (if there is one) also has the tag <code class="computeroutput"><span class="identifier">Tag</span></code>, then rule instance being entered is
@@ -7882,7 +7907,7 @@ You entered:
         template takes another template parameter we have not discussed yet. You
         can pass a third parameter <code class="computeroutput"><span class="identifier">LocalState</span></code>
         to <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>,
-        which will be defaulted csontructed by the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>, and made available within
+        which will be defaulted constructed by the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>, and made available within
         semantic actions used in the rule as <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aea9a85108e6af1280eccd9135584938d.html" title="Function template _locals">_locals</a><span class="special">(</span><span class="identifier">ctx</span><span class="special">)</span></code>. This
         gives your rule some local state, if it needs it. The type of <code class="computeroutput"><span class="identifier">LocalState</span></code> can be anything regular. It
         could be a single value, a struct containing multiple values, or a tuple,
@@ -8993,9 +9018,10 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
       </h5>
 <p>
         Boost.Parser only generates error messages like the ones in this page at
-        failed expectation points, like <code class="computeroutput">a &gt; b</code>, where you have successfully
-        parsed <code class="computeroutput">a</code>, but then cannot successfully parse <code class="computeroutput">b</code>.
-        This may seem limited to you. It's actually the best that we can do.
+        failed expectation points (like <code class="computeroutput">a &gt; b</code>, where you have successfully
+        parsed <code class="computeroutput">a</code>, but then cannot successfully parse <code class="computeroutput">b</code>),
+        and at an unexpected end of input. This may seem limited to you. It's actually
+        the best that we can do.
       </p>
 <p>
         In order for error handling to happen other than at expectation points, we
@@ -9005,23 +9031,29 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
         fails to match, it is not allowed to fail the parse — the next one
         (<code class="computeroutput">Pi+1</code>) might match. If we get to the end of the alternatives
         of the or_parser and <code class="computeroutput">Pn</code> fails, we still cannot fail the top-level
-        parse, because the <code class="computeroutput">or_parser</code> might be a subparser within a parent
-        <code class="computeroutput">or_parser</code>.
+        parse, because this <code class="computeroutput">or_parser</code> might be a subparser within a
+        parent <code class="computeroutput">or_parser</code>. The only exception to this is when: we have
+        finished the top-level parse; the top-level parse is <span class="bold"><strong>not</strong></span>
+        a prefix parse; and there is still a part of the input range that is left
+        over. In that case, there is an implicit expectation that the end of the
+        parse and the end of input are the same location, and this implicit expectation
+        has just been violated.
       </p>
 <p>
-        Ok, so what might we do? Perhaps we could at least indicate when we ran into
-        end-of-input. But we cannot, for exactly the same reason already stated.
-        For any parser <code class="computeroutput">P</code>, reaching end-of-input is a failure for <code class="computeroutput">P</code>,
-        but not necessarily for the whole parse.
+        Note that we cannot fail the top-level parse when we run into end-of-input.
+        We cannot for exactly the same reason already stated. For any parser <code class="computeroutput">P</code>,
+        reaching end-of-input is a failure for <code class="computeroutput">P</code>, but not necessarily
+        for the whole parse.
       </p>
 <p>
-        Perhaps we could record the farthest point ever reached during the parse,
-        and report that at the top level, if the top level parser fails. That would
-        be little help without knowing which parser was active when we reached that
-        point. This would require some sort of repeated memory allocation, since
-        in Boost.Parser the progress point of the parser is stored exclusively on
-        the stack — by the time we fail the top-level parse, all those far-reaching
-        stack frames are long gone. Not the best.
+        Ok, so what other kinds of error reporting might we do? Perhaps we could
+        record the farthest point ever reached during the parse, and report that
+        at the top level, if the top level parser fails. That would be little help
+        without knowing which parser was active when we reached that point. This
+        would require some sort of repeated memory allocation, since in Boost.Parser
+        the progress point of the parser is stored exclusively on the stack —
+        by the time we fail the top-level parse, all those far-reaching stack frames
+        are long gone. Not the best.
       </p>
 <p>
         Worse still, knowing how far you got in the parse and which parser was active
@@ -9042,16 +9074,16 @@ auto result = bp::parse("acb", a_b | c_b);
         in the wrong direction.
       </p>
 <p>
-        All error messages must come from failed expectation points. Consider parsing
-        JSON. If you open a list with <code class="computeroutput">'['</code>, you know that you're parsing
-        a list, and if the list is ill-formed, you'll get an error message saying
-        so. If you open an object with <code class="computeroutput">'{'</code>, the same thing is possible
-        — when missing the matching <code class="computeroutput">'}'</code>, you can tell the user,
-        "That's not an object", and this is useful feedback. The same thing
-        with a partially parsed number, etc. If the JSON parser does not build in
-        expectations like matched braces and brackets, how can Boost.Parser know
-        that a missing <code class="computeroutput">'}'</code> is really a problem, and that no later parser
-        will match the input even without the <code class="computeroutput">'}'</code>?
+        All error messages must come from failed expectation points (or unexpected
+        end of input). Consider parsing JSON. If you open a list with <code class="computeroutput">'['</code>,
+        you know that you're parsing a list, and if the list is ill-formed, you'll
+        get an error message saying so. If you open an object with <code class="computeroutput">'{'</code>,
+        the same thing is possible — when missing the matching <code class="computeroutput">'}'</code>,
+        you can tell the user, "That's not an object", and this is useful
+        feedback. The same thing with a partially parsed number, etc. If the JSON
+        parser does not build in expectations like matched braces and brackets, how
+        can Boost.Parser know that a missing <code class="computeroutput">'}'</code> is really a problem,
+        and that no later parser will match the input even without the <code class="computeroutput">'}'</code>?
       </p>
 <div class="important"><table border="0" summary="Important">
 <tr>
@@ -9281,7 +9313,7 @@ auto result = bp::parse("acb", a_b | c_b);
         parser with the error handler. We <span class="bold"><strong>could not</strong></span>
         have written <code class="computeroutput">bp::with_error_handler(parser, logging_error_handler("parse.log"))</code>,
         because <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aae7cd87f98b93f630715d9f28aff4747.html" title="Function template with_error_handler">with_error_handler()</a></code>
-        does not accept rvalues. This is becuse the error handler eventually goes
+        does not accept rvalues. This is because the error handler eventually goes
         into the parse context. The parse context only stores pointers and iterators,
         keeping it cheap to copy.
       </p>
@@ -9342,7 +9374,7 @@ auto result = bp::parse("acb", a_b | c_b);
 <p>
         If we trace a substantial parser, we will see a <span class="bold"><strong>lot</strong></span>
         of output. Each code point of the input must be considered, one at a time,
-        to see if a certain rule matches. An an example, let's trace a parse using
+        to see if a certain rule matches. As an example, let's trace a parse using
         the JSON parser from <a class="link" href="extended_examples.html#boost_parser.extended_examples.parsing_json" title="Parsing JSON">Parsing
         JSON</a>. The input is <code class="computeroutput">"null"</code>. <code class="computeroutput">null</code>
         is one of the types that a Javascript value can have; the top-level parser
@@ -9576,7 +9608,7 @@ parse succeeded
             the use of which implies allocation. You can avoid this allocation by
             explicitly using a different sequence container for the attribute that
             does not allocate. <code class="computeroutput">boost::container::static_vector</code> or C++26's
-            <code class="computeroutput">std::inplace_vector</code> may be useful as such replacements.
+            <code class="computeroutput">std::inplace_vector</code> may be useful for such replacements.
           </li>
 </ul></div>
 <p>
@@ -9691,9 +9723,9 @@ bp::rule&lt;class single_escaped_char, uint32_t&gt; const single_escaped_char =
       </p>
 <p>
         - <code class="computeroutput">single_escaped_char</code> has a terrible-looking name. However,
-        it's not really used as a name anywhere per se. In error messages, it works
-        nicely, though. The error will be "Expected '"', '', '/', 'b',
-        'f', 'n', 'r', or 't' here", which is pretty helpful.
+        it's not actually used as a name. In error messages, it works nicely, though.
+        The error will be "Expected '"', '', '/', 'b', 'f', 'n', 'r', or
+        't' here", which is pretty helpful.
       </p>
 <h5>
 <a name="boost_parser.tutorial.best_practices.h4"></a>

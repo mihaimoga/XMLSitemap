@@ -8,7 +8,7 @@
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
 <link rel="up" href="../parser.html" title="Chapter 25. Boost.Parser">
 <link rel="prev" href="../doxygen/headers/namespaceboost_1_1parser_1af2e6576c852ac796a5bdea3c8ed321b8.html" title="Function template get">
-<link rel="next" href="../boost_pfr.html" title="Chapter 26. Boost.PFR 2.2">
+<link rel="next" href="../boost_pfr.html" title="Chapter 26. Boost.PFR 2.3">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -423,6 +423,34 @@ assert(i == 0);
       if the parser fails. It is equal to whatever the parser sets it to —
       or its previous value, if the parser does not mutate it — if the parse
       succeeds.
+    </p>
+<h4>
+<a name="boost_parser.rationale.h6"></a>
+      <span class="phrase"><a name="boost_parser.rationale.there_are_no__ulink_url__https___www_boost_org_doc_libs_release_libs_spirit__boost_spirit__ulink__style_character_class_parsers"></a></span><a class="link" href="rationale.html#boost_parser.rationale.there_are_no__ulink_url__https___www_boost_org_doc_libs_release_libs_spirit__boost_spirit__ulink__style_character_class_parsers">There
+      are no Boost.Spirit-style
+      character class parsers</a>
+    </h4>
+<p>
+      <a href="https://www.boost.org/doc/libs/release/libs/spirit" target="_top">Boost.Spirit</a>
+      has these character class parsers that recognize the same set of characters
+      as the C standard library's character class functions. For instance, <a href="https://www.boost.org/doc/libs/release/libs/spirit" target="_top">Boost.Spirit</a>'s
+      <code class="computeroutput">alnum</code> recognizes the characters recognized by <code class="computeroutput">std::isalnum()</code>,
+      its <code class="computeroutput">punct</code> recognizes the characters recognized by <code class="computeroutput">std::ispunct()</code>,
+      etc.
+    </p>
+<p>
+      The problem with this is that those <code class="computeroutput">std::is*()</code> functions are badly
+      broken. They do not even work correctly for ASCII values. This is because they
+      use the C standard library's locale mechanism, which can be set to anything
+      the current platform supports, and can be set by any code anywhere in your
+      program; the locale is mutable global state. So, even if you use the default
+      "C locale in your program, if you link against a library that sets the
+      locale to something that breaks ASCII character recognition (an EBCDIC locale,
+      for instance), your program is now incorrect, regardless of the code you wrote.
+    </p>
+<p>
+      For this reason, I firmly believe that no one, anywhere, should use those C
+      functions in production code, and I am not supporting their use via Boost.Parser.
     </p>
 </div>
 <div class="copyright-footer">Copyright © 2020 T. Zachary Laine<p>

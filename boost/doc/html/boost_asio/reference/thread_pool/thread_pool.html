@@ -7,7 +7,7 @@
 <link rel="home" href="../../../boost_asio.html" title="Boost.Asio">
 <link rel="up" href="../thread_pool.html" title="thread_pool">
 <link rel="prev" href="stop.html" title="thread_pool::stop">
-<link rel="next" href="thread_pool/overload1.html" title="thread_pool::thread_pool (1 of 3 overloads)">
+<link rel="next" href="thread_pool/overload1.html" title="thread_pool::thread_pool (1 of 6 overloads)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -32,20 +32,44 @@
 Constructs
           a pool with an automatically determined number of threads.
         </p>
-<pre class="programlisting"><a class="link" href="thread_pool/overload1.html" title="thread_pool::thread_pool (1 of 3 overloads)">thread_pool</a><span class="special">();</span>
-  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload1.html" title="thread_pool::thread_pool (1 of 3 overloads)">more...</a></em></span>
+<pre class="programlisting"><a class="link" href="thread_pool/overload1.html" title="thread_pool::thread_pool (1 of 6 overloads)">thread_pool</a><span class="special">();</span>
+  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload1.html" title="thread_pool::thread_pool (1 of 6 overloads)">more...</a></em></span>
+
+<span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">typename</span> <span class="identifier">Allocator</span><span class="special">&gt;</span>
+<a class="link" href="thread_pool/overload2.html" title="thread_pool::thread_pool (2 of 6 overloads)">thread_pool</a><span class="special">(</span>
+    <span class="identifier">allocator_arg_t</span> <span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">Allocator</span> <span class="special">&amp;</span> <span class="identifier">a</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload2.html" title="thread_pool::thread_pool (2 of 6 overloads)">more...</a></em></span>
 </pre>
 <p>
           Constructs a pool with a specified number of threads.
         </p>
-<pre class="programlisting"><a class="link" href="thread_pool/overload2.html" title="thread_pool::thread_pool (2 of 3 overloads)">thread_pool</a><span class="special">(</span>
+<pre class="programlisting"><span class="keyword">explicit</span> <a class="link" href="thread_pool/overload3.html" title="thread_pool::thread_pool (3 of 6 overloads)">thread_pool</a><span class="special">(</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">num_threads</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload2.html" title="thread_pool::thread_pool (2 of 3 overloads)">more...</a></em></span>
+  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload3.html" title="thread_pool::thread_pool (3 of 6 overloads)">more...</a></em></span>
 
-<a class="link" href="thread_pool/overload3.html" title="thread_pool::thread_pool (3 of 3 overloads)">thread_pool</a><span class="special">(</span>
+<span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">typename</span> <span class="identifier">Allocator</span><span class="special">&gt;</span>
+<a class="link" href="thread_pool/overload4.html" title="thread_pool::thread_pool (4 of 6 overloads)">thread_pool</a><span class="special">(</span>
+    <span class="identifier">allocator_arg_t</span> <span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">Allocator</span> <span class="special">&amp;</span> <span class="identifier">a</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">num_threads</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload4.html" title="thread_pool::thread_pool (4 of 6 overloads)">more...</a></em></span>
+
+<a class="link" href="thread_pool/overload5.html" title="thread_pool::thread_pool (5 of 6 overloads)">thread_pool</a><span class="special">(</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">num_threads</span><span class="special">,</span>
     <span class="keyword">const</span> <span class="identifier">execution_context</span><span class="special">::</span><span class="identifier">service_maker</span> <span class="special">&amp;</span> <span class="identifier">initial_services</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload3.html" title="thread_pool::thread_pool (3 of 3 overloads)">more...</a></em></span>
+  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload5.html" title="thread_pool::thread_pool (5 of 6 overloads)">more...</a></em></span>
+
+<span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">typename</span> <span class="identifier">Allocator</span><span class="special">&gt;</span>
+<a class="link" href="thread_pool/overload6.html" title="thread_pool::thread_pool (6 of 6 overloads)">thread_pool</a><span class="special">(</span>
+    <span class="identifier">allocator_arg_t</span> <span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">Allocator</span> <span class="special">&amp;</span> <span class="identifier">a</span><span class="special">,</span>
+    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">num_threads</span><span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">execution_context</span><span class="special">::</span><span class="identifier">service_maker</span> <span class="special">&amp;</span> <span class="identifier">initial_services</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="thread_pool/overload6.html" title="thread_pool::thread_pool (6 of 6 overloads)">more...</a></em></span>
 </pre>
 </div>
 <div class="copyright-footer">Copyright © 2003-2025 Christopher M.

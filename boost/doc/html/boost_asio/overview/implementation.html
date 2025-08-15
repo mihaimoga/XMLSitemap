@@ -55,9 +55,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -87,9 +89,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -134,9 +138,11 @@
             in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -165,9 +171,11 @@
             of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -199,9 +207,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -231,9 +241,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -262,9 +274,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -295,9 +309,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -328,9 +344,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -361,9 +379,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -393,9 +413,11 @@
             is performed in one of the threads that calls <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">run_one</span><span class="special">()</span></code>, <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">io_context</span><span class="special">::</span><span class="identifier">poll_one</span><span class="special">()</span></code>.
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>
@@ -458,9 +480,11 @@
 </ul></div>
           </li>
 <li class="listitem">
-            An additional thread per <code class="computeroutput"><span class="identifier">io_context</span></code>
-            is used to emulate asynchronous host resolution. This thread is created
-            on the first call to either <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">tcp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code> or <code class="computeroutput"><span class="identifier">ip</span><span class="special">::</span><span class="identifier">udp</span><span class="special">::</span><span class="identifier">resolver</span><span class="special">::</span><span class="identifier">async_resolve</span><span class="special">()</span></code>.
+            One or more additional threads per <code class="computeroutput"><span class="identifier">io_context</span></code>
+            to emulate asynchronous host resolution. By default, only one thread
+            is created, but this behaviour may be altered via the "resolver"
+            / "threads" <a class="link" href="../../">configuration
+            option</a>.
           </li>
 </ul></div>
 <p>

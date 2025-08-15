@@ -207,55 +207,31 @@
 <h3 id="hash_traits_boostunorderedhash_traits_hpp_synopsis"><a class="anchor" href="#hash_traits_boostunorderedhash_traits_hpp_synopsis"></a><code>&lt;boost/unordered/hash_traits.hpp&gt;</code> Synopsis</h3>
 <div class="listingblock">
 <div class="content">
-<pre>namespace boost {
+<pre>#include &lt;boost/container_hash/hash_is_avalanching.hpp&gt;
+
+namespace boost {
 namespace unordered {
 
-template&lt;typename Hash&gt;
-struct <a href="#hash_traits_hash_is_avalanching">hash_is_avalanching</a>;
+using boost::hash_is_avalanching;
 
 } // namespace unordered
 } // namespace boost</pre>
 </div>
 </div>
-<hr>
-</div>
-<div class="sect2">
-<h3 id="hash_traits_hash_is_avalanching"><a class="anchor" href="#hash_traits_hash_is_avalanching"></a>hash_is_avalanching</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-c++ hljs" data-lang="c++">template&lt;typename Hash&gt;
-struct hash_is_avalanching;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>A hash function is said to have the <em>avalanching property</em> if small changes in the input translate to
-large changes in the returned hash code &#8212;ideally, flipping one bit in the representation of
-the input value results in each bit of the hash code flipping with probability 50%. Approaching
-this property is critical for the proper behavior of open-addressing hash containers.</p>
-</div>
-<div class="paragraph">
-<p><code>hash_is_avalanching&lt;Hash&gt;::value</code> is:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>false</code> if <code>Hash::is_avalanching</code> is not present,</p>
-</li>
-<li>
-<p><code>Hash::is_avalanching::value</code> if this is present and convertible at compile time to a <code>bool</code>,</p>
-</li>
-<li>
-<p><code>true</code> if <code>Hash::is_avalanching</code> is <code>void</code> (this usage is deprecated),</p>
-</li>
-<li>
-<p>ill-formed otherwise.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Users can then declare a hash function <code>Hash</code> as avalanching either by embedding an appropriate <code>is_avalanching</code> typedef
-into the definition of <code>Hash</code>, or directly by specializing <code>hash_is_avalanching&lt;Hash&gt;</code> to a class with
-an embedded compile-time constant <code>value</code> set to <code>true</code>.</p>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Note:
+</td>
+<td class="hdlist2">
+<p>This header is deprecated. Use instead
+<code><a href="../../../../../container_hash/doc/html/hash.html#ref_hash_is_avalanchinghash">boost::hash_is_avalanching</a></code>
+defined in
+<code><a href="../../../../../container_hash/doc/html/hash.html#ref_boostcontainer_hashhash_is_avalanching_hpp">&lt;boost/container_hash/hash_is_avalanching.hpp&gt;</a></code>.</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Open-addressing and concurrent containers

@@ -596,7 +596,7 @@ greater than <code>max_load_factor()</code>, except possibly for small sizes whe
 allow for higher loads.</p>
 </div>
 <div class="paragraph">
-<p>If <code><a href="hash_traits.html#hash_traits_hash_is_avalanching" class="xref page">hash_is_avalanching</a>&lt;Hash&gt;::value</code> is <code>true</code>, the hash function
+<p>If <code><a href="../../../../../container_hash/doc/html/hash.html#ref_hash_is_avalanchinghash">hash_is_avalanching</a>&lt;Hash&gt;::value</code> is <code>true</code>, the hash function
 is used as-is; otherwise, a bit-mixing post-processing stage is added to increase the quality of hashing
 at the expense of extra computational cost.</p>
 </div>
@@ -2897,7 +2897,10 @@ Throws:
 Notes:
 </td>
 <td class="hdlist2">
+<p><code>f</code> is passed a non-const reference to <code>x</code>.<br></p>
+<div class="paragraph">
 <p>The <code>template&lt;class K, class F&gt;</code> overload only participates in overload resolution if <code>std::is_execution_policy_v&lt;std::remove_cvref_t&lt;ExecutionPolicy&gt;&gt;</code> is <code>false</code>.<br></p>
+</div>
 <div class="paragraph">
 <p>The <code>template&lt;class K, class F&gt;</code> overload only participates in overload resolution if <code>Hash::is_transparent</code> and <code>Pred::is_transparent</code> are valid member typedefs. The library assumes that <code>Hash</code> is callable with both <code>K</code> and <code>Key</code> and that <code>Pred</code> is transparent. This enables heterogeneous lookup which avoids the cost of instantiating an instance of the <code>Key</code> type.</p>
 </div>
@@ -2915,7 +2918,7 @@ Notes:
 </div>
 </div>
 <div class="paragraph">
-<p>Successively invokes <code>f</code> with references to each of the elements in the table, and erases those for which <code>f</code> returns <code>true</code>.</p>
+<p>Successively invokes <code>f</code> with non-const references to each of the elements in the table, and erases those for which <code>f</code> returns <code>true</code>.</p>
 </div>
 <div class="hdlist">
 <table>
@@ -2947,7 +2950,7 @@ Throws:
 </div>
 </div>
 <div class="paragraph">
-<p>Invokes <code>f</code> with references to each of the elements in the table, and erases those for which <code>f</code> returns <code>true</code>.
+<p>Invokes <code>f</code> with non-const references to each of the elements in the table, and erases those for which <code>f</code> returns <code>true</code>.
 Execution is parallelized according to the semantics of the execution policy specified.</p>
 </div>
 <div class="hdlist">

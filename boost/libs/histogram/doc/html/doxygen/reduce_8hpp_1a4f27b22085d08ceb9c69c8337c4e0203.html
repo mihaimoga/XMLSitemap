@@ -37,7 +37,7 @@
   <span class="identifier">Histogram</span> <span class="identifier">reduce</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">Histogram</span> <span class="special">&amp;</span> hist<span class="special">,</span> <span class="keyword">const</span> <span class="identifier">reduce_command</span> <span class="special">&amp;</span> opt<span class="special">,</span> 
                    <span class="keyword">const</span> <span class="identifier">Ts</span> <span class="special">&amp;</span><span class="special">...</span> opts<span class="special">)</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id24904"></a><h2>Description</h2>
+<a name="id25741"></a><h2>Description</h2>
 <p>Returns a new reduced histogram and leaves the original histogram untouched.</p>
 <p>The commands <code class="computeroutput">rebin</code> and<code class="computeroutput">shrink</code> or<code class="computeroutput">slice</code> for the same axis are automatically combined, this is not an error. Passing a<code class="computeroutput">shrink</code> and a<code class="computeroutput">slice</code> command for the same axis or two<code class="computeroutput">rebin</code> commands triggers an invalid_argument exception. It is safe to reduce histograms with some axis that are not reducible along the other axes. Trying to reducing a non-reducible axis triggers an invalid_argument exception.</p>
 <p>An overload allows one to pass an iterable of reduce_command.</p>

@@ -40,17 +40,17 @@
 
   <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html#id4-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ac9f3062738f5850e8799dfd9297159e5"><span class="identifier">wald_interval</span></a><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1utility_1_1deviation.html" title="Class deviation">deviation</a> <span class="special">=</span> <span class="identifier">deviation</span><span class="special">{</span><span class="number">1</span><span class="special">.</span><span class="number">0</span><span class="special">}</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
-  <span class="identifier">interval_type</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ad359db775c6b01d9bb60d346ccd58bec"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">value_type</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
+  <span class="identifier">interval_type</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1a7c26e3808ce798445fe34d4da31860d7"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">value_type</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id13374"></a><h2>Description</h2>
+<a name="id13710"></a><h2>Description</h2>
 <p>The Wald interval is a symmetric interval. It is simple to compute, but has poor statistical properties and is universally rejected by statisticians. It should always be replaced by another iternal, for example, the Wilson interval.</p>
 <p>The Wald interval can be derived easily using the plug-in estimate of the variance for the binomial distribution, which is likely a reason for its omnipresence. Without further insight into statistical theory, it is not obvious that this derivation is flawed and that better alternatives exist.</p>
 <p>The Wald interval undercovers on average. It is unsuitable when the sample size is small or when the fraction is close to 0 or 1. e. Its limits are not naturally bounded by 0 or 1. It produces empty intervals if the number of successes or failures is zero.</p>
 <p>For a critique of the Wald interval, see (a selection):</p>
 <p>L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133. R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </p>
 <div class="refsect2">
-<a name="id13381"></a><h3>
+<a name="id13717"></a><h3>
 <a name="id4-bb"></a><code class="computeroutput">wald_interval</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -78,7 +78,7 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="identifier">interval_type</span> 
-<a name="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ad359db775c6b01d9bb60d346ccd58bec"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><span class="identifier">value_type</span> successes<span class="special">,</span> <span class="identifier">value_type</span> failures<span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Compute interval for given number of successes and failures. <p>
+<a name="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1a7c26e3808ce798445fe34d4da31860d7"></a><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span><span class="special">(</span><span class="identifier">value_type</span> successes<span class="special">,</span> <span class="identifier">value_type</span> failures<span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Compute interval for given number of successes and failures. <p>
 </p>
 <div class="variablelist"><table border="0" class="variablelist compact">
 <colgroup>

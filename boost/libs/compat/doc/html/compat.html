@@ -565,6 +565,7 @@ pre.rouge .gs {
 <li><a href="#overview">Overview</a></li>
 <li><a href="#changelog">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changelog_changes_in_1_89_0">Changes in 1.89.0</a></li>
 <li><a href="#changelog_changes_in_1_87_0">Changes in 1.87.0</a></li>
 <li><a href="#changelog_changes_in_1_86_0">Changes in 1.86.0</a></li>
 <li><a href="#changelog_changes_in_1_83_0">Changes in 1.83.0</a></li>
@@ -609,6 +610,42 @@ pre.rouge .gs {
 <li><a href="#ref_function_ref_assignment">Assignment</a>
 <ul class="sectlevel3">
 <li><a href="#ref_function_ref_copy_assignment">Copy Assignment</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#move_only_function">&lt;boost/compat/move_only_function.hpp&gt;</a>
+<ul class="sectlevel2">
+<li><a href="#ref_move_only_function_description">Description</a></li>
+<li><a href="#ref_move_only_function_example">Example</a></li>
+<li><a href="#ref_move_only_function_synopsis">Synopsis</a></li>
+<li><a href="#ref_move_only_function_constructors">Constructors</a>
+<ul class="sectlevel3">
+<li><a href="#ref_move_only_function_default_constructor">Default Constructor</a></li>
+<li><a href="#ref_move_only_function_null_constructor">Null Constructor</a></li>
+<li><a href="#ref_move_only_function_object_constructor">Object Constructor</a></li>
+<li><a href="#ref_move_only_function_in_place_constructor">In-Place Constructor</a></li>
+<li><a href="#ref_move_only_function_list_in_place_constructor">List In-Place Constructor</a></li>
+<li><a href="#ref_move_only_function_move_constructor">Move Constructor</a></li>
+</ul>
+</li>
+<li><a href="#ref_move_only_function_assignment">Assignment</a>
+<ul class="sectlevel3">
+<li><a href="#ref_move_only_function_move_assignment">Move Assignment</a></li>
+<li><a href="#ref_move_only_function_null_assigment">Null Assigment</a></li>
+<li><a href="#ref_move_only_function_callable_assignment">Callable Assignment</a></li>
+</ul>
+</li>
+<li><a href="#ref_move_only_function_utility">Utility</a>
+<ul class="sectlevel3">
+<li><a href="#ref_move_only_function_null_equality">Null Equality</a></li>
+<li><a href="#ref_move_only_function_swap">Swap</a></li>
+</ul>
+</li>
+<li><a href="#ref_move_only_function_invocation">Invocation</a>
+<ul class="sectlevel3">
+<li><a href="#ref_move_only_function_boolean_conversion">Boolean Conversion</a></li>
+<li><a href="#ref_move_only_function_call_operator">Call Operator</a></li>
 </ul>
 </li>
 </ul>
@@ -780,6 +817,16 @@ implementations.</p>
 <div class="sect1">
 <h2 id="changelog">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changelog_changes_in_1_89_0">Changes in 1.89.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added <code>move_only_function.hpp</code>.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changelog_changes_in_1_87_0">Changes in 1.87.0</h3>
 <div class="ulist">
@@ -1292,6 +1339,471 @@ Effects:
 <p><code>is_pointer_v&lt;T&gt;</code> is <code>false</code>.</p>
 </li>
 </ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="move_only_function">&lt;boost/compat/move_only_function.hpp&gt;</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ref_move_only_function_description">Description</h3>
+<div class="paragraph">
+<p>The header <code>&lt;boost/compat/move_only_function.hpp&gt;</code> implements the C&#43;&#43;23 class <a href="https://en.cppreference.com/w/cpp/utility/functional/move_only_function.html">std::move_only_function</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>move_only_function</code> is a polymorphic wrapper that stores and manages a <a href="https://en.cppreference.com/w/cpp/named_req/Callable">Callable</a>, only requiring that the type supports move construction and move assignment.
+This is in contrast to the commonly used <code>std::function</code> which requires copyability of the underlying managed object.</p>
+</div>
+<div class="paragraph">
+<p><code>move_only_function</code> supports every combination of <code>const</code>, <code>noexcept</code> and reference qualification (none, <code>&amp;</code>, <code>&amp;&amp;</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_move_only_function_example">Example</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">struct</span> <span class="nc">moveonly</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p_</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span> <span class="mi">1234</span> <span class="p">);</span>
+    <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span> <span class="kt">int</span> <span class="n">x</span> <span class="p">)</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">p_</span> <span class="o">+</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">boost</span><span class="o">::</span><span class="n">compat</span><span class="o">::</span><span class="n">move_only_function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span> <span class="kt">int</span> <span class="p">)</span> <span class="k">noexcept</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span> <span class="n">moveonly</span><span class="p">{}</span> <span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">(</span> <span class="mi">4321</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_move_only_function_synopsis">Synopsis</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">compat</span> <span class="p">{</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="o">...</span> <span class="nc">S</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">move_only_function</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span> <span class="k">class</span> <span class="nc">T</span> <span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">in_place_type_t</span> <span class="p">{</span> <span class="k">explicit</span> <span class="n">in_place_type_t</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">R</span><span class="p">,</span> <span class="k">class</span> <span class="o">...</span><span class="nc">Args</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">move_only_function</span><span class="o">&lt;</span><span class="n">R</span><span class="p">(</span> <span class="n">Args</span><span class="p">...</span> <span class="p">)</span> <span class="cm">/* cv */</span> <span class="cm">/* ref */</span> <span class="k">noexcept</span><span class="p">(</span> <span class="cm">/* noex */</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="n">move_only_function</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span>
+    <span class="n">move_only_function</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="p">&gt;</span>
+    <span class="n">move_only_function</span><span class="p">(</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="o">...</span><span class="nc">CArgs</span><span class="p">&gt;</span>
+    <span class="k">explicit</span> <span class="n">move_only_function</span><span class="p">(</span> <span class="n">in_place_type_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">CArgs</span><span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span> <span class="p">);</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span><span class="p">,</span> <span class="k">class</span> <span class="o">...</span><span class="nc">CArgs</span><span class="p">&gt;</span>
+    <span class="k">explicit</span> <span class="n">move_only_function</span><span class="p">(</span> <span class="n">in_place_type_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+                                 <span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">,</span> <span class="n">CArgs</span><span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span> <span class="p">);</span>
+
+    <span class="n">move_only_function</span><span class="p">(</span> <span class="n">move_only_function</span> <span class="k">const</span><span class="o">&amp;</span> <span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">move_only_function</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;&amp;</span> <span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+    <span class="o">~</span><span class="n">move_only_function</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+
+    <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span> <span class="p">);</span>
+    <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="p">&gt;</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span>
+
+    <span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span> <span class="n">move_only_function</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">fn</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span> <span class="n">move_only_function</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">fn</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+
+    <span class="k">explicit</span> <span class="k">operator</span> <span class="kt">bool</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span>
+
+    <span class="n">R</span> <span class="k">operator</span><span class="p">()(</span> <span class="n">Args</span><span class="p">...</span> <span class="n">args</span> <span class="p">)</span> <span class="cm">/* cv */</span> <span class="cm">/* ref */</span> <span class="k">noexcept</span><span class="p">(</span> <span class="cm">/* noex */</span> <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace compat</span>
+<span class="p">}</span> <span class="c1">// namespace boost</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_move_only_function_constructors">Constructors</h3>
+<div class="sect3">
+<h4 id="ref_move_only_function_default_constructor">Default Constructor</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">move_only_function</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects
+</td>
+<td class="hdlist2">
+<p>Constructs an empty <code>move_only_function</code> which manages no object.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_null_constructor">Null Constructor</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">move_only_function</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects
+</td>
+<td class="hdlist2">
+<p>Explicitly constructs an empty <code>move_only_function</code> using a nullptr value. Equivalent to default construction.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_object_constructor">Object Constructor</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="p">&gt;</span>
+<span class="n">move_only_function</span><span class="p">(</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Given <code>using VT = decay_t&lt;F&gt;</code>, directly constructs an instance of <code>VT</code> using <code>forward&lt;F&gt;(f)</code> and stores it as the target object.<br></p>
+<div class="paragraph">
+<p>If <code>F</code> is an empty function pointer, pointer-to-member or specialization of <code>move_only_function</code> then the constructed <code>move_only_function</code> is empty.</p>
+</div>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Constraints:
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>remove_cv_ref&lt;F&gt;</code> is not the same type as <code>move_only_function</code></p>
+</li>
+<li>
+<p><code>remove_cv_ref&lt;F&gt;</code> is not a specialization of <code>in_place_type_t</code></p>
+</li>
+<li>
+<p><code>VT</code> must be callable with the provided cvref qualifiers and the provided argument types</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_in_place_constructor">In-Place Constructor</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="o">...</span><span class="nc">CArgs</span><span class="p">&gt;</span>
+<span class="k">explicit</span> <span class="nf">move_only_function</span><span class="p">(</span> <span class="n">in_place_type_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">CArgs</span><span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Constructs an object of type <code>T</code> using the provided args directly, storing it as the target object.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Constraints:
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>is_constructible_v&lt;T, CArgs&#8230;&#8203;&gt;</code> must be true</p>
+</li>
+<li>
+<p><code>T</code> must be callable with the provided cvref qualifiers and the provided argument types</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_list_in_place_constructor">List In-Place Constructor</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span><span class="p">,</span> <span class="k">class</span> <span class="o">...</span><span class="nc">CArgs</span><span class="p">&gt;</span>
+<span class="k">explicit</span> <span class="nf">move_only_function</span><span class="p">(</span> <span class="n">in_place_type_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+                             <span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">,</span> <span class="n">CArgs</span><span class="o">&amp;&amp;</span> <span class="p">...</span> <span class="n">args</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Constructs an object of type <code>T</code> using the provided initializer_list and args directly, storing it as the target Callable.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Constraints:
+</td>
+<td class="hdlist2">
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>is_constructible_v&lt;T, std::initializer_list&lt;U&gt;&amp;, CArgs&#8230;&#8203;&gt;</code> must be true</p>
+</li>
+<li>
+<p><code>T</code> must be callable with the provided cvref qualifiers and the provided argument types</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_move_constructor">Move Constructor</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">move_only_function</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects
+</td>
+<td class="hdlist2">
+<p>Tranfers ownership of the object managed by <code>f</code> to <code>*this</code>. After this operation completes, <code>f</code> is empty and manages no object.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_move_only_function_assignment">Assignment</h3>
+<div class="sect3">
+<h4 id="ref_move_only_function_move_assignment">Move Assignment</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">move_only_function</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Releases the currently managed object and takes ownership of the object managed by <code>rhs</code>, if applicable.
+<code>rhs</code> is empty after move.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_null_assigment">Null Assigment</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">move_only_function</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Releases the currently managed object, if applicable.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_callable_assignment">Callable Assignment</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="p">&gt;</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span> <span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Releases the currently managed object and then does the equivalent of: <code>move_only_function(std::forward&lt;F&gt;(f)).swap(*this)</code>.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_move_only_function_utility">Utility</h3>
+<div class="sect3">
+<h4 id="ref_move_only_function_null_equality">Null Equality</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span> <span class="n">move_only_function</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">fn</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span> <span class="n">move_only_function</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">fn</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Returns whether or not <code>fn</code> contains a target object.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_swap">Swap</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="kt">void</span> <span class="n">swap</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="k">friend</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">move_only_function</span><span class="o">&amp;</span> <span class="n">rhs</span> <span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Exchanges the managed objects.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_move_only_function_invocation">Invocation</h3>
+<div class="sect3">
+<h4 id="ref_move_only_function_boolean_conversion">Boolean Conversion</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">explicit</span> <span class="k">operator</span> <span class="kt">bool</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Returns <code>true</code> if <code>*this</code> is managing an object, or <code>false</code> if <code>*this</code> is empty.</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_move_only_function_call_operator">Call Operator</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">R</span> <span class="nf">operator</span><span class="p">()(</span> <span class="n">Args</span><span class="p">...</span> <span class="n">args</span> <span class="p">)</span> <span class="cm">/* cv */</span> <span class="cm">/* ref */</span> <span class="k">noexcept</span><span class="p">(</span> <span class="cm">/* noex */</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Preconditions:
+</td>
+<td class="hdlist2">
+<p><code>*this</code> currently manages an object.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Effects:
+</td>
+<td class="hdlist2">
+<p>Invokes the underlying target object. Equivalent to:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="k">return</span> <span class="n">INVOKE</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">F</span> <span class="n">inv</span><span class="o">-</span><span class="n">quals</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Args</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>f</code> is the target object, and <em>inv-quals</em> is defined by the standard:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If <em>ref</em> is empty, let <em>inv-quals</em> be <em>cv&amp;</em>,</p>
+</li>
+<li>
+<p>otherwise, let <em>inv-quals</em> be <em>cv ref</em>.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </td>
 </tr>
@@ -2624,7 +3136,7 @@ contributors and is distributed under the
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-03 11:37:16 UTC
+Last updated 2025-08-06 18:48:52 UTC
 </div>
 </div>
 <style>

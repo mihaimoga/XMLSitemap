@@ -75,7 +75,7 @@ C c1;
 A* pc1 = &amp;c1;
 assert(boost::typeindex::type_id&lt;C&gt;() == boost::typeindex::type_id_runtime(*pc1));
 </programlisting> </para></description></macro>
-<macro id="doxygen.boost_typeindex_header_reference.type__index_8hpp_1a5e8825576a5e3115161687310469396a" name="BOOST_TYPE_INDEX_FUNCTION_SIGNATURE"><description><para>BOOST_TYPE_INDEX_FUNCTION_SIGNATURE is used by <link linkend="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index">boost::typeindex::ctti_type_index</link> class to deduce the name of a type. If your compiler is not recognized by the TypeIndex library and you wish to work with <link linkend="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index">boost::typeindex::ctti_type_index</link>, you may define this macro by yourself.</para><para>BOOST_TYPE_INDEX_FUNCTION_SIGNATURE must be defined to a compiler specific macro that outputs the <emphasis role="bold">whole</emphasis> function signature <emphasis role="bold">including</emphasis> <emphasis role="bold">template</emphasis> <emphasis role="bold">parameters</emphasis>.</para><para>If your compiler is not recognised and BOOST_TYPE_INDEX_FUNCTION_SIGNATURE is not defined, then a compile-time error will arise at any attempt to use <link linkend="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index">boost::typeindex::ctti_type_index</link> classes.</para><para>See BOOST_TYPE_INDEX_REGISTER_CTTI_PARSING_PARAMS and BOOST_TYPE_INDEX_CTTI_USER_DEFINED_PARSING for an information of how to tune the implementation to make a nice pretty_name() output. </para></description></macro>
+<macro id="doxygen.boost_typeindex_header_reference.type__index_8hpp_1a5e8825576a5e3115161687310469396a" name="BOOST_TYPE_INDEX_FUNCTION_SIGNATURE"/>
 <macro id="doxygen.boost_typeindex_header_reference.type__index_8hpp_1aa1457292331bac605f998b53d85e4422" name="BOOST_TYPE_INDEX_CTTI_USER_DEFINED_PARSING"><description><para>This is a helper macro for making correct pretty_names() with RTTI off.</para><para>BOOST_TYPE_INDEX_CTTI_USER_DEFINED_PARSING macro may be defined to '(begin_skip, end_skip, runtime_skip, runtime_skip_until)' with parameters for adding a support for compilers, that by default are not recognized by TypeIndex library.</para><para><emphasis role="bold">Example:</emphasis> </para><para>Imagine the situation when <programlisting language="c++">boost::typeindex::ctti_type_index::type_id&lt;int&gt;().pretty_name() 
 </programlisting> returns the following string: <programlisting language="c++">"static const char *boost::detail::ctti&lt;int&gt;::n() [T = int]" 
 </programlisting> and <programlisting language="c++">boost::typeindex::ctti_type_index::type_id&lt;short&gt;().pretty_name() 
@@ -107,7 +107,7 @@ See <ulink url="boost_typeindex/rtti_emulation_limitations.html">RTTI emulation 
 <method-group name="public member functions">
 <constructor id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index_1ade7b5fc5e0ef3a3ec8bacdc6ca4b170b" cv="noexcept"/>
 <constructor id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index_1aa59fc9c56cb726abde25e91c76aa6b72" cv="noexcept"><parameter name="data"><paramtype>const <classname>type_info_t</classname> &amp;</paramtype></parameter></constructor>
-<method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index_1a200214096952268e8370e0558dccfc15" name="type_info" cv="const noexcept"><type>const <classname>type_info_t</classname> &amp;</type></method>
+<method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index_1a4e33b894df772bc78fde8cb455e07140" name="type_info" cv="const noexcept"><type>const <classname>type_info_t</classname> &amp;</type></method>
 <method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index_1ae31d7cd3dadf409d4cbfbf229c5c9a01" name="raw_name" cv="const noexcept"><type>const char *</type></method>
 <method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index_1aaca34fabdc40c950b7b7496ca11bd48a" name="name" cv="const noexcept"><type>const char *</type></method>
 <method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1ctti__type__index_1aba0ac00bf43d0067e6df894888bdb667" name="pretty_name" cv="const"><type>std::string</type></method>
@@ -134,7 +134,7 @@ See <ulink url="boost_typeindex/rtti_emulation_limitations.html">RTTI emulation 
 
 
 
-<function id="doxygen.boost_typeindex_header_reference.ctti__type__index_8hpp_1a1822527e75864a16f71788788698d5ab" name="ctti_construct"><type><emphasis>unspecified</emphasis></type><template>
+<function id="doxygen.boost_typeindex_header_reference.ctti__type__index_8hpp_1a897f108376135d5aa6c2bca37afc26b4" name="ctti_construct"><type><emphasis>unspecified</emphasis></type><template>
           <template-type-parameter name="T"/>
         </template><purpose>Helper method for getting <link linkend="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1detail_1_1ctti__data">detail::ctti_data</link> of a template parameter T. </purpose></function>
 
@@ -151,10 +151,8 @@ See <ulink url="boost_typeindex/rtti_emulation_limitations.html">RTTI emulation 
 <header id="doxygen.boost_typeindex_header_reference.runtime__cast_8hpp" name="boost/type_index/runtime_cast.hpp">
 <para>Contains the basic utilities necessary to fully emulate dynamic_cast for language level constructs (raw pointers and references). </para><para><link linkend="doxygen.boost_typeindex_header_reference.reference__cast_8hpp_1a5e0f815ef2610b51ac34d4ffb5349d7d">boost::typeindex::runtime_cast</link> is a drop in replacement for dynamic_cast that can be used in situations where traditional rtti is either unavailable or undesirable. </para></header>
 <header id="doxygen.boost_typeindex_header_reference.boost__shared__ptr__cast_8hpp" name="boost/type_index/runtime_cast/boost_shared_ptr_cast.hpp">
-<para>Contains the overload of <link linkend="doxygen.boost_typeindex_header_reference.std__shared__ptr__cast_8hpp_1a8746ae3acba511243cdf31abe0508483">boost::typeindex::runtime_pointer_cast</link> for <link linkend="doxygen.boost_typeindex_header_reference.classboost_1_1shared__ptr">boost::shared_ptr</link> types. </para><namespace name="boost">
-<class id="doxygen.boost_typeindex_header_reference.classboost_1_1shared__ptr" name="shared_ptr"><template>
-      <template-type-parameter name="T"/>
-    </template></class><namespace name="typeindex">
+<para>Contains the overload of <link linkend="doxygen.boost_typeindex_header_reference.std__shared__ptr__cast_8hpp_1abeb3163a618b315ab0fc0cf02df74b1f">boost::typeindex::runtime_pointer_cast</link> for boost::shared_ptr types. </para><namespace name="boost">
+<namespace name="typeindex">
 
 
 
@@ -171,10 +169,11 @@ See <ulink url="boost_typeindex/rtti_emulation_limitations.html">RTTI emulation 
 
 
 
-<function id="doxygen.boost_typeindex_header_reference.boost__shared__ptr__cast_8hpp_1a48db9c4fcbd1c20f02bbb12a94b791a0" name="runtime_pointer_cast"><type><classname>boost::shared_ptr</classname>&lt; T &gt;</type><template>
+<function id="doxygen.boost_typeindex_header_reference.boost__shared__ptr__cast_8hpp_1a47cddf81ec9d3e34aad10c4936984b8e" name="runtime_pointer_cast"><type>BOOST_TYPE_INDEX_BEGIN_MODULE_EXPORT auto</type><template>
           <template-type-parameter name="T"><purpose><para>The desired target type to return a pointer of. </para></purpose></template-type-parameter>
           <template-type-parameter name="U"><purpose><para>A complete class type of the source instance pointed to from u. </para></purpose></template-type-parameter>
-        </template><parameter name="u"><paramtype><classname>boost::shared_ptr</classname>&lt; U &gt; const &amp;</paramtype></parameter><purpose>Creates a new instance of std::shared_ptr whose stored pointer is obtained from u's stored pointer using a runtime_cast. </purpose><description><para>The new <link linkend="doxygen.boost_typeindex_header_reference.classboost_1_1shared__ptr">shared_ptr</link> will share ownership with u, except that it is empty if the runtime_cast performed by runtime_pointer_cast returns a null pointer. 
+          <template-nontype-parameter name="SmartPointer"><type>template&lt; class &gt; class</type></template-nontype-parameter>
+        </template><parameter name="u"><paramtype>SmartPointer&lt; U &gt; const &amp;</paramtype></parameter><purpose>Creates a new instance of smart pointer whose stored pointer is obtained from u's stored pointer using a runtime_cast. </purpose><description><para>The new shared_ptr will share ownership with u, except that it is empty if the runtime_cast performed by runtime_pointer_cast returns a null pointer. 
 
 </para></description><returns><para>If there exists a valid conversion from U* to T*, returns a boost::shared_ptr&lt;T&gt; that points to an address suitably offset from u. If no such conversion exists, returns boost::shared_ptr&lt;T&gt;(); </para>
 </returns></function>
@@ -196,7 +195,7 @@ See <ulink url="boost_typeindex/rtti_emulation_limitations.html">RTTI emulation 
 
 
 
-<function id="doxygen.boost_typeindex_header_reference.pointer__cast_8hpp_1a66cf6da45dea8507fc86b36327223cda" name="runtime_cast"><type>T</type><template>
+<function id="doxygen.boost_typeindex_header_reference.pointer__cast_8hpp_1afb306e5c1ea71b3fc314ef6a96fd1b08" name="runtime_cast"><type>BOOST_TYPE_INDEX_BEGIN_MODULE_EXPORT T</type><template>
           <template-type-parameter name="T"><purpose><para>The desired target type. Like dynamic_cast, must be a pointer to complete class type. </para></purpose></template-type-parameter>
           <template-type-parameter name="U"><purpose><para>A complete class type of the source instance, u. </para></purpose></template-type-parameter>
         </template><parameter name="u"><paramtype>U *</paramtype></parameter><purpose>Safely converts pointers to classes up, down, and sideways along the inheritance hierarchy. </purpose><description><para>
@@ -340,7 +339,7 @@ if(derived2* pb2 = boost::typeindex::runtime_cast&lt;derived2*&gt;(pb1))
 </xrefdescription></xrefsect></para></description></macro>
 </header>
 <header id="doxygen.boost_typeindex_header_reference.std__shared__ptr__cast_8hpp" name="boost/type_index/runtime_cast/std_shared_ptr_cast.hpp">
-<para>Contains the overload of <link linkend="doxygen.boost_typeindex_header_reference.std__shared__ptr__cast_8hpp_1a8746ae3acba511243cdf31abe0508483">boost::typeindex::runtime_pointer_cast</link> for std::shared_ptr types. </para><namespace name="boost">
+<para>Contains the overload of <link linkend="doxygen.boost_typeindex_header_reference.std__shared__ptr__cast_8hpp_1abeb3163a618b315ab0fc0cf02df74b1f">boost::typeindex::runtime_pointer_cast</link> for std::shared_ptr types. </para><namespace name="boost">
 <namespace name="typeindex">
 
 
@@ -351,10 +350,10 @@ if(derived2* pb2 = boost::typeindex::runtime_cast&lt;derived2*&gt;(pb1))
 
 
 
-<function id="doxygen.boost_typeindex_header_reference.std__shared__ptr__cast_8hpp_1a8746ae3acba511243cdf31abe0508483" name="runtime_pointer_cast"><type>std::shared_ptr&lt; T &gt;</type><template>
+<function id="doxygen.boost_typeindex_header_reference.std__shared__ptr__cast_8hpp_1abeb3163a618b315ab0fc0cf02df74b1f" name="runtime_pointer_cast"><type>BOOST_TYPE_INDEX_BEGIN_MODULE_EXPORT std::shared_ptr&lt; T &gt;</type><template>
           <template-type-parameter name="T"><purpose><para>The desired target type to return a pointer of. </para></purpose></template-type-parameter>
           <template-type-parameter name="U"><purpose><para>A complete class type of the source instance pointed to from u. </para></purpose></template-type-parameter>
-        </template><parameter name="u"><paramtype>std::shared_ptr&lt; U &gt; const &amp;</paramtype></parameter><purpose>Creates a new instance of std::shared_ptr whose stored pointer is obtained from u's stored pointer using a runtime_cast. </purpose><description><para>The new <link linkend="doxygen.boost_typeindex_header_reference.classboost_1_1shared__ptr">shared_ptr</link> will share ownership with u, except that it is empty if the runtime_cast performed by runtime_pointer_cast returns a null pointer. 
+        </template><parameter name="u"><paramtype>std::shared_ptr&lt; U &gt; const &amp;</paramtype></parameter><purpose>Creates a new instance of std::shared_ptr whose stored pointer is obtained from u's stored pointer using a runtime_cast. </purpose><description><para>The new shared_ptr will share ownership with u, except that it is empty if the runtime_cast performed by runtime_pointer_cast returns a null pointer. 
 
 </para></description><returns><para>If there exists a valid conversion from U* to T*, returns a std::shared_ptr&lt;T&gt; that points to an address suitably offset from u. If no such conversion exists, returns std::shared_ptr&lt;T&gt;(); </para>
 </returns></function>
@@ -375,7 +374,7 @@ if(derived2* pb2 = boost::typeindex::runtime_cast&lt;derived2*&gt;(pb1))
 <method-group name="public member functions">
 <constructor id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1stl__type__index_1af869e634b2d7b494e3ecdeac6ff93dc1" cv="noexcept"/>
 <constructor id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1stl__type__index_1a293b41e75648e6c5d6f9a9953e41b530" cv="noexcept"><parameter name="data"><paramtype>const type_info_t &amp;</paramtype></parameter></constructor>
-<method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1stl__type__index_1a8bd1cfb93cb1206aae2f124c8ab9bcf8" name="type_info" cv="const noexcept"><type>const type_info_t &amp;</type></method>
+<method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1stl__type__index_1a942da1c3e224986b670614ce8a8be536" name="type_info" cv="const noexcept"><type>const type_info_t &amp;</type></method>
 <method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1stl__type__index_1a083ee4e0bba81db6df03ba76ac028119" name="raw_name" cv="const noexcept"><type>const char *</type></method>
 <method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1stl__type__index_1a527a81e9cc9e514b3c7c3e4d5c3191c1" name="name" cv="const noexcept"><type>const char *</type></method>
 <method id="doxygen.boost_typeindex_header_reference.classboost_1_1typeindex_1_1stl__type__index_1aa422b799f3e506df955244ec9e87b5e4" name="pretty_name" cv="const"><type>std::string</type></method>

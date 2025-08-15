@@ -268,7 +268,7 @@
                 </td>
 <td>
                   <p>
-                    <code class="computeroutput"><span class="keyword">int</span></code>
+                    <code class="computeroutput"><span class="keyword">unsigned</span> <span class="keyword">int</span></code>
                   </p>
                 </td>
 <td>
@@ -417,6 +417,72 @@
                   <p>
                     The number of times to first attempt to acquire the reactor's
                     per I/O object locks without blocking.
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">timer</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">heap_reserve</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">unsigned</span> <span class="keyword">int</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="number">0</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The number of entries to reserve in the internal timer queue's
+                    heap.
+                  </p>
+                  <p>
+                    If an upper bound on the number of timers is known at construction
+                    time, this configuration option can be set to ensure that no
+                    timer allocations occur after construction is complete.
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">resolver</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">threads</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">unsigned</span> <span class="keyword">int</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="number">0</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The number of internal threads to be used for asynchronous name
+                    resolution.
+                  </p>
+                  <p>
+                    If non-zero, the specified number of threads are created when
+                    the first resolver object is constructed. Otherwise, at most
+                    one thread is created at the time of the first <code class="computeroutput"><span class="identifier">async_resolve</span></code> call.
                   </p>
                 </td>
 </tr>
@@ -591,7 +657,7 @@
                   <p>
                     — <code class="computeroutput"><span class="string">"reactor"</span></code>
                     / <code class="computeroutput"><span class="string">"registration_locking"</span></code>
-                    to <code class="computeroutput"><span class="keyword">false</span></code>.
+                    to <code class="computeroutput"><span class="keyword">true</span></code>.
                   </p>
                   <p>
                     — <code class="computeroutput"><span class="string">"reactor"</span></code>
@@ -610,7 +676,7 @@
                   <p>
                     — <code class="computeroutput"><span class="string">"scheduler"</span></code>
                     / <code class="computeroutput"><span class="string">"concurrency_hint"</span></code>
-                    to <code class="computeroutput"><span class="number">1</span></code>.
+                    to <code class="computeroutput"><span class="number">0</span></code>.
                   </p>
                   <p>
                     — <code class="computeroutput"><span class="string">"scheduler"</span></code>

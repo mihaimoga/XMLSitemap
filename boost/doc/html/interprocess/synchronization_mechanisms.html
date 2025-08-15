@@ -2198,7 +2198,7 @@
           sharable lock, increasing concurrency. Without lock transfer operations,
           this would be coded like this:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">interprocess_upgradable_mutex</span> <span class="identifier">mutex</span><span class="special">;</span>
 
 <span class="comment">//Acquire exclusive lock</span>
@@ -2232,7 +2232,7 @@
           We can use <span class="bold"><strong>lock transfer</strong></span> to simplify all
           this management:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">interprocess_upgradable_mutex</span> <span class="identifier">mutex</span><span class="special">;</span>
 
 <span class="comment">//Acquire exclusive lock</span>
@@ -3049,7 +3049,7 @@
           resources (for example the size of the shared memory used to implement
           the message queue if shared memory is used).
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="comment">//Create a message_queue. If the queue</span>
 <span class="comment">//exists throws an exception</span>
 <span class="identifier">message_queue</span> <span class="identifier">mq</span>
@@ -3059,7 +3059,7 @@
    <span class="special">,</span><span class="number">100</span>                 <span class="comment">//max message size</span>
    <span class="special">);</span>
 </pre>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="comment">//Creates or opens a message_queue. If the queue</span>
 <span class="comment">//does not exist creates it, otherwise opens it.</span>
 <span class="comment">//Message number and size are ignored if the queue</span>
@@ -3071,7 +3071,7 @@
    <span class="special">,</span><span class="number">100</span>                 <span class="comment">//max message size</span>
    <span class="special">);</span>
 </pre>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="comment">//Opens a message_queue. If the queue</span>
 <span class="comment">//does not exist throws an exception.</span>
 <span class="identifier">message_queue</span> <span class="identifier">mq</span>
@@ -3082,7 +3082,7 @@
 <p>
           The message queue is explicitly removed calling the static <code class="computeroutput"><span class="identifier">remove</span></code> function:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">message_queue</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"message_queue"</span><span class="special">);</span>
 </pre>
 <p>

@@ -69,12 +69,12 @@
   <span class="keyword">mutable</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;</span> <span class="identifier">refcount_</span><span class="special">;</span>
   <span class="keyword">friend</span> <span class="keyword">void</span> <span class="identifier">intrusive_ptr_add_ref</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">X</span> <span class="special">*</span> <span class="identifier">x</span><span class="special">)</span>
   <span class="special">{</span>
-    <span class="identifier">x</span><span class="special">-&gt;</span><span class="identifier">refcount_</span><span class="special">.</span><span class="identifier">fetch_add</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_relaxed</span><span class="special">);</span>
+    <span class="identifier">x</span><span class="special">-&gt;</span><span class="identifier">refcount_</span><span class="special">.</span><span class="identifier">fetch_add</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span><span class="special">);</span>
   <span class="special">}</span>
   <span class="keyword">friend</span> <span class="keyword">void</span> <span class="identifier">intrusive_ptr_release</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">X</span> <span class="special">*</span> <span class="identifier">x</span><span class="special">)</span>
   <span class="special">{</span>
-    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">x</span><span class="special">-&gt;</span><span class="identifier">refcount_</span><span class="special">.</span><span class="identifier">fetch_sub</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_release</span><span class="special">)</span> <span class="special">==</span> <span class="number">1</span><span class="special">)</span> <span class="special">{</span>
-      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_acquire</span><span class="special">);</span>
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">x</span><span class="special">-&gt;</span><span class="identifier">refcount_</span><span class="special">.</span><span class="identifier">fetch_sub</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">)</span> <span class="special">==</span> <span class="number">1</span><span class="special">)</span> <span class="special">{</span>
+      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span><span class="special">);</span>
       <span class="keyword">delete</span> <span class="identifier">x</span><span class="special">;</span>
     <span class="special">}</span>
   <span class="special">}</span>
@@ -93,7 +93,7 @@
 <a name="boost_atomic.usage_examples.example_reference_counters.discussion"></a><a class="link" href="usage_examples.html#boost_atomic.usage_examples.example_reference_counters.discussion" title="Discussion">Discussion</a>
 </h4></div></div></div>
 <p>
-          Increasing the reference counter can always be done with <code class="literal">memory_order_relaxed</code>:
+          Increasing the reference counter can always be done with <code class="literal">memory_order::relaxed</code>:
           New references to an object can only be formed from an existing reference,
           and passing an existing reference from one thread to another must already
           provide any required synchronization.
@@ -107,7 +107,7 @@
           operation before deleting the object.
         </p>
 <p>
-          It would be possible to use <code class="literal">memory_order_acq_rel</code> for
+          It would be possible to use <code class="literal">memory_order::acq_rel</code> for
           the <code class="literal">fetch_sub</code> operation, but this results in unneeded
           "acquire" operations when the reference counter does not yet
           reach zero and may impose a performance penalty.
@@ -146,13 +146,13 @@
 
   <span class="keyword">void</span> <span class="identifier">lock</span><span class="special">()</span>
   <span class="special">{</span>
-    <span class="keyword">while</span> <span class="special">(</span><span class="identifier">state_</span><span class="special">.</span><span class="identifier">exchange</span><span class="special">(</span><span class="identifier">Locked</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_acquire</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">Locked</span><span class="special">)</span> <span class="special">{</span>
+    <span class="keyword">while</span> <span class="special">(</span><span class="identifier">state_</span><span class="special">.</span><span class="identifier">exchange</span><span class="special">(</span><span class="identifier">Locked</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">Locked</span><span class="special">)</span> <span class="special">{</span>
       <span class="comment">/* busy-wait */</span>
     <span class="special">}</span>
   <span class="special">}</span>
   <span class="keyword">void</span> <span class="identifier">unlock</span><span class="special">()</span>
   <span class="special">{</span>
-    <span class="identifier">state_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">Unlocked</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_release</span><span class="special">);</span>
+    <span class="identifier">state_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">Unlocked</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
   <span class="special">}</span>
 <span class="special">};</span>
 </pre>
@@ -184,10 +184,10 @@
         </p>
 <pre class="programlisting"><span class="identifier">lock</span><span class="special">()</span>
 <span class="special">{</span>
-  <span class="keyword">while</span> <span class="special">(</span><span class="identifier">state_</span><span class="special">.</span><span class="identifier">exchange</span><span class="special">(</span><span class="identifier">Locked</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_relaxed</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">Locked</span><span class="special">)</span> <span class="special">{</span>
+  <span class="keyword">while</span> <span class="special">(</span><span class="identifier">state_</span><span class="special">.</span><span class="identifier">exchange</span><span class="special">(</span><span class="identifier">Locked</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span><span class="special">)</span> <span class="special">==</span> <span class="identifier">Locked</span><span class="special">)</span> <span class="special">{</span>
     <span class="comment">/* busy-wait */</span>
   <span class="special">}</span>
-  <span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_acquire</span><span class="special">);</span>
+  <span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span><span class="special">);</span>
 <span class="special">}</span>
 </pre>
 <p>
@@ -229,13 +229,13 @@
 <span class="keyword">public</span><span class="special">:</span>
   <span class="keyword">static</span> <span class="identifier">X</span> <span class="special">*</span> <span class="identifier">instance</span><span class="special">()</span>
   <span class="special">{</span>
-    <span class="identifier">X</span> <span class="special">*</span> <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">instance_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_consume</span><span class="special">);</span>
+    <span class="identifier">X</span> <span class="special">*</span> <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">instance_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span><span class="special">);</span>
     <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">tmp</span><span class="special">)</span> <span class="special">{</span>
       <span class="identifier">boost</span><span class="special">::</span><span class="identifier">mutex</span><span class="special">::</span><span class="identifier">scoped_lock</span> <span class="identifier">guard</span><span class="special">(</span><span class="identifier">instantiation_mutex</span><span class="special">);</span>
-      <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">instance_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_consume</span><span class="special">);</span>
+      <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">instance_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span><span class="special">);</span>
       <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">tmp</span><span class="special">)</span> <span class="special">{</span>
         <span class="identifier">tmp</span> <span class="special">=</span> <span class="keyword">new</span> <span class="identifier">X</span><span class="special">;</span>
-        <span class="identifier">instance_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">tmp</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_release</span><span class="special">);</span>
+        <span class="identifier">instance_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">tmp</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
       <span class="special">}</span>
     <span class="special">}</span>
     <span class="keyword">return</span> <span class="identifier">tmp</span><span class="special">;</span>
@@ -264,14 +264,14 @@
           The mutex makes sure that only one instance of the object is ever created.
           The <code class="literal">instance</code> method must make sure that any dereference
           of the object strictly "happens after" creating the instance
-          in another thread. The use of <code class="literal">memory_order_release</code> after
-          creating and initializing the object and <code class="literal">memory_order_consume</code>
+          in another thread. The use of <code class="literal">memory_order::release</code>
+          after creating and initializing the object and <code class="literal">memory_order::consume</code>
           before dereferencing the object provides this guarantee.
         </p>
 <p>
-          It would be permissible to use <code class="literal">memory_order_acquire</code>
-          instead of <code class="literal">memory_order_consume</code>, but this provides a
-          stronger guarantee than is required since only operations depending on
+          It would be permissible to use <code class="literal">memory_order::acquire</code>
+          instead of <code class="literal">memory_order::consume</code>, but this provides
+          a stronger guarantee than is required since only operations depending on
           the value of the pointer need to be ordered.
         </p>
 </div>
@@ -307,21 +307,21 @@
 
   <span class="keyword">bool</span> <span class="identifier">push</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span> <span class="identifier">value</span><span class="special">)</span>
   <span class="special">{</span>
-    <span class="identifier">size_t</span> <span class="identifier">head</span> <span class="special">=</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_relaxed</span><span class="special">);</span>
+    <span class="identifier">size_t</span> <span class="identifier">head</span> <span class="special">=</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span><span class="special">);</span>
     <span class="identifier">size_t</span> <span class="identifier">next_head</span> <span class="special">=</span> <span class="identifier">next</span><span class="special">(</span><span class="identifier">head</span><span class="special">);</span>
-    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">next_head</span> <span class="special">==</span> <span class="identifier">tail_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_acquire</span><span class="special">))</span>
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">next_head</span> <span class="special">==</span> <span class="identifier">tail_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span><span class="special">))</span>
       <span class="keyword">return</span> <span class="keyword">false</span><span class="special">;</span>
     <span class="identifier">ring_</span><span class="special">[</span><span class="identifier">head</span><span class="special">]</span> <span class="special">=</span> <span class="identifier">value</span><span class="special">;</span>
-    <span class="identifier">head_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">next_head</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_release</span><span class="special">);</span>
+    <span class="identifier">head_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">next_head</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
     <span class="keyword">return</span> <span class="keyword">true</span><span class="special">;</span>
   <span class="special">}</span>
   <span class="keyword">bool</span> <span class="identifier">pop</span><span class="special">(</span><span class="identifier">T</span> <span class="special">&amp;</span> <span class="identifier">value</span><span class="special">)</span>
   <span class="special">{</span>
-    <span class="identifier">size_t</span> <span class="identifier">tail</span> <span class="special">=</span> <span class="identifier">tail_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_relaxed</span><span class="special">);</span>
-    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">tail</span> <span class="special">==</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_acquire</span><span class="special">))</span>
+    <span class="identifier">size_t</span> <span class="identifier">tail</span> <span class="special">=</span> <span class="identifier">tail_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span><span class="special">);</span>
+    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">tail</span> <span class="special">==</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span><span class="special">))</span>
       <span class="keyword">return</span> <span class="keyword">false</span><span class="special">;</span>
     <span class="identifier">value</span> <span class="special">=</span> <span class="identifier">ring_</span><span class="special">[</span><span class="identifier">tail</span><span class="special">];</span>
-    <span class="identifier">tail_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">next</span><span class="special">(</span><span class="identifier">tail</span><span class="special">),</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_release</span><span class="special">);</span>
+    <span class="identifier">tail_</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="identifier">next</span><span class="special">(</span><span class="identifier">tail</span><span class="special">),</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
     <span class="keyword">return</span> <span class="keyword">true</span><span class="special">;</span>
   <span class="special">}</span>
 <span class="keyword">private</span><span class="special">:</span>
@@ -399,10 +399,10 @@
   <span class="special">{</span>
     <span class="identifier">node</span> <span class="special">*</span> <span class="identifier">n</span> <span class="special">=</span> <span class="keyword">new</span> <span class="identifier">node</span><span class="special">;</span>
     <span class="identifier">n</span><span class="special">-&gt;</span><span class="identifier">data</span> <span class="special">=</span> <span class="identifier">data</span><span class="special">;</span>
-    <span class="identifier">node</span> <span class="special">*</span> <span class="identifier">stale_head</span> <span class="special">=</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_relaxed</span><span class="special">);</span>
+    <span class="identifier">node</span> <span class="special">*</span> <span class="identifier">stale_head</span> <span class="special">=</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span><span class="special">);</span>
     <span class="keyword">do</span> <span class="special">{</span>
       <span class="identifier">n</span><span class="special">-&gt;</span><span class="identifier">next</span> <span class="special">=</span> <span class="identifier">stale_head</span><span class="special">;</span>
-    <span class="special">}</span> <span class="keyword">while</span> <span class="special">(!</span><span class="identifier">head_</span><span class="special">.</span><span class="identifier">compare_exchange_weak</span><span class="special">(</span><span class="identifier">stale_head</span><span class="special">,</span> <span class="identifier">n</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_release</span><span class="special">));</span>
+    <span class="special">}</span> <span class="keyword">while</span> <span class="special">(!</span><span class="identifier">head_</span><span class="special">.</span><span class="identifier">compare_exchange_weak</span><span class="special">(</span><span class="identifier">stale_head</span><span class="special">,</span> <span class="identifier">n</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">));</span>
   <span class="special">}</span>
 
   <span class="identifier">node</span> <span class="special">*</span> <span class="identifier">pop_all</span><span class="special">(</span><span class="keyword">void</span><span class="special">)</span>
@@ -422,7 +422,7 @@
   <span class="comment">// alternative interface if ordering is of no importance</span>
   <span class="identifier">node</span> <span class="special">*</span> <span class="identifier">pop_all_reverse</span><span class="special">(</span><span class="keyword">void</span><span class="special">)</span>
   <span class="special">{</span>
-    <span class="keyword">return</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">exchange</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order_consume</span><span class="special">);</span>
+    <span class="keyword">return</span> <span class="identifier">head_</span><span class="special">.</span><span class="identifier">exchange</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span><span class="special">);</span>
   <span class="special">}</span>
 <span class="keyword">private</span><span class="special">:</span>
   <span class="identifier">boost</span><span class="special">::</span><span class="identifier">atomic</span><span class="special">&lt;</span><span class="identifier">node</span> <span class="special">*&gt;</span> <span class="identifier">head_</span><span class="special">;</span>
@@ -472,7 +472,7 @@
 </div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013, 2017, 2018, 2020-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013-2025 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

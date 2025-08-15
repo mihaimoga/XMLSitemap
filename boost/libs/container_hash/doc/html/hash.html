@@ -561,6 +561,7 @@ pre.rouge .gs {
 <li><a href="#intro">Introduction</a></li>
 <li><a href="#recent">Recent Changes</a>
 <ul class="sectlevel2">
+<li><a href="#recent_boost_1_89_0">Boost 1.89.0</a></li>
 <li><a href="#recent_boost_1_84_0">Boost 1.84.0</a></li>
 <li><a href="#recent_boost_1_82_0">Boost 1.82.0</a></li>
 <li><a href="#recent_boost_1_81_0">Boost 1.81.0</a></li>
@@ -581,6 +582,11 @@ pre.rouge .gs {
 <li><a href="#ref_hash_range">hash_range</a></li>
 <li><a href="#ref_hash_unordered_range">hash_unordered_range</a></li>
 <li><a href="#ref_hash_value">hash_value</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostcontainer_hashhash_is_avalanching_hpp">&lt;boost/container_hash/&#8203;hash_is_avalanching.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_hash_is_avalanchinghash">hash_is_avalanching&lt;Hash&gt;</a></li>
 </ul>
 </li>
 <li><a href="#ref_boostcontainer_hashis_range_hpp">&lt;boost/container_hash/&#8203;is_range.hpp&gt;</a>
@@ -735,6 +741,16 @@ collisions and is as fast as possible.</p>
 <div class="sect1">
 <h2 id="recent"><a class="link" href="#recent">Recent Changes</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="recent_boost_1_89_0"><a class="link" href="#recent_boost_1_89_0">Boost 1.89.0</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added the <code>hash_is_avalanching</code> trait class.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="recent_boost_1_84_0"><a class="link" href="#recent_boost_1_84_0">Boost 1.84.0</a></h3>
 <div class="ulist">
@@ -1219,6 +1235,8 @@ wish to physically depend on Boost.ContainerHash.</p>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">It</span><span class="p">&gt;</span> <span class="kt">void</span> <span class="nf">hash_unordered_range</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&amp;</span> <span class="n">seed</span><span class="p">,</span> <span class="n">It</span> <span class="n">first</span><span class="p">,</span> <span class="n">It</span> <span class="n">last</span> <span class="p">);</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">It</span><span class="p">&gt;</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">hash_unordered_range</span><span class="p">(</span> <span class="n">It</span> <span class="n">first</span><span class="p">,</span> <span class="n">It</span> <span class="n">last</span> <span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Hash</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">hash_is_avalanching</span><span class="p">;</span>
 
 <span class="p">}</span> <span class="c1">// namespace boost</span></code></pre>
 </div>
@@ -1918,6 +1936,80 @@ as <code>std::deque</code>, <code>std::list</code>, <code>std::set</code>, <code
 <p><code>std::bad_variant_access</code> when <code>v.valueless_by_exception()</code> is <code>true</code>.</p>
 </dd>
 </dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostcontainer_hashhash_is_avalanching_hpp"><a class="link" href="#ref_boostcontainer_hashhash_is_avalanching_hpp">&lt;boost/container_hash/&#8203;hash_is_avalanching.hpp&gt;</a></h3>
+<div class="paragraph">
+<p>Defines the trait <code>boost::hash_is_avalanching</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">namespace</span> <span class="n">boost</span>
+<span class="p">{</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Hash</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">hash_is_avalanching</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="c1">// namespace boost</span></code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_hash_is_avalanchinghash"><a class="link" href="#ref_hash_is_avalanchinghash">hash_is_avalanching&lt;Hash&gt;</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Hash</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">hash_is_avalanching</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">value</span> <span class="o">=</span> <span class="cm">/* see below */</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>hash_is_avalanching&lt;Hash&gt;::value</code> is:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>false</code> if <code>Hash::is_avalanching</code> is not present,</p>
+</li>
+<li>
+<p><code>Hash::is_avalanching::value</code> if this is present and convertible at compile time to a <code>bool</code>,</p>
+</li>
+<li>
+<p><code>true</code> if <code>Hash::is_avalanching</code> is <code>void</code> (this usage is deprecated),</p>
+</li>
+<li>
+<p>ill-formed otherwise.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A hash function is said to have the <em>avalanching property</em> if small changes
+in the input translate to large changes in the returned hash code
+&#8212;ideally, flipping one bit in the representation of the input value results
+in each bit of the hash code flipping with probability 50%. Libraries
+such as <a href="../../../unordered/index.html">Boost.Unordered</a> consult this trait
+to determine if the supplied hash function is of high quality.
+<code>boost::hash</code> for <code>std::basic_string&lt;Ch&gt;</code> and <code>std::basic_string_view&lt;Ch&gt;</code>
+has this trait set to <code>true</code> when <code>Ch</code> is an integral type (this includes
+<code>std::string</code> and <code>std::string_view</code>, among others).
+Users can set this trait for a particular <code>Hash</code> type by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Inserting the nested <code>is_avalanching</code> typedef in the class definition
+if they have access to its source code.</p>
+</li>
+<li>
+<p>Writing a specialization of <code>boost::hash_is_avalanching</code>
+for <code>Hash</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that usage of this trait is not restricted to hash functions produced
+with Boost.ContainerHash.</p>
 </div>
 </div>
 </div>

@@ -117,6 +117,17 @@
             and <a class="link" href="ref/boost__mqtt5__mqtt_client/connect_properties.html" title="boost::mqtt5::mqtt_client::connect_properties"><code class="literal">mqtt_client::connect_properties</code></a>).
           </li>
 </ul></div>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+          If the user does not set the <code class="computeroutput"><span class="identifier">maximum_packet_size</span></code>
+          CONNECT property, it defaults to <code class="computeroutput"><span class="number">64</span><span class="identifier">KB</span></code>. This is the only CONNECT property
+          with a default value.
+        </p></td></tr>
+</table></div>
 <p>
         Firstly, we will specify the Broker we want to connect to using the <a class="link" href="ref/boost__mqtt5__mqtt_client/brokers.html" title="boost::mqtt5::mqtt_client::brokers"><code class="literal">mqtt_client::brokers</code></a>
         function. This can be <a href="https://www.hivemq.com/" target="_top">HiveMQ</a>'s
@@ -131,6 +142,7 @@
       </p>
 <pre class="programlisting"><span class="identifier">client</span><span class="special">.</span><span class="identifier">brokers</span><span class="special">(</span><span class="identifier">cfg</span><span class="special">.</span><span class="identifier">brokers</span><span class="special">,</span> <span class="identifier">cfg</span><span class="special">.</span><span class="identifier">port</span><span class="special">)</span> <span class="comment">// Set the Broker to connect to.</span>
     <span class="special">.</span><span class="identifier">credentials</span><span class="special">(</span><span class="identifier">cfg</span><span class="special">.</span><span class="identifier">client_id</span><span class="special">)</span> <span class="comment">// Set the Client Identifier. (optional)</span>
+    <span class="special">.</span><span class="identifier">connect_property</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">mqtt5</span><span class="special">::</span><span class="identifier">prop</span><span class="special">::</span><span class="identifier">session_expiry_interval</span><span class="special">,</span> <span class="number">60</span><span class="special">)</span> <span class="comment">// optional</span>
     <span class="special">.</span><span class="identifier">async_run</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">detached</span><span class="special">);</span> <span class="comment">// Start the Client.</span>
 </pre>
 <p>

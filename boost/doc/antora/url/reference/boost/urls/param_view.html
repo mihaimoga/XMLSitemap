@@ -137,8 +137,10 @@
   </ul>
 </nav>
 <div class="spirit-nav">
-</div>
-</div>
+    <a class="disabled" accesskey="u" aria-disabled="true" tabindex="-1">
+      <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
+    </a>
+</div></div>
     <h1 class="page"><a href="../../boost.html">boost</a>::<a href="../../boost/urls.html">urls</a>::param&lowbar;view</h1>
   <div id="preamble">
 <div class="sectionbody">
@@ -151,7 +153,7 @@
 <h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/param.hpp#L423">boost&sol;url&sol;param&period;hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://www.github.com/boostorg/url/blob/develop/include/boost/url/param.hpp#L427">boost&sol;url&sol;param&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -174,7 +176,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="param_view/2constructor-09.html" class="xref page"><code>param&lowbar;view</code></a>         <span class="small">[constructor]</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="param_view/2constructor-0e.html" class="xref page"><code>param&lowbar;view</code></a>         <span class="small">[constructor]</span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Constructors</p></td>
 </tr>
 <tr>
@@ -225,7 +227,7 @@
 <p>Objects of this type represent a single key and value pair in a query string where a key is always present and may be empty, while the presence of a value is indicated by <a href="param_view/has_value.html" class="xref page"><code>has&lowbar;value</code></a> equal to true&period; An empty value is distinct from no value&period;</p>
 </div>
 <div class="paragraph">
-<p>Depending on where the object was obtained, the strings may or may not contain percent escapes&period;</p>
+<p>Depending on where the object was obtained, the strings may or may not contain percent escapes&period; Some functions and objects might expect encoded strings in this view, while others expect decoded strings&period; The caller should be aware of the context in which the object will be used&period;</p>
 </div>
 <div class="paragraph">
 <p>For most usages, key comparisons are case&hyphen;sensitive and duplicate keys in a query are possible&period; However, it is the authority that has final control over how the query is interpreted&period;</p>

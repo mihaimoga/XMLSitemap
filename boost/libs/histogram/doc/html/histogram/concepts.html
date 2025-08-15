@@ -50,6 +50,18 @@
         <a href="https://en.cppreference.com/w/cpp/named_req/CopyAssignable" target="_top">CopyAssignable</a>,
         and <span class="bold"><strong>nothrow</strong></span> <a href="https://en.cppreference.com/w/cpp/named_req/MoveAssignable" target="_top">MoveAssignable</a>.
       </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top"><p>
+          <code class="computeroutput"><span class="identifier">Axis</span><span class="special">::</span><span class="identifier">index</span></code> cannot be templated or overloaded.
+          This is by design, but also a limitation of the internal code used to detect
+          generic user-defined axes. A workaround for making an axis that accepts
+          multiple value types is described in the <a class="link" href="guide.html#histogram.guide.expert.axis_multiple_value_types" title="Axis which accepts multiple value types"><span class="bold"><strong>Guide</strong></span></a>.
+        </p></td></tr>
+</table></div>
 <h5>
 <a name="histogram.concepts.Axis.h0"></a>
         <span class="phrase"><a name="histogram.concepts.Axis.associated_types"></a></span><a class="link" href="concepts.html#histogram.concepts.Axis.associated_types">Associated
@@ -1930,6 +1942,9 @@
           </li>
 <li class="listitem">
             <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1histogram_1_1accumulators_1_1weighted__mean.html" title="Class template weighted_mean">boost::histogram::accumulators::weighted_mean</a></code>
+          </li>
+<li class="listitem">
+            <code class="computeroutput"><a class="link" href="../doxygen/classboost_1_1histogram_1_1accumulators_1_1collector.html" title="Class template collector">boost::histogram::accumulators::collector</a></code>
           </li>
 </ul></div>
 </div>

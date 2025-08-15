@@ -171,7 +171,7 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
               Create a shared memory segment. Throws if already created:
             </li></ul></div>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">shared_memory_object</span> <span class="identifier">shm_obj</span>
    <span class="special">(</span><span class="identifier">create_only</span>                  <span class="comment">//only create</span>
    <span class="special">,</span><span class="string">"shared_memory"</span>              <span class="comment">//name</span>
@@ -181,7 +181,7 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
               To open or create a shared memory segment:
             </li></ul></div>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">shared_memory_object</span> <span class="identifier">shm_obj</span>
    <span class="special">(</span><span class="identifier">open_or_create</span>               <span class="comment">//open or create</span>
    <span class="special">,</span><span class="string">"shared_memory"</span>              <span class="comment">//name</span>
@@ -191,7 +191,7 @@
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
               To only open a shared memory segment. Throws if does not exist:
             </li></ul></div>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">shared_memory_object</span> <span class="identifier">shm_obj</span>
    <span class="special">(</span><span class="identifier">open_only</span>                    <span class="comment">//only open</span>
    <span class="special">,</span><span class="string">"shared_memory"</span>              <span class="comment">//name</span>
@@ -212,7 +212,7 @@
           operation might fail returning false if the shared memory does not exist,
           the file is open or the file is still memory mapped by other processes:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">shared_memory_object</span><span class="special">::</span><span class="identifier">remove</span><span class="special">(</span><span class="string">"shared_memory"</span><span class="special">);</span>
 </pre>
 <p>
@@ -236,7 +236,7 @@
           and as you might imagine, <code class="computeroutput"><span class="identifier">shared_memory_object</span></code>
           is a <code class="computeroutput"><span class="identifier">memory_mappable</span></code> object:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">ShmSize</span> <span class="special">=</span> <span class="special">...</span>
 
 <span class="comment">//Map the second half of the memory</span>
@@ -283,7 +283,7 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstdlib</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">string</span><span class="special">&gt;</span>
 
-<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span>[2] "MyName"<span class="special">[])</span>
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">argv</span><span class="special">[])</span>
 <span class="special">{</span>
    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 
@@ -308,13 +308,13 @@
       <span class="identifier">std</span><span class="special">::</span><span class="identifier">memset</span><span class="special">(</span><span class="identifier">region</span><span class="special">.</span><span class="identifier">get_address</span><span class="special">(),</span> <span class="number">1</span><span class="special">,</span> <span class="identifier">region</span><span class="special">.</span><span class="identifier">get_size</span><span class="special">());</span>
 
       <span class="comment">//Launch child process</span>
-      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
       <span class="keyword">if</span><span class="special">(</span><span class="number">0</span> <span class="special">!=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">system</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">c_str</span><span class="special">()))</span>
          <span class="keyword">return</span> <span class="number">1</span><span class="special">;</span>
    <span class="special">}</span>
    <span class="keyword">else</span><span class="special">{</span>
       <span class="comment">//Open already created shared memory object.</span>
-      <span class="identifier">shared_memory_object</span> <span class="identifier">shm</span> <span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> [2] "MyName"<span class="special">[</span><span class="number">2</span><span class="special">],</span> <span class="identifier">read_only</span><span class="special">);</span>
+      <span class="identifier">shared_memory_object</span> <span class="identifier">shm</span> <span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> "MyName"<span class="special">,</span> <span class="identifier">read_only</span><span class="special">);</span>
 
       <span class="comment">//Map the whole shared memory in this process</span>
       <span class="identifier">mapped_region</span> <span class="identifier">region</span><span class="special">(</span><span class="identifier">shm</span><span class="special">,</span> <span class="identifier">read_only</span><span class="special">);</span>
@@ -529,7 +529,7 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstdlib</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">string</span><span class="special">&gt;</span>
 
-<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span>[2] "MyName"<span class="special">[])</span>
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">argv</span><span class="special">[])</span>
 <span class="special">{</span>
    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 
@@ -544,14 +544,14 @@
       <span class="identifier">std</span><span class="special">::</span><span class="identifier">memset</span><span class="special">(</span><span class="identifier">region</span><span class="special">.</span><span class="identifier">get_address</span><span class="special">(),</span> <span class="number">1</span><span class="special">,</span> <span class="identifier">region</span><span class="special">.</span><span class="identifier">get_size</span><span class="special">());</span>
 
       <span class="comment">//Launch child process</span>
-      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
       <span class="keyword">if</span><span class="special">(</span><span class="number">0</span> <span class="special">!=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">system</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">c_str</span><span class="special">()))</span>
          <span class="keyword">return</span> <span class="number">1</span><span class="special">;</span>
       <span class="comment">//windows_shared_memory is destroyed when the last attached process dies...</span>
    <span class="special">}</span>
    <span class="keyword">else</span><span class="special">{</span>
       <span class="comment">//Open already created shared memory object.</span>
-      <span class="identifier">windows_shared_memory</span> <span class="identifier">shm</span> <span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> [2] "MyName"<span class="special">[</span><span class="number">2</span><span class="special">],</span> <span class="identifier">read_only</span><span class="special">);</span>
+      <span class="identifier">windows_shared_memory</span> <span class="identifier">shm</span> <span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> "MyName"<span class="special">,</span> <span class="identifier">read_only</span><span class="special">);</span>
 
       <span class="comment">//Map the whole shared memory in this process</span>
       <span class="identifier">mapped_region</span> <span class="identifier">region</span><span class="special">(</span><span class="identifier">shm</span><span class="special">,</span> <span class="identifier">read_only</span><span class="special">);</span>
@@ -627,11 +627,11 @@
    <span class="special">}</span>
 <span class="special">}</span>
 
-<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span>[2] "MyName"<span class="special">[])</span>
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">argv</span><span class="special">[])</span>
 <span class="special">{</span>
    <span class="keyword">if</span><span class="special">(</span><span class="identifier">argc</span> <span class="special">==</span> <span class="number">1</span><span class="special">){</span>  <span class="comment">//Parent process</span>
       <span class="comment">//Build XSI key (ftok based)</span>
-      <span class="identifier">xsi_key</span> <span class="identifier">key</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">],</span> <span class="number">1</span><span class="special">);</span>
+      <span class="identifier">xsi_key</span> <span class="identifier">key</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">],</span> <span class="number">1</span><span class="special">);</span>
 
       <span class="identifier">remove_old_shared_memory</span><span class="special">(</span><span class="identifier">key</span><span class="special">);</span>
 
@@ -653,13 +653,13 @@
       <span class="identifier">std</span><span class="special">::</span><span class="identifier">memset</span><span class="special">(</span><span class="identifier">region</span><span class="special">.</span><span class="identifier">get_address</span><span class="special">(),</span> <span class="number">1</span><span class="special">,</span> <span class="identifier">region</span><span class="special">.</span><span class="identifier">get_size</span><span class="special">());</span>
 
       <span class="comment">//Launch child process</span>
-      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
       <span class="keyword">if</span><span class="special">(</span><span class="number">0</span> <span class="special">!=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">system</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">c_str</span><span class="special">()))</span>
          <span class="keyword">return</span> <span class="number">1</span><span class="special">;</span>
    <span class="special">}</span>
    <span class="keyword">else</span><span class="special">{</span>
       <span class="comment">//Build XSI key (ftok based)</span>
-      <span class="identifier">xsi_key</span> <span class="identifier">key</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">],</span> <span class="number">1</span><span class="special">);</span>
+      <span class="identifier">xsi_key</span> <span class="identifier">key</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">],</span> <span class="number">1</span><span class="special">);</span>
 
       <span class="comment">//Create a shared memory object.</span>
       <span class="identifier">xsi_shared_memory</span> <span class="identifier">shm</span> <span class="special">(</span><span class="identifier">open_only</span><span class="special">,</span> <span class="identifier">key</span><span class="special">);</span>
@@ -806,7 +806,7 @@
           creating a <code class="computeroutput"><span class="identifier">file_mapping</span></code>
           object:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">file_mapping</span> <span class="identifier">m_file</span>
    <span class="special">(</span><span class="string">"/usr/home/file"</span>       <span class="comment">//filename</span>
    <span class="special">,</span><span class="identifier">read_write</span>             <span class="comment">//read-write mode</span>
@@ -830,7 +830,7 @@
           before The class represents a memory region that has been mapped from a
           shared memory or from other devices that have also mapping capabilities:
         </p>
-<pre class="programlisting"><span class="keyword">using</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
+<pre class="programlisting"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">FileSize</span> <span class="special">=</span> <span class="special">...</span>
 
 <span class="comment">//Map the second half of the file</span>
@@ -907,7 +907,7 @@
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstddef</span><span class="special">&gt;</span>
 <span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cstdlib</span><span class="special">&gt;</span>
 
-<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span>[2] "MyName"<span class="special">[])</span>
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span><span class="keyword">int</span> <span class="identifier">argc</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="identifier">argv</span><span class="special">[])</span>
 <span class="special">{</span>
    <span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">interprocess</span><span class="special">;</span>
 
@@ -949,7 +949,7 @@
       <span class="identifier">std</span><span class="special">::</span><span class="identifier">memset</span><span class="special">(</span><span class="identifier">addr</span><span class="special">,</span> <span class="number">1</span><span class="special">,</span> <span class="identifier">size</span><span class="special">);</span>
 
       <span class="comment">//Launch child process</span>
-      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span>[2] "MyName"<span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
+      <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">s</span><span class="special">(</span><span class="identifier">argv</span><span class="special">[</span><span class="number">0</span><span class="special">]);</span> <span class="identifier">s</span> <span class="special">+=</span> <span class="string">" child "</span><span class="special">;</span>
       <span class="keyword">if</span><span class="special">(</span><span class="number">0</span> <span class="special">!=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">system</span><span class="special">(</span><span class="identifier">s</span><span class="special">.</span><span class="identifier">c_str</span><span class="special">()))</span>
          <span class="keyword">return</span> <span class="number">1</span><span class="special">;</span>
    <span class="special">}</span>

@@ -194,12 +194,10 @@
         <span class="special">}</span>
     <span class="special">};</span>
 
-    <span class="comment">// This is the verbose form of declaration for the integer and unsigned</span>
-    <span class="comment">// integer parsers int_parser and uint_parser.  In this case, we don't</span>
-    <span class="comment">// want to use boost::parser::hex directly, since it has a variable number</span>
-    <span class="comment">// of digits.  We want to match exactly 4 digits, and this is how we</span>
-    <span class="comment">// declare a hexadecimal parser that matches exactly 4.</span>
-    <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parser_interface</span><span class="special">&lt;</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">uint_parser</span><span class="special">&lt;</span><span class="identifier">uint32_t</span><span class="special">,</span> <span class="number">16</span><span class="special">,</span> <span class="number">4</span><span class="special">,</span> <span class="number">4</span><span class="special">&gt;&gt;</span> <span class="keyword">const</span> <span class="identifier">hex_4_def</span><span class="special">;</span>
+    <span class="comment">// We don't want to use boost::parser::hex directly, since it has a</span>
+    <span class="comment">// variable number of digits.  We want to match exactly 4 digits, and this</span>
+    <span class="comment">// is how we declare a hexadecimal parser that matches exactly 4.</span>
+    <span class="keyword">auto</span> <span class="keyword">const</span> <span class="identifier">hex_4_def</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span><span class="identifier">uint_</span><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">16</span><span class="special">&gt;().</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">4</span><span class="special">&gt;();</span>
 
     <span class="comment">// We use &gt; here instead of &gt;&gt;, because once we see \u, we know that</span>
     <span class="comment">// exactly four hex digits must follow -- no other production rule starts</span>
@@ -545,7 +543,7 @@
         <span class="special">}</span>
     <span class="special">};</span>
 
-    <span class="identifier">bp</span><span class="special">::</span><span class="identifier">parser_interface</span><span class="special">&lt;</span><span class="identifier">bp</span><span class="special">::</span><span class="identifier">uint_parser</span><span class="special">&lt;</span><span class="identifier">uint32_t</span><span class="special">,</span> <span class="number">16</span><span class="special">,</span> <span class="number">4</span><span class="special">,</span> <span class="number">4</span><span class="special">&gt;&gt;</span> <span class="keyword">const</span> <span class="identifier">hex_4_def</span><span class="special">;</span>
+    <span class="keyword">auto</span> <span class="keyword">const</span> <span class="identifier">hex_4_def</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span><span class="identifier">uint_</span><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">16</span><span class="special">&gt;().</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">4</span><span class="special">&gt;();</span>
 
     <span class="keyword">auto</span> <span class="keyword">const</span> <span class="identifier">escape_seq_def</span> <span class="special">=</span> <span class="string">"\\u"</span> <span class="special">&gt;</span> <span class="identifier">hex_4</span><span class="special">;</span>
 

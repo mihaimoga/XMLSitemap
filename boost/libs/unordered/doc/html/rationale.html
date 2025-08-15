@@ -322,17 +322,18 @@ the statistical properties required by open addressing; to cope with this,
 we implement a post-mixing stage:</p>
 </div>
 <div class="paragraph">
-<p>&#160;&#160;&#160;&#160; <em>a</em> &#8592; <em>h</em> <strong>mulx</strong> <em>C</em>,<br>
+<p>&#160;&#160;&#160;&#160; <em>a</em> &#8592; <em>h</em> <strong>mul</strong> <em>C</em>,<br>
 &#160;&#160;&#160;&#160; <em>h</em> &#8592; <strong>high</strong>(<em>a</em>) <strong>xor</strong> <strong>low</strong>(<em>a</em>),</p>
 </div>
 <div class="paragraph">
-<p>where <strong>mulx</strong> is an <em>extended multiplication</em> (128 bits in 64-bit architectures, 64 bits in 32-bit environments),
+<p>where <strong>mul</strong> is an <em>extended multiplication</em> (128 bits in 64-bit architectures, 64 bits in 32-bit environments),
 and <strong>high</strong> and <strong>low</strong> are the upper and lower halves of an extended word, respectively.
 In 64-bit architectures, <em>C</em> is the integer part of 2<sup>64</sup>&#8725;<a href="https://en.wikipedia.org/wiki/Golden_ratio"><em>&phi;</em></a>,
 whereas in 32 bits <em>C</em> = 0xE817FB2Du has been obtained from <a href="https://arxiv.org/abs/2001.05304" target="_blank" rel="noopener">Steele and Vigna (2021)</a>.</p>
 </div>
 <div class="paragraph">
-<p>When using a hash function directly suitable for open addressing, post-mixing can be opted out of via a dedicated <code><a href="reference/hash_traits.html#hash_traits_hash_is_avalanching" class="xref page">hash_is_avalanching</a></code> trait.
+<p>When using a hash function directly suitable for open addressing, post-mixing can be opted out of via a dedicated
+<code><a href="../../../../container_hash/doc/html/hash.html#ref_hash_is_avalanchinghash">hash_is_avalanching</a></code> trait.
 <code>boost::hash</code> specializations for string types are marked as avalanching.</p>
 </div>
 </div>

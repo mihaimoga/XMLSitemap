@@ -56,30 +56,29 @@
         </li>
 <li class="listitem">
           <span class="bold"><strong>Compilers may transform computation dependency to
-          control dependency</strong></span>: Crucially, <code class="computeroutput"><span class="identifier">memory_order_consume</span></code>
+          control dependency</strong></span>: Crucially, <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span></code>
           only affects computationally-dependent operations, but in general there
           is nothing preventing a compiler from transforming a computation dependency
           into a control dependency. A fully compliant C++11 compiler would be forbidden
           from such a transformation, but in practice most if not all compilers have
-          chosen to promote <code class="computeroutput"><span class="identifier">memory_order_consume</span></code>
-          to <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>
-          instead (see <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=59448" target="_top">this</a>
+          chosen to promote <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span></code>
+          to <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span></code> instead (see <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=59448" target="_top">this</a>
           gcc bug for example). In the current implementation <span class="bold"><strong>Boost.Atomic</strong></span>
           follows that trend, but this may change in the future. <span class="bold"><strong>Advice</strong></span>:
-          In general, avoid <code class="computeroutput"><span class="identifier">memory_order_consume</span></code>
-          and use <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>
-          instead. Use <code class="computeroutput"><span class="identifier">memory_order_consume</span></code>
+          In general, avoid <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span></code>
+          and use <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span></code> instead. Use <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span></code>
           only in conjunction with pointer values, and only if you can ensure that
           the compiler cannot speculate and transform these into control dependencies.
         </li>
 <li class="listitem">
           <span class="bold"><strong>Fence operations may enforce "too strong"
-          compiler ordering</strong></span>: Semantically, <code class="computeroutput"><span class="identifier">memory_order_acquire</span></code>/<code class="computeroutput"><span class="identifier">memory_order_consume</span></code> and <code class="computeroutput"><span class="identifier">memory_order_release</span></code> need to restrain
-          reordering of memory operations only in one direction. Since in some compilers
-          there is no way to express this constraint, these may act as "full
-          compiler barriers". In corner cases this may result in a slightly
-          less efficient code than a more capable compiler could generate. <span class="bold"><strong>Boost.Atomic</strong></span> will use compiler intrinsics, if possible,
-          to express the proper ordering constraints.
+          compiler ordering</strong></span>: Semantically, <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span></code>/<code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span></code> and <code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span></code>
+          need to restrain reordering of memory operations only in one direction.
+          Since in some compilers there is no way to express this constraint, these
+          may act as "full compiler barriers". In corner cases this may
+          result in a slightly less efficient code than a more capable compiler could
+          generate. <span class="bold"><strong>Boost.Atomic</strong></span> will use compiler
+          intrinsics, if possible, to express the proper ordering constraints.
         </li>
 <li class="listitem">
           <span class="bold"><strong>Atomic operations may enforce "too strong"
@@ -87,7 +86,7 @@
           optimizations makes it impossible to provide memory ordering constraints
           as compile-time constants to the compiler intrinsics. This causes the compiler
           to silently ignore the provided constraints and choose the "strongest"
-          memory order (<code class="computeroutput"><span class="identifier">memory_order_seq_cst</span></code>)
+          memory order (<code class="computeroutput"><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">seq_cst</span></code>)
           to generate code. Not only this reduces performance, this may hide bugs
           in the user's code (e.g. if the user used a wrong memory order constraint,
           which caused a data race). <span class="bold"><strong>Advice</strong></span>: Always
@@ -155,7 +154,7 @@
         </li>
 </ul></div>
 </div>
-<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013, 2017, 2018, 2020-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013-2025 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

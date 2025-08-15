@@ -116,13 +116,20 @@
             clang 3.5 and newer: i386, x86_64
           </li>
 <li class="listitem">
-            Visual Studio 2015 (MSVC-14.0) and newer on Windows XP and later: x86,
+            Visual Studio 2015 (MSVC-14.0) and newer on Windows 10 and later: x86,
             x64, ARM
+          </li>
+<li class="listitem">
+            MinGW-w64 gcc 8.1.0 on Windows 10 and later: x86, x86_64. Note: Since
+            Windows SDK headers on MinGW-w64 define <code class="computeroutput"><span class="identifier">_WIN32_WINNT</span></code>
+            to an older Windows version by default, you may need to define <code class="computeroutput"><span class="identifier">_WIN32_WINNT</span><span class="special">=</span><span class="number">0x0A00</span></code> or <code class="computeroutput"><span class="identifier">BOOST_USE_WINAPI_VERSION</span><span class="special">=</span><span class="number">0x0A00</span></code>
+            when compiling <span class="bold"><strong>Boost.Atomic</strong></span> and the
+            code that uses <span class="bold"><strong>Boost.Atomic</strong></span>.
           </li>
 </ul></div>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013, 2017, 2018, 2020-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013-2025 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>

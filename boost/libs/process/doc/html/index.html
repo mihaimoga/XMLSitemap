@@ -588,6 +588,7 @@ pre.rouge .gs {
 <li><a href="#popen">popen</a></li>
 <li><a href="#environment">Environment</a></li>
 <li><a href="#subprocess_environment">Subprocess environment</a></li>
+<li><a href="#inheriting_an_environment">Inheriting an environment</a></li>
 </ul>
 </li>
 <li><a href="#reference">Reference</a>
@@ -1215,6 +1216,41 @@ as to have the right value comparisons.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="inheriting_an_environment">Inheriting an environment</h3>
+<div class="paragraph">
+<p>The current environment can be obtained by calling <code>environment::current</code> which returns
+a forward range of <code>environment::key_value_pair_view</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">example/env.cpp:48-54</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp">    <span class="n">asio</span><span class="o">::</span><span class="n">io_context</span> <span class="n">ctx</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">environment</span><span class="o">::</span><span class="n">current</span><span class="p">();</span>
+    <span class="c1">// we need to use a value, since windows needs wchar_t.</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">environment</span><span class="o">::</span><span class="n">key_value_pair</span><span class="o">&gt;</span> <span class="n">my_env</span><span class="p">{</span><span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">()};</span>
+    <span class="n">my_env</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"SECRET=THIS_IS_A_TEST"</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">exe</span> <span class="o">=</span> <span class="n">environment</span><span class="o">::</span><span class="n">find_executable</span><span class="p">(</span><span class="s">"g++"</span><span class="p">,</span> <span class="n">my_env</span><span class="p">);</span>
+    <span class="n">process</span> <span class="nf">proc</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">exe</span><span class="p">,</span> <span class="p">{</span><span class="s">"main.cpp"</span><span class="p">},</span> <span class="n">process_environment</span><span class="p">(</span><span class="n">my_env</span><span class="p">));</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively you can use a map container for the environment.</p>
+</div>
+<div class="listingblock">
+<div class="title">example/env.cpp:61-68</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp">    <span class="n">asio</span><span class="o">::</span><span class="n">io_context</span> <span class="n">ctx</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">environment</span><span class="o">::</span><span class="n">key</span><span class="p">,</span> <span class="n">environment</span><span class="o">::</span><span class="n">value</span><span class="o">&gt;</span> <span class="n">my_env</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="n">kv</span> <span class="o">:</span> <span class="n">environment</span><span class="o">::</span><span class="n">current</span><span class="p">())</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">kv</span><span class="p">.</span><span class="n">key</span><span class="p">().</span><span class="n">string</span><span class="p">()</span> <span class="o">!=</span> <span class="s">"SECRET"</span><span class="p">)</span>
+        <span class="n">my_env</span><span class="p">[</span><span class="n">kv</span><span class="p">.</span><span class="n">key</span><span class="p">()]</span> <span class="o">=</span> <span class="n">kv</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+
+    <span class="k">auto</span> <span class="n">exe</span> <span class="o">=</span> <span class="n">environment</span><span class="o">::</span><span class="n">find_executable</span><span class="p">(</span><span class="s">"g++"</span><span class="p">,</span> <span class="n">my_env</span><span class="p">);</span>
+    <span class="n">process</span> <span class="nf">proc</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">exe</span><span class="p">,</span> <span class="p">{</span><span class="s">"main.cpp"</span><span class="p">},</span> <span class="n">process_environment</span><span class="p">(</span><span class="n">my_env</span><span class="p">));</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1272,7 +1308,7 @@ as to have the right value comparisons.</p>
 <div class="sect3">
 <h4 id="environment"><code>environment</code></h4>
 <div class="paragraph">
-<p>The <code>environment</code> header provides facilities to maniuplate the current environment and set it for new processes.</p>
+<p>The <code>environment</code> header provides facilities to manipulate the current environment and set it for new processes.</p>
 </div>
 <div class="paragraph">
 <p>An environment is a a <code>range</code> of <code>T</code> fulfilling these requirements:</p>
@@ -1291,7 +1327,7 @@ as to have the right value comparisons.</p>
 <span class="c1">// A char traits type that reflects the OS rules for string representing environment keys.</span>
 <span class="cm">/* Can be an alias of std::char_traits. May only be defined for `char` and `wchar_t`.
  *
- * Windows treats keys as case-insensitive yet perserving. The char traits are made to reflect
+ * Windows treats keys as case-insensitive yet preserving. The char traits are made to reflect
  * that behaviour.
 */</span>
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Char</span><span class="p">&gt;</span>
@@ -2675,10 +2711,11 @@ Thus it can only be discovered that process has exited already.
     <span class="c1">// Check if the process handle is referring to an existing process.</span>
     <span class="kt">bool</span> <span class="n">is_open</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
-    <span class="c1">// Asynchronously wait for the process to exit and deliver the native exit-code in the completion handler.</span>
-    <span class="k">template</span><span class="o">&lt;</span><span class="n">BOOST_PROCESS_V2_COMPLETION_TOKEN_FOR</span><span class="p">(</span><span class="kt">void</span><span class="p">(</span><span class="n">error_code</span><span class="p">,</span> <span class="n">native_exit_code_type</span><span class="p">))</span>
+    <span class="c1">// Asynchronously wait for the process to exit and assign the native exit-code to the reference.</span>
+    <span class="c1">// The exit_status can indicate that a process has already be waited for, e.g. when terminate is called.</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="n">BOOST_PROCESS_V2_COMPLETION_TOKEN_FOR</span><span class="p">(</span><span class="kt">void</span><span class="p">(</span><span class="n">error_code</span><span class="p">))</span>
              <span class="n">WaitHandler</span> <span class="o">=</span> <span class="n">net</span><span class="o">::</span><span class="n">default_completion_token_t</span><span class="o">&lt;</span><span class="n">executor_type</span><span class="p">&gt;</span><span class="o">&gt;</span>
-    <span class="k">auto</span> <span class="nf">async_wait</span><span class="p">(</span><span class="n">WaitHandler</span> <span class="o">&amp;&amp;</span><span class="n">handler</span> <span class="o">=</span> <span class="n">net</span><span class="o">::</span><span class="n">default_completion_token_t</span><span class="o">&lt;</span><span class="n">executor_type</span><span class="o">&gt;</span><span class="p">());</span>
+    <span class="k">auto</span> <span class="nf">async_wait</span><span class="p">(</span><span class="n">native_exit_code_type</span> <span class="o">&amp;</span><span class="n">exit_status</span><span class="p">,</span> <span class="n">WaitHandler</span> <span class="o">&amp;&amp;</span><span class="n">handler</span> <span class="o">=</span> <span class="n">net</span><span class="o">::</span><span class="n">default_completion_token_t</span><span class="o">&lt;</span><span class="n">executor_type</span><span class="o">&gt;</span><span class="p">());</span>
 <span class="p">};</span></code></pre>
 </div>
 </div>
@@ -2800,7 +2837,7 @@ in later version of C++.</p>
 <pre class="rouge highlight"><code data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">io_context</span> <span class="n">ctx</span><span class="p">;</span>
 
 <span class="c1">/// C++17</span>
-<span class="n">v2</span><span class="o">::</span><span class="n">process</span> <span class="nf">proc17</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="s">"/bin/bash"</span><span class="p">,</span> <span class="p">{},</span> <span class="n">v2</span><span class="o">::</span><span class="n">process_stdio</span><span class="p">{.</span><span class="n">stderr</span><span class="o">=</span><span class="nb">nullptr</span><span class="p">});</span>
+<span class="n">v2</span><span class="o">::</span><span class="n">process</span> <span class="nf">proc17</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="s">"/bin/bash"</span><span class="p">,</span> <span class="p">{},</span> <span class="n">v2</span><span class="o">::</span><span class="n">process_stdio</span><span class="p">{.</span><span class="n">err</span><span class="o">=</span><span class="nb">nullptr</span><span class="p">});</span>
 <span class="c1">/// C++11 &amp; C++14</span>
 <span class="n">v2</span><span class="o">::</span><span class="n">process</span> <span class="nf">proc17</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="s">"/bin/bash"</span><span class="p">,</span> <span class="p">{},</span> <span class="n">v2</span><span class="o">::</span><span class="n">process_stdio</span><span class="p">{</span> <span class="p">{},</span> <span class="p">{},</span> <span class="nb">nullptr</span><span class="p">});</span></code></pre>
 </div>
@@ -3085,7 +3122,7 @@ design mistakes &amp; improved system APIs.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Version 2 is now the defauled. In order to discourage usage of the deprecated v1, it&#8217;s documentation has been removed.</p>
+<p>Version 2 is now the default. In order to discourage usage of the deprecated v1, it&#8217;s documentation has been removed.</p>
 </div>
 <div class="sect2">
 <h3 id="simplified_interface">Simplified Interface</h3>
@@ -3184,7 +3221,7 @@ without needing any option to enable it.</p>
 <p>Great thanks also goes to Boris Schaeling, who despite having boost.process rejected, went on to work on it and maintained it up until this day and participated in the development of the current version.</p>
 </div>
 <div class="paragraph">
-<p>Many Thanks, to [<a href="https://github.com/time-killer-games" class="bare">https://github.com/time-killer-games</a>](Samuel Venable) for contributing the <a href="#v2::ext">[v2::ext]</a> functionality and all the research that went into it.</p>
+<p>Many Thanks, to [<a href="https://github.com/samuelvenable" class="bare">https://github.com/samuelvenable</a>](Samuel Venable) for contributing the <a href="#v2::ext">[v2::ext]</a> functionality and all the research that went into it.</p>
 </div>
 </div>
 </div>
@@ -3192,7 +3229,7 @@ without needing any option to enable it.</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.0<br>
-Last updated 2025-04-03 11:37:22 UTC
+Last updated 2025-08-06 18:48:57 UTC
 </div>
 </div>
 </body>

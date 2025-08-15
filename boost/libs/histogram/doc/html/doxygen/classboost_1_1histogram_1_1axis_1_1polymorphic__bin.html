@@ -36,7 +36,7 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html" title="Class template polymorphic_bin">polymorphic_bin</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#id51-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#id52-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1a3a47cb6f60d2f21302cc80809d705dee"><span class="identifier">polymorphic_bin</span></a><span class="special">(</span><span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">value_type</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1ac7dcf61fec658bad869169d1a486bb6a"><span class="keyword">operator</span> <span class="keyword">const</span> <span class="identifier">value_type</span> <span class="special">&amp;</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="identifier">value_type</span> <a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1af6d601913a69f830ffadd20f9dd2b462"><span class="identifier">lower</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
@@ -48,7 +48,7 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1a1a01debea2fb57af6f16e2d0b6d6e32b"><span class="identifier">is_discrete</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id28527"></a><h2>Description</h2>
+<a name="id29364"></a><h2>Description</h2>
 <p>The interface is a superset of the <a class="link" href="classboost_1_1histogram_1_1axis_1_1interval__view.html" title="Class template interval_view">axis::interval_view</a> class. In addition, the object is implicitly convertible to the value type, returning the equivalent of a call to<a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1af6d601913a69f830ffadd20f9dd2b462">lower()</a>. For discrete axes,<a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1af6d601913a69f830ffadd20f9dd2b462">lower()</a> ==<a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1a450223d1ab3d880bfd8d2e6cae0e8ad0">upper()</a>, and<a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html#doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1a7860999094d3992d284e2b5c13163f31">width()</a> returns zero.</p>
 <p>This is not a view like <a class="link" href="classboost_1_1histogram_1_1axis_1_1interval__view.html" title="Class template interval_view">axis::interval_view</a> for two reasons.</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
@@ -56,8 +56,8 @@
 <li class="listitem"><p><a class="link" href="classboost_1_1histogram_1_1axis_1_1polymorphic__bin.html" title="Class template polymorphic_bin">polymorphic_bin</a> may be created from a temporary instance of<a class="link" href="classboost_1_1histogram_1_1axis_1_1variant.html" title="Class template variant">axis::variant</a>, like in the call histogram::axis(0). Storing a reference to the axis would result in a dangling reference. Rather than specialing the code to handle this, it seems easier to just use a value instead of a view.</p></li>
 </ul></div>
 <div class="refsect2">
-<a name="id28546"></a><h3>
-<a name="id51-bb"></a><code class="computeroutput">polymorphic_bin</code> public member functions</h3>
+<a name="id29383"></a><h3>
+<a name="id52-bb"></a><code class="computeroutput">polymorphic_bin</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1histogram_1_1axis_1_1polymorphic__bin_1a3a47cb6f60d2f21302cc80809d705dee"></a><span class="identifier">polymorphic_bin</span><span class="special">(</span><span class="identifier">value_type</span> lower<span class="special">,</span> <span class="identifier">value_type</span> upper<span class="special">)</span><span class="special">;</span></pre></li>
 <li class="listitem">

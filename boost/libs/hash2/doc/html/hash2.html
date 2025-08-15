@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
-<meta name="author" content="Peter Dimov">
+<meta name="author" content="Peter Dimov, Christian Mazakas">
 <title>Hash2: An Extensible Hashing Framework</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -558,11 +558,18 @@ pre.rouge .gs {
 <h1>Hash2: An Extensible Hashing Framework</h1>
 <div class="details">
 <span id="author" class="author">Peter Dimov</span><br>
+<span id="author2" class="author">Christian Mazakas</span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#overview">Overview</a></li>
+<li><a href="#changes">Revision History</a>
+<ul class="sectlevel2">
+<li><a href="#changes_in_1_89_0">Changes in 1.89.0</a></li>
+<li><a href="#changes_in_1_88_0">Changes in 1.88.0</a></li>
+</ul>
+</li>
 <li><a href="#hashing_bytes">Hashing Byte Sequences</a>
 <ul class="sectlevel2">
 <li><a href="#hashing_bytes_hash_algorithm_requirements">Hash Algorithm Requirements</a>
@@ -587,6 +594,7 @@ pre.rouge .gs {
 <li><a href="#hashing_bytes_sha_1">SHA-1</a></li>
 <li><a href="#hashing_bytes_sha_2">SHA-2</a></li>
 <li><a href="#hashing_bytes_sha_3">SHA-3</a></li>
+<li><a href="#hashing_bytes_blake_2">BLAKE-2</a></li>
 <li><a href="#hashing_bytes_ripemd_160_ripemd_128">RIPEMD-160, RIPEMD-128</a></li>
 <li><a href="#hashing_bytes_hmac">HMAC</a></li>
 </ul>
@@ -638,6 +646,11 @@ pre.rouge .gs {
 <li><a href="#ref_xxhash_xxhash_64">xxhash_64</a></li>
 </ul>
 </li>
+<li><a href="#ref_xxh3">&lt;boost/hash2/xxh3.hpp&gt;</a>
+<ul class="sectlevel4">
+<li><a href="#ref_xxh3_xxh3_128">xxh3_128</a></li>
+</ul>
+</li>
 <li><a href="#ref_siphash">&lt;boost/hash2/siphash.hpp&gt;</a>
 <ul class="sectlevel4">
 <li><a href="#ref_siphash_siphash_32">siphash_32</a></li>
@@ -683,6 +696,12 @@ pre.rouge .gs {
 <ul class="sectlevel4">
 <li><a href="#ref_ripemd_ripemd_160">ripemd_160</a></li>
 <li><a href="#ref_ripemd_ripemd_128">ripemd_128</a></li>
+</ul>
+</li>
+<li><a href="#ref_blake2">&lt;boost/hash2/blake2.hpp&gt;</a>
+<ul class="sectlevel4">
+<li><a href="#ref_blake2_blake2b_512">blake2b_512</a></li>
+<li><a href="#ref_blake2_blake2s_256">blake2s_256</a></li>
 </ul>
 </li>
 </ul>
@@ -809,6 +828,9 @@ that weren&#8217;t yet available at the time the type was defined.</p>
 <p><a href="https://csrc.nist.gov/pubs/fips/202/final">SHA-3</a></p>
 </li>
 <li>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7693">BLAKE2</a></p>
+</li>
+<li>
 <p><a href="https://homes.esat.kuleuven.be/%7Ebosselae/ripemd160.html">RIPEMD-160, RIPEMD-128</a></p>
 </li>
 <li>
@@ -820,6 +842,34 @@ that weren&#8217;t yet available at the time the type was defined.</p>
 <p>but it&#8217;s also possible for users to write their own; as long as the
 hash algorithm conforms to the concept, <code>hash_append</code> will work with it,
 and so will all user-defined types that support <code>hash_append</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="changes"><a class="anchor" href="#changes"></a>Revision History</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="changes_in_1_89_0"><a class="anchor" href="#changes_in_1_89_0"></a>Changes in 1.89.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added Blake2 algorithm (<code>blake2s_256</code>, <code>blake2b_512</code>).</p>
+</li>
+<li>
+<p>Added XXH3 algorithm (<code>xxh3_128</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changes_in_1_88_0"><a class="anchor" href="#changes_in_1_88_0"></a>Changes in 1.88.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Initial release.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1213,6 +1263,20 @@ in Algorithm 8, step 8 of FIPS 202.</p>
 </div>
 <div class="paragraph">
 <p>SHA-3 uses 64 bit operations for all of the algorithms in the family.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="hashing_bytes_blake_2"><a class="anchor" href="#hashing_bytes_blake_2"></a>BLAKE-2</h4>
+<div class="paragraph">
+<p><a href="https://www.blake2.net">BLAKE-2</a> is a cryptographic hash function boasting fast speeds, far exceeding that of other common algorithms such as MD5, SHA-1, SHA-2, and SHA-3.
+BLAKE2b (optimized for 64-bit platforms) and BLAKE2s (optimized for 8- to 32-bit platforms) are implemented. BLAKE2b has a fixed-sized digest of 512 bits and BLAKE2s uses
+a digest of 256 bits.</p>
+</div>
+<div class="paragraph">
+<p>BLAKE2 is also designed explicitly with keyed hashing in mind, making it functionally equivalent to a Message Authentication Code (MAC). The seeded constructors act as the
+keys, BLAKE2b using a maximum of the first 64 bytes of input as the key and BLAKE2s using a maximum of the first 32 bytes. Excess input is handled by passing it to the <code>update()</code> function
+and then <code>result()</code> is called. HMAC typedefs are still provided for convenience and for compatibility with existing protocols such as <a href="https://noiseprotocol.org/noise.html">Noise</a>. BLAKE2
+behaves as all other cryptographic hash functions do when used with <code>hmac&lt;H&gt;</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2360,7 +2424,9 @@ line argument.</p>
 <pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;boost/hash2/md5.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/hash2/sha1.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/hash2/sha2.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;boost/hash2/sha3.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/hash2/ripemd.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;boost/hash2/blake2.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/mp11.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;array&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
@@ -2422,8 +2488,14 @@ line argument.</p>
     <span class="n">sha2_384</span><span class="p">,</span>
     <span class="n">sha2_512_256</span><span class="p">,</span>
     <span class="n">sha2_512_224</span><span class="p">,</span>
+    <span class="n">sha3_256</span><span class="p">,</span>
+    <span class="n">sha3_224</span><span class="p">,</span>
+    <span class="n">sha3_512</span><span class="p">,</span>
+    <span class="n">sha3_384</span><span class="p">,</span>
     <span class="n">ripemd_160</span><span class="p">,</span>
-    <span class="n">ripemd_128</span>
+    <span class="n">ripemd_128</span><span class="p">,</span>
+    <span class="n">blake2b_512</span><span class="p">,</span>
+    <span class="n">blake2s_256</span>
 
 <span class="o">&gt;</span><span class="p">;</span>
 
@@ -2437,9 +2509,14 @@ line argument.</p>
     <span class="s">"sha2_384"</span><span class="p">,</span>
     <span class="s">"sha2_512_256"</span><span class="p">,</span>
     <span class="s">"sha2_512_224"</span><span class="p">,</span>
+    <span class="s">"sha3_256"</span><span class="p">,</span>
+    <span class="s">"sha3_224"</span><span class="p">,</span>
+    <span class="s">"sha3_512"</span><span class="p">,</span>
+    <span class="s">"sha3_384"</span><span class="p">,</span>
     <span class="s">"ripemd_160"</span><span class="p">,</span>
-    <span class="s">"ripemd_128"</span>
-
+    <span class="s">"ripemd_128"</span><span class="p">,</span>
+    <span class="s">"blake2b_512"</span><span class="p">,</span>
+    <span class="s">"blake2s_256"</span>
 <span class="p">};</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">argv</span><span class="p">[]</span> <span class="p">)</span>
@@ -3252,6 +3329,232 @@ the output.</p>
 <dt class="hdlist1">Effects: </dt>
 <dd>
 <p>Obtains a 64 bit hash value from the state as specified by XXH64, then updates the state.</p>
+</dd>
+<dt class="hdlist1">Returns: </dt>
+<dd>
+<p>The obtained hash value.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>The state is updated to allow repeated calls to <code>result()</code> to return a pseudorandom sequence of <code>result_type</code> values, effectively extending the output.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_xxh3"><a class="anchor" href="#ref_xxh3"></a>&lt;boost/hash2/xxh3.hpp&gt;</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;boost/hash2/digest.hpp&gt;</span><span class="cp">
+</span>
+<span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">hash2</span> <span class="p">{</span>
+
+<span class="k">class</span> <span class="nc">xxh3_128</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="c1">// namespace hash2</span>
+<span class="p">}</span> <span class="c1">// namespace boost</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This header implements the <a href="https://xxhash.com/">XXH3-128 algorithm</a>, defined <a href="https://github.com/Cyan4973/xxHash/blob/dev/doc/xxhash_spec.md">here</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="ref_xxh3_xxh3_128"><a class="anchor" href="#ref_xxh3_xxh3_128"></a>xxh3_128</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">class</span> <span class="nc">xxh3_128</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+
+    <span class="k">using</span> <span class="n">result_type</span> <span class="o">=</span> <span class="n">digest</span><span class="o">&lt;</span><span class="mi">16</span><span class="o">&gt;</span><span class="p">;</span>
+
+    <span class="k">constexpr</span> <span class="n">xxh3_128</span><span class="p">();</span>
+    <span class="k">explicit</span> <span class="k">constexpr</span> <span class="n">xxh3_128</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span>
+    <span class="n">xxh3_128</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+    <span class="k">constexpr</span> <span class="n">xxh3_128</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+
+    <span class="c1">// XXH3-specific named constructors, matching the reference implementation</span>
+
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">xxh3_128</span> <span class="n">with_seed</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span>
+
+    <span class="k">static</span> <span class="n">xxh3_128</span> <span class="n">with_secret</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">xxh3_128</span> <span class="n">with_secret</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+
+    <span class="k">static</span> <span class="n">xxh3_128</span> <span class="n">with_secret_and_seed</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">xxh3_128</span> <span class="n">with_secret_and_seed</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span>
+
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+    <span class="k">constexpr</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+
+    <span class="k">constexpr</span> <span class="n">result_type</span> <span class="n">result</span><span class="p">();</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_xxh3_constructors"><a class="anchor" href="#ref_xxh3_constructors"></a>Constructors</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="nf">xxh3_128</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Default constructor.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the internal state of the XXH3-128 algorithm to its initial values.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">explicit</span> <span class="k">constexpr</span> <span class="nf">xxh3_128</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constructor taking an integer seed value.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the internal state of the XXH3 algorithm using the given <code>seed</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>By convention, if <code>seed</code> is zero, the effect of this constructor is the same as default construction.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">xxh3_128</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+<span class="k">constexpr</span> <span class="nf">xxh3_128</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constructor taking a byte sequence seed.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the state as if by default construction, then if <code>n</code> is not zero, a secret and seed are both derived from the input and are used internally by the algorithm.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>By convention, if <code>n</code> is zero, the effect of this constructor is the same as default construction.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_xxh3_named_constructors"><a class="anchor" href="#ref_xxh3_named_constructors"></a>Named Constructors</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">static</span> <span class="k">constexpr</span> <span class="n">xxh3_128</span> <span class="nf">with_seed</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An alias for the seed constructor, provided for compatibility with the specification.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the internal state of the XXH3 algorithm using the given <code>seed</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>By convention, if <code>seed</code> is zero, the effect of this constructor is the same as default construction.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">static</span> <span class="n">xxh3_128</span> <span class="nf">with_secret</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+<span class="k">static</span> <span class="k">constexpr</span> <span class="n">xxh3_128</span> <span class="nf">with_secret</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Initializes the state of the algorithm using the provided key in a way that maximizes adherence to the XXH3 spec.</p>
+</div>
+<div class="paragraph">
+<p>If <code>n</code> is less than the minimum default secret length of 136 bytes, the default secret is used. If <code>n</code> is larger than the size of the default key (192 bytes) then a secret is synthesized by accumulating the supplied byte sequence into a 192 byte block. Otherwise, the provided secret is used as is specified in the <a href="https://github.com/Cyan4973/xxHash/blob/dev/doc/xxhash_spec.md">XXH3 spec</a>.</p>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">static</span> <span class="n">xxh3_128</span> <span class="nf">with_secret_and_seed</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span>
+<span class="k">static</span> <span class="k">constexpr</span> <span class="n">xxh3_128</span> <span class="nf">with_secret_and_seed</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Initializes the algorithm using both the provided seed and secret.</p>
+</div>
+<div class="paragraph">
+<p>Because of how the algorithm is defined, this is equivalent to using <code>with_seed</code> for all inputs &le; 240 bytes and <code>with_secret</code> for all inputs larger than 240 bytes.</p>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_xxh3_update"><a class="anchor" href="#ref_xxh3_update"></a>update</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="nf">update</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+<span class="k">constexpr</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Updates the internal state of the XXH3-128 algorithm from the byte sequence <code>[p, p+n)</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Consecutive calls to <code>update</code> are equivalent to a single call with the concatenated byte sequences of the individual calls.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_xxh3_result"><a class="anchor" href="#ref_xxh3_result"></a>result</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="n">result_type</span> <span class="nf">result</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Obtains a 128 bit hash value from the state as specified by XXH3-128, then updates the state.</p>
 </dd>
 <dt class="hdlist1">Returns: </dt>
 <dd>
@@ -4403,7 +4706,7 @@ which is by truncating the bottom portion of the 1600-bit state.</p>
 </div>
 <div class="paragraph">
 <p>The <code>shake_128</code> and <code>shake_256</code> functions are similar to the fixed-digest functions except they use a different delimiter to denote finalization of the
-digest and extending the output has defined behavior, unlike the default pseudorandom behavior used elsewhere in the library. But they work similary
+digest and extending the output has defined behavior, unlike the default pseudorandom behavior used elsewhere in the library. But they work similarly
 in that truncations of the 1600-bit state are returned as the digest.</p>
 </div>
 <div class="sect4">
@@ -4913,6 +5216,300 @@ in that truncations of the 1600-bit state are returned as the digest.</p>
 </div>
 <div class="paragraph">
 <p>Otherwise, all other operations and constants are identical.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_blake2"><a class="anchor" href="#ref_blake2"></a>&lt;boost/hash2/blake2.hpp&gt;</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;boost/hash2/digest.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;boost/hash2/hmac.hpp&gt;</span><span class="cp">
+</span>
+<span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">hash2</span> <span class="p">{</span>
+
+<span class="k">class</span> <span class="nc">blake2b_512</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">blake2s_256</span><span class="p">;</span>
+
+<span class="k">using</span> <span class="n">hmac_blake2b_512</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">&lt;</span><span class="n">blake2b_512</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">hmac_blake2s_256</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">&lt;</span><span class="n">blake2s_256</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="c1">// namespace hash2</span>
+<span class="p">}</span> <span class="c1">// namespace boost</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This header implements the <a href="https://www.blake2.net/">BLAKE2</a> family of functions.</p>
+</div>
+<div class="paragraph">
+<p><code>blake2b_512</code> is a 512-bit digest function that is optimized for 64-bit platforms while
+<code>blake2s_256</code> is a 256-bit digest function optimized for 8- to 32-bit platforms.</p>
+</div>
+<div class="paragraph">
+<p>BLAKE2 directly supports keyed-hashing so there is no need to use the <a href="#ref_hmac">hmac</a> class template
+for MAC purposes (though typedefs are still provided for convenience). Like the <code>hmac&lt;H&gt;</code> template, the
+seed and byte sequence constructors use their input as the secret key. See the documentation of those
+constructors for more information on how key sizes are handled.</p>
+</div>
+<div class="sect4">
+<h5 id="ref_blake2_blake2b_512"><a class="anchor" href="#ref_blake2_blake2b_512"></a>blake2b_512</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">class</span> <span class="nc">blake2b_512</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">result_type</span> <span class="o">=</span> <span class="n">digest</span><span class="o">&lt;</span><span class="mi">64</span><span class="o">&gt;</span><span class="p">;</span>
+
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">128</span><span class="p">;</span>
+
+    <span class="k">constexpr</span> <span class="n">blake2b_512</span><span class="p">();</span>
+    <span class="k">constexpr</span> <span class="k">explicit</span> <span class="n">blake2b_512</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span>
+    <span class="n">blake2b_512</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+    <span class="k">constexpr</span> <span class="n">blake2b_512</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+    <span class="k">constexpr</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+
+    <span class="k">constexpr</span> <span class="n">result_type</span> <span class="n">result</span><span class="p">();</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_blake2_constructors"><a class="anchor" href="#ref_blake2_constructors"></a>Constructors</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="nf">blake2b_512</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Default constructor.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the internal state of the BLAKE2b algorithm to its initial values.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="k">explicit</span> <span class="nf">blake2b_512</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constructor taking an integer seed value.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the state using the little-endian representation of the <code>seed</code> as an 8-byte secret key.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>By convention, if <code>seed</code> is zero, the effect of this constructor is the same as default construction.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">blake2b_512</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+<span class="k">constexpr</span> <span class="nf">blake2b_512</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constructor taking a byte sequence seed.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the state using a maximum of the first 64 bytes (<code>k</code>) of input as the secret key. The rest of the
+input is processed by a call to <code>update( p + k, n - k ); result();</code>, if any input remains.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>By convention, if <code>n</code> is zero, the effect of this constructor is the same as default construction.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_blake2_update"><a class="anchor" href="#ref_blake2_update"></a>update</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="nf">update</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+<span class="k">constexpr</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Updates the internal state of the BLAKE2b algorithm from the byte sequence <code>[p, p+n)</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Consecutive calls to <code>update</code> are equivalent to a single call with the concatenated byte sequences of the individual calls.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_blake2_result"><a class="anchor" href="#ref_blake2_result"></a>result</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="n">result_type</span> <span class="nf">result</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Pads the accumulated message and finalizes the digest.</p>
+</dd>
+<dt class="hdlist1">Returns: </dt>
+<dd>
+<p>The BLAKE2b digest of the message formed from the byte sequences of the preceding calls to <code>update</code> and
+the secret key, if it was assigned during construction.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Repeated calls to <code>result()</code> return a pseudorandom sequence of <code>result_type</code> values, effectively extending the output.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="ref_blake2_blake2s_256"><a class="anchor" href="#ref_blake2_blake2s_256"></a>blake2s_256</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">class</span> <span class="nc">blake2s_256</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">result_type</span> <span class="o">=</span> <span class="n">digest</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span><span class="p">;</span>
+
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
+
+    <span class="k">constexpr</span> <span class="n">blake2s_256</span><span class="p">();</span>
+    <span class="k">constexpr</span> <span class="k">explicit</span> <span class="n">blake2s_256</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span>
+    <span class="n">blake2s_256</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+    <span class="k">constexpr</span> <span class="n">blake2s_256</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+
+    <span class="kt">void</span> <span class="n">update</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+    <span class="k">constexpr</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+
+    <span class="k">constexpr</span> <span class="n">result_type</span> <span class="n">result</span><span class="p">();</span>
+<span class="p">};</span></code></pre>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_blake2_constructors_2"><a class="anchor" href="#ref_blake2_constructors_2"></a>Constructors</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="nf">blake2s_256</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Default constructor.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the internal state of the BLAKE2s algorithm to its initial values.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="k">explicit</span> <span class="nf">blake2s_256</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint64_t</span> <span class="n">seed</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constructor taking an integer seed value.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the state using the little-endian representation of the <code>seed</code> as an 8-byte secret key.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>By convention, if <code>seed</code> is zero, the effect of this constructor is the same as default construction.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">blake2s_256</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+<span class="k">constexpr</span> <span class="nf">blake2s_256</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Constructor taking a byte sequence seed.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Initializes the state using a maximum of the first 32 bytes (<code>k</code>) of input as the secret key. The rest of the
+input is processed by a call to <code>update( p + k, n - k ); result();</code>, if any input remains.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>By convention, if <code>n</code> is zero, the effect of this constructor is the same as default construction.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_blake2_update_2"><a class="anchor" href="#ref_blake2_update_2"></a>update</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="kt">void</span> <span class="nf">update</span><span class="p">(</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span>
+<span class="k">constexpr</span> <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Updates the internal state of the BLAKE2s algorithm from the byte sequence <code>[p, p+n)</code>.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Consecutive calls to <code>update</code> are equivalent to a single call with the concatenated byte sequences of the individual calls.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect5">
+<h6 id="ref_blake2_result_2"><a class="anchor" href="#ref_blake2_result_2"></a>result</h6>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">constexpr</span> <span class="n">result_type</span> <span class="nf">result</span><span class="p">();</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Effects: </dt>
+<dd>
+<p>Pads the accumulated message and finalizes the digest.</p>
+</dd>
+<dt class="hdlist1">Returns: </dt>
+<dd>
+<p>The BLAKE2s digest of the message formed from the byte sequences of the preceding calls to <code>update</code> and
+the secret key, if it was assigned during construction.</p>
+</dd>
+<dt class="hdlist1">Remarks: </dt>
+<dd>
+<p>Repeated calls to <code>result()</code> return a pseudorandom sequence of <code>result_type</code> values, effectively extending the output.</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
@@ -6134,7 +6731,7 @@ and is distributed under the <a href="http://www.boost.org/LICENSE_1_0.txt">Boos
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-03 11:37:18 UTC
+Last updated 2025-08-06 18:48:54 UTC
 </div>
 </div>
 <style>

@@ -235,6 +235,83 @@
 <listitem><para><ulink url="histogram/reference.html#header.boost.histogram.accumulators.ostream_hpp">boost/histogram/accumulators/ostream.hpp</ulink> </para>
 </listitem></itemizedlist>
 </para></header>
+<header id="doxygen.collector_8hpp" name="boost/histogram/accumulators/collector.hpp">
+<namespace name="boost">
+<namespace name="histogram">
+<namespace name="accumulators">
+<class id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector" name="collector"><template>
+      <template-type-parameter name="ContainerType"/>
+    </template><purpose>Collects samples. </purpose><description><para>Input samples are stored in an internal container for later retrival, which stores the values consecutively in memory. The interface is designed to work with std::vector and other containers which implement the same API.</para><para>Warning: The memory of the accumulator is unbounded. </para></description><typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1aaf57aa3ae2046c12d347d0491e660b7c" name="container_type"><type>ContainerType</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a5070e0f83791bbc54696cd8d33f23105" name="value_type"><type>typename container_type::value_type</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1af5278b74fe8231c9d345f1460e41c169" name="allocator_type"><type>typename container_type::allocator_type</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1abd2275c450663a85ff8b58b64bf72ecb" name="const_reference"><type>typename container_type::const_reference</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a43ae799be90f789b0f2b2e6d3d4c5eaa" name="iterator"><type>typename container_type::iterator</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a924c9735f7c68617d5647cafa4499dca" name="const_iterator"><type>typename container_type::const_iterator</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a11a6109779d1c1a32da6e092a7e59576" name="size_type"><type>typename container_type::size_type</type></typedef>
+<typedef id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a82af871d9aefbb59861f6f246cd91849" name="const_pointer"><type>typename container_type::const_pointer</type></typedef>
+<method-group name="public member functions">
+<constructor id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a99c8de4b3953ddffe7d131a9d8207986" specifiers="explicit"><template>
+          <template-nontype-parameter name="Args"><type>typename...</type></template-nontype-parameter>
+          <template-type-parameter name=""><default>decltype(container_type(std::declval&lt;Args&gt;()...))</default></template-type-parameter>
+        </template><parameter name="args"><paramtype>Args &amp;&amp;...</paramtype></parameter></constructor>
+<constructor id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1ace725fb713d43552ba2d841d70bbed27" specifiers="explicit"><template>
+          <template-type-parameter name="T"/>
+          <template-nontype-parameter name="Args"><type>typename...</type></template-nontype-parameter>
+          <template-type-parameter name=""><default>decltype(container_type(std::initializer_list&lt;T&gt;(),std::declval&lt;Args&gt;()...))</default></template-type-parameter>
+        </template><parameter name="list"><paramtype>std::initializer_list&lt; T &gt;</paramtype></parameter><parameter name="args"><paramtype>Args &amp;&amp;...</paramtype></parameter></constructor>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1adb31d21c48074222c32e806b104a2c03" name="operator()"><type>void</type><parameter name="x"><paramtype>const_reference</paramtype></parameter><purpose>Append sample x. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1abc867e6560be4c2ec0105f4bd183764e" name="operator+="><type><classname>collector</classname> &amp;</type><template>
+          <template-type-parameter name="C"/>
+        </template><parameter name="rhs"><paramtype>const <classname>collector</classname>&lt; C &gt; &amp;</paramtype></parameter><purpose>Append samples from another collector. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a16b8d69e608e96822851bd590d8a6e48" name="operator==" cv="const noexcept"><type>bool</type><template>
+          <template-type-parameter name="Iterable"/>
+          <template-type-parameter name=""><default><emphasis>unspecified</emphasis></default></template-type-parameter>
+        </template><parameter name="rhs"><paramtype>const Iterable &amp;</paramtype></parameter><purpose>Return true if collections are equal. </purpose><description><para>Two collections are equal if they have the same number of elements which all compare equal. </para></description></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a77ccf102dc88d02b356877a6f279cdbe" name="operator!=" cv="const noexcept"><type>bool</type><template>
+          <template-type-parameter name="Iterable"/>
+          <template-type-parameter name=""><default><emphasis>unspecified</emphasis></default></template-type-parameter>
+        </template><parameter name="rhs"><paramtype>const Iterable &amp;</paramtype></parameter><purpose>Return true if collections are not equal. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a421e37e10f81a31f979b9c9009dd537d" name="size" cv="const noexcept"><type>size_type</type><purpose>Return number of samples. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1acdda076c550f2813fd12152d254af8e6" name="count" cv="const noexcept"><type>size_type</type><purpose>Return number of samples (alias for <link linkend="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a421e37e10f81a31f979b9c9009dd537d">size()</link>). </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a0181b7304542cf380e1d5ae77b5d619c" name="begin" cv="const noexcept"><type>const const_iterator</type><purpose>Return readonly iterator to start of collection. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1abf1d19227da5de8584bd216a01bc37e7" name="end" cv="const noexcept"><type>const const_iterator</type><purpose>Return readonly iterator to end of collection. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a28c3039ed8cad2e672e7666652e6d738" name="operator[]" cv="const noexcept"><type>const_reference</type><parameter name="idx"><paramtype>size_type</paramtype></parameter><purpose>Return const reference to value at index. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a84af9e2c76d858a43d7222c308dbc11f" name="data" cv="const noexcept"><type>const_pointer</type><purpose>Return pointer to internal memory. </purpose></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a0574876a532d350c10f91094441eff71" name="get_allocator" cv="const"><type>allocator_type</type></method>
+<method id="doxygen.classboost_1_1histogram_1_1accumulators_1_1collector_1a6c15c9bb5e1eb224eb74e06bbe818b9f" name="serialize"><type>void</type><template>
+          <template-type-parameter name="Archive"/>
+        </template><parameter name="ar"><paramtype>Archive &amp;</paramtype></parameter><parameter name="version"><paramtype>unsigned</paramtype></parameter></method>
+</method-group>
+</class></namespace>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</namespace>
+</namespace>
+</header>
 <header id="doxygen.count_8hpp" name="boost/histogram/accumulators/count.hpp">
 <namespace name="boost">
 <namespace name="histogram">
@@ -2206,7 +2283,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
     </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Clopper-Pearson interval. </purpose><description><para>This is the classic frequentist interval obtained with the Neyman construction. It is therefore often called the 'exact' interval. It is guaranteed to have at least the requested confidence level for all values of the fraction.</para><para>The interval is wider than others that produce coverage closer to the expected confidence level over a random ensemble of factions. The Clopper-Pearson interval essentially always overcovers for such a random ensemble, which is undesirable in practice. The Clopper-Pearson interval is recommended when it is important to be conservative, but the Wilson interval should be preferred in most applications.</para><para>C. Clopper, E.S. Pearson (1934), Biometrika 26 (4): 404-413. doi:10.1093/biomet/26.4.404. </para></description><method-group name="public member functions">
 <constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a075dc68f01c2ecb48e7d56610111e67b" specifiers="explicit" cv="noexcept"><parameter name="cl"><paramtype><classname>confidence_level</classname></paramtype><default>deviation{1}</default><description><para>Confidence level for the interval. The default value produces a confidence level of 68 % equivalent to one standard deviation. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Clopper-Pearson interval computer. </purpose><description><para>
 </para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1abb03b5b488b993ea5841354088c9f91d" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval_1a6c20240fe05ca48db6ce848f8b7edcbc" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
 </para></description></method>
 </method-group>
 </class><class id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval" name="jeffreys_interval"><template>
@@ -2214,7 +2291,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
     </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Jeffreys interval. </purpose><description><para>This is the Bayesian credible interval with a Jeffreys prior. Although it has a Bayesian derivation, it has good coverage. The interval boundaries are close to the Wilson interval. A special property of this interval is that it is equal-tailed; the probability of the true value to be above or below the interval is approximately equal.</para><para>To avoid coverage probability tending to zero when the fraction approaches 0 or 1, this implementation uses a modification described in section 4.1.2 of the paper by L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133, doi:10.1214/ss/1009213286. </para></description><method-group name="public member functions">
 <constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1ab797348bd255fcd856b2fc570c91f91d" specifiers="explicit" cv="noexcept"><parameter name="cl"><paramtype><classname>confidence_level</classname></paramtype><default>deviation{1}</default><description><para>Confidence level for the interval. The default value produces a confidence level of 68 % equivalent to one standard deviation. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Jeffreys interval computer. </purpose><description><para>
 </para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a2d0fddacf2580f4b7499b44912ddd98a" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1jeffreys__interval_1a451cbd787f11b55f0c221607147aa8c8" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
 </para></description></method>
 </method-group>
 </class><class id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval" name="wald_interval"><template>
@@ -2222,7 +2299,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
     </template><inherit access="public">boost::histogram::utility::binomial_proportion_interval&lt; ValueType &gt;</inherit><purpose>Wald interval or normal approximation interval. </purpose><description><para>The Wald interval is a symmetric interval. It is simple to compute, but has poor statistical properties and is universally rejected by statisticians. It should always be replaced by another iternal, for example, the Wilson interval.</para><para>The Wald interval can be derived easily using the plug-in estimate of the variance for the binomial distribution, which is likely a reason for its omnipresence. Without further insight into statistical theory, it is not obvious that this derivation is flawed and that better alternatives exist.</para><para>The Wald interval undercovers on average. It is unsuitable when the sample size is small or when the fraction is close to 0 or 1. e. Its limits are not naturally bounded by 0 or 1. It produces empty intervals if the number of successes or failures is zero.</para><para>For a critique of the Wald interval, see (a selection):</para><para>L.D. Brown, T.T. Cai, A. DasGupta, Statistical Science 16 (2001) 101-133. R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </para></description><method-group name="public member functions">
 <constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ac9f3062738f5850e8799dfd9297159e5" specifiers="explicit" cv="noexcept"><parameter name="d"><paramtype><classname>deviation</classname></paramtype><default>deviation{1.0}</default><description><para>Number of standard deviations for the interval. The default value 1 corresponds to a confidence level of 68 %. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Wald interval computer. </purpose><description><para>
 </para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1ad359db775c6b01d9bb60d346ccd58bec" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wald__interval_1a7c26e3808ce798445fe34d4da31860d7" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
 </para></description></method>
 </method-group>
 </class><class id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval" name="wilson_interval"><template>
@@ -2231,7 +2308,7 @@ The constructor throws <computeroutput>std::invalid_argument</computeroutput> if
 inference". Journal of the American Statistical Association. 22 (158): 209-212. doi:10.1080/01621459.1927.10502953. JSTOR 2276774.</para><para>The coverage probability for a random ensemble of fractions is close to the nominal value. Unlike the Clopper-Pearson interval, the Wilson score interval is not conservative. For some values of the fractions, the interval undercovers and overcovers for neighboring values. This is a shared property of all alternatives to the Clopper-Pearson interval.</para><para>The Wilson score intervals is widely recommended for general use in the literature. For a review of the literature, see R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </para></description><method-group name="public member functions">
 <constructor id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a289f8f69018e6613c95ff87864c11ff3" specifiers="explicit" cv="noexcept"><parameter name="d"><paramtype><classname>deviation</classname></paramtype><default>deviation{1.0}</default><description><para>Number of standard deviations for the interval. The default value 1 corresponds to a confidence level of 68 %. Both <computeroutput>deviation</computeroutput> and <computeroutput><link linkend="doxygen.classboost_1_1histogram_1_1utility_1_1confidence__level">confidence_level</link></computeroutput> objects can be used to initialize the interval. </para></description></parameter><purpose>Construct Wilson interval computer. </purpose><description><para>
 </para></description></constructor>
-<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1ac26663768de3b3914b0095ae673a9b38" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
+<method id="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a72a01bda279c1d072cf87b53932646d0" name="operator()" cv="const noexcept"><type>interval_type</type><parameter name="successes"><paramtype>value_type</paramtype><description><para>Number of successful trials. </para></description></parameter><parameter name="failures"><paramtype>value_type</paramtype><description><para>Number of failed trials. </para></description></parameter><purpose>Compute interval for given number of successes and failures. </purpose><description><para>
 </para></description></method>
 </method-group>
 </class></namespace>

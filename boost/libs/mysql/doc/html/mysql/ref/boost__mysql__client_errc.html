@@ -28,7 +28,7 @@
 <a name="mysql.ref.boost__mysql__client_errc"></a><a class="link" href="boost__mysql__client_errc.html" title="client_errc">client_errc</a>
 </h4></div></div></div>
 <p>
-        <a class="indexterm" name="id55220"></a>
+        <a class="indexterm" name="id55303"></a>
 MySQL client-defined error codes.
       </p>
 <h5>
@@ -147,7 +147,9 @@ MySQL client-defined error codes.
               </td>
 <td>
                 <p>
-                  The authentication plugin requires the connection to use SSL.
+                  (Legacy) The authentication plugin requires the connection to use
+                  SSL. This code is no longer used, since all supported plugins support
+                  plaintext connections.
                 </p>
               </td>
 </tr>
@@ -441,6 +443,31 @@ MySQL client-defined error codes.
                   The operation requires the connection to be engaged in a multi-function
                   operation. Use <code class="computeroutput"><span class="identifier">async_start_execution</span></code>
                   to start one.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="literal">bad_handshake_packet_type</code>
+                </p>
+              </td>
+<td>
+                <p>
+                  During handshake, the server sent a packet type that is not allowed
+                  in the current state (protocol violation).
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <code class="literal">unknown_openssl_error</code>
+                </p>
+              </td>
+<td>
+                <p>
+                  An OpenSSL function failed and did not provide any extra diagnostics.
                 </p>
               </td>
 </tr>

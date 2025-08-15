@@ -155,10 +155,10 @@
 
 <span class="identifier">thread1</span><span class="special">:</span>
   <span class="special">...</span> <span class="comment">/* A */</span>
-  <span class="identifier">a</span><span class="special">.</span><span class="identifier">fetch_add</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order_release</span><span class="special">);</span>
+  <span class="identifier">a</span><span class="special">.</span><span class="identifier">fetch_add</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
 
 <span class="identifier">thread2</span><span class="special">:</span>
-  <span class="keyword">int</span> <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order_acquire</span><span class="special">);</span>
+  <span class="keyword">int</span> <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span><span class="special">);</span>
   <span class="keyword">if</span> <span class="special">(</span><span class="identifier">tmp</span> <span class="special">==</span> <span class="number">1</span><span class="special">)</span> <span class="special">{</span>
     <span class="special">...</span> <span class="comment">/* B */</span>
   <span class="special">}</span> <span class="keyword">else</span> <span class="special">{</span>
@@ -206,13 +206,13 @@
 
 <span class="identifier">thread1</span><span class="special">:</span>
   <span class="special">...</span> <span class="comment">/* A */</span>
-  <span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">memory_order_release</span><span class="special">);</span>
-  <span class="identifier">a</span><span class="special">.</span><span class="identifier">fetch_add</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order_relaxed</span><span class="special">);</span>
+  <span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
+  <span class="identifier">a</span><span class="special">.</span><span class="identifier">fetch_add</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span><span class="special">);</span>
 
 <span class="identifier">thread2</span><span class="special">:</span>
-  <span class="keyword">int</span> <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order_relaxed</span><span class="special">);</span>
+  <span class="keyword">int</span> <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">relaxed</span><span class="special">);</span>
   <span class="keyword">if</span> <span class="special">(</span><span class="identifier">tmp</span> <span class="special">==</span> <span class="number">1</span><span class="special">)</span> <span class="special">{</span>
-    <span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">memory_order_acquire</span><span class="special">);</span>
+    <span class="identifier">atomic_thread_fence</span><span class="special">(</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">acquire</span><span class="special">);</span>
     <span class="special">...</span> <span class="comment">/* B */</span>
   <span class="special">}</span> <span class="keyword">else</span> <span class="special">{</span>
     <span class="special">...</span> <span class="comment">/* C */</span>
@@ -275,10 +275,10 @@
 
 <span class="identifier">thread1</span><span class="special">:</span>
   <span class="identifier">data</span><span class="special">[</span><span class="number">1</span><span class="special">]</span> <span class="special">=</span> <span class="special">...;</span> <span class="comment">/* A */</span>
-  <span class="identifier">a</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order_release</span><span class="special">);</span>
+  <span class="identifier">a</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
 
 <span class="identifier">thread2</span><span class="special">:</span>
-  <span class="keyword">int</span> <span class="identifier">index</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order_consume</span><span class="special">);</span>
+  <span class="keyword">int</span> <span class="identifier">index</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span><span class="special">);</span>
   <span class="identifier">complex_data_structure</span> <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">data</span><span class="special">[</span><span class="identifier">index</span><span class="special">];</span> <span class="comment">/* B */</span>
 </pre>
 <p>
@@ -314,10 +314,10 @@
 
 <span class="identifier">thread1</span><span class="special">:</span>
   <span class="identifier">data</span><span class="special">[</span><span class="number">1</span><span class="special">]</span> <span class="special">=</span> <span class="special">...;</span> <span class="comment">/* A */</span>
-  <span class="identifier">a</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order_release</span><span class="special">);</span>
+  <span class="identifier">a</span><span class="special">.</span><span class="identifier">store</span><span class="special">(</span><span class="number">1</span><span class="special">,</span> <span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">release</span><span class="special">);</span>
 
 <span class="identifier">thread2</span><span class="special">:</span>
-  <span class="keyword">int</span> <span class="identifier">index</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order_consume</span><span class="special">);</span>
+  <span class="keyword">int</span> <span class="identifier">index</span> <span class="special">=</span> <span class="identifier">a</span><span class="special">.</span><span class="identifier">load</span><span class="special">(</span><span class="identifier">memory_order</span><span class="special">::</span><span class="identifier">consume</span><span class="special">);</span>
   <span class="identifier">complex_data_structure</span> <span class="identifier">tmp</span><span class="special">;</span>
   <span class="keyword">if</span> <span class="special">(</span><span class="identifier">index</span> <span class="special">==</span> <span class="number">0</span><span class="special">)</span>
     <span class="identifier">tmp</span> <span class="special">=</span> <span class="identifier">data</span><span class="special">[</span><span class="number">0</span><span class="special">];</span>
@@ -369,7 +369,7 @@
       </p>
 </div>
 </div>
-<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013, 2017, 2018, 2020-2022 Andrey Semashev<p>
+<div class="copyright-footer">Copyright © 2011 Helge Bahmann<br>Copyright © 2012 Tim Blechmann<br>Copyright © 2013-2025 Andrey Semashev<p>
         Distributed under the Boost Software License, Version 1.0. (See accompanying
         file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)
       </p>
