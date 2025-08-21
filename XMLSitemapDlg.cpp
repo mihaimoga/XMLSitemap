@@ -376,7 +376,7 @@ BOOL WaitWithMessageLoop(HANDLE hEvent, DWORD dwTimeout)
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-			if (WaitForSingleObject(hEvent, 0) == WAIT_OBJECT_0)
+			if (hEvent && (WaitForSingleObject(hEvent, 0) == WAIT_OBJECT_0))
 				return TRUE;
 		}
 	}
@@ -453,7 +453,7 @@ void CXMLSitemapDlg::OnBnClickedGenerate()
 	if (nLength > 0)
 	{
 		TCHAR lpszFilePath[_MAX_PATH] = { 0 };
-		nLength = GetTempFileName(lpszTempPath, NULL, 0, lpszFilePath);
+		nLength = GetTempFileName(lpszTempPath, L"TMP", 0, lpszFilePath);
 		if (nLength > 0)
 		{
 			CString strFileName = lpszFilePath;
