@@ -24,6 +24,7 @@ XML Sitemap. If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
 #include <Urlmon.h>
 #pragma comment(lib, "Urlmon")
 
+// Global arrays to store URLs, broken links, and the pages where broken links were found.
 CStringArray g_arrURL;
 CStringArray g_arrBrokenLink;
 CStringArray g_arrBrokenPage;
@@ -32,20 +33,30 @@ CStringArray g_arrBrokenPage;
 #define new DEBUG_NEW
 #endif
 
+/**
+ * @brief Pumps the Windows message queue, processing all pending messages.
+ *        This function is typically used in long-running operations to keep the UI responsive.
+ */
 void PUMP_MESSAGES()
 {
 	MSG msg;
-	while(GetMessage(&msg, NULL, 0, 0))
+	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
 }
 
+/**
+ * @brief Determines if a given URL points to an HTML page.
+ * @param lpszURL The URL to check.
+ * @return TRUE if the URL is likely an HTML page, FALSE otherwise.
+ */
 BOOL IsHtmlPage(LPCTSTR lpszURL)
 {
 	if ((lpszURL != NULL) && (_tcslen(lpszURL) > 0))
 	{
+		// Check for common HTML extensions
 		if ((_tcsstr(lpszURL, _T(".htm")) != NULL) || // also .html
 			(_tcsstr(lpszURL, _T(".php")) != NULL) ||
 			(_tcsstr(lpszURL, _T(".asp")) != NULL)) // also .aspx
@@ -53,6 +64,7 @@ BOOL IsHtmlPage(LPCTSTR lpszURL)
 			return TRUE;
 		}
 
+		// Exclude common non-HTML file extensions
 		if ((_tcsstr(lpszURL, _T(".7z")) != NULL) ||
 			(_tcsstr(lpszURL, _T(".ace")) != NULL) ||
 			(_tcsstr(lpszURL, _T(".ai")) != NULL) ||
@@ -125,6 +137,12 @@ BOOL IsHtmlPage(LPCTSTR lpszURL)
 	return FALSE;
 }
 
+/**
+ * @brief Validates if a string is a well-formed URL.
+ * @param lpszURL The URL string to validate.
+ * @param bMatchPartialURL If TRUE, allows relative URLs; otherwise, only absolute URLs are valid.
+ * @return TRUE if the URL is valid, FALSE otherwise.
+ */
 BOOL IsValidURL(LPCTSTR lpszURL, BOOL bMatchPartialURL)
 {
 	// Check to see if <lpszURL> is a valid URL identifier
@@ -133,14 +151,14 @@ BOOL IsValidURL(LPCTSTR lpszURL, BOOL bMatchPartialURL)
 		if (lpszURL[0] == _T('#')) return FALSE;
 
 		CRegEx pRegEx;
-		boost::match_results<const TCHAR *> lpszWhat;
+		boost::match_results<const TCHAR*> lpszWhat;
 		try
 		{
 			pRegEx.assign(bMatchPartialURL ? RELATIVE_URL_REGEX : ABSOLUTE_URL_REGEX);
-			if (boost::regex_match(static_cast<const TCHAR *>(lpszURL), lpszWhat, pRegEx, boost::match_default))
+			if (boost::regex_match(static_cast<const TCHAR*>(lpszURL), lpszWhat, pRegEx, boost::match_default))
 				return TRUE;
 		}
-		catch (const std::exception &regexException)
+		catch (const std::exception& regexException)
 		{
 			CString strError(regexException.what());
 
@@ -152,6 +170,12 @@ BOOL IsValidURL(LPCTSTR lpszURL, BOOL bMatchPartialURL)
 	return FALSE;
 }
 
+/**
+ * @brief Checks if two URLs belong to the same domain.
+ * @param lpszAbsoluteURL The absolute URL to check.
+ * @param lpszBaseURL The base URL to compare against.
+ * @return TRUE if both URLs share the same domain, FALSE otherwise.
+ */
 BOOL IsLocalURL(LPCTSTR lpszAbsoluteURL, LPCTSTR lpszBaseURL)
 {
 	// Check to see if <lpszAbsoluteURL> has the same domain as <lpszBaseURL>
@@ -170,7 +194,7 @@ BOOL IsLocalURL(LPCTSTR lpszAbsoluteURL, LPCTSTR lpszBaseURL)
 				lpszStart++;
 				lpszStart++;
 				ASSERT(lpszStart != NULL);
-				LPTSTR lpszEnd = (LPTSTR) _tcschr(lpszStart, _T('/'));
+				LPTSTR lpszEnd = (LPTSTR)_tcschr(lpszStart, _T('/'));
 				if (lpszEnd != NULL)
 					lpszEnd[0] = _T('\0'); // modify lpszDomainURL
 
@@ -181,7 +205,7 @@ BOOL IsLocalURL(LPCTSTR lpszAbsoluteURL, LPCTSTR lpszBaseURL)
 					lpszBegin++;
 					lpszBegin++;
 					ASSERT(lpszBegin != NULL);
-					lpszEnd = (LPTSTR) _tcschr(lpszBegin, _T('/'));
+					lpszEnd = (LPTSTR)_tcschr(lpszBegin, _T('/'));
 					if (lpszEnd != NULL)
 						lpszEnd[0] = _T('\0'); // modify lpszFooBarURL
 
@@ -194,6 +218,12 @@ BOOL IsLocalURL(LPCTSTR lpszAbsoluteURL, LPCTSTR lpszBaseURL)
 	return FALSE;
 }
 
+/**
+ * @brief Converts a relative URL to an absolute URL using a base URL.
+ * @param lpszRelativeURL The relative URL.
+ * @param lpszBaseURL The base URL.
+ * @return The absolute URL as a CString, or NULL if conversion fails.
+ */
 CString ConvertURL(LPCTSTR lpszRelativeURL, LPCTSTR lpszBaseURL)
 {
 	// Convert relative URL (e.g. "../../somedir") to absolute URL
@@ -210,7 +240,7 @@ CString ConvertURL(LPCTSTR lpszRelativeURL, LPCTSTR lpszBaseURL)
 			lpszStart++;
 			lpszStart++;
 			ASSERT(lpszStart != NULL);
-			LPTSTR lpszEnd = (LPTSTR) _tcschr(lpszStart, _T('/'));
+			LPTSTR lpszEnd = (LPTSTR)_tcschr(lpszStart, _T('/'));
 			if (lpszEnd != NULL)
 				lpszEnd[0] = _T('\0'); // modify lpszDomainURL
 		}
@@ -233,6 +263,15 @@ CString ConvertURL(LPCTSTR lpszRelativeURL, LPCTSTR lpszBaseURL)
 	return NULL;
 }
 
+/**
+ * @brief Exports the collected URLs as an XML sitemap file and opens it.
+ * @param hWnd Handle to the parent window.
+ * @param strFileName Output file name.
+ * @param strFrequency Change frequency value for sitemap.
+ * @param strPriority Priority value for sitemap.
+ * @param strDateTime Last modification date for sitemap.
+ * @return TRUE if export succeeds, FALSE otherwise.
+ */
 BOOL ExportXMLSitemap(HWND hWnd, CString strFileName, CString strFrequency, CString strPriority, CString strDateTime)
 {
 	CString strFileLine;
@@ -267,7 +306,7 @@ BOOL ExportXMLSitemap(HWND hWnd, CString strFileName, CString strFrequency, CStr
 
 		::ShellExecute(hWnd, _T("open"), strFileName, NULL, NULL, SW_NORMAL);
 	}
-	catch (CFileException * pFileException)
+	catch (CFileException* pFileException)
 	{
 		TCHAR lpszError[MAX_STR_LENGTH] = { 0 };
 		pFileException->GetErrorMessage(lpszError, MAX_STR_LENGTH);
@@ -278,6 +317,13 @@ BOOL ExportXMLSitemap(HWND hWnd, CString strFileName, CString strFrequency, CStr
 	return bRetVal;
 }
 
+/**
+ * @brief Exports a report of broken links as an HTML file and opens it.
+ * @param hWnd Handle to the parent window.
+ * @param strFileName Output file name.
+ * @param strDomainName The domain name for the report title.
+ * @return TRUE if export succeeds, FALSE otherwise.
+ */
 BOOL ExportBrokenLink(HWND hWnd, CString strFileName, CString strDomainName)
 {
 	CString strFileLine;
@@ -307,7 +353,7 @@ BOOL ExportBrokenLink(HWND hWnd, CString strFileName, CString strDomainName)
 
 		::ShellExecute(hWnd, _T("open"), strFileName, NULL, NULL, SW_NORMAL);
 	}
-	catch (CFileException * pFileException)
+	catch (CFileException* pFileException)
 	{
 		TCHAR lpszError[MAX_STR_LENGTH] = { 0 };
 		pFileException->GetErrorMessage(lpszError, MAX_STR_LENGTH);
@@ -318,6 +364,14 @@ BOOL ExportBrokenLink(HWND hWnd, CString strFileName, CString strDomainName)
 	return bRetVal;
 }
 
+/**
+ * @brief Processes an HTML file, extracts URLs, and recursively processes local HTML links.
+ *        Updates the global URL and broken link arrays.
+ * @param dlgXMLSitemap Pointer to the main dialog (for UI updates and control).
+ * @param strFileName The HTML file to process.
+ * @param strBaseURL The base URL for resolving relative links.
+ * @return TRUE if processing succeeds, FALSE otherwise.
+ */
 BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString strBaseURL)
 {
 	CString strMessage;
@@ -336,6 +390,7 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 				CStdioFile pInputFile(strFileName, CFile::modeRead | CFile::typeText);
 				while (pInputFile.ReadString(strFileLine))
 				{
+					// Find all href="..." links in the line
 					int nIndex = strFileLine.Find(_T("href="), 0);
 					while (nIndex >= 0)
 					{
@@ -356,7 +411,7 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 				}
 				pInputFile.Close();
 			}
-			catch (CFileException * pFileException)
+			catch (CFileException* pFileException)
 			{
 				TCHAR lpszError[MAX_STR_LENGTH] = { 0 };
 				pFileException->GetErrorMessage(lpszError, MAX_STR_LENGTH);
@@ -371,9 +426,11 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 				CString strURL = arrURL.GetAt(nIndex);
 				if (IsHtmlPage(strURL))
 				{
+					// Skip anchors and protocol-relative URLs
 					if (strURL[0] == _T('#') || ((strURL[0] == _T('/')) && (strURL[1] == _T('/'))))
 						continue;
 
+					// Convert to absolute URL if needed
 					if (!IsValidURL(strURL, FALSE))
 					{
 						strURL = ConvertURL(strURL, strBaseURL);
@@ -384,6 +441,7 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 					{
 						if (IsLocalURL(strURL, strBaseURL))
 						{
+							// Remove fragment if present
 							const int nFind = strURL.ReverseFind(_T('#'));
 							if (nFind >= 0)
 							{
@@ -394,9 +452,11 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 								}
 							}
 
+							// Remove trailing slash
 							if (strURL.GetAt(strURL.GetLength() - 1) == _T('/'))
 								strURL = strURL.Left(strURL.GetLength() - 1);
 
+							// Check for duplicates
 							INT_PTR nSearch = 0;
 							const INT_PTR nArraySize = g_arrURL.GetCount();
 							for (; nSearch < nArraySize; nSearch++)
@@ -422,6 +482,7 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 									strMessage.Format(_T("lpszTempFile = %s\n"), lpszTempFile);
 									OutputDebugString(strMessage);
 
+									// Download the linked page and process it recursively
 									if (URLDownloadToFile(NULL, strURL, lpszTempFile, 0, NULL) == S_OK)
 									{
 										if (!ProcessHTML(dlgXMLSitemap, lpszTempFile, strURL))
@@ -432,6 +493,7 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 									}
 									else
 									{
+										// Record broken link
 										strMessage.Format(_T("Broken link %s found in page %s\n"), static_cast<LPCWSTR>(strURL), static_cast<LPCWSTR>(strBaseURL));
 										OutputDebugString(strMessage);
 										g_arrBrokenLink.Add(strURL);
@@ -459,12 +521,18 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 	return bRetVal;
 }
 
+/**
+ * @brief Thread procedure for generating the XML sitemap.
+ *        Downloads the root page, processes it, and recursively crawls local links.
+ * @param lpParam Pointer to the CXMLSitemapDlg dialog.
+ * @return Always returns 0.
+ */
 DWORD WINAPI XMLSitemap_ThreadProc(LPVOID lpParam)
 {
 	CString strMessage, strURL;
 	TCHAR lpszTempPath[MAX_STR_LENGTH] = { 0 };
 	TCHAR lpszTempFile[MAX_STR_LENGTH] = { 0 };
-	CXMLSitemapDlg* dlgXMLSitemap = (CXMLSitemapDlg*) lpParam;
+	CXMLSitemapDlg* dlgXMLSitemap = (CXMLSitemapDlg*)lpParam;
 
 	if (dlgXMLSitemap != NULL)
 	{
@@ -474,6 +542,7 @@ DWORD WINAPI XMLSitemap_ThreadProc(LPVOID lpParam)
 		strURL = dlgXMLSitemap->m_strDomainName;
 		if (!strURL.IsEmpty())
 		{
+			// Remove trailing slash from domain name
 			if (strURL.GetAt(strURL.GetLength() - 1) == _T('/'))
 				strURL = strURL.Left(strURL.GetLength() - 1);
 
