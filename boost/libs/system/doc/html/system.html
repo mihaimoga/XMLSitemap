@@ -588,6 +588,7 @@ pre.rouge .gs {
 </li>
 <li><a href="#changes">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changes_in_boost_1_89">Changes in Boost 1.89</a></li>
 <li><a href="#changes_in_boost_1_86">Changes in Boost 1.86</a></li>
 <li><a href="#changes_in_boost_1_85">Changes in Boost 1.85</a></li>
 <li><a href="#changes_in_boost_1_84">Changes in Boost 1.84</a></li>
@@ -2463,6 +2464,22 @@ image format" condition.</p>
 <div class="sect1">
 <h2 id="changes">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changes_in_boost_1_89">Changes in Boost 1.89</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The stub compiled library has been removed; System has been header-only since release 1.69.</p>
+<div class="paragraph">
+<p>This may affect <code>CMakeLists.txt</code> files containing <code>find_package(Boost COMPONENTS system &#8230;&#8203;)</code>.
+The easiest fix is to just remove <code>system</code> from the list of components as it&#8217;s no longer required.
+If compatibility with Boost releases earlier than 1.69 is to be preserved, one can use
+<code>find_package(Boost COMPONENTS &#8230;&#8203; OPTIONAL_COMPONENTS system)</code>.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changes_in_boost_1_86">Changes in Boost 1.86</h3>
 <div class="ulist">
@@ -8025,7 +8042,7 @@ paper. Johan Nilsson&#8217;s comments led to several of the refinements in N2066
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-08-06 18:48:59 UTC
+Last updated 2025-12-03 13:47:34 UTC
 </div>
 </div>
 <style>

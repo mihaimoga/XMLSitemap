@@ -565,6 +565,7 @@ pre.rouge .gs {
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#changelog">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changelog_changes_in_1_90_0">Changes in 1.90.0</a></li>
 <li><a href="#changelog_changes_in_1_88_0">Changes in 1.88.0</a></li>
 <li><a href="#changelog_changes_in_1_87_0">Changes in 1.87.0</a></li>
 <li><a href="#changelog_changes_in_1_79_0">Changes in 1.79.0</a></li>
@@ -879,6 +880,42 @@ are not allowed to throw exceptions.</p>
 <div class="sect1">
 <h2 id="changelog">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changelog_changes_in_1_90_0">Changes in 1.90.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>The functionality enabled by the deprecated macros
+<code>BOOST_SP_ENABLE_DEBUG_HOOKS</code>, <code>BOOST_SP_USE_STD_ALLOCATOR</code>,
+and <code>BOOST_SP_USE_QUICK_ALLOCATOR</code> has been removed.</p>
+</li>
+<li>
+<p>The header <code>&lt;boost/smart_ptr/detail/quick_allocator.hpp&gt;</code> has
+been marked deprecated and will be removed in a future release.</p>
+</li>
+<li>
+<p>Configurations that define <code>BOOST_NO_CXX11_HDR_ATOMIC</code> are no
+longer supported; a conforming C&#43;&#43;11 <code>&lt;atomic&gt;</code> is now required.</p>
+</li>
+<li>
+<p>The deprecated macros <code>BOOST_AC_USE_SPINLOCK</code>, <code>BOOST_AC_USE_PTHREADS</code>,
+<code>BOOST_SP_USE_SPINLOCK</code>, and <code>BOOST_SP_USE_PTHREADS</code> are no longer
+functional.</p>
+</li>
+<li>
+<p>Platform-specific implementations of <code>atomic_count</code>, <code>sp_counted_base</code>
+and <code>spinlock</code> are no longer used and have been removed.</p>
+</li>
+<li>
+<p>Configurations that define <code>BOOST_NO_CXX11_HDR_MUTEX</code> are no
+longer supported; a conforming C&#43;&#43;11 <code>&lt;mutex&gt;</code> is now required.</p>
+</li>
+<li>
+<p>Some unused headers in <code>boost/smart_ptr/detail/</code> have been removed.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changelog_changes_in_1_88_0">Changes in 1.88.0</h3>
 <div class="ulist">
@@ -11488,7 +11525,7 @@ mandates that relational operations on pointers are unspecified (5.9
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-08-06 18:48:58 UTC
+Last updated 2025-12-03 13:47:33 UTC
 </div>
 </div>
 <style>

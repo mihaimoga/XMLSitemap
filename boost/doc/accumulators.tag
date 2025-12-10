@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-<tagfile doxygen_version="1.12.0" doxygen_gitid="c73f5d30f9e8b1df5ba15a1d064ff2067cbb8267">
+<tagfile doxygen_version="1.14.0" doxygen_gitid="cbe58f6237b2238c9af7f51c6b7afb8bbf52c866">
   <compound kind="struct">
     <name>boost::accumulators::detail::accumulator_set_result</name>
     <filename>structboost_1_1accumulators_1_1detail_1_1accumulator__set__result.html</filename>

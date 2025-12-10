@@ -36,12 +36,12 @@
             <span class="phrase"><a name="static_string.ref.boost__static_strings__basic_static_string.replace.overload8.synopsis"></a></span><a class="link" href="overload8.html#static_string.ref.boost__static_strings__basic_static_string.replace.overload8.synopsis">Synopsis</a>
           </h6>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">M</span><span class="special">&gt;</span>
-<span class="identifier">basic_static_string</span><span class="special">&amp;</span>
+    <a href="https://en.cppreference.com/w/cpp/types/size_t" target="_top"><code class="literal">std::size_t</code></a> <span class="identifier">M</span><span class="special">&gt;</span>
+<span class="keyword">constexpr</span> <a class="link" href="../../boost__static_strings__basic_static_string.html" title="basic_static_string"><code class="literal">basic_static_string</code></a><span class="special">&amp;</span>
 <span class="identifier">replace</span><span class="special">(</span>
-    <span class="identifier">const_iterator</span> <span class="identifier">i1</span><span class="special">,</span>
-    <span class="identifier">const_iterator</span> <span class="identifier">i2</span><span class="special">,</span>
-    <span class="keyword">const</span> <span class="identifier">basic_static_string</span><span class="special">&lt;</span> <span class="identifier">M</span><span class="special">,</span> <span class="identifier">CharT</span><span class="special">,</span> <span class="identifier">Traits</span> <span class="special">&gt;&amp;</span> <span class="identifier">str</span><span class="special">);</span>
+    <a class="link" href="../const_iterator.html" title="basic_static_string::const_iterator"><code class="literal">basic_static_string::const_iterator</code></a> <span class="identifier">i1</span><span class="special">,</span>
+    <a class="link" href="../const_iterator.html" title="basic_static_string::const_iterator"><code class="literal">basic_static_string::const_iterator</code></a> <span class="identifier">i2</span><span class="special">,</span>
+    <span class="keyword">const</span> <a class="link" href="../../boost__static_strings__basic_static_string.html" title="basic_static_string"><code class="literal">basic_static_string</code></a><span class="special">&lt;</span> <span class="identifier">M</span><span class="special">,</span> <span class="identifier">CharT</span><span class="special">,</span> <span class="identifier">Traits</span> <span class="special">&gt;&amp;</span> <span class="identifier">str</span><span class="special">);</span>
 </pre>
 <h6>
 <a name="static_string.ref.boost__static_strings__basic_static_string.replace.overload8.h1"></a>
@@ -56,7 +56,7 @@
             <span class="phrase"><a name="static_string.ref.boost__static_strings__basic_static_string.replace.overload8.precondition"></a></span><a class="link" href="overload8.html#static_string.ref.boost__static_strings__basic_static_string.replace.overload8.precondition">Precondition</a>
           </h6>
 <p>
-            <code class="computeroutput"><span class="special">{</span><span class="identifier">i1</span><span class="special">,</span> <span class="identifier">i2</span><span class="special">)</span></code>is a valid range.
+            <code class="computeroutput"><span class="special">{</span><span class="identifier">i1</span><span class="special">,</span> <span class="identifier">i2</span><span class="special">)</span></code> is a valid range.
           </p>
 <h6>
 <a name="static_string.ref.boost__static_strings__basic_static_string.replace.overload8.h3"></a>
@@ -72,9 +72,11 @@
           </h6>
 <p>
             The replacement is done unchecked when the capacity of <code class="computeroutput"><span class="identifier">str</span></code> differs from that of the string
-            the function is called on. All references, pointers, or iterators referring
-            to contained elements are invalidated. Any past-the-end iterators are
-            also invalidated.
+            the function is called on.
+          </p>
+<p>
+            All references, pointers, or iterators referring to contained elements
+            are invalidated. Any past-the-end iterators are also invalidated.
           </p>
 <h6>
 <a name="static_string.ref.boost__static_strings__basic_static_string.replace.overload8.h5"></a>

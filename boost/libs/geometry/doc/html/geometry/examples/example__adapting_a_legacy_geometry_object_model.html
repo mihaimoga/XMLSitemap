@@ -39,7 +39,7 @@
         own geometry classes.
       </p>
 <p>
-        Boost.Geometry will then happliy read and write directly from and to the
+        Boost.Geometry will then happily read and write directly from and to the
         legacy object, treating it as a native Boost.Geometry object.
       </p>
 <p>
@@ -59,8 +59,8 @@
       </h3>
 <h4>
 <a name="geometry.examples.example__adapting_a_legacy_geometry_object_model.h1"></a>
-        <span class="phrase"><a name="geometry.examples.example__adapting_a_legacy_geometry_object_model.example_code__object_hierarcy"></a></span><a class="link" href="example__adapting_a_legacy_geometry_object_model.html#geometry.examples.example__adapting_a_legacy_geometry_object_model.example_code__object_hierarcy">Example
-        code: object hierarcy</a>
+        <span class="phrase"><a name="geometry.examples.example__adapting_a_legacy_geometry_object_model.example_code__object_hierarchy"></a></span><a class="link" href="example__adapting_a_legacy_geometry_object_model.html#geometry.examples.example__adapting_a_legacy_geometry_object_model.example_code__object_hierarchy">Example
+        code: object hierarchy</a>
       </h4>
 <pre class="programlisting"><span class="keyword">class</span> <span class="identifier">QPoint</span>
 <span class="special">{</span>
@@ -91,9 +91,9 @@
 <span class="special">};</span>
 </pre>
 <p>
-        The legacy object hierarcy is based on topology (e.g. two QRings might share
+        The legacy object hierarchy is based on topology (e.g. two QRings might share
         one QLineString) instead of points directly (i.e. each object does not point
-        directly to it's QPoints), and it also uses pointers for access.
+        directly to its QPoints), and it also uses pointers for access.
       </p>
 <p>
         This is the other common way to approach geometries, to enable e.g. shared
@@ -187,7 +187,7 @@
         The <a class="link" href="example_source_code__adapting_a_legacy_geometry_object_model.html#adaption_of_qring_iterator_source_code">custom iterator
         that does this</a> uses Boost.Iterator Facade, and is not very different
         from the <a href="http://www.boost.org/doc/libs/1_53_0/libs/iterator/doc/iterator_facade.html" target="_top">example
-        provided in Boost.Iterator's own documentation</a>(link), except that
+        provided in Boost.Iterator's own documentation</a> (link), except that
         our Boost.Range need to be random access.
       </p>
 <p>

@@ -3,7 +3,7 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Reference :: Boost.Redis</title>
+    <title>boost::redis::config :: Boost.Redis</title>
   <link rel="canonical" href="https://github.com/boostorg/redis/blob/master/redis/reference/boost/redis/config.html">
   <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/boostlook.css">
@@ -35,6 +35,9 @@
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../requests_responses.html">Requests and responses</a>
+        </li>
+              <li class="" data-depth="1">
+            <a class="nav-link" href="../../../cancellation.html">Cancellation and timeouts</a>
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../serialization.html">Serializing and parsing into custom types</a>
@@ -79,7 +82,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="config.html">Reference</a></li>
+    <li><a href="config.html"><a href="../../boost.html">boost</a>::<a href="../../boost/redis.html">redis</a>::config</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
@@ -87,17 +90,19 @@
       <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
     </a>
 </div></div>
-    <h1 class="page">Reference</h1>
-  <div class="sect1">
-<h2 id="boost-redis-config"><a class="anchor" href="#boost-redis-config"></a><a href="../../boost.html" class="xref page">boost</a>::<a href="../redis.html" class="xref page">redis</a>::config</h2>
+    <h1 class="page"><a href="../../boost.html">boost</a>::<a href="../../boost/redis.html">redis</a>::config</h1>
+  <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Configure parameters used by the connection classes&period;</p>
 </div>
-<div class="sect2">
-<h3 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://github.com/boostorg/redis/blob/master/include/boost/redis/config.hpp#L26">boost&sol;redis&sol;config&period;hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://github.com/boostorg/redis/blob/master/include/boost/redis/config.hpp#L28">boost&sol;redis&sol;config&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -105,12 +110,14 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_data_members"><a class="anchor" href="#_data_members"></a>Data Members</h3>
+</div>
+<div class="sect1">
+<h2 id="_data_members"><a class="anchor" href="#_data_members"></a>Data Members</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
 <tbody>
 <tr>
@@ -131,23 +138,23 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/username.html" class="xref page"><code>username</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Username passed to the <code>HELLO</code> command&period; If left empty <code>HELLO</code> will be sent without authentication parameters&period;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username used for authentication during connection establishment&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/password.html" class="xref page"><code>password</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password passed to the <code>HELLO</code> command&period; If left empty <code>HELLO</code> will be sent without authentication parameters&period;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password used for authentication during connection establishment&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/clientname.html" class="xref page"><code>clientname</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Client name parameter of the <code>HELLO</code> command&period;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client name parameter to use during connection establishment&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/database_index.html" class="xref page"><code>database&lowbar;index</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database that will be passed to the <code>SELECT</code> command&period;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database index to pass to the <code>SELECT</code> command during connection establishment&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/health_check_id.html" class="xref page"><code>health&lowbar;check&lowbar;id</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message used by the health&hyphen;checker in <a href="basic_connection/async_run-04.html" class="xref page"><code>boost&colon;&colon;redis&colon;&colon;basic&lowbar;connection&colon;&colon;async&lowbar;run</code></a>&period;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message used by <code>PING</code> commands sent by the health checker&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/log_prefix.html" class="xref page"><code>log&lowbar;prefix</code></a></p></td>
@@ -167,7 +174,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/health_check_interval.html" class="xref page"><code>health&lowbar;check&lowbar;interval</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time span between successive health checks&period; Set to zero to disable health&hyphen;checks pass zero as duration&period;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time span between successive health checks&period; Set to zero to disable health&hyphen;checks&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/reconnect_wait_interval.html" class="xref page"><code>reconnect&lowbar;wait&lowbar;interval</code></a></p></td>
@@ -175,13 +182,24 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/max_read_size.html" class="xref page"><code>max&lowbar;read&lowbar;size</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum size of a socket read, in bytes&period;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum size of the socket read&hyphen;buffer in bytes&period;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/read_buffer_append_size.html" class="xref page"><code>read&lowbar;buffer&lowbar;append&lowbar;size</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grow size of the read buffer&period;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/use_setup.html" class="xref page"><code>use&lowbar;setup</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables using a custom requests during connection establishment&period;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="config/setup.html" class="xref page"><code>setup</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Request to be executed after connection establishment&period;</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>
-</div>
 </div>
 </div>
 </div>

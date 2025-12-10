@@ -561,6 +561,7 @@ pre.rouge .gs {
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#changes">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changes_changes_in_boost_1_90_0">Changes in Boost 1.90.0</a></li>
 <li><a href="#changes_changes_in_boost_1_87_0">Changes in Boost 1.87.0</a></li>
 <li><a href="#changes_changes_in_boost_1_86_0_major_update">Changes in Boost 1.86.0 (<strong>major update</strong>)</a></li>
 </ul>
@@ -612,9 +613,9 @@ pre.rouge .gs {
 <li><a href="#uuid_io_to_string">to_string</a></li>
 </ul>
 </li>
-<li><a href="#uuid_generators">&lt;boost/uuid/uuid_generators.hpp&gt;</a>
+<li><a href="#generators">&lt;boost/uuid/generators.hpp&gt;</a>
 <ul class="sectlevel3">
-<li><a href="#uuid_generators_synopsis">Synopsis</a></li>
+<li><a href="#generators_synopsis">Synopsis</a></li>
 </ul>
 </li>
 <li><a href="#nil_generator">&lt;boost/uuid/nil_generator.hpp&gt;</a>
@@ -702,6 +703,12 @@ pre.rouge .gs {
 <li><a href="#time_generator_synopsis">Synopsis</a></li>
 </ul>
 </li>
+<li><a href="#constants">&lt;boost/uuid/constants.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#constants_synopsis">Synopsis</a></li>
+<li><a href="#constants_constants">Constants</a></li>
+</ul>
+</li>
 <li><a href="#design_notes">Design Notes</a></li>
 <li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul>
@@ -722,7 +729,7 @@ pre.rouge .gs {
 <h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A UUID, or Universally unique identifier, is intended to uniquely identify information in a distributed environment without significant central coordination.
+<p>A UUID, or universally unique identifier, is intended to uniquely identify information in a distributed environment without significant central coordination.
 It can be used to tag objects with very short lifetimes, or to reliably identify very persistent objects across a network.</p>
 </div>
 <div class="paragraph">
@@ -740,7 +747,7 @@ UUIDs identify audio or video streams in the Advanced Systems Format (ASF).
 UUIDs are also a basis for OIDs (object identifiers), and URNs (uniform resource name).</p>
 </div>
 <div class="paragraph">
-<p>An attractive feature of UUIDs when compared to alternatives is their relative small size, of 128-bits, or 16-bytes.
+<p>An attractive feature of UUIDs when compared to alternatives is their relative small size, of 128 bits, or 16 bytes.
 Another is that the creation of UUIDs does not require a centralized authority.</p>
 </div>
 <div class="paragraph">
@@ -752,6 +759,22 @@ Another is that the creation of UUIDs does not require a centralized authority.<
 <div class="sect1">
 <h2 id="changes"><a class="link" href="#changes">Revision History</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changes_changes_in_boost_1_90_0"><a class="link" href="#changes_changes_in_boost_1_90_0">Changes in Boost 1.90.0</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>string_generator</code> is now <code>constexpr</code> on C&#43;&#43;14 and higher.</p>
+</li>
+<li>
+<p>Added header <code>boost/uuid/constants.hpp</code>.</p>
+</li>
+<li>
+<p>Renamed <code>boost/uuid/uuid_generators.hpp</code> to <code>boost/uuid/generators.hpp</code>. The old name is retained for compatibility.</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changes_changes_in_boost_1_87_0"><a class="link" href="#changes_changes_in_boost_1_87_0">Changes in Boost 1.87.0</a></h3>
 <div class="ulist">
@@ -956,7 +979,7 @@ Note that enabling more advanced extensions implies that more basic ones are als
 <span class="c1">// see boost/libs/uuid/test/test_tagging.cpp</span>
 
 <span class="cp">#include</span> <span class="cpf">&lt;boost/uuid/uuid.hpp&gt;</span><span class="cp">
-#include</span> <span class="cpf">&lt;boost/uuid/uuid_generators.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;boost/uuid/generators.hpp&gt;</span><span class="cp">
 </span>
 <span class="k">class</span> <span class="nc">object</span>
 <span class="p">{</span>
@@ -1037,7 +1060,8 @@ Note that enabling more advanced extensions implies that more basic ones are als
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;boost/uuid/uuid.hpp&gt;</span><span class="cp">
 #include</span> <span class="cpf">&lt;boost/uuid/uuid_io.hpp&gt;</span><span class="cp">
-#include</span> <span class="cpf">&lt;boost/uuid/uuid_generators.hpp&gt;</span></code></pre>
+#include</span> <span class="cpf">&lt;boost/uuid/generators.hpp&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;boost/uuid/constants.hpp&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -1906,7 +1930,7 @@ This operator also enables the use of
 <dl>
 <dt class="hdlist1">Requires: </dt>
 <dd>
-<p><code>Ch</code> must be a character type (one of <code>char</code>, <code>wchar_t</code>, <code>char8_t</code>, <code>char16_t</code>, <code>char32_t</code>.)</p>
+<p><code>Ch</code> must be a character type (one of <code>char</code>, <code>wchar_t</code>, <code>char8_t</code>, <code>char16_t</code>, <code>char32_t</code>).</p>
 </dd>
 <dt class="hdlist1">Effects: </dt>
 <dd>
@@ -2026,9 +2050,9 @@ They are likely to be more efficient than <a href="https://www.boost.org/doc/lib
 </div>
 </div>
 <div class="sect2">
-<h3 id="uuid_generators"><a class="link" href="#uuid_generators">&lt;boost/uuid/uuid_generators.hpp&gt;</a></h3>
+<h3 id="generators"><a class="link" href="#generators">&lt;boost/uuid/generators.hpp&gt;</a></h3>
 <div class="sect3">
-<h4 id="uuid_generators_synopsis"><a class="link" href="#uuid_generators_synopsis">Synopsis</a></h4>
+<h4 id="generators_synopsis"><a class="link" href="#generators_synopsis">Synopsis</a></h4>
 <div class="paragraph">
 <p>This convenience header includes all the UUID generators.</p>
 </div>
@@ -2423,10 +2447,10 @@ hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
 <div class="ulist">
 <ul>
 <li>
-<p>If <code>Ch</code> is <code>char</code> or <code>char8_t</code>, the characters are processed as octets directly;</p>
+<p>If <code>Ch</code> is <code>char</code> or <code>char8_t</code>, the characters are processed as octets directly.</p>
 </li>
 <li>
-<p>If <code>Ch</code> is <code>wchar_t</code>, the characters are converted to <code>uint32_t</code> and then serialized to four octets each using little-endian representation;</p>
+<p>If <code>Ch</code> is <code>wchar_t</code>, the characters are converted to <code>uint32_t</code> and then serialized to four octets each using little-endian representation.</p>
 </li>
 <li>
 <p>Otherwise, the character sequence is converted to UTF-8 and the result is processed as octets.</p>
@@ -2899,7 +2923,7 @@ These values are specified in <a href="https://www.rfc-editor.org/rfc/rfc4122.ht
 <dl>
 <dt class="hdlist1">Returns: </dt>
 <dd>
-<p>The current system time (<code>std::chrono::system_clock::now()</code>, converted to <code>uuid_clock::time_point</code>.)</p>
+<p>The current system time (<code>std::chrono::system_clock::now()</code>, converted to <code>uuid_clock::time_point</code>).</p>
 </dd>
 </dl>
 </div>
@@ -3080,7 +3104,7 @@ The atomic state is used by the generators to ensure that no duplicate UUIDs are
 <dl>
 <dt class="hdlist1">Effects: </dt>
 <dd>
-<p>Using entropy from <code>std::random_device</code>, generates a pseudorandom 48 bit node identifier in <code>node_</code> and a pseudorandom 14 bit clock sequence in <code>state_.clock_seq</code>. Initalizes <code>state_.timestamp</code> to zero.</p>
+<p>Using entropy from <code>std::random_device</code>, generates a pseudorandom 48 bit node identifier in <code>node_</code> and a pseudorandom 14 bit clock sequence in <code>state_.clock_seq</code>. Initializes <code>state_.timestamp</code> to zero.</p>
 </dd>
 <dt class="hdlist1">Remarks: </dt>
 <dd>
@@ -3354,13 +3378,13 @@ and incrementing <code>state.clock_seq</code> modulo 0x4000 if the new timestamp
 <div class="ulist">
 <ul>
 <li>
-<p>The system clock never goes backwards;</p>
+<p>The system clock never goes backwards.</p>
 </li>
 <li>
-<p>The system clock has at least millisecond resolution;</p>
+<p>The system clock has at least millisecond resolution.</p>
 </li>
 <li>
-<p>No more than 64 UUIDs are generated per microsecond (no more than one every 16 nanoseconds.)</p>
+<p>No more than 64 UUIDs are generated per microsecond (no more than one every 16 nanoseconds).</p>
 </li>
 </ul>
 </div>
@@ -3382,6 +3406,43 @@ and incrementing <code>state.clock_seq</code> modulo 0x4000 if the new timestamp
 </div>
 <div class="paragraph">
 <p>This convenience header makes the three time-based generators <code>time_generator_v1</code>, <code>time_generator_v6</code>, and <code>time_generator_v7</code>, available.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="constants"><a class="link" href="#constants">&lt;boost/uuid/constants.hpp&gt;</a></h3>
+<div class="sect3">
+<h4 id="constants_synopsis"><a class="link" href="#constants_synopsis">Synopsis</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;boost/uuid/namespaces.hpp&gt;</span><span class="cp">
+</span>
+<span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">uuids</span> <span class="p">{</span>
+
+<span class="n">uuid</span> <span class="n">nil_uuid</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span>
+
+<span class="p">}}</span> <span class="c1">// namespace boost::uuids</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="constants_constants"><a class="link" href="#constants_constants">Constants</a></h4>
+<div class="paragraph">
+<p>This header provides definitions of some well known UUID constants.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">uuid</span> <span class="n">nil_uuid</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Returns: </dt>
+<dd>
+<p>The nil UUID, <code>{00000000-0000-0000-0000-000000000000}</code>.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>

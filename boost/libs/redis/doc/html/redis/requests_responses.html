@@ -6,7 +6,7 @@
     <title>Requests and responses :: Boost.Redis</title>
   <link rel="canonical" href="https://github.com/boostorg/redis/blob/master/redis/requests_responses.html">
     <link rel="prev" href="index.html">
-    <link rel="next" href="serialization.html">
+    <link rel="next" href="cancellation.html">
   <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../_/css/boostlook.css">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -37,6 +37,9 @@
         </li>
               <li class=" is-current-page" data-depth="1">
             <a class="nav-link" href="requests_responses.html">Requests and responses</a>
+        </li>
+              <li class="" data-depth="1">
+            <a class="nav-link" href="cancellation.html">Cancellation and timeouts</a>
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="serialization.html">Serializing and parsing into custom types</a>
@@ -91,8 +94,8 @@
     <a class="disabled" accesskey="u" aria-disabled="true" tabindex="-1">
       <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
     </a>
-    <a accesskey="n" href="serialization.html">
-      <span class="material-symbols-outlined" title="Next: Serializing and parsing into custom types">arrow_forward</span>
+    <a accesskey="n" href="cancellation.html">
+      <span class="material-symbols-outlined" title="Next: Cancellation and timeouts">arrow_forward</span>
     </a>
 </div></div>
     <h1 class="page">Requests and responses</h1>
@@ -129,7 +132,7 @@ req.push_range("HSET", "key", map);</code></pre>
 <div class="paragraph">
 <p>Sending a request to Redis is performed by
 <a href="reference/boost/redis/basic_connection/async_exec-02.html" class="xref page"><code>connection::async_exec</code></a>
-as already stated. Requests accept a <a href="#reference:boost/redis/request/config"><code>boost::redis::request::config</code></a>
+as already stated. Requests accept a <a href="reference/boost/redis/request/config.html" class="xref page"><code>boost::redis::request::config</code></a>
 object when constructed that dictates how requests are handled in situations like
 reconnection. The reader is advised to read it carefully.</p>
 </div>
@@ -546,7 +549,7 @@ and other data structures in general.</p>
   </div>
       <nav class="pagination">
         <span class="prev"><a href="index.html">Introduction</a></span>
-        <span class="next"><a href="serialization.html">Serializing and parsing into custom types</a></span>
+        <span class="next"><a href="cancellation.html">Cancellation and timeouts</a></span>
     </nav>
 </article>
 </div>

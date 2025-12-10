@@ -46,14 +46,14 @@ Around a linestring, a buffer can be defined left or right. Around a polygon, as
 '''<indexterm><primary>closure_selector</primary></indexterm>'''
 '''<indexterm><primary>open</primary></indexterm>'''
 '''<indexterm><primary>closed</primary></indexterm>'''
-'''<indexterm><primary>closure_undertermined</primary></indexterm>'''
+'''<indexterm><primary>closure_undetermined</primary></indexterm>'''
 Enumerates options for defining if polygons are open or closed. 
 
 [heading Description]
 The enumeration closure\u005fselector describes options for if a polygon is open or closed. In a closed polygon the very first point (per ring) should be equal to the very last point. The specific closing property of a polygon type is defined by the closure metafunction. The closure metafunction defines a value, which is one of the values enumerated in the closure\u005fselector
 
 [heading Synopsis]
-``enum closure_selector {open = 0, closed = 1, closure_undertermined = -1};``
+``enum closure_selector {open = 0, closed = 1, closure_undetermined = -1};``
 
 [heading Values]
 
@@ -61,7 +61,7 @@ The enumeration closure\u005fselector describes options for if a polygon is open
 [[Value] [Description] ]
 [[open] [Rings are open: first point and last point are different, algorithms close them explicitly on the fly ]]
 [[closed] [Rings are closed: first point and last point must be the same. ]]
-[[closure_undertermined] [(Not yet implemented): algorithms first figure out if ring must be closed on the fly ]]
+[[closure_undetermined] [(Not yet implemented): algorithms first figure out if ring must be closed on the fly ]]
 ]
 
 
@@ -241,6 +241,12 @@ Enumerates types of result codes from buffer strategies.
 '''<indexterm><primary>failure_intersecting_interiors</primary></indexterm>'''
 '''<indexterm><primary>failure_wrong_corner_order</primary></indexterm>'''
 '''<indexterm><primary>failure_invalid_coordinate</primary></indexterm>'''
+'''<indexterm><primary>failure_collinear_points_on_face</primary></indexterm>'''
+'''<indexterm><primary>failure_non_coplanar_points_on_face</primary></indexterm>'''
+'''<indexterm><primary>failure_few_points_on_face</primary></indexterm>'''
+'''<indexterm><primary>failure_inconsistent_orientation</primary></indexterm>'''
+'''<indexterm><primary>failure_invalid_intersection</primary></indexterm>'''
+'''<indexterm><primary>failure_disconnected_surface</primary></indexterm>'''
 Enumerates the possible validity failure types for a geometry. 
 
 [heading Description]
@@ -262,7 +268,13 @@ The enumeration validity\u005ffailure\u005ftype enumerates the possible reasons 
     failure_disconnected_interior = 32,
     failure_intersecting_interiors = 40,
     failure_wrong_corner_order = 50,
-    failure_invalid_coordinate = 60
+    failure_invalid_coordinate = 60,
+    failure_collinear_points_on_face = 70,
+    failure_non_coplanar_points_on_face = 71,
+    failure_few_points_on_face = 72,
+    failure_inconsistent_orientation = 73,
+    failure_invalid_intersection = 74,
+    failure_disconnected_surface = 75
 };``
 
 [heading Values]
@@ -283,6 +295,12 @@ The enumeration validity\u005ffailure\u005ftype enumerates the possible reasons 
 [[failure_intersecting_interiors] [The multi-polygon contains polygons whose interiors are not disjoint (applies to multi-polygons only) ]]
 [[failure_wrong_corner_order] [The top-right corner of the box is lexicographically smaller than its bottom-left corner (applies to boxes only) ]]
 [[failure_invalid_coordinate] [The geometry has at least one point with an invalid coordinate (for example, the coordinate is a NaN) ]]
+[[failure_collinear_points_on_face] [The geometry has colinear points on the same face (applies to polyhedral surfaces only) ]]
+[[failure_non_coplanar_points_on_face] [The geometry has non-coplanar points on the same face The points do not lie on the same plane and thus cannot define a face (applies to polyhedral surfaces only) ]]
+[[failure_few_points_on_face] [The geometry has a very small number of points on the same face The face must have at least 3 points to be defined (applies to polyhedral surfaces only) ]]
+[[failure_inconsistent_orientation] [The geometry has inconsistent orientation of at least one edge The edge has the same orientation in both faces it belongs to (applies to polyhedral surfaces only) ]]
+[[failure_invalid_intersection] [The geometry has invalid intersection of the faces The faces do not intersect in a valid way, i.e. on a common edge (applies to polyhedral surfaces only) ]]
+[[failure_disconnected_surface] [The geometry has disconnected faces, i.e. it is not continuous (applies to polyhedral surfaces only) ]]
 ]
 
 

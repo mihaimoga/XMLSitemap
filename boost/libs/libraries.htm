@@ -116,7 +116,7 @@ how to download, build, and install the libraries.</p>
     <li><a href="date_time/index.html">Date Time</a> - A set of date-time libraries based on generic programming concepts, from Jeff Garland</li>
     <li><a href="describe/index.html">Describe</a> - A C++14 reflection library, from Peter Dimov</li>
     <li><a href="dll/index.html">DLL</a> - Library for comfortable work with DLL and DSO, from Antony Polukhin and Renato Tegon Forti</li>
-    <li><a href="dynamic_bitset/dynamic_bitset.html">Dynamic Bitset</a> - The dynamic_bitset class represents a set of bits. It provides accesses to the value of individual bits via an operator[] and provides all of the bitwise operators that one can apply to builtin integers, such as operator&amp; and operator&lt;&lt;. The number of bits in the set is specified at runtime via a parameter to the constructor of the dynamic_bitset, from Jeremy Siek and Chuck Allison</li>
+    <li><a href="dynamic_bitset/index.html">Dynamic Bitset</a> - The dynamic_bitset template represents a set of bits. It provides access to the value of individual bits via operator[] and provides all of the bitwise operators that one can apply to builtin integers, such as operator&amp; and operator&lt;&lt;. The number of bits in the set can change at runtime, from Jeremy Siek and Chuck Allison</li>
     <li><a href="core/doc/html/core/enable_if.html">Enable If</a> - Selective inclusion of function template overloads, from Jaakko Järvi, Jeremiah Willcock, and Andrew Lumsdaine</li>
     <li><a href="endian/index.html">Endian</a> - Types and conversion functions for correct byte ordering and more regardless of processor endianness, from Beman Dawes</li>
     <li><a href="exception/doc/boost-exception.html">Exception</a> - The Boost Exception library supports transporting of arbitrary data in exception objects, and transporting of exceptions between threads, from Emil Dotchevski</li>
@@ -177,6 +177,7 @@ how to download, build, and install the libraries.</p>
     <li><a href="nowide/index.html">Nowide</a> - Standard library functions with UTF-8 API on Windows, from Artyom Beilis</li>
     <li><a href="numeric/conversion/index.html">Numeric Conversion</a> - Optimized Policy-based Numeric Conversions, from Fernando Cacciola</li>
     <li><a href="numeric/odeint/index.html">Odeint</a> - Solving ordinary differential equations, from Karsten Ahnert and Mario Mulansky</li>
+    <li><a href="openmethod/index.html">OpenMethod</a> - Open-methods for C++17 and above, from Jean-Louis Leroy</li>
     <li><a href="utility/operators.htm">Operators</a> - Templates to simplify operator definition in arithmetic classes and iterators, from Dave Abrahams and Jeremy Siek</li>
     <li><a href="optional/index.html">Optional</a> - A value-semantic, type-safe wrapper for representing &#39;optional&#39; (or &#39;nullable&#39;) objects of a given type. An optional object may or may not contain a value of the underlying type, from Fernando Cacciola</li>
     <li><a href="outcome/index.html">Outcome</a> - A deterministic failure handling library partially simulating lightweight exceptions, from Niall Douglas</li>
@@ -310,7 +311,6 @@ how to download, build, and install the libraries.</p>
     <li><a href="bloom/index.html">Bloom</a> - Bloom filters, from Joaquín M López Muñoz</li>
     <li><a href="circular_buffer/index.html">Circular Buffer</a> - A STL compliant container also known as ring or cyclic buffer, from Jan Gaspar</li>
     <li><a href="container/index.html">Container</a> - Standard library containers and extensions, from Ion Gaztañaga</li>
-    <li><a href="dynamic_bitset/dynamic_bitset.html">Dynamic Bitset</a> - The dynamic_bitset class represents a set of bits. It provides accesses to the value of individual bits via an operator[] and provides all of the bitwise operators that one can apply to builtin integers, such as operator&amp; and operator&lt;&lt;. The number of bits in the set is specified at runtime via a parameter to the constructor of the dynamic_bitset, from Jeremy Siek and Chuck Allison</li>
     <li><a href="gil/index.html">GIL</a> - (C++14) Generic Image Library, from Lubomir Bourdev, Hailin Jin, and Christian Henning</li>
     <li><a href="graph/index.html">Graph</a> - The BGL graph interface and graph components are generic, in the same sense as the Standard Template Library (STL), from Jeremy Siek and a University of Notre Dame team.</li>
     <li><a href="graph_parallel/index.html">GraphParallel</a> - The PBGL graph interface and graph components are generic, in the same sense as the Standard Template Library (STL), from Jeremy Siek, Doug Gregor, and a University of Notre Dame team.</li>
@@ -324,6 +324,7 @@ how to download, build, and install the libraries.</p>
     <li><a href="property_map/index.html">Property Map</a> - Concepts defining interfaces which map key objects to value objects, from Jeremy Siek</li>
     <li><a href="property_map_parallel/index.html">Property Map (Parallel)</a> - Parallel extensions to Property Map for use with Parallel Graph, from Jeremy Siek</li>
     <li><a href="property_tree/index.html">Property Tree</a> - A tree data structure especially suited to storing configuration data, from Marcin Kalicinski and Sebastian Redl</li>
+    <li><a href="static_string/index.html">Static String</a> - A fixed capacity dynamically sized string, from Krystian Stasiowski and Vinnie Falco</li>
     <li><a href="utility/doc/html/utility/utilities/string_view.html">String View</a> - String view templates, from Marshall Clow</li>
     <li><a href="unordered/index.html">Unordered</a> - Unordered associative containers, from Daniel James</li>
     <li><a href="url/index.html">URL</a> - URL parsing in C++11, from Vinnie Falco and Alan de Freitas</li>
@@ -482,6 +483,7 @@ how to download, build, and install the libraries.</p>
     <li><a href="exception/doc/boost-exception.html">Exception</a> - The Boost Exception library supports transporting of arbitrary data in exception objects, and transporting of exceptions between threads, from Emil Dotchevski</li>
     <li><a href="foreach/index.html">Foreach</a> - In C++, writing a loop that iterates over a sequence is tedious. We can either use iterators, which requires a considerable amount of boiler-plate, or we can use the std::for_each() algorithm and move our loop body into a predicate, which requires no less boiler-plate and forces us to move our logic far from where it will be used. In contrast, some other languages, like Perl, provide a dedicated &#34;foreach&#34; construct that automates this process. BOOST_FOREACH is just such a construct for C++. It iterates over sequences for us, freeing us from having to deal directly with iterators or write predicates, from Eric Niebler</li>
     <li><a href="move/index.html">Move</a> - Portable move semantics for C++03 and C++11 compilers, from Ion Gaztañaga</li>
+    <li><a href="openmethod/index.html">OpenMethod</a> - Open-methods for C++17 and above, from Jean-Louis Leroy</li>
     <li><a href="outcome/index.html">Outcome</a> - A deterministic failure handling library partially simulating lightweight exceptions, from Niall Douglas</li>
     <li><a href="parameter/index.html">Parameter</a> - Boost.Parameter Library - Write functions that accept arguments by name, from David Abrahams and Daniel Wallin</li>
     <li><a href="parameter_python/index.html">Parameter Python Bindings</a> - Boost.Parameter Library Python bindings, from David Abrahams and Daniel Wallin</li>
@@ -557,6 +559,7 @@ how to download, build, and install the libraries.</p>
 <ul>
     <li><a href="compat/index.html">Compat</a> - C++11 implementations of standard components added in later C++ standards, from Peter Dimov and Christian Mazakas</li>
     <li><a href="function/index.html">Function</a> - Function object wrappers for deferred calls or callbacks, from Doug Gregor</li>
+    <li><a href="openmethod/index.html">OpenMethod</a> - Open-methods for C++17 and above, from Jean-Louis Leroy</li>
     <li><a href="outcome/index.html">Outcome</a> - A deterministic failure handling library partially simulating lightweight exceptions, from Niall Douglas</li>
     <li><a href="parameter/index.html">Parameter</a> - Boost.Parameter Library - Write functions that accept arguments by name, from David Abrahams and Daniel Wallin</li>
     <li><a href="parameter_python/index.html">Parameter Python Bindings</a> - Boost.Parameter Library Python bindings, from David Abrahams and Daniel Wallin</li>

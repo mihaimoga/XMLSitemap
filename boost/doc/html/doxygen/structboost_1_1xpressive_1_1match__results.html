@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../xpressive/reference.html#doxygen.xpressive__fwd_8hpp" title="Header &lt;boost/xpressive/xpressive_fwd.hpp&gt;">
-<link rel="prev" href="structboost_1_1xpressive_1_1local.html" title="Struct template local">
-<link rel="next" href="structboost_1_1xpressive_1_1null__regex__traits.html" title="Struct template null_regex_traits">
+<link rel="up" href="../xpressive/reference.html#doxygen.match__results_8hpp" title="Header &lt;boost/xpressive/match_results.hpp&gt;">
+<link rel="prev" href="namespaceboost_1_1xpressive_1af6cdd2ef455a77e7f9378ebd97f341c7.html" title="Function template swap">
+<link rel="next" href="structboost_1_1xpressive_1_1regex__id__filter__predicate.html" title="Struct template regex_id_filter_predicate">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -22,7 +22,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="structboost_1_1xpressive_1_1local.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../xpressive/reference.html#doxygen.xpressive__fwd_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1xpressive_1_1null__regex__traits.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="namespaceboost_1_1xpressive_1af6cdd2ef455a77e7f9378ebd97f341c7.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../xpressive/reference.html#doxygen.match__results_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1xpressive_1_1regex__id__filter__predicate.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.structboost_1_1xpressive_1_1match__results"></a><div class="titlepage"></div>
@@ -31,12 +31,23 @@
 <p>boost::xpressive::match_results — Class template <a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;&gt; holds the results of a <a class="link" href="namespaceboost_1_1xpressive_1a7549c8bcd5ce2471d42aaad4e409d148.html" title="Function regex_match">regex_match()</a> or a <a class="link" href="namespaceboost_1_1xpressive_1a1194c854fb35ddb2d0b216a303263bb3.html" title="Function regex_search">regex_search()</a> as a collection of <a class="link" href="structboost_1_1xpressive_1_1sub__match.html" title="Struct template sub_match">sub_match</a> objects. </p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../xpressive/reference.html#doxygen.xpressive__fwd_8hpp" title="Header &lt;boost/xpressive/xpressive_fwd.hpp&gt;">boost/xpressive/xpressive_fwd.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../xpressive/reference.html#doxygen.match__results_8hpp" title="Header &lt;boost/xpressive/match_results.hpp&gt;">boost/xpressive/match_results.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> BidiIter<span class="special">&gt;</span> 
 <span class="keyword">struct</span> <a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a> <span class="special">{</span>
+  <span class="comment">// types</span>
+  <span class="keyword">typedef</span> <span class="identifier">iterator_value</span><span class="special">&lt;</span> <span class="identifier">BidiIter</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span>      <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a97b997c0f6c177fd2a291794a1566781"></a><span class="identifier">char_type</span><span class="special">;</span>          
+  <span class="keyword">typedef</span> <span class="emphasis"><em><span class="identifier">unspecified</span></em></span>                           <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a698e4d165eab8903074c5b77571a2191"></a><span class="identifier">string_type</span><span class="special">;</span>        
+  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span>                           <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a8c24aeb9ef047afc53e0a0d891dbc457"></a><span class="identifier">size_type</span><span class="special">;</span>          
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1xpressive_1_1sub__match.html" title="Struct template sub_match">sub_match</a><span class="special">&lt;</span> <span class="identifier">BidiIter</span> <span class="special">&gt;</span>                 <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a24fb58b4f304b0041b70f80c0df81d0e"></a><span class="identifier">value_type</span><span class="special">;</span>         
+  <span class="keyword">typedef</span> <span class="identifier">iterator_difference</span><span class="special">&lt;</span> <span class="identifier">BidiIter</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">type</span> <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a5dc031dd602e9d550d608daf35f80bc1"></a><span class="identifier">difference_type</span><span class="special">;</span>    
+  <span class="keyword">typedef</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span>                    <a name="doxygen.structboost_1_1xpressive_1_1match__results_1ad6ec5c6e343b2f318779bc7ac8a63ee8"></a><span class="identifier">reference</span><span class="special">;</span>          
+  <span class="keyword">typedef</span> <span class="identifier">value_type</span> <span class="keyword">const</span> <span class="special">&amp;</span>                    <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a0d2fc196fb1a27650abb93176dc794d0"></a><span class="identifier">const_reference</span><span class="special">;</span>    
+  <span class="keyword">typedef</span> <span class="emphasis"><em><span class="identifier">unspecified</span></em></span>                           <a name="doxygen.structboost_1_1xpressive_1_1match__results_1afccaf5aa65c8f4d23de97543cca80967"></a><span class="identifier">iterator</span><span class="special">;</span>           
+  <span class="keyword">typedef</span> <span class="emphasis"><em><span class="identifier">unspecified</span></em></span>                           <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a8be0170f39bfcd5a24718905e1f154fb"></a><span class="identifier">const_iterator</span><span class="special">;</span>     
+  <span class="keyword">typedef</span> <span class="emphasis"><em><span class="identifier">unspecified</span></em></span>                           <a name="doxygen.structboost_1_1xpressive_1_1match__results_1a4f092f5881e3c6765354b3c39c59ad5a"></a><span class="identifier">nested_results_type</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="structboost_1_1xpressive_1_1match__results.html#id-1_3_44_5_18_2_1_7_4-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="structboost_1_1xpressive_1_1match__results.html#id-1_3_44_5_2_2_1_1_14-bb">public member functions</a></span>
   <a class="link" href="structboost_1_1xpressive_1_1match__results.html#doxygen.structboost_1_1xpressive_1_1match__results_1a6be22563474ea03b42a77bdd3eae633c"><span class="identifier">match_results</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="structboost_1_1xpressive_1_1match__results.html#doxygen.structboost_1_1xpressive_1_1match__results_1ad1045ebfa8313dba278c26bad6c6acc6"><span class="identifier">match_results</span></a><span class="special">(</span><a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a><span class="special">&lt;</span> <span class="identifier">BidiIter</span> <span class="special">&gt;</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="structboost_1_1xpressive_1_1match__results.html#doxygen.structboost_1_1xpressive_1_1match__results_1a0601369b788fc6d8c4e8f8a718073b79"><span class="special">~</span><span class="identifier">match_results</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -74,12 +85,12 @@
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Arg<span class="special">&gt;</span> <a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a><span class="special">&lt;</span> <span class="identifier">BidiIter</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <a class="link" href="structboost_1_1xpressive_1_1match__results.html#doxygen.structboost_1_1xpressive_1_1match__results_1a0b5d9b054f18782e2e195dab5e39123a"><span class="identifier">let</span></a><span class="special">(</span><span class="identifier">Arg</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.44.5.19.17.4"></a><h2>Description</h2>
+<a name="id-1.3.44.5.3.4.4"></a><h2>Description</h2>
 <p>Class template <a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;&gt; denotes a collection of sequences representing the result of a regular expression match. Storage for the collection is allocated and freed as necessary by the member functions of class <a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;&gt;.</p>
 <p>The class template <a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;&gt; conforms to the requirements of a Sequence, as specified in (lib.sequence.reqmts), except that only operations defined for const-qualified Sequences are supported. </p>
 <div class="refsect2">
-<a name="id-1.3.44.5.19.17.4.4"></a><h3>
-<a name="id-1_3_44_5_18_2_1_7_4-bb"></a><code class="computeroutput">match_results</code> public member functions</h3>
+<a name="id-1.3.44.5.3.4.4.4"></a><h3>
+<a name="id-1_3_44_5_2_2_1_1_14-bb"></a><code class="computeroutput">match_results</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.structboost_1_1xpressive_1_1match__results_1a6be22563474ea03b42a77bdd3eae633c"></a><span class="identifier">match_results</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
@@ -108,7 +119,7 @@
 </tr>
 <tr>
 <td><p><span class="term">Postconditions:</span></p></td>
-<td><p><a class="link" href="namespaceboost_1_1xpressive_1a3359fafa9e5c7964a0bd5364de930e9c.html" title="Global str">str()</a> == <a class="link" href="../">string_type()</a> </p></td>
+<td><p><a class="link" href="namespaceboost_1_1xpressive_1a3359fafa9e5c7964a0bd5364de930e9c.html" title="Global str">str()</a> == <a class="link" href="structboost_1_1xpressive_1_1match__results.html#doxygen.structboost_1_1xpressive_1_1match__results_1a698e4d165eab8903074c5b77571a2191">string_type()</a> </p></td>
 </tr>
 </tbody>
 </table></div>
@@ -360,8 +371,8 @@
                      <span class="identifier">regex_constants</span><span class="special">::</span><span class="identifier">match_flag_type</span> flags <span class="special">=</span> <span class="identifier">regex_constants</span><span class="special">::</span><span class="identifier">format_default</span><span class="special">,</span> 
                      <span class="emphasis"><em><span class="identifier">unspecified</span></em></span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
 <p>If <code class="computeroutput">Format</code> models <code class="computeroutput">ForwardRange</code> or is a null-terminated string, this function returns a copy of the character sequence <code class="computeroutput">fmt</code>. For each format specifier or escape sequence in <code class="computeroutput">fmt</code>, replace that sequence with either the character(s) it represents, or the sequence within <code class="computeroutput">*this</code> to which it refers. The bitmasks specified in <code class="computeroutput">flags</code> determines what format specifiers or escape sequences are recognized. By default this is the format used by ECMA-262, ECMAScript Language Specification, Chapter 15 part 5.4.11 String.prototype.replace.</p>
-<p>Otherwise, if <code class="computeroutput">Format</code> models <code class="computeroutput">Callable&lt;<a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;BidiIter&gt;, OutputIterator, <a class="link" href="namespaceboost_1_1xpressive_1_1regex__constants_1a1d1ca85be825c97268dc89c28fce4084.html" title="Type match_flag_type">regex_constants::match_flag_type</a>&gt;</code>, this function returns a <code class="computeroutput">string_type</code> object <code class="computeroutput">x</code> populated by calling <code class="computeroutput">fmt(*this, out, flags)</code>, where <code class="computeroutput">out</code> is a <code class="computeroutput">back_insert_iterator</code> into <code class="computeroutput">x</code>.</p>
-<p>Otherwise, if <code class="computeroutput">Format</code> models <code class="computeroutput">Callable&lt;<a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;BidiIter&gt;, OutputIterator&gt;</code>, this function returns a <code class="computeroutput">string_type</code> object <code class="computeroutput">x</code> populated by calling <code class="computeroutput">fmt(*this, out)</code>, where <code class="computeroutput">out</code> is a <code class="computeroutput">back_insert_iterator</code> into <code class="computeroutput">x</code>.</p>
+<p>Otherwise, if <code class="computeroutput">Format</code> models <code class="computeroutput">Callable&lt;<a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;BidiIter&gt;, OutputIterator, <a class="link" href="namespaceboost_1_1xpressive_1_1regex__constants_1a1d1ca85be825c97268dc89c28fce4084.html" title="Type match_flag_type">regex_constants::match_flag_type</a>&gt;</code>, this function returns a <code class="computeroutput"><a class="link" href="structboost_1_1xpressive_1_1match__results.html#doxygen.structboost_1_1xpressive_1_1match__results_1a698e4d165eab8903074c5b77571a2191">string_type</a></code> object <code class="computeroutput">x</code> populated by calling <code class="computeroutput">fmt(*this, out, flags)</code>, where <code class="computeroutput">out</code> is a <code class="computeroutput">back_insert_iterator</code> into <code class="computeroutput">x</code>.</p>
+<p>Otherwise, if <code class="computeroutput">Format</code> models <code class="computeroutput">Callable&lt;<a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;BidiIter&gt;, OutputIterator&gt;</code>, this function returns a <code class="computeroutput"><a class="link" href="structboost_1_1xpressive_1_1match__results.html#doxygen.structboost_1_1xpressive_1_1match__results_1a698e4d165eab8903074c5b77571a2191">string_type</a></code> object <code class="computeroutput">x</code> populated by calling <code class="computeroutput">fmt(*this, out)</code>, where <code class="computeroutput">out</code> is a <code class="computeroutput">back_insert_iterator</code> into <code class="computeroutput">x</code>.</p>
 <p>Otherwise, if <code class="computeroutput">Format</code> models <code class="computeroutput">Callable&lt;<a class="link" href="structboost_1_1xpressive_1_1match__results.html" title="Struct template match_results">match_results</a>&lt;BidiIter&gt; &gt;</code>, this function returns <code class="computeroutput">fmt(*this)</code>. </p>
 </li>
 <li class="listitem">
@@ -420,7 +431,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="structboost_1_1xpressive_1_1local.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../xpressive/reference.html#doxygen.xpressive__fwd_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1xpressive_1_1null__regex__traits.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="namespaceboost_1_1xpressive_1af6cdd2ef455a77e7f9378ebd97f341c7.html"><img src="../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../xpressive/reference.html#doxygen.match__results_8hpp"><img src="../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1xpressive_1_1regex__id__filter__predicate.html"><img src="../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

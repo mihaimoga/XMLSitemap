@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="Chapter 1. Boost.Histogram">
-<link rel="up" href="../histogram/reference.html#doxygen.fwd_8hpp" title="Header &lt;boost/histogram/fwd.hpp&gt;">
+<link rel="up" href="../histogram/reference.html#doxygen.wilson__interval_8hpp" title="Header &lt;boost/histogram/utility/wilson_interval.hpp&gt;">
 <link rel="prev" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html" title="Class template wald_interval">
-<link rel="next" href="classboost_1_1histogram_1_1histogram.html" title="Class template histogram">
+<link rel="next" href="../histogram/rationale.html" title="Rationale">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.fwd_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1histogram_1_1histogram.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.wilson__interval_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../histogram/rationale.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval"></a><div class="titlepage"></div>
@@ -30,28 +30,31 @@
 <p>boost::histogram::utility::wilson_interval — Wilson interval. </p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../histogram/reference.html#doxygen.fwd_8hpp" title="Header &lt;boost/histogram/fwd.hpp&gt;">boost/histogram/fwd.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../histogram/reference.html#doxygen.wilson__interval_8hpp" title="Header &lt;boost/histogram/utility/wilson_interval.hpp&gt;">boost/histogram/utility/wilson_interval.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html" title="Class template wilson_interval">wilson_interval</a> <span class="special">:</span>
   <span class="keyword">public</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">histogram</span><span class="special">::</span><span class="identifier">utility</span><span class="special">::</span><span class="identifier">binomial_proportion_interval</span><span class="special">&lt;</span> <span class="identifier">ValueType</span> <span class="special">&gt;</span>
 <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
+  <span class="comment">// types</span>
+  <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">wilson_interval</span><span class="special">::</span><span class="identifier">value_type</span>    <a name="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a0c27d35aeb6fc7211aba9a9ea9aeab2f"></a><span class="identifier">value_type</span><span class="special">;</span>   
+  <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">wilson_interval</span><span class="special">::</span><span class="identifier">interval_type</span> <a name="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a100c42a2443a6bb13d6f2f016945bfde"></a><span class="identifier">interval_type</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html#id5-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html#id80-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a289f8f69018e6613c95ff87864c11ff3"><span class="identifier">wilson_interval</span></a><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1utility_1_1deviation.html" title="Class deviation">deviation</a> <span class="special">=</span> <span class="identifier">deviation</span><span class="special">{</span><span class="number">1</span><span class="special">.</span><span class="number">0</span><span class="special">}</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="identifier">interval_type</span> <a class="link" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html#doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a72a01bda279c1d072cf87b53932646d0"><span class="keyword">operator</span><span class="special">(</span><span class="special">)</span></a><span class="special">(</span><span class="identifier">value_type</span><span class="special">,</span> <span class="identifier">value_type</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id13849"></a><h2>Description</h2>
+<a name="id34246"></a><h2>Description</h2>
 <p>The Wilson score interval is simple to compute, has good coverage. Intervals are automatically bounded between 0 and 1 and never empty. The interval is asymmetric.</p>
 <p>Wilson, E. B. (1927). "Probable inference, the law of succession, and statistical
 inference". Journal of the American Statistical Association. 22 (158): 209-212. doi:10.1080/01621459.1927.10502953. JSTOR 2276774.</p>
 <p>The coverage probability for a random ensemble of fractions is close to the nominal value. Unlike the Clopper-Pearson interval, the Wilson score interval is not conservative. For some values of the fractions, the interval undercovers and overcovers for neighboring values. This is a shared property of all alternatives to the Clopper-Pearson interval.</p>
 <p>The Wilson score intervals is widely recommended for general use in the literature. For a review of the literature, see R. D. Cousins, K. E. Hymes, J. Tucker, Nucl. Instrum. Meth. A 612 (2010) 388-398. </p>
 <div class="refsect2">
-<a name="id13855"></a><h3>
-<a name="id5-bb"></a><code class="computeroutput">wilson_interval</code> public member functions</h3>
+<a name="id34252"></a><h3>
+<a name="id80-bb"></a><code class="computeroutput">wilson_interval</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.classboost_1_1histogram_1_1utility_1_1wilson__interval_1a289f8f69018e6613c95ff87864c11ff3"></a><span class="identifier">wilson_interval</span><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1utility_1_1deviation.html" title="Class deviation">deviation</a> d <span class="special">=</span> <span class="identifier">deviation</span><span class="special">{</span><span class="number">1</span><span class="special">.</span><span class="number">0</span><span class="special">}</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Construct Wilson interval computer. <p>
@@ -118,7 +121,7 @@ inference". Journal of the American Statistical Association. 22 (158): 209-212. 
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.fwd_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1histogram_1_1histogram.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="classboost_1_1histogram_1_1utility_1_1wald__interval.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.wilson__interval_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../histogram/rationale.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

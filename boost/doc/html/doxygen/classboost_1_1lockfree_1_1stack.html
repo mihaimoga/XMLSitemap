@@ -37,9 +37,9 @@
 <span class="keyword">class</span> <a class="link" href="classboost_1_1lockfree_1_1stack.html" title="Class template stack">stack</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">T</span>                                 <a name="doxygen.classboost_1_1lockfree_1_1stack_1a435f644d17c98e11dddc779d0324e5ce"></a><span class="identifier">value_type</span><span class="special">;</span>
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">allocator</span> <a name="doxygen.classboost_1_1lockfree_1_1stack_1a53386a748761f06f65d8d3385de6c1b6"></a><span class="identifier">allocator</span><span class="special">;</span> 
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1stack_1a171bd41d885323121adab7942a2cddbe"></a><span class="identifier">size_type</span><span class="special">;</span> 
+  <span class="keyword">typedef</span> <span class="identifier">T</span>                                 <a name="doxygen.classboost_1_1lockfree_1_1stack_1a15a90cacfe2eab8e6735e2d28c09026d"></a><span class="identifier">value_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">allocator</span> <a name="doxygen.classboost_1_1lockfree_1_1stack_1aa07fd8df78777638ef0c6f6107761a85"></a><span class="identifier">allocator</span><span class="special">;</span> 
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span><span class="special">::</span><span class="identifier">size_type</span> <a name="doxygen.classboost_1_1lockfree_1_1stack_1af6a1187ab6b1472268466602072e9eaf"></a><span class="identifier">size_type</span><span class="special">;</span> 
 
   <span class="comment">// <a class="link" href="classboost_1_1lockfree_1_1stack.html#id-1_3_20_6_6_1_1_1_6-bb">public member functions</a></span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1lockfree_1_1stack.html#doxygen.classboost_1_1lockfree_1_1stack_1a9534a04c81419a8183e94b181928b5e2"><span class="identifier">is_lock_free</span></a><span class="special">(</span><span class="keyword">void</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
@@ -102,13 +102,13 @@
 <p>The stack class provides a multi-writer/multi-reader stack, pushing and popping is lock-free, construction/destruction has to be synchronized. It uses a freelist for memory management, freed nodes are pushed to the freelist and not returned to the OS before the stack is destroyed.</p>
 <p><span class="bold"><strong>Policies:</strong></span> </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem"><p><code class="computeroutput">boost::lockfree::fixed_sized&lt;&gt;</code>, defaults to <code class="computeroutput">boost::lockfree::fixed_sized&lt;false&gt;</code> <br>
+<li class="listitem"><p><code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1fixed__sized.html" title="Struct template fixed_sized">boost::lockfree::fixed_sized&lt;&gt;</a></code>, defaults to <code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1fixed__sized.html" title="Struct template fixed_sized">boost::lockfree::fixed_sized&lt;false&gt;</a></code> <br>
  Can be used to completely disable dynamic memory allocations during push in order to ensure lockfree behavior.<br>
  If the data structure is configured as fixed-sized, the internal nodes are stored inside an array and they are addressed by array indexing. This limits the possible size of the stack to the number of elements that can be addressed by the index type (usually 2**16-2), but on platforms that lack double-width compare-and-exchange instructions, this is the best way to achieve lock-freedom.</p></li>
-<li class="listitem"><p><code class="computeroutput">boost::lockfree::capacity&lt;&gt;</code>, optional <br>
+<li class="listitem"><p><code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">boost::lockfree::capacity&lt;&gt;</a></code>, optional <br>
  If this template argument is passed to the options, the size of the stack is set at compile-time. <br>
- It this option implies <code class="computeroutput">fixed_sized&lt;true&gt;</code> </p></li>
-<li class="listitem"><p><code class="computeroutput">boost::lockfree::allocator&lt;&gt;</code>, defaults to <code class="computeroutput">boost::lockfree::allocator&lt;std::allocator&lt;void&gt;&gt;</code> <br>
+ It this option implies <code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1fixed__sized.html" title="Struct template fixed_sized">fixed_sized&lt;true&gt;</a></code> </p></li>
+<li class="listitem"><p><code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">boost::lockfree::allocator&lt;&gt;</a></code>, defaults to <code class="computeroutput"><a class="link" href="structboost_1_1lockfree_1_1allocator.html" title="Struct template allocator">boost::lockfree::allocator&lt;std::allocator&lt;void&gt;&gt;</a></code> <br>
  Specifies the allocator that is used for the internal freelist</p></li>
 </ul></div>
 <p>
@@ -157,7 +157,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>Must specify a capacity&lt;&gt; argument </p></td>
+<td><p>Must specify a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument </p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -174,7 +174,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>Must specify a capacity&lt;&gt; argument </p></td>
+<td><p>Must specify a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument </p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -191,7 +191,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>Must specify a capacity&lt;&gt; argument </p></td>
+<td><p>Must specify a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument </p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -209,7 +209,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>Must <span class="bold"><strong>not</strong></span> specify a capacity&lt;&gt; argument </p></td>
+<td><p>Must <span class="bold"><strong>not</strong></span> specify a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument </p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -232,7 +232,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>Must <span class="bold"><strong>not</strong></span> specify a capacity&lt;&gt; argument </p></td>
+<td><p>Must <span class="bold"><strong>not</strong></span> specify a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument </p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -250,7 +250,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>Must <span class="bold"><strong>not</strong></span> specify a capacity&lt;&gt; argument </p></td>
+<td><p>Must <span class="bold"><strong>not</strong></span> specify a <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument </p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -276,7 +276,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>only valid if no capacity&lt;&gt; argument given </p></td>
+<td><p>only valid if no <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument given </p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -302,7 +302,7 @@
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Requires:</span></p></td>
-<td><p>only valid if no capacity&lt;&gt; argument given </p></td>
+<td><p>only valid if no <a class="link" href="structboost_1_1lockfree_1_1capacity.html" title="Struct template capacity">capacity&lt;&gt;</a> argument given </p></td>
 </tr></tbody>
 </table></div>
 </li>

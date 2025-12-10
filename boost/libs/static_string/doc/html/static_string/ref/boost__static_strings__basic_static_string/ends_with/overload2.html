@@ -29,15 +29,15 @@
           (2 of 3 overloads)</a>
 </h5></div></div></div>
 <p>
-            Return whether the string ends with a character.
+            Return whether the string ends with a string.
           </p>
 <h6>
 <a name="static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.h0"></a>
             <span class="phrase"><a name="static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.synopsis"></a></span><a class="link" href="overload2.html#static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.synopsis">Synopsis</a>
           </h6>
-<pre class="programlisting"><span class="keyword">bool</span>
+<pre class="programlisting"><span class="keyword">constexpr</span> <span class="keyword">bool</span>
 <span class="identifier">ends_with</span><span class="special">(</span>
-    <span class="identifier">value_type</span> <span class="identifier">c</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
+    <a class="link" href="../const_pointer.html" title="basic_static_string::const_pointer"><code class="literal">basic_static_string::const_pointer</code></a> <span class="identifier">s</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 </pre>
 <h6>
 <a name="static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.h1"></a>
@@ -45,14 +45,16 @@
           </h6>
 <p>
             Returns <code class="computeroutput"><span class="keyword">true</span></code> if the string
-            ends with <code class="computeroutput"><span class="identifier">c</span></code>, and <code class="computeroutput"><span class="keyword">false</span></code> otherwise.
+            ends with the string pointed to be <code class="computeroutput"><span class="identifier">s</span></code>
+            of length <code class="computeroutput"><span class="identifier">traits_type</span><span class="special">::</span><span class="identifier">length</span><span class="special">(</span><span class="identifier">s</span><span class="special">)</span></code>, and <code class="computeroutput"><span class="keyword">false</span></code>
+            otherwise.
           </p>
 <h6>
 <a name="static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.h2"></a>
             <span class="phrase"><a name="static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.complexity"></a></span><a class="link" href="overload2.html#static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.complexity">Complexity</a>
           </h6>
 <p>
-            Constant.
+            Linear.
           </p>
 <h6>
 <a name="static_string.ref.boost__static_strings__basic_static_string.ends_with.overload2.h3"></a>
@@ -78,12 +80,12 @@
 <tbody><tr>
 <td>
                     <p>
-                      <code class="computeroutput"><span class="identifier">c</span></code>
+                      <code class="computeroutput"><span class="identifier">s</span></code>
                     </p>
                   </td>
 <td>
                     <p>
-                      The character to check for.
+                      The string to check for.
                     </p>
                   </td>
 </tr></tbody>

@@ -171,7 +171,7 @@
 </struct-specialization><function id="doxygen.reference.call__if_8hpp_1a3336b7effe0970fe1eead502c9bf77cf" name="call_if_c"><type><classname>call_if_statement</classname>&lt; Pred, Then &gt;</type><template>
           <template-nontype-parameter name="Pred"><type>bool</type><purpose><para>Static boolean predicate selecting which functor template call to compile and execute.</para></purpose></template-nontype-parameter>
           <template-type-parameter name="Then"/>
-        </template><parameter name="f"><paramtype>Then</paramtype><description><para>Then-branch nullary functor template. The functor template call <computeroutput>f()</computeroutput> is compiled and executed if and only if <computeroutput>Pred</computeroutput> is <computeroutput>true</computeroutput>. The return type of other functor template calls specified for this call-if statement (else-branch, else-if-branches, etc.) must be the same as (or implicitly convertible to) the return type of then-branch functor call <computeroutput>f()</computeroutput>.</para></description></parameter><purpose>Select compilation and execution of functor template calls using a static boolean predicate (not needed on C++17 compilers, use <computeroutput>if constexpr</computeroutput> instead). </purpose><description><para>Create a call-if object with the specified then-branch functor template:</para><para><programlisting language="c++">boost::contract::call_if_c&lt;Pred1&gt;(
+        </template><parameter name="f"><paramtype>Then</paramtype><description><para>Then-branch nullary functor template. The functor template call <computeroutput>f()</computeroutput> is compiled and executed if and only if <computeroutput>Pred</computeroutput> is <computeroutput>true</computeroutput>. The return type of other functor template calls specified for this call-if statement (else-branch, else-if-branches, etc.) must be the same as (or implicitly convertible to) the return type of then-branch functor call <computeroutput>f()</computeroutput>.</para></description></parameter><purpose>Select compilation and execution of functor template calls using a static boolean predicate (not needed on C++17 compilers, use <computeroutput>if constexpr</computeroutput> instead). </purpose><description><para>Create a call-if object with the specified then-branch functor template:</para><para><programlisting language="c++"><link linkend="doxygen.reference.call__if_8hpp_1a3336b7effe0970fe1eead502c9bf77cf">boost::contract::call_if_c&lt;Pred1&gt;</link>(
     then_functor_template1
 ).template else_if_c&lt;Pred2&gt;(            // Optional.
     then_functor_template2
@@ -191,7 +191,7 @@
 <function id="doxygen.reference.call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389" name="call_if"><type><classname>call_if_statement</classname>&lt; Pred::value, Then &gt;</type><template>
           <template-type-parameter name="Pred"><purpose><para>Nullary boolean meta-function selecting which functor template call to compile and execute.</para></purpose></template-type-parameter>
           <template-type-parameter name="Then"/>
-        </template><parameter name="f"><paramtype>Then</paramtype><description><para>Then-branch nullary functor template. The functor template call <computeroutput>f()</computeroutput> is compiled and executed if and only if <computeroutput>Pred::value</computeroutput> is <computeroutput>true</computeroutput>. The return type of other functor template calls specified for this call-if statement (else-branch, else-if-branches, etc.) must be the same as (or implicitly convertible to) the return type of then-branch functor template call <computeroutput>f()</computeroutput>.</para></description></parameter><purpose>Select compilation and execution of functor template calls using a nullary boolean meta-function (not needed on C++17 compilers, use <computeroutput>if constexpr</computeroutput> instead). </purpose><description><para>This is equivalent to <computeroutput>boost::contract::call_if_c&lt;Pred::value&gt;(f)</computeroutput>. Create a call-if object with the specified then-branch functor template:</para><para><programlisting language="c++">boost::contract::call_if&lt;Pred1&gt;(
+        </template><parameter name="f"><paramtype>Then</paramtype><description><para>Then-branch nullary functor template. The functor template call <computeroutput>f()</computeroutput> is compiled and executed if and only if <computeroutput>Pred::value</computeroutput> is <computeroutput>true</computeroutput>. The return type of other functor template calls specified for this call-if statement (else-branch, else-if-branches, etc.) must be the same as (or implicitly convertible to) the return type of then-branch functor template call <computeroutput>f()</computeroutput>.</para></description></parameter><purpose>Select compilation and execution of functor template calls using a nullary boolean meta-function (not needed on C++17 compilers, use <computeroutput>if constexpr</computeroutput> instead). </purpose><description><para>This is equivalent to <computeroutput>boost::contract::call_if_c&lt;Pred::value&gt;(f)</computeroutput>. Create a call-if object with the specified then-branch functor template:</para><para><programlisting language="c++"><link linkend="doxygen.reference.call__if_8hpp_1afa1764b62ace33374fd5efe14a6be389">boost::contract::call_if&lt;Pred1&gt;</link>(
     then_functor_template1
 ).template else_if&lt;Pred2&gt;(              // Optional.
     then_functor_template2
@@ -390,9 +390,9 @@ When used this way, this object is constructed and initialized to the return val
 public:
     u(...) {
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::constructor(this)
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.constructor_8hpp_1af4aef97442a6fd8ad0cc954a1caed7f4">boost::contract::constructor</link>(this)
             // No `.precondition` (use `constructor_precondition` instead).
-            .<link linkend="doxygen.reference.classboost_1_1contract_1_1specify__old__postcondition__except_1a1e3d551b8502cb9ada2fcfc9e9f898c8">old</link>([&amp;] { // Optional.
+            .old([&amp;] { // Optional.
                 old_var = <link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF</link>(old_expr);
                 ...
             })
@@ -463,7 +463,7 @@ public:
     #define BASES public b, private w
     : BASES
 {
-    friend class <link linkend="doxygen.reference.classboost_1_1contract_1_1access">boost::contract::access</link>;
+    friend class boost::contract::access;
 
     typedef <link linkend="doxygen.reference.base__types_8hpp_1a084692eafa31120a150c79bd0178383f">BOOST_CONTRACT_BASE_TYPES</link>(BASES) base_types; // Private.
     #undef BASES
@@ -734,7 +734,7 @@ In general, it is not recommended to define this macro because these compile-tim
             public b
     : BASES
 {
-    friend class <link linkend="doxygen.reference.classboost_1_1contract_1_1access">boost::contract::access</link>;
+    friend class boost::contract::access;
 
     typedef <link linkend="doxygen.reference.base__types_8hpp_1a084692eafa31120a150c79bd0178383f">BOOST_CONTRACT_BASE_TYPES</link>(BASES) base_types;
     #undef BASES
@@ -1144,7 +1144,7 @@ public:
 <namespace name="contract">
 <class id="doxygen.reference.classboost_1_1contract_1_1virtual__" name="virtual_"><purpose>Type of extra function parameter to handle contracts for virtual public functions (for subcontracting). </purpose><description><para>Virtual public functions (and therefore also public function overrides) declaring contracts using this library must specify an extra function parameter at the very end of their parameter list. This parameter must be a pointer to this class and it must have default value <computeroutput>0</computeroutput> or <computeroutput>nullptr</computeroutput> (this extra parameter is often named <computeroutput>v</computeroutput> in this documentation, but any name can be used):</para><para><programlisting language="c++">class u {
 public:
-    virtual void f(int x, <link linkend="doxygen.reference.classboost_1_1contract_1_1virtual__">boost::contract::virtual_</link>* v = 0) { // Declare `v`.
+    virtual void f(int x, boost::contract::virtual_* v = 0) { // Declare `v`.
         ... // Contract declaration (which will use `v`) and function body.
     }
 
@@ -1219,9 +1219,9 @@ public:
 public:
     ~u() {
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::destructor(this)
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.destructor_8hpp_1ada75fa78795e2c1bb894cc49fd7e7156">boost::contract::destructor</link>(this)
             // No `.precondition` (destructors have no preconditions).
-            .<link linkend="doxygen.reference.classboost_1_1contract_1_1specify__old__postcondition__except_1a1e3d551b8502cb9ada2fcfc9e9f898c8">old</link>([&amp;] { // Optional.
+            .old([&amp;] { // Optional.
                 old_var = <link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF</link>(old_expr);
                 ...
             })
@@ -1296,7 +1296,7 @@ public:
 <function id="doxygen.reference.function_8hpp_1ad293a3bf388b43d667bc6dbf2aef873a" name="function"><type><classname>specify_precondition_old_postcondition_except</classname></type><purpose>Program contracts for non-member, private and protected functions. </purpose><description><para>This is used to specify preconditions, postconditions, exception guarantees, and old value copies at body for non-member, private and protected functions (these functions never check class invariants, see  <link linkend="boost_contract.contract_programming_overview.function_calls"> Function Calls</link>):</para><para><programlisting language="c++">void f(...) {
     <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
     <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.function_8hpp_1ad293a3bf388b43d667bc6dbf2aef873a">boost::contract::function</link>()
-        .<link linkend="doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1a91c8dbd61d932d70d86835717e232ec9">precondition</link>([&amp;] { // Optional.
+        .precondition([&amp;] { // Optional.
             <link linkend="doxygen.reference.assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82">BOOST_CONTRACT_ASSERT</link>(...);
             ...
         })
@@ -1368,9 +1368,9 @@ public:
 
 namespace boost { namespace contract {
     template&lt;&gt; // Specialization to not copy old values of type `u`.
-    struct is_old_value_copyable&lt;u&gt; : boost::false_type {};
+    struct <link linkend="doxygen.reference.structboost_1_1contract_1_1is__old__value__copyable">is_old_value_copyable</link>&lt;u&gt; : boost::false_type {};
 } } // namespace
-</programlisting></para><para>A given old value type <computeroutput>T</computeroutput> is copied only if <computeroutput>boost::contract::is_old_value_copyable&lt;T&gt;::value</computeroutput> is <computeroutput>true</computeroutput>. A copyable old value type <computeroutput>V</computeroutput> is always copied using <computeroutput>boost::contract::old_value_copy&lt;V&gt;</computeroutput>. A non-copyable old value type <computeroutput>W</computeroutput> generates a compile-time error when <computeroutput>boost::contract::old_ptr&lt;W&gt;</computeroutput> is dereferenced, but instead leaves <computeroutput>boost::contract::old_ptr_if_copyable&lt;W&gt;</computeroutput> always null (without generating compile-time errors).</para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.extras.old_value_requirements__templates_">
+</programlisting></para><para>A given old value type <computeroutput>T</computeroutput> is copied only if <computeroutput>boost::contract::is_old_value_copyable&lt;T&gt;::value</computeroutput> is <computeroutput>true</computeroutput>. A copyable old value type <computeroutput>V</computeroutput> is always copied using <computeroutput><link linkend="doxygen.reference.structboost_1_1contract_1_1old__value__copy">boost::contract::old_value_copy&lt;V&gt;</link></computeroutput>. A non-copyable old value type <computeroutput>W</computeroutput> generates a compile-time error when <computeroutput><link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;W&gt;</link></computeroutput> is dereferenced, but instead leaves <computeroutput><link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable">boost::contract::old_ptr_if_copyable&lt;W&gt;</link></computeroutput> always null (without generating compile-time errors).</para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.extras.old_value_requirements__templates_">
         Old Value Requirements</link> </para>
 </formalpara>
 </para></description></struct><class id="doxygen.reference.classboost_1_1contract_1_1old__pointer" name="old_pointer"><purpose>Convert old value copies into old value pointers. </purpose><description><para>This class is usually only implicitly used by this library and it does not explicitly appear in user code (that is why this class does not have public constructors, etc.). </para></description><method-group name="public member functions">
@@ -1387,8 +1387,8 @@ namespace boost { namespace contract {
       <template-type-parameter name="T"><purpose><para>Type of the pointed old value. This type must be copyable (i.e., <computeroutput>boost::contract::is_old_value_copyable&lt;T&gt;::value</computeroutput> must be <computeroutput>true</computeroutput>), otherwise this pointer will always be null and this library will generate a compile-time error when the pointer is dereferenced. </para></purpose></template-type-parameter>
     </template><purpose>Old value pointer that requires the pointed old value type to be copyable. </purpose><description><para>This pointer can be set to point an actual old value copy using either  <computeroutput><macroname alt="BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</macroname></computeroutput> or  <computeroutput><functionname alt="boost::contract::make_old">boost::contract::make_old</functionname></computeroutput> (that is why this class does not have public non-default constructors):</para><para><programlisting language="c++">class u {
 public:
-    virtual void f(..., <link linkend="doxygen.reference.classboost_1_1contract_1_1virtual__">boost::contract::virtual_</link>* v = 0) {
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var = // For copyable `old_type`.
+    virtual void f(..., boost::contract::virtual_* v = 0) {
+        boost::contract::old_ptr&lt;old_type&gt; old_var = // For copyable `old_type`.
                 <link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF</link>(v, old_expr);
         ...
     }
@@ -1398,7 +1398,7 @@ public:
 </programlisting></para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.tutorial.old_values"> Old Values</link></para>
 </formalpara>
 
-</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a77dca6092e64a71132e103aa92883d83" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
+</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1aac75a3cf38e3b69de870d42dc129a2e9" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a699998b265a4267134c29c81cc1cc8be"><purpose>Construct this old value pointer as null. </purpose></constructor>
 <method id="doxygen.reference.classboost_1_1contract_1_1old__ptr_1a455c237b49686caea3fe0c84cba8b1ce" name="operator*" cv="const"><type>T const &amp;</type><purpose>Dereference this old value pointer. </purpose><description><para>This will generate a run-time error if this pointer is null and a compile-time error if the pointed type <computeroutput>T</computeroutput> is not copyable (i.e., if <computeroutput>boost::contract::is_old_value_copyable&lt;T&gt;::value</computeroutput> is <computeroutput>false</computeroutput>).</para><para>
@@ -1418,8 +1418,8 @@ public:
     </template><purpose>Old value pointer that does not require the pointed old value type to be copyable. </purpose><description><para>This pointer can be set to point to an actual old value copy using either  <computeroutput><macroname alt="BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</macroname></computeroutput> or  <computeroutput><functionname alt="boost::contract::make_old">boost::contract::make_old</functionname></computeroutput>:</para><para><programlisting language="c++">template&lt;typename T&gt; // Type `T` might or not be copyable.
 class u {
 public:
-    virtual void f(..., <link linkend="doxygen.reference.classboost_1_1contract_1_1virtual__">boost::contract::virtual_</link>* v = 0) {
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable">boost::contract::old_ptr_if_copyable&lt;T&gt;</link> old_var =
+    virtual void f(..., boost::contract::virtual_* v = 0) {
+        boost::contract::old_ptr_if_copyable&lt;T&gt; old_var =
                 <link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF</link>(v, old_expr);
         ...
             if(old_var) ... // Always null for non-copyable types.
@@ -1432,7 +1432,7 @@ public:
         Old Value Requirements</link></para>
 </formalpara>
 
-</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1af9f1d071df554d53235e27bf647759f8" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
+</para></description><typedef id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1a9af83c479c61b9b5aaf621cfb114a8ba" name="element_type"><purpose>Pointed old value type. </purpose><type>T</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1ac91c6fa0ac5d563e9da9f6d16cb98996"><purpose>Construct this old value pointer as null. </purpose></constructor>
 <constructor id="doxygen.reference.classboost_1_1contract_1_1old__ptr__if__copyable_1adcb8a091a60d2d37b6f0005609b8585e"><parameter name="other"><paramtype><classname>old_ptr</classname>&lt; T &gt; const &amp;</paramtype><description><para>Old value pointer that requires the old value type to be copyable. </para></description></parameter><purpose>Construct this old value pointer from an old value pointer that requires the old value type to be copyable. </purpose><description><para>Ownership of the pointed value object is transferred to this pointer. This constructor is implicitly called by this library when assigning an object of this type using  <computeroutput><macroname alt="BOOST_CONTRACT_OLDOF">BOOST_CONTRACT_OLDOF</macroname></computeroutput> (this constructor is usually not explicitly called by user code).</para><para>
@@ -1499,16 +1499,16 @@ Constant Correctness</link>). </para></description></method>
 
 </para></description><returns><para>Null old value. </para>
 </returns></function>
-<function id="doxygen.reference.old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2" name="make_old"><type><classname>old_pointer</classname></type><parameter name="old"><paramtype><classname>old_value</classname> const &amp;</paramtype><description><para>Old value which is usually implicitly constructed from the user old value expression to be copied (use the ternary operator <computeroutput>?:</computeroutput> to completely avoid to evaluate the old value expression when <computeroutput><link linkend="doxygen.reference.old_8hpp_1a67a705321c3509e497c8a131375caa31">boost::contract::copy_old()</link></computeroutput> is <computeroutput>false</computeroutput>).</para></description></parameter><purpose>Make an old value pointer (but not for virtual public functions and public functions overrides). </purpose><description><para>The related old value pointer will not be null if the specified old value was actually copied. This function is usually only called by code expanded by <computeroutput><link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF(old_expr)</link></computeroutput> as in:</para><para><programlisting language="c++"><link linkend="doxygen.reference.old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2">boost::contract::make_old</link>(boost::contract::copy_old() ? old_expr :
-        boost::contract::null_old())
+<function id="doxygen.reference.old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2" name="make_old"><type><classname>old_pointer</classname></type><parameter name="old"><paramtype><classname>old_value</classname> const &amp;</paramtype><description><para>Old value which is usually implicitly constructed from the user old value expression to be copied (use the ternary operator <computeroutput>?:</computeroutput> to completely avoid to evaluate the old value expression when <computeroutput><link linkend="doxygen.reference.old_8hpp_1a67a705321c3509e497c8a131375caa31">boost::contract::copy_old()</link></computeroutput> is <computeroutput>false</computeroutput>).</para></description></parameter><purpose>Make an old value pointer (but not for virtual public functions and public functions overrides). </purpose><description><para>The related old value pointer will not be null if the specified old value was actually copied. This function is usually only called by code expanded by <computeroutput><link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF(old_expr)</link></computeroutput> as in:</para><para><programlisting language="c++"><link linkend="doxygen.reference.old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2">boost::contract::make_old</link>(<link linkend="doxygen.reference.old_8hpp_1a67a705321c3509e497c8a131375caa31">boost::contract::copy_old</link>() ? old_expr :
+        <link linkend="doxygen.reference.old_8hpp_1a729f8e824d9ff1e0c285ad7a854f0042">boost::contract::null_old</link>())
 </programlisting></para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.extras.no_macros__and_no_variadic_macros_"> No Macros</link></para>
 </formalpara>
 
 
 </para></description><returns><para>Old value pointer (usually implicitly converted to either  <computeroutput><classname alt="boost::contract::old_ptr">boost::contract::old_ptr</classname></computeroutput> or  <computeroutput><classname alt="boost::contract::old_ptr_if_copyable">boost::contract::old_ptr_if_copyable</classname></computeroutput> in user code). </para>
 </returns></function>
-<function id="doxygen.reference.old_8hpp_1ae26e922bef0d14fc34f91b3c41467d39" name="make_old"><type><classname>old_pointer</classname></type><parameter name="v"><paramtype><classname>virtual_</classname> *</paramtype><description><para>The trailing parameter of type  <computeroutput><classname alt="boost::contract::virtual_">boost::contract::virtual_</classname></computeroutput><computeroutput>*</computeroutput> and default value <computeroutput>0</computeroutput> from the enclosing virtual or overriding public function declaring the contract. </para></description></parameter><parameter name="old"><paramtype><classname>old_value</classname> const &amp;</paramtype><description><para>Old value which is usually implicitly constructed from the user old value expression to be copied (use the ternary operator <computeroutput>?:</computeroutput> to completely avoid to evaluate the old value expression when <computeroutput>boost::contract::copy_old(v)</computeroutput> is <computeroutput>false</computeroutput>).</para></description></parameter><purpose>Make an old value pointer (for virtual public functions and public functions overrides). </purpose><description><para>The related old value pointer will not be null if the specified old value was actually copied. This function is usually only called by code expanded by <computeroutput><link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF(v, old_expr)</link></computeroutput> as in:</para><para><programlisting language="c++"><link linkend="doxygen.reference.old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2">boost::contract::make_old</link>(v, boost::contract::copy_old(v) ? old_expr :
-        boost::contract::null_old())
+<function id="doxygen.reference.old_8hpp_1ae26e922bef0d14fc34f91b3c41467d39" name="make_old"><type><classname>old_pointer</classname></type><parameter name="v"><paramtype><classname>virtual_</classname> *</paramtype><description><para>The trailing parameter of type  <computeroutput><classname alt="boost::contract::virtual_">boost::contract::virtual_</classname></computeroutput><computeroutput>*</computeroutput> and default value <computeroutput>0</computeroutput> from the enclosing virtual or overriding public function declaring the contract. </para></description></parameter><parameter name="old"><paramtype><classname>old_value</classname> const &amp;</paramtype><description><para>Old value which is usually implicitly constructed from the user old value expression to be copied (use the ternary operator <computeroutput>?:</computeroutput> to completely avoid to evaluate the old value expression when <computeroutput>boost::contract::copy_old(v)</computeroutput> is <computeroutput>false</computeroutput>).</para></description></parameter><purpose>Make an old value pointer (for virtual public functions and public functions overrides). </purpose><description><para>The related old value pointer will not be null if the specified old value was actually copied. This function is usually only called by code expanded by <computeroutput><link linkend="doxygen.reference.old_8hpp_1a07326d65350421d14684447dec36d1ba">BOOST_CONTRACT_OLDOF(v, old_expr)</link></computeroutput> as in:</para><para><programlisting language="c++"><link linkend="doxygen.reference.old_8hpp_1ac830f5b87c0287b13b7579e384bb63b2">boost::contract::make_old</link>(v, <link linkend="doxygen.reference.old_8hpp_1a67a705321c3509e497c8a131375caa31">boost::contract::copy_old</link>(v) ? old_expr :
+        <link linkend="doxygen.reference.old_8hpp_1a729f8e824d9ff1e0c285ad7a854f0042">boost::contract::null_old</link>())
 </programlisting></para><para><formalpara><title>See Also:</title><para> <link linkend="boost_contract.extras.no_macros__and_no_variadic_macros_"> No Macros</link></para>
 </formalpara>
 
@@ -1617,7 +1617,7 @@ BOOST_CONTRACT_OVERRIDE(f_n)
 public:
     static void f(...) {
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::public_function&lt;u&gt;()
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d">boost::contract::public_function&lt;u&gt;</link>()
             .precondition([&amp;] { // Optional.
                 <link linkend="doxygen.reference.assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82">BOOST_CONTRACT_ASSERT</link>(...);
                 ...
@@ -1661,8 +1661,8 @@ public:
 public:
     void f(...) {
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::public_function(this)
-            .<link linkend="doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1a91c8dbd61d932d70d86835717e232ec9">precondition</link>([&amp;] { // Optional.
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d">boost::contract::public_function</link>(this)
+            .precondition([&amp;] { // Optional.
                 <link linkend="doxygen.reference.assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82">BOOST_CONTRACT_ASSERT</link>(...);
                 ...
             })
@@ -1706,8 +1706,8 @@ public:
 public:
     void f(..., <link linkend="doxygen.reference.classboost_1_1contract_1_1virtual__">boost::contract::virtual_</link>* v = 0) {
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::public_function(v, this)
-            .<link linkend="doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1a91c8dbd61d932d70d86835717e232ec9">precondition</link>([&amp;] { // Optional.
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d">boost::contract::public_function</link>(v, this)
+            .precondition([&amp;] { // Optional.
                 <link linkend="doxygen.reference.assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82">BOOST_CONTRACT_ASSERT</link>(...);
                 ...
             })
@@ -1754,9 +1754,9 @@ public:
     t f(..., <link linkend="doxygen.reference.classboost_1_1contract_1_1virtual__">boost::contract::virtual_</link>* v = 0) {
         t result;
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::public_function(
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d">boost::contract::public_function</link>(
                 v, result, this)
-            .<link linkend="doxygen.reference.classboost_1_1contract_1_1specify__precondition__old__postcondition__except_1a91c8dbd61d932d70d86835717e232ec9">precondition</link>([&amp;] { // Optional.
+            .precondition([&amp;] { // Optional.
                 <link linkend="doxygen.reference.assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82">BOOST_CONTRACT_ASSERT</link>(...);
                 ...
             })
@@ -1814,7 +1814,7 @@ public:
     // Override from `b::f`.
     void f(t_1 a_1, ..., t_n a_n, <link linkend="doxygen.reference.classboost_1_1contract_1_1virtual__">boost::contract::virtual_</link>* v = 0) {
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::public_function&lt;
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d">boost::contract::public_function</link>&lt;
                 override_f&gt;(v, &amp;u::f, this, a_1, ..., a_n)
             .precondition([&amp;] { // Optional.
                 <link linkend="doxygen.reference.assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82">BOOST_CONTRACT_ASSERT</link>(...);
@@ -1878,7 +1878,7 @@ public:
     t f(t_1 a_1, ..., t_n a_n, <link linkend="doxygen.reference.classboost_1_1contract_1_1virtual__">boost::contract::virtual_</link>* v = 0) {
         t result;
         <link linkend="doxygen.reference.classboost_1_1contract_1_1old__ptr">boost::contract::old_ptr&lt;old_type&gt;</link> old_var;
-        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = boost::contract::public_function&lt;
+        <link linkend="doxygen.reference.classboost_1_1contract_1_1check">boost::contract::check</link> c = <link linkend="doxygen.reference.public__function_8hpp_1af4be705243ef0a8eba4ace7cf17fa79d">boost::contract::public_function</link>&lt;
                 override_f&gt;(v, result, &amp;u::f, this, a_1, ..., a_n)
             .precondition([&amp;] { // Optional.
                 <link linkend="doxygen.reference.assert_8hpp_1ae303d6f9ab0475779997ce49048c1f82">BOOST_CONTRACT_ASSERT</link>(...);

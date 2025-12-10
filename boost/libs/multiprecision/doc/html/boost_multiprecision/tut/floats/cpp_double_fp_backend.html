@@ -44,36 +44,39 @@
 </pre>
 <p>
           The <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
-          back-end is the sum of two IEEE floating-point numbers combined to create
-          a type having rougly twice the composite width of one of its parts. The
-          <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code> back-end
-          is used in conjunction with <code class="computeroutput"><span class="identifier">number</span></code>
+          back-end is a relatively simple two-limb backend type. It is composed of
+          the sum of two IEEE floating-point numbers. These are combined to create
+          a type having a composite width rougly twice that as one of its parts.
+          The <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
+          back-end is used in conjunction with <code class="computeroutput"><span class="identifier">number</span></code>
           and acts as an entirely C++ header only floating-point number type.
         </p>
 <p>
           The implementation relies on double-word arithmetic which is a technique
           used to represent a real number as the sum of two floating-point numbers.
           Other commonly used names for this include <code class="computeroutput"><span class="keyword">double</span><span class="special">-</span><span class="keyword">double</span></code>
-          of <code class="computeroutput"><span class="keyword">double</span><span class="special">-</span><span class="identifier">word</span></code> arithmetic.
+          or <code class="computeroutput"><span class="keyword">double</span><span class="special">-</span><span class="identifier">word</span></code> arithmetic.
         </p>
 <p>
           The <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
           types have fixed width and do not allocate. The type <code class="computeroutput"><span class="identifier">cpp_double_double</span></code>,
-          for instance, (composed of two double-precision IEEE floating-point numebers)
-          has (on most common systems) 106 binary digits of precision and approximately
-          32 decimal digits of precision.
+          for instance, is composed of two built-in <code class="computeroutput"><span class="keyword">double</span></code>
+          components. On most common systems, built-in <code class="computeroutput"><span class="keyword">double</span></code>
+          is a double-precision IEEE floating-point number. This results in a <code class="computeroutput"><span class="identifier">cpp_double_double</span></code> that has 106 binary
+          digits and approximately 32 decimal digits of precision.
         </p>
 <p>
           The exponent ranges of the types are slightly limited (on the negative
-          side) compared to those of the composite type. Consider again the type
-          <code class="computeroutput"><span class="identifier">cpp_double_double</span></code>, composed
-          of two double-precision IEEE double-precision floating-point numebers.
-          On common systems, this type has a maximum decimal exponent of 308 (as
-          does a single double-precision floating point number). The negative minimum
-          exponent, however, is about -291, which is less range than the -307 from
-          standalone double. The reason for the limitation is because the composite
-          lower-limb has lower value than its upper limb and would underflow or become
-          subnormal if the upper limb had its usual minimum value.
+          side) compared to those of the composing type. Consider again the type
+          <code class="computeroutput"><span class="identifier">cpp_double_double</span></code>, which
+          is built from two double-precision IEEE double-precision floating-point
+          numebers. On common systems, this type has a maximum decimal exponent of
+          308 (the same as one single double-precision floating point number). The
+          negative minimum exponent, however, is about -291, which is less range
+          than -307 from standalone double. The reason for the limitation is because
+          the composite lower-limb has lower value than its upper limb. The composite
+          type would easily underflow or become subnormal if the upper limb had its
+          usual minimum value.
         </p>
 <p>
           There is full standard library and <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">numeric_limits</span></code>
@@ -89,8 +92,8 @@
 <p>
           Run-time performance is a top-level requirement for the <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
           types. The types still do, however, support infinities, NaNs and (of course)
-          zeros. Signed negative zero, however, is not supported (in favor of efficiency)
-          and all zeros are treated as positive.
+          zeros. Signed negative zero, however, is not supported (in favor of efficiency).
+          All zeros are treated as positive.
         </p>
 <p>
           The <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
@@ -112,11 +115,12 @@
               types.
             </li>
 <li class="listitem">
-              The types can not be used with compiler variations of <span class="underline">fast</span>-<span class="underline">math</span> (i.e., <code class="computeroutput"><span class="special">-</span><span class="identifier">ffast</span><span class="special">-</span><span class="identifier">math</span></code> on GCC can not be used and
-              <code class="computeroutput"><span class="special">/</span><span class="identifier">fp</span><span class="special">:</span><span class="identifier">precise</span></code>
-              is mandatory on MSVC compilers). This is because the algorithms (particularly
-              those for addition, subtraction, multiplication and square root) rely
-              on precise floating-point rouunding.
+              The types can not be used with certain compiler variations of <span class="underline">fast</span>-<span class="underline">math</span>.
+              On GCC/clang, for instance, <code class="computeroutput"><span class="special">-</span><span class="identifier">ffast</span><span class="special">-</span><span class="identifier">math</span></code> can not be used (use either
+              the default or explicitly set <code class="computeroutput"><span class="special">-</span><span class="identifier">fno</span><span class="special">-</span><span class="identifier">fast</span><span class="special">-</span><span class="identifier">math</span></code>). On MSVC <code class="computeroutput"><span class="special">/</span><span class="identifier">fp</span><span class="special">:</span><span class="identifier">fast</span></code> can not be used and <code class="computeroutput"><span class="special">/</span><span class="identifier">fp</span><span class="special">:</span><span class="identifier">precise</span></code>
+              (the default) is mandatory on MSVC compilers. This is because the algorithms,
+              in particular those for addition, subtraction, multiplication, division
+              and square root, rely on precise floating-point rounding.
             </li>
 <li class="listitem">
               The composite types are not as precise as their constituents. For information
@@ -127,20 +131,21 @@
               these types.
             </li>
 <li class="listitem">
-              Large parts (but not all) of the <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
+              Almost all of the methods of the <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
               implementation are <code class="computeroutput"><span class="keyword">constexpr</span></code>.
-              Future evolution is anticipated to make this library entirely <code class="computeroutput"><span class="keyword">constexpr</span></code>.
+              The sole exception is read-from-string, which is not yet <code class="computeroutput"><span class="keyword">constexpr</span></code>, but may become so in future
+              evolution.
             </li>
 <li class="listitem">
-              Conversions to and from string internally use an intermediate <code class="computeroutput"><span class="identifier">cpp_bin_float</span></code> value (which is a bit
-              awkward may be eliminated in future refinements).
+              Conversions to and from string internally use an intermediate <code class="computeroutput"><span class="identifier">cpp_bin_float</span></code> value. This is a bit
+              awkward may be eliminated in future refinements.
             </li>
 </ul></div>
 <p>
           The <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
-          back-end has been inspired by original works and types such as the historical
-          <code class="computeroutput"><span class="identifier">doubledouble</span></code> and more.
-          These include the following:
+          back-end has been inspired by original works and types. These include the
+          historical <code class="computeroutput"><span class="identifier">doubledouble</span></code>
+          and more, as listed below.
         </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -165,7 +170,8 @@
             </li>
 <li class="listitem">
               The foundational <code class="computeroutput"><span class="identifier">cpp_double_fp_backend</span></code>
-              draft was originally created by Fahad Syed in BoostGSoC2021 <span class="underline">multiprecision</span> <a href="https://github.com/BoostGSoC21/multiprecision" target="_top">https://github.com/BoostGSoC21/multiprecision</a>.
+              draft was originally created by Fahad Syed in Boost GSoC2021 multiprecision
+              project. Its source code can be found at <a href="https://github.com/BoostGSoC21/multiprecision" target="_top">https://github.com/BoostGSoC21/multiprecision</a>.
             </li>
 </ul></div>
 </div>

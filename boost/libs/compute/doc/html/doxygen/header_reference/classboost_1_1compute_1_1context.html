@@ -56,22 +56,22 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1compute_1_1context.html#doxygen.header_reference.classboost_1_1compute_1_1context_1a25a59589d2a3e87dbbbbcc79a81bfb65"><span class="keyword">operator</span><span class="special">!=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id29475"></a><h2>Description</h2>
+<a name="id29466"></a><h2>Description</h2>
 <p>The context class represents a compute context.</p>
 <p>A context object manages a set of OpenCL resources including memory buffers and program objects. Before allocating memory on the device or executing kernels you must set up a context object.</p>
 <p>To create a context for the default device on the system: </p>
 <pre class="programlisting"><span class="comment">// get the default compute device</span>
-<a class="link" href="classboost_1_1compute_1_1device.html" title="Class device"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">device</span></a> <span class="identifier">gpu</span> <span class="special">=</span> <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a7e1531ff30d091e9127eaa6d96cbb3b7"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">default_device</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">device</span> <span class="identifier">gpu</span> <span class="special">=</span> <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a7e1531ff30d091e9127eaa6d96cbb3b7"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">default_device</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
 <span class="comment">// create a context for the device</span>
-<a class="link" href="classboost_1_1compute_1_1context.html" title="Class context"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">context</span></a> <a class="link" href="classboost_1_1compute_1_1context.html#doxygen.header_reference.classboost_1_1compute_1_1context_1a5f2e11587133c31974e695e7d33c4c00"><span class="identifier">context</span></a><span class="special">(</span><span class="identifier">gpu</span><span class="special">)</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">context</span> <a class="link" href="classboost_1_1compute_1_1context.html#doxygen.header_reference.classboost_1_1compute_1_1context_1a5f2e11587133c31974e695e7d33c4c00"><span class="identifier">context</span></a><span class="special">(</span><span class="identifier">gpu</span><span class="special">)</span><span class="special">;</span>
 </pre>
 <p>Once a context is created, memory can be allocated using the buffer class and kernels can be executed using the <a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue">command_queue</a> class.</p>
 <p><b>See Also: </b><a class="link" href="classboost_1_1compute_1_1device.html" title="Class device">device</a>, <a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue">command_queue</a> </p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id29522"></a><h3>
+<a name="id29511"></a><h3>
 <a name="id19-bb"></a><code class="computeroutput">context</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Boost.Pool">
-<link rel="up" href="poolfwd_8hpp.html" title="Header &lt;boost/pool/poolfwd.hpp&gt;">
-<link rel="prev" href="classboost_1_1object__pool.html" title="Class template object_pool">
-<link rel="next" href="classboost_1_1pool__allocator.html" title="Class template pool_allocator">
+<link rel="up" href="pool_8hpp.html" title="Header &lt;boost/pool/pool.hpp&gt;">
+<link rel="prev" href="structboost_1_1default__user__allocator__new__delete.html" title="Struct default_user_allocator_new_delete">
+<link rel="next" href="pool_8hpp_1a08cb8754c060f3e0e2c37f1e75ff997b.html" title="Global pool&lt; UserAllocator &gt;::min_alloc_size">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1object__pool.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="poolfwd_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1pool__allocator.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1default__user__allocator__new__delete.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="pool_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="pool_8hpp_1a08cb8754c060f3e0e2c37f1e75ff997b.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.boost_pool_c___reference.classboost_1_1pool"></a><div class="titlepage"></div>
@@ -30,30 +30,34 @@
 <p>boost::pool — A fast memory allocator that guarantees proper alignment of all allocated chunks. </p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="poolfwd_8hpp.html" title="Header &lt;boost/pool/poolfwd.hpp&gt;">boost/pool/poolfwd.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="pool_8hpp.html" title="Header &lt;boost/pool/pool.hpp&gt;">boost/pool/pool.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> UserAllocator<span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a> <span class="special">:</span>
   <span class="keyword">protected</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">simple_segregated_storage</span><span class="special">&lt;</span> <span class="identifier">UserAllocator</span><span class="special">::</span><span class="identifier">size_type</span> <span class="special">&gt;</span>
 <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
+  <span class="comment">// types</span>
+  <span class="keyword">typedef</span> <span class="identifier">UserAllocator</span>                  <a name="doxygen.boost_pool_c___reference.classboost_1_1pool_1ace00756a399746d2a8469bb0e322ae3b"></a><span class="identifier">user_allocator</span><span class="special">;</span>   <span class="comment">// User allocator. </span>
+  <span class="keyword">typedef</span> <span class="identifier">UserAllocator</span><span class="special">::</span><span class="identifier">size_type</span>       <a name="doxygen.boost_pool_c___reference.classboost_1_1pool_1a8bbc458e2cf4cd4c69a2f9ac41966096"></a><span class="identifier">size_type</span><span class="special">;</span>        <span class="comment">// An unsigned integral type that can represent the size of the largest object to be allocated. </span>
+  <span class="keyword">typedef</span> <span class="identifier">UserAllocator</span><span class="special">::</span><span class="identifier">difference_type</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1pool_1a4a03aa4f147ed0e91134909fc8f999cb"></a><span class="identifier">difference_type</span><span class="special">;</span>  <span class="comment">// A signed integral type that can represent the difference of any two pointers. </span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id8-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id6-bb">private member functions</a></span>
   <span class="keyword">void</span> <span class="special">*</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1aa28e378d455b528da508198c9bbb46fd"><span class="identifier">malloc_need_resize</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <span class="special">*</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a4126578d7378dd66ff35928748d9cc2a"><span class="identifier">ordered_malloc_need_resize</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id9-bb">protected member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id7-bb">protected member functions</a></span>
   <a class="link" href="classboost_1_1simple__segregated__storage.html" title="Class template simple_segregated_storage">simple_segregated_storage</a><span class="special">&lt;</span> <span class="identifier">size_type</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a8ae8c592cafd3005833985e6007f4ce9"><span class="identifier">store</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">const</span> <a class="link" href="classboost_1_1simple__segregated__storage.html" title="Class template simple_segregated_storage">simple_segregated_storage</a><span class="special">&lt;</span> <span class="identifier">size_type</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1abe909c23eb3fa1001828e66c087de3a8"><span class="identifier">store</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   details::PODptr<span class="special">&lt;</span> <span class="identifier">size_type</span> <span class="special">&gt;</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a45fee647ab7f770084f9df17b4dcb349"><span class="identifier">find_POD</span></a><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span><span class="keyword">const</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="identifier">size_type</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a5e45c9d14db05e898fb6aafca2fddf09"><span class="identifier">alloc_size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="identifier">size_type</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1aac21da60f091ec190d2833a995a08d10"><span class="identifier">max_chunks</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id10-bb">protected static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id8-bb">protected static functions</a></span>
   <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a9742ecb2b7c3e2d3a6037b7885515be1"><span class="identifier">is_from</span></a><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span><span class="keyword">const</span><span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="keyword">const</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span><span class="special">&amp;</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a647d065ad02da75fca18b83936508b8e"><span class="identifier">nextof</span></a><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span><span class="keyword">const</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id11-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1pool.html#id9-bb">public member functions</a></span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1ad7c9846bf121da66fffed34983b4768c"><span class="identifier">pool</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">size_type</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">size_type</span> <span class="special">=</span> <span class="number">32</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">size_type</span> <span class="special">=</span> <span class="number">0</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a60752fe8cccb8fe989abe2e72c91c311"><span class="special">~</span><span class="identifier">pool</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a1132035ce513c0ff2659d1b7c7575c17"><span class="identifier">release_memory</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -73,17 +77,17 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1ae9fdb0b69d12775105e726841af224ee"><span class="identifier">is_from</span></a><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span><span class="keyword">const</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id5336"></a><h2>Description</h2>
+<a name="id4553"></a><h2>Description</h2>
 <p>Whenever an object of type pool needs memory from the system, it will request it from its UserAllocator template parameter. The amount requested is determined using a doubling algorithm; that is, each time more system memory is allocated, the amount of system memory requested is doubled.</p>
 <p>Users may control the doubling algorithm by using the following extensions:</p>
-<p>Users may pass an additional constructor parameter to pool. This parameter is of type size_type, and is the number of chunks to request from the system the first time that object needs to allocate system memory. The default is 32. This parameter may not be 0.</p>
-<p>Users may also pass an optional third parameter to pool's constructor. This parameter is of type size_type, and sets a maximum size for allocated chunks. When this parameter takes the default value of 0, then there is no upper limit on chunk size.</p>
+<p>Users may pass an additional constructor parameter to pool. This parameter is of type <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a8bbc458e2cf4cd4c69a2f9ac41966096">size_type</a>, and is the number of chunks to request from the system the first time that object needs to allocate system memory. The default is 32. This parameter may not be 0.</p>
+<p>Users may also pass an optional third parameter to pool's constructor. This parameter is of type <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a8bbc458e2cf4cd4c69a2f9ac41966096">size_type</a>, and sets a maximum size for allocated chunks. When this parameter takes the default value of 0, then there is no upper limit on chunk size.</p>
 <p>Finally, if the doubling algorithm results in no memory being allocated, the pool will backtrack just once, halving the chunk size and trying again.</p>
 <p><span class="bold"><strong>UserAllocator type</strong></span> - the method that the Pool will use to allocate memory from the system.</p>
 <p>There are essentially two ways to use class pool: the client can call <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1af9052867b239e8623fc20fd73a7b4d7b">malloc()</a> and <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1af75b007562bab4ed80860261e0752f51">free()</a> to allocate and free single chunks of memory, this is the most efficient way to use a pool, but does not allow for the efficient allocation of arrays of chunks. Alternatively, the client may call <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1adc89892e1fed68d541c6a8c40b01ad57">ordered_malloc()</a> and <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1aca402414a3920eb67d800b2c38581533">ordered_free()</a>, in which case the free list is maintained in an ordered state, and efficient allocation of arrays of chunks are possible. However, this latter option can suffer from poor performance when large numbers of allocations are performed. </p>
 <div class="refsect2">
-<a name="id5350"></a><h3>
-<a name="id8-bb"></a><code class="computeroutput">pool</code> private member functions</h3>
+<a name="id4569"></a><h3>
+<a name="id6-bb"></a><code class="computeroutput">pool</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">void</span> <span class="special">*</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1pool_1aa28e378d455b528da508198c9bbb46fd"></a><span class="identifier">malloc_need_resize</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
@@ -125,8 +129,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id5392"></a><h3>
-<a name="id9-bb"></a><code class="computeroutput">pool</code> protected member functions</h3>
+<a name="id4611"></a><h3>
+<a name="id7-bb"></a><code class="computeroutput">pool</code> protected member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a class="link" href="classboost_1_1simple__segregated__storage.html" title="Class template simple_segregated_storage">simple_segregated_storage</a><span class="special">&lt;</span> <span class="identifier">size_type</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1pool_1a8ae8c592cafd3005833985e6007f4ce9"></a><span class="identifier">store</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
@@ -194,8 +198,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id5485"></a><h3>
-<a name="id10-bb"></a><code class="computeroutput">pool</code> protected static functions</h3>
+<a name="id4704"></a><h3>
+<a name="id8-bb"></a><code class="computeroutput">pool</code> protected static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">bool</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1pool_1a9742ecb2b7c3e2d3a6037b7885515be1"></a><span class="identifier">is_from</span><span class="special">(</span><span class="keyword">void</span> <span class="special">*</span><span class="keyword">const</span> chunk<span class="special">,</span> <span class="keyword">char</span> <span class="special">*</span><span class="keyword">const</span> i<span class="special">,</span> 
@@ -258,8 +262,8 @@ Returns false if chunk was allocated from some other pool, or may be returned as
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id5557"></a><h3>
-<a name="id11-bb"></a><code class="computeroutput">pool</code> public member functions</h3>
+<a name="id4776"></a><h3>
+<a name="id9-bb"></a><code class="computeroutput">pool</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">explicit</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1pool_1ad7c9846bf121da66fffed34983b4768c"></a><span class="identifier">pool</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">size_type</span> nrequested_size<span class="special">,</span> 
@@ -285,7 +289,7 @@ Returns false if chunk was allocated from some other pool, or may be returned as
 </tr>
 <tr>
 <td><p><span class="term"><code class="computeroutput">nnext_size</code></span></p></td>
-<td><p>parameter is of type size_type, is the number of chunks to request from the system the first time that object needs to allocate system memory. The default is 32. This parameter may not be 0. </p></td>
+<td><p>parameter is of type <a class="link" href="classboost_1_1pool.html#doxygen.boost_pool_c___reference.classboost_1_1pool_1a8bbc458e2cf4cd4c69a2f9ac41966096">size_type</a>, is the number of chunks to request from the system the first time that object needs to allocate system memory. The default is 32. This parameter may not be 0. </p></td>
 </tr>
 <tr>
 <td><p><span class="term"><code class="computeroutput">nmax_size</code></span></p></td>
@@ -494,7 +498,7 @@ Returns false if chunk was allocated from some other pool, or may be returned as
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1object__pool.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="poolfwd_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="classboost_1_1pool__allocator.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1default__user__allocator__new__delete.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="pool_8hpp.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="pool_8hpp_1a08cb8754c060f3e0e2c37f1e75ff997b.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

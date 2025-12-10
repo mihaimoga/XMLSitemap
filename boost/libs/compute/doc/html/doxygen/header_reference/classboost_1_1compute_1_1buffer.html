@@ -61,13 +61,13 @@
 
 <span class="identifier">queue</span><span class="special">.</span><span class="identifier">enqueue_write_buffer</span><span class="special">(</span><span class="identifier">buf</span><span class="special">,</span> <span class="number">0</span><span class="special">,</span> <span class="number">4</span> <span class="special">*</span> <span class="keyword">sizeof</span><span class="special">(</span><span class="keyword">int</span><span class="special">)</span><span class="special">,</span> <span class="identifier">data</span><span class="special">)</span><span class="special">;</span>
 </pre>
-<p>Also see the copy() algorithm for a higher-level interface to copying data between the host and the device. For a higher-level, dynamically-resizable, type-safe container for data on a compute device, use the vector&lt;T&gt; class.</p>
+<p>Also see the copy() algorithm for a higher-level interface to copying data between the host and the device. For a higher-level, dynamically-resizable, type-safe container for data on a compute device, use the <a class="link" href="classboost_1_1compute_1_1vector.html" title="Class template vector">vector&lt;T&gt;</a> class.</p>
 <p>Buffer objects have reference semantics. Creating a copy of a buffer object simply creates another reference to the underlying OpenCL memory object. To create an actual copy use the <a class="link" href="classboost_1_1compute_1_1buffer.html#doxygen.header_reference.classboost_1_1compute_1_1buffer_1ac2aa43949315d53ef5851632ef0bba5e">buffer::clone()</a> method.</p>
 <p><b>See Also: </b><a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a>, <a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue">command_queue</a> </p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id15563"></a><h3>
+<a name="id15564"></a><h3>
 <a name="id6-bb"></a><code class="computeroutput">buffer</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -107,7 +107,7 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><a class="link" href="classboost_1_1compute_1_1buffer.html" title="Class buffer">buffer</a> <a name="doxygen.header_reference.classboost_1_1compute_1_1buffer_1a11501120b23d0e6fda2794cd7ed0f20b"></a><span class="identifier">create_subbuffer</span><span class="special">(</span><span class="identifier">cl_mem_flags</span> flags<span class="special">,</span> <span class="identifier">size_t</span> origin<span class="special">,</span> <span class="identifier">size_t</span> size<span class="special">)</span><span class="special">;</span></pre>
-<p>Creates a new buffer out of this buffer. The new buffer is a sub region of this buffer. <code class="computeroutput">flags</code> The mem_flags which should be used to create the new buffer <code class="computeroutput">origin</code> The start index in this buffer <code class="computeroutput">size</code> The size of the new sub buffer</p>
+<p>Creates a new buffer out of this buffer. The new buffer is a sub region of this buffer. <code class="computeroutput">flags</code> The <a class="link" href="classboost_1_1compute_1_1memory__object.html#doxygen.header_reference.classboost_1_1compute_1_1memory__object_1aadbed46e5fd319c9905a97aa88a36da2">mem_flags</a> which should be used to create the new buffer <code class="computeroutput">origin</code> The start index in this buffer <code class="computeroutput">size</code> The size of the new sub buffer</p>
 <p>See the documentation for </p>
 </li>
 </ol></div>

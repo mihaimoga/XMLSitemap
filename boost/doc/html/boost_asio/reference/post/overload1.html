@@ -1,13 +1,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>post (1 of 3 overloads)</title>
+<title>post (1 of 7 overloads)</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../../boost_asio.html" title="Boost.Asio">
 <link rel="up" href="../post.html" title="post">
 <link rel="prev" href="../post.html" title="post">
-<link rel="next" href="overload2.html" title="post (2 of 3 overloads)">
+<link rel="next" href="overload2.html" title="post (2 of 7 overloads)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -25,15 +25,15 @@
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
-<a name="boost_asio.reference.post.overload1"></a><a class="link" href="overload1.html" title="post (1 of 3 overloads)">post (1 of 3 overloads)</a>
+<a name="boost_asio.reference.post.overload1"></a><a class="link" href="overload1.html" title="post (1 of 7 overloads)">post (1 of 7 overloads)</a>
 </h4></div></div></div>
 <p>
           Submits a completion token or function object for execution.
         </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">typename</span> <a class="link" href="../NullaryToken.html" title="Nullary token requirements">NullaryToken</a><span class="special">&gt;</span>
+    <span class="keyword">typename</span> <a class="link" href="../NullaryToken.html" title="Nullary token requirements">NullaryToken</a> <span class="special">=</span> <span class="identifier">deferred_t</span><span class="special">&gt;</span>
 <span class="keyword">auto</span> <span class="identifier">post</span><span class="special">(</span>
-    <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span><span class="special">);</span>
+    <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">deferred_t</span><span class="special">());</span>
 </pre>
 <p>
           This function submits an object for execution using the object's associated
@@ -92,7 +92,7 @@
               of type <code class="computeroutput"><span class="identifier">Ex</span></code> by performing
             </p>
 <p class="simpara">
-              auto ex = get_associated_executor(handler);
+              auto ex = get_associated_executor(completion_handler);
             </p>
 </li>
 <li class="listitem">
@@ -101,7 +101,7 @@
               by performing
             </p>
 <p class="simpara">
-              auto alloc = get_associated_allocator(handler);
+              auto alloc = get_associated_allocator(completion_handler);
             </p>
 </li>
 <li class="listitem">

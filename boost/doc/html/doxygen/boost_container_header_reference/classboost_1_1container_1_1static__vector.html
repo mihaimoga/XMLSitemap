@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp" title="Header &lt;boost/container/static_vector.hpp&gt;">
+<link rel="up" href="../../container/index_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp" title="Header &lt;boost/container/static_vector.hpp&gt;">
 <link rel="prev" href="classboost_1_1container_1_1stable__vector.html" title="Class template stable_vector">
 <link rel="next" href="static__vector_8hpp_1a15b54bd544d6f12206efdb88305f7c85.html" title="Function template operator==">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1container_1_1stable__vector.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="static__vector_8hpp_1a15b54bd544d6f12206efdb88305f7c85.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="classboost_1_1container_1_1stable__vector.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="static__vector_8hpp_1a15b54bd544d6f12206efdb88305f7c85.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector"></a><div class="titlepage"></div>
@@ -31,25 +31,25 @@
 <p>boost::container::static_vector — A variable-size array container with fixed capacity. </p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp" title="Header &lt;boost/container/static_vector.hpp&gt;">boost/container/static_vector.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../container/index_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp" title="Header &lt;boost/container/static_vector.hpp&gt;">boost/container/static_vector.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> Capacity<span class="special">,</span> <span class="keyword">typename</span> Options <span class="special">=</span> <span class="keyword">void</span><span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">value_type</span>             <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1aa3ab7fe7c4add3a0c7687eb97ebd3065"></a><span class="identifier">value_type</span><span class="special">;</span>              <span class="comment">// The type of elements stored in the container. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">size_type</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a0b04ef3bc56c5bb818ba68027ea8b260"></a><span class="identifier">size_type</span><span class="special">;</span>               <span class="comment">// The unsigned integral type used by the container. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">difference_type</span>        <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1af496c8728ca8498d4e2cd3e4821675fd"></a><span class="identifier">difference_type</span><span class="special">;</span>         <span class="comment">// The pointers difference type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">pointer</span>                <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1ae264c06fe1ca9a2cfaecd3ab7edba0ac"></a><span class="identifier">pointer</span><span class="special">;</span>                 <span class="comment">// The pointer type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_pointer</span>          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1ad63b407363bf8505388faedc51754910"></a><span class="identifier">const_pointer</span><span class="special">;</span>           <span class="comment">// The const pointer type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">reference</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a5c2c86981919ad31f967d1b96e7ff3c0"></a><span class="identifier">reference</span><span class="special">;</span>               <span class="comment">// The value reference type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_reference</span>        <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1aa42b7872a54695ab7ee50c589530bf27"></a><span class="identifier">const_reference</span><span class="special">;</span>         <span class="comment">// The value const reference type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">iterator</span>               <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1ae6dca134991cc849c4fb4d57571b39d9"></a><span class="identifier">iterator</span><span class="special">;</span>                <span class="comment">// The iterator type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_iterator</span>         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a46509fab6c1ce019759a50a78c82e98f"></a><span class="identifier">const_iterator</span><span class="special">;</span>          <span class="comment">// The const iterator type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">reverse_iterator</span>       <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a74780e6f31a93363cc039696c2ed5ac3"></a><span class="identifier">reverse_iterator</span><span class="special">;</span>        <span class="comment">// The reverse iterator type. </span>
-  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_reverse_iterator</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a69879b80779827d4493ba865acc6c512"></a><span class="identifier">const_reverse_iterator</span><span class="special">;</span>  <span class="comment">// The const reverse iterator. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">value_type</span>             <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a65ccb46ec782de1c0d57fecfb8652073"></a><span class="identifier">value_type</span><span class="special">;</span>              <span class="comment">// The type of elements stored in the container. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">size_type</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a34518abcc22dea0db3fd31860a0d956c"></a><span class="identifier">size_type</span><span class="special">;</span>               <span class="comment">// The unsigned integral type used by the container. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">difference_type</span>        <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1ad804e854103c5bcad43cb440c9efea2e"></a><span class="identifier">difference_type</span><span class="special">;</span>         <span class="comment">// The pointers difference type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">pointer</span>                <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1acb1b1ba303fedb66cf9a9603cefd32ef"></a><span class="identifier">pointer</span><span class="special">;</span>                 <span class="comment">// The pointer type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_pointer</span>          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1add06f09d6b2201e2c67f6357d8022df1"></a><span class="identifier">const_pointer</span><span class="special">;</span>           <span class="comment">// The const pointer type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">reference</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1aa5e8bd631436c64da2dc2228b00560fb"></a><span class="identifier">reference</span><span class="special">;</span>               <span class="comment">// The value reference type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_reference</span>        <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a788076bb1d007e4155cfbda66af9ef05"></a><span class="identifier">const_reference</span><span class="special">;</span>         <span class="comment">// The value const reference type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">iterator</span>               <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a0babc5b395e6090627ad3f6131f40f06"></a><span class="identifier">iterator</span><span class="special">;</span>                <span class="comment">// The iterator type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_iterator</span>         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3"></a><span class="identifier">const_iterator</span><span class="special">;</span>          <span class="comment">// The const iterator type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">reverse_iterator</span>       <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abfdfe1eec667a1b1a0d3996681e83a44"></a><span class="identifier">reverse_iterator</span><span class="special">;</span>        <span class="comment">// The reverse iterator type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">base_t</span><span class="special">::</span><span class="identifier">const_reverse_iterator</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaa839256b6e8232b579a59450e81b4c"></a><span class="identifier">const_reverse_iterator</span><span class="special">;</span>  <span class="comment">// The const reverse iterator. </span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1container_1_1static__vector.html#id122-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1container_1_1static__vector.html#id130-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a7c3168e4991b30f816db81d59922286a"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1aadcf7af9fc01b9c962d272b747560f44"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1ab9c538a5ccc075db5e3b40ea8c945d45"><span class="identifier">static_vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">,</span> <a class="link" href="structboost_1_1container_1_1default__init__t.html" title="Struct default_init_t">default_init_t</a><span class="special">)</span><span class="special">;</span>
@@ -125,7 +125,7 @@
   <span class="identifier">size_type</span> <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a9903e5a4a8eae0a237101f2256d72565"><span class="identifier">size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a747c7f36d1fb8ff8ea83694b640b359d"><span class="identifier">empty</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1container_1_1static__vector.html#id123-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1container_1_1static__vector.html#id131-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a1721ee4a131b34c15ead5a4d2f33a1e9"><span class="identifier">capacity</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="identifier">size_type</span> <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a769040f0325cb1b92f0796ae3a22ddbe"><span class="identifier">max_size</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
@@ -133,16 +133,16 @@
   <span class="identifier">BOOST_STATIC_CONSTEXPR</span> <span class="identifier">size_type</span> <span class="identifier">static_capacity</span><span class="special">;</span>  <span class="comment">// The capacity/max size of the container. </span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.8.14.40.3.4"></a><h2>Description</h2>
+<a name="id-1.3.8.13.3.40.3.4"></a><h2>Description</h2>
 <p><a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a> is a sequence container like <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">boost::container::vector</a> with contiguous storage that can change in size, along with the static allocation, low overhead, and fixed capacity of boost::array.</p>
 <p>A <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a> is a sequence that supports random access to elements, constant time insertion and removal of elements at the end, and linear time insertion and removal of elements at the beginning or in the middle. The number of elements in a <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a> may vary dynamically up to a fixed capacity because elements are stored within the object itself similarly to an array. However, objects are initialized as they are inserted into <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a> unlike C arrays or std::array which must construct all elements on instantiation. The behavior of <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a> enables the use of statically allocated elements in cases with complex object lifetime requirements that would otherwise not be trivially possible.</p>
-<p><b>Error Handling. </b>If <code class="computeroutput">throw_on_overflow</code> option is true (default behaviour), insertion beyond the capacity result in throwing bad_alloc() if exceptions are enabled and or calling throw_bad_alloc() if not enabled. If <code class="computeroutput">throw_on_overflow</code> option is false, insertion beyond capacity results in Undefined Behaviour.</p>
+<p><b>Error Handling. </b>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow</a></code> option is true (default behaviour), insertion beyond the capacity result in throwing bad_alloc() if exceptions are enabled and or calling throw_bad_alloc() if not enabled. If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow</a></code> option is false, insertion beyond capacity results in Undefined Behaviour.</p>
 <p>
 out_of_range is thrown if out of bounds access is performed in <code class="computeroutput"><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a776c7fcdf59945fc4228e495092898c7">at()</a></code> if exceptions are enabled, throw_out_of_range() if not enabled.</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id-1.3.8.14.40.3.4.6"></a><h3>Template Parameters</h3>
+<a name="id-1.3.8.13.3.40.3.4.6"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> T</pre>
@@ -154,13 +154,13 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Options <span class="special">=</span> <span class="keyword">void</span></pre>
-<p>A type produced from <code class="computeroutput">boost::container::static_vector_options</code>. If no option is specified, by default throw_on_overflow&lt;true&gt; option is set. </p>
+<p>A type produced from <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1static__vector__options.html" title="Struct template static_vector_options">boost::container::static_vector_options</a></code>. If no option is specified, by default <a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a> option is set. </p>
 </li>
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.40.3.4.7"></a><h3>
-<a name="id122-bb"></a><code class="computeroutput">static_vector</code> public member functions</h3>
+<a name="id-1.3.8.13.3.40.3.4.7"></a><h3>
+<a name="id130-bb"></a><code class="computeroutput">static_vector</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a7c3168e4991b30f816db81d59922286a"></a><span class="identifier">static_vector</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Constructs an empty <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>. <p><b>Throws. </b>Nothing.</p>
@@ -178,7 +178,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's value initialization throws </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -221,7 +221,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's default initialization throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -267,7 +267,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -315,7 +315,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's constructor taking a dereferenced Iterator throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -370,7 +370,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's constructor taking a dereferenced std::initializer_list throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -450,7 +450,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -530,7 +530,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If <code class="computeroutput">has_nothrow_move&lt;T&gt;::value</code> is <code class="computeroutput">true</code> and T's move constructor throws. </p></li>
 <li class="listitem"><p>If <code class="computeroutput">has_nothrow_move&lt;T&gt;::value</code> is <code class="computeroutput">false</code> and T's copy constructor throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -600,7 +600,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor or copy assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -638,7 +638,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor or copy assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -718,7 +718,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If <code class="computeroutput">has_nothrow_move&lt;T&gt;::value</code> is <code class="computeroutput">true</code> and T's move constructor or move assignment throws. </p></li>
 <li class="listitem"><p>If <code class="computeroutput">has_nothrow_move&lt;T&gt;::value</code> is <code class="computeroutput">false</code> and T's copy constructor or copy assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -806,7 +806,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If <code class="computeroutput">has_nothrow_move&lt;T&gt;::value</code> is <code class="computeroutput">true</code> and T's move constructor or move assignment throws, </p></li>
 <li class="listitem"><p>If <code class="computeroutput">has_nothrow_move&lt;T&gt;::value</code> is <code class="computeroutput">false</code> and T's copy constructor or copy assignment throws, </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -849,7 +849,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's value initialization throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -892,7 +892,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's default initialization throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -938,7 +938,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -984,7 +984,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </p>
 <p>
 </p>
-<p><b>Throws. </b>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p>
+<p><b>Throws. </b>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p>
 <p>
 </p>
 <p><b>Complexity. </b>Constant O(1). </p>
@@ -1024,7 +1024,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1067,7 +1067,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's move constructor throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1130,7 +1130,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor or copy assignment throws </p></li>
 <li class="listitem"><p>If T's move constructor or move assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1185,7 +1185,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's move constructor or move assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1241,7 +1241,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor or copy assignment throws. </p></li>
 <li class="listitem"><p>If T's move constructor or move assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1302,7 +1302,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's constructor and assignment taking a dereferenced <code class="computeroutput">Iterator</code>. </p></li>
 <li class="listitem"><p>If T's move constructor or move assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1362,7 +1362,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's constructor and assignment taking a dereferenced std::initializer_list iterator. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1504,7 +1504,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor or copy assignment throws, </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1553,7 +1553,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor or copy assignment throws, </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1596,7 +1596,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If T's copy constructor or copy assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1646,7 +1646,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If in-place constructor throws or T's move constructor throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1692,7 +1692,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <p><b>Throws. </b></p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>If in-place constructor throws or if T's move constructor or move assignment throws. </p></li>
-<li class="listitem"><p>If <code class="computeroutput">throw_on_overflow&lt;true&gt;</code> option is set and the container runs out of capacity.</p></li>
+<li class="listitem"><p>If <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1throw__on__overflow.html" title="Struct template throw_on_overflow">throw_on_overflow&lt;true&gt;</a></code> option is set and the container runs out of capacity.</p></li>
 </ul></div>
 <p>
 </p>
@@ -1744,7 +1744,13 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 <pre class="literallayout"><span class="keyword">void</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a04c65c65f8d2af29726e8b0987f3f87a"></a><span class="identifier">clear</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Removes all elements from the container. <p><b>Throws. </b>Nothing.</p>
 <p>
 </p>
-<p><b>Complexity. </b>Constant O(1). </p>
+<p><b>Complexity. </b></p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>If <code class="computeroutput">is_trivially_destructible&lt;T&gt;::value</code> is <code class="computeroutput">true</code> Constant O(1). </p></li>
+<li class="listitem"><p>If <code class="computeroutput">is_trivially_destructible&lt;T&gt;::value</code> is <code class="computeroutput">false</code> Linear O(N). </p></li>
+</ul></div>
+<p>
+</p>
 <p>
 </p>
 </li>
@@ -1959,7 +1965,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </table></div>
 </li>
 <li class="listitem">
-<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a31679a1ec047529829efe8949d6ad2e1"></a><span class="identifier">nth</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns a const_iterator to the i-th element. <p>
+<pre class="literallayout"><span class="identifier">const_iterator</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a31679a1ec047529829efe8949d6ad2e1"></a><span class="identifier">nth</span><span class="special">(</span><span class="identifier">size_type</span> i<span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns a <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> to the i-th element. <p>
 </p>
 <p>
 
@@ -1995,7 +2001,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </tr>
 <tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>a const_iterator to the i-th element.</p></td>
+<td><p>a <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> to the i-th element.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -2069,7 +2075,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term"><code class="computeroutput">p</code></span></p></td>
-<td><p>A const_iterator to the element.</p></td>
+<td><p>A <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> to the element.</p></td>
 </tr></tbody>
 </table></div></td>
 </tr>
@@ -2079,7 +2085,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </tr>
 <tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>a const_iterator to the i-th element.</p></td>
+<td><p>a <a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> to the i-th element.</p></td>
 </tr>
 </tbody>
 </table></div>
@@ -2248,7 +2254,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_iterator to the first element contained in the vector.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> to the first element contained in the vector.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2268,7 +2274,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_iterator to the first element contained in the vector.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> to the first element contained in the vector.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2308,7 +2314,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_iterator pointing to the one after the last element contained in the vector.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> pointing to the one after the last element contained in the vector.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2328,7 +2334,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_iterator pointing to the one after the last element contained in the vector.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaf178eeb749eea1bd1d7359610af6a3">const_iterator</a> pointing to the one after the last element contained in the vector.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2348,7 +2354,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>reverse_iterator pointing to the beginning of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abfdfe1eec667a1b1a0d3996681e83a44">reverse_iterator</a> pointing to the beginning of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2368,7 +2374,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_reverse_iterator pointing to the beginning of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaa839256b6e8232b579a59450e81b4c">const_reverse_iterator</a> pointing to the beginning of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2388,7 +2394,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_reverse_iterator pointing to the beginning of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaa839256b6e8232b579a59450e81b4c">const_reverse_iterator</a> pointing to the beginning of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2408,7 +2414,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>reverse_iterator pointing to the one after the last element of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abfdfe1eec667a1b1a0d3996681e83a44">reverse_iterator</a> pointing to the one after the last element of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2428,7 +2434,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_reverse_iterator pointing to the one after the last element of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaa839256b6e8232b579a59450e81b4c">const_reverse_iterator</a> pointing to the one after the last element of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2448,7 +2454,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </colgroup>
 <tbody><tr>
 <td><p><span class="term">Returns:</span></p></td>
-<td><p>const_reverse_iterator pointing to the one after the last element of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
+<td><p><a class="link" href="classboost_1_1container_1_1static__vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1abaa839256b6e8232b579a59450e81b4c">const_reverse_iterator</a> pointing to the one after the last element of the reversed <a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a>.</p></td>
 </tr></tbody>
 </table></div>
 </li>
@@ -2495,8 +2501,8 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.40.3.4.8"></a><h3>
-<a name="id123-bb"></a><code class="computeroutput">static_vector</code> public static functions</h3>
+<a name="id-1.3.8.13.3.40.3.4.8"></a><h3>
+<a name="id131-bb"></a><code class="computeroutput">static_vector</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="identifier">size_type</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1static__vector_1a1721ee4a131b34c15ead5a4d2f33a1e9"></a><span class="identifier">capacity</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre>Returns container's capacity. <p>
@@ -2549,7 +2555,7 @@ out_of_range is thrown if out of bounds access is performed in <code class="comp
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1container_1_1stable__vector.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="static__vector_8hpp_1a15b54bd544d6f12206efdb88305f7c85.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="classboost_1_1container_1_1stable__vector.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.static__vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="static__vector_8hpp_1a15b54bd544d6f12206efdb88305f7c85.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

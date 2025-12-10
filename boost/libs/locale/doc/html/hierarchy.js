@@ -4,7 +4,6 @@ var hierarchy =
     [ "boost::locale::util::base_converter", "classboost_1_1locale_1_1util_1_1base__converter.html", null ],
     [ "boost::locale::basic_format< CharType >", "classboost_1_1locale_1_1basic__format.html", null ],
     [ "boost::locale::basic_message< CharType >", "classboost_1_1locale_1_1basic__message.html", null ],
-    [ "boost::locale::basic_message< char_type >", "classboost_1_1locale_1_1basic__message.html", null ],
     [ "boost::locale::boundary::boundary_point< IteratorType >", "classboost_1_1locale_1_1boundary_1_1boundary__point.html", null ],
     [ "boost::locale::boundary::boundary_point_index< BaseIterator >", "classboost_1_1locale_1_1boundary_1_1boundary__point__index.html", null ],
     [ "boost::locale::boundary::break_info", "structboost_1_1locale_1_1boundary_1_1break__info.html", null ],
@@ -24,6 +23,7 @@ var hierarchy =
     [ "boost::locale::date_time_period_set", "classboost_1_1locale_1_1date__time__period__set.html", null ],
     [ "boost::locale::gnu_gettext::messages_info::domain", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info_1_1domain.html", null ],
     [ "std::locale::facet", null, [
+      [ "boost::locale::message_format< char_type >", "classboost_1_1locale_1_1message__format.html", null ],
       [ "boost::locale::boundary::boundary_indexing< Char >", "classboost_1_1locale_1_1boundary_1_1boundary__indexing.html", null ],
       [ "boost::locale::calendar_facet", "classboost_1_1locale_1_1calendar__facet.html", null ],
       [ "boost::locale::collator< CharType >", "classboost_1_1locale_1_1collator.html", null ],
@@ -39,6 +39,9 @@ var hierarchy =
       [ "boost::locale::info", "classboost_1_1locale_1_1info.html", null ],
       [ "boost::locale::message_format< CharType >", "classboost_1_1locale_1_1message__format.html", null ]
     ] ],
+    [ "detail::facet_id", null, [
+      [ "boost::locale::message_format< char_type >", "classboost_1_1locale_1_1message__format.html", null ]
+    ] ],
     [ "boost::locale::generator", "classboost_1_1locale_1_1generator.html", null ],
     [ "boost::locale::generic_codecvt< CharType, CodecvtImpl, CharSize >", "classboost_1_1locale_1_1generic__codecvt.html", null ],
     [ "boost::locale::generic_codecvt< CharType, utf8_codecvt< CharType > >", "classboost_1_1locale_1_1generic__codecvt.html", [
@@ -50,9 +53,6 @@ var hierarchy =
       [ "boost::locale::generic_codecvt< char, CodecvtImpl, 1 >", "classboost_1_1locale_1_1generic__codecvt_3_01char_00_01CodecvtImpl_00_011_01_4.html", null ]
     ] ],
     [ "boost::locale::hold_ptr< T >", "classboost_1_1locale_1_1hold__ptr.html", null ],
-    [ "boost::locale::hold_ptr< boost::locale::abstract_calendar >", "classboost_1_1locale_1_1hold__ptr.html", null ],
-    [ "boost::locale::hold_ptr< data >", "classboost_1_1locale_1_1hold__ptr.html", null ],
-    [ "boost::locale::hold_ptr< impl >", "classboost_1_1locale_1_1hold__ptr.html", null ],
     [ "boost::locale::ios_info", "classboost_1_1locale_1_1ios__info.html", null ],
     [ "boost::locale::util::locale_data", "classboost_1_1locale_1_1util_1_1locale__data.html", null ],
     [ "boost::locale::localization_backend", "classboost_1_1locale_1_1localization__backend.html", null ],
@@ -60,6 +60,15 @@ var hierarchy =
     [ "boost::locale::gnu_gettext::messages_info", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html", null ],
     [ "boost::locale::conv::narrow_converter", "classboost_1_1locale_1_1conv_1_1narrow__converter.html", null ],
     [ "std::pair", null, [
+      [ "boost::locale::boundary::segment< base_iterator >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< std::string::const_iterator >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< std::wstring::const_iterator >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< std::u16string::const_iterator >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< std::u32string::const_iterator >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< const char * >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< const wchar_t * >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< const char16_t * >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
+      [ "boost::locale::boundary::segment< const char32_t * >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ],
       [ "boost::locale::boundary::segment< IteratorType >", "classboost_1_1locale_1_1boundary_1_1segment.html", null ]
     ] ],
     [ "boost::locale::period::period_type", "classboost_1_1locale_1_1period_1_1period__type.html", null ],

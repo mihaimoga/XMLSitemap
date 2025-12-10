@@ -95,12 +95,12 @@
   <span class="keyword">static</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <a class="link" href="classboost_1_1compute_1_1program.html#doxygen.header_reference.classboost_1_1compute_1_1program_1a20809267e7a1db843d19a6d5a50cf3be"><span class="identifier">read_source_file</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id45584"></a><h2>Description</h2>
+<a name="id45580"></a><h2>Description</h2>
 <p>The program class represents an OpenCL program.</p>
 <p>Program objects are created with one of the static <code class="computeroutput">create_with_*</code> functions. For example, to create a program from a source string:</p>
 <pre class="programlisting"></pre>
 <p>And to create a program from a source file: </p>
-<pre class="programlisting"><a class="link" href="classboost_1_1compute_1_1program.html" title="Class program"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">program</span></a> <span class="identifier">bar_program</span> <span class="special">=</span>
+<pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">program</span> <span class="identifier">bar_program</span> <span class="special">=</span>
     <a class="link" href="classboost_1_1compute_1_1program.html#doxygen.header_reference.classboost_1_1compute_1_1program_1aab3b701a00d80281d70e1e79479b77b8"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">program</span><span class="special">::</span><span class="identifier">create_with_source_file</span></a><span class="special">(</span><span class="string">"/path/to/bar.cl"</span><span class="special">,</span> <span class="identifier">context</span><span class="special">)</span><span class="special">;</span>
 </pre>
 <p>Once a program object has been successfully created, it can be compiled using the <code class="computeroutput"><a class="link" href="classboost_1_1compute_1_1program.html#doxygen.header_reference.classboost_1_1compute_1_1program_1a2b383f843f941cfdde53798beee992b0">build()</a></code> method: </p>
@@ -109,13 +109,13 @@
 </pre>
 <p>Once the program is built, <a class="link" href="classboost_1_1compute_1_1kernel.html" title="Class kernel">kernel</a> objects can be created using the <code class="computeroutput"><a class="link" href="classboost_1_1compute_1_1program.html#doxygen.header_reference.classboost_1_1compute_1_1program_1af77053f8cdc3c3d820db73069eb37c62">create_kernel()</a></code> method by passing their name: </p>
 <pre class="programlisting"><span class="comment">// create a kernel from the compiled program</span>
-<a class="link" href="classboost_1_1compute_1_1kernel.html" title="Class kernel"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">kernel</span></a> <span class="identifier">foo_kernel</span> <span class="special">=</span> <span class="identifier">foo_program</span><span class="special">.</span><span class="identifier">create_kernel</span><span class="special">(</span><span class="string">"foo"</span><span class="special">)</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">kernel</span> <span class="identifier">foo_kernel</span> <span class="special">=</span> <span class="identifier">foo_program</span><span class="special">.</span><span class="identifier">create_kernel</span><span class="special">(</span><span class="string">"foo"</span><span class="special">)</span><span class="special">;</span>
 </pre>
 <p><b>See Also: </b><a class="link" href="classboost_1_1compute_1_1kernel.html" title="Class kernel">kernel</a> </p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id45652"></a><h3>
+<a name="id45646"></a><h3>
 <a name="id83-bb"></a><code class="computeroutput">program</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -170,7 +170,7 @@
     <span class="comment">// attempt to compile to program</span>
     <a class="link" href="classboost_1_1compute_1_1program.html#doxygen.header_reference.classboost_1_1compute_1_1program_1a4f64827fd723e730ad223fe86e30c309"><span class="identifier">program</span></a><span class="special">.</span><span class="identifier">build</span><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span>
-<span class="keyword">catch</span><span class="special">(</span><a class="link" href="classboost_1_1compute_1_1opencl__error.html" title="Class opencl_error"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">opencl_error</span></a> <span class="special">&amp;</span><span class="identifier">e</span><span class="special">)</span><span class="special">{</span>
+<span class="keyword">catch</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">opencl_error</span> <span class="special">&amp;</span><span class="identifier">e</span><span class="special">)</span><span class="special">{</span>
     <span class="comment">// program failed to compile, print out the build log</span>
     <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <a class="link" href="classboost_1_1compute_1_1program.html#doxygen.header_reference.classboost_1_1compute_1_1program_1a4f64827fd723e730ad223fe86e30c309"><span class="identifier">program</span></a><span class="special">.</span><span class="identifier">build_log</span><span class="special">(</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>
 <span class="special">}</span>
@@ -197,7 +197,7 @@ See the documentation for </p>
 <pre class="literallayout"><a class="link" href="classboost_1_1compute_1_1kernel.html" title="Class kernel">kernel</a> <a name="doxygen.header_reference.classboost_1_1compute_1_1program_1af77053f8cdc3c3d820db73069eb37c62"></a><span class="identifier">create_kernel</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="special">&amp;</span> name<span class="special">)</span> <span class="keyword">const</span><span class="special">;</span></pre>
 <p>Creates and returns a new kernel object for <code class="computeroutput">name</code>.</p>
 <p>For example, to create the <code class="computeroutput">"foo"</code> kernel (after the program has been created and built): </p>
-<pre class="programlisting"><a class="link" href="classboost_1_1compute_1_1kernel.html" title="Class kernel"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">kernel</span></a> <span class="identifier">foo_kernel</span> <span class="special">=</span> <span class="identifier">foo_program</span><span class="special">.</span><span class="identifier">create_kernel</span><span class="special">(</span><span class="string">"foo"</span><span class="special">)</span><span class="special">;</span>
+<pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">kernel</span> <span class="identifier">foo_kernel</span> <span class="special">=</span> <span class="identifier">foo_program</span><span class="special">.</span><span class="identifier">create_kernel</span><span class="special">(</span><span class="string">"foo"</span><span class="special">)</span><span class="special">;</span>
 </pre>
 <p> </p>
 </li>
@@ -208,7 +208,7 @@ See the documentation for </p>
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id46108"></a><h3>
+<a name="id46100"></a><h3>
 <a name="id84-bb"></a><code class="computeroutput">program</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -345,7 +345,7 @@ See the documentation for </p>
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id46517"></a><h3>
+<a name="id46509"></a><h3>
 <a name="id85-bb"></a><code class="computeroutput">program</code> private static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><pre class="literallayout"><span class="keyword">static</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <a name="doxygen.header_reference.classboost_1_1compute_1_1program_1a20809267e7a1db843d19a6d5a50cf3be"></a><span class="identifier">read_source_file</span><span class="special">(</span><span class="keyword">const</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="special">&amp;</span> file<span class="special">)</span><span class="special">;</span></pre></li></ol></div>
 </div>

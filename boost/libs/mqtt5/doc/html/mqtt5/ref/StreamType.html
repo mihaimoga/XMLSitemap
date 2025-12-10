@@ -36,6 +36,31 @@
         <a href="../../../../../../libs/beast/doc/html/beast/concepts/streams.html" target="_top">AsyncStream</a>
         concept.
       </p>
+<div class="note"><table border="0" summary="Note">
+<tr>
+<td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../../../../../../doc/src/images/note.png"></td>
+<th align="left">Note</th>
+</tr>
+<tr><td align="left" valign="top">
+<p>
+          Because <a href="../../../../../../libs/beast/doc/html/beast/ref/boost__beast__websocket__stream.html" target="_top"><code class="literal">boost::beast::websocket::stream&lt;NextLayer&gt;</code></a>
+          does not satisfy <a href="../../../../../../doc/html/boost_asio/reference/AsyncWriteStream.html" target="_top"><code class="literal">AsyncWriteStream</code></a>,
+          requirements were relaxed to allow a stream to provide <span class="bold"><strong><code class="computeroutput"><span class="identifier">async_write</span></code></strong></span> operation instead
+          of <span class="bold"><strong><code class="computeroutput"><span class="identifier">async_write_some</span></code></strong></span>.
+        </p>
+<p>
+          With <a href="../../../../../../doc/html/boost_asio/reference/ConstBufferSequence.html" target="_top"><code class="literal">ConstBufferSequence</code></a>
+          cb and <a href="../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html#boost_asio.reference.asynchronous_operations.completion_tokens_and_handlers" target="_top"><span class="emphasis"><em>CompletionToken</em></span></a>
+          t, <span class="bold"><strong><code class="computeroutput"><span class="identifier">s</span><span class="special">.</span><span class="identifier">async_write</span><span class="special">(</span><span class="identifier">cb</span><span class="special">,</span>
+          <span class="identifier">t</span><span class="special">)</span></code></strong></span>
+          should meet the requirements of an <a href="../../../../../../doc/html/boost_asio/reference/asynchronous_operations.html" target="_top">asynchronous
+          operation</a> with the completion signature <code class="computeroutput"><span class="keyword">void</span><span class="special">(</span><span class="identifier">error_code</span>
+          <span class="identifier">ec</span><span class="special">,</span>
+          <span class="identifier">size_t</span> <span class="identifier">n</span><span class="special">)</span></code> and should write all the supplied data
+          to the stream.
+        </p>
+</td></tr>
+</table></div>
 <p>
         It should follow Asio's layered stream model by having a <code class="computeroutput"><span class="identifier">lowest_layer_type</span></code>
         member type, and a <code class="computeroutput"><span class="identifier">lowest_layer</span></code>

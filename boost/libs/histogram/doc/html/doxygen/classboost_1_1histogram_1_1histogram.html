@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../index.html" title="Chapter 1. Boost.Histogram">
 <link rel="up" href="../histogram/reference.html#doxygen.histogram_2histogram_8hpp" title="Header &lt;boost/histogram/histogram.hpp&gt;">
-<link rel="prev" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html" title="Class template wilson_interval">
+<link rel="prev" href="structboost_1_1histogram_1_1axis_1_1null__type.html" title="Struct null_type">
 <link rel="next" href="histogram_2histogram_8hpp_1afe9348514de63e4d8c6bb19448412a82.html" title="Function template operator*">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -21,7 +21,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.histogram_2histogram_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="histogram_2histogram_8hpp_1afe9348514de63e4d8c6bb19448412a82.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1histogram_1_1axis_1_1null__type.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.histogram_2histogram_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="histogram_2histogram_8hpp_1afe9348514de63e4d8c6bb19448412a82.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.classboost_1_1histogram_1_1histogram"></a><div class="titlepage"></div>
@@ -43,7 +43,7 @@
   <span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">storage_type</span><span class="special">::</span><span class="identifier">const_iterator</span> <a name="doxygen.classboost_1_1histogram_1_1histogram_1adf1eb5aa384ed2ca5504b1fe56ed0ab8"></a><span class="identifier">const_iterator</span><span class="special">;</span>  
   <span class="keyword">typedef</span> <span class="emphasis"><em><span class="identifier">unspecified</span></em></span>                           <a name="doxygen.classboost_1_1histogram_1_1histogram_1a0a6c44a9c3680f08babe42abec58fa65"></a><span class="identifier">multi_index_type</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1histogram.html#id6-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1histogram.html#id2-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1histogram_1_1histogram.html#doxygen.classboost_1_1histogram_1_1histogram_1a3588aaf3f9fc217e420c5201cd1f1e36"><span class="identifier">histogram</span></a><span class="special">(</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">default</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> A<span class="special">,</span> <span class="keyword">typename</span> S<span class="special">&gt;</span> <span class="keyword">explicit</span> <a class="link" href="classboost_1_1histogram_1_1histogram.html#doxygen.classboost_1_1histogram_1_1histogram_1a2be871ca2d89f72f7c6e1a0d4a547132"><span class="identifier">histogram</span></a><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1histogram.html" title="Class template histogram">histogram</a><span class="special">&lt;</span> <span class="identifier">A</span><span class="special">,</span> <span class="identifier">S</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> A<span class="special">,</span> <span class="keyword">typename</span> S<span class="special">&gt;</span> 
@@ -118,14 +118,14 @@
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Archive<span class="special">&gt;</span> <span class="keyword">void</span> <a class="link" href="classboost_1_1histogram_1_1histogram.html#doxygen.classboost_1_1histogram_1_1histogram_1a23161580ce25fdcfcaae1279e370c069"><span class="identifier">serialize</span></a><span class="special">(</span><span class="identifier">Archive</span> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">unsigned</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id15056"></a><h2>Description</h2>
+<a name="id14486"></a><h2>Description</h2>
 <p>Histogram uses the call operator to insert data, like the <a href="https://www.boost.org/doc/libs/develop/doc/html/accumulators.html" target="_top">Boost.Accumulators</a>.</p>
 <p>Use factory functions (see <a href="../histogram/reference.html#header.boost.histogram.make_histogram_hpp" target="_top">make_histogram.hpp</a> and<a href="../histogram/reference.html#header.boost.histogram.make_profile_hpp" target="_top">make_profile.hpp</a>) to conveniently create histograms rather than calling the ctors directly.</p>
 <p>Use the <a href="../boost/histogram/indexed.html" target="_top">indexed</a> range generator to iterate over filled histograms, which is convenient and faster than hand-written loops for multi-dimensional histograms.</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id15066"></a><h3>Template Parameters</h3>
+<a name="id14496"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Axes</pre>
@@ -138,8 +138,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id15082"></a><h3>
-<a name="id6-bb"></a><code class="computeroutput">histogram</code> public member functions</h3>
+<a name="id14512"></a><h3>
+<a name="id2-bb"></a><code class="computeroutput">histogram</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1histogram_1_1histogram_1a3588aaf3f9fc217e420c5201cd1f1e36"></a><span class="identifier">histogram</span><span class="special">(</span><span class="special">)</span> <span class="special">=</span> <span class="keyword">default</span><span class="special">;</span></pre></li>
 <li class="listitem"><pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> A<span class="special">,</span> <span class="keyword">typename</span> S<span class="special">&gt;</span> <span class="keyword">explicit</span> <a name="doxygen.classboost_1_1histogram_1_1histogram_1a2be871ca2d89f72f7c6e1a0d4a547132"></a><span class="identifier">histogram</span><span class="special">(</span><a class="link" href="classboost_1_1histogram_1_1histogram.html" title="Class template histogram">histogram</a><span class="special">&lt;</span> <span class="identifier">A</span><span class="special">,</span> <span class="identifier">S</span> <span class="special">&gt;</span> <span class="special">&amp;&amp;</span> rhs<span class="special">)</span><span class="special">;</span></pre></li>
@@ -447,7 +447,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1histogram_1_1utility_1_1wilson__interval.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.histogram_2histogram_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="histogram_2histogram_8hpp_1afe9348514de63e4d8c6bb19448412a82.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1histogram_1_1axis_1_1null__type.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../histogram/reference.html#doxygen.histogram_2histogram_8hpp"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="histogram_2histogram_8hpp_1afe9348514de63e4d8c6bb19448412a82.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

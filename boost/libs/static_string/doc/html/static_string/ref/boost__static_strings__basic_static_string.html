@@ -38,10 +38,10 @@
         Defined in header <code class="literal">&lt;<a href="../../../../../../boost/static_string/static_string.hpp" target="_top">boost/static_string/static_string.hpp</a>&gt;</code>
       </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">,</span>
+    <a href="https://en.cppreference.com/w/cpp/types/size_t" target="_top"><code class="literal">std::size_t</code></a> <span class="identifier">N</span><span class="special">,</span>
     <span class="keyword">typename</span> <span class="identifier">CharT</span><span class="special">,</span>
     <span class="keyword">typename</span> <span class="identifier">Traits</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">char_traits</span><span class="special">&lt;</span><span class="identifier">CharT</span><span class="special">&gt;&gt;</span>
-<span class="keyword">class</span> <span class="identifier">basic_static_string</span>
+<span class="keyword">class</span> <span class="identifier">basic_static_string</span><span class="special">;</span>
 </pre>
 <h5>
 <a name="static_string.ref.boost__static_strings__basic_static_string.h1"></a>
@@ -509,8 +509,8 @@
 <td>
                 <p>
                   Find the first occurrence of a character not within the string.
-                  <br><span class="silver">—</span><br>Find the first occurrence of
-                  any of the characters not within the string. <br><span class="silver">—</span><br>Find
+                  <br><span class="silver">—</span><br>Find the first occurrence
+                  of any of the characters not within the string. <br><span class="silver">—</span><br>Find
                   the first occurrence of a character not equal to <code class="computeroutput"><span class="identifier">c</span></code>.
                 </p>
               </td>
@@ -524,8 +524,8 @@
 <td>
                 <p>
                   Find the first occurrence of any of the characters within the string.
-                  <br><span class="silver">—</span><br>Find the first occurrence of
-                  a character within the string.
+                  <br><span class="silver">—</span><br>Find the first occurrence
+                  of a character within the string.
                 </p>
               </td>
 </tr>
@@ -538,8 +538,8 @@
 <td>
                 <p>
                   Find the last occurrence of a character not within the string.
-                  <br><span class="silver">—</span><br>Find the last occurrence of a
-                  character not equal to <code class="computeroutput"><span class="identifier">c</span></code>.
+                  <br><span class="silver">—</span><br>Find the last occurrence
+                  of a character not equal to <code class="computeroutput"><span class="identifier">c</span></code>.
                 </p>
               </td>
 </tr>
@@ -552,8 +552,8 @@
 <td>
                 <p>
                   Find the last occurrence of any of the characters within the string.
-                  <br><span class="silver">—</span><br>Find the last occurrence of a
-                  character within the string.
+                  <br><span class="silver">—</span><br>Find the last occurrence
+                  of a character within the string.
                 </p>
               </td>
 </tr>
@@ -608,24 +608,13 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__static_strings__basic_static_string/operator_eq_.html" title="basic_static_string::operator=">operator=</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__static_strings__basic_static_string/operator_string_view_type.html" title="basic_static_string::operator string_view_type">operator
+                  string_view_type</a></strong></span>
                 </p>
               </td>
 <td>
                 <p>
-                  Assign to the string.
-                </p>
-              </td>
-</tr>
-<tr>
-<td>
-                <p>
-                  <span class="bold"><strong><a class="link" href="boost__static_strings__basic_static_string/operator__lb__rb_.html" title="basic_static_string::operator[]">operator[]</a></strong></span>
-                </p>
-              </td>
-<td>
-                <p>
-                  Access a character.
+                  Convert to a string view referring to the string.
                 </p>
               </td>
 </tr>
@@ -644,13 +633,24 @@
 <tr>
 <td>
                 <p>
-                  <span class="bold"><strong><a class="link" href="boost__static_strings__basic_static_string/operator_string_view_type.html" title="basic_static_string::operator string_view_type">operator
-                  string_view_type</a></strong></span>
+                  <span class="bold"><strong><a class="link" href="boost__static_strings__basic_static_string/operator_eq_.html" title="basic_static_string::operator=">operator=</a></strong></span>
                 </p>
               </td>
 <td>
                 <p>
-                  Convert to a string view referring to the string.
+                  Assign to the string.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__static_strings__basic_static_string/operator__lb__rb_.html" title="basic_static_string::operator[]">operator[]</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Access a character.
                 </p>
               </td>
 </tr>
@@ -735,6 +735,18 @@
 <td>
                 <p>
                   Change the size of the string.
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  <span class="bold"><strong><a class="link" href="boost__static_strings__basic_static_string/resize_and_overwrite.html" title="basic_static_string::resize_and_overwrite">resize_and_overwrite</a></strong></span>
+                </p>
+              </td>
+<td>
+                <p>
+                  Resize the string and overwrite its contents.
                 </p>
               </td>
 </tr>
@@ -882,9 +894,11 @@
 <p>
         These objects behave like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>
         except that the storage is not dynamically allocated but rather fixed in
-        size, and stored in the object itself. These strings offer performance advantages
-        when an algorithm can execute with a reasonable upper limit on the size of
-        a value.
+        size, and stored in the object itself.
+      </p>
+<p>
+        These strings offer performance advantages when an algorithm can execute
+        with a reasonable upper limit on the size of a value.
       </p>
 <h5>
 <a name="static_string.ref.boost__static_strings__basic_static_string.h5"></a>
@@ -893,19 +907,19 @@
 <p>
         The following alias templates are provided for convenience:
       </p>
-<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span> <span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
 <span class="keyword">using</span> <span class="identifier">static_string</span> <span class="special">=</span>
   <span class="identifier">basic_static_string</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">,</span> <span class="keyword">char</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">char_traits</span><span class="special">&lt;</span><span class="keyword">char</span><span class="special">&gt;&gt;;</span>
 </pre>
-<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span> <span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
 <span class="keyword">using</span> <span class="identifier">static_wstring</span> <span class="special">=</span>
   <span class="identifier">basic_static_string</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">,</span> <span class="keyword">wchar_t</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">char_traits</span><span class="special">&lt;</span><span class="keyword">wchar_t</span><span class="special">&gt;&gt;;</span>
 </pre>
-<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span> <span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
 <span class="keyword">using</span> <span class="identifier">static_u16string</span> <span class="special">=</span>
   <span class="identifier">basic_static_string</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">,</span> <span class="keyword">char16_t</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">char_traits</span><span class="special">&lt;</span><span class="keyword">char16_t</span><span class="special">&gt;&gt;;</span>
 </pre>
-<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span> <span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
 <span class="keyword">using</span> <span class="identifier">static_u32string</span> <span class="special">=</span>
   <span class="identifier">basic_static_string</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">,</span> <span class="keyword">char32_t</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">char_traits</span><span class="special">&lt;</span><span class="keyword">char32_t</span><span class="special">&gt;&gt;;</span>
 </pre>
@@ -913,7 +927,7 @@
         Addtionally, the alias template <code class="computeroutput"><span class="identifier">static_u8string</span></code>
         is provided in C++20
       </p>
-<pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span> <span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">N</span><span class="special">&gt;</span>
 <span class="keyword">using</span> <span class="identifier">static_u8string</span> <span class="special">=</span>
   <span class="identifier">basic_static_string</span><span class="special">&lt;</span><span class="identifier">N</span><span class="special">,</span> <span class="identifier">char8_t</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">char_traits</span><span class="special">&lt;</span><span class="identifier">char8_t</span><span class="special">&gt;&gt;;</span>
 </pre>
@@ -923,7 +937,10 @@
         Also</a>
       </h5>
 <p>
-        to_static_string
+        <a class="link" href="boost__static_strings__to_static_string.html" title="to_static_string"><code class="computeroutput"><span class="identifier">to_static_string</span></code></a>.
+      </p>
+<p>
+        Convenience header <code class="literal">&lt;<a href="../../../../../../boost/static_string.hpp" target="_top">boost/static_string.hpp</a>&gt;</code>
       </p>
 </div>
 <div class="copyright-footer">Copyright © 2019, 2020 Krystian Stasiowski<br>Copyright © 2016-2019 Vinnie

@@ -59,7 +59,7 @@
           The data got corrupted and the check values do not match.
         </li>
 <li class="listitem">
-          The data is intact, but the check value got corrupted. This can't the distinguished
+          The data is intact, but the check value got corrupted. This can't be distinguished
           from the previous case, but is a (relatively) safe false positive.
         </li>
 <li class="listitem">
@@ -74,7 +74,7 @@
 <p>
       The check values are known as <span class="bold"><strong>checksum</strong></span>s because
       they are used to <span class="emphasis"><em>check</em></span> for data consistency and the first
-      coding algorithms were addition- (i.e. <span class="emphasis"><em>sum</em></span>ming-) based.
+      coding algorithms were addition- (i.e. <span class="emphasis"><em>sum</em></span>ming-)based.
     </p>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -114,8 +114,8 @@
           For a given degree <span class="emphasis"><em>x</em></span> for the modulo-2 polynomial divisor,
           the remainder will have at most <span class="emphasis"><em>x</em></span> terms (from degree
           <span class="emphasis"><em>x</em></span> - 1 down to the constant term). The coefficients
-          are modulo-2, which means that they can be represented by 0's and 1's.
-          So a remainder can be modeled by an (unsigned) integer of at least <span class="emphasis"><em>x</em></span>
+          are modulo-2, which means that they can be represented by 0s and 1s. So
+          a remainder can be modeled by an (unsigned) integer of at least <span class="emphasis"><em>x</em></span>
           bits in <span class="bold"><strong>width</strong></span>.
         </p>
 <p>
@@ -133,13 +133,13 @@
           bit is the next lower term of the dividend polynomial. Long division can
           be processed in piecemeal, reading new upper terms as needed. This maps
           to reading the data a byte (or bit) at a time, generating updated remainders
-          just-in-time, without needing to read (and/or store(!)) the entire data
+          just-in-time, without needing to read (and/or store (!)) the entire data
           message at once.
         </p>
 <p>
           Long division involves appending new dividend terms after the previous
           terms have been processed into the (interim) remainder. So the remainder
-          it the only thing that has to change during each division step; a new input
+          is the only thing that has to change during each division step; a new input
           byte (or bit) is combined with the remainder to make the interim dividend,
           and then combined with the partial product (based on the divisor and top
           dividend bit(s)) to become a remainder again.
@@ -193,18 +193,18 @@
           and highest-order bits swap states, the next-lowest- and next-highest-order
           bits swap, etc. The input reflection can be done by reflecting each byte
           as it comes in or keeping the bytes unchanged but reflect the other internal
-          functioning. The latter sounds harder, but what it usually done in the
+          functioning. The latter sounds harder, but is what is usually done in the
           real world, since it's a one-time cost, unlike reflecting the bytes.
         </p>
 <p>
           Similarly, the final remainder is processed by some hardware in reverse
-          order, which means software that simulate such systems need to flag that
+          order, which means software that simulates such systems needs to flag that
           <span class="bold"><strong>output reflection</strong></span> is in effect.
         </p>
 <p>
           Some CRCs don't return the remainder directly (reflected or not), but add
           an extra step complementing the output bits. Complementing turns 1 values
-          into 0 values and vice versa. This can simulated by using a XOR (exclusive-or)
+          into 0 values and vice versa. This can be simulated by using a XOR (exclusive-or)
           bit mask of all 1-values (of the same bit length as the remainder). Some
           systems use a <span class="bold"><strong>final XOR mask</strong></span> that isn't
           all 1-values, for variety. (This mask takes place <span class="emphasis"><em>after</em></span>
@@ -273,9 +273,9 @@
               </p></dd>
 <dt><span class="term">XOROUT</span></dt>
 <dd><p>
-                This is an W-bit value that should be specified as a hexadecimal
-                number. It is XORed to the final register value (after the REFOUT)
-                stage before the value is returned as the official checksum.
+                This is a W-bit value that should be specified as a hexadecimal number.
+                It is XORed to the final register value (after the REFOUT) stage
+                before the value is returned as the official checksum.
               </p></dd>
 </dl>
 </div>

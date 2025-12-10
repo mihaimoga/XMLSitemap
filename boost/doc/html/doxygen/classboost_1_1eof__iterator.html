@@ -53,8 +53,8 @@
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
 <a name="id-1.3.29.9.5.3.4"></a><h2>Description</h2>
-<p>The '<a class="link" href="classboost_1_1eof__iterator.html" title="Class template eof_iterator">eof_iterator</a>' class is useful for constructing forward iterators in cases where iterator extract data from some source and it's easy to detect 'eof' -- i.e. the situation where there's no data. One apparent example is reading lines from a file.</p>
-<p>Implementing such iterators using 'iterator_facade' directly would require to create class with three core operation, a couple of constructors. When using '<a class="link" href="classboost_1_1eof__iterator.html" title="Class template eof_iterator">eof_iterator</a>', the derived class should define only one method to get new value, plus a couple of constructors.</p>
+<p>The '<a class="link" href="classboost_1_1eof__iterator.html" title="Class template eof_iterator">eof_iterator</a>' class is useful for constructing forward iterators in cases where the iterator extracts data from some source and it's easy to detect 'eof' -- i.e. the situation where there's no data. One apparent example is reading lines from a file.</p>
+<p>Implementing such iterators using 'iterator_facade' directly would require to create class with three core operations, a couple of constructors. When using '<a class="link" href="classboost_1_1eof__iterator.html" title="Class template eof_iterator">eof_iterator</a>', the derived class should define only one method to get new value, plus a couple of constructors.</p>
 <p>The basic idea is that iterator has 'eof' bit. Two iterators are equal only if both have their 'eof' bits set. The 'get' method either obtains the new value or sets the 'eof' bit.</p>
 <p>Specifically, derived class should define:</p>
 <div class="orderedlist"><ol class="orderedlist" type="1">

@@ -62,7 +62,7 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1compute_1_1event.html#doxygen.header_reference.classboost_1_1compute_1_1event_1a6021b25ea885840e6324f828b9f1bc99"><span class="keyword">operator</span><span class="special">!=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1event.html" title="Class event">event</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id31113"></a><h2>Description</h2>
+<a name="id31102"></a><h2>Description</h2>
 <p>Event objects are used to track operations running on the device (such as kernel executions and memory transfers). Event objects are returned by the various <code class="computeroutput">enqueue_*</code> methods of the <a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue">command_queue</a> class.</p>
 <p>Events can be used to synchronize operations between the host and the device. The <code class="computeroutput"><a class="link" href="classboost_1_1compute_1_1event.html#doxygen.header_reference.classboost_1_1compute_1_1event_1a352bf90d88783f5545875485509c20d2">wait()</a></code> method will block execution on the host until the operation corresponding to the event on the device has completed. The status of the operation can also be polled with the <code class="computeroutput"><a class="link" href="classboost_1_1compute_1_1event.html#doxygen.header_reference.classboost_1_1compute_1_1event_1a7c621cda55f7593e39e1a8f4ab3b3353">status()</a></code> method.</p>
 <p>Event objects can also be used for performance profiling. In order to use events for profiling, the command queue must be constructed with the <code class="computeroutput">CL_QUEUE_PROFILING_ENABLE</code> flag. Then the <code class="computeroutput"><a class="link" href="classboost_1_1compute_1_1event.html#doxygen.header_reference.classboost_1_1compute_1_1event_1a44db66d6117cbe5a2d6eeec403bbdb52">duration()</a></code> method can be used to retrieve the total duration of the operation on the device: </p>
@@ -72,7 +72,7 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="id31159"></a><h3>
+<a name="id31148"></a><h3>
 <a name="id21-bb"></a><code class="computeroutput">event</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

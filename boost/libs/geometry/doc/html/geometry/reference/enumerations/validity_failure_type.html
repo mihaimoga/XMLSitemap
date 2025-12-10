@@ -28,21 +28,27 @@
 <a name="geometry.reference.enumerations.validity_failure_type"></a><a class="link" href="validity_failure_type.html" title="validity_failure_type">validity_failure_type</a>
 </h4></div></div></div>
 <p>
-          <a class="indexterm" name="id73983"></a>
-<a class="indexterm" name="id73985"></a>
-<a class="indexterm" name="id73987"></a>
-<a class="indexterm" name="id73989"></a>
-<a class="indexterm" name="id73991"></a>
-<a class="indexterm" name="id73993"></a>
-<a class="indexterm" name="id73995"></a>
-<a class="indexterm" name="id73997"></a>
-<a class="indexterm" name="id73999"></a>
-<a class="indexterm" name="id74001"></a>
-<a class="indexterm" name="id74003"></a>
-<a class="indexterm" name="id74005"></a>
-<a class="indexterm" name="id74007"></a>
-<a class="indexterm" name="id74009"></a>
-<a class="indexterm" name="id74011"></a>
+          <a class="indexterm" name="id73988"></a>
+<a class="indexterm" name="id73990"></a>
+<a class="indexterm" name="id73992"></a>
+<a class="indexterm" name="id73994"></a>
+<a class="indexterm" name="id73996"></a>
+<a class="indexterm" name="id73998"></a>
+<a class="indexterm" name="id74000"></a>
+<a class="indexterm" name="id74002"></a>
+<a class="indexterm" name="id74004"></a>
+<a class="indexterm" name="id74006"></a>
+<a class="indexterm" name="id74008"></a>
+<a class="indexterm" name="id74010"></a>
+<a class="indexterm" name="id74012"></a>
+<a class="indexterm" name="id74014"></a>
+<a class="indexterm" name="id74016"></a>
+<a class="indexterm" name="id74018"></a>
+<a class="indexterm" name="id74020"></a>
+<a class="indexterm" name="id74022"></a>
+<a class="indexterm" name="id74024"></a>
+<a class="indexterm" name="id74026"></a>
+<a class="indexterm" name="id74028"></a>
 Enumerates the possible validity failure types for a geometry.
         </p>
 <h6>
@@ -76,7 +82,13 @@ Enumerates the possible validity failure types for a geometry.
     <span class="identifier">failure_disconnected_interior</span> <span class="special">=</span> <span class="number">32</span><span class="special">,</span>
     <span class="identifier">failure_intersecting_interiors</span> <span class="special">=</span> <span class="number">40</span><span class="special">,</span>
     <span class="identifier">failure_wrong_corner_order</span> <span class="special">=</span> <span class="number">50</span><span class="special">,</span>
-    <span class="identifier">failure_invalid_coordinate</span> <span class="special">=</span> <span class="number">60</span>
+    <span class="identifier">failure_invalid_coordinate</span> <span class="special">=</span> <span class="number">60</span><span class="special">,</span>
+    <span class="identifier">failure_collinear_points_on_face</span> <span class="special">=</span> <span class="number">70</span><span class="special">,</span>
+    <span class="identifier">failure_non_coplanar_points_on_face</span> <span class="special">=</span> <span class="number">71</span><span class="special">,</span>
+    <span class="identifier">failure_few_points_on_face</span> <span class="special">=</span> <span class="number">72</span><span class="special">,</span>
+    <span class="identifier">failure_inconsistent_orientation</span> <span class="special">=</span> <span class="number">73</span><span class="special">,</span>
+    <span class="identifier">failure_invalid_intersection</span> <span class="special">=</span> <span class="number">74</span><span class="special">,</span>
+    <span class="identifier">failure_disconnected_surface</span> <span class="special">=</span> <span class="number">75</span>
 <span class="special">};</span></pre>
 <p>
         </p>
@@ -284,6 +296,88 @@ Enumerates the possible validity failure types for a geometry.
                   <p>
                     The geometry has at least one point with an invalid coordinate
                     (for example, the coordinate is a NaN)
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    failure_collinear_points_on_face
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The geometry has colinear points on the same face (applies to
+                    polyhedral surfaces only)
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    failure_non_coplanar_points_on_face
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The geometry has non-coplanar points on the same face The points
+                    do not lie on the same plane and thus cannot define a face (applies
+                    to polyhedral surfaces only)
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    failure_few_points_on_face
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The geometry has a very small number of points on the same face
+                    The face must have at least 3 points to be defined (applies to
+                    polyhedral surfaces only)
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    failure_inconsistent_orientation
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The geometry has inconsistent orientation of at least one edge
+                    The edge has the same orientation in both faces it belongs to
+                    (applies to polyhedral surfaces only)
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    failure_invalid_intersection
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The geometry has invalid intersection of the faces The faces
+                    do not intersect in a valid way, i.e. on a common edge (applies
+                    to polyhedral surfaces only)
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    failure_disconnected_surface
+                  </p>
+                </td>
+<td>
+                  <p>
+                    The geometry has disconnected faces, i.e. it is not continuous
+                    (applies to polyhedral surfaces only)
                   </p>
                 </td>
 </tr>

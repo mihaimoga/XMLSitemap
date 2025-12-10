@@ -28,6 +28,7 @@
 <a name="core.revision_history"></a><a class="link" href="revision_history.html" title="Revision History">Revision History</a>
 </h2></div></div></div>
 <div class="toc"><dl class="toc">
+<dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_90_0">Changes in 1.90.0</a></span></dt>
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_89_0">Changes in 1.89.0</a></span></dt>
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_86_0">Changes in 1.86.0</a></span></dt>
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_85_0">Changes in 1.85.0</a></span></dt>
@@ -46,6 +47,31 @@
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_67_0">Changes in 1.67.0</a></span></dt>
 <dt><span class="section"><a href="revision_history.html#core.revision_history.changes_in_1_65_0">Changes in 1.65.0</a></span></dt>
 </dl></div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="core.revision_history.changes_in_1_90_0"></a><a class="link" href="revision_history.html#core.revision_history.changes_in_1_90_0" title="Changes in 1.90.0">Changes in 1.90.0</a>
+</h3></div></div></div>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+            The implementation of <code class="computeroutput"><span class="identifier">BOOST_TEST_THROWS</span></code>
+            and <code class="computeroutput"><span class="identifier">BOOST_TEST_NO_THROW</span></code>
+            macros defined in <a class="link" href="lightweight_test.html" title="lightweight_test"><code class="computeroutput"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">core</span><span class="special">/</span><span class="identifier">lightweight_test</span><span class="special">.</span><span class="identifier">hpp</span></code></a> has been changed to avoid
+            compiler warnings on some compilers, when the macros are used in <code class="computeroutput"><span class="keyword">if</span></code>/<code class="computeroutput"><span class="keyword">else</span></code>
+            blocks. As a side effect of this change, the semicolon after the macro
+            is now necessary. (<a href="https://github.com/boostorg/core/pull/205" target="_top">PR#205</a>)
+          </li>
+<li class="listitem">
+            <a class="link" href="data.html" title="data"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">data</span></code></a>
+            and <a class="link" href="size.html" title="size"><code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">size</span></code></a>
+            are now aliases for <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">data</span></code>
+            and <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">size</span></code>, respectively, when the latter
+            are provided by compiler. This resolves potential ambiguities when both
+            <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span></code>
+            and <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span></code>
+            alternatives are found by the compiler, e.g. as a result of ADL. (<a href="https://github.com/boostorg/core/issues/206" target="_top">#206</a>)
+          </li>
+</ul></div>
+</div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
 <a name="core.revision_history.changes_in_1_89_0"></a><a class="link" href="revision_history.html#core.revision_history.changes_in_1_89_0" title="Changes in 1.89.0">Changes in 1.89.0</a>

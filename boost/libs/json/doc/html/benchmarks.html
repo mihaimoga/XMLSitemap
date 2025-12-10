@@ -289,8 +289,8 @@
   --main-container: 90rem;
 
   /* New Look Typography */
-  --font-family-body: "Noto Sans";
-  --font-family-code: "Noto Sans Mono";
+  --font-family-body: "Noto Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-family-code: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-size-3xs: 0.625rem;
   --font-size-2xs: 0.75rem;
   --font-size-xs: 0.875rem;
@@ -735,10 +735,15 @@ html:has(.boostlook) {
   /* Variable font weight range */
   font-variation-settings: "wght" 400, "wdth" 62.5;
   font-display: block;
-  /* Prevents FOIT */
-  src: url("/static/font/notosans.woff2") format("woff2"),
+  src: url("../font/NotoSansDisplay.ttf") format("truetype"),
+  url("/static/font/notosans.woff2") format("woff2"),
   url("../../../../tools/boostlook/notosans.woff2") format("woff2"),
   url("https://cppalliance.org/fonts/NotoSansDisplay.ttf") format("truetype");
+  /* Metric overrides to reduce CLS on swap */
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 
 /* Noto Sans Display - Italic */
@@ -750,10 +755,15 @@ html:has(.boostlook) {
   /* Variable font weight range */
   font-variation-settings: "wght" 400, "wdth" 62.5;
   font-display: block;
-  /* Prevents FOIT */
-  src: url("/static/font/notosans_mono_ext.woff") format("woff"),
-  url("../../../../tools/boostlook/notosans_mono_ext.woff") format("woff"),
-  url("https://cppalliance.org/fonts/NotoSansMono.ttf") format("truetype");
+  src: url("../font/NotoSansDisplay-Italic.ttf") format("truetype"),
+  url("/static/font/notosans_ext.woff2") format("woff2"),
+  url("../../../../tools/boostlook/notosans_ext.woff2") format("woff2"),
+  url("https://cppalliance.org/fonts/NotoSansDisplay-Italic.ttf") format("truetype");
+  /* Metric overrides to reduce CLS on swap */
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 
 /* Noto Sans Mono - Variable Weight */
@@ -765,10 +775,15 @@ html:has(.boostlook) {
   /* Variable font weight range */
   font-variation-settings: "wght" 400, "wdth" 62.5;
   font-display: block;
-  /* Prevents FOIT */
-  src: url("/static/font/notosans_mono.woff") format("woff"),
+  src: url("../font/NotoSansMono.ttf") format("truetype"),
+  url("/static/font/notosans_mono.woff") format("woff"),
   url("../../../../tools/boostlook/notosans_mono.woff") format("woff"),
   url("https://cppalliance.org/fonts/NotoSansMono.ttf") format("truetype");
+  /* Metric overrides to reduce CLS on swap */
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 
 /* Noto Sans Mono - Fixed Weight */
@@ -779,10 +794,15 @@ html:has(.boostlook) {
   /* Fixed weight for specific use cases */
   font-stretch: 62.5% 100%;
   font-display: block;
-  /* Prevents FOIT */
-  src: url("/static/font/notosans_mono.woff") format("woff"),
+  src: url("../font/NotoSansMono.ttf") format("truetype"),
+  url("/static/font/notosans_mono.woff") format("woff"),
   url("../../../../tools/boostlook/notosans_mono.woff") format("woff"),
   url("https://cppalliance.org/fonts/NotoSansMono.ttf") format("truetype");
+  /* Metric overrides to reduce CLS on swap */
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
 }
 
 /*----------------- Font-Face Declarations end -----------------*/
@@ -1267,12 +1287,6 @@ div.source-docs-antora.boostlook:not(:has(.doc)):not(:has(>.boostlook)) > #conte
   cursor: pointer;
 }
 
-/* Link States */
-.boostlook p a:visited:not(:hover),
-.boostlook table a:visited:not(:hover) {
-  color: var(--text-main-text-body-tetriary, #62676b);
-}
-
 /* Emphasis within code */
 .boostlook em,
 .boostlook code em {
@@ -1353,8 +1367,10 @@ html.dark .boostlook pre.rouge,
 html.dark .boostlook .doc .content pre,
 html.dark .boostlook .doc pre.highlight,
 html.dark .boostlook .doc .listingblock pre:not(.highlight),
-html.dark .boostlook .doc .literalblock pre {
-  background: var(--atom-one-dark-bg, #282c34);
+html.dark .boostlook .doc .literalblock pre,
+html.dark .boostlook#libraryReadMe > pre:not(:last-child),
+html.dark .boostlook#libraryReadMe div.highlight:has(> pre):not(:is(dd pre, td pre)) {
+  background: var(--atom-one-dark-bg, #282c34) !important;
 }
 
 .boostlook .doc pre {
@@ -4663,9 +4679,15 @@ div.source-docs-antora.boostlook:not(:has(.doc)):not(:has(> .boostlook)) > #cont
     padding-bottom: 0.2rem !important;
 }
 
+.imageblock .content { display: inline !important; }
+.imageblock.text-left .content { text-align: left; }
+.imageblock.text-right .content { text-align: right; }
+
 span.red { color: var(--colors-negative-500); }
 span.good { color: var(--colors-positive-500); }
 span.silver { color: var(--colors-neutral-500); }
+
+.boostlook pre.highlight .conum { display: none; }
 </style>
 </head>
 <body id="benchmarks" class="article toc2 toc-left"><div class="boostlook">
@@ -4915,9 +4937,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_apache_builds_json"><a class="anchor" href="#parse_apache_builds_json"></a>Parse apache_builds.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_apache_builds.png" alt="parse apache builds" width="668" height="712">
+<img src="images/parse_apache_builds.png" alt="parse apache builds" width="668">
 </div>
 </div>
 </div>
@@ -4925,9 +4947,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_canada_json"><a class="anchor" href="#parse_canada_json"></a>Parse canada.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_canada.png" alt="parse canada" width="668" height="712">
+<img src="images/parse_canada.png" alt="parse canada" width="668">
 </div>
 </div>
 </div>
@@ -4935,9 +4957,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_citm_catalog_json"><a class="anchor" href="#parse_citm_catalog_json"></a>Parse citm_catalog.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_citm_catalog.png" alt="parse citm catalog" width="668" height="712px">
+<img src="images/parse_citm_catalog.png" alt="parse citm catalog" width="668">
 </div>
 </div>
 </div>
@@ -4945,9 +4967,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_github_events_json"><a class="anchor" href="#parse_github_events_json"></a>Parse github_events.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_github_events.png" alt="parse github events" width="668" height="712">
+<img src="images/parse_github_events.png" alt="parse github events" width="668">
 </div>
 </div>
 </div>
@@ -4955,9 +4977,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_gsoc_2018_json"><a class="anchor" href="#parse_gsoc_2018_json"></a>Parse gsoc-2018.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_gsoc_2018.png" alt="parse gsoc 2018" width="668" height="712">
+<img src="images/parse_gsoc_2018.png" alt="parse gsoc 2018" width="668">
 </div>
 </div>
 </div>
@@ -4965,9 +4987,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_instruments_json"><a class="anchor" href="#parse_instruments_json"></a>Parse instruments.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_instruments.png" alt="parse instruments" width="668" height="712">
+<img src="images/parse_instruments.png" alt="parse instruments" width="668">
 </div>
 </div>
 </div>
@@ -4975,9 +4997,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_marine_ik_json"><a class="anchor" href="#parse_marine_ik_json"></a>Parse marine_ik.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_marine_ik.png" alt="parse marine ik" width="668" height="712">
+<img src="images/parse_marine_ik.png" alt="parse marine ik" width="668">
 </div>
 </div>
 </div>
@@ -4985,9 +5007,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_mesh_json"><a class="anchor" href="#parse_mesh_json"></a>Parse mesh.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_mesh.png" alt="parse mesh" width="668" height="712">
+<img src="images/parse_mesh.png" alt="parse mesh" width="668">
 </div>
 </div>
 </div>
@@ -4995,9 +5017,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_mesh_pretty_json"><a class="anchor" href="#parse_mesh_pretty_json"></a>Parse mesh.pretty.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_mesh_pretty.png" alt="parse mesh pretty" width="668" height="712">
+<img src="images/parse_mesh_pretty.png" alt="parse mesh pretty" width="668">
 </div>
 </div>
 </div>
@@ -5005,9 +5027,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_numbers_json"><a class="anchor" href="#parse_numbers_json"></a>Parse numbers.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_numbers.png" alt="parse numbers" width="668" height="712">
+<img src="images/parse_numbers.png" alt="parse numbers" width="668">
 </div>
 </div>
 </div>
@@ -5015,9 +5037,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_random_json"><a class="anchor" href="#parse_random_json"></a>Parse random.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_random.png" alt="parse random" width="668" height="712">
+<img src="images/parse_random.png" alt="parse random" width="668">
 </div>
 </div>
 </div>
@@ -5025,9 +5047,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_twitter_json"><a class="anchor" href="#parse_twitter_json"></a>Parse twitter.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_twitter.png" alt="parse twitter" width="668" height="712">
+<img src="images/parse_twitter.png" alt="parse twitter" width="668">
 </div>
 </div>
 </div>
@@ -5035,9 +5057,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_twitterescaped_json"><a class="anchor" href="#parse_twitterescaped_json"></a>Parse twitterescaped.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_twitterescaped.png" alt="parse twitterescaped" width="668" height="712">
+<img src="images/parse_twitterescaped.png" alt="parse twitterescaped" width="668">
 </div>
 </div>
 </div>
@@ -5045,9 +5067,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="parse_update_center_json"><a class="anchor" href="#parse_update_center_json"></a>Parse update-center.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/parse_update_center.png" alt="parse update center" width="668" height="712">
+<img src="images/parse_update_center.png" alt="parse update center" width="668">
 </div>
 </div>
 </div>
@@ -5060,9 +5082,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_canada_json"><a class="anchor" href="#serialize_canada_json"></a>Serialize canada.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_canada.png" alt="serialize canada" width="668" height="712">
+<img src="images/serialize_canada.png" alt="serialize canada" width="668">
 </div>
 </div>
 </div>
@@ -5070,9 +5092,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_citm_catalog_json"><a class="anchor" href="#serialize_citm_catalog_json"></a>Serialize citm_catalog.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_citm_catalog.png" alt="serialize citm catalog" width="668" height="712">
+<img src="images/serialize_citm_catalog.png" alt="serialize citm catalog" width="668">
 </div>
 </div>
 </div>
@@ -5080,9 +5102,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_github_events_json"><a class="anchor" href="#serialize_github_events_json"></a>Serialize github_events.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_github_events.png" alt="serialize github events" width="668" height="712">
+<img src="images/serialize_github_events.png" alt="serialize github events" width="668">
 </div>
 </div>
 </div>
@@ -5090,9 +5112,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_gsoc_2018_json"><a class="anchor" href="#serialize_gsoc_2018_json"></a>Serialize gsoc-2018.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_gsoc_2018.png" alt="serialize gsoc 2018" width="668" height="712">
+<img src="images/serialize_gsoc_2018.png" alt="serialize gsoc 2018" width="668">
 </div>
 </div>
 </div>
@@ -5100,9 +5122,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_instruments_json"><a class="anchor" href="#serialize_instruments_json"></a>Serialize instruments.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_instruments.png" alt="serialize instruments" width="668" height="712">
+<img src="images/serialize_instruments.png" alt="serialize instruments" width="668">
 </div>
 </div>
 </div>
@@ -5110,9 +5132,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_marine_ik_json"><a class="anchor" href="#serialize_marine_ik_json"></a>Serialize marine_ik.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_marine_ik.png" alt="serialize marine ik" width="668" height="712">
+<img src="images/serialize_marine_ik.png" alt="serialize marine ik" width="668">
 </div>
 </div>
 </div>
@@ -5120,9 +5142,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_mesh_json"><a class="anchor" href="#serialize_mesh_json"></a>Serialize mesh.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_mesh.png" alt="serialize mesh" width="668" height="712">
+<img src="images/serialize_mesh.png" alt="serialize mesh" width="668">
 </div>
 </div>
 </div>
@@ -5130,9 +5152,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_mesh_pretty_json"><a class="anchor" href="#serialize_mesh_pretty_json"></a>Serialize mesh.pretty.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_mesh_pretty.png" alt="serialize mesh pretty" width="668" height="712">
+<img src="images/serialize_mesh_pretty.png" alt="serialize mesh pretty" width="668">
 </div>
 </div>
 </div>
@@ -5140,9 +5162,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_numbers_json"><a class="anchor" href="#serialize_numbers_json"></a>Serialize numbers.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_numbers.png" alt="serialize numbers" width="668" height="712">
+<img src="images/serialize_numbers.png" alt="serialize numbers" width="668">
 </div>
 </div>
 </div>
@@ -5150,9 +5172,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_random_json"><a class="anchor" href="#serialize_random_json"></a>Serialize random.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_random.png" alt="serialize random" width="668" height="712">
+<img src="images/serialize_random.png" alt="serialize random" width="668">
 </div>
 </div>
 </div>
@@ -5160,9 +5182,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_twitter_json"><a class="anchor" href="#serialize_twitter_json"></a>Serialize twitter.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_twitter.png" alt="serialize twitter" width="668" height="712">
+<img src="images/serialize_twitter.png" alt="serialize twitter" width="668">
 </div>
 </div>
 </div>
@@ -5170,9 +5192,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_twitterescaped_json"><a class="anchor" href="#serialize_twitterescaped_json"></a>Serialize twitterescaped.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_twitterescaped.png" alt="serialize twitterescaped" width="668" height="712">
+<img src="images/serialize_twitterescaped.png" alt="serialize twitterescaped" width="668">
 </div>
 </div>
 </div>
@@ -5180,9 +5202,9 @@ Windows 10, 32GB RAM.</p>
 <div class="sect1">
 <h2 id="serialize_update_center_json"><a class="anchor" href="#serialize_update_center_json"></a>Serialize update-center.json</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="imageblock text-left">
 <div class="content">
-<img src="images/serialize_update_center.png" alt="serialize update center" width="668" height="712px">
+<img src="images/serialize_update_center.png" alt="serialize update center" width="668">
 </div>
 </div>
 </div>

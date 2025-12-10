@@ -87,8 +87,8 @@
         </li></ul></div>
 <pre class="programlisting"></pre>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
-          <span class="bold"><strong>Question:</strong></span> Why <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">&gt;(</span><span class="string">"-1"</span><span class="special">);</span></code>
-          does not throw, but outputs 4294967295?
+          <span class="bold"><strong>Question:</strong></span> Why does <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">unsigned</span> <span class="keyword">int</span><span class="special">&gt;(</span><span class="string">"-1"</span><span class="special">);</span></code>
+          not throw, but outputs 4294967295?
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
                 <span class="bold"><strong>Answer:</strong></span> <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span></code>
                 has the behavior of <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">stringstream</span></code>,
@@ -104,8 +104,8 @@
         </li></ul></div>
 <pre class="programlisting"></pre>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
-          <span class="bold"><strong>Question:</strong></span> Why <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;(</span><span class="identifier">L</span><span class="char">'A'</span><span class="special">);</span></code> outputs
-          65 and <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">wchar_t</span><span class="special">&gt;(</span><span class="identifier">L</span><span class="string">"65"</span><span class="special">);</span></code> does not throw?
+          <span class="bold"><strong>Question:</strong></span> Why does <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;(</span><span class="identifier">L</span><span class="char">'A'</span><span class="special">);</span></code> output
+          65 and <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">wchar_t</span><span class="special">&gt;(</span><span class="identifier">L</span><span class="string">"65"</span><span class="special">);</span></code> not throw?
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
                 <span class="bold"><strong>Answer:</strong></span> If you are using an old
                 version of Visual Studio or compile code with /Zc:wchar_t- flag,
@@ -116,7 +116,7 @@
         </li></ul></div>
 <pre class="programlisting"></pre>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
-          <span class="bold"><strong>Question:</strong></span> Why <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="string">"-1.#IND"</span><span class="special">);</span></code> throws <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">bad_lexical_cast</span></code>?
+          <span class="bold"><strong>Question:</strong></span> Why does <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">double</span><span class="special">&gt;(</span><span class="string">"-1.#IND"</span><span class="special">);</span></code> throw <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">bad_lexical_cast</span></code>?
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
                 <span class="bold"><strong>Answer:</strong></span> <code class="computeroutput"><span class="string">"-1.#IND"</span></code>
                 is a compiler extension, that violates standard. You shall input
@@ -134,7 +134,7 @@
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
                 <span class="bold"><strong>Answer:</strong></span> Use <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">iterator_range</span></code>
                 for conversion or <code class="computeroutput"><span class="identifier">lexical_cast</span></code>
-                overload with two parameters. For example, if you whant to convert
+                overload with two parameters. For example, if you want to convert
                 to <code class="computeroutput"><span class="keyword">int</span></code> two characters
                 from a string <code class="computeroutput"><span class="identifier">str</span></code>,
                 you shall write <code class="computeroutput"><span class="identifier">lexical_cast</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;(</span><span class="identifier">make_iterator_range</span><span class="special">(</span><span class="identifier">str</span><span class="special">.</span><span class="identifier">data</span><span class="special">(),</span> <span class="identifier">str</span><span class="special">.</span><span class="identifier">data</span><span class="special">()</span> <span class="special">+</span> <span class="number">2</span><span class="special">));</span></code>

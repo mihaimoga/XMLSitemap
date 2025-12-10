@@ -100,6 +100,10 @@ void test_beta_dist_kernel(const double* in, double* out, int num_elements)
 <span class="special">}</span>
 </pre>
 <p>
+      When using SYCL you must define BOOST_MATH_ENABLE_SYCL, since device support
+      is opt-in on that platform. For NVCC and NVRTC device support is enabled automatically.
+    </p>
+<p>
       Once your kernel function has been written then use the framework mechanism
       for launching the kernel.
     </p>

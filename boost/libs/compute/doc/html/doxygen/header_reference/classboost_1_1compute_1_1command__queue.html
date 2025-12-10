@@ -208,25 +208,25 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1compute_1_1command__queue.html#doxygen.header_reference.classboost_1_1compute_1_1command__queue_1a213019f987066466f7caaa92040ecc58"><span class="keyword">operator</span><span class="special">!=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue">command_queue</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id17614"></a><h2>Description</h2>
+<a name="id17616"></a><h2>Description</h2>
 <p>Command queues provide the interface for interacting with compute devices. The <a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue">command_queue</a> class provides methods to copy data to and from a compute device as well as execute compute kernels.</p>
 <p>Command queues are created for a compute device within a compute context.</p>
 <p>For example, to create a context and command queue for the default device on the system (this is the normal set up code used by almost all OpenCL programs): </p>
 <pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><a class="link" href="../../boost_compute/reference.html#doxygen.header_reference.core_8hpp" title="Header &lt;boost/compute/core.hpp&gt;"><span class="identifier">boost</span><span class="special">/</span><span class="identifier">compute</span><span class="special">/</span><span class="identifier">core</span><span class="special">.</span><span class="identifier">hpp</span></a><span class="special">&gt;</span>
 
 <span class="comment">// get the default compute device</span>
-<a class="link" href="classboost_1_1compute_1_1device.html" title="Class device"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">device</span></a> <span class="identifier">device</span> <span class="special">=</span> <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a7e1531ff30d091e9127eaa6d96cbb3b7"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">default_device</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">device</span> <span class="identifier">device</span> <span class="special">=</span> <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a7e1531ff30d091e9127eaa6d96cbb3b7"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">default_device</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
 <span class="comment">// set up a compute context and command queue</span>
-<a class="link" href="classboost_1_1compute_1_1context.html" title="Class context"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">context</span></a> <span class="identifier">context</span><span class="special">(</span><span class="identifier">device</span><span class="special">)</span><span class="special">;</span>
-<a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">command_queue</span></a> <span class="identifier">queue</span><span class="special">(</span><span class="identifier">context</span><span class="special">,</span> <span class="identifier">device</span><span class="special">)</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">context</span> <span class="identifier">context</span><span class="special">(</span><span class="identifier">device</span><span class="special">)</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">command_queue</span> <span class="identifier">queue</span><span class="special">(</span><span class="identifier">context</span><span class="special">,</span> <span class="identifier">device</span><span class="special">)</span><span class="special">;</span>
 </pre>
 <p>The default command queue for the system can be obtained with the <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a6196ebd5ef73c5ac11060487e5b79043">system::default_queue()</a> method.</p>
 <p><b>See Also: </b><a class="link" href="classboost_1_1compute_1_1buffer.html" title="Class buffer">buffer</a>, <a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a>, <a class="link" href="classboost_1_1compute_1_1kernel.html" title="Class kernel">kernel</a> </p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id17686"></a><h3>
+<a name="id17685"></a><h3>
 <a name="id7-bb"></a><code class="computeroutput">command_queue</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">

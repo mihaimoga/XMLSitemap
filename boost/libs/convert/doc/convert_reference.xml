@@ -32,7 +32,7 @@
           <template-type-parameter name="Converter"/>
         </template><parameter name="cnv"><paramtype>Converter const &amp;</paramtype></parameter><purpose>Boost.Convert deployment interface with algorithms. </purpose><description><para>For example, <programlisting language="c++">std::array&lt;char const*, 3&gt; strs = {{ " 5", "0XF", "not an int" }};
 std::vector&lt;int&gt;           ints;
-<link linkend="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1basic__stream">boost::cnv::cstream</link>         cnv;
+boost::cnv::cstream         cnv;
 
 cnv(std::hex)(std::skipws);
 
@@ -40,7 +40,7 @@ std::transform(
     strs.begin(),
     strs.end(),
     std::back_inserter(ints),
-    boost::cnv::apply&lt;int&gt;(std::cref(cnv)).value_or(-1));
+    <link linkend="doxygen.boost_convert_c___reference.convert_8hpp_1a69930a236250df33cca405b0fe20b795">boost::cnv::apply&lt;int&gt;</link>(std::cref(cnv)).value_or(-1));
 </programlisting> </para></description></function>
 <function id="doxygen.boost_convert_c___reference.convert_8hpp_1a10ce3aa8590e87fcba838173f50d7e54" name="apply"><type><classname>reference</classname>&lt; Converter, TypeOut, void &gt;</type><template>
           <template-type-parameter name="TypeOut"/>
@@ -54,21 +54,21 @@ std::transform(
           <template-type-parameter name="Converter"/>
         </template><parameter name="value_in"><paramtype>TypeIn const &amp;</paramtype><description><para>Value of the TypeIn type to be converted to the TypeOut type </para></description></parameter><parameter name="converter"><paramtype>Converter const &amp;</paramtype><description><para>Converter to be used for conversion </para></description></parameter><purpose>Boost.Convert main deployment interface. </purpose><description><para>
 
-For example, <programlisting language="c++"><link linkend="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1basic__stream">boost::cnv::cstream</link> cnv;
+For example, <programlisting language="c++">boost::cnv::cstream cnv;
 
-boost::optional&lt;int&gt;    i = boost::convert&lt;int&gt;("12", cnv);
-boost::optional&lt;string&gt; s = boost::convert&lt;string&gt;(123.456, cnv);
+boost::optional&lt;int&gt;    i = <link linkend="doxygen.boost_convert_c___reference.convert_8hpp_1af4b24fd41e07b42f1900230c275da40c">boost::convert&lt;int&gt;</link>("12", cnv);
+boost::optional&lt;string&gt; s = <link linkend="doxygen.boost_convert_c___reference.convert_8hpp_1af4b24fd41e07b42f1900230c275da40c">boost::convert&lt;string&gt;</link>(123.456, cnv);
 </programlisting> </para></description><returns><para>boost::optional&lt;TypeOut&gt; result of conversion together with the indication of success or failure of the conversion request.</para>
 </returns></function>
 <function id="doxygen.boost_convert_c___reference.convert_8hpp_1abfe68a78b7e9e775f590f528e93d7d69" name="convert"><type>boost::optional&lt; TypeOut &gt;</type><template>
           <template-type-parameter name="TypeOut"/>
           <template-type-parameter name="TypeIn"/>
-        </template><parameter name="value_in"><paramtype>TypeIn const &amp;</paramtype></parameter><purpose>Boost.Convert deployment interface with the default converter. </purpose><description><para>For example, <programlisting language="c++">struct boost::cnv::by_default : <link linkend="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1basic__stream">boost::cnv::cstream</link> {};
+        </template><parameter name="value_in"><paramtype>TypeIn const &amp;</paramtype></parameter><purpose>Boost.Convert deployment interface with the default converter. </purpose><description><para>For example, <programlisting language="c++">struct boost::cnv::by_default : boost::cnv::cstream {};
 
 // boost::cnv::cstream (through boost::cnv::by_default) is deployed
 // as the default converter when no converter is provided explicitly.
-boost::optional&lt;int&gt;    i = boost::convert&lt;int&gt;("12");
-boost::optional&lt;string&gt; s = boost::convert&lt;string&gt;(123.456);
+boost::optional&lt;int&gt;    i = <link linkend="doxygen.boost_convert_c___reference.convert_8hpp_1af4b24fd41e07b42f1900230c275da40c">boost::convert&lt;int&gt;</link>("12");
+boost::optional&lt;string&gt; s = <link linkend="doxygen.boost_convert_c___reference.convert_8hpp_1af4b24fd41e07b42f1900230c275da40c">boost::convert&lt;string&gt;</link>(123.456);
 </programlisting> </para></description></function>
 <function id="doxygen.boost_convert_c___reference.convert_8hpp_1a4cd7bc2fcf0d7576e3604fb83dc63ef5" name="convert"><type>TypeOut</type><template>
           <template-type-parameter name="TypeOut"/>
@@ -260,6 +260,8 @@ boost::optional&lt;string&gt; s = boost::convert&lt;string&gt;(123.456);
           <template-type-parameter name="string_type"/>
           <template-type-parameter name="out_type"/>
         </template><parameter name="range"><paramtype>cnv::range&lt; string_type &gt;</paramtype></parameter><parameter name="result_out"><paramtype>optional&lt; out_type &gt; &amp;</paramtype></parameter></method>
+<method id="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1printf_1a0672aef63d46d61964d64899b978f325" name="operator()" cv="const"><type>void</type><parameter name="in"><paramtype>type_in const &amp;</paramtype></parameter><parameter name="out"><paramtype>boost::optional&lt; type_out &gt; &amp;</paramtype></parameter></method>
+<method id="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1printf_1a2e30152a42c476f635a8f85128d6325b" name="operator()"><type>std::enable_if&lt; boost::parameter::is_argument_pack&lt; argument_pack &gt;::value, <classname>this_type</classname> &amp; &gt;::type</type><parameter name="arg"><paramtype>argument_pack const &amp;</paramtype></parameter></method>
 </method-group>
 <method-group name="private member functions">
 <method id="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1printf_1acdf05a2e1a9bfeb34e799e1db6df7683" name="pos" cv="const"><type>int</type><template>
@@ -293,6 +295,8 @@ boost::optional&lt;string&gt; s = boost::convert&lt;string&gt;(123.456);
           <template-type-parameter name="in_type"/>
           <template-type-parameter name="char_type"/>
         </template><parameter name="value_in"><paramtype>in_type</paramtype></parameter><parameter name="beg"><paramtype>char_type *</paramtype></parameter></method>
+<method id="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1spirit_1a0672aef63d46d61964d64899b978f325" name="operator()" cv="const"><type>void</type><parameter name="in"><paramtype>type_in const &amp;</paramtype></parameter><parameter name="out"><paramtype>boost::optional&lt; type_out &gt; &amp;</paramtype></parameter></method>
+<method id="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1spirit_1a2e30152a42c476f635a8f85128d6325b" name="operator()"><type>std::enable_if&lt; boost::parameter::is_argument_pack&lt; argument_pack &gt;::value, <classname>this_type</classname> &amp; &gt;::type</type><parameter name="arg"><paramtype>argument_pack const &amp;</paramtype></parameter></method>
 </method-group>
 </struct>
 
@@ -478,6 +482,8 @@ boost::optional&lt;string&gt; s = boost::convert&lt;string&gt;(123.456);
           <template-type-parameter name="string_type"/>
           <template-type-parameter name="out_type"/>
         </template><parameter name="range"><paramtype>cnv::range&lt; string_type &gt;</paramtype></parameter><parameter name="result_out"><paramtype>boost::optional&lt; out_type &gt; &amp;</paramtype></parameter></method>
+<method id="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1strtol_1a0672aef63d46d61964d64899b978f325" name="operator()" cv="const"><type>void</type><parameter name="in"><paramtype>type_in const &amp;</paramtype></parameter><parameter name="out"><paramtype>boost::optional&lt; type_out &gt; &amp;</paramtype></parameter></method>
+<method id="doxygen.boost_convert_c___reference.structboost_1_1cnv_1_1strtol_1a2e30152a42c476f635a8f85128d6325b" name="operator()"><type>std::enable_if&lt; boost::parameter::is_argument_pack&lt; argument_pack &gt;::value, <classname>this_type</classname> &amp; &gt;::type</type><parameter name="arg"><paramtype>argument_pack const &amp;</paramtype></parameter></method>
 </method-group>
 </struct>
 
@@ -502,12 +508,12 @@ boost::optional&lt;string&gt; s = boost::convert&lt;string&gt;(123.456);
         </template><description><para>A considerable number of libraries require an instance of a class provided (storage created and initialized). For example, <programlisting language="c++">Type result;
 ...
 istream &gt;&gt; result;
-</programlisting> In generic code that results in the Default Constructibility requirement imposed on every type 'Type' to be used with the respective code. Inevitably, that requirement a) either excludes all the classes that for various reasons do not meet that requirement or b) imposes certain (not necessarily desirable) design/implementation onto respective classes.</para><para>Deployment of <link linkend="doxygen.boost_convert_c___reference.make__default_8hpp_1aa346257c4ecfade8a05b9fc245c59bca">boost::make_default()</link> eliminates the Default Constructibility requirement with <programlisting language="c++">Type result = boost::make_default&lt;Type&gt;();
+</programlisting> In generic code that results in the Default Constructibility requirement imposed on every type 'Type' to be used with the respective code. Inevitably, that requirement a) either excludes all the classes that for various reasons do not meet that requirement or b) imposes certain (not necessarily desirable) design/implementation onto respective classes.</para><para>Deployment of <link linkend="doxygen.boost_convert_c___reference.make__default_8hpp_1aa346257c4ecfade8a05b9fc245c59bca">boost::make_default()</link> eliminates the Default Constructibility requirement with <programlisting language="c++">Type result = <link linkend="doxygen.boost_convert_c___reference.make__default_8hpp_1aa346257c4ecfade8a05b9fc245c59bca">boost::make_default&lt;Type&gt;</link>();
 ...
 istream &gt;&gt; result;
 </programlisting> Classes with no default constructor can now be included via a <link linkend="doxygen.boost_convert_c___reference.make__default_8hpp_1aa346257c4ecfade8a05b9fc245c59bca">boost::make_default()</link> specialization: <programlisting language="c++">namespace boost
 {
-    template&lt;&gt; inline Type make_default&lt;Type&gt;() { return Type(parameters); }
+    template&lt;&gt; inline Type <link linkend="doxygen.boost_convert_c___reference.make__default_8hpp_1aa346257c4ecfade8a05b9fc245c59bca">make_default&lt;Type&gt;</link>() { return Type(parameters); }
 }
 </programlisting> </para></description></function>
 </namespace>

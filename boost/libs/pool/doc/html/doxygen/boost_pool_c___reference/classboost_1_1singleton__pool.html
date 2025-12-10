@@ -32,32 +32,30 @@
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
 <div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="singleton__pool_8hpp.html" title="Header &lt;boost/pool/singleton_pool.hpp&gt;">boost/pool/singleton_pool.hpp</a>&gt;
 
-</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Tag<span class="special">,</span> <span class="keyword">unsigned</span> RequestedSize<span class="special">,</span> 
-         <span class="keyword">typename</span> UserAllocator <span class="special">=</span> <span class="identifier">default_user_allocator_new_delete</span><span class="special">,</span> 
-         <span class="keyword">typename</span> Mutex <span class="special">=</span> <span class="identifier">details</span><span class="special">::</span><span class="identifier">pool</span><span class="special">::</span><span class="identifier">default_mutex</span><span class="special">,</span> 
-         <span class="keyword">unsigned</span> NextSize <span class="special">=</span> <span class="number">32</span><span class="special">,</span> <span class="keyword">unsigned</span> MaxSize <span class="special">=</span> <span class="number">0</span><span class="special">&gt;</span> 
+</span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Tag<span class="special">,</span> <span class="keyword">unsigned</span> RequestedSize<span class="special">,</span> <span class="keyword">typename</span> UserAllocator<span class="special">,</span> 
+         <span class="keyword">typename</span> Mutex<span class="special">,</span> <span class="keyword">unsigned</span> NextSize<span class="special">,</span> <span class="keyword">unsigned</span> MaxSize<span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1singleton__pool.html" title="Class template singleton_pool">singleton_pool</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pooltypes">types</a></span>
-  <span class="keyword">typedef</span> <span class="identifier">Tag</span>                                    <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1abd842f2e2328480908ea421828905b52"><span class="identifier">tag</span></a><span class="special">;</span>            
-  <span class="keyword">typedef</span> <span class="identifier">Mutex</span>                                  <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ad5d18e7eb70d43a94961619877bf7ff1"></a><span class="identifier">mutex</span><span class="special">;</span>            <span class="comment">// The type of mutex used to synchonise access to this pool (default <code class="computeroutput">details::pool::default_mutex</code>). </span>
-  <span class="keyword">typedef</span> <span class="identifier">UserAllocator</span>                          <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1a8c05b8a299d8c7391e376f4dc659c71f"></a><span class="identifier">user_allocator</span><span class="special">;</span>   <span class="comment">// The user-allocator used by this pool, default = <code class="computeroutput"><a class="link" href="structboost_1_1default__user__allocator__new__delete.html" title="Struct default_user_allocator_new_delete">default_user_allocator_new_delete</a></code>. </span>
-  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a><span class="special">&lt;</span> <span class="identifier">UserAllocator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">size_type</span>       <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ae498ee1f1fdc9bda0f648b2e224d26d2"></a><span class="identifier">size_type</span><span class="special">;</span>        <span class="comment">// size_type of user allocator. </span>
-  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a><span class="special">&lt;</span> <span class="identifier">UserAllocator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">difference_type</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1aaffbe9abdb378cab2ba1a343308e96da"></a><span class="identifier">difference_type</span><span class="special">;</span>  <span class="comment">// difference_type of user allocator. </span>
+  <span class="keyword">typedef</span> <span class="identifier">Tag</span>                                    <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ace3cf79049bf7efb0fec994d212b2a70"><span class="identifier">tag</span></a><span class="special">;</span>            
+  <span class="keyword">typedef</span> <span class="identifier">Mutex</span>                                  <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1a2252f975fcc13b2ce25bf1048ce3924f"></a><span class="identifier">mutex</span><span class="special">;</span>            <span class="comment">// The type of mutex used to synchonise access to this pool (default <code class="computeroutput">details::pool::default_mutex</code>). </span>
+  <span class="keyword">typedef</span> <span class="identifier">UserAllocator</span>                          <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1a00f17f45e90680cecadc065112b0af71"></a><span class="identifier">user_allocator</span><span class="special">;</span>   <span class="comment">// The user-allocator used by this pool, default = <code class="computeroutput"><a class="link" href="structboost_1_1default__user__allocator__new__delete.html" title="Struct default_user_allocator_new_delete">default_user_allocator_new_delete</a></code>. </span>
+  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a><span class="special">&lt;</span> <span class="identifier">UserAllocator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">size_type</span>       <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1afa1af330c952c2b2f5bcdd121b907af1"></a><span class="identifier">size_type</span><span class="special">;</span>        <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1afa1af330c952c2b2f5bcdd121b907af1">size_type</a> of user allocator. </span>
+  <span class="keyword">typedef</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a><span class="special">&lt;</span> <span class="identifier">UserAllocator</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">difference_type</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1a16f06e1180a4b7e0e75ba1da5908be97"></a><span class="identifier">difference_type</span><span class="special">;</span>  <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1a16f06e1180a4b7e0e75ba1da5908be97">difference_type</a> of user allocator. </span>
 
   <span class="comment">// member classes/structs/unions</span>
 
   <span class="keyword">struct</span> <a class="link" href="structboost_1_1singleton__pool_1_1object__creator.html" title="Struct object_creator">object_creator</a> <span class="special">{</span>
 
-    <span class="comment">// <a class="link" href="structboost_1_1singleton__pool_1_1object__creator.html#id20-bb">public member functions</a></span>
+    <span class="comment">// <a class="link" href="structboost_1_1singleton__pool_1_1object__creator.html#id43-bb">public member functions</a></span>
     <a class="link" href="structboost_1_1singleton__pool_1_1object__creator.html#doxygen.boost_pool_c___reference.structboost_1_1singleton__pool_1_1object__creator_1aa85f003fe2b6042f412e5abc1e9d565a"><span class="identifier">object_creator</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
     <span class="keyword">void</span> <a class="link" href="structboost_1_1singleton__pool_1_1object__creator.html#doxygen.boost_pool_c___reference.structboost_1_1singleton__pool_1_1object__creator_1a8570244b9d82d6a81de28b5b31534f89"><span class="identifier">do_nothing</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
   <span class="special">}</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#id21-bb">private member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#id44-bb">private member functions</a></span>
   <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ae864c03b4cf2e756c16fa4693adb6060"><span class="identifier">singleton_pool</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#id22-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#id45-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span> <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1afe25e78e7f7f5659dac48d34074e0802"><span class="identifier">malloc</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span> <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1a6ea4c7d61529c7570c5eaea341e5dbcc"><span class="identifier">ordered_malloc</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span> <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ad6ed3c5bb8f1faa143dbcb2ad1bbbaf5"><span class="identifier">ordered_malloc</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
@@ -69,7 +67,7 @@
   <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1a085914426cf6974f4a794db427e41675"><span class="identifier">release_memory</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ac00b8f2aa0cd18f525b1006fb1460d68"><span class="identifier">purge_memory</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#id23-bb">private static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1singleton__pool.html#id46-bb">private static functions</a></span>
   <span class="keyword">static</span> <span class="identifier">pool_type</span> <span class="special">&amp;</span> <a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1aec05c8122d8ad0cc5ccda0a2c7daa373"><span class="identifier">get_pool</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
   <span class="comment">// public data members</span>
@@ -78,7 +76,7 @@
   <span class="keyword">static</span> <a class="link" href="classboost_1_1pool.html" title="Class template pool">pool</a><span class="special">&lt;</span> <span class="identifier">UserAllocator</span> <span class="special">&gt;</span> <span class="identifier">p</span><span class="special">;</span>  <span class="comment">// For exposition only! </span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id7179"></a><h2>Description</h2>
+<a name="id8158"></a><h2>Description</h2>
 <p>The <a class="link" href="classboost_1_1singleton__pool.html" title="Class template singleton_pool">singleton_pool</a> class allows other pool interfaces for types of the same size to share the same pool. Template parameters are as follows:</p>
 <p><span class="bold"><strong>Tag</strong></span> User-specified type to uniquely identify this pool: allows different unbounded sets of singleton pools to exist.</p>
 <p><span class="bold"><strong>RequestedSize</strong></span> The size of each chunk returned by member function <code class="computeroutput"><a class="link" href="classboost_1_1singleton__pool.html#doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1afe25e78e7f7f5659dac48d34074e0802">malloc()</a></code>.</p>
@@ -92,7 +90,7 @@
 <p>2 Guaranteed to be constructed before it is used – thus, the simple static object in the synopsis above would actually be an incorrect implementation. The actual implementation to guarantee this is considerably more complicated.</p>
 <p>3 Note too that a different underlying pool p exists for each different set of template parameters, including implementation-specific ones.</p>
 <p>4 The underlying pool is constructed "as if" by:</p>
-<p>pool&lt;UserAllocator&gt; <a class="link" href="../../">p(RequestedSize, NextSize, MaxSize)</a>;</p>
+<p><a class="link" href="classboost_1_1pool.html" title="Class template pool">pool&lt;UserAllocator&gt;</a> <a class="link" href="../../">p(RequestedSize, NextSize, MaxSize)</a>;</p>
 <div class="important"><table border="0" summary="Important">
 <tr>
 <td rowspan="2" align="center" valign="top" width="25"><img alt="[Important]" src="../../../../../../doc/src/images/important.png"></td>
@@ -103,24 +101,24 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="id7222"></a><h3>
+<a name="id8202"></a><h3>
 <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pooltypes"></a><code class="computeroutput">singleton_pool</code> 
         public
        types</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <p>
-<span class="keyword">typedef</span> <span class="identifier">Tag</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1abd842f2e2328480908ea421828905b52"></a><span class="identifier">tag</span><span class="special">;</span></p>
+<span class="keyword">typedef</span> <span class="identifier">Tag</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ace3cf79049bf7efb0fec994d212b2a70"></a><span class="identifier">tag</span><span class="special">;</span></p>
 <p>The Tag template parameter uniquely identifies this pool and allows different unbounded sets of singleton pools to exist. For example, the pool allocators use two tag classes to ensure that the two different allocator types never share the same underlying singleton pool. Tag is never actually used by <a class="link" href="classboost_1_1singleton__pool.html" title="Class template singleton_pool">singleton_pool</a>. </p>
 </li></ol></div>
 </div>
 <div class="refsect2">
-<a name="id7236"></a><h3>
-<a name="id21-bb"></a><code class="computeroutput">singleton_pool</code> private member functions</h3>
+<a name="id8216"></a><h3>
+<a name="id44-bb"></a><code class="computeroutput">singleton_pool</code> private member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><pre class="literallayout"><a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1ae864c03b4cf2e756c16fa4693adb6060"></a><span class="identifier">singleton_pool</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre></li></ol></div>
 </div>
 <div class="refsect2">
-<a name="id7249"></a><h3>
-<a name="id22-bb"></a><code class="computeroutput">singleton_pool</code> public static functions</h3>
+<a name="id8229"></a><h3>
+<a name="id45-bb"></a><code class="computeroutput">singleton_pool</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">static</span> <span class="keyword">void</span> <span class="special">*</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1afe25e78e7f7f5659dac48d34074e0802"></a><span class="identifier">malloc</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
@@ -176,8 +174,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id7395"></a><h3>
-<a name="id23-bb"></a><code class="computeroutput">singleton_pool</code> private static functions</h3>
+<a name="id8375"></a><h3>
+<a name="id46-bb"></a><code class="computeroutput">singleton_pool</code> private static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><pre class="literallayout"><span class="keyword">static</span> <span class="identifier">pool_type</span> <span class="special">&amp;</span> <a name="doxygen.boost_pool_c___reference.classboost_1_1singleton__pool_1aec05c8122d8ad0cc5ccda0a2c7daa373"></a><span class="identifier">get_pool</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre></li></ol></div>
 </div>
 </div>

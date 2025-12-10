@@ -273,7 +273,7 @@ make: *** [Makefile:827: json] Error 2
       special by the standard library and common practice in C++.
     </p>
 <p>
-      Second, When you write a parser that parses multiple characters in a row, you
+      Second, when you write a parser that parses multiple characters in a row, you
       are typically trying to produce a string attribute, rather than a few individual
       character values. When you use multiple non-character parsers in a row, you
       are typically trying to produce multiple values. For instance:
@@ -291,7 +291,7 @@ auto parser_2 = +(bp::char_ - ' ') &gt;&gt; ' ' &gt;&gt; +(bp::char_ - ' ');
 <p>
       Boost.Parser therefore makes the common case the default behavior, and provides
       you with the <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a11728b9935b826cf6a066766b347f17b.html" title="Global merge">merge[]</a></code> and <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1c4c5ec9144e8f4d1e1e1cb848a0ae04.html" title="Global separate">separate[]</a></code>
-      directives to let you opt-in to generating the less-common attributes.
+      directives to let you opt in to generating the less-common attributes.
     </p>
 <h4>
 <a name="boost_parser.rationale.h4"></a>
@@ -349,14 +349,13 @@ auto parser = -(bp::char_ % ',');
       indicates. Remember, <code class="computeroutput">int_ | eps</code> and <code class="computeroutput">-int_</code> are supposed
       to be semantically equivalent. To do otherwise this would be a profound violation
       of the principle of least surprise. So, if they're equivalent, we would need
-      to apply the same rule to <code class="computeroutput">int_ | eps</code>. Also, we would probably
-      need to apply it to <code class="computeroutput">if_(cond)[int_]</code>, which is also a <code class="computeroutput">std::optional&lt;int&gt;</code>.
-      This is a lot to remember, and this is complicated to implement and maintain.
+      to apply the same rule to <code class="computeroutput">int_ | eps</code>. This is a lot to remember,
+      and this is complicated to implement and maintain.
     </p>
 <p>
       I've been using Spirit 1 and later Spirit 2 since they were released. I did
       not know about the particular looseness discussed here; a user pointed it out
-      on Github. In many years of using these libraries, I never fully learned all
+      on GitHub. In many years of using these libraries, I never fully learned all
       the attribute-compatibility rules, and was often surprised by them.
     </p>
 <p>
@@ -396,7 +395,7 @@ assert(result == std::vector&lt;int&gt;({3, 4}));
       its attribute). It does not know that there is nothing after it that could
       continue the parse, nor that it is being used in to do a full parse. So, the
       over-all parse fails, but the part of the parse that fills in the out-param
-      attribute does not know do clear its attribute.
+      attribute does not know to clear its attribute.
     </p>
 <p>
       This is why the explicit clearing behavior happens at the end of <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ab68519dff2a5635d6a11296874fc154d.html" title="Function template parse">parse()</a></code>. This is not without its downsides,
@@ -414,7 +413,7 @@ assert(i == 0);
       Here, the explicit clearing replaces the previous value of <code class="computeroutput">3</code>,
       even though the parser never touched the value! Destroying users' variables'
       state without need may seem like a bad idea, but consider the alternative —
-      In the previous example, we had spurious values left in the out-param attribute.
+      in the previous example, we had spurious values left in the out-param attribute.
       Here, without clearing, we would have had a value left in the out-param attribute,
       not because it was a partial result of the parse, but because the parse never
       touched it. This is certain to be confusing, or at least surprising, behavior.
@@ -444,9 +443,9 @@ assert(i == 0);
       use the C standard library's locale mechanism, which can be set to anything
       the current platform supports, and can be set by any code anywhere in your
       program; the locale is mutable global state. So, even if you use the default
-      "C locale in your program, if you link against a library that sets the
-      locale to something that breaks ASCII character recognition (an EBCDIC locale,
-      for instance), your program is now incorrect, regardless of the code you wrote.
+      C locale in your program, if you link against a library that sets the locale
+      to something that breaks ASCII character recognition (an EBCDIC locale, for
+      instance), your program is now incorrect, regardless of the code you wrote.
     </p>
 <p>
       For this reason, I firmly believe that no one, anywhere, should use those C

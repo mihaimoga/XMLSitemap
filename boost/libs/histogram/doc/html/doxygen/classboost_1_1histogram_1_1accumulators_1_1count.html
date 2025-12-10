@@ -39,7 +39,7 @@
   <span class="keyword">typedef</span> <span class="identifier">ValueType</span>          <a name="doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1ac8d0b319493ff7e3fc984ff3383fa25f"></a><span class="identifier">value_type</span><span class="special">;</span>     
   <span class="keyword">typedef</span> <span class="keyword">const</span> <span class="identifier">value_type</span> <span class="special">&amp;</span> <a name="doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a8f66a5e132770469c3c2e40834fdc308"></a><span class="identifier">const_reference</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#id22-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#id18-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1adb64b8fdc574a3b62f9610addbcf52b7"><span class="identifier">count</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a55f14dbd5163501bf9e189269f3d1221"><span class="identifier">count</span></a><span class="special">(</span><span class="identifier">const_reference</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">bool</span> B<span class="special">&gt;</span> <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a998d0cc041a329a4e9da257a59b40690"><span class="identifier">count</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html" title="Class template count">count</a><span class="special">&lt;</span> <span class="identifier">T</span><span class="special">,</span> <span class="identifier">B</span> <span class="special">&gt;</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
@@ -61,11 +61,11 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a09a6d0f6e53856ec0667087e3bb890f2"><span class="keyword">operator</span><span class="special">&lt;=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html" title="Class template count">count</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1aa68ec8871cb52b5c3c6f67c794a5d5a3"><span class="keyword">operator</span><span class="special">&gt;=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html" title="Class template count">count</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#id23-bb">public static functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#id19-bb">public static functions</a></span>
   <span class="keyword">static</span> <span class="keyword">bool</span> <a class="link" href="classboost_1_1histogram_1_1accumulators_1_1count.html#doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a00fdd84fbfaba5fad47ac3103e9d86bc"><span class="identifier">thread_safe</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id22209"></a><h2>Description</h2>
+<a name="id21639"></a><h2>Description</h2>
 <p>This adaptor optionally uses atomic operations to make concurrent increments and additions thread-safe for the stored arithmetic value, which can be integral or floating point. For small histograms, the performance will still be poor because of False Sharing, see <a href="https://en.wikipedia.org/wiki/False_sharing" target="_top">https://en.wikipedia.org/wiki/False_sharing</a> for details.</p>
 <p>Warning: Assignment is not thread-safe in this implementation, so don't assign concurrently.</p>
 <p>This wrapper class can be used as a base class by users to add arbitrary metadata to each bin of a histogram.</p>
@@ -73,7 +73,7 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="id22221"></a><h3>Template Parameters</h3>
+<a name="id21651"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><span class="keyword">typename</span> ValueType</pre></li>
 <li class="listitem">
@@ -83,8 +83,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id22234"></a><h3>
-<a name="id22-bb"></a><code class="computeroutput">count</code> public member functions</h3>
+<a name="id21664"></a><h3>
+<a name="id18-bb"></a><code class="computeroutput">count</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem"><pre class="literallayout"><a name="doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1adb64b8fdc574a3b62f9610addbcf52b7"></a><span class="identifier">count</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre></li>
 <li class="listitem">
@@ -116,8 +116,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id22523"></a><h3>
-<a name="id23-bb"></a><code class="computeroutput">count</code> public static functions</h3>
+<a name="id21953"></a><h3>
+<a name="id19-bb"></a><code class="computeroutput">count</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><pre class="literallayout"><span class="keyword">static</span> <span class="keyword">bool</span> <a name="doxygen.classboost_1_1histogram_1_1accumulators_1_1count_1a00fdd84fbfaba5fad47ac3103e9d86bc"></a><span class="identifier">thread_safe</span><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span></pre></li></ol></div>
 </div>
 </div>

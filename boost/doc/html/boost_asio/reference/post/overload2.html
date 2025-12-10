@@ -1,13 +1,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>post (2 of 3 overloads)</title>
+<title>post (2 of 7 overloads)</title>
 <link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../../boost_asio.html" title="Boost.Asio">
 <link rel="up" href="../post.html" title="post">
-<link rel="prev" href="overload1.html" title="post (1 of 3 overloads)">
-<link rel="next" href="overload3.html" title="post (3 of 3 overloads)">
+<link rel="prev" href="overload1.html" title="post (1 of 7 overloads)">
+<link rel="next" href="overload3.html" title="post (3 of 7 overloads)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -25,7 +25,7 @@
 </div>
 <div class="section">
 <div class="titlepage"><div><div><h4 class="title">
-<a name="boost_asio.reference.post.overload2"></a><a class="link" href="overload2.html" title="post (2 of 3 overloads)">post (2 of 3 overloads)</a>
+<a name="boost_asio.reference.post.overload2"></a><a class="link" href="overload2.html" title="post (2 of 7 overloads)">post (2 of 7 overloads)</a>
 </h4></div></div></div>
 <p>
           Submits a completion token or function object for execution.
@@ -104,7 +104,7 @@
               of type <code class="computeroutput"><span class="identifier">Ex1</span></code> by performing
             </p>
 <p class="simpara">
-              auto ex1 = get_associated_executor(handler, ex);
+              auto ex1 = get_associated_executor(completion_handler, ex);
             </p>
 </li>
 <li class="listitem">
@@ -113,7 +113,7 @@
               by performing
             </p>
 <p class="simpara">
-              auto alloc = get_associated_allocator(handler);
+              auto alloc = get_associated_allocator(completion_handler);
             </p>
 </li>
 <li class="listitem">
@@ -146,7 +146,7 @@
 </li>
 <li class="listitem">
 <p class="simpara">
-              If <code class="computeroutput"><span class="identifier">execution</span><span class="special">::</span><span class="identifier">is_executor</span><span class="special">&lt;</span><span class="identifier">Ex</span><span class="special">&gt;::</span><span class="identifier">value</span></code> is true, performs
+              If <code class="computeroutput"><span class="identifier">execution</span><span class="special">::</span><span class="identifier">is_executor</span><span class="special">&lt;</span><span class="identifier">Executor</span><span class="special">&gt;::</span><span class="identifier">value</span></code> is true, performs
             </p>
 <p class="simpara">
               prefer( require(ex, execution::blocking.never), execution::relationship.fork,
@@ -155,7 +155,7 @@
 </li>
 <li class="listitem">
 <p class="simpara">
-              If <code class="computeroutput"><span class="identifier">execution</span><span class="special">::</span><span class="identifier">is_executor</span><span class="special">&lt;</span><span class="identifier">Ex</span><span class="special">&gt;::</span><span class="identifier">value</span></code> is false, performs
+              If <code class="computeroutput"><span class="identifier">execution</span><span class="special">::</span><span class="identifier">is_executor</span><span class="special">&lt;</span><span class="identifier">Executor</span><span class="special">&gt;::</span><span class="identifier">value</span></code> is false, performs
             </p>
 <p class="simpara">
               ex.post(std::move(f), alloc);

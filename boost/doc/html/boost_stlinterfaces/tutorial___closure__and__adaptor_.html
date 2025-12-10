@@ -41,7 +41,7 @@
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">F</span><span class="special">&gt;</span>
     <span class="keyword">struct</span> <span class="identifier">closure</span> <span class="special">:</span> <span class="identifier">range_adaptor_closure</span><span class="special">&lt;</span><span class="identifier">closure</span><span class="special">&lt;</span><span class="identifier">F</span><span class="special">&gt;&gt;</span>
     <span class="special">{</span>
-        <span class="keyword">constexpr</span> <span class="identifier">closure</span><span class="special">(</span><span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">f_</span><span class="special">(</span><span class="identifier">f</span><span class="special">)</span> <span class="special">{}</span>
+        <span class="keyword">constexpr</span> <span class="identifier">closure</span><span class="special">(</span><span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">f_</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">f</span><span class="special">))</span> <span class="special">{}</span>
 
 <span class="preprocessor">#if</span> <span class="identifier">BOOST_STL_INTERFACES_USE_CONCEPTS</span>
         <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">T</span><span class="special">&gt;</span>
@@ -101,7 +101,7 @@
     <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">F</span><span class="special">&gt;</span>
     <span class="keyword">struct</span> <span class="identifier">adaptor</span>
     <span class="special">{</span>
-        <span class="keyword">constexpr</span> <span class="identifier">adaptor</span><span class="special">(</span><span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">f_</span><span class="special">(</span><span class="identifier">f</span><span class="special">)</span> <span class="special">{}</span>
+        <span class="keyword">constexpr</span> <span class="identifier">adaptor</span><span class="special">(</span><span class="identifier">F</span> <span class="identifier">f</span><span class="special">)</span> <span class="special">:</span> <span class="identifier">f_</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">move</span><span class="special">(</span><span class="identifier">f</span><span class="special">))</span> <span class="special">{}</span>
 
         <span class="comment">// clang-format off</span>
         <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span><span class="special">...</span> <span class="identifier">Args</span><span class="special">&gt;</span>

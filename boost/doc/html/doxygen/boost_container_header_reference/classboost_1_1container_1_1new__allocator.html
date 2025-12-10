@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp" title="Header &lt;boost/container/new_allocator.hpp&gt;">
+<link rel="up" href="../../container/index_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp" title="Header &lt;boost/container/new_allocator.hpp&gt;">
 <link rel="prev" href="structboost_1_1container_1_1pmr_1_1multimap__of.html" title="Struct template multimap_of">
 <link rel="next" href="structboost_1_1container_1_1new__allocator_1_1rebind.html" title="Struct template rebind">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1multimap__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1container_1_1new__allocator_1_1rebind.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1multimap__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1container_1_1new__allocator_1_1rebind.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator"></a><div class="titlepage"></div>
@@ -31,27 +31,27 @@
 <p>boost::container::new_allocator — This class is a reduced STL-compatible allocator that allocates memory using operator new. </p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp" title="Header &lt;boost/container/new_allocator.hpp&gt;">boost/container/new_allocator.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../container/index_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp" title="Header &lt;boost/container/new_allocator.hpp&gt;">boost/container/new_allocator.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1container_1_1new__allocator.html" title="Class template new_allocator">new_allocator</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">T</span>                      <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a882a5c0e38de31eac5378c86a87f81ad"></a><span class="identifier">value_type</span><span class="special">;</span>                            
-  <span class="keyword">typedef</span> <span class="identifier">T</span> <span class="special">*</span>                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a079e17dfabe481796d656768b3f1215a"></a><span class="identifier">pointer</span><span class="special">;</span>                               
-  <span class="keyword">typedef</span> <span class="keyword">const</span> <span class="identifier">T</span> <span class="special">*</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1aa5fab9554787ddd06096a888b6aedc1d"></a><span class="identifier">const_pointer</span><span class="special">;</span>                         
-  <span class="keyword">typedef</span> <span class="identifier">T</span> <span class="special">&amp;</span>                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a5db02b6a72d897a9c98454f470f5241d"></a><span class="identifier">reference</span><span class="special">;</span>                             
-  <span class="keyword">typedef</span> <span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a1e07d25ff38c9a15b7dc2e409cbb408b"></a><span class="identifier">const_reference</span><span class="special">;</span>                       
-  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span>            <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1abf5f11f7d1932f53a027d950b31afecb"></a><span class="identifier">size_type</span><span class="special">;</span>                             
-  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span>         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a6b32fb287598547f9eb6d06bcc04da34"></a><span class="identifier">difference_type</span><span class="special">;</span>                       
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a5b79b58e7cff40e38097e86ccc49e825"></a><span class="identifier">propagate_on_container_move_assignment</span><span class="special">;</span>  <span class="comment">// A integral constant of type bool with value true. </span>
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a473777805c20d549b704f7ca1385531f"></a><span class="identifier">is_always_equal</span><span class="special">;</span>                         <span class="comment">// A integral constant of type bool with value true. </span>
+  <span class="keyword">typedef</span> <span class="identifier">T</span>                      <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a6dfcbee6e3aabc31422d6c3bd5e09858"></a><span class="identifier">value_type</span><span class="special">;</span>                            
+  <span class="keyword">typedef</span> <span class="identifier">T</span> <span class="special">*</span>                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1ada8192922eecac1a838094f849bf2938"></a><span class="identifier">pointer</span><span class="special">;</span>                               
+  <span class="keyword">typedef</span> <span class="keyword">const</span> <span class="identifier">T</span> <span class="special">*</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a2c79e141bf9e399f94dad51cf7c0d623"></a><span class="identifier">const_pointer</span><span class="special">;</span>                         
+  <span class="keyword">typedef</span> <span class="identifier">T</span> <span class="special">&amp;</span>                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a607a75670ab8f4bf450a6696b434930a"></a><span class="identifier">reference</span><span class="special">;</span>                             
+  <span class="keyword">typedef</span> <span class="keyword">const</span> <span class="identifier">T</span> <span class="special">&amp;</span>              <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1ad0615a4a6dcdabc6af56d5443c3502c9"></a><span class="identifier">const_reference</span><span class="special">;</span>                       
+  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span>            <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1aa64edbf5a0d0ba6c547ac2fb4a9d4ec0"></a><span class="identifier">size_type</span><span class="special">;</span>                             
+  <span class="keyword">typedef</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">ptrdiff_t</span>         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1ac63f5ffb2ee31b0e0a4ebc71be3b4478"></a><span class="identifier">difference_type</span><span class="special">;</span>                       
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a4e81979da73654d964c9ed09d972897a"></a><span class="identifier">propagate_on_container_move_assignment</span><span class="special">;</span>  <span class="comment">// A integral constant of type bool with value true. </span>
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1aed4d843e60ca956c7fdee9b2e54dbdac"></a><span class="identifier">is_always_equal</span><span class="special">;</span>                         <span class="comment">// A integral constant of type bool with value true. </span>
 
   <span class="comment">// member classes/structs/unions</span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T2<span class="special">&gt;</span> 
   <span class="keyword">struct</span> <a class="link" href="structboost_1_1container_1_1new__allocator_1_1rebind.html" title="Struct template rebind">rebind</a> <span class="special">{</span>
     <span class="comment">// types</span>
-    <span class="keyword">typedef</span> <a class="link" href="classboost_1_1container_1_1new__allocator.html" title="Class template new_allocator">new_allocator</a><span class="special">&lt;</span> <span class="identifier">T2</span> <span class="special">&gt;</span> <a class="link" href="structboost_1_1container_1_1new__allocator_1_1rebind.html#doxygen.boost_container_header_reference.structboost_1_1container_1_1new__allocator_1_1rebind_1ae2b04360c56b59ee6d0d83d2565d9661"><span class="identifier">other</span></a><span class="special">;</span>
+    <span class="keyword">typedef</span> <a class="link" href="classboost_1_1container_1_1new__allocator.html" title="Class template new_allocator">new_allocator</a><span class="special">&lt;</span> <span class="identifier">T2</span> <span class="special">&gt;</span> <a class="link" href="structboost_1_1container_1_1new__allocator_1_1rebind.html#doxygen.boost_container_header_reference.structboost_1_1container_1_1new__allocator_1_1rebind_1a7f24e9968de931a2545076219aea111e"><span class="identifier">other</span></a><span class="special">;</span>
   <span class="special">}</span><span class="special">;</span>
 
   <span class="comment">// <a class="link" href="classboost_1_1container_1_1new__allocator.html#id63-bb">public member functions</a></span>
@@ -69,9 +69,9 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1container_1_1new__allocator.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1new__allocator_1a93d2b46b916a348664dee7be84ca044d"><span class="keyword">operator</span><span class="special">!=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1new__allocator.html" title="Class template new_allocator">new_allocator</a> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1new__allocator.html" title="Class template new_allocator">new_allocator</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.8.14.18.3.4"></a><h2>Description</h2>
+<a name="id-1.3.8.13.3.18.3.4"></a><h2>Description</h2>
 <div class="refsect2">
-<a name="id-1.3.8.14.18.3.4.2"></a><h3>
+<a name="id-1.3.8.13.3.18.3.4.2"></a><h3>
 <a name="id63-bb"></a><code class="computeroutput">new_allocator</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -105,7 +105,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.18.3.4.3"></a><h3>
+<a name="id-1.3.8.13.3.18.3.4.3"></a><h3>
 <a name="id64-bb"></a><code class="computeroutput">new_allocator</code> friend functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -123,7 +123,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.18.3.4.5"></a><h3>Specializations</h3>
+<a name="id-1.3.8.13.3.18.3.4.5"></a><h3>Specializations</h3>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><a class="link" href="classboost_1_1container_1_1new__allocator_3_01void_01_4.html" title="Class new_allocator&lt;void&gt;">Class new_allocator&lt;void&gt;</a></p></li></ul></div>
 </div>
 </div>
@@ -135,7 +135,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1multimap__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1container_1_1new__allocator_1_1rebind.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1multimap__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.new__allocator_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1container_1_1new__allocator_1_1rebind.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

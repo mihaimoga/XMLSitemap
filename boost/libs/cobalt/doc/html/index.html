@@ -4305,7 +4305,7 @@ This makes them usable with <a href="#race">race</a>.</p>
     <span class="n">channel</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">c2</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">c1</span> <span class="o">&amp;&amp;</span> <span class="n">c2</span><span class="p">)</span>
-       <span class="k">co_yield</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">);</span>
+       <span class="k">co_yield</span> <span class="k">co_await</span> <span class="n">race</span><span class="p">(</span><span class="n">c1</span><span class="p">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">c2</span><span class="p">.</span><span class="n">read</span><span class="p">());</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -7474,7 +7474,7 @@ Vinnie trusted me enough to let me work on this project, while himself having ve
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2025-08-06 18:48:52 UTC
+Last updated 2025-12-03 13:47:27 UTC
 </div>
 </div>
 </body>

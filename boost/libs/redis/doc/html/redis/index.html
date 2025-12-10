@@ -38,6 +38,9 @@
             <a class="nav-link" href="requests_responses.html">Requests and responses</a>
         </li>
               <li class="" data-depth="1">
+            <a class="nav-link" href="cancellation.html">Cancellation and timeouts</a>
+        </li>
+              <li class="" data-depth="1">
             <a class="nav-link" href="serialization.html">Serializing and parsing into custom types</a>
         </li>
               <li class="" data-depth="1">
@@ -95,7 +98,8 @@
   <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Boost.Redis is a high-level <a href="https://redis.io/">Redis</a> client library built on top of
+<p>Boost.Redis is a high-level <a href="https://redis.io/">Redis</a> and <a href="https://valkey.io/">Valkey</a>
+client library built on top of
 <a href="https://www.boost.org/doc/libs/latest/doc/html/boost_asio.html">Boost.Asio</a>
 that implements the Redis protocol
 <a href="https://github.com/redis/redis-specifications/blob/master/protocol/RESP3.md">RESP3</a>.</p>
@@ -117,7 +121,8 @@ that implements the Redis protocol
 <p>C++17 or higher. Supported compilers include gcc 11 and later, clang 11 and later, and Visual Studio 16 (2019) and later.</p>
 </li>
 <li>
-<p>Redis 6 or higher (must support RESP3).</p>
+<p>Redis 6 or higher, or Valkey (any version). The database server must support RESP3.
+We intend to maintain compatibility with both Redis and Valkey in the long-run.</p>
 </li>
 <li>
 <p>OpenSSL.</p>
@@ -276,6 +281,9 @@ receiver(std::shared_ptr&lt;connection&gt; conn) -&gt; net::awaitable&lt;void&gt
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><a href="cancellation.html" class="xref page">Setting timeouts to requests and managing cancellation</a>.</p>
+</li>
 <li>
 <p><a href="requests_responses.html" class="xref page">More on requests and responses</a>.</p>
 </li>

@@ -3,7 +3,7 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Reference :: Boost.Redis</title>
+    <title>boost::redis::request::config::hello&lowbar;with&lowbar;priority :: Boost.Redis</title>
   <link rel="canonical" href="https://github.com/boostorg/redis/blob/master/redis/reference/boost/redis/request/config/hello_with_priority.html">
   <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../../../_/css/boostlook.css">
@@ -35,6 +35,9 @@
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../../../requests_responses.html">Requests and responses</a>
+        </li>
+              <li class="" data-depth="1">
+            <a class="nav-link" href="../../../../../cancellation.html">Cancellation and timeouts</a>
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../../../serialization.html">Serializing and parsing into custom types</a>
@@ -79,7 +82,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="hello_with_priority.html">Reference</a></li>
+    <li><a href="hello_with_priority.html"><a href="../../../../boost.html">boost</a>::<a href="../../../../boost/redis.html">redis</a>::<a href="../../../../boost/redis/request.html">request</a>::<a href="../../../../boost/redis/request/config.html">config</a>::hello&lowbar;with&lowbar;priority</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
@@ -87,26 +90,35 @@
       <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
     </a>
 </div></div>
-    <h1 class="page">Reference</h1>
-  <div class="sect1">
-<h2 id="boost-redis-request-config-hello_with_priority"><a class="anchor" href="#boost-redis-request-config-hello_with_priority"></a><a href="../../../../boost.html" class="xref page">boost</a>::<a href="../../../redis.html" class="xref page">redis</a>::<a href="../../request.html" class="xref page">request</a>::<a href="../config.html" class="xref page">config</a>::hello&lowbar;with&lowbar;priority</h2>
+    <h1 class="page"><a href="../../../../boost.html">boost</a>::<a href="../../../../boost/redis.html">redis</a>::<a href="../../../../boost/redis/request.html">request</a>::<a href="../../../../boost/redis/request/config.html">config</a>::hello&lowbar;with&lowbar;priority</h1>
+  <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>If this request has a <code>HELLO</code> command and this flag is <code>true</code>, it will be moved to the front of the queue of awaiting requests&period; This makes it possible to send <code>HELLO</code> commands and authenticate before other commands are sent&period;</p>
+<p>(Deprecated) If this request has a <code>HELLO</code> command and this flag is <code>true</code>, it will be moved to the front of the queue of awaiting requests&period; This makes it possible to send <code>HELLO</code> commands and authenticate before other commands are sent&period;</p>
 </div>
-<div class="sect2">
-<h3 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://github.com/boostorg/redis/blob/master/include/boost/redis/request.hpp#L75">boost&sol;redis&sol;request&period;hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://github.com/boostorg/redis/blob/master/include/boost/redis/request.hpp#L94">boost&sol;redis&sol;request&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cpp hljs" data-lang="cpp">bool hello&lowbar;with&lowbar;priority = true;</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deprecated"><a class="anchor" href="#_deprecated"></a>Deprecated</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This field has been superseded by <a href="../../config/setup.html" class="xref page"><code>config&colon;&colon;setup</code></a>&period; This setup request will always be run first on connection establishment&period; Please use it to run any required setup commands&period; This field will be removed in subsequent releases&period;</p>
+</div>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>
-</div>
 </div>
 </div>
 </div>

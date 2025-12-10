@@ -3,7 +3,7 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Reference :: Boost.Redis</title>
+    <title>boost::redis::adapter :: Boost.Redis</title>
   <link rel="canonical" href="https://github.com/boostorg/redis/blob/master/redis/reference/boost/redis/adapter.html">
   <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/boostlook.css">
@@ -35,6 +35,9 @@
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../requests_responses.html">Requests and responses</a>
+        </li>
+              <li class="" data-depth="1">
+            <a class="nav-link" href="../../../cancellation.html">Cancellation and timeouts</a>
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../serialization.html">Serializing and parsing into custom types</a>
@@ -79,7 +82,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="adapter.html">Reference</a></li>
+    <li><a href="adapter.html"><a href="../../boost.html">boost</a>::<a href="../../boost/redis.html">redis</a>::adapter</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
@@ -87,16 +90,14 @@
       <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
     </a>
 </div></div>
-    <h1 class="page">Reference</h1>
+    <h1 class="page"><a href="../../boost.html">boost</a>::<a href="../../boost/redis.html">redis</a>::adapter</h1>
   <div class="sect1">
-<h2 id="boost-redis-adapter"><a class="anchor" href="#boost-redis-adapter"></a><a href="../../boost.html" class="xref page">boost</a>::<a href="../redis.html" class="xref page">redis</a>::adapter</h2>
+<h2 id="_types"><a class="anchor" href="#_types"></a>Types</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_types"><a class="anchor" href="#_types"></a>Types</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
 <tbody>
 <tr>
@@ -118,17 +119,31 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_functions"><a class="anchor" href="#_functions"></a>Functions</h3>
+</div>
+<div class="sect1">
+<h2 id="_functions"><a class="anchor" href="#_functions"></a>Functions</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/adapt2.html" class="xref page"><code>adapt2</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adapts a type to be used as the response to an individual command&period;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/boost_redis_adapt.html" class="xref page"><code>boost&lowbar;redis&lowbar;adapt</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adapts a type to be used as a response&period;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/throw_exception_from_error.html" class="xref page"><code>throw&lowbar;exception&lowbar;from&lowbar;error</code></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows using <a href="adapter/error.html" class="xref page"><code>error</code></a> with <code>boost&colon;&colon;system&colon;&colon;result</code>&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/operator_eq.html" class="xref page"><code>operator&equals;&equals;</code></a></p></td>
@@ -138,23 +153,10 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/operator_not_eq.html" class="xref page"><code>operator!&equals;</code></a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Compares two error objects for difference</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/throw_exception_from_error.html" class="xref page"><code>throw&lowbar;exception&lowbar;from&lowbar;error</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows using <a href="adapter/error.html" class="xref page"><code>error</code></a> with <code>boost&colon;&colon;system&colon;&colon;result</code>&period;</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/boost_redis_adapt.html" class="xref page"><code>boost&lowbar;redis&lowbar;adapt</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adapts a type to be used as a response&period;</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="adapter/adapt2.html" class="xref page"><code>adapt2</code></a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adapts a type to be used as the response to an individual command&period;</p></td>
-</tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>
-</div>
 </div>
 </div>
 </div>

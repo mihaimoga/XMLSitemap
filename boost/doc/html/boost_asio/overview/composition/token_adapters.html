@@ -136,6 +136,49 @@
 </pre>
 <h6>
 <a name="boost_asio.overview.composition.token_adapters.h2"></a>
+          <span class="phrase"><a name="boost_asio.overview.composition.token_adapters.redirect_disposition"></a></span><a class="link" href="token_adapters.html#boost_asio.overview.composition.token_adapters.redirect_disposition">redirect_disposition</a>
+        </h6>
+<p>
+          The <a class="link" href="../../reference/redirect_disposition.html" title="redirect_disposition"><code class="computeroutput"><span class="identifier">redirect_disposition</span></code></a> function
+          adapts a completion token to capture any <a class="link" href="../../reference/Disposition.html" title="Disposition">disposition</a>
+          produced by an operation into a specified variable. In doing so, it modifies
+          the completion signature to remove the initial disposition parameter.
+        </p>
+<p>
+          This example shows the <code class="computeroutput"><span class="identifier">redirect_disposition</span></code>
+          adapter applied to a lambda, to specify that the disposition should be
+          captured into <code class="computeroutput"><span class="identifier">my_exception</span></code>.
+          The <code class="computeroutput"><span class="identifier">error_code</span></code> (which is
+          a disposition type) is no longer passed to the completion handler, but
+          the remaining arguments are passed through as-is.
+        </p>
+<pre class="programlisting"><span class="identifier">std</span><span class="special">::</span><span class="identifier">exception_ptr</span> <span class="identifier">my_exception</span><span class="special">;</span> <span class="comment">// N.B. must be valid until operation completes</span>
+<span class="comment">// ...</span>
+<span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span>
+    <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">redirect_disposition</span><span class="special">(</span>
+      <span class="special">[](</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">bytes_transferred</span><span class="special">)</span>
+      <span class="special">{</span>
+        <span class="comment">// ...</span>
+      <span class="special">},</span> <span class="identifier">my_exception</span><span class="special">));</span>
+</pre>
+<p>
+          When applied to completion tokens that cause the initiating function to
+          produce a result, such as <a class="link" href="../../reference/use_awaitable.html" title="use_awaitable"><code class="computeroutput"><span class="identifier">use_awaitable</span></code></a>, the result is returned
+          unmodified. However, if the operation fails, the <code class="computeroutput"><span class="identifier">co_await</span></code>
+          expression will no longer throw an exception on resumption.
+        </p>
+<pre class="programlisting"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">awaitable</span><span class="special">&lt;</span><span class="keyword">void</span><span class="special">&gt;</span> <span class="identifier">my_coroutine</span><span class="special">()</span>
+<span class="special">{</span>
+  <span class="comment">// ...</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">exception_ptr</span> <span class="identifier">my_exception</span><span class="special">;</span>
+  <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="identifier">bytes_transferred</span> <span class="special">=</span>
+    <span class="identifier">co_await</span> <span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span>
+      <span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">redirect_disposition</span><span class="special">(</span><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">use_awaitable</span><span class="special">,</span> <span class="identifier">my_exception</span><span class="special">));</span>
+  <span class="comment">// ...</span>
+<span class="special">}</span>
+</pre>
+<h6>
+<a name="boost_asio.overview.composition.token_adapters.h3"></a>
           <span class="phrase"><a name="boost_asio.overview.composition.token_adapters.as_tuple"></a></span><a class="link" href="token_adapters.html#boost_asio.overview.composition.token_adapters.as_tuple">as_tuple</a>
         </h6>
 <p>
@@ -166,7 +209,7 @@
 <span class="special">}</span>
 </pre>
 <h6>
-<a name="boost_asio.overview.composition.token_adapters.h3"></a>
+<a name="boost_asio.overview.composition.token_adapters.h4"></a>
           <span class="phrase"><a name="boost_asio.overview.composition.token_adapters.as_single"></a></span><a class="link" href="token_adapters.html#boost_asio.overview.composition.token_adapters.as_single">as_single</a>
         </h6>
 <div class="note"><table border="0" summary="Note">
@@ -208,7 +251,7 @@
       <span class="special">}));</span>
 </pre>
 <h6>
-<a name="boost_asio.overview.composition.token_adapters.h4"></a>
+<a name="boost_asio.overview.composition.token_adapters.h5"></a>
           <span class="phrase"><a name="boost_asio.overview.composition.token_adapters.append"></a></span><a class="link" href="token_adapters.html#boost_asio.overview.composition.token_adapters.append">append</a>
         </h6>
 <p>
@@ -237,7 +280,7 @@
   <span class="special">);</span>
 </pre>
 <h6>
-<a name="boost_asio.overview.composition.token_adapters.h5"></a>
+<a name="boost_asio.overview.composition.token_adapters.h6"></a>
           <span class="phrase"><a name="boost_asio.overview.composition.token_adapters.prepend"></a></span><a class="link" href="token_adapters.html#boost_asio.overview.composition.token_adapters.prepend">prepend</a>
         </h6>
 <p>
@@ -266,7 +309,7 @@
   <span class="special">);</span>
 </pre>
 <h6>
-<a name="boost_asio.overview.composition.token_adapters.h6"></a>
+<a name="boost_asio.overview.composition.token_adapters.h7"></a>
           <span class="phrase"><a name="boost_asio.overview.composition.token_adapters.consign"></a></span><a class="link" href="token_adapters.html#boost_asio.overview.composition.token_adapters.consign">consign</a>
         </h6>
 <p>
@@ -301,7 +344,7 @@
   <span class="special">);</span>
 </pre>
 <h6>
-<a name="boost_asio.overview.composition.token_adapters.h7"></a>
+<a name="boost_asio.overview.composition.token_adapters.h8"></a>
           <span class="phrase"><a name="boost_asio.overview.composition.token_adapters.see_also"></a></span><a class="link" href="token_adapters.html#boost_asio.overview.composition.token_adapters.see_also">See Also</a>
         </h6>
 <p>

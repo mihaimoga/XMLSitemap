@@ -108,9 +108,13 @@
 <dt><span class="section"><a href="reference.html#doxygen.binomial__proportion__interval_8hpp">Header &lt;boost/histogram/utility/binomial_proportion_interval.hpp&gt;</a></span></dt>
 <dd><dl></dl></dd>
 <dt><span class="section"><a href="reference.html#doxygen.clopper__pearson__interval_8hpp">Header &lt;boost/histogram/utility/clopper_pearson_interval.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
 <dt><span class="section"><a href="reference.html#doxygen.jeffreys__interval_8hpp">Header &lt;boost/histogram/utility/jeffreys_interval.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
 <dt><span class="section"><a href="reference.html#doxygen.wald__interval_8hpp">Header &lt;boost/histogram/utility/wald_interval.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
 <dt><span class="section"><a href="reference.html#doxygen.wilson__interval_8hpp">Header &lt;boost/histogram/utility/wilson_interval.hpp&gt;</a></span></dt>
+<dd><dl></dl></dd>
 </dl></div>
 <div class="section">
 <div class="titlepage"><div><div><h3 class="title">
@@ -164,10 +168,6 @@
       <span class="keyword">typedef</span> <span class="keyword">double</span> <a name="doxygen.fwd_8hpp_1a33c5f7b095fa0d7ed18bc7fed4bdb2f6"></a><span class="identifier">real_index_type</span><span class="special">;</span>  <span class="comment">// Real type for axis indices. </span>
     <span class="special">}</span>
     <span class="keyword">namespace</span> <span class="identifier">utility</span> <span class="special">{</span>
-      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval.html" title="Class template clopper_pearson_interval">clopper_pearson_interval</a><span class="special">;</span>
-      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1jeffreys__interval.html" title="Class template jeffreys_interval">jeffreys_interval</a><span class="special">;</span>
-      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1wald__interval.html" title="Class template wald_interval">wald_interval</a><span class="special">;</span>
-      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1wilson__interval.html" title="Class template wilson_interval">wilson_interval</a><span class="special">;</span>
     <span class="special">}</span>
   <span class="special">}</span>
 <span class="special">}</span></pre>
@@ -580,23 +580,23 @@
         <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">unsigned</span> Pos<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1histogram_1_1axis_1_1option_1_1bit.html" title="Struct template bit">bit</a><span class="special">;</span>
         <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">unsigned</span> Bits<span class="special">&gt;</span> <span class="keyword">struct</span> <a class="link" href="../doxygen/structboost_1_1histogram_1_1axis_1_1option_1_1bitset.html" title="Struct template bitset">bitset</a><span class="special">;</span>
 
-        <span class="identifier">circular_t</span> <a class="link" href="../doxygen/option_8hpp_1ab165a9b43e66aa29ba86702a85c352e5.html" title="Global circular">circular</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput">circular_t</code>.</span>
+        <span class="identifier">circular_t</span> <a class="link" href="../doxygen/option_8hpp_1ab165a9b43e66aa29ba86702a85c352e5.html" title="Global circular">circular</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput"><a class="link" href="reference.html#doxygen.option_8hpp_1a372e8b40fe1233eb04b05ec50049ea1a">circular_t</a></code>.</span>
 
         <span class="keyword">typedef</span> <a class="link" href="../doxygen/structboost_1_1histogram_1_1axis_1_1option_1_1bit.html" title="Struct template bit">bit</a><span class="special">&lt;</span> <span class="number">2</span> <span class="special">&gt;</span> <a name="doxygen.option_8hpp_1a372e8b40fe1233eb04b05ec50049ea1a"></a><span class="identifier">circular_t</span><span class="special">;</span>  <span class="comment">// Axis is circular. Mutually exclusive with <code class="computeroutput">growth</code> and<code class="computeroutput">underflow</code>.</span>
 
-        <span class="identifier">growth_t</span> <a class="link" href="../doxygen/option_8hpp_1a1b96ce8408202839209b648cd55774bf.html" title="Global growth">growth</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput">growth_t</code>.</span>
+        <span class="identifier">growth_t</span> <a class="link" href="../doxygen/option_8hpp_1a1b96ce8408202839209b648cd55774bf.html" title="Global growth">growth</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput"><a class="link" href="reference.html#doxygen.option_8hpp_1ae3ebf8733ed9cc848803f6b4bf7b3c2f">growth_t</a></code>.</span>
 
         <span class="keyword">typedef</span> <a class="link" href="../doxygen/structboost_1_1histogram_1_1axis_1_1option_1_1bit.html" title="Struct template bit">bit</a><span class="special">&lt;</span> <span class="number">3</span> <span class="special">&gt;</span> <a name="doxygen.option_8hpp_1ae3ebf8733ed9cc848803f6b4bf7b3c2f"></a><span class="identifier">growth_t</span><span class="special">;</span>  <span class="comment">// Axis can grow. Mutually exclusive with <code class="computeroutput">circular</code>.</span>
 
-        <span class="identifier">none_t</span> <a class="link" href="../doxygen/option_8hpp_1ac18858a972340f9f5a670b134cbe7587.html" title="Global none">none</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput">none_t</code>.</span>
+        <span class="identifier">none_t</span> <a class="link" href="../doxygen/option_8hpp_1ac18858a972340f9f5a670b134cbe7587.html" title="Global none">none</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput"><a class="link" href="reference.html#doxygen.option_8hpp_1ae95eb6d114028cd2da70cfdd2f0b4ced">none_t</a></code>.</span>
 
         <span class="keyword">typedef</span> <a class="link" href="../doxygen/structboost_1_1histogram_1_1axis_1_1option_1_1bitset.html" title="Struct template bitset">bitset</a><span class="special">&lt;</span> <span class="number">0</span> <span class="special">&gt;</span> <a name="doxygen.option_8hpp_1ae95eb6d114028cd2da70cfdd2f0b4ced"></a><span class="identifier">none_t</span><span class="special">;</span>  <span class="comment">// All options off. </span>
 
-        <span class="identifier">overflow_t</span> <a class="link" href="../doxygen/option_8hpp_1a8c45da01f1e41797d360a24f0f24e3ee.html" title="Global overflow">overflow</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput">overflow_t</code>.</span>
+        <span class="identifier">overflow_t</span> <a class="link" href="../doxygen/option_8hpp_1a8c45da01f1e41797d360a24f0f24e3ee.html" title="Global overflow">overflow</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput"><a class="link" href="reference.html#doxygen.option_8hpp_1a86c3ec36c5729f11a16f194927fd1331">overflow_t</a></code>.</span>
 
         <span class="keyword">typedef</span> <a class="link" href="../doxygen/structboost_1_1histogram_1_1axis_1_1option_1_1bit.html" title="Struct template bit">bit</a><span class="special">&lt;</span> <span class="number">1</span> <span class="special">&gt;</span> <a name="doxygen.option_8hpp_1a86c3ec36c5729f11a16f194927fd1331"></a><span class="identifier">overflow_t</span><span class="special">;</span>  <span class="comment">// Axis has overflow bin. </span>
 
-        <span class="identifier">underflow_t</span> <a class="link" href="../doxygen/option_8hpp_1aec72c6a97716379c1dd0cbf455cd8250.html" title="Global underflow">underflow</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput">underflow_t</code>.</span>
+        <span class="identifier">underflow_t</span> <a class="link" href="../doxygen/option_8hpp_1aec72c6a97716379c1dd0cbf455cd8250.html" title="Global underflow">underflow</a><span class="special">;</span>        <span class="comment">// Instance of <code class="computeroutput"><a class="link" href="reference.html#doxygen.option_8hpp_1af9269f2e4a14e5751489e7ef6692737e">underflow_t</a></code>.</span>
 
         <span class="keyword">typedef</span> <a class="link" href="../doxygen/structboost_1_1histogram_1_1axis_1_1option_1_1bit.html" title="Struct template bit">bit</a><span class="special">&lt;</span> <span class="number">0</span> <span class="special">&gt;</span> <a name="doxygen.option_8hpp_1af9269f2e4a14e5751489e7ef6692737e"></a><span class="identifier">underflow_t</span><span class="special">;</span>  <span class="comment">// Axis has an underflow bin. Mutually exclusive with <code class="computeroutput">circular</code>.</span>
 
@@ -781,14 +781,50 @@
   <span class="special">}</span>
 <span class="special">}</span></pre>
 </div>
-<div class="section"><div class="titlepage"><div><div><h3 class="title">
-<a name="doxygen.clopper__pearson__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/clopper_pearson_interval.hpp" target="_top">boost/histogram/utility/clopper_pearson_interval.hpp</a>&gt;</h3></div></div></div></div>
-<div class="section"><div class="titlepage"><div><div><h3 class="title">
-<a name="doxygen.jeffreys__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/jeffreys_interval.hpp" target="_top">boost/histogram/utility/jeffreys_interval.hpp</a>&gt;</h3></div></div></div></div>
-<div class="section"><div class="titlepage"><div><div><h3 class="title">
-<a name="doxygen.wald__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/wald_interval.hpp" target="_top">boost/histogram/utility/wald_interval.hpp</a>&gt;</h3></div></div></div></div>
-<div class="section"><div class="titlepage"><div><div><h3 class="title">
-<a name="doxygen.wilson__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/wilson_interval.hpp" target="_top">boost/histogram/utility/wilson_interval.hpp</a>&gt;</h3></div></div></div></div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="doxygen.clopper__pearson__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/clopper_pearson_interval.hpp" target="_top">boost/histogram/utility/clopper_pearson_interval.hpp</a>&gt;</h3></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">histogram</span> <span class="special">{</span>
+    <span class="keyword">namespace</span> <span class="identifier">utility</span> <span class="special">{</span>
+      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1clopper__pearson__interval.html" title="Class template clopper_pearson_interval">clopper_pearson_interval</a><span class="special">;</span>
+    <span class="special">}</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="doxygen.jeffreys__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/jeffreys_interval.hpp" target="_top">boost/histogram/utility/jeffreys_interval.hpp</a>&gt;</h3></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">histogram</span> <span class="special">{</span>
+    <span class="keyword">namespace</span> <span class="identifier">utility</span> <span class="special">{</span>
+      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1jeffreys__interval.html" title="Class template jeffreys_interval">jeffreys_interval</a><span class="special">;</span>
+    <span class="special">}</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="doxygen.wald__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/wald_interval.hpp" target="_top">boost/histogram/utility/wald_interval.hpp</a>&gt;</h3></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">histogram</span> <span class="special">{</span>
+    <span class="keyword">namespace</span> <span class="identifier">utility</span> <span class="special">{</span>
+      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1wald__interval.html" title="Class template wald_interval">wald_interval</a><span class="special">;</span>
+    <span class="special">}</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="doxygen.wilson__interval_8hpp"></a>Header &lt;<a href="../../../../../boost/histogram/utility/wilson_interval.hpp" target="_top">boost/histogram/utility/wilson_interval.hpp</a>&gt;</h3></div></div></div>
+<pre class="synopsis"><span class="keyword">namespace</span> <span class="identifier">boost</span> <span class="special">{</span>
+  <span class="keyword">namespace</span> <span class="identifier">histogram</span> <span class="special">{</span>
+    <span class="keyword">namespace</span> <span class="identifier">utility</span> <span class="special">{</span>
+      <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> ValueType<span class="special">&gt;</span> <span class="keyword">class</span> <a class="link" href="../doxygen/classboost_1_1histogram_1_1utility_1_1wilson__interval.html" title="Class template wilson_interval">wilson_interval</a><span class="special">;</span>
+    <span class="special">}</span>
+  <span class="special">}</span>
+<span class="special">}</span></pre>
+</div>
 </div>
 <div class="copyright-footer">Copyright © 2016-2019 Hans
       Dembinski<p>

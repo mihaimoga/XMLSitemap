@@ -361,30 +361,7 @@ The condition function object <computeroutput>operator()</computeroutput> must r
           <template-type-parameter name="Resource"/>
         </template><parameter name="res"><paramtype>Resource const &amp;</paramtype></parameter><purpose>Tests if <emphasis>res</emphasis> is an allocated resource value. </purpose></method>
 </method-group>
-</struct><data-member id="doxygen.reference.unique__resource_8hpp_1a970dcf160d71b25082989f9bc8e5bff3" name="default_resource"><type>default_resource_t</type><purpose>Keyword representing default, unallocated resource argument. </purpose></data-member>
-<function id="doxygen.reference.unique__resource__fwd_8hpp_1a9c005a6f171905bbecb1adb1aca23948" name="make_unique_resource_checked"><type><classname>unique_resource</classname>&lt; typename std::decay&lt; Resource &gt;::type, typename std::decay&lt; Deleter &gt;::type &gt;</type><template>
-          <template-type-parameter name="Resource"/>
-          <template-type-parameter name="Deleter"/>
-          <template-type-parameter name="Invalid"><default>typename std::decay&lt; Resource &gt;::type</default></template-type-parameter>
-        </template><parameter name="res"><paramtype>Resource &amp;&amp;</paramtype><description><para>Resource to wrap. </para></description></parameter><parameter name="invalid"><paramtype>Invalid const &amp;</paramtype><description><para>An invalid value for the resource. </para></description></parameter><parameter name="del"><paramtype>Deleter &amp;&amp;</paramtype><description><para>A deleter to invoke on the resource to free it. </para></description></parameter><purpose>Checks if the resource is valid and creates a <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> wrapper. </purpose><description><para><emphasis role="bold">Effects:</emphasis> If the resource <emphasis>res</emphasis> is not equal to <emphasis>invalid</emphasis>, creates a unique resource wrapper that is in allocated state and owns <emphasis>res</emphasis>. Otherwise creates a unique resource wrapper in unallocated state.</para><para><note><para>This function does not call <emphasis>del</emphasis> if <emphasis>res</emphasis> is equal to <emphasis>invalid</emphasis>.</para>
-</note>
-<emphasis role="bold">Throws:</emphasis> Nothing, unless <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> constructor throws.</para><para>
-</para></description></function>
-
-
-
-
-
-
-
-
-</namespace>
-</namespace>
-</header>
-<header id="doxygen.reference.unique__resource__fwd_8hpp" name="boost/scope/unique_resource_fwd.hpp">
-<para>This header contains forward declaration of <computeroutput>unique_resource</computeroutput> template. </para><namespace name="boost">
-<namespace name="scope">
-<class id="doxygen.reference.classboost_1_1scope_1_1unique__resource" name="unique_resource"><template>
+</struct><class id="doxygen.reference.classboost_1_1scope_1_1unique__resource" name="unique_resource"><template>
       <template-type-parameter name="Resource"><purpose><para>Resource type. </para></purpose></template-type-parameter>
       <template-type-parameter name="Deleter"><purpose><para>Resource deleter function object type. </para></purpose></template-type-parameter>
       <template-type-parameter name="Traits"><default>void</default><purpose><para>Optional resource traits type. </para></purpose></template-type-parameter>
@@ -411,7 +388,10 @@ If specified, the resource traits must be a class type that has the following pu
 </listitem>
 </itemizedlist>
 Note that <computeroutput>is_allocated(make_default())</computeroutput> must always return <computeroutput>false</computeroutput>.</para><para>When resource traits satisfying the above requirements are specified, <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> will be able to avoid storing additional indication of whether the owned resource object needs to be deallocated with the deleter on destruction. It will use the default resource value to initialize the owned resource object when <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> is not in the allocated state. Additionally, it will be possible to construct <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> with unallocated resource values, which will create <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> objects in unallocated state (the deleter will not be called on unallocated resource values).</para><para>
-</para></description><method-group name="public member functions">
+</para></description><typedef id="doxygen.reference.classboost_1_1scope_1_1unique__resource_1aece91de9570c00090d1e04522236a96b" name="resource_type"><purpose>Resource type. </purpose><type>Resource</type></typedef>
+<typedef id="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a0f021b62a0162dd6080d0460139a8785" name="deleter_type"><purpose>Deleter type. </purpose><type>Deleter</type></typedef>
+<typedef id="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a7762fa62b377a4fe9013a86afeb00b99" name="traits_type"><purpose>Resource traits. </purpose><type>Traits</type></typedef>
+<method-group name="public member functions">
 <constructor id="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a399d5a11543c898f52254b8b30305f06"><purpose>Constructs an unallocated unique resource guard. </purpose><description><para><emphasis role="bold">Requires:</emphasis> Default <computeroutput>Resource</computeroutput> value can be constructed. <computeroutput>Deleter</computeroutput> is default-constructible and is not a pointer to function.</para><para><emphasis role="bold">Effects:</emphasis> Initializes the <computeroutput>Resource</computeroutput> object with the default resource value. Default-constructs the <computeroutput>Deleter</computeroutput> object.</para><para><emphasis role="bold">Throws:</emphasis> Nothing, unless construction of <computeroutput>Resource</computeroutput> or <computeroutput>Deleter</computeroutput> throws.</para><para>
 </para></description><postconditions><para><computeroutput>this-&gt;<link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource_1ab50d2dd49c85000fa75833f9df2556e3">allocated()</link> == false</computeroutput> </para>
 </postconditions></constructor>
@@ -475,7 +455,30 @@ Note that <computeroutput>is_allocated(make_default())</computeroutput> must alw
 <method-group name="friend functions">
 <method id="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a98787099f36787dc31b14a9fcc8d3498" name="swap"><type>void</type><parameter name="left"><paramtype><classname>unique_resource</classname> &amp;</paramtype></parameter><parameter name="right"><paramtype><classname>unique_resource</classname> &amp;</paramtype></parameter><purpose>Swaps two unique resource wrappers. </purpose><description><para><emphasis role="bold">Effects:</emphasis> As if <computeroutput>left.swap(right)</computeroutput>. </para></description></method>
 </method-group>
-</class>
+</class><data-member id="doxygen.reference.unique__resource_8hpp_1a970dcf160d71b25082989f9bc8e5bff3" name="default_resource"><type>default_resource_t</type><purpose>Keyword representing default, unallocated resource argument. </purpose></data-member>
+<function id="doxygen.reference.unique__resource__fwd_8hpp_1a9c005a6f171905bbecb1adb1aca23948" name="make_unique_resource_checked"><type><classname>unique_resource</classname>&lt; typename std::decay&lt; Resource &gt;::type, typename std::decay&lt; Deleter &gt;::type &gt;</type><template>
+          <template-type-parameter name="Resource"/>
+          <template-type-parameter name="Deleter"/>
+          <template-type-parameter name="Invalid"><default>typename std::decay&lt; Resource &gt;::type</default></template-type-parameter>
+        </template><parameter name="res"><paramtype>Resource &amp;&amp;</paramtype><description><para>Resource to wrap. </para></description></parameter><parameter name="invalid"><paramtype>Invalid const &amp;</paramtype><description><para>An invalid value for the resource. </para></description></parameter><parameter name="del"><paramtype>Deleter &amp;&amp;</paramtype><description><para>A deleter to invoke on the resource to free it. </para></description></parameter><purpose>Checks if the resource is valid and creates a <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> wrapper. </purpose><description><para><emphasis role="bold">Effects:</emphasis> If the resource <emphasis>res</emphasis> is not equal to <emphasis>invalid</emphasis>, creates a unique resource wrapper that is in allocated state and owns <emphasis>res</emphasis>. Otherwise creates a unique resource wrapper in unallocated state.</para><para><note><para>This function does not call <emphasis>del</emphasis> if <emphasis>res</emphasis> is equal to <emphasis>invalid</emphasis>.</para>
+</note>
+<emphasis role="bold">Throws:</emphasis> Nothing, unless <computeroutput><link linkend="doxygen.reference.classboost_1_1scope_1_1unique__resource">unique_resource</link></computeroutput> constructor throws.</para><para>
+</para></description></function>
+
+
+
+
+
+
+
+
+</namespace>
+</namespace>
+</header>
+<header id="doxygen.reference.unique__resource__fwd_8hpp" name="boost/scope/unique_resource_fwd.hpp">
+<para>This header contains forward declaration of <computeroutput>unique_resource</computeroutput> template. </para><namespace name="boost">
+<namespace name="scope">
+
 
 
 

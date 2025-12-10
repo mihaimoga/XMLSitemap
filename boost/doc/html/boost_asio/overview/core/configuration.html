@@ -423,6 +423,107 @@
 <tr>
 <td>
                   <p>
+                    <code class="computeroutput"><span class="identifier">reactor</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">reset_edge_on_partial_read</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">false</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Linux <code class="literal">epoll</code> backend only.
+                  </p>
+                  <p>
+                    When <code class="computeroutput"><span class="keyword">true</span></code>, a partial
+                    read on a stream-oriented socket is considered to have consumed
+                    the edge-triggered readiness notification, requiring a new readiness
+                    edge before further read operations are performed. When <code class="computeroutput"><span class="keyword">false</span></code> (the default), the socket
+                    is treated as ready-to-read until the read fails with <code class="computeroutput"><span class="identifier">EAGAIN</span></code>.
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">reactor</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">use_eventfd</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">true</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Linux <code class="literal">epoll</code> backend only.
+                  </p>
+                  <p>
+                    When <code class="computeroutput"><span class="keyword">true</span></code>, the reactor
+                    uses an <code class="literal">eventfd</code> descriptor to wake a blocked
+                    <code class="literal">epoll_wait</code> call. When <code class="computeroutput"><span class="keyword">false</span></code>,
+                    a pipe is used instead.
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">reactor</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="identifier">use_timerfd</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">bool</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    <code class="computeroutput"><span class="keyword">true</span></code>
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Linux <code class="literal">epoll</code> backend only.
+                  </p>
+                  <p>
+                    When <code class="computeroutput"><span class="keyword">true</span></code>, the reactor
+                    uses a <code class="literal">timerfd</code> descriptor to manage timeouts.
+                    When <code class="computeroutput"><span class="keyword">false</span></code>, the
+                    duration until the next timeout is computed and passed as a timeout
+                    to <code class="literal">epoll_wait</code>.
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
                     <code class="computeroutput"><span class="identifier">timer</span></code>
                   </p>
                 </td>

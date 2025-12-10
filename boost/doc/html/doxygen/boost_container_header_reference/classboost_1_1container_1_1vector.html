@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.vector_8hpp" title="Header &lt;boost/container/vector.hpp&gt;">
+<link rel="up" href="../../container/index_reference.html#doxygen.boost_container_header_reference.vector_8hpp" title="Header &lt;boost/container/vector.hpp&gt;">
 <link rel="prev" href="structboost_1_1container_1_1pmr_1_1vector__of.html" title="Struct template vector_of">
-<link rel="next" href="../../container/acknowledgements_notes.html" title="Acknowledgements, notes and links">
+<link rel="next" href="vector_8hpp_1a482fbfd2937e0fc19e4831aca26c83b6.html" title="Function template erase">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -22,7 +22,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1vector__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../container/acknowledgements_notes.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1vector__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vector_8hpp_1a482fbfd2937e0fc19e4831aca26c83b6.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector"></a><div class="titlepage"></div>
@@ -31,28 +31,28 @@
 <p>boost::container::vector</p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.vector_8hpp" title="Header &lt;boost/container/vector.hpp&gt;">boost/container/vector.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../container/index_reference.html#doxygen.boost_container_header_reference.vector_8hpp" title="Header &lt;boost/container/vector.hpp&gt;">boost/container/vector.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> T<span class="special">,</span> <span class="keyword">typename</span> A <span class="special">=</span> <span class="keyword">void</span><span class="special">,</span> <span class="keyword">typename</span> Options <span class="special">=</span> <span class="keyword">void</span><span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">T</span>                                                      <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1afccbc762d32f2626007bf7c5f8fd6809"></a><span class="identifier">value_type</span><span class="special">;</span>            
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a334df065d123797f095d18752625313e"></a><span class="identifier">allocator_type</span><span class="special">;</span>        
-  <span class="keyword">typedef</span> ::boost::container::allocator_traits<span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1ae298c6ebb7cb8886e1e6ea0d9ea348ed"></a><span class="identifier">allocator_traits_t</span><span class="special">;</span>    
-  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">pointer</span>            <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1addfe25c2d5a462f9d189c4c994cd5777"></a><span class="identifier">pointer</span><span class="special">;</span>               
-  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">const_pointer</span>      <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1acc88f5098ecd1a8f0dc701c9707472e5"></a><span class="identifier">const_pointer</span><span class="special">;</span>         
-  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">reference</span>          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1aeee3f74a88dfcdd78faa55a75555913f"></a><span class="identifier">reference</span><span class="special">;</span>             
-  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">const_reference</span>    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1ae433fc086d4aced0a80975c0f6e5387c"></a><span class="identifier">const_reference</span><span class="special">;</span>       
-  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">size_type</span>          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1aea8a35305c14a54742070e9fb8e2e04c"></a><span class="identifier">size_type</span><span class="special">;</span>             
-  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">difference_type</span>    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a50be50f6c20c3c6c3b27547c06d2d74a"></a><span class="identifier">difference_type</span><span class="special">;</span>       
-  <span class="keyword">typedef</span> <span class="identifier">allocator_type</span>                                         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1aa5f0e155fe1d63dbe1791edce5b7879e"></a><span class="identifier">stored_allocator_type</span><span class="special">;</span> 
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a5bb69a2a90ac6d8b0db213cfea0d4a41"></a><span class="identifier">iterator</span><span class="special">;</span>              
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a1a1885a30eb966cddf196ce9394976e4"></a><span class="identifier">const_iterator</span><span class="special">;</span>        
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a7825f7708f4a09208864e4ab6f168710"></a><span class="identifier">reverse_iterator</span><span class="special">;</span>      
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1af28b4fc34b6f241c0dd4d88b91663f97"></a><span class="identifier">const_reverse_iterator</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">T</span>                                                      <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1ae46d3eb2490fe2777a52c1b344995db4"></a><span class="identifier">value_type</span><span class="special">;</span>            
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a765032ace075f2d9c645c1b3ec723b01"></a><span class="identifier">allocator_type</span><span class="special">;</span>        
+  <span class="keyword">typedef</span> ::boost::container::allocator_traits<span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1ad04438479a4fda6724bb9cc26750303f"></a><span class="identifier">allocator_traits_t</span><span class="special">;</span>    
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">pointer</span>            <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1aa8315e0181ff628ccfd7e3c6f708cf5e"></a><span class="identifier">pointer</span><span class="special">;</span>               
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">const_pointer</span>      <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1aba828c59098e69fe500f458b21223f24"></a><span class="identifier">const_pointer</span><span class="special">;</span>         
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">reference</span>          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a161bb94062114a88f52159a9c522a35c"></a><span class="identifier">reference</span><span class="special">;</span>             
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">const_reference</span>    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1aac8bacf69d761647d0e033933dc73f5f"></a><span class="identifier">const_reference</span><span class="special">;</span>       
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">size_type</span>          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a471996acff5ea79e10ad3276f134f346"></a><span class="identifier">size_type</span><span class="special">;</span>             
+  <span class="keyword">typedef</span> <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">allocator_traits</a><span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">difference_type</span>    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a51405ad2d72dc4232ff1546d5595cf6a"></a><span class="identifier">difference_type</span><span class="special">;</span>       
+  <span class="keyword">typedef</span> <span class="identifier">allocator_type</span>                                         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a7b5bcacd1619bc28b8ca89beca1a7c6c"></a><span class="identifier">stored_allocator_type</span><span class="special">;</span> 
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a42de5bb65d87e8757ff245f2a545f77f"></a><span class="identifier">iterator</span><span class="special">;</span>              
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1afdd1d4a24fef52bdc6ec71af179db2df"></a><span class="identifier">const_iterator</span><span class="special">;</span>        
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a58f91b900cc9e8a604b19dcce9156aa0"></a><span class="identifier">reverse_iterator</span><span class="special">;</span>      
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1af278c16c10f7c613273b0a20e79fb5e6"></a><span class="identifier">const_reverse_iterator</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1container_1_1vector.html#id137-bb">public member functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1container_1_1vector.html#id145-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1adc44096411499c87203025b838ccffda"><span class="identifier">vector</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1afea7d72119d426b85bfba677c99ff85a"><span class="identifier">vector</span></a><span class="special">(</span><span class="keyword">const</span> <span class="identifier">allocator_type</span> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
   <span class="keyword">explicit</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1aaea1ca10c5456bc811e1c02462cc05e8"><span class="identifier">vector</span></a><span class="special">(</span><span class="identifier">size_type</span><span class="special">)</span><span class="special">;</span>
@@ -131,7 +131,7 @@
   <span class="keyword">void</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a92b57d402c026146431a98777eb644aa"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">void</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a0fe17537404571c2068421babaecc667"><span class="identifier">clear</span></a><span class="special">(</span><span class="special">)</span> <span class="keyword">noexcept</span><span class="special">;</span>
 
-  <span class="comment">// <a class="link" href="classboost_1_1container_1_1vector.html#id138-bb">friend functions</a></span>
+  <span class="comment">// <a class="link" href="classboost_1_1container_1_1vector.html#id146-bb">friend functions</a></span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a4199c7ca98b5fceb3f98174badf782e9"><span class="keyword">operator</span><span class="special">==</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a48d864ed243cbe736894dd213789c69a"><span class="keyword">operator</span><span class="special">!=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a43ab9378839ff1b63b2a18fa717c759d"><span class="keyword">operator</span><span class="special">&lt;</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">,</span> <span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
@@ -141,12 +141,12 @@
   <span class="keyword">void</span> <a class="link" href="classboost_1_1container_1_1vector.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a36b4903d56948f2160b25e1e42a77072"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">,</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.8.14.47.3.4"></a><h2>Description</h2>
+<a name="id-1.3.8.13.3.47.3.4"></a><h2>Description</h2>
 <p>A vector is a sequence that supports random access to elements, constant time insertion and removal of elements at the end, and linear time insertion and removal of elements at the beginning or in the middle. The number of elements in a vector may vary dynamically; memory management is automatic.</p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id-1.3.8.14.47.3.4.4"></a><h3>Template Parameters</h3>
+<a name="id-1.3.8.13.3.47.3.4.4"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> T</pre>
@@ -158,13 +158,13 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Options <span class="special">=</span> <span class="keyword">void</span></pre>
-<p>A type produced from <code class="computeroutput">boost::container::vector_options</code>. </p>
+<p>A type produced from <code class="computeroutput"><a class="link" href="structboost_1_1container_1_1vector__options.html" title="Struct template vector_options">boost::container::vector_options</a></code>. </p>
 </li>
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.47.3.4.5"></a><h3>
-<a name="id137-bb"></a><code class="computeroutput">vector</code> public member functions</h3>
+<a name="id-1.3.8.13.3.47.3.4.5"></a><h3>
+<a name="id145-bb"></a><code class="computeroutput">vector</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1adc44096411499c87203025b838ccffda"></a><span class="identifier">vector</span><span class="special">(</span><span class="special">)</span><span class="special">;</span></pre>
@@ -286,7 +286,7 @@
 <p><span class="bold"><strong>Effects</strong></span>: Move assignment. All x's values are transferred to *this.</p>
 <p><span class="bold"><strong>Postcondition</strong></span>: x.empty(). *this contains a the elements x had before the function.</p>
 <p><span class="bold"><strong>Throws</strong></span>: If allocator_traits_type::propagate_on_container_move_assignment is false and (allocation throws or value_type's move constructor throws)</p>
-<p><span class="bold"><strong>Complexity</strong></span>: Constant if allocator_traits_type:: propagate_on_container_move_assignment is true or this-&gt;get&gt;allocator() == x.get_allocator(). Linear otherwise. </p>
+<p><span class="bold"><strong>Complexity</strong></span>: Constant if allocator_traits_type:: <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">propagate_on_container_move_assignment</a> is true or this-&gt;get&gt;allocator() == x.get_allocator(). Linear otherwise. </p>
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> InIt<span class="special">&gt;</span> 
@@ -632,7 +632,8 @@
 <p><span class="bold"><strong>Returns</strong></span>: an iterator to the first inserted element or pos if first == last.</p>
 <p><span class="bold"><strong>Throws</strong></span>: If memory allocation throws, T's constructor from a dereferenced InpIt throws or T's copy/move constructor/assignment throws.</p>
 <p><span class="bold"><strong>Complexity</strong></span>: Linear to boost::container::iterator_distance [first, last).</p>
-<p><span class="bold"><strong>Note</strong></span>: This function avoids a linear operation to calculate boost::container::iterator_distance[first, last) for forward and bidirectional iterators, and a one by one insertion for input iterators. This is a a non-standard extension. <span class="bold"><strong>Requires</strong></span>: position must be a valid iterator of *this.</p>
+<p><span class="bold"><strong>Note</strong></span>: This function avoids a linear operation to calculate boost::container::iterator_distance[first, last) for forward and bidirectional iterators, and a one by one insertion for input iterators. This is a a non-standard extension.</p>
+<p><span class="bold"><strong>Requires</strong></span>: position must be a valid iterator of *this.</p>
 <p><span class="bold"><strong>Effects</strong></span>: Insert a copy of the [il.begin(), il.end()) range before position.</p>
 <p><span class="bold"><strong>Returns</strong></span>: an iterator to the first inserted element or position if first == last.</p>
 <p><span class="bold"><strong>Complexity</strong></span>: Linear to the range [il.begin(), il.end()). </p>
@@ -670,8 +671,8 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.47.3.4.6"></a><h3>
-<a name="id138-bb"></a><code class="computeroutput">vector</code> friend functions</h3>
+<a name="id-1.3.8.13.3.47.3.4.6"></a><h3>
+<a name="id146-bb"></a><code class="computeroutput">vector</code> friend functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">bool</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1vector_1a4199c7ca98b5fceb3f98174badf782e9"></a><span class="keyword">operator</span><span class="special">==</span><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span> x<span class="special">,</span> <span class="keyword">const</span> <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector</a> <span class="special">&amp;</span> y<span class="special">)</span><span class="special">;</span></pre>
@@ -719,7 +720,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1vector__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../container/acknowledgements_notes.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1container_1_1pmr_1_1vector__of.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.vector_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="vector_8hpp_1a482fbfd2937e0fc19e4831aca26c83b6.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

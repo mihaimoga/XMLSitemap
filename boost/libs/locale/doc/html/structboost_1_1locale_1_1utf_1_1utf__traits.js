@@ -1,6 +1,6 @@
 var structboost_1_1locale_1_1utf_1_1utf__traits =
 [
-    [ "char_type", "structboost_1_1locale_1_1utf_1_1utf__traits.html#a011cd1f9b7e6b3227416d205196c5b95", null ],
+    [ "char_type", "structboost_1_1locale_1_1utf_1_1utf__traits.html#accca9dc2d8fe018b9b5640c48e3470e4", null ],
     [ "decode", "structboost_1_1locale_1_1utf_1_1utf__traits.html#a9b6b01fa6705ba67ac78359ddee03213", null ],
     [ "decode_valid", "structboost_1_1locale_1_1utf_1_1utf__traits.html#a8ff625b2c19b0d4132f7ec9e6303cb36", null ],
     [ "encode", "structboost_1_1locale_1_1utf_1_1utf__traits.html#acd59f628af084f800f8a86cdd8124fd8", null ],

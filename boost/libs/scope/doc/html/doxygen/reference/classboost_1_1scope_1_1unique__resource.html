@@ -5,16 +5,16 @@
 <link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="Chapter 1. Boost.Scope">
-<link rel="up" href="../../reference.html#doxygen.reference.unique__resource__fwd_8hpp" title="Header &lt;boost/scope/unique_resource_fwd.hpp&gt;">
-<link rel="prev" href="unique__resource__fwd_8hpp_1a9c005a6f171905bbecb1adb1aca23948.html" title="Function template make_unique_resource_checked">
-<link rel="next" href="../../scope/changelog.html" title="Changelog">
+<link rel="up" href="../../reference.html#doxygen.reference.unique__resource_8hpp" title="Header &lt;boost/scope/unique_resource.hpp&gt;">
+<link rel="prev" href="structboost_1_1scope_1_1unallocated__resource.html" title="Struct template unallocated_resource">
+<link rel="next" href="unique__resource_8hpp_1a970dcf160d71b25082989f9bc8e5bff3.html" title="Global default_resource">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <table cellpadding="2" width="100%"><tr><td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../../boost.png"></td></tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="unique__resource__fwd_8hpp_1a9c005a6f171905bbecb1adb1aca23948.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference.html#doxygen.reference.unique__resource__fwd_8hpp"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../scope/changelog.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1scope_1_1unallocated__resource.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference.html#doxygen.reference.unique__resource_8hpp"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="unique__resource_8hpp_1a970dcf160d71b25082989f9bc8e5bff3.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource"></a><div class="titlepage"></div>
@@ -23,11 +23,15 @@
 <p>boost::scope::unique_resource — RAII wrapper for automatically reclaiming arbitrary resources. </p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../reference.html#doxygen.reference.unique__resource__fwd_8hpp" title="Header &lt;boost/scope/unique_resource_fwd.hpp&gt;">boost/scope/unique_resource_fwd.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../reference.html#doxygen.reference.unique__resource_8hpp" title="Header &lt;boost/scope/unique_resource.hpp&gt;">boost/scope/unique_resource.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Resource<span class="special">,</span> <span class="keyword">typename</span> Deleter<span class="special">,</span> <span class="keyword">typename</span> Traits <span class="special">=</span> <span class="keyword">void</span><span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
+  <span class="comment">// types</span>
+  <span class="keyword">typedef</span> <span class="identifier">Resource</span> <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1aece91de9570c00090d1e04522236a96b"></a><span class="identifier">resource_type</span><span class="special">;</span>  <span class="comment">// Resource type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">Deleter</span>  <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a0f021b62a0162dd6080d0460139a8785"></a><span class="identifier">deleter_type</span><span class="special">;</span>   <span class="comment">// Deleter type. </span>
+  <span class="keyword">typedef</span> <span class="identifier">Traits</span>   <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a7762fa62b377a4fe9013a86afeb00b99"></a><span class="identifier">traits_type</span><span class="special">;</span>    <span class="comment">// Resource traits. </span>
 
   <span class="comment">// <a class="link" href="classboost_1_1scope_1_1unique__resource.html#id18-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1a399d5a11543c898f52254b8b30305f06"><span class="identifier">unique_resource</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -54,7 +58,7 @@
   <span class="keyword">void</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html#doxygen.reference.classboost_1_1scope_1_1unique__resource_1a98787099f36787dc31b14a9fcc8d3498"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span><span class="special">,</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id11134"></a><h2>Description</h2>
+<a name="id11029"></a><h2>Description</h2>
 <p>A <code class="computeroutput"><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a></code> object exclusively owns wrapped resource and invokes the deleter function object on it on destruction. The wrapped resource can have any type that is:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem"><p>Move-constructible, where the move constructor is marked as <code class="computeroutput">noexcept</code>, or </p></li>
@@ -81,7 +85,7 @@ Note that <code class="computeroutput">is_allocated(make_default())</code> must 
 <p>
 </p>
 <div class="refsect2">
-<a name="id11184"></a><h3>Template Parameters</h3>
+<a name="id11079"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Resource</pre>
@@ -98,7 +102,7 @@ Note that <code class="computeroutput">is_allocated(make_default())</code> must 
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id11207"></a><h3>
+<a name="id11102"></a><h3>
 <a name="id18-bb"></a><code class="computeroutput">unique_resource</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -443,7 +447,7 @@ Note that <code class="computeroutput">is_allocated(make_default())</code> must 
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id11782"></a><h3>
+<a name="id11677"></a><h3>
 <a name="id19-bb"></a><code class="computeroutput">unique_resource</code> friend functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem">
 <pre class="literallayout"><span class="keyword">void</span> <a name="doxygen.reference.classboost_1_1scope_1_1unique__resource_1a98787099f36787dc31b14a9fcc8d3498"></a><span class="identifier">swap</span><span class="special">(</span><a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span> left<span class="special">,</span> <a class="link" href="classboost_1_1scope_1_1unique__resource.html" title="Class template unique_resource">unique_resource</a> <span class="special">&amp;</span> right<span class="special">)</span><span class="special">;</span></pre>Swaps two unique resource wrappers. <p><span class="bold"><strong>Effects:</strong></span> As if <code class="computeroutput">left.swap(right)</code>. </p>
@@ -458,7 +462,7 @@ Note that <code class="computeroutput">is_allocated(make_default())</code> must 
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="unique__resource__fwd_8hpp_1a9c005a6f171905bbecb1adb1aca23948.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference.html#doxygen.reference.unique__resource__fwd_8hpp"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../scope/changelog.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="structboost_1_1scope_1_1unallocated__resource.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../reference.html#doxygen.reference.unique__resource_8hpp"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="unique__resource_8hpp_1a970dcf160d71b25082989f9bc8e5bff3.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

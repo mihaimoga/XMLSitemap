@@ -91,8 +91,8 @@
 <namespace name="monomorphic">
 <class id="doxygen.a01128" name="array"><template>
       <template-type-parameter name="T"/>
-    </template><purpose>Dataset view of a C array. </purpose><typedef id="doxygen.a01128_1acdfe80517a7f283452fd4e522d78ccfc" name="sample"><type>T</type></typedef>
-<typedef id="doxygen.a01128_1a012e2b23ea236dabfc06ca1d7832b650" name="iterator"><type>T const *</type></typedef>
+    </template><purpose>Dataset view of a C array. </purpose><typedef id="doxygen.a01128_1a0c4bfa5a49dacc7e32cb102cc95bf1e8" name="sample"><type>T</type></typedef>
+<typedef id="doxygen.a01128_1a8ebdd843607f58878ce112fec6bad12e" name="iterator"><type>T const *</type></typedef>
 <data-member id="doxygen.a01128_1aff66626483c7ee93ed4edd0ac8d2e896" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01128_1aac4ae7aca3d275ec1cef1ca5983aa388"><parameter name="arr_"><paramtype>T const *</paramtype></parameter><parameter name="size_"><paramtype>std::size_t</paramtype></parameter></constructor>
@@ -101,7 +101,7 @@
 </method-group>
 </class><struct-specialization id="doxygen.a01132" name="is_dataset"><template>
       <template-type-parameter name="T"/>
-    </template><specialization><template-arg>array&lt; T &gt;</template-arg></specialization><inherit access="public">mpl::true_</inherit><purpose>An array dataset is a dataset. </purpose></struct-specialization>
+    </template><specialization><template-arg>array&lt; T &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">mpl::true_</inherit><purpose>An array dataset is a dataset. </purpose></struct-specialization>
 
 
 
@@ -179,8 +179,8 @@
 <namespace name="monomorphic">
 <class id="doxygen.a01136" name="collection"><template>
       <template-type-parameter name="C"/>
-    </template><purpose>Dataset from a forward iterable container (collection) </purpose><description><para>This dataset is applicable to any container implementing a forward iterator. Note that container with one element will be considered as singletons. This dataset is constructible with the <link linkend="doxygen.a00867_1a75bb4ac1edba62ef731993799fb1474f">boost::unit_test::data::make</link> function. </para></description><typedef id="doxygen.a01136_1a19ff524320dffc8e72404592e5e0fd09" name="sample"><type>col_type::value_type</type></typedef>
-<typedef id="doxygen.a01136_1a43ae8df51ee17682a9f82e1b32714455" name="iterator"><type>col_type::const_iterator</type></typedef>
+    </template><purpose>Dataset from a forward iterable container (collection) </purpose><description><para>This dataset is applicable to any container implementing a forward iterator. Note that container with one element will be considered as singletons. This dataset is constructible with the <link linkend="doxygen.a00867_1a75bb4ac1edba62ef731993799fb1474f">boost::unit_test::data::make</link> function. </para></description><typedef id="doxygen.a01136_1a61a2d04d35773588106bbd380cc5f465" name="sample"><type>col_type::value_type</type></typedef>
+<typedef id="doxygen.a01136_1a2e67c24bf6b48501f0f9a256acb67cc1" name="iterator"><type>col_type::const_iterator</type></typedef>
 <data-member id="doxygen.a01136_1add6dcef71e45ae4b62f80a5f2f1b3130" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01136_1a2ad3f4bfc1b653ef0203ecee611ff815" specifiers="explicit"><parameter name="col"><paramtype>C &amp;&amp;</paramtype></parameter><purpose>Constructor consumed a temporary collection or stores a reference. </purpose></constructor>
@@ -191,7 +191,7 @@
 </method-group>
 </class><struct-specialization id="doxygen.a01140" name="is_dataset"><template>
       <template-type-parameter name="C"/>
-    </template><specialization><template-arg>collection&lt; C &gt;</template-arg></specialization><inherit access="public">mpl::true_</inherit><purpose>A collection from a forward iterable container is a dataset. </purpose></struct-specialization>
+    </template><specialization><template-arg>collection&lt; C &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">mpl::true_</inherit><purpose>A collection from a forward iterable container is a dataset. </purpose></struct-specialization>
 
 
 
@@ -286,7 +286,7 @@
 </class><struct-specialization id="doxygen.a01108" name="is_dataset"><template>
       <template-type-parameter name="dataset_t"/>
       <template-nontype-parameter name="Args"><type>class ...</type></template-nontype-parameter>
-    </template><specialization><template-arg>delayed_dataset&lt; dataset_t</template-arg><template-arg>Args... &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit><purpose>A lazy/delayed dataset is a dataset. </purpose></struct-specialization>
+    </template><specialization><template-arg>delayed_dataset&lt; dataset_t</template-arg><template-arg>Args... &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::mpl::true_</inherit><purpose>A lazy/delayed dataset is a dataset. </purpose></struct-specialization>
 
 
 
@@ -369,15 +369,15 @@
       <template-type-parameter name="DataSet0"/>
       <template-type-parameter name="DataSet1"/>
       <template-nontype-parameter name="DataSetTT"><type>class...</type></template-nontype-parameter>
-    </template><specialization><template-arg>DataSet0</template-arg><template-arg>DataSet1</template-arg><template-arg>DataSetTT...</template-arg></specialization><inherit access="public">std::integral_constant&lt; bool, is_dataset&lt; DataSet0 &gt;::value||has_dataset&lt; DataSet1, DataSetTT... &gt;::value &gt;</inherit></struct-specialization><struct id="doxygen.a01056" name="is_dataset"><template>
+    </template><specialization><template-arg>DataSet0</template-arg><template-arg>DataSet1</template-arg><template-arg>DataSetTT...</template-arg></specialization><inherit access="public">boost::unit_test::data::monomorphic::is_dataset&lt; DataSet0 &gt;</inherit><inherit access="public">std::integral_constant&lt; bool, is_dataset&lt; DataSet0 &gt;::value||has_dataset&lt; DataSet1, DataSetTT... &gt;::value &gt;</inherit></struct-specialization><struct id="doxygen.a01056" name="is_dataset"><template>
       <template-type-parameter name="DataSet"/>
     </template><inherit access="public">mpl::false_</inherit><purpose>Helper metafunction indicating if the specified type is a dataset. </purpose></struct><struct-specialization id="doxygen.a01060" name="is_dataset"><template>
       <template-type-parameter name="DataSet"/>
-    </template><specialization><template-arg>DataSet &amp;</template-arg></specialization><inherit access="public">boost::unit_test::data::monomorphic::is_dataset&lt; DataSet &gt;</inherit><purpose>A reference to a dataset is a dataset. </purpose></struct-specialization><struct-specialization id="doxygen.a01064" name="is_dataset"><template>
+    </template><specialization><template-arg>DataSet &amp;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::unit_test::data::monomorphic::is_dataset&lt; DataSet &gt;</inherit><purpose>A reference to a dataset is a dataset. </purpose></struct-specialization><struct-specialization id="doxygen.a01064" name="is_dataset"><template>
       <template-type-parameter name="DataSet"/>
-    </template><specialization><template-arg>DataSet &amp;&amp;</template-arg></specialization><inherit access="public">boost::unit_test::data::monomorphic::is_dataset&lt; DataSet &gt;</inherit></struct-specialization><struct-specialization id="doxygen.a01068" name="is_dataset"><template>
+    </template><specialization><template-arg>DataSet &amp;&amp;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::unit_test::data::monomorphic::is_dataset&lt; DataSet &gt;</inherit></struct-specialization><struct-specialization id="doxygen.a01068" name="is_dataset"><template>
       <template-type-parameter name="DataSet"/>
-    </template><specialization><template-arg>DataSet const</template-arg></specialization><inherit access="public">boost::unit_test::data::monomorphic::is_dataset&lt; DataSet &gt;</inherit><purpose>A const dataset is a dataset. </purpose></struct-specialization>
+    </template><specialization><template-arg>DataSet const</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::unit_test::data::monomorphic::is_dataset&lt; DataSet &gt;</inherit><purpose>A const dataset is a dataset. </purpose></struct-specialization>
 
 
 
@@ -390,7 +390,7 @@
 <namespace name="result_of">
 <struct id="doxygen.a01080" name="make"><template>
       <template-type-parameter name="DataSet"/>
-    </template><purpose>Result of the make call. </purpose><typedef id="doxygen.a01080_1aad9683f021a3746a6fe19e7fe012df67" name="type"><type>decltype(data::make(declval&lt; DataSet &gt;()))</type></typedef>
+    </template><purpose>Result of the make call. </purpose><typedef id="doxygen.a01080_1a068b256416b7ab1dab18f90e8b6804c5" name="type"><type>decltype(data::make(declval&lt; DataSet &gt;()))</type></typedef>
 </struct></namespace>
 <function id="doxygen.a00867_1a75bb4ac1edba62ef731993799fb1474f" name="make"><type>std::enable_if&lt; <classname>monomorphic::is_dataset</classname>&lt; DataSet &gt;::value, DataSet &gt;::type</type><template>
           <template-type-parameter name="DataSet"/>
@@ -490,8 +490,8 @@ template&lt;typename T, std::size_t size&gt; <link linkend="doxygen.a01128">mono
 <method id="doxygen.a01148_1a66f7f98de9d7f165bcc8cda7e1d0083e" name="operator*" cv="const"><type>sample const &amp;</type></method>
 <method id="doxygen.a01148_1a2f735d498b4bc8bf1fb0b0830e75e250" name="operator++"><type>void</type></method>
 </method-group>
-</struct><typedef id="doxygen.a01144_1a94b084f13e5d34305de9d2f33963a15f" name="sample"><type>Generator::sample</type></typedef>
-<typedef id="doxygen.a01144_1a613c4afc2cfc3ff6f728e3e191779382" name="generator_type"><type>Generator</type></typedef>
+</struct><typedef id="doxygen.a01144_1a707e89fd53aa5968b469bf266bdbca1a" name="sample"><type>Generator::sample</type></typedef>
+<typedef id="doxygen.a01144_1a4afbf9a131c52cead285e26bbd46cd54" name="generator_type"><type>Generator</type></typedef>
 <data-member id="doxygen.a01144_1a897127e99dce98f5da6eeb12dace1b47" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01144_1aa4b5c94085749de416106c9d6035a61e" specifiers="explicit"><parameter name="G"><paramtype>Generator &amp;&amp;</paramtype></parameter></constructor>
@@ -501,7 +501,7 @@ template&lt;typename T, std::size_t size&gt; <link linkend="doxygen.a01128">mono
 </method-group>
 </class><struct-specialization id="doxygen.a01152" name="is_dataset"><template>
       <template-type-parameter name="Generator"/>
-    </template><specialization><template-arg>generated_by&lt; Generator &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit><purpose>A generated dataset is a dataset. </purpose></struct-specialization>
+    </template><specialization><template-arg>generated_by&lt; Generator &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::mpl::true_</inherit><purpose>A generated dataset is a dataset. </purpose></struct-specialization>
 
 
 
@@ -642,9 +642,9 @@ template&lt;typename T, std::size_t size&gt; <link linkend="doxygen.a01128">mono
       <template-type-parameter name="SampleType"><default>double</default></template-type-parameter>
       <template-type-parameter name="DistributionType"><default><emphasis>unspecified</emphasis></default></template-type-parameter>
       <template-type-parameter name="EngineType"><default>std::default_random_engine</default></template-type-parameter>
-    </template><purpose>Generator for the random sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a random number generator. </para></description><typedef id="doxygen.a01220_1a1459c22718027b93fb24d4ef8063faad" name="sample"><type>SampleType</type></typedef>
-<typedef id="doxygen.a01220_1a4bae67913f6cf83682309477325c05c6" name="distr_type"><type>DistributionType</type></typedef>
-<typedef id="doxygen.a01220_1a42d3191267f84cd404831d37dc79d82c" name="engine_type"><type>EngineType</type></typedef>
+    </template><purpose>Generator for the random sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a random number generator. </para></description><typedef id="doxygen.a01220_1a52915da7c44060c0f5325a759c421613" name="sample"><type>SampleType</type></typedef>
+<typedef id="doxygen.a01220_1adcd0e22a4a7bc17b0b4684cb3638c4a6" name="distr_type"><type>DistributionType</type></typedef>
+<typedef id="doxygen.a01220_1ae2dd7f606d223cb7476a54cafc403c2a" name="engine_type"><type>EngineType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01220_1a69a4f5d04b859c744418b0f7b79952e5"/>
 <constructor id="doxygen.a01220_1a430b815581262d456976bbe5a7b374be" specifiers="explicit"><parameter name="d"><paramtype>distr_type &amp;&amp;</paramtype></parameter></constructor>
@@ -751,7 +751,7 @@ auto d = <link linkend="doxygen.a00867_1aa047482a660068cc9a1b90d4e5341d1f">rando
 <class id="doxygen.a01228" name="xrange_t"><template>
       <template-type-parameter name="SampleType"/>
       <template-type-parameter name="StepType"><default>SampleType</default></template-type-parameter>
-    </template><purpose>Generator for the range sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a range like sequence of numbers. </para></description><typedef id="doxygen.a01228_1acb1bc0e4aa2a8fe6abb81f273ee36a2d" name="sample"><type>SampleType</type></typedef>
+    </template><purpose>Generator for the range sequences. </purpose><description><para>This class implements the generator concept (see <link linkend="doxygen.a01144">boost::unit_test::data::monomorphic::generated_by</link>) for implementing a range like sequence of numbers. </para></description><typedef id="doxygen.a01228_1ac1f1f799e55ba314dc4c8cb405d25037" name="sample"><type>SampleType</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01228_1a189ed7ba27d670de4b5ffe777da37f6b"><parameter name="begin_"><paramtype>SampleType const &amp;</paramtype></parameter><parameter name="step_"><paramtype>StepType const &amp;</paramtype></parameter><parameter name="size_"><paramtype><classname>data::size_t</classname></paramtype></parameter></constructor>
 <method id="doxygen.a01228_1adff4b22227d0ed8ea3217af51ca355a0" name="capacity" cv="const"><type><classname>data::size_t</classname></type></method>
@@ -884,11 +884,11 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 </class><struct-specialization id="doxygen.a01164" name="is_dataset"><template>
       <template-type-parameter name="DataSet1"/>
       <template-type-parameter name="DataSet2"/>
-    </template><specialization><template-arg>grid&lt; DataSet1</template-arg><template-arg>DataSet2 &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit></struct-specialization><namespace name="result_of">
+    </template><specialization><template-arg>grid&lt; DataSet1</template-arg><template-arg>DataSet2 &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::mpl::true_</inherit></struct-specialization><namespace name="result_of">
 <struct id="doxygen.a01168" name="grid"><template>
       <template-type-parameter name="DS1Gen"/>
       <template-type-parameter name="DS2Gen"/>
-    </template><purpose>Result type of the grid operation on dataset. </purpose><typedef id="doxygen.a01168_1a5a4ef41d5d391a2dc71aae500a2039da" name="type"><type><classname>monomorphic::grid</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
+    </template><purpose>Result type of the grid operation on dataset. </purpose><typedef id="doxygen.a01168_1a063cdf60e011928ed2d2d70722c6c074" name="type"><type><classname>monomorphic::grid</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
 </struct></namespace>
 <function id="doxygen.a00868_1a225bf43b94a043484a71e05035a7b34f" name="operator*"><type>boost::lazy_enable_if_c&lt; <classname>is_dataset</classname>&lt; DataSet1 &gt;::value &amp;&amp;<classname>is_dataset</classname>&lt; DataSet2 &gt;::value, <classname>result_of::grid</classname>&lt; mpl::identity&lt; DataSet1 &gt;, mpl::identity&lt; DataSet2 &gt; &gt; &gt;::type</type><template>
           <template-type-parameter name="DataSet1"/>
@@ -974,7 +974,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <namespace name="monomorphic">
 <class id="doxygen.a01112" name="init_list"><template>
       <template-type-parameter name="T"/>
-    </template><purpose>Dataset view from an initializer_list or variadic template arguments. </purpose><description><para>The data should be stored in the dataset, and since the elements are passed by an <computeroutput>std::initializer_list</computeroutput> , it implies a copy of the elements. </para></description><typedef id="doxygen.a01112_1a63f9b5545284be4d1ae60dbb8aba8996" name="iterator"><type>std::vector&lt; T &gt;::const_iterator</type></typedef>
+    </template><purpose>Dataset view from an initializer_list or variadic template arguments. </purpose><description><para>The data should be stored in the dataset, and since the elements are passed by an <computeroutput>std::initializer_list</computeroutput> , it implies a copy of the elements. </para></description><typedef id="doxygen.a01112_1acef0a43ea621706f5e60a85df2c7a156" name="iterator"><type>std::vector&lt; T &gt;::const_iterator</type></typedef>
 <data-member id="doxygen.a01112_1acf3c84219814fce2ca7a64eaffc2ea88" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01112_1a1b9df5ea090356954f89a603f4b4df96"><parameter name="il"><paramtype>std::initializer_list&lt; T &gt;</paramtype></parameter><purpose>Constructor copies content of initializer_list. </purpose></constructor>
@@ -992,8 +992,8 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <method id="doxygen.a01120_1afb4df54aa1ac135756e7531cc4db68fb" name="operator*" cv="const"><type>bool</type></method>
 <method id="doxygen.a01120_1a240e08adcf031cbd10972e21db1c9712" name="operator++"><type><classname>non_proxy_iterator</classname> &amp;</type></method>
 </method-group>
-</struct><typedef id="doxygen.a01116_1a8ecf94314709057f44aabdf558627a90" name="sample"><type>bool</type></typedef>
-<typedef id="doxygen.a01116_1aae73366e0b4ef5a0103484ebd2549b8a" name="iterator"><type><classname>non_proxy_iterator</classname></type></typedef>
+</struct><typedef id="doxygen.a01116_1a7abb152c9255cfcd9c1f84180fdff721" name="sample"><type>bool</type></typedef>
+<typedef id="doxygen.a01116_1a6aa8a2ebd964a47a79cb2210fe4d72d3" name="iterator"><type><classname>non_proxy_iterator</classname></type></typedef>
 <data-member id="doxygen.a01116_1ae23afd5469eb47fd3bd551e0fcfdcfdd" name="arity" specifiers="static"><type>const int</type></data-member>
 <method-group name="public member functions">
 <constructor id="doxygen.a01116_1ae6fcb0975469de69f898cfff6793e65c"><parameter name="il"><paramtype>std::initializer_list&lt; bool &gt; &amp;&amp;</paramtype></parameter><purpose>Constructor copies content of initializer_list. </purpose></constructor>
@@ -1005,7 +1005,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 </method-group>
 </class-specialization><struct-specialization id="doxygen.a01124" name="is_dataset"><template>
       <template-type-parameter name="T"/>
-    </template><specialization><template-arg>init_list&lt; T &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit><purpose>An array dataset is a dataset. </purpose></struct-specialization>
+    </template><specialization><template-arg>init_list&lt; T &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::mpl::true_</inherit><purpose>An array dataset is a dataset. </purpose></struct-specialization>
 
 
 
@@ -1086,7 +1086,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <struct-specialization id="doxygen.a01180" name="is_dataset"><template>
       <template-type-parameter name="DataSet1"/>
       <template-type-parameter name="DataSet2"/>
-    </template><specialization><template-arg>join&lt; DataSet1</template-arg><template-arg>DataSet2 &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit></struct-specialization><class id="doxygen.a01172" name="join"><template>
+    </template><specialization><template-arg>join&lt; DataSet1</template-arg><template-arg>DataSet2 &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::mpl::true_</inherit></struct-specialization><class id="doxygen.a01172" name="join"><template>
       <template-type-parameter name="DataSet1"/>
       <template-type-parameter name="DataSet2"/>
     </template><purpose>Defines a new dataset from the concatenation of two datasets. </purpose><description><para>The size of the resulting dataset is the sum of the two underlying datasets. The arity of the datasets should match. </para></description><struct id="doxygen.a01176" name="iterator"><method-group name="public member functions">
@@ -1106,7 +1106,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <struct id="doxygen.a01184" name="join"><template>
       <template-type-parameter name="DataSet1Gen"/>
       <template-type-parameter name="DataSet2Gen"/>
-    </template><purpose>Result type of the join operation on datasets. </purpose><typedef id="doxygen.a01184_1af59cbea15014d06e341a1283626d1c2a" name="type"><type><classname>monomorphic::join</classname>&lt; typename DataSet1Gen::type, typename DataSet2Gen::type &gt;</type></typedef>
+    </template><purpose>Result type of the join operation on datasets. </purpose><typedef id="doxygen.a01184_1a06cf9198ff3ea5d29a4d529d77785ed9" name="type"><type><classname>monomorphic::join</classname>&lt; typename DataSet1Gen::type, typename DataSet2Gen::type &gt;</type></typedef>
 </struct></namespace>
 
 
@@ -1192,7 +1192,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <namespace name="monomorphic">
 <struct-specialization id="doxygen.a01196" name="is_dataset"><template>
       <template-type-parameter name="T"/>
-    </template><specialization><template-arg>singleton&lt; T &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit></struct-specialization><class id="doxygen.a01188" name="singleton"><template>
+    </template><specialization><template-arg>singleton&lt; T &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::mpl::true_</inherit></struct-specialization><class id="doxygen.a01188" name="singleton"><template>
       <template-type-parameter name="T"/>
     </template><purpose>Models a single element data set. </purpose><struct id="doxygen.a01192" name="iterator"><method-group name="public member functions">
 <constructor id="doxygen.a01192_1ae7a24972d6e5abe85babb432c056d649" specifiers="explicit"><parameter name="owner"><paramtype><classname>singleton</classname>&lt; T &gt; const *</paramtype></parameter></constructor>
@@ -1285,7 +1285,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <struct-specialization id="doxygen.a01208" name="is_dataset"><template>
       <template-type-parameter name="DataSet1"/>
       <template-type-parameter name="DataSet2"/>
-    </template><specialization><template-arg>zip&lt; DataSet1</template-arg><template-arg>DataSet2 &gt;</template-arg></specialization><inherit access="public">boost::mpl::true_</inherit><purpose>Zipped datasets results in a dataset. </purpose></struct-specialization><class id="doxygen.a01200" name="zip"><template>
+    </template><specialization><template-arg>zip&lt; DataSet1</template-arg><template-arg>DataSet2 &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">boost::mpl::true_</inherit><purpose>Zipped datasets results in a dataset. </purpose></struct-specialization><class id="doxygen.a01200" name="zip"><template>
       <template-type-parameter name="DataSet1"/>
       <template-type-parameter name="DataSet2"/>
     </template><purpose>Zip datasets. </purpose><description><para>A zip of two datasets is a dataset whose arity is the sum of the operand datasets arity. The size is given by the function creating the instance (see <computeroutput>operator^</computeroutput> on datasets). </para></description><struct id="doxygen.a01204" name="iterator"><typedef id="doxygen.a01204_1ab928f569047174181cb712d6c09580c7" name="iterator_sample"><type>decltype( sample_merge(*std::declval&lt; dataset1_iter &gt;(), *std::declval&lt; dataset2_iter &gt;()))</type></typedef>
@@ -1308,7 +1308,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <struct id="doxygen.a01212" name="zip"><template>
       <template-type-parameter name="DS1Gen"/>
       <template-type-parameter name="DS2Gen"/>
-    </template><purpose>Result type of the zip operator. </purpose><typedef id="doxygen.a01212_1a9d446fd97ad999bf3e911b95a7707879" name="type"><type><classname>monomorphic::zip</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
+    </template><purpose>Result type of the zip operator. </purpose><typedef id="doxygen.a01212_1a2932ed19b97095d95d056e754496b0f7" name="type"><type><classname>monomorphic::zip</classname>&lt; typename DS1Gen::type, typename DS2Gen::type &gt;</type></typedef>
 </struct></namespace>
 
 
@@ -1567,6 +1567,7 @@ auto d = <link linkend="doxygen.a00867_1ab271da61d6a5d7eb4d0ff601c6cbecb9">xrang
 <data-member id="doxygen.a00855_1a59e018578964f7a897a200df8d11b5d3" name="MIN_TEST_CASE_ID"><type>const test_unit_id</type></data-member>
 <data-member id="doxygen.a00855_1ab04b0fc78273a05b80e4ce8bd0f08f3f" name="MAX_TEST_SUITE_ID"><type>const test_unit_id</type></data-member>
 <data-member id="doxygen.a00855_1aa99157df260d3f29c22ae495961278cc" name="MIN_TEST_SUITE_ID"><type>const test_unit_id</type></data-member>
+<data-member id="doxygen.a00855_1acb712f33cd2eab391af5116a0a4c1415" name="static_constant&lt; T &gt;::value"><type>T</type></data-member>
 
 
 
@@ -2282,7 +2283,7 @@ The implementation decides what is a system_fatal_error and what is just a syste
 <namespace name="fpc">
 <class id="doxygen.a01332" name="close_at_tolerance"><template>
       <template-type-parameter name="FPT"/>
-    </template><purpose>Predicate for comparing floating point numbers. </purpose><description><para>This predicate is used to compare floating point numbers. In addition the comparison produces maximum related difference, which can be used to generate detailed error message The methods for comparing floating points are detailed in the documentation. The method is chosen by the <link linkend="doxygen.a00881_1ae51e6d0e8d3818c31a3311f5ec2cac67">boost::math::fpc::strength</link> given at construction.</para><para>This predicate is not suitable for comparing to 0 or to infinity. </para></description><typedef id="doxygen.a01332_1a0d1bfaed99908523eefa78bda5ee85bb" name="result_type"><type>bool</type></typedef>
+    </template><purpose>Predicate for comparing floating point numbers. </purpose><description><para>This predicate is used to compare floating point numbers. In addition the comparison produces maximum related difference, which can be used to generate detailed error message The methods for comparing floating points are detailed in the documentation. The method is chosen by the <link linkend="doxygen.a00881_1ae51e6d0e8d3818c31a3311f5ec2cac67">boost::math::fpc::strength</link> given at construction.</para><para>This predicate is not suitable for comparing to 0 or to infinity. </para></description><typedef id="doxygen.a01332_1af2b8963d683e6c0ecc76dc6b3219adfe" name="result_type"><type>bool</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01332_1adec11957fd9deb9b44bc18ce5c64ff58" specifiers="explicit"><template>
           <template-type-parameter name="ToleranceType"/>
@@ -2316,7 +2317,7 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 </method-group>
 </struct><class id="doxygen.a01336" name="small_with_tolerance"><template>
       <template-type-parameter name="FPT"/>
-    </template><purpose>Predicate for comparing floating point numbers against 0. </purpose><description><para>Serves the same purpose as <link linkend="doxygen.a01332">boost::math::fpc::close_at_tolerance</link>, but used when one of the operand is null. </para></description><typedef id="doxygen.a01336_1a628e53dea0e421672e24051b66459e77" name="result_type"><type>bool</type></typedef>
+    </template><purpose>Predicate for comparing floating point numbers against 0. </purpose><description><para>Serves the same purpose as <link linkend="doxygen.a01332">boost::math::fpc::close_at_tolerance</link>, but used when one of the operand is null. </para></description><typedef id="doxygen.a01336_1a9e130afb060db33d4594383eb5690346" name="result_type"><type>bool</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01336_1a313a1a2e9fdc6358c905d24223f4649b" specifiers="explicit"><parameter name="tolerance"><paramtype>FPT</paramtype></parameter></constructor>
 <method id="doxygen.a01336_1a2f6b77c8e81e15d8e685fe9f54387dd9" name="operator()" cv="const"><type>bool</type><parameter name="fpv"><paramtype>FPT</paramtype></parameter></method>
@@ -2479,7 +2480,7 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <method name="is_enabled" cv="const"><type>bool</type></method>
 <method name="full_name" cv="const"><type>std::string</type></method>
 </method-group>
-</class><class id="doxygen.a01028" name="test_case"><inherit access="public">boost::unit_test::test_unit</inherit><enum id="doxygen.a01028_1af39d1a6ac66315d309b468b569df7a89" name=""><enumvalue id="doxygen.a01028_1af39d1a6ac66315d309b468b569df7a89af931981cdcdd6c3e294ae51a4a504560" name="type"><default>TUT_CASE</default></enumvalue></enum>
+</class><class id="doxygen.a01028" name="test_case"><inherit access="public">boost::unit_test::test_unit</inherit><enum id="doxygen.a01028_1a619e03c6eaf17af183db01a8557e87c7" name=""><enumvalue id="doxygen.a01028_1a619e03c6eaf17af183db01a8557e87c7af931981cdcdd6c3e294ae51a4a504560" name="type"><default>TUT_CASE</default></enumvalue></enum>
 <enum name=""><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
 <enum name="run_status"><enumvalue name="RS_DISABLED"/><enumvalue name="RS_ENABLED"/><enumvalue name="RS_INHERIT"/><enumvalue name="RS_INVALID"/></enum>
 <typedef name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
@@ -2526,7 +2527,7 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <method-group name="private member functions">
 <destructor id="doxygen.a01028_1aecd12128e45bd7250ffef8773d9afd94"/>
 </method-group>
-</class><class id="doxygen.a01032" name="test_suite"><inherit access="public">boost::unit_test::test_unit</inherit><purpose>Class representing test suites. </purpose><enum id="doxygen.a01032_1a1024237889f124c9b416ab065f55833d" name=""><enumvalue id="doxygen.a01032_1a1024237889f124c9b416ab065f55833da54df3525c054603f277b140a7a3ea3f1" name="type"><default>TUT_SUITE</default></enumvalue></enum>
+</class><class id="doxygen.a01032" name="test_suite"><inherit access="public">boost::unit_test::test_unit</inherit><purpose>Class representing test suites. </purpose><enum id="doxygen.a01032_1ad823d4926abcc40c97e73848fb8ee06e" name=""><enumvalue id="doxygen.a01032_1ad823d4926abcc40c97e73848fb8ee06ea54df3525c054603f277b140a7a3ea3f1" name="type"><default>TUT_SUITE</default></enumvalue></enum>
 <enum name=""><enumvalue name="type"><default>TUT_ANY</default></enumvalue></enum>
 <enum name="run_status"><enumvalue name="RS_DISABLED"/><enumvalue name="RS_ENABLED"/><enumvalue name="RS_INHERIT"/><enumvalue name="RS_INVALID"/></enum>
 <typedef name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
@@ -2580,12 +2581,12 @@ What is reported by <computeroutput>tested_rel_diff</computeroutput> in case of 
 <data-member name="p_sibling_rank"><type>readwrite_property&lt; counter_t &gt;</type><purpose>rank of this test unit amoung siblings of the same parent </purpose></data-member>
 <data-member name="p_decorators"><type>readwrite_property&lt; decor_list_t &gt;</type><purpose>automatically assigned decorators; execution is delayed till <link linkend="doxygen.a00860_1a6a95564b913ee2b951073568f222762f">framework::finalize_setup_phase</link> function </purpose></data-member>
 <data-member name="p_fixtures"><type>readwrite_property&lt; fixture_list_t &gt;</type><purpose>fixtures associated with this test unit </purpose></data-member>
-</class><class id="doxygen.a01020" name="test_unit"><enum id="doxygen.a01020_1a837bf30fd03cdf98f976d532c219477f" name=""><enumvalue id="doxygen.a01020_1a837bf30fd03cdf98f976d532c219477fad8eb7e2c1c1613e4631b82fe33c685de" name="type"><default>TUT_ANY</default></enumvalue></enum>
+</class><class id="doxygen.a01020" name="test_unit"><enum id="doxygen.a01020_1a0c017c18470c83c3a7be1a0eea4c37b2" name=""><enumvalue id="doxygen.a01020_1a0c017c18470c83c3a7be1a0eea4c37b2ad8eb7e2c1c1613e4631b82fe33c685de" name="type"><default>TUT_ANY</default></enumvalue></enum>
 <enum id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71" name="run_status"><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71af693679be9f20176fdf908c32d1323b3" name="RS_DISABLED"/><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71ac79afeda683a7d996874a9ab9b4cf964" name="RS_ENABLED"/><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71a6c5108392f4ae218bb0bdc37ad68dcaa" name="RS_INHERIT"/><enumvalue id="doxygen.a01020_1a02aacda4d288ea49c972498885188c71ae30f2efefdfe3f0c889c90cd9daf2ae7" name="RS_INVALID"/></enum>
-<typedef id="doxygen.a01020_1aaa6b5f7afc8de400a2ea146c825bc499" name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
-<typedef id="doxygen.a01020_1ae547203b99cf0d2538e590cf1cee8e24" name="fixture_list_t"><type>std::vector&lt; test_unit_fixture_ptr &gt;</type></typedef>
-<typedef id="doxygen.a01020_1ab0927266592f21c8676463162466d657" name="decor_list_t"><type>std::vector&lt; decorator::base_ptr &gt;</type></typedef>
-<typedef id="doxygen.a01020_1af6db7ec0f56e7294a4887f1c2a8ecdbb" name="precondition_t"><type>boost::function&lt; <classname>test_tools::assertion_result</classname>(test_unit_id)&gt;</type></typedef>
+<typedef id="doxygen.a01020_1a1b847289b6ed06602b48dea7a3c54d49" name="id_list"><type>std::vector&lt; test_unit_id &gt;</type></typedef>
+<typedef id="doxygen.a01020_1a519aaf56181044baea88564d99135468" name="fixture_list_t"><type>std::vector&lt; test_unit_fixture_ptr &gt;</type></typedef>
+<typedef id="doxygen.a01020_1a4cdb0f9bd28c8253c09925f578ec0ca2" name="decor_list_t"><type>std::vector&lt; decorator::base_ptr &gt;</type></typedef>
+<typedef id="doxygen.a01020_1af7294a227b29235a69b5e9b5f6ae1cc6" name="precondition_t"><type>boost::function&lt; <classname>test_tools::assertion_result</classname>(test_unit_id)&gt;</type></typedef>
 <data-member id="doxygen.a01020_1a6a089682b7dc30019414f53dfe42b115" name="p_type"><type>test_unit_type const</type><purpose>type for this test unit </purpose></data-member>
 <data-member id="doxygen.a01020_1a0ddea8b39e5907110137614ce097cd77" name="p_type_name"><type>const_string const</type><purpose>"case"/"suite"/"module" </purpose></data-member>
 <data-member id="doxygen.a01020_1a04c5f68ee57f996dff3afd5fe0bebf88" name="p_file_name"><type>const_string const</type></data-member>
@@ -3082,8 +3083,8 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
       <template-nontype-parameter name="is_forward_iterable"><type>bool</type><default>is_forward_iterable&lt;T&gt;::value</default></template-nontype-parameter>
     </template><purpose>Helper structure for accessing the content of a container or an array. </purpose></struct><struct-specialization id="doxygen.a01396" name="bt_iterator_traits"><template>
       <template-type-parameter name="T"/>
-    </template><specialization><template-arg>T</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01396_1a661e16514b7a2d6b6a45e7289f5bf9a3" name="const_iterator"><type>decltype(boost::declval&lt; typename boost::add_const&lt; typename boost::remove_reference&lt; T &gt;::type &gt;::type &gt;().begin())</type></typedef>
-<typedef id="doxygen.a01396_1a2489da4b996f4fc33d16a5bf2736bcf9" name="value_type"><type>std::iterator_traits&lt; const_iterator &gt;::value_type</type></typedef>
+    </template><specialization><template-arg>T</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01396_1a90b8c4e31bfe027c94b254d2d223a6bc" name="const_iterator"><type>decltype(boost::declval&lt; typename boost::add_const&lt; typename boost::remove_reference&lt; T &gt;::type &gt;::type &gt;().begin())</type></typedef>
+<typedef id="doxygen.a01396_1a770fa9108b1d2b5218344773887613bb" name="value_type"><type>std::iterator_traits&lt; const_iterator &gt;::value_type</type></typedef>
 <method-group name="public member functions">
 <method id="doxygen.a01396_1a5eb821efb26679bc4d78e1b41a76026f" name="BOOST_STATIC_ASSERT"><type/><parameter name=""><paramtype>(<classname>is_forward_iterable</classname>&lt; T &gt;::value)</paramtype></parameter></method>
 </method-group>
@@ -3099,9 +3100,9 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </struct-specialization><struct-specialization id="doxygen.a01400" name="bt_iterator_traits"><template>
       <template-type-parameter name="T"/>
       <template-nontype-parameter name="N"><type>std::size_t</type></template-nontype-parameter>
-    </template><specialization><template-arg>T[N]</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01400_1a6e948d740104e5307f596eaa91b1b5e2" name="T_const"><type>boost::add_const&lt; T &gt;::type</type></typedef>
-<typedef id="doxygen.a01400_1a5f8ca1437da9512a003b0deda2bbf119" name="const_iterator"><type>boost::add_pointer&lt; T_const &gt;::type</type></typedef>
-<typedef id="doxygen.a01400_1ab056f4aa7d7a46ec87a9f6ea49d7bb0d" name="value_type"><type>T</type></typedef>
+    </template><specialization><template-arg>T[N]</template-arg><template-arg>true</template-arg></specialization><typedef id="doxygen.a01400_1a4e1171e0ec807ba9425c717f28a648f1" name="T_const"><type>boost::add_const&lt; T &gt;::type</type></typedef>
+<typedef id="doxygen.a01400_1a717c95e9a765db92bdd81283d6c9bd51" name="const_iterator"><type>boost::add_pointer&lt; T_const &gt;::type</type></typedef>
+<typedef id="doxygen.a01400_1a24fc39f87633d3bf083626623ddd87f3" name="value_type"><type>T</type></typedef>
 <method-group name="public static functions">
 <method id="doxygen.a01400_1a26db132b0c71436ec71b330bfb85af66" name="begin" specifiers="static"><type>const_iterator</type><parameter name="array"><paramtype>T_const(&amp;)</paramtype></parameter></method>
 <method id="doxygen.a01400_1ae8e58c03c7425b574fa6a7189bd9325d" name="end" specifiers="static"><type>const_iterator</type><parameter name="array"><paramtype>T_const(&amp;)</paramtype></parameter></method>
@@ -3109,16 +3110,16 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </method-group>
 </struct-specialization><struct id="doxygen.a01388" name="is_container_forward_iterable"><template>
       <template-type-parameter name="T"/>
-    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01388_1ab84cd6d5e9ee03670afdd0db2dee8b6b" name=""><enumvalue id="doxygen.a01388_1ab84cd6d5e9ee03670afdd0db2dee8b6ba311bbcd8c3d46ca3580b72d0588677fc" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
-<typedef id="doxygen.a01388_1a1a9f34de29b3c900dc1786db25fd4b0b" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
-<typedef id="doxygen.a01388_1acd80d3a2f9ade5db2ff8e7cba201aced" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.a01388_1a0c7f1dc9567aec06be5a0e1ec61a45c7" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
+    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01388_1a43b0d9ff6312f2b0c0d5cc8215aa9af9" name=""><enumvalue id="doxygen.a01388_1a43b0d9ff6312f2b0c0d5cc8215aa9af9a311bbcd8c3d46ca3580b72d0588677fc" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
+<typedef id="doxygen.a01388_1a5d47c7c63bc013e3829604419c383ff2" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
+<typedef id="doxygen.a01388_1a36075c722974a4ad0abbe7d4c93ccd71" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.a01388_1aa507053720a7dcde33d039f9042f21bd" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
 </struct><struct id="doxygen.a01340" name="is_forward_iterable"><template>
       <template-type-parameter name="T"/>
-    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01340_1a7227c484c23196fd8d148d261f2b3847" name=""><enumvalue id="doxygen.a01340_1a7227c484c23196fd8d148d261f2b3847ae721d5b61adac3c01b6ffedb6bf067a1" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
-<typedef id="doxygen.a01340_1a942c33e154a2a670ac0802ca08632b78" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
-<typedef id="doxygen.a01340_1a75f1777f78aaf37bf1d9b6f0a8af8d43" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
-<typedef id="doxygen.a01340_1a02dca1429f3525a18e6e720947df42f3" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
+    </template><description><para>Indicates that a specific type implements the forward iterable concept. </para></description><enum id="doxygen.a01340_1a8be174e7348f577f3a6b790c61ea0fd7" name=""><enumvalue id="doxygen.a01340_1a8be174e7348f577f3a6b790c61ea0fd7ae721d5b61adac3c01b6ffedb6bf067a1" name="value"><default>is_fwd_it_t::value</default></enumvalue></enum>
+<typedef id="doxygen.a01340_1a9ab44c3395e96f71048d15cf85d82030" name="T_ref"><type>std::remove_reference&lt; T &gt;::type</type></typedef>
+<typedef id="doxygen.a01340_1a862d956bc02b0432dc72e23981f2fa92" name="is_fwd_it_t"><type><emphasis>unspecified</emphasis></type></typedef>
+<typedef id="doxygen.a01340_1a4af54540bef1568980fb15d2bd16f297" name="type"><type>mpl::bool_&lt; is_fwd_it_t::value &gt;</type></typedef>
 </struct>
 
 
@@ -3138,19 +3139,19 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
       <template-type-parameter name="NP"/>
       <template-type-parameter name="Rest"/>
       <template-type-parameter name="Keyword"/>
-    </template><specialization><template-arg>named_parameter_combine&lt; NP</template-arg><template-arg>Rest &gt;</template-arg><template-arg>Keyword</template-arg></specialization><inherit access="public">mpl::or_&lt; is_same&lt; NP::id, Keyword::id &gt;::type, has_param&lt; Rest, Keyword &gt;::type &gt;</inherit></struct-specialization><struct id="doxygen.a01252" name="is_named_param_pack"><template>
+    </template><specialization><template-arg>named_parameter_combine&lt; NP</template-arg><template-arg>Rest &gt;</template-arg><template-arg>Keyword</template-arg></specialization><inherit access="public">is_same&lt; NP::id, Keyword::id &gt;</inherit><inherit access="public">mpl::or_&lt; is_same&lt; NP::id, Keyword::id &gt;::type, has_param&lt; Rest, Keyword &gt;::type &gt;</inherit></struct-specialization><struct id="doxygen.a01252" name="is_named_param_pack"><template>
       <template-type-parameter name="T"/>
     </template><inherit access="public">mpl::false_</inherit><purpose>is_named_param_pack&lt;T&gt;::value is true if T is parameters pack </purpose></struct><struct-specialization id="doxygen.a01256" name="is_named_param_pack"><template>
       <template-type-parameter name="T"/>
       <template-type-parameter name="unique_id"/>
       <template-type-parameter name="RefType"/>
-    </template><specialization><template-arg>named_parameter&lt; T</template-arg><template-arg>unique_id</template-arg><template-arg>RefType &gt;</template-arg></specialization><inherit access="public">mpl::true_</inherit></struct-specialization><struct-specialization id="doxygen.a01260" name="is_named_param_pack"><template>
+    </template><specialization><template-arg>named_parameter&lt; T</template-arg><template-arg>unique_id</template-arg><template-arg>RefType &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">mpl::true_</inherit></struct-specialization><struct-specialization id="doxygen.a01260" name="is_named_param_pack"><template>
       <template-type-parameter name="NP"/>
       <template-type-parameter name="Rest"/>
-    </template><specialization><template-arg>named_parameter_combine&lt; NP</template-arg><template-arg>Rest &gt;</template-arg></specialization><inherit access="public">mpl::true_</inherit></struct-specialization><struct id="doxygen.a01236" name="keyword"><template>
+    </template><specialization><template-arg>named_parameter_combine&lt; NP</template-arg><template-arg>Rest &gt;</template-arg></specialization><inherit access="public">mpl::false_</inherit><inherit access="public">mpl::true_</inherit></struct-specialization><struct id="doxygen.a01236" name="keyword"><template>
       <template-type-parameter name="unique_id"/>
       <template-nontype-parameter name="required"><type>bool</type><default>false</default></template-nontype-parameter>
-    </template><typedef id="doxygen.a01236_1ac0c42909948befb135883778c9648de7" name="id"><type>unique_id</type></typedef>
+    </template><typedef id="doxygen.a01236_1a887db3c6ea1b4fc456ae00e84798e604" name="id"><type>unique_id</type></typedef>
 <method-group name="public member functions">
 <copy-assignment id="doxygen.a01236_1a3c8e14b6fa15103f67c1dfffdc5ca16f" cv="const"><type><classname>named_parameter</classname>&lt; T const, unique_id &gt;</type><template>
           <template-type-parameter name="T"/>
@@ -3164,9 +3165,9 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
       <template-type-parameter name="T"/>
       <template-type-parameter name="unique_id"/>
       <template-type-parameter name="RefType"/>
-    </template><typedef id="doxygen.a01244_1a289b3a22e9f93a7c73af268032b831e1" name="data_type"><type>T</type></typedef>
-<typedef id="doxygen.a01244_1a01104c14233f21cc4455b065671f68fe" name="ref_type"><type>RefType</type></typedef>
-<typedef id="doxygen.a01244_1a1791f176e29b1de4d6f97442dd0c514c" name="id"><type>unique_id</type></typedef>
+    </template><typedef id="doxygen.a01244_1a4b253cb2d501dba2afca3cc9d178c19d" name="data_type"><type>T</type></typedef>
+<typedef id="doxygen.a01244_1a3c63accef97803a696ef00ce80d54f75" name="ref_type"><type>RefType</type></typedef>
+<typedef id="doxygen.a01244_1a26b59d49c4fbbfdac7cfd6d381522d00" name="id"><type>unique_id</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01244_1ae15fcc86405e893bb4ff96cfb4bad7a8" specifiers="explicit"><parameter name="v"><paramtype>ref_type</paramtype></parameter></constructor>
 <constructor id="doxygen.a01244_1ae1e1d816a9a15dd7edfcb34931739fb0"><parameter name="np"><paramtype><classname>named_parameter</classname> const &amp;</paramtype></parameter></constructor>
@@ -3191,8 +3192,8 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </struct><struct id="doxygen.a01248" name="named_parameter_combine"><template>
       <template-type-parameter name="NP"/>
       <template-type-parameter name="Rest"><default>nil</default></template-type-parameter>
-    </template><inherit access="public">boost::nfp::nil</inherit><typedef id="doxygen.a01248_1a20671017fbc2ae7df9396e18e94695fb" name="res_type"><type>NP::ref_type</type></typedef>
-<typedef id="doxygen.a01248_1a114dc592b45ae13abafe8ef994aadb6a" name="self_type"><type><classname>named_parameter_combine</classname>&lt; NP, Rest &gt;</type></typedef>
+    </template><inherit access="public">boost::nfp::nil</inherit><typedef id="doxygen.a01248_1ad65de145bdfd233117347a13c9a1d9f2" name="res_type"><type>NP::ref_type</type></typedef>
+<typedef id="doxygen.a01248_1add41acbf6a42f6999ae16e134765db49" name="self_type"><type><classname>named_parameter_combine</classname>&lt; NP, Rest &gt;</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01248_1a0fa220c79f3d76cc27ec82be13c339f7"><parameter name="np"><paramtype>NP const &amp;</paramtype></parameter><parameter name="r"><paramtype>Rest const &amp;</paramtype></parameter></constructor>
 <method id="doxygen.a01248_1af0ef5d489d94c022daa5fc6495b2ac5f" name="operator[]" cv="const"><type>res_type</type><parameter name="kw"><paramtype><classname>keyword</classname>&lt; typename NP::id, true &gt;</paramtype></parameter></method>
@@ -3263,7 +3264,7 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
       <template-type-parameter name="Rest"/>
       <template-type-parameter name="Keyword"/>
       <template-type-parameter name="DefaultType"/>
-    </template><specialization><template-arg>named_parameter_combine&lt; NP</template-arg><template-arg>Rest &gt;</template-arg><template-arg>Keyword</template-arg><template-arg>DefaultType</template-arg></specialization><inherit access="public">mpl::if_&lt; is_same&lt; NP::id, Keyword::id &gt;::type, remove_cv&lt; NP::data_type &gt;::type, param_type&lt; Rest, Keyword, DefaultType &gt;::type &gt;</inherit></struct-specialization><struct id="doxygen.a01240" name="typed_keyword"><template>
+    </template><specialization><template-arg>named_parameter_combine&lt; NP</template-arg><template-arg>Rest &gt;</template-arg><template-arg>Keyword</template-arg><template-arg>DefaultType</template-arg></specialization><inherit access="public">mpl::if_&lt; is_same&lt; NP::id, Keyword::id &gt;::type, remove_cv&lt; NP::data_type &gt;::type, DefaultType &gt;</inherit><inherit access="public">mpl::if_&lt; is_same&lt; NP::id, Keyword::id &gt;::type, remove_cv&lt; NP::data_type &gt;::type, param_type&lt; Rest, Keyword, DefaultType &gt;::type &gt;</inherit></struct-specialization><struct id="doxygen.a01240" name="typed_keyword"><template>
       <template-type-parameter name="T"/>
       <template-type-parameter name="unique_id"/>
       <template-nontype-parameter name="required"><type>bool</type></template-nontype-parameter>
@@ -3275,19 +3276,17 @@ The wildcard is the symbol '*'. Only a unique wildcard per string is supported. 
 </struct><struct-specialization id="doxygen.a01292" name="typed_keyword"><template>
       <template-type-parameter name="unique_id"/>
       <template-nontype-parameter name="required"><type>bool</type></template-nontype-parameter>
-    </template><specialization><template-arg>bool</template-arg><template-arg>unique_id</template-arg><template-arg>required</template-arg></specialization><inherit access="public">boost::nfp::keyword&lt; unique_id, required &gt;</inherit><inherit access="public">boost::nfp::named_parameter&lt; bool, unique_id, bool &gt;</inherit><typedef id="doxygen.a01292_1a8f1410deac22d6cd64ca3ab2a4ce6935" name="id"><type>unique_id</type></typedef>
+    </template><specialization><template-arg>bool</template-arg><template-arg>unique_id</template-arg><template-arg>required</template-arg></specialization><inherit access="public">boost::nfp::keyword&lt; unique_id, required &gt;</inherit><inherit access="public">boost::nfp::keyword&lt; unique_id, required &gt;</inherit><inherit access="public">boost::nfp::named_parameter&lt; bool, unique_id, bool &gt;</inherit><typedef id="doxygen.a01292_1a4dd283e3fc9fa05cf389e3ac77721f0a" name="id"><type>unique_id</type></typedef>
+<typedef name="id"><type>unique_id</type></typedef>
 <typedef name="data_type"><type>bool</type></typedef>
 <typedef name="ref_type"><type>bool</type></typedef>
 <method-group name="public member functions">
 <constructor id="doxygen.a01292_1afe0ba35c85e1f3f0355b78e95e639813"/>
 <method id="doxygen.a01292_1aaf784a75d8dd96272adf9296d23b675e" name="operator!" cv="const"><type><classname>named_parameter</classname>&lt; bool, unique_id, bool &gt;</type></method>
+<copy-assignment cv="const"><type><classname>named_parameter</classname>&lt; bool const, unique_id &gt;</type><parameter name="t"><paramtype>bool const &amp;</paramtype></parameter></copy-assignment>
 <method name="operator[]" cv="const"><type>ref_type</type><parameter name=""><paramtype><classname>keyword</classname>&lt; unique_id, true &gt;</paramtype></parameter></method>
-<method name="operator[]" cv="const"><type>ref_type</type><parameter name=""><paramtype><classname>keyword</classname>&lt; unique_id, false &gt;</paramtype></parameter></method>
-<method name="operator[]" cv="const"><type><classname>nil</classname></type><parameter name=""><paramtype><classname>keyword</classname>&lt; UnknownId, false &gt;</paramtype></parameter></method>
 <method name="has" cv="const"><type>bool</type><parameter name=""><paramtype><classname>keyword</classname>&lt; unique_id, false &gt;</paramtype></parameter></method>
-<method name="has" cv="const"><type>bool</type><parameter name=""><paramtype><classname>keyword</classname>&lt; UnknownId, false &gt;</paramtype></parameter></method>
 <method name="erase" cv="const"><type>void</type><parameter name=""><paramtype><classname>keyword</classname>&lt; unique_id, false &gt;</paramtype></parameter></method>
-<method name="erase" cv="const"><type>void</type><parameter name=""><paramtype><classname>keyword</classname>&lt; UnknownId, false &gt;</paramtype></parameter></method>
 <method name="apply_to" cv="const"><type>void</type><parameter name="V"><paramtype>Visitor &amp;</paramtype></parameter></method>
 <method name="operator," cv="const"><type><classname>named_parameter_combine</classname>&lt; NP, <classname>named_parameter</classname>&lt; bool, unique_id, bool &gt; &gt;</type><parameter name="np"><paramtype>NP const &amp;</paramtype></parameter></method>
 </method-group>

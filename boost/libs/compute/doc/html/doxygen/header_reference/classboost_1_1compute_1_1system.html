@@ -49,14 +49,14 @@
   <span class="keyword">static</span> <span class="identifier">size_t</span> <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1aaa8d78a2a12c0bfa54d061b5728c3afe"><span class="identifier">platform_count</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id49163"></a><h2>Description</h2>
+<a name="id49155"></a><h2>Description</h2>
 <p>The system class contains a set of static functions which provide access to the OpenCL platforms and compute devices on the host system.</p>
 <p>The <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a7e1531ff30d091e9127eaa6d96cbb3b7">default_device()</a> convenience method automatically selects and returns the "best" compute device for the system following a set of heuristics and environment variables. This simplifies setup of the OpenCL enviornment.</p>
 <p><b>See Also: </b><a class="link" href="classboost_1_1compute_1_1platform.html" title="Class platform">platform</a>, <a class="link" href="classboost_1_1compute_1_1device.html" title="Class device">device</a>, <a class="link" href="classboost_1_1compute_1_1context.html" title="Class context">context</a> </p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id49175"></a><h3>
+<a name="id49167"></a><h3>
 <a name="id100-bb"></a><code class="computeroutput">system</code> public static functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -75,7 +75,7 @@ The default device is determined once on the first time this function is called.
 <p>If no OpenCL device is found on the system, a <a class="link" href="classboost_1_1compute_1_1no__device__found.html" title="Class no_device_found">no_device_found</a> exception is thrown.</p>
 <p>For example, to print the name of the default compute device on the system: </p>
 <pre class="programlisting"><span class="comment">// get the default compute device</span>
-<a class="link" href="classboost_1_1compute_1_1device.html" title="Class device"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">device</span></a> <span class="identifier">device</span> <span class="special">=</span> <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a7e1531ff30d091e9127eaa6d96cbb3b7"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">default_device</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
+<span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">device</span> <span class="identifier">device</span> <span class="special">=</span> <a class="link" href="classboost_1_1compute_1_1system.html#doxygen.header_reference.classboost_1_1compute_1_1system_1a7e1531ff30d091e9127eaa6d96cbb3b7"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">compute</span><span class="special">::</span><span class="identifier">system</span><span class="special">::</span><span class="identifier">default_device</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
 
 <span class="comment">// print the name of the device</span>
 <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span> <span class="special">&lt;&lt;</span> <span class="string">"default device: "</span> <span class="special">&lt;&lt;</span> <span class="identifier">device</span><span class="special">.</span><a class="link" href="classboost_1_1compute_1_1device.html#doxygen.header_reference.classboost_1_1compute_1_1device_1ab7dd5769bc63986ea4bfe6ebd1b69295"><span class="identifier">name</span></a><span class="special">(</span><span class="special">)</span> <span class="special">&lt;&lt;</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">endl</span><span class="special">;</span>

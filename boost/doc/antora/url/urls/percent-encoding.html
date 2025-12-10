@@ -7,7 +7,7 @@
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/urls/percent-encoding.html">
     <link rel="prev" href="stringtoken.html">
     <link rel="next" href="formatting.html">
-  <meta name="generator" content="Antora 3.1.10">
+  <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../_/css/site.css">
     <link rel="stylesheet" href="../../_/css/vendor/tabs.css">
@@ -216,7 +216,7 @@ assert(s == "hello%20world");</code></pre>
 <h2 id="_validating"><a class="anchor" href="#_validating"></a>Validating</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The class <code><a href="../reference/boost/urls/pct_string_view.html" class="xref page">pct_string_view</a></code> represents a reference percent-encoded strings:</p>
+<p>The class <code><a href="../reference/boost/urls/pct_string_view.html" class="xref page">pct_string_view</a></code> represents a reference to a percent-encoded string:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -287,7 +287,7 @@ assert(u.buffer() == "path/to/file");</code></pre>
 <div class="paragraph">
 <p>In the example above,
 <code><a href="../reference/boost/urls/url_base/set_encoded_path.html" class="xref page">set_encoded_path</a></code>
-does not to revalidate any information from
+does not revalidate any information from
 <code>encoded_path</code>
 because these references are passed as <code><a href="../reference/boost/urls/pct_string_view.html" class="xref page">pct_string_view</a></code>.</p>
 </div>
@@ -297,7 +297,7 @@ because these references are passed as <code><a href="../reference/boost/urls/pc
 <h2 id="_decode"><a class="anchor" href="#_decode"></a>Decode</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The class <code><a href="../reference/boost/urls/pct_string_view.html" class="xref page">pct_string_view</a></code> represents a reference percent-encoded strings.
+<p>The class <code><a href="../reference/boost/urls/pct_string_view.html" class="xref page">pct_string_view</a></code> represents a reference to a percent-encoded string.
 <code><a href="../reference/boost/urls/decode_view.html" class="xref page">decode_view</a></code> is analogous to <code><a href="../reference/boost/urls/pct_string_view.html" class="xref page">pct_string_view</a></code>, with the main difference that the underlying buffer always dereferences to decoded characters.</p>
 </div>
 <div class="listingblock">
@@ -312,7 +312,7 @@ assert(dv == "hello world");</code></pre>
 <div class="paragraph">
 <p>A <code><a href="../reference/boost/urls/decode_view.html" class="xref page">decode_view</a></code> can also be created from a <code><a href="../reference/boost/urls/pct_string_view.html" class="xref page">pct_string_view</a></code> with the
 <code><a href="../reference/boost/urls/pct_string_view/operator_star.html" class="xref page">operator*</a></code>.
-The also gives us an opportunity to validate external strings:</p>
+This also gives us an opportunity to validate external strings:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -325,7 +325,7 @@ assert(dv == "hello world");</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is particularly useful when the decoded string need to be accessed for comparisons with no necessity to explicitly decoding the string into a buffer:</p>
+<p>This is particularly useful when the decoded string needs to be accessed for comparisons with no necessity to explicitly decode the string into a buffer:</p>
 </div>
 <div class="listingblock">
 <div class="content">

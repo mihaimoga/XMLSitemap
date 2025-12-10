@@ -84,8 +84,8 @@
 <p>
         Simpler parsers can be combined to form more complex parsers. Given some
         combining operation <code class="computeroutput"><span class="identifier">C</span></code>, and
-        parsers <code class="computeroutput"><span class="identifier">P0</span></code>, <code class="computeroutput"><span class="identifier">P1</span></code>, ... <code class="computeroutput"><span class="identifier">PN</span></code>,
-        <code class="computeroutput"><span class="identifier">C</span><span class="special">(</span><span class="identifier">P0</span><span class="special">,</span> <span class="identifier">P1</span><span class="special">,</span> <span class="special">...</span> <span class="identifier">PN</span><span class="special">)</span></code> creates a new parser <code class="computeroutput"><span class="identifier">Q</span></code>.
+        parsers <code class="computeroutput"><span class="identifier">P0</span></code>, <code class="computeroutput"><span class="identifier">P1</span></code>, ..., <code class="computeroutput"><span class="identifier">PN</span></code>,
+        <code class="computeroutput"><span class="identifier">C</span><span class="special">(</span><span class="identifier">P0</span><span class="special">,</span> <span class="identifier">P1</span><span class="special">,</span> <span class="special">...,</span> <span class="identifier">PN</span><span class="special">)</span></code> creates a new parser <code class="computeroutput"><span class="identifier">Q</span></code>.
         This creates a <span class="emphasis"><em>parse tree</em></span>. <code class="computeroutput"><span class="identifier">Q</span></code>
         is the parent of <code class="computeroutput"><span class="identifier">P1</span></code>, <code class="computeroutput"><span class="identifier">P2</span></code> is the child of <code class="computeroutput"><span class="identifier">Q</span></code>,
         etc. The parsers are applied in the top-down fashion implied by this topology.
@@ -263,7 +263,7 @@
       </p>
 <p>
         The effects of this call to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ab68519dff2a5635d6a11296874fc154d.html" title="Function template parse">parse()</a></code>
-        is not very interesting — since the parser we gave it cannot ever
+        are not very interesting — since the parser we gave it cannot ever
         fail, and because we're placing the output in the same type as the input,
         it just copies the contents of <code class="computeroutput"><span class="identifier">input</span></code>
         to <code class="computeroutput"><span class="identifier">result</span></code>.
@@ -748,8 +748,8 @@ You entered:
 </tr>
 <tr><td align="left" valign="top"><p>
           All these functions that take the parse context as their first parameter
-          will find by found by Argument-Dependent Lookup. You will probably never
-          need to qualify them with <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span></code>.
+          will be found by Argument-Dependent Lookup. You will probably never need
+          to qualify them with <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span></code>.
         </p></td></tr>
 </table></div>
 <h5>
@@ -769,7 +769,7 @@ You entered:
 <p>
         <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a953a4fb7c71560e41b360fc7d51ee030.html" title="Function template _pass">_pass()</a></code> returns a reference to a
         <code class="computeroutput"><span class="keyword">bool</span></code> indicating the success
-        of failure of the current parse. This can be used to force the current parse
+        or failure of the current parse. This can be used to force the current parse
         to pass or fail:
       </p>
 <pre class="programlisting"><span class="special">[](</span><span class="keyword">auto</span> <span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">)</span> <span class="special">{</span>
@@ -1201,8 +1201,8 @@ You entered:
 </tr>
 <tr><td align="left" valign="top"><p>
           The existence of <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rules</a></code>
-          means that will probably never have to write a low-level parser. You can
-          just put existing parsers together into <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rules</a></code> instead.
+          means that you will probably never have to write a low-level parser. You
+          can just put existing parsers together into <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rules</a></code> instead.
         </p></td></tr>
 </table></div>
 </div>
@@ -1800,7 +1800,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
       </p>
 <p>
         Something to take note of between Steps #3 and #4: at the beginning of #4,
-        the input position had returned to where is was at the beginning of #3. This
+        the input position had returned to where it was at the beginning of #3. This
         kind of backtracking happens in alternative parsers when an alternative fails.
         The next page has more details on the semantics of backtracking.
       </p>
@@ -2716,7 +2716,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
                 <p>
                   An important use case for <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1attribute.html" title="Struct template attribute">attribute</a></code>
                   is to provide a default attribute value as a trailing alternative.
-                  For instance, an <span class="bold"><strong>optional</strong></span> comma-delmited
+                  For instance, an <span class="bold"><strong>optional</strong></span> comma-delimited
                   list is: <code class="computeroutput"><span class="identifier">int_</span> <span class="special">%</span> <span class="char">','</span> <span class="special">|</span> <span class="identifier">attr</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span><span class="special">&lt;</span><span class="keyword">int</span><span class="special">&gt;)</span></code>. Without the "<code class="computeroutput"><span class="special">|</span> <span class="identifier">attr</span><span class="special">(...)</span></code>", at least one <code class="computeroutput"><span class="identifier">int_</span></code> match would be required.
                 </p>
               </td>
@@ -2986,7 +2986,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
               </td>
 <td>
                 <p>
-                  Matches a single hexidecimal digit code point.
+                  Matches a single hexadecimal digit code point.
                 </p>
               </td>
 <td>
@@ -3777,7 +3777,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)</span></code>
                 </p>
               </td>
 <td>
@@ -3827,7 +3827,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
                   <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> and each value has type
                   <code class="computeroutput"><span class="identifier">T</span></code>. In the Unicode
                   parsing path, the strings are considered to be UTF-8 encoded; in
-                  the non-Unicode path, no encoding is assumed. <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code> Matches the
+                  the non-Unicode path, no encoding is assumed. <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code> matches the
                   longest prefix <code class="computeroutput"><span class="identifier">pre</span></code>
                   of the input that is equal to one of the keys <code class="computeroutput"><span class="identifier">k</span></code>.
                   If the length <code class="computeroutput"><span class="identifier">len</span></code>
@@ -3845,7 +3845,8 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 <td>
                 <p>
                   Unlike the other entries in this table, <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code> is a type,
-                  not an object.
+                  not an object. Inside of skippers, all <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code> will appear
+                  empty.
                 </p>
               </td>
 </tr>
@@ -4041,7 +4042,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 </pre>
 <p>
         You simply chain together the constraints you want to use, like <code class="computeroutput"><span class="special">.</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">16</span><span class="special">&gt;().</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">2</span><span class="special">&gt;()</span></code>
-        or .digits&lt;4&gt;().base&lt;8&gt;()`.
+        or <code class="computeroutput"><span class="special">.</span><span class="identifier">digits</span><span class="special">&lt;</span><span class="number">4</span><span class="special">&gt;().</span><span class="identifier">base</span><span class="special">&lt;</span><span class="number">8</span><span class="special">&gt;()</span></code>.
       </p>
 <p>
         So, if you wanted to parse exactly eight hexadecimal digits in a row in order
@@ -4103,7 +4104,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
         in <code class="computeroutput"><span class="identifier">lexeme</span><span class="special">[</span><span class="identifier">a</span> <span class="special">&gt;&gt;</span> <span class="identifier">b</span><span class="special">]</span> <span class="special">&gt;&gt;</span>
         <span class="identifier">c</span></code> are not <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1seq__parser.html" title="Struct template seq_parser">seq_parsers</a></code>. Sequence parsers
         have several rules that govern what the overall attribute type of the parser
-        is, based on the positions and attributes of it subparsers (see <a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation" title="Attribute Generation">Attribute
+        is, based on the positions and attributes of its subparsers (see <a class="link" href="tutorial.html#boost_parser.tutorial.attribute_generation" title="Attribute Generation">Attribute
         Generation</a>). Therefore, it's important to know which directives create
         a new parser (and what kind), and which ones do not; this is indicated for
         each directive below.
@@ -4160,9 +4161,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 <p>
         <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1abb3960485823df80f6a97f87e811cf7b.html" title="Global raw">raw</a><span class="special">[</span><span class="identifier">p</span><span class="special">]</span></code>
         changes the attribute from <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)</span></code>
-        to to a view that delimits the subrange of the input that was matched by
-        <code class="computeroutput"><span class="identifier">p</span></code>. The type of the view is
-        <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1subrange.html" title="Struct template subrange">subrange</a><span class="special">&lt;</span><span class="identifier">I</span><span class="special">&gt;</span></code>,
+        to a view that delimits the subrange of the input that was matched by <code class="computeroutput"><span class="identifier">p</span></code>. The type of the view is <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1subrange.html" title="Struct template subrange">subrange</a><span class="special">&lt;</span><span class="identifier">I</span><span class="special">&gt;</span></code>,
         where <code class="computeroutput"><span class="identifier">I</span></code> is the type of the
         iterator used within the parse. Note that this may not be the same as the
         iterator type passed to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ab68519dff2a5635d6a11296874fc154d.html" title="Function template parse">parse()</a></code>.
@@ -4261,8 +4260,8 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
           them bitwise to see if they are the same, except of case. Case folding
           may sometimes expand a code point into multiple code points (e.g. case
           folding <code class="computeroutput"><span class="string">"ẞ"</span></code> yields
-          <code class="computeroutput"><span class="string">"ss"</span></code>. When such a
-          multi-code point expansion occurs, the expanded code points are in the
+          <code class="computeroutput"><span class="string">"ss"</span></code>). When such
+          a multi-code point expansion occurs, the expanded code points are in the
           NFKC normalization form.
         </p></td></tr>
 </table></div>
@@ -4395,7 +4394,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
         parsers, respectively.
       </p>
 <p>
-        Here are all the operator overloaded for parsers. In the tables below:
+        Here are all the operators overloaded for parsers. In the tables below:
       </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
@@ -4842,7 +4841,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
                   and <code class="computeroutput"><span class="identifier">p1</span> <span class="special">||</span>
                   <span class="special">(</span><span class="identifier">p2</span>
                   <span class="special">||</span> <span class="identifier">p3</span><span class="special">)</span></code> are all equivalent. It is an error
-                  to include a <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ae99af5798fd88c0cfd424c181dc13d09.html" title="Global eps">eps</a></code> (conditional
+                  to include an <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ae99af5798fd88c0cfd424c181dc13d09.html" title="Global eps">eps</a></code> (conditional
                   or non-conditional) in an <code class="computeroutput"><span class="keyword">operator</span><span class="special">||</span></code> expression. Though the parsers
                   are matched in any order, the attribute elements are always in
                   the order written in the <code class="computeroutput"><span class="keyword">operator</span><span class="special">||</span></code> expression.
@@ -5109,7 +5108,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
           parser (using <code class="computeroutput"><span class="identifier">_attr</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">)</span></code>)
           will yield a value of the special type <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span><span class="identifier">none</span></code>.
           When calling <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ab68519dff2a5635d6a11296874fc154d.html" title="Function template parse">parse()</a></code> in a form that returns
-          the attribute parsed, when there is no attribute, simply returns <code class="computeroutput"><span class="keyword">bool</span></code>; this indicates the success of failure
+          the attribute parsed, when there is no attribute, simply returns <code class="computeroutput"><span class="keyword">bool</span></code>; this indicates the success or failure
           of the parse.
         </p></td></tr>
 </table></div>
@@ -5940,7 +5939,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
               </td>
 <td>
                 <p>
-                  <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">optional</span><span class="special">&lt;</span><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)&gt;</span></code>
+                  <code class="computeroutput"><span class="emphasis"><em><code class="literal">ATTR</code></em></span><span class="special">(</span><span class="identifier">p</span><span class="special">)</span></code>
                 </p>
               </td>
 </tr>
@@ -6232,7 +6231,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
         parser attribute rules</a>
       </h5>
 <p>
-        The rules for alternative parsers are much simpler. For an alternative parer
+        The rules for alternative parsers are much simpler. For an alternative parser
         <code class="computeroutput"><span class="identifier">p</span></code>, let the list of attribute
         types for the subparsers of <code class="computeroutput"><span class="identifier">p</span></code>
         be <code class="computeroutput"><span class="identifier">a0</span><span class="special">,</span>
@@ -6247,7 +6246,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
           </li>
 <li class="listitem">
             duplicates in the <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">variant</span></code>
-            template parameters <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T1</span><span class="special">,</span> <span class="identifier">T2</span><span class="special">,</span> <span class="special">...</span> <span class="identifier">Tn</span><span class="special">&gt;</span></code> are removed; every type that appears
+            template parameters <code class="computeroutput"><span class="special">&lt;</span><span class="identifier">T1</span><span class="special">,</span> <span class="identifier">T2</span><span class="special">,</span> <span class="special">...,</span> <span class="identifier">Tn</span><span class="special">&gt;</span></code> are removed; every type that appears
             does so exactly once;
           </li>
 <li class="listitem">
@@ -6672,7 +6671,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
       </p>
 <p>
         Another directive, <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1c4c5ec9144e8f4d1e1e1cb848a0ae04.html" title="Global separate">separate[]</a></code>,
-        also applies only to sequence parsers, but does the opposite of <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a11728b9935b826cf6a066766b347f17b.html" title="Global merge">merge[]</a></code>. If forces all the attributes
+        also applies only to sequence parsers, but does the opposite of <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a11728b9935b826cf6a066766b347f17b.html" title="Global merge">merge[]</a></code>. It forces all the attributes
         produced by the subparsers of the sequence parser to stay separate, even
         if they would have combined. For instance, consider this parser.
       </p>
@@ -6747,7 +6746,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
         do is take a given <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1seq__parser.html" title="Struct template seq_parser">seq_parser</a></code> and create a copy
         of it with a different <code class="computeroutput"><span class="identifier">CombiningGroups</span></code>
         template parameter. This means that <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a11728b9935b826cf6a066766b347f17b.html" title="Global merge">merge[]</a></code>
-        and <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1c4c5ec9144e8f4d1e1e1cb848a0ae04.html" title="Global separate">separate[]</a></code> are can be ignored in <code class="computeroutput"><span class="keyword">operator</span><span class="special">&gt;&gt;</span></code>
+        and <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a1c4c5ec9144e8f4d1e1e1cb848a0ae04.html" title="Global separate">separate[]</a></code> can be ignored in <code class="computeroutput"><span class="keyword">operator</span><span class="special">&gt;&gt;</span></code>
         expressions much like parentheses are. Consider an example.
       </p>
 <pre class="programlisting"><span class="keyword">namespace</span> <span class="identifier">bp</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">parser</span><span class="special">;</span>
@@ -6803,7 +6802,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
         each character in the given <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>
         <code class="computeroutput"><span class="identifier">s</span></code> is a digit, and returns
         the sum of all the digits in <code class="computeroutput"><span class="identifier">s</span></code>.
-        Out parser <code class="computeroutput"><span class="identifier">parser</span></code> would normally
+        Our parser <code class="computeroutput"><span class="identifier">parser</span></code> would normally
         return a <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code>. However, since <code class="computeroutput"><span class="identifier">str_sum</span></code>
         returns a different type — <code class="computeroutput"><span class="keyword">int</span></code>
         — that is the attribute type of the full parser, <code class="computeroutput"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">transform</span><span class="special">(</span><span class="identifier">by_value_str_sum</span><span class="special">)[</span><span class="identifier">parser</span><span class="special">]</span></code>, as you can see from the <code class="computeroutput"><span class="keyword">static_assert</span></code>.
@@ -6849,7 +6848,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
           </li>
 <li class="listitem">
             They each take at least a range to parse and a parser. The "range
-            to parse" may be an iterator/sentinel pair or an single range object.
+            to parse" may be an iterator/sentinel pair or a single range object.
           </li>
 <li class="listitem">
             They each require forward iterability of the range to parse.
@@ -7315,8 +7314,8 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 <th align="left">Tip</th>
 </tr>
 <tr><td align="left" valign="top"><p>
-          if you want to want to parse in ASCII-only mode, or in some other non-Unicode
-          encoding, use only sequences of <code class="computeroutput"><span class="keyword">char</span></code>,
+          If you want to parse in ASCII-only mode, or in some other non-Unicode encoding,
+          use only sequences of <code class="computeroutput"><span class="keyword">char</span></code>,
           like <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span></code> or <code class="computeroutput"><span class="keyword">char</span>
           <span class="keyword">const</span> <span class="special">*</span></code>.
         </p></td></tr>
@@ -7366,7 +7365,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
       </h5>
 <p>
         Each call to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1ab68519dff2a5635d6a11296874fc154d.html" title="Function template parse">parse()</a></code> can optionally have a globals
-        object associated with it. To use a particular globals object with you parser,
+        object associated with it. To use a particular globals object with your parser,
         you call <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a201997f10fbf43e8ee98f3f1904a2869.html" title="Function template with_globals">with_globals()</a></code> to create a new parser with
         the globals object in it:
       </p>
@@ -7663,13 +7662,13 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 </pre>
 <p>
         Notice the two expectation points. One before <code class="computeroutput"><span class="special">(</span><span class="identifier">value</span> <span class="special">%</span> <span class="char">','</span><span class="special">)</span></code>, one before
-        the final <code class="computeroutput"><span class="char">'}'</span></code>. Later, you call
-        parse in some input:
+        the final <code class="computeroutput"><span class="char">'}'</span></code>. Later, you parse
+        in some input:
       </p>
 <pre class="programlisting"><span class="identifier">bp</span><span class="special">::</span><span class="identifier">parse</span><span class="special">(</span><span class="string">"{ 4, 5 a"</span><span class="special">,</span> <span class="identifier">value</span><span class="special">,</span> <span class="identifier">bp</span><span class="special">::</span><span class="identifier">ws</span><span class="special">);</span>
 </pre>
 <p>
-        This runs should of the second expectation point, and produces output like
+        This runs afoul of the second expectation point, and produces output like
         this:
       </p>
 <pre class="programlisting">1:7: error: Expected '}' here:
@@ -7688,7 +7687,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 </pre>
 <p>
         Not nearly as nice. The problem is that the expectation is on <code class="computeroutput"><span class="special">(</span><span class="identifier">value</span> <span class="special">%</span> <span class="char">','</span><span class="special">)</span></code>.
-        So, even thought we gave <code class="computeroutput"><span class="identifier">value</span></code>
+        So, even though we gave <code class="computeroutput"><span class="identifier">value</span></code>
         reasonable diagnostic text, we put the text on the wrong thing. We can introduce
         a new rule to put the diagnostic text in the right place.
       </p>
@@ -7718,7 +7717,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 <p>
         The <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>
         <code class="computeroutput"><span class="identifier">value</span></code> might be useful elsewhere
-        in our code, perhaps in another parser. It's diagnostic text is appropriate
+        in our code, perhaps in another parser. Its diagnostic text is appropriate
         for those other potential uses.
       </p>
 <h5>
@@ -7777,7 +7776,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
         its parse. However, we only want a single return value for the uppermost
         rule; if each instance had a separate value in <code class="computeroutput"><span class="identifier">_val</span><span class="special">(</span><span class="identifier">ctx</span><span class="special">)</span></code>,
         then it would be impossible to build up the result of a recursive rule step
-        by step during in the evaluation of the recursive instantiations.
+        by step during the evaluation of the recursive instantiations.
       </p>
 <p>
         Also, consider this rule:
@@ -7842,7 +7841,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
 <span class="identifier">BOOST_PARSER_DEFINE_RULES</span><span class="special">(</span><span class="identifier">string</span><span class="special">,</span> <span class="identifier">object_element</span><span class="special">,</span> <span class="identifier">object</span><span class="special">,</span> <span class="identifier">array</span><span class="special">,</span> <span class="identifier">value</span><span class="special">);</span>
 </pre>
 <p>
-        Here we have a parser for a Javascript-value-like type <code class="computeroutput"><span class="identifier">value_type</span></code>.
+        Here we have a parser for a JavaScript-value-like type <code class="computeroutput"><span class="identifier">value_type</span></code>.
         <code class="computeroutput"><span class="identifier">value_type</span></code> may be an array,
         which itself may contain other arrays, objects, strings, etc. Since we need
         to be able to parse objects within arrays and vice versa, we need each of
@@ -7907,7 +7906,7 @@ std::cout &lt;&lt; *result2 &lt;&lt; "</span><span class="special">\</span><span
         template takes another template parameter we have not discussed yet. You
         can pass a third parameter <code class="computeroutput"><span class="identifier">LocalState</span></code>
         to <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>,
-        which will be defaulted constructed by the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>, and made available within
+        which will be default constructed by the <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1rule.html" title="Struct template rule">rule</a></code>, and made available within
         semantic actions used in the rule as <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1aea9a85108e6af1280eccd9135584938d.html" title="Function template _locals">_locals</a><span class="special">(</span><span class="identifier">ctx</span><span class="special">)</span></code>. This
         gives your rule some local state, if it needs it. The type of <code class="computeroutput"><span class="identifier">LocalState</span></code> can be anything regular. It
         could be a single value, a struct containing multiple values, or a tuple,
@@ -8118,8 +8117,8 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
 </pre>
 <p>
         Using <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a799d01af5dbc14892c557552f26721e1.html" title="Global _p">_p</a></code>
-        can prevent you from having to write a bunch of lambdas that get each get
-        an argument out of the parse context using <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a376d70158bb5f8ce13cfcee77bbce958.html" title="Function template _params">_params</a><span class="special">(</span><span class="identifier">ctx</span><span class="special">)[</span><span class="number">0</span><span class="identifier">_c</span><span class="special">]</span></code> or
+        can prevent you from having to write a bunch of lambdas that each get an
+        argument out of the parse context using <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a376d70158bb5f8ce13cfcee77bbce958.html" title="Function template _params">_params</a><span class="special">(</span><span class="identifier">ctx</span><span class="special">)[</span><span class="number">0</span><span class="identifier">_c</span><span class="special">]</span></code> or
         similar.
       </p>
 <p>
@@ -8680,7 +8679,7 @@ c-flow-sequence(n,c) ::= “[” s-separate(n,c)? in-flow(c)? “]”
 </tr>
 <tr><td align="left" valign="top"><p>
           Boost.Parser actually promotes any two values to a common type using <code class="computeroutput"><span class="identifier">std</span><span class="special">::</span><span class="identifier">common_type</span></code> before comparing them. This
-          is almost always works because the input and any parameter passed to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>
+          almost always works because the input and any parameter passed to <code class="computeroutput"><a class="link" href="../doxygen/headers/namespaceboost_1_1parser_1a289f0b7681e314892648e2768a040d56.html" title="Global char_">char_</a></code>
           must be character types.
         </p></td></tr>
 </table></div>
@@ -9065,7 +9064,7 @@ auto c_b = bp::char_('c') &gt;&gt; bp::char_('b');
 auto result = bp::parse("acb", a_b | c_b);
 </pre>
 <p>
-        If we reported the farthest-reaching parser and it's position, it would be
+        If we reported the farthest-reaching parser and its position, it would be
         the <code class="computeroutput">a_b</code> parser, at position <code class="computeroutput">"bc"</code> in the
         input. Is this really enlightening? Was the error in the input putting the
         <code class="computeroutput">'a'</code> at the beginning or putting the <code class="computeroutput">'c'</code> in the
@@ -9377,7 +9376,7 @@ auto result = bp::parse("acb", a_b | c_b);
         to see if a certain rule matches. As an example, let's trace a parse using
         the JSON parser from <a class="link" href="extended_examples.html#boost_parser.extended_examples.parsing_json" title="Parsing JSON">Parsing
         JSON</a>. The input is <code class="computeroutput">"null"</code>. <code class="computeroutput">null</code>
-        is one of the types that a Javascript value can have; the top-level parser
+        is one of the types that a JavaScript value can have; the top-level parser
         in the JSON parser example is:
       </p>
 <pre class="programlisting">auto const value_p_def =
@@ -9613,8 +9612,8 @@ parse succeeded
 </ul></div>
 <p>
         With the exception of allocating the name of the parser that was expected
-        in a failed expectation situation, Boost.Parser does not does not allocate
-        unless you tell it to, by using <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code>, using a particular
+        in a failed expectation situation, Boost.Parser does not allocate unless
+        you tell it to, by using <code class="computeroutput"><a class="link" href="../doxygen/headers/structboost_1_1parser_1_1symbols.html" title="Struct template symbols">symbols</a></code>, using a particular
         error_handler, turning on trace, or parsing into attributes that allocate.
       </p>
 </div>
@@ -9625,7 +9624,7 @@ parse succeeded
 <h5>
 <a name="boost_parser.tutorial.best_practices.h0"></a>
         <span class="phrase"><a name="boost_parser.tutorial.best_practices.parse_unicode_from_the_start"></a></span><a class="link" href="tutorial.html#boost_parser.tutorial.best_practices.parse_unicode_from_the_start">Parse
-        unicode from the start</a>
+        Unicode from the start</a>
       </h5>
 <p>
         If you want to parse ASCII, using the Unicode parsing API will not actually
@@ -9863,7 +9862,7 @@ bp::rule&lt;class single_escaped_char, uint32_t&gt; const single_escaped_char =
 <p>
         Now the body of the function. Notice that it just dispatches to the other
         <code class="computeroutput">call()</code> overload. This is really common, since both overloads
-        need to to the same parsing; only the attribute may differ. The first line
+        need to do the same parsing; only the attribute may differ. The first line
         of the body defines <code class="computeroutput">attr_t</code>, the default attribute type of our
         wrapped parser <code class="computeroutput">parser_</code>. It does this by getting the <code class="computeroutput">decltype()</code>
         of a use of <code class="computeroutput">parser_.call()</code>. (This is the logic represented by
@@ -9911,6 +9910,8 @@ bp::rule&lt;class single_escaped_char, uint32_t&gt; const single_escaped_char =
     <span class="special">}</span>
 
     <span class="identifier">parser_</span><span class="special">.</span><span class="identifier">call</span><span class="special">(</span><span class="identifier">first</span><span class="special">,</span> <span class="identifier">last</span><span class="special">,</span> <span class="identifier">context</span><span class="special">,</span> <span class="identifier">skip</span><span class="special">,</span> <span class="identifier">flags</span><span class="special">,</span> <span class="identifier">success</span><span class="special">,</span> <span class="identifier">retval</span><span class="special">);</span>
+    <span class="keyword">if</span> <span class="special">(!</span><span class="identifier">success</span><span class="special">)</span>
+        <span class="identifier">retval</span> <span class="special">=</span> <span class="identifier">Attribute</span><span class="special">();</span>
     <span class="identifier">success</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
 <span class="special">}</span>
 </pre>
@@ -9979,6 +9980,8 @@ bp::rule&lt;class single_escaped_char, uint32_t&gt; const single_escaped_char =
 <p>
 </p>
 <pre class="programlisting"><span class="identifier">parser_</span><span class="special">.</span><span class="identifier">call</span><span class="special">(</span><span class="identifier">first</span><span class="special">,</span> <span class="identifier">last</span><span class="special">,</span> <span class="identifier">context</span><span class="special">,</span> <span class="identifier">skip</span><span class="special">,</span> <span class="identifier">flags</span><span class="special">,</span> <span class="identifier">success</span><span class="special">,</span> <span class="identifier">retval</span><span class="special">);</span>
+<span class="keyword">if</span> <span class="special">(!</span><span class="identifier">success</span><span class="special">)</span>
+    <span class="identifier">retval</span> <span class="special">=</span> <span class="identifier">Attribute</span><span class="special">();</span>
 <span class="identifier">success</span> <span class="special">=</span> <span class="keyword">true</span><span class="special">;</span>
 </pre>
 <p>

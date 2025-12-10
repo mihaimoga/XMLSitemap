@@ -257,7 +257,7 @@
 <span class="identifier">res</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">server</span><span class="special">,</span> <span class="string">"Beast"</span><span class="special">);</span>
 
 <span class="comment">// Inform the client of the trailer fields we will send</span>
-<span class="identifier">res</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">trailer</span><span class="special">,</span> <span class="string">"Content-MD5, Expires"</span><span class="special">);</span>
+<span class="identifier">res</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">trailer</span><span class="special">,</span> <span class="string">"Content-Digest"</span><span class="special">);</span>
 
 <span class="identifier">res</span><span class="special">.</span><span class="identifier">chunked</span><span class="special">(</span><span class="keyword">true</span><span class="special">);</span>
 
@@ -269,8 +269,7 @@
 
 <span class="comment">// Prepare the trailer</span>
 <span class="identifier">fields</span> <span class="identifier">trailer</span><span class="special">;</span>
-<span class="identifier">trailer</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">content_md5</span><span class="special">,</span> <span class="string">"f4a5c16584f03d90"</span><span class="special">);</span>
-<span class="identifier">trailer</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">expires</span><span class="special">,</span> <span class="string">"never"</span><span class="special">);</span>
+<span class="identifier">trailer</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">content_digest</span><span class="special">,</span> <span class="string">"f4a5c16584f03d90"</span><span class="special">);</span>
 
 <span class="comment">// Emit the trailer in the last chunk.</span>
 <span class="comment">// The implementation will use the default allocator to create the storage for holding</span>
@@ -282,7 +281,7 @@
       </p>
 <pre class="programlisting"><span class="comment">// Use a custom allocator for serializing the last chunk</span>
 <span class="identifier">fields</span> <span class="identifier">trailer</span><span class="special">;</span>
-<span class="identifier">trailer</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">approved</span><span class="special">,</span> <span class="string">"yes"</span><span class="special">);</span>
+<span class="identifier">trailer</span><span class="special">.</span><span class="identifier">set</span><span class="special">(</span><span class="identifier">field</span><span class="special">::</span><span class="identifier">server_timing</span><span class="special">,</span> <span class="string">"custom-metric;dur=123.4"</span><span class="special">);</span>
 <span class="identifier">net</span><span class="special">::</span><span class="identifier">write</span><span class="special">(</span><span class="identifier">sock</span><span class="special">,</span> <span class="identifier">make_chunk_last</span><span class="special">(</span><span class="identifier">trailer</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">allocator</span><span class="special">&lt;</span><span class="keyword">char</span><span class="special">&gt;{}));</span>
 </pre>
 <p>
@@ -292,8 +291,7 @@
 <pre class="programlisting"><span class="comment">// Manually emit a trailer.</span>
 <span class="comment">// We are responsible for ensuring that the trailer format adheres to the specification.</span>
 <span class="identifier">string_view</span> <span class="identifier">ext</span> <span class="special">=</span>
-    <span class="string">"Content-MD5: f4a5c16584f03d90\r\n"</span>
-    <span class="string">"Expires: never\r\n"</span>
+    <span class="string">"Content-Digest: f4a5c16584f03d90\r\n"</span>
     <span class="string">"\r\n"</span><span class="special">;</span>
 <span class="identifier">net</span><span class="special">::</span><span class="identifier">write</span><span class="special">(</span><span class="identifier">sock</span><span class="special">,</span> <span class="identifier">make_chunk_last</span><span class="special">(</span><span class="identifier">net</span><span class="special">::</span><span class="identifier">const_buffer</span><span class="special">{</span><span class="identifier">ext</span><span class="special">.</span><span class="identifier">data</span><span class="special">(),</span> <span class="identifier">ext</span><span class="special">.</span><span class="identifier">size</span><span class="special">()}));</span>
 </pre>

@@ -574,6 +574,7 @@ pre.rouge .gs {
 </li>
 <li><a href="#changelog">Revision History</a>
 <ul class="sectlevel2">
+<li><a href="#changes_in_1_90_0">Changes in 1.90.0</a></li>
 <li><a href="#changes_in_1_88_0">Changes in 1.88.0</a></li>
 <li><a href="#changes_in_1_87_0">Changes in 1.87.0</a></li>
 <li><a href="#changes_in_1_85_0">Changes in 1.85.0</a></li>
@@ -885,7 +886,7 @@ gives us <code>std::tuple&lt;int*, float*&gt;</code>, but we can also apply <cod
 <h2 id="definitions">Definitions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A <em>list</em> is a&#8201;&#8212;&#8201;usually but not necessarily variadic&#8201;&#8212;&#8201;template class whose parameters are all types,
+<p>A <em>list</em> is an instantiation of a&#8201;&#8212;&#8201;usually but not necessarily variadic&#8201;&#8212;&#8201;class template whose parameters are all types,
 for example <code>mp_list&lt;char[], void&gt;</code>, <code>mp_list&lt;&gt;</code>, <code>std::tuple&lt;int, float, char&gt;</code>, <code>std::pair&lt;int, float&gt;</code>, <code>std::shared_ptr&lt;X&gt;</code>.</p>
 </div>
 <div class="paragraph">
@@ -1547,6 +1548,16 @@ elements will be the same, either <code>int</code> or <code>float</code>, and we
 <div class="sect1">
 <h2 id="changelog">Revision History</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="changes_in_1_90_0">Changes in 1.90.0</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated <code>mp_reverse_fold</code> to work on fixed size lists</p>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect2">
 <h3 id="changes_in_1_88_0">Changes in 1.88.0</h3>
 <div class="ulist">
@@ -2284,7 +2295,7 @@ is an alias for <code>L&lt;U&#8230;&#8203;, T&#8230;&#8203;&gt;</code>.</p>
 <div class="title">Code Example 31. Using mp_push_back with mp_list_v</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="c++"><span class="k">using</span> <span class="n">L3</span> <span class="o">=</span> <span class="n">mp_list_v</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">R3</span> <span class="o">=</span> <span class="n">mp_push_front</span><span class="o">&lt;</span><span class="n">L3</span><span class="p">,</span> <span class="n">mp_true</span><span class="p">,</span> <span class="n">mp_false</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// mp_list_v&lt;0, 1, true, false&gt;</span></code></pre>
+<span class="k">using</span> <span class="n">R3</span> <span class="o">=</span> <span class="n">mp_push_back</span><span class="o">&lt;</span><span class="n">L3</span><span class="p">,</span> <span class="n">mp_true</span><span class="p">,</span> <span class="n">mp_false</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// mp_list_v&lt;0, 1, true, false&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -3123,6 +3134,9 @@ failure.)</p>
 </div>
 <div class="paragraph">
 <p><code>mp_transform&lt;F, L1&lt;T1&#8230;&#8203;&gt;, L2&lt;T2&#8230;&#8203;&gt;, &#8230;&#8203;, Ln&lt;Tn&#8230;&#8203;&gt;&gt;</code> applies <code>F</code> to each successive tuple of elements and returns <code>L1&lt;F&lt;T1, T2, &#8230;&#8203;, Tn&gt;&#8230;&#8203;&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>All lists in <code>L&#8230;&#8203;</code> must be of the same size. Otherwise, the result is a substitution failure.</p>
 </div>
 <div class="paragraph">
 <p>Has limited support of value lists as <code>L&#8230;&#8203;</code> under C&#43;&#43;17 (for one to three lists.)
@@ -5942,7 +5956,7 @@ into this documentation by Glen Fernandes.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-08-06 18:48:56 UTC
+Last updated 2025-12-03 13:47:31 UTC
 </div>
 </div>
 <style>

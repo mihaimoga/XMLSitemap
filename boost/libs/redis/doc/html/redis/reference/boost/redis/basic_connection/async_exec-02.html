@@ -3,7 +3,7 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Reference :: Boost.Redis</title>
+    <title>boost::redis::basic&lowbar;connection::async&lowbar;exec :: Boost.Redis</title>
   <link rel="canonical" href="https://github.com/boostorg/redis/blob/master/redis/reference/boost/redis/basic_connection/async_exec-02.html">
   <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../../_/css/boostlook.css">
@@ -35,6 +35,9 @@
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../../requests_responses.html">Requests and responses</a>
+        </li>
+              <li class="" data-depth="1">
+            <a class="nav-link" href="../../../../cancellation.html">Cancellation and timeouts</a>
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../../serialization.html">Serializing and parsing into custom types</a>
@@ -79,7 +82,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="async_exec-02.html">Reference</a></li>
+    <li><a href="async_exec-02.html"><a href="../../../boost.html">boost</a>::<a href="../../../boost/redis.html">redis</a>::<a href="../../../boost/redis/basic_connection.html">basic&lowbar;connection</a>::async&lowbar;exec</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
@@ -87,17 +90,19 @@
       <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
     </a>
 </div></div>
-    <h1 class="page">Reference</h1>
-  <div class="sect1">
-<h2 id="boost-redis-basic_connection-async_exec-02"><a class="anchor" href="#boost-redis-basic_connection-async_exec-02"></a><a href="../../../boost.html" class="xref page">boost</a>::<a href="../../redis.html" class="xref page">redis</a>::<a href="../basic_connection.html" class="xref page">basic&lowbar;connection</a>::async&lowbar;exec</h2>
+    <h1 class="page"><a href="../../../boost.html">boost</a>::<a href="../../../boost/redis.html">redis</a>::<a href="../../../boost/redis/basic_connection.html">basic&lowbar;connection</a>::async&lowbar;exec</h1>
+  <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Executes commands on the Redis server asynchronously&period;</p>
 </div>
-<div class="sect2">
-<h3 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Declared in <code>&lt;<a href="https://github.com/boostorg/redis/blob/master/include/boost/redis/connection.hpp#L754">boost&sol;redis&sol;connection&period;hpp</a>&gt;</code></p>
+<p>Declared in <code>&lt;<a href="https://github.com/boostorg/redis/blob/master/include/boost/redis/connection.hpp#L759">boost&sol;redis&sol;connection&period;hpp</a>&gt;</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -110,8 +115,10 @@ async&lowbar;exec(
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_description"><a class="anchor" href="#_description"></a>Description</h3>
+</div>
+<div class="sect1">
+<h2 id="_description"><a class="anchor" href="#_description"></a>Description</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This function sends a request to the Redis server and waits for the responses to each individual command in the request&period; If the request contains only commands that don&apos;t expect a response, the completion occurs after it has been written to the underlying stream&period; Multiple concurrent calls to this function will be automatically queued by the implementation&period;</p>
 </div>
@@ -130,40 +137,51 @@ async&lowbar;exec(
 <p>Where the second parameter is the size of the response received in bytes&period;</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_peroperation_cancellation"><a class="anchor" href="#_peroperation_cancellation"></a>Per&hyphen;operation cancellation</h3>
+</div>
+<div class="sect1">
+<h2 id="_peroperation_cancellation"><a class="anchor" href="#_peroperation_cancellation"></a>Per&hyphen;operation cancellation</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>This operation supports per&hyphen;operation cancellation&period; The following cancellation types are supported&colon;</p>
+<p>This operation supports per&hyphen;operation cancellation&period; Depending on the state of the request when cancellation is requested, we can encounter two scenarios&colon;</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;terminal</code>&period; Always supported&period; May cause the current <code>async&lowbar;run</code> operation to be cancelled&period;</p>
+<p>If the request hasn&apos;t been sent to the server yet, cancellation will prevent it       from being sent to the server&period; In this situation, all cancellation types are supported       (&grave;asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;terminal&grave;, &grave;asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;partial&grave; and       &grave;asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;total&grave;)&period;</p>
 </li>
 <li>
-<p><code>asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;partial</code> and <code>asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;total</code>&period; Supported only if the request hasn&apos;t been written to the network yet&period;</p>
+<p>If the request has been sent to the server but the response hasn&apos;t arrived yet,       cancellation will cause &grave;async&lowbar;exec&grave; to complete immediately&period; When the response       arrives from the server, it will be ignored&period; In this situation, only       &grave;asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;terminal&grave; and &grave;asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;partial&grave;       are supported&period; Cancellation requests specifying &grave;asio&colon;&colon;cancellation&lowbar;type&lowbar;t&colon;&colon;total&grave;       only will be ignored&period;</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>In any case, connections can be safely used after cancelling <code>async&lowbar;exec</code> operations&period;</p>
 </div>
-<div class="sect2">
-<h3 id="_object_lifetimes"><a class="anchor" href="#_object_lifetimes"></a>Object lifetimes</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_object_lifetimes"><a class="anchor" href="#_object_lifetimes"></a>Object lifetimes</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Both <code>req</code> and any response object referenced by <code>adapter</code> should be kept alive until the operation completes&period; No copies of the request object are made&period;</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h3>
+</div>
+<div class="sect1">
+<h2 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>req</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The request to be executed&period;</p></td>
@@ -180,7 +198,6 @@ async&lowbar;exec(
 </table>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>
-</div>
 </div>
 </div>
 </div>

@@ -30,6 +30,9 @@
 <p>
         <a class="indexterm" name="boost_asio.indexterm.async_initiate"></a>
       </p>
+<p>
+        Helper function for implementing an asynchronous operation's initiating function.
+      </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">typename</span> <span class="identifier">CompletionToken</span><span class="special">,</span>
     <span class="identifier">completion_signature</span><span class="special">...</span> <span class="identifier">Signatures</span><span class="special">,</span>
@@ -40,8 +43,63 @@
     <span class="identifier">type_identity_t</span><span class="special">&lt;</span> <span class="identifier">CompletionToken</span> <span class="special">&gt;</span> <span class="special">&amp;</span> <span class="identifier">token</span><span class="special">,</span>
     <span class="identifier">Args</span> <span class="special">&amp;&amp;...</span> <span class="identifier">args</span><span class="special">);</span>
 </pre>
+<p>
+        The async_initiate function wraps the <a class="link" href="async_result.html" title="async_result"><code class="computeroutput"><span class="identifier">async_result</span></code></a> trait. It automatically
+        performs the necessary decay and forward of the completion token, and also
+        enables backwards compatibility with legacy completion token implementations.
+      </p>
 <h5>
 <a name="boost_asio.reference.async_initiate.h0"></a>
+        <span class="phrase"><a name="boost_asio.reference.async_initiate.parameters"></a></span><a class="link" href="async_initiate.html#boost_asio.reference.async_initiate.parameters">Parameters</a>
+      </h5>
+<div class="variablelist">
+<p class="title"><b></b></p>
+<dl class="variablelist">
+<dt><span class="term">initiation</span></dt>
+<dd><p>
+              A function object that will be called to launch the asynchronous operation.
+              It receives the concrete completion handler as its first argument,
+              followed by any additional arguments passed to async_initiate.
+            </p></dd>
+<dt><span class="term">token</span></dt>
+<dd><p>
+              The <a class="link" href="../overview/model/completion_tokens.html" title="Completion Tokens">completion
+              token</a> provided by the user. This will be transformed into a
+              concrete completion handler by the <a class="link" href="async_result.html" title="async_result"><code class="computeroutput"><span class="identifier">async_result</span></code></a> trait.
+            </p></dd>
+<dt><span class="term">args</span></dt>
+<dd><p>
+              Additional arguments to be forwarded to the initiation function object.
+            </p></dd>
+</dl>
+</div>
+<h5>
+<a name="boost_asio.reference.async_initiate.h1"></a>
+        <span class="phrase"><a name="boost_asio.reference.async_initiate.return_value"></a></span><a class="link" href="async_initiate.html#boost_asio.reference.async_initiate.return_value">Return
+        Value</a>
+      </h5>
+<p>
+        The return value is determined by the <a class="link" href="async_result.html" title="async_result"><code class="computeroutput"><span class="identifier">async_result</span></code></a> specialisation for
+        the completion token type. For callback-based tokens, returns <code class="computeroutput"><span class="keyword">void</span></code>. For other tokens such as use_future
+        or use_awaitable, returns the corresponding future or awaitable type.
+      </p>
+<h5>
+<a name="boost_asio.reference.async_initiate.h2"></a>
+        <span class="phrase"><a name="boost_asio.reference.async_initiate.remarks"></a></span><a class="link" href="async_initiate.html#boost_asio.reference.async_initiate.remarks">Remarks</a>
+      </h5>
+<p>
+        Asynchronous operation implementations should use this function rather than
+        directly using the <a class="link" href="async_result.html" title="async_result"><code class="computeroutput"><span class="identifier">async_result</span></code></a> trait, or the legacy
+        <a class="link" href="async_completion.html" title="async_completion"><code class="computeroutput"><span class="identifier">async_completion</span></code></a>
+        helper template.
+      </p>
+<p>
+        For a more detailed discussion of the role of <a class="link" href="async_result.html" title="async_result"><code class="computeroutput"><span class="identifier">async_result</span></code></a> and async_initiate,
+        see the overview documentation for <a class="link" href="../overview/model/completion_tokens.html" title="Completion Tokens">completion
+        token</a>.
+      </p>
+<h5>
+<a name="boost_asio.reference.async_initiate.h3"></a>
         <span class="phrase"><a name="boost_asio.reference.async_initiate.requirements"></a></span><a class="link" href="async_initiate.html#boost_asio.reference.async_initiate.requirements">Requirements</a>
       </h5>
 <p>

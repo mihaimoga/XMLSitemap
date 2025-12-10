@@ -37,9 +37,9 @@
           </h6>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">typename</span> <span class="identifier">InputIterator</span><span class="special">&gt;</span>
-<span class="identifier">iterator</span>
+<span class="keyword">constexpr</span> <a class="link" href="../iterator.html" title="basic_static_string::iterator"><code class="literal">basic_static_string::iterator</code></a>
 <span class="identifier">insert</span><span class="special">(</span>
-    <span class="identifier">const_iterator</span> <span class="identifier">pos</span><span class="special">,</span>
+    <a class="link" href="../const_iterator.html" title="basic_static_string::const_iterator"><code class="literal">basic_static_string::const_iterator</code></a> <span class="identifier">pos</span><span class="special">,</span>
     <span class="identifier">InputIterator</span> <span class="identifier">first</span><span class="special">,</span>
     <span class="identifier">InputIterator</span> <span class="identifier">last</span><span class="special">);</span>
 </pre>
@@ -56,8 +56,10 @@
             <span class="phrase"><a name="static_string.ref.boost__static_strings__basic_static_string.insert.overload8.precondition"></a></span><a class="link" href="overload8.html#static_string.ref.boost__static_strings__basic_static_string.insert.overload8.precondition">Precondition</a>
           </h6>
 <p>
-            <code class="computeroutput"><span class="identifier">pos</span></code>shall be valid within
+            <code class="computeroutput"><span class="identifier">pos</span></code> shall be valid within
             <code class="computeroutput"><span class="special">{</span><span class="identifier">data</span><span class="special">(),</span> <span class="identifier">data</span><span class="special">()</span> <span class="special">+</span> <span class="identifier">size</span><span class="special">()}</span></code>,
+          </p>
+<p>
             <code class="computeroutput"><span class="special">{</span><span class="identifier">first</span><span class="special">,</span> <span class="identifier">last</span><span class="special">)</span></code> shall be a valid range
           </p>
 <h6>
@@ -116,7 +118,7 @@
             <span class="phrase"><a name="static_string.ref.boost__static_strings__basic_static_string.insert.overload8.constraints"></a></span><a class="link" href="overload8.html#static_string.ref.boost__static_strings__basic_static_string.insert.overload8.constraints">Constraints</a>
           </h6>
 <p>
-            <code class="computeroutput"><span class="identifier">InputIterator</span></code>satisfies
+            <code class="computeroutput"><span class="identifier">InputIterator</span></code> satisfies
             <span class="bold"><strong>InputIterator</strong></span> and does not satisfy
             <span class="bold"><strong>ForwardIterator</strong></span>.
           </p>

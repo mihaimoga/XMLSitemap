@@ -7,7 +7,7 @@
 <link rel="home" href="../../boost_asio.html" title="Boost.Asio">
 <link rel="up" href="../reference.html" title="Reference">
 <link rel="prev" href="posix__stream_descriptor.html" title="posix::stream_descriptor">
-<link rel="next" href="post/overload1.html" title="post (1 of 3 overloads)">
+<link rel="next" href="post/overload1.html" title="post (1 of 7 overloads)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -34,28 +34,92 @@
         Submits a completion token or function object for execution.
       </p>
 <pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
-    <span class="keyword">typename</span> <a class="link" href="NullaryToken.html" title="Nullary token requirements">NullaryToken</a><span class="special">&gt;</span>
-<span class="keyword">auto</span> <a class="link" href="post/overload1.html" title="post (1 of 3 overloads)">post</a><span class="special">(</span>
-    <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="post/overload1.html" title="post (1 of 3 overloads)">more...</a></em></span>
+    <span class="keyword">typename</span> <a class="link" href="NullaryToken.html" title="Nullary token requirements">NullaryToken</a> <span class="special">=</span> <span class="identifier">deferred_t</span><span class="special">&gt;</span>
+<span class="keyword">auto</span> <a class="link" href="post/overload1.html" title="post (1 of 7 overloads)">post</a><span class="special">(</span>
+    <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">deferred_t</span><span class="special">());</span>
+  <span class="emphasis"><em>» <a class="link" href="post/overload1.html" title="post (1 of 7 overloads)">more...</a></em></span>
 
 <span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">typename</span> <a class="link" href="Executor1.html" title="Executor requirements">Executor</a><span class="special">,</span>
     <span class="keyword">typename</span> <a class="link" href="NullaryToken.html" title="Nullary token requirements">NullaryToken</a> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span><span class="identifier">Executor</span><span class="special">&gt;&gt;</span>
-<span class="keyword">auto</span> <a class="link" href="post/overload2.html" title="post (2 of 3 overloads)">post</a><span class="special">(</span>
+<span class="keyword">auto</span> <a class="link" href="post/overload2.html" title="post (2 of 7 overloads)">post</a><span class="special">(</span>
     <span class="keyword">const</span> <span class="identifier">Executor</span> <span class="special">&amp;</span> <span class="identifier">ex</span><span class="special">,</span>
     <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;(),</span>
     <span class="identifier">constraint_t</span><span class="special">&lt;(</span><span class="identifier">execution</span><span class="special">::</span><span class="identifier">is_executor</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&amp;&amp;</span><span class="identifier">can_require</span><span class="special">&lt;</span> <span class="identifier">Executor</span><span class="special">,</span> <span class="identifier">execution</span><span class="special">::</span><span class="identifier">blocking_t</span><span class="special">::</span><span class="identifier">never_t</span> <span class="special">&gt;::</span><span class="identifier">value</span><span class="special">)||</span><span class="identifier">is_executor</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="post/overload2.html" title="post (2 of 3 overloads)">more...</a></em></span>
+  <span class="emphasis"><em>» <a class="link" href="post/overload2.html" title="post (2 of 7 overloads)">more...</a></em></span>
 
 <span class="keyword">template</span><span class="special">&lt;</span>
     <span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">,</span>
     <span class="keyword">typename</span> <a class="link" href="NullaryToken.html" title="Nullary token requirements">NullaryToken</a> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">::</span><span class="identifier">executor_type</span><span class="special">&gt;&gt;</span>
-<span class="keyword">auto</span> <a class="link" href="post/overload3.html" title="post (3 of 3 overloads)">post</a><span class="special">(</span>
+<span class="keyword">auto</span> <a class="link" href="post/overload3.html" title="post (3 of 7 overloads)">post</a><span class="special">(</span>
     <span class="identifier">ExecutionContext</span> <span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">,</span>
     <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
     <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">ExecutionContext</span> <span class="special">&amp;,</span> <span class="identifier">execution_context</span> <span class="special">&amp;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
-  <span class="emphasis"><em>» <a class="link" href="post/overload3.html" title="post (3 of 3 overloads)">more...</a></em></span>
+  <span class="emphasis"><em>» <a class="link" href="post/overload3.html" title="post (3 of 7 overloads)">more...</a></em></span>
+</pre>
+<p>
+        Submits a function to be run on a specified target executor, and after completion
+        submits the completion handler.
+      </p>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">typename</span> <span class="identifier">Function</span><span class="special">,</span>
+    <span class="keyword">typename</span> <a class="link" href="Executor1.html" title="Executor requirements">Executor</a><span class="special">,</span>
+    <span class="keyword">typename</span> <a class="link" href="NullaryToken.html" title="Nullary token requirements">NullaryToken</a> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span><span class="identifier">Executor</span><span class="special">&gt;&gt;</span>
+<span class="keyword">auto</span> <a class="link" href="post/overload4.html" title="post (4 of 7 overloads)">post</a><span class="special">(</span>
+    <span class="identifier">Function</span> <span class="special">&amp;&amp;</span> <span class="identifier">function</span><span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">Executor</span> <span class="special">&amp;</span> <span class="identifier">ex</span><span class="special">,</span>
+    <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_void</span><span class="special">&lt;</span> <span class="identifier">result_of_t</span><span class="special">&lt;</span> <span class="identifier">decay_t</span><span class="special">&lt;</span> <span class="identifier">Function</span> <span class="special">&gt;()&gt;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;(</span><span class="identifier">execution</span><span class="special">::</span><span class="identifier">is_executor</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&amp;&amp;</span><span class="identifier">can_require</span><span class="special">&lt;</span> <span class="identifier">Executor</span><span class="special">,</span> <span class="identifier">execution</span><span class="special">::</span><span class="identifier">blocking_t</span><span class="special">::</span><span class="identifier">never_t</span> <span class="special">&gt;::</span><span class="identifier">value</span><span class="special">)||</span><span class="identifier">is_executor</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="post/overload4.html" title="post (4 of 7 overloads)">more...</a></em></span>
+</pre>
+<p>
+        Submits a function to be run on a specified target executor, and passes the
+        result to a completion handler.
+      </p>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">typename</span> <span class="identifier">Function</span><span class="special">,</span>
+    <span class="keyword">typename</span> <a class="link" href="Executor1.html" title="Executor requirements">Executor</a><span class="special">,</span>
+    <span class="keyword">typename</span> <span class="identifier">CompletionToken</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span><span class="identifier">Executor</span><span class="special">&gt;&gt;</span>
+<span class="keyword">auto</span> <a class="link" href="post/overload5.html" title="post (5 of 7 overloads)">post</a><span class="special">(</span>
+    <span class="identifier">Function</span> <span class="special">&amp;&amp;</span> <span class="identifier">function</span><span class="special">,</span>
+    <span class="keyword">const</span> <span class="identifier">Executor</span> <span class="special">&amp;</span> <span class="identifier">ex</span><span class="special">,</span>
+    <span class="identifier">CompletionToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">is_void</span><span class="special">&lt;</span> <span class="identifier">result_of_t</span><span class="special">&lt;</span> <span class="identifier">decay_t</span><span class="special">&lt;</span> <span class="identifier">Function</span> <span class="special">&gt;()&gt;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;(</span><span class="identifier">execution</span><span class="special">::</span><span class="identifier">is_executor</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&amp;&amp;</span><span class="identifier">can_require</span><span class="special">&lt;</span> <span class="identifier">Executor</span><span class="special">,</span> <span class="identifier">execution</span><span class="special">::</span><span class="identifier">blocking_t</span><span class="special">::</span><span class="identifier">never_t</span> <span class="special">&gt;::</span><span class="identifier">value</span><span class="special">)||</span><span class="identifier">is_executor</span><span class="special">&lt;</span> <span class="identifier">Executor</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="post/overload5.html" title="post (5 of 7 overloads)">more...</a></em></span>
+</pre>
+<p>
+        Submits a function to be run on a specified execution context, and after
+        completion submits the completion handler.
+      </p>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">typename</span> <span class="identifier">Function</span><span class="special">,</span>
+    <span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">,</span>
+    <span class="keyword">typename</span> <a class="link" href="NullaryToken.html" title="Nullary token requirements">NullaryToken</a> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">::</span><span class="identifier">executor_type</span><span class="special">&gt;&gt;</span>
+<span class="keyword">auto</span> <a class="link" href="post/overload6.html" title="post (6 of 7 overloads)">post</a><span class="special">(</span>
+    <span class="identifier">Function</span> <span class="special">&amp;&amp;</span> <span class="identifier">function</span><span class="special">,</span>
+    <span class="identifier">ExecutionContext</span> <span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">,</span>
+    <span class="identifier">NullaryToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_void</span><span class="special">&lt;</span> <span class="identifier">result_of_t</span><span class="special">&lt;</span> <span class="identifier">decay_t</span><span class="special">&lt;</span> <span class="identifier">Function</span> <span class="special">&gt;()&gt;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">ExecutionContext</span> <span class="special">&amp;,</span> <span class="identifier">execution_context</span> <span class="special">&amp;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="post/overload6.html" title="post (6 of 7 overloads)">more...</a></em></span>
+</pre>
+<p>
+        Submits a function to be run on a specified execution context, and passes
+        the result to a completion handler.
+      </p>
+<pre class="programlisting"><span class="keyword">template</span><span class="special">&lt;</span>
+    <span class="keyword">typename</span> <span class="identifier">Function</span><span class="special">,</span>
+    <span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">,</span>
+    <span class="keyword">typename</span> <span class="identifier">CompletionToken</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">::</span><span class="identifier">executor_type</span><span class="special">&gt;&gt;</span>
+<span class="keyword">auto</span> <a class="link" href="post/overload7.html" title="post (7 of 7 overloads)">post</a><span class="special">(</span>
+    <span class="identifier">Function</span> <span class="special">&amp;&amp;</span> <span class="identifier">function</span><span class="special">,</span>
+    <span class="identifier">ExecutionContext</span> <span class="special">&amp;</span> <span class="identifier">ctx</span><span class="special">,</span>
+    <span class="identifier">CompletionToken</span> <span class="special">&amp;&amp;</span> <span class="identifier">token</span> <span class="special">=</span> <span class="identifier">default_completion_token_t</span><span class="special">&lt;</span> <span class="keyword">typename</span> <span class="identifier">ExecutionContext</span><span class="special">::</span><span class="identifier">executor_type</span> <span class="special">&gt;(),</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="special">!</span><span class="identifier">is_void</span><span class="special">&lt;</span> <span class="identifier">result_of_t</span><span class="special">&lt;</span> <span class="identifier">decay_t</span><span class="special">&lt;</span> <span class="identifier">Function</span> <span class="special">&gt;()&gt;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">,</span>
+    <span class="identifier">constraint_t</span><span class="special">&lt;</span> <span class="identifier">is_convertible</span><span class="special">&lt;</span> <span class="identifier">ExecutionContext</span> <span class="special">&amp;,</span> <span class="identifier">execution_context</span> <span class="special">&amp;</span> <span class="special">&gt;::</span><span class="identifier">value</span> <span class="special">&gt;</span>  <span class="special">=</span> <span class="number">0</span><span class="special">);</span>
+  <span class="emphasis"><em>» <a class="link" href="post/overload7.html" title="post (7 of 7 overloads)">more...</a></em></span>
 </pre>
 <h5>
 <a name="boost_asio.reference.post.h0"></a>

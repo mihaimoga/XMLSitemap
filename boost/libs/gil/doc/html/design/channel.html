@@ -41,7 +41,7 @@
       <tr>
         <td valign="top" width="300">
           <h3><a href="../index.html"><img
-          alt="C++ Boost" src="../_static/gil.png" border="0"></a></h3>
+          alt="C++ Boost" src="../../_static/gil.png" border="0"></a></h3>
         </td>
 
         <td >
@@ -98,7 +98,7 @@ value. GIL channels model the following concept:</p>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_mutable</span><span class="p">;</span><span class="w">        </span><span class="c1">// use channel_traits&lt;T&gt;::is_mutable to access it</span>
 
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">min_value</span><span class="p">();</span><span class="w">                </span><span class="c1">// use channel_traits&lt;T&gt;::min_value to access it</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">max_value</span><span class="p">();</span><span class="w">                </span><span class="c1">// use channel_traits&lt;T&gt;::min_value to access it</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">max_value</span><span class="p">();</span><span class="w">                </span><span class="c1">// use channel_traits&lt;T&gt;::max_value to access it</span>
 <span class="p">};</span>
 
 <span class="k">concept</span><span class="w"> </span><span class="nc">MutableChannelConcept</span><span class="o">&lt;</span><span class="n">ChannelConcept</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Swappable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Assignable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{};</span>
@@ -237,7 +237,7 @@ transformation between the ranges of the source and destination channel.
 It maps precisely the minimum to the minimum and the maximum to the maximum.
 (For example, to convert from uint8_t to uint16_t GIL does not do a bit shift
 because it will not properly match the maximum values. Instead GIL multiplies
-the source by 257).</p>
+the source by 257.)</p>
 <p>All channel models that GIL provides are convertible from/to an integral or
 floating point type. Thus they support arithmetic operations. Here are the
 channel-level algorithms that GIL provides:</p>
@@ -269,7 +269,7 @@ channel-level algorithms that GIL provides:</p>
     </div>
     </div>
     <div class="footer" role="contentinfo">
-      Last updated on 2025-08-06 18:08:59.
+      Last updated on 2025-12-03 13:12:38.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>

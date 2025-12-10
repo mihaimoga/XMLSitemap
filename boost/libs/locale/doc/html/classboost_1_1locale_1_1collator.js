@@ -1,7 +1,7 @@
 var classboost_1_1locale_1_1collator =
 [
-    [ "char_type", "classboost_1_1locale_1_1collator.html#ac84ef172e7c9f49d4e78b1fa65468f9f", null ],
-    [ "string_type", "classboost_1_1locale_1_1collator.html#a155227b744250fa498e19cdfc12e2b9c", null ],
+    [ "char_type", "classboost_1_1locale_1_1collator.html#a2b74a0b9a613a4a4337632bf34644c6f", null ],
+    [ "string_type", "classboost_1_1locale_1_1collator.html#a106a3fe9e068530013c428661758733d", null ],
     [ "collator", "classboost_1_1locale_1_1collator.html#a25a8b21a756756e850a7488a54610053", null ],
     [ "compare", "classboost_1_1locale_1_1collator.html#a246dba22f585e5d155b22a58837dbea0", null ],
     [ "compare", "classboost_1_1locale_1_1collator.html#abafa4c86ac5f93b03112368b2c4c1f2d", null ],

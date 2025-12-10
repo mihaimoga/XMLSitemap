@@ -80,12 +80,12 @@
   <span class="keyword">bool</span> <a class="link" href="classboost_1_1compute_1_1kernel.html#doxygen.header_reference.classboost_1_1compute_1_1kernel_1a7c7009b1bebd3580e62a8d0b23d1383e"><span class="keyword">operator</span><span class="special">!=</span></a><span class="special">(</span><span class="keyword">const</span> <a class="link" href="classboost_1_1compute_1_1kernel.html" title="Class kernel">kernel</a> <span class="special">&amp;</span><span class="special">)</span> <span class="keyword">const</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id42607"></a><h2>Description</h2>
+<a name="id42600"></a><h2>Description</h2>
 <p><b>See Also: </b><a class="link" href="classboost_1_1compute_1_1command__queue.html" title="Class command_queue">command_queue</a>, <a class="link" href="classboost_1_1compute_1_1program.html" title="Class program">program</a> </p>
 <p>
 </p>
 <div class="refsect2">
-<a name="id42615"></a><h3>
+<a name="id42608"></a><h3>
 <a name="id77-bb"></a><code class="computeroutput">kernel</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -204,8 +204,8 @@ See the documentation for </p>
 <p>Sets the argument at <code class="computeroutput">index</code> to <code class="computeroutput">value</code>.</p>
 <p>For built-in types (e.g. <code class="computeroutput">float</code>, <code class="computeroutput">int4_</code>), this is equivalent to calling set_arg(index, sizeof(type), &amp;value).</p>
 <p>Additionally, this method is specialized for device memory objects such as buffer and <a class="link" href="classboost_1_1compute_1_1image2d.html" title="Class image2d">image2d</a>. This allows for them to be passed directly without having to extract their underlying cl_mem object.</p>
-<p>This method is also specialized for device container types such as vector&lt;T&gt; and array&lt;T, N&gt;. This allows for them to be passed directly as kernel arguments without having to extract their underlying buffer.</p>
-<p>For setting local memory arguments (e.g. "__local float *buf"), the local_buffer&lt;T&gt; class may be used: </p>
+<p>This method is also specialized for device container types such as <a class="link" href="classboost_1_1compute_1_1vector.html" title="Class template vector">vector&lt;T&gt;</a> and <a class="link" href="classboost_1_1compute_1_1array.html" title="Class template array">array&lt;T, N&gt;</a>. This allows for them to be passed directly as kernel arguments without having to extract their underlying buffer.</p>
+<p>For setting local memory arguments (e.g. "__local float *buf"), the <a class="link" href="classboost_1_1compute_1_1local__buffer.html" title="Class template local_buffer">local_buffer&lt;T&gt;</a> class may be used: </p>
 <pre class="programlisting"><span class="comment">// set argument to a local buffer with storage for 32 float's</span>
 <a class="link" href="classboost_1_1compute_1_1kernel.html#doxygen.header_reference.classboost_1_1compute_1_1kernel_1a8b6c59f6781344de4a375bafc1f2d971"><span class="identifier">kernel</span></a><span class="special">.</span><span class="identifier">set_arg</span><span class="special">(</span><span class="number">0</span><span class="special">,</span> <span class="identifier">local_buffer</span><span class="special">&lt;</span><span class="keyword">float</span><span class="special">&gt;</span><span class="special">(</span><span class="number">32</span><span class="special">)</span><span class="special">)</span><span class="special">;</span>
 </pre>

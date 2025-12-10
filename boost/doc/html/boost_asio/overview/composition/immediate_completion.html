@@ -36,18 +36,18 @@
         </p>
 <p>
           When a supported operation completes immediately (that is, within the initiating
-          function) the associated immmediate executor is obtained, and the completion
+          function) the associated immediate executor is obtained, and the completion
           handler is delivered through that executor as if by using <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">dispatch</span></code> on that executor. By default,
           the immediate executor delivers the completion handler as if using <code class="computeroutput"><span class="identifier">boost</span><span class="special">::</span><span class="identifier">asio</span><span class="special">::</span><span class="identifier">post</span></code> via the operation's I/O executor.
         </p>
 <p>
           For example, to allow a recursive call to the completion handler of an
           <code class="computeroutput"><span class="identifier">async_read_some</span></code> operation,
-          we may specify that immediate completion is delivered via a <code class="computeroutput"><span class="identifier">system_executor</span></code>:
+          we may specify that immediate completion is delivered via an <code class="computeroutput"><span class="identifier">inline_executor</span></code>:
         </p>
 <pre class="programlisting"><span class="identifier">my_socket</span><span class="special">.</span><span class="identifier">async_read_some</span><span class="special">(</span><span class="identifier">my_buffer</span><span class="special">,</span>
     <span class="identifier">bind_immediate_executor</span><span class="special">(</span>
-      <span class="identifier">system_executor</span><span class="special">(),</span>
+      <span class="identifier">inline_executor</span><span class="special">(),</span>
       <span class="special">[](</span><span class="identifier">error_code</span> <span class="identifier">e</span><span class="special">,</span> <span class="identifier">size_t</span> <span class="identifier">n</span><span class="special">)</span>
       <span class="special">{</span>
         <span class="comment">// ...</span>

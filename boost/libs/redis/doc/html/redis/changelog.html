@@ -38,6 +38,9 @@
             <a class="nav-link" href="requests_responses.html">Requests and responses</a>
         </li>
               <li class="" data-depth="1">
+            <a class="nav-link" href="cancellation.html">Cancellation and timeouts</a>
+        </li>
+              <li class="" data-depth="1">
             <a class="nav-link" href="serialization.html">Serializing and parsing into custom types</a>
         </li>
               <li class="" data-depth="1">
@@ -93,6 +96,231 @@
 </div></div>
     <h1 class="page">Changelog</h1>
   <div class="sect1">
+<h2 id="_boost_1_90"><a class="anchor" href="#_boost_1_90"></a>Boost 1.90</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/310">310</a>)
+Improves the per-operation support in <code>async_exec()</code>. Requests can now
+be cancelled at any point, and cancellations don&#8217;t interfere with other
+requests anyhow. In previous versions, a cancellation could cause
+<code>async_run()</code> to be cancelled, making cancellations unpredictable.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/226">226</a>)
+Added support for the <code>asio::cancel_after</code> and <code>asio::cancel_at</code>
+completion tokens in <code>async_exec()</code> and <code>async_run()</code>.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/319">319</a>)
+Added support for per-operation cancellation in <code>async_run()</code>.</p>
+</li>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/329">329</a>
+and <a href="https://github.com/boostorg/redis/pull/334">334</a>)
+The <code>cancel_on_connection_lost</code> and <code>cancel_if_not_connected</code>
+flags in <code>request::config</code> have been deprecated, and will be removed
+in subsequent releases. To limit the time span that <code>async_exec</code>
+might take, use <code>asio::cancel_after</code>, instead.
+<code>cancel_on_connection_lost</code> default has been changed to <code>false</code>.
+This shouldn&#8217;t cause much impact, since <code>cancel_on_connection_lost</code>
+is not a reliable way to limit the time span that <code>async_exec</code> might take.</p>
+</li>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/321">321</a>)
+Calling <code>cancel</code> with <code>operation::resolve</code>, <code>operation::connect</code>,
+<code>operation::ssl_handshake</code>, <code>operation::reconnection</code> and
+<code>operation::health_check</code> is now deprecated.
+These enumerators will be removed in subsequent releases.
+Users should employ <code>cancel(operation::run)</code>, instead.</p>
+</li>
+<li>
+<p>(Issue github.com/boostorg/redis/issues/302[302] and
+pull request <a href="https://github.com/boostorg/redis/pull/303">303</a>)
+Added support for custom setup requests using <code>config::setup</code>
+and <code>config::use_setup</code>. When setting these fields, users can
+replace the library-generated <code>HELLO</code> request by any other arbitrary request.
+This request is executed every time a new physical connection with the server
+is established. This feature can be used to interact with systems that don&#8217;t
+support <code>HELLO</code>, to handle authentication and to connect to replicas.</p>
+</li>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/305">305</a>)
+<code>request::config::hello_with_priority</code> and <code>request::has_hello_priority()</code> have
+been deprecated and will be removed in subsequent releases.
+This flag is not well specified and should only be used by the library.
+If you need to execute a request before any other, use <code>config::setup</code>, instead.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/296">296</a>)
+Valkey long-term support: we guarantee Valkey compatibility
+starting with this release. Previous releases may also work,
+but have not been tested with this database system.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/341">341</a>)
+Adds a <code>request::append()</code> function, to concatenate request objects.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/104">104</a>)
+The health checker algorithm has been redesigned to avoid
+false positives under heavy loads. <code>PING</code> commands are now
+only issued when the connection is idle, instead of periodically.</p>
+</li>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/283">283</a>)
+Added <code>config::read_buffer_append_size</code>, which allows to control
+the expansion of the connection&#8217;s read buffer.</p>
+</li>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/311">311</a>)
+Added <code>usage::bytes_rotated</code>, which measures data copying when
+reading and parsing data from the server.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/298">298</a>)
+Added support for authenticating users with an empty password
+but a non-default username.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/318">318</a>)
+Fixed a number of race conditions in the <code>cancel()</code> function
+of <code>connection</code> and <code>basic_connection</code> that could cause
+cancellations to be ignored.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/290">290</a>)
+Fixed a problem that could cause an error during <code>HELLO</code>
+to make subsequent <code>HELLO</code> attempts during reconnection to fail.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/297">297</a>)
+Errors during <code>HELLO</code> are now correctly logged.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/287">287</a>)
+Fixed a bug causing an exception to be thrown when parsing
+a response that contains an intermediate error into a <code>generic_response</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_boost_1_89"><a class="anchor" href="#_boost_1_89"></a>Boost 1.89</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/256">256</a>,
+ <a href="https://github.com/boostorg/redis/pull/266">266</a> and
+ <a href="https://github.com/boostorg/redis/pull/273">273</a>)
+The following members in <code>connection</code> and <code>basic_connection</code> are now deprecated
+and will be removed in subsequent releases:</p>
+</li>
+<li>
+<p><code>next_layer()</code> and <code>next_layer_type</code>: there is no reason to access the underlying stream object directly.
+Connection member functions should be used, instead.</p>
+</li>
+<li>
+<p><code>get_ssl_context()</code>: SSL contexts should never be modified after an <code>asio::ssl::stream</code>
+object has been created from them. Properties should be set before passing the context
+to the constructor. There is no reason to access the SSL context after that.</p>
+</li>
+<li>
+<p><code>reset_stream()</code>: connection internals have been refactored to reset the SSL stream
+automatically when required. This function is now a no-op.</p>
+</li>
+<li>
+<p>The <code>async_run()</code> overload taking no parameters: use the <code>async_run</code>
+overload taking a <code>config</code> object explicitly, instead.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/213">213</a>)
+The logging interface has been re-written:</p>
+</li>
+<li>
+<p>Logging can now be customized by passing a function object
+to the <code>logger</code> constructor. This allows integration with
+third-party logging libraries, like spdlog.
+This new logging interface is public and will be maintained long-term.</p>
+</li>
+<li>
+<p>The old, unstable interface consisting of <code>logger::on_xxx</code> functions has been removed.</p>
+</li>
+<li>
+<p><code>connection</code> and <code>basic_connection</code> constructors now accept a <code>logger</code> object.
+This is now the preferred way to configure logging.
+The <code>async_run()</code> overload taking a <code>logger</code> object is now deprecated, and will
+be removed in subsequent releases.</p>
+</li>
+<li>
+<p><code>config::log_prefix</code> is now deprecated, and will
+be removed in subsequent releases. Users can achieve the same effect
+by passing a custom logging function to the <code>logger</code> constructor.</p>
+</li>
+<li>
+<p>The default logging function, which prints to <code>stderr</code>,
+is now based on <code>printf</code> and is thus thread-safe.
+The old function used <code>std::cerr</code> and could result to interleaved
+output in multi-threaded programs.</p>
+</li>
+<li>
+<p>The default log level is now <code>logger::level::info</code>,
+down from <code>logger::level::debug</code>. This results in less verbose output by default.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/272">272</a>)
+Added support for connecting to Redis using UNIX domain sockets.
+This feature can be accessed using <code>config::unix_socket</code>.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/255">255</a>)
+Fixed an issue that caused <code>async_run</code> to complete when a connection
+establishment error is encountered, even if <code>config::reconnect_wait_interval</code>
+specified reconnection.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/265">265</a>)
+<code>connection::async_exec</code> now uses <code>ignore</code> as the default response,
+rather than having no default response. This matches
+<code>basic_connection::async_exec</code> behavior.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/260">260</a>)
+Fixed a memory corruption affecting the logger&#8217;s prefix
+configured in <code>config::log_prefix</code>.</p>
+</li>
+<li>
+<p>(Pull request <a href="https://github.com/boostorg/redis/pull/254">254</a>)
+Fixed some warnings regarding unused variables, name shadowing
+and narrowing conversions.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/252">252</a>)
+Fixed a bug that causes reconnection to ignore the reconnection
+wait time configured in <code>config::reconnect_wait_interval</code>.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/238">238</a>)
+Fixed a bug introduced in Boost 1.88 that caused <code>response&lt;T&gt;</code> to
+not compile for some integral types.</p>
+</li>
+<li>
+<p>(Issue <a href="https://github.com/boostorg/redis/issues/247">247</a>)
+The documentation has been modernized, and a more complete
+reference section has been added.</p>
+</li>
+<li>
+<p>Part of the internals have been refactored to allow for better
+testing and reduce compile times.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_boost_1_88"><a class="anchor" href="#_boost_1_88"></a>Boost 1.88</h2>
 <div class="sectionbody">
 <div class="ulist">

@@ -73,6 +73,8 @@
                 <span class="keyword">const</span> <span class="keyword">void</span> <span class="special">*</span> address <span class="special">=</span> <span class="number">0</span><span class="special">,</span> 
                 <span class="identifier">map_options_t</span> map_options <span class="special">=</span> <span class="identifier">default_map_options</span><span class="special">)</span><span class="special">;</span></pre>
 <p>Creates a mapping region of the mapped memory "mapping", starting in offset "offset", and the mapping's size will be "size". The mapping can be opened for read only, read-write or copy-on-write.</p>
+<p>The "mapping" object must be an non-empty mappable type (file, shared memory...) or the function might fail. Check <code class="computeroutput">shared_memory_object/file_mapping<a class="link" href="classboost_1_1interprocess_1_1mapped__region.html#doxygen.boost_interprocess_header_reference.classboost_1_1interprocess_1_1mapped__region_1a4d03788dcdbbe659eb2c92cb731097b0">get_size()</a> != 0</code> before trying to map the empty object and obtain an error.</p>
+<p>The "size" parameter must be bigger than zero or the function will fail</p>
 <p>If an address is specified, both the offset and the address must be multiples of the page size.</p>
 <p>The map is created using "default_map_options". This flag is OS dependant and it should not be changed unless the user needs to specify special options.</p>
 <p>In Windows systems "map_options" is a DWORD value passed as "dwDesiredAccess" to "MapViewOfFileEx". If "default_map_options" is passed it's initialized to zero. "map_options" is XORed with FILE_MAP_[COPY|READ|WRITE].</p>

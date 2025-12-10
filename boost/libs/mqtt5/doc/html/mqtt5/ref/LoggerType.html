@@ -234,6 +234,30 @@
                 </p>
               </td>
 </tr>
+<tr>
+<td>
+                <p>
+                  <code class="computeroutput"><span class="keyword">void</span> <span class="identifier">at_transport_error</span><span class="special">(</span><span class="identifier">error_code</span>
+                  <span class="identifier">ec</span><span class="special">);</span></code>
+                </p>
+              </td>
+<td>
+                <p>
+                  <span class="bold"><strong><code class="computeroutput"><span class="identifier">ec</span></code></strong></span>
+                  is the <code class="computeroutput"><span class="identifier">error_code</span></code>
+                  returned by the <code class="computeroutput"><span class="identifier">async_read_some</span></code>
+                  or <code class="computeroutput"><span class="identifier">async_write_some</span></code>
+                  operation on the underlying <a class="link" href="StreamType.html" title="StreamType concept"><span class="emphasis"><em>StreamType</em></span></a>
+                  stream.
+                </p>
+              </td>
+<td>
+                <p>
+                  Invoked when a read or write operation on the underlying <a class="link" href="StreamType.html" title="StreamType concept"><span class="emphasis"><em>StreamType</em></span></a>
+                  stream fails, triggering a reconnection to the broker.
+                </p>
+              </td>
+</tr>
 </tbody>
 </table>
 </div>

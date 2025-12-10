@@ -30,7 +30,7 @@
 <p>
         The Boost.Geometry.Index is intended to gather data structures called spatial
         indexes which may be used to accelerate searching for objects in space. In
-        general, spatial indexes stores geometric objects' representations and allows
+        general, spatial indexes store geometric objects' representations and allow
         searching for objects occupying some space or close to some point in space.
       </p>
 <p>
@@ -50,9 +50,9 @@
       </p>
 <p>
         The R-tree structure is presented on the image below. Each R-tree's node
-        store a box describing the space occupied by its children nodes. At the bottom
-        of the structure, there are leaf-nodes which contains values (geometric objects
-        representations).
+        stores a box describing the space occupied by its children nodes. At the
+        bottom of the structure, there are leaf-nodes which contain values (geometric
+        objects representations).
       </p>
 <p>
         <span class="inlinemediaobject"><img src="../../img/index/rtree/rstar.png" alt="rstar"></span>
@@ -61,15 +61,15 @@
         The R-tree is a self-balanced data structure. The key part of balancing algorithm
         is node splitting algorithm <a href="#ftn.geometry.spatial_indexes.introduction.f2" class="footnote" name="geometry.spatial_indexes.introduction.f2"><sup class="footnote">[3]</sup></a> <a href="#ftn.geometry.spatial_indexes.introduction.f3" class="footnote" name="geometry.spatial_indexes.introduction.f3"><sup class="footnote">[4]</sup></a>. Each algorithm produces different splits so the internal structure
         of a tree may be different for each one of them. In general, more complex
-        algorithms analyses elements better and produces less overlapping nodes.
-        In the searching process less nodes must be traversed in order to find desired
+        algorithms analyse elements better and produce less overlapping nodes. In
+        the searching process less nodes must be traversed in order to find desired
         objects. On the other hand more complex analysis takes more time. In general
         faster inserting will result in slower searching and vice versa. The performance
         of the R-tree depends on balancing algorithm, parameters and data inserted
         into the container.
       </p>
 <p>
-        Additionally there are also algorithms creating R-tree containing some, number
+        Additionally, there are also algorithms creating R-tree containing some number
         of objects. This technique is called bulk loading and is done by use of packing
         algorithm <a href="#ftn.geometry.spatial_indexes.introduction.f4" class="footnote" name="geometry.spatial_indexes.introduction.f4"><sup class="footnote">[5]</sup></a> <a href="#ftn.geometry.spatial_indexes.introduction.f5" class="footnote" name="geometry.spatial_indexes.introduction.f5"><sup class="footnote">[6]</sup></a>. This method is faster and results in R-trees with better internal
         structure. This means that the query performance is increased.

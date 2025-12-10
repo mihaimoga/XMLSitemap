@@ -29,6 +29,74 @@
 </h2></div></div></div>
 <h4>
 <a name="beast.release_notes.h0"></a>
+      <span class="phrase"><a name="beast.release_notes.boost_1_90"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_90">Boost
+      1.90</a>
+    </h4>
+<p>
+      <span class="bold"><strong>API Changes</strong></span>
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3042" target="_top">#3042</a> <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">parser</span></code> rejects non-standard trailer fields
+          by default. <span class="emphasis"><em>Actions Required</em></span>:
+          <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+                If your code relies on a non-standard trailer field, consider setting
+                <a class="link" href="ref/boost__beast__http__parser/merge_all_trailers/overload2.html" title="http::parser::merge_all_trailers (2 of 2 overloads)"><code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">parser</span><span class="special">::</span><span class="identifier">merge_all_trailers</span></code></a> after
+                you have validated the <code class="computeroutput"><span class="identifier">Trailer</span></code>
+                header field in the header section of the message.
+              </li></ul></div>
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3042" target="_top">#3042</a> <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_parser</span></code> uses a dedicated callback
+          for trailer fields. <span class="emphasis"><em>Actions Required</em></span>:
+          <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+                Custom parsers derived from <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_parser</span></code>
+                must override the new virtual function <a class="link" href="ref/boost__beast__http__basic_parser/on_trailer_field_impl.html" title="http::basic_parser::on_trailer_field_impl"><code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_parser</span><span class="special">::</span><span class="identifier">on_trailer_field_impl</span></code></a> which
+                is invoked for each field received while parsing the trailer section
+                of a chunked HTTP message.
+              </li></ul></div>
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3042" target="_top">#3042</a> <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">field</span></code> constants are updated. <span class="emphasis"><em>Actions
+          Required</em></span>:
+          <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+                Most removed constants were unrelated to the HTTP protocol. If your
+                code used one of them, please use the corresponding string literal
+                value.
+              </li></ul></div>
+        </li>
+</ul></div>
+<p>
+      <span class="bold"><strong>Fixes</strong></span>
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3034" target="_top">#3034</a> Fixed allocator move/copy assignment in <code class="computeroutput"><span class="identifier">flat_buffer</span></code>
+          and <code class="computeroutput"><span class="identifier">multi_buffer</span></code>
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3028" target="_top">#3028</a> Fixed websocket permessage-deflate error on partial message consumption
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3032" target="_top">#3032</a> <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">buffer_body</span></code> ignores empty chunks
+        </li>
+</ul></div>
+<p>
+      <span class="bold"><strong>Improvements</strong></span>
+    </p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3039" target="_top">#3039</a> Added <code class="computeroutput"><span class="identifier">http</span><span class="special">::</span><span class="identifier">basic_fields</span><span class="special">::</span><span class="identifier">contains</span></code> member function
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3050" target="_top">#3050</a> Removed dependency on Boost.Preprocessor
+        </li>
+<li class="listitem">
+          <a href="https://github.com/boostorg/beast/issues/3048" target="_top">#3048</a> Removed dependency on Boost.StaticAssert
+        </li>
+</ul></div>
+<h4>
+<a name="beast.release_notes.h1"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_89"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_89">Boost
       1.89</a>
     </h4>
@@ -80,7 +148,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h1"></a>
+<a name="beast.release_notes.h2"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_88"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_88">Boost
       1.88</a>
     </h4>
@@ -123,7 +191,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h2"></a>
+<a name="beast.release_notes.h3"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_87"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_87">Boost
       1.87</a>
     </h4>
@@ -195,7 +263,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h3"></a>
+<a name="beast.release_notes.h4"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_86"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_86">Boost
       1.86</a>
     </h4>
@@ -203,8 +271,7 @@
       <span class="bold"><strong>API Changes</strong></span>
     </p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
-          <a href="https://github.com/boostorg/beast/issues/2878" target="_top">#2878</a> Added HTTP status code 418 <code class="computeroutput"><span class="identifier">I</span><span class="error">'</span><span class="identifier">m</span> <span class="identifier">a</span>
-          <span class="identifier">teapot</span></code>
+          <a href="https://github.com/boostorg/beast/issues/2878" target="_top">#2878</a> Added HTTP status code <span class="bold"><strong>418 I'm a teapot</strong></span>
         </li></ul></div>
 <p>
       <span class="bold"><strong>Fixes</strong></span>
@@ -288,7 +355,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h4"></a>
+<a name="beast.release_notes.h5"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_85"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_85">Boost
       1.85</a>
     </h4>
@@ -362,7 +429,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h5"></a>
+<a name="beast.release_notes.h6"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_84"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_84">Boost
       1.84</a>
     </h4>
@@ -406,7 +473,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h6"></a>
+<a name="beast.release_notes.h7"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_83"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_83">Boost
       1.83</a>
     </h4>
@@ -428,7 +495,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h7"></a>
+<a name="beast.release_notes.h8"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_82"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_82">Boost
       1.82</a>
     </h4>
@@ -462,7 +529,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h8"></a>
+<a name="beast.release_notes.h9"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_81"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_81">Boost
       1.81</a>
     </h4>
@@ -550,7 +617,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h9"></a>
+<a name="beast.release_notes.h10"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_80"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_80">Boost
       1.80</a>
     </h4>
@@ -588,7 +655,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h10"></a>
+<a name="beast.release_notes.h11"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_79"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_79">Boost
       1.79</a>
     </h4>
@@ -639,7 +706,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h11"></a>
+<a name="beast.release_notes.h12"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_78"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_78">Boost
       1.78</a>
     </h4>
@@ -678,7 +745,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h12"></a>
+<a name="beast.release_notes.h13"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_77"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_77">Boost
       1.77</a>
     </h4>
@@ -715,7 +782,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h13"></a>
+<a name="beast.release_notes.h14"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_76"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_76">Boost
       1.76</a>
     </h4>
@@ -763,7 +830,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h14"></a>
+<a name="beast.release_notes.h15"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_75"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_75">Boost
       1.75</a>
     </h4>
@@ -831,7 +898,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h15"></a>
+<a name="beast.release_notes.h16"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_74"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_74">Boost
       1.74</a>
     </h4>
@@ -1028,7 +1095,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h16"></a>
+<a name="beast.release_notes.h17"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_73"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_73">Boost
       1.73</a>
     </h4>
@@ -1161,7 +1228,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h17"></a>
+<a name="beast.release_notes.h18"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_72"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_72">Boost
       1.72</a>
     </h4>
@@ -1233,7 +1300,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h18"></a>
+<a name="beast.release_notes.h19"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_71"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_71">Boost
       1.71</a>
     </h4>
@@ -1395,7 +1462,7 @@
           Documentation is built with SaxonHE instead of xsltproc
         </li></ul></div>
 <h4>
-<a name="beast.release_notes.h19"></a>
+<a name="beast.release_notes.h20"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_70"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_70">Boost
       1.70</a>
     </h4>
@@ -1869,7 +1936,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h20"></a>
+<a name="beast.release_notes.h21"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_69"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_69">Boost
       1.69</a>
     </h4>
@@ -1932,7 +1999,7 @@
           Add <code class="computeroutput"><span class="identifier">timeout_socket</span></code>
         </li></ul></div>
 <h4>
-<a name="beast.release_notes.h21"></a>
+<a name="beast.release_notes.h22"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_68"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_68">Boost
       1.68</a>
     </h4>
@@ -2085,7 +2152,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h22"></a>
+<a name="beast.release_notes.h23"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_67"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_67">Boost
       1.67</a>
     </h4>
@@ -2284,7 +2351,7 @@
         </li>
 </ul></div>
 <h4>
-<a name="beast.release_notes.h23"></a>
+<a name="beast.release_notes.h24"></a>
       <span class="phrase"><a name="beast.release_notes.boost_1_66"></a></span><a class="link" href="release_notes.html#beast.release_notes.boost_1_66">Boost
       1.66</a>
     </h4>

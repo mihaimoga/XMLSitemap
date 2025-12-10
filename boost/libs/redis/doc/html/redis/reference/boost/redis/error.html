@@ -3,7 +3,7 @@
   <head>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Reference :: Boost.Redis</title>
+    <title>boost::redis::error :: Boost.Redis</title>
   <link rel="canonical" href="https://github.com/boostorg/redis/blob/master/redis/reference/boost/redis/error.html">
   <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../_/css/boostlook.css">
@@ -35,6 +35,9 @@
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../requests_responses.html">Requests and responses</a>
+        </li>
+              <li class="" data-depth="1">
+            <a class="nav-link" href="../../../cancellation.html">Cancellation and timeouts</a>
         </li>
               <li class="" data-depth="1">
             <a class="nav-link" href="../../../serialization.html">Serializing and parsing into custom types</a>
@@ -79,7 +82,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 -960 960 960" fill="#000000" aria-hidden="true"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></svg>
       </a>
     </li>
-    <li><a href="error.html">Reference</a></li>
+    <li><a href="error.html"><a href="../../boost.html">boost</a>::<a href="../../boost/redis.html">redis</a>::error</a></li>
   </ul>
 </nav>
 <div class="spirit-nav">
@@ -87,15 +90,17 @@
       <span class="material-symbols-outlined" title="Up:">arrow_upward</span>
     </a>
 </div></div>
-    <h1 class="page">Reference</h1>
-  <div class="sect1">
-<h2 id="boost-redis-error"><a class="anchor" href="#boost-redis-error"></a><a href="../../boost.html" class="xref page">boost</a>::<a href="../redis.html" class="xref page">redis</a>::error</h2>
+    <h1 class="page"><a href="../../boost.html">boost</a>::<a href="../../boost/redis.html">redis</a>::error</h1>
+  <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Generic errors&period;</p>
 </div>
-<div class="sect2">
-<h3 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_synopsis"><a class="anchor" href="#_synopsis"></a>Synopsis</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Declared in <code>&lt;<a href="https://github.com/boostorg/redis/blob/master/include/boost/redis/error.hpp#L15">boost&sol;redis&sol;error&period;hpp</a>&gt;</code></p>
 </div>
@@ -105,12 +110,14 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_members"><a class="anchor" href="#_members"></a>Members</h3>
+</div>
+<div class="sect1">
+<h2 id="_members"><a class="anchor" href="#_members"></a>Members</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
 <tbody>
 <tr>
@@ -191,7 +198,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pong&lowbar;timeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Connect timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The server didn&apos;t answer the health checks on time and didn&apos;t send any data during the health check period&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ssl&lowbar;handshake&lowbar;timeout</code></p></td>
@@ -207,7 +214,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>resp3&lowbar;hello</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Resp3 hello command error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The setup request sent during connection establishment failed (the name is historical)&period;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>unix&lowbar;sockets&lowbar;unsupported</code></p></td>
@@ -217,15 +224,25 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>unix&lowbar;sockets&lowbar;ssl&lowbar;unsupported</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The configuration specified UNIX sockets with SSL, which is not supported&period;</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exceeds&lowbar;maximum&lowbar;read&lowbar;buffer&lowbar;size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reading data from the socket would exceed the maximum size allowed of the read buffer&period;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>write&lowbar;timeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout while writing data to the server&period;</p></td>
+</tr>
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_non_member_functions"><a class="anchor" href="#_non_member_functions"></a>Non-Member Functions</h3>
+</div>
+<div class="sect1">
+<h2 id="_non_member_functions"><a class="anchor" href="#_non_member_functions"></a>Non-Member Functions</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 20%;">
+<col style="width: 80%;">
 </colgroup>
 <tbody>
 <tr>
@@ -240,7 +257,6 @@
 </table>
 <div class="paragraph">
 <p><span class="small">Created with <a href="https://www.mrdocs.com">MrDocs</a></span></p>
-</div>
 </div>
 </div>
 </div>

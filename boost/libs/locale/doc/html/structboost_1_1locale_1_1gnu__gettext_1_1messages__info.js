@@ -1,8 +1,8 @@
 var structboost_1_1locale_1_1gnu__gettext_1_1messages__info =
 [
     [ "domain", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info_1_1domain.html", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info_1_1domain" ],
-    [ "callback_type", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html#ae9136d62f668fb4e9f6f972414755115", null ],
-    [ "domains_type", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html#a2a085cf07626088ef6bbc515e4cd3196", null ],
+    [ "callback_type", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html#a3ae4a672cb1bcfbee878501c5b2799e7", null ],
+    [ "domains_type", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html#ac3bfe22cf949ed3f87ee28fa0c983502", null ],
     [ "get_catalog_paths", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html#a1e059d3bbb9864198407451519b1a7e2", null ],
     [ "callback", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html#a63bd8b01ca532a2657186bab3fa396a2", null ],
     [ "country", "structboost_1_1locale_1_1gnu__gettext_1_1messages__info.html#ae939e0c5dbabba7fb4cc2872f4e7dac2", null ],

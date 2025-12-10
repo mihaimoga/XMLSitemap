@@ -36,7 +36,7 @@
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Sample<span class="special">&gt;</span> 
 <span class="keyword">struct</span> <a class="link" href="structboost_1_1accumulators_1_1impl_1_1immediate__rolling__variance__impl.html" title="Struct template immediate_rolling_variance_impl">immediate_rolling_variance_impl</a> <span class="special">:</span> <span class="keyword">public</span> <span class="identifier">accumulator_base</span> <span class="special">{</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">numeric</span><span class="special">::</span><span class="identifier">functional</span><span class="special">::</span><span class="identifier">fdiv</span><span class="special">&lt;</span> <span class="identifier">Sample</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">result_type</span> <a name="doxygen.statistics_library_reference.structboost_1_1accumulators_1_1impl_1_1immediate__rolling__variance__impl_1a31e7deff6ff48e9bed9e2505f973957e"></a><span class="identifier">result_type</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">numeric</span><span class="special">::</span><span class="identifier">functional</span><span class="special">::</span><span class="identifier">fdiv</span><span class="special">&lt;</span> <span class="identifier">Sample</span><span class="special">,</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">size_t</span> <span class="special">&gt;</span><span class="special">::</span><span class="identifier">result_type</span> <a name="doxygen.statistics_library_reference.structboost_1_1accumulators_1_1impl_1_1immediate__rolling__variance__impl_1abd489038a5b6eb12c294485934ac2e94"></a><span class="identifier">result_type</span><span class="special">;</span>
 
   <span class="comment">// <a class="link" href="structboost_1_1accumulators_1_1impl_1_1immediate__rolling__variance__impl.html#id-1_3_2_6_3_26_1_1_6_1_6-bb">public member functions</a></span>
   <span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Args<span class="special">&gt;</span> <a class="link" href="structboost_1_1accumulators_1_1impl_1_1immediate__rolling__variance__impl.html#doxygen.statistics_library_reference.structboost_1_1accumulators_1_1impl_1_1immediate__rolling__variance__impl_1a391e11b844c6e468c1754e871e233da9"><span class="identifier">immediate_rolling_variance_impl</span></a><span class="special">(</span><span class="identifier">Args</span> <span class="keyword">const</span> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
@@ -56,32 +56,32 @@
 <a name="id-1.3.2.6.3.25.6.4"></a><h2>Description</h2>
 <p>Iterative calculation of sample variance <span class="inlinemediaobject"><img src="../../images/accumulators//form_54.png"></span> is done as follows, see also <a href="http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance" target="_top">http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance</a>. For a rolling window of size <span class="inlinemediaobject"><img src="../../images/accumulators//form_71.png"></span>, for the first <span class="inlinemediaobject"><img src="../../images/accumulators//form_71.png"></span> samples, the variance is computed according to the formula   </p>
 <div class="equation">
-<a name="id-1.3.2.6.3.25.6.4.2.5"></a><p class="title"><b>Equation 1.7. </b></p>
+<a name="id-1.3.2.6.3.25.6.4.2.5"></a><p class="title"><b>Equation 1.11. </b></p>
 <div class="equation-contents"><div class="mediaobject" align="center"><img src="../../images/accumulators//form_76.png" align="middle"></div></div>
 </div>
 <p><br class="equation-break"> where the sum of squares <span class="inlinemediaobject"><img src="../../images/accumulators//form_77.png"></span> can be recursively computed as:   </p>
 <div class="equation">
-<a name="id-1.3.2.6.3.25.6.4.2.7"></a><p class="title"><b>Equation 1.8. </b></p>
+<a name="id-1.3.2.6.3.25.6.4.2.7"></a><p class="title"><b>Equation 1.12. </b></p>
 <div class="equation-contents"><div class="mediaobject" align="center"><img src="../../images/accumulators//form_78.png" align="middle"></div></div>
 </div>
 <p><br class="equation-break"> and the estimate of the sample mean as:   </p>
 <div class="equation">
-<a name="id-1.3.2.6.3.25.6.4.2.8"></a><p class="title"><b>Equation 1.9. </b></p>
+<a name="id-1.3.2.6.3.25.6.4.2.8"></a><p class="title"><b>Equation 1.13. </b></p>
 <div class="equation-contents"><div class="mediaobject" align="center"><img src="../../images/accumulators//form_79.png" align="middle"></div></div>
 </div>
 <p><br class="equation-break"> For further samples, when the rolling window is fully filled with data, one has to take into account that the oldest sample <span class="inlinemediaobject"><img src="../../images/accumulators//form_80.png"></span> is dropped from the window. The sample variance over the window now becomes:   </p>
 <div class="equation">
-<a name="id-1.3.2.6.3.25.6.4.2.10"></a><p class="title"><b>Equation 1.10. </b></p>
+<a name="id-1.3.2.6.3.25.6.4.2.10"></a><p class="title"><b>Equation 1.14. </b></p>
 <div class="equation-contents"><div class="mediaobject" align="center"><img src="../../images/accumulators//form_81.png" align="middle"></div></div>
 </div>
 <p><br class="equation-break"> where the sum of squares <span class="inlinemediaobject"><img src="../../images/accumulators//form_77.png"></span> now equals:   </p>
 <div class="equation">
-<a name="id-1.3.2.6.3.25.6.4.2.12"></a><p class="title"><b>Equation 1.11. </b></p>
+<a name="id-1.3.2.6.3.25.6.4.2.12"></a><p class="title"><b>Equation 1.15. </b></p>
 <div class="equation-contents"><div class="mediaobject" align="center"><img src="../../images/accumulators//form_82.png" align="middle"></div></div>
 </div>
 <p><br class="equation-break"> and the estimated mean is:   </p>
 <div class="equation">
-<a name="id-1.3.2.6.3.25.6.4.2.13"></a><p class="title"><b>Equation 1.12. </b></p>
+<a name="id-1.3.2.6.3.25.6.4.2.13"></a><p class="title"><b>Equation 1.16. </b></p>
 <div class="equation-contents"><div class="mediaobject" align="center"><img src="../../images/accumulators//form_83.png" align="middle"></div></div>
 </div>
 <p><br class="equation-break"></p>

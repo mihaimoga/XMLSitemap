@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="../../../../doc/src/boostbook.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="../../index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
-<link rel="up" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp" title="Header &lt;boost/container/flat_set.hpp&gt;">
+<link rel="up" href="../../container/index_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp" title="Header &lt;boost/container/flat_set.hpp&gt;">
 <link rel="prev" href="classboost_1_1container_1_1flat__multiset.html" title="Class template flat_multiset">
-<link rel="next" href="structboost_1_1container_1_1pmr_1_1flat__multiset__of.html" title="Struct template flat_multiset_of">
+<link rel="next" href="flat__set_8hpp_1a5c5b45c2df02d61581dd803d99470298.html" title="Function template erase_if">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -22,7 +22,7 @@
 </tr></table>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1container_1_1flat__multiset.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1container_1_1pmr_1_1flat__multiset__of.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="classboost_1_1container_1_1flat__multiset.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="flat__set_8hpp_1a5c5b45c2df02d61581dd803d99470298.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 <div class="refentry">
 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set"></a><div class="titlepage"></div>
@@ -31,31 +31,31 @@
 <p>boost::container::flat_set</p>
 </div>
 <h2 class="refsynopsisdiv-title">Synopsis</h2>
-<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp" title="Header &lt;boost/container/flat_set.hpp&gt;">boost/container/flat_set.hpp</a>&gt;
+<div class="refsynopsisdiv"><pre class="synopsis"><span class="comment">// In header: &lt;<a class="link" href="../../container/index_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp" title="Header &lt;boost/container/flat_set.hpp&gt;">boost/container/flat_set.hpp</a>&gt;
 
 </span><span class="keyword">template</span><span class="special">&lt;</span><span class="keyword">typename</span> Key<span class="special">,</span> <span class="keyword">typename</span> Compare <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">less</span><span class="special">&lt;</span><span class="identifier">Key</span><span class="special">&gt;</span><span class="special">,</span> 
          <span class="keyword">typename</span> AllocatorOrContainer <span class="special">=</span> <span class="identifier">new_allocator</span><span class="special">&lt;</span><span class="identifier">Key</span><span class="special">&gt;</span> <span class="special">&gt;</span> 
 <span class="keyword">class</span> <a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> <span class="special">{</span>
 <span class="keyword">public</span><span class="special">:</span>
   <span class="comment">// types</span>
-  <span class="keyword">typedef</span> <span class="identifier">Key</span>                                                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a4418573cb6fb6b635f32b87172fb8711"></a><span class="identifier">key_type</span><span class="special">;</span>              
-  <span class="keyword">typedef</span> <span class="identifier">Compare</span>                                                <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a7c97da0ca38ffdb3f7be218c531b7111"></a><span class="identifier">key_compare</span><span class="special">;</span>           
-  <span class="keyword">typedef</span> <span class="identifier">Key</span>                                                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a666d0cdddd9c5b4f1910b6f1624f9d90"></a><span class="identifier">value_type</span><span class="special">;</span>            
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1ac42da5ad43d4550896aa1f5a45c7402c"></a><span class="identifier">sequence_type</span><span class="special">;</span>         
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">allocator_type</span>                          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1aa9a41b95c2fa071177bcca708348d17b"></a><span class="identifier">allocator_type</span><span class="special">;</span>        
-  <span class="keyword">typedef</span> ::boost::container::allocator_traits<span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a64a3f86263ba87245d5dab1d557e112d"></a><span class="identifier">allocator_traits_type</span><span class="special">;</span> 
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">pointer</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a7528c67cdc3d1b4118c3975699defa85"></a><span class="identifier">pointer</span><span class="special">;</span>               
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_pointer</span>                           <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a083cc1317fc6129584c024835807e386"></a><span class="identifier">const_pointer</span><span class="special">;</span>         
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">reference</span>                               <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a2a048cebcd601bb2dd79a5f93072de0a"></a><span class="identifier">reference</span><span class="special">;</span>             
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_reference</span>                         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a841de622ebba99c40d38dd39e1ab7713"></a><span class="identifier">const_reference</span><span class="special">;</span>       
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">size_type</span>                               <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a535f176d743520dec67af285534b6c0a"></a><span class="identifier">size_type</span><span class="special">;</span>             
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">difference_type</span>                         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1ad280610879869453984aa5c735a70a75"></a><span class="identifier">difference_type</span><span class="special">;</span>       
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a2b052ea605bcc1601832209e23a5d7f0"></a><span class="identifier">stored_allocator_type</span><span class="special">;</span> 
-  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a9a7d12c0ce7bfe4db907880134350cc7"></a><span class="identifier">value_compare</span><span class="special">;</span>         
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">iterator</span>                                <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a9ac1248ad72c94c4bc3c4d0f701bc265"></a><span class="identifier">iterator</span><span class="special">;</span>              
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_iterator</span>                          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a2cb22707559647a63d7a3e64dd2bcc86"></a><span class="identifier">const_iterator</span><span class="special">;</span>        
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">reverse_iterator</span>                        <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a78cf7b95db027502ba188eba58140f28"></a><span class="identifier">reverse_iterator</span><span class="special">;</span>      
-  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_reverse_iterator</span>                  <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1ae48686e8874e4524fd7809feb46a000c"></a><span class="identifier">const_reverse_iterator</span><span class="special">;</span>
+  <span class="keyword">typedef</span> <span class="identifier">Key</span>                                                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1ab158e52ab45ea6989a703b1651e8a71a"></a><span class="identifier">key_type</span><span class="special">;</span>              
+  <span class="keyword">typedef</span> <span class="identifier">Compare</span>                                                <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1acdfcb33e6f8e8c06b6fdc98d465d87c7"></a><span class="identifier">key_compare</span><span class="special">;</span>           
+  <span class="keyword">typedef</span> <span class="identifier">Key</span>                                                    <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a277d806081494741c43f980a282b2470"></a><span class="identifier">value_type</span><span class="special">;</span>            
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1abd0cca77db834671815d1491475648b6"></a><span class="identifier">sequence_type</span><span class="special">;</span>         
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">allocator_type</span>                          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a5b68a08fc9ac87130918db53aefd0ffb"></a><span class="identifier">allocator_type</span><span class="special">;</span>        
+  <span class="keyword">typedef</span> ::boost::container::allocator_traits<span class="special">&lt;</span> <span class="identifier">allocator_type</span> <span class="special">&gt;</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1af3866464a1854bfda8875713b4119a61"></a><span class="identifier">allocator_traits_type</span><span class="special">;</span> 
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">pointer</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1ac5b269278e095e5bffa43d93b3eb1383"></a><span class="identifier">pointer</span><span class="special">;</span>               
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_pointer</span>                           <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1ad966a9d2e2c47d22b9f15f43c115d528"></a><span class="identifier">const_pointer</span><span class="special">;</span>         
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">reference</span>                               <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1afac79cbd9c995a29092276eb5a491ff6"></a><span class="identifier">reference</span><span class="special">;</span>             
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_reference</span>                         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a55419fad6d5a3ff6ef5b279adbc83028"></a><span class="identifier">const_reference</span><span class="special">;</span>       
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">size_type</span>                               <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a047aceac1b0acf06289ea9db081d5767"></a><span class="identifier">size_type</span><span class="special">;</span>             
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">difference_type</span>                         <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a91f0362fe76da0de589481c9d06b2a5b"></a><span class="identifier">difference_type</span><span class="special">;</span>       
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a07e476cac4a9614a6165aa9696731546"></a><span class="identifier">stored_allocator_type</span><span class="special">;</span> 
+  <span class="keyword">typedef</span> <span class="identifier">implementation_defined</span>                                 <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a306bd26609f86b5a06f2f6efbcc54fec"></a><span class="identifier">value_compare</span><span class="special">;</span>         
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">iterator</span>                                <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1afe4fb9c8899ae1026aa910fa2743a9fa"></a><span class="identifier">iterator</span><span class="special">;</span>              
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_iterator</span>                          <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a216c04cc83673f901fe0158e9f2490a4"></a><span class="identifier">const_iterator</span><span class="special">;</span>        
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">reverse_iterator</span>                        <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a653eeba8c45b5b73d42b0fce390bb8e8"></a><span class="identifier">reverse_iterator</span><span class="special">;</span>      
+  <span class="keyword">typedef</span> <span class="identifier">sequence_type</span><span class="special">::</span><span class="identifier">const_reverse_iterator</span>                  <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1af7c63616b2f197c0207761c09cf1d3ed"></a><span class="identifier">const_reverse_iterator</span><span class="special">;</span>
 
   <span class="comment">// <a class="link" href="classboost_1_1container_1_1flat__set.html#id40-bb">public member functions</a></span>
   <a class="link" href="classboost_1_1container_1_1flat__set.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a5f71a61eb06bd805a4c92741e0f6f04e"><span class="identifier">flat_set</span></a><span class="special">(</span><span class="special">)</span><span class="special">;</span>
@@ -186,7 +186,7 @@
   <span class="keyword">void</span> <a class="link" href="classboost_1_1container_1_1flat__set.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a83cc1f49421e06df9284823ce9bb46aa"><span class="identifier">swap</span></a><span class="special">(</span><a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> <span class="special">&amp;</span><span class="special">,</span> <a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> <span class="special">&amp;</span><span class="special">)</span><span class="special">;</span>
 <span class="special">}</span><span class="special">;</span></pre></div>
 <div class="refsect1">
-<a name="id-1.3.8.14.12.4.4"></a><h2>Description</h2>
+<a name="id-1.3.8.13.3.12.4.4"></a><h2>Description</h2>
 <p><a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> is a Sorted Associative Container that stores objects of type Key. It is also a Unique Associative Container, meaning that no two elements are the same.</p>
 <p><a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> is similar to std::set but it's implemented by as an ordered sequence container. The underlying sequence container is by default <span class="emphasis"><em>vector</em></span> but it can also work user-provided vector-like SequenceContainers (like <span class="emphasis"><em><a class="link" href="classboost_1_1container_1_1static__vector.html" title="Class template static_vector">static_vector</a></em></span> or <span class="emphasis"><em><a class="link" href="classboost_1_1container_1_1small__vector.html" title="Class template small_vector">small_vector</a></em></span>).</p>
 <p>Using vector-like sequence containers means that inserting a new element into a <a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> might invalidate previous iterators and references (unless that sequence container is <span class="emphasis"><em><a class="link" href="classboost_1_1container_1_1stable__vector.html" title="Class template stable_vector">stable_vector</a></em></span> or a similar container that offers stable pointers and references). Similarly, erasing an element might invalidate iterators and references pointing to elements that come after (their keys are bigger) the erased element.</p>
@@ -194,7 +194,7 @@
 <p>
 </p>
 <div class="refsect2">
-<a name="id-1.3.8.14.12.4.4.7"></a><h3>Template Parameters</h3>
+<a name="id-1.3.8.13.3.12.4.4.7"></a><h3>Template Parameters</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">typename</span> Key</pre>
@@ -208,7 +208,7 @@
 <pre class="literallayout"><span class="keyword">typename</span> AllocatorOrContainer <span class="special">=</span> <span class="identifier">new_allocator</span><span class="special">&lt;</span><span class="identifier">Key</span><span class="special">&gt;</span></pre>
 <p>is either:</p>
 <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem"><p>The allocator to allocate <code class="computeroutput">value_type</code>s (e.g. <span class="emphasis"><em>allocator&lt; std::pair&lt;Key, T&gt; &gt; </em></span>). (in this case <span class="emphasis"><em>sequence_type</em></span> will be vector&lt;value_type, AllocatorOrContainer&gt;)</p></li>
+<li class="listitem"><p>The allocator to allocate <code class="computeroutput">value_type</code>s (e.g. <span class="emphasis"><em>allocator&lt; std::pair&lt;Key, T&gt; &gt; </em></span>). (in this case <span class="emphasis"><em>sequence_type</em></span> will be <a class="link" href="classboost_1_1container_1_1vector.html" title="Class template vector">vector&lt;value_type, AllocatorOrContainer&gt;</a>)</p></li>
 <li class="listitem"><p>The SequenceContainer to be used as the underlying <span class="emphasis"><em>sequence_type</em></span>. It must be a vector-like sequence container with random-access iterators. </p></li>
 </ul></div>
 <p>
@@ -217,7 +217,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.12.4.4.8"></a><h3>
+<a name="id-1.3.8.13.3.12.4.4.8"></a><h3>
 <a name="id40-bb"></a><code class="computeroutput">flat_set</code> public member functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -372,8 +372,8 @@
 </li>
 <li class="listitem">
 <pre class="literallayout"><a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> <span class="special">&amp;</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1ab3580f926885cb8371457ac6910cfa05"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> <span class="special">&amp;&amp;</span> x<span class="special">)</span><span class="special">;</span></pre>
-<p><span class="bold"><strong>Throws</strong></span>: If <a class="link" href="structboost_1_1container_1_1allocator__traits.html#doxygen.boost_container_header_reference.structboost_1_1container_1_1allocator__traits_1a6a01cdcf2ea5a5d3b0e6fd85a9350a02">allocator_traits_type::propagate_on_container_move_assignment</a> is false and (allocation throws or value_type's move constructor throws)</p>
-<p><span class="bold"><strong>Complexity</strong></span>: Constant if allocator_traits_type:: propagate_on_container_move_assignment is true or this-&gt;get&gt;allocator() == x.get_allocator(). Linear otherwise. </p>
+<p><span class="bold"><strong>Throws</strong></span>: If <a class="link" href="structboost_1_1container_1_1allocator__traits.html#doxygen.boost_container_header_reference.structboost_1_1container_1_1allocator__traits_1a0701b56d932091c18e3c4b78ffc90c80">allocator_traits_type::propagate_on_container_move_assignment</a> is false and (allocation throws or value_type's move constructor throws)</p>
+<p><span class="bold"><strong>Complexity</strong></span>: Constant if allocator_traits_type:: <a class="link" href="structboost_1_1container_1_1allocator__traits.html" title="Struct template allocator_traits">propagate_on_container_move_assignment</a> is true or this-&gt;get&gt;allocator() == x.get_allocator(). Linear otherwise. </p>
 </li>
 <li class="listitem">
 <pre class="literallayout"><a class="link" href="classboost_1_1container_1_1flat__set.html" title="Class template flat_set">flat_set</a> <span class="special">&amp;</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a81aac37ecf35d23bf175d56ae0ae573e"></a><span class="keyword">operator</span><span class="special">=</span><span class="special">(</span><span class="identifier">std</span><span class="special">::</span><span class="identifier">initializer_list</span><span class="special">&lt;</span> <span class="identifier">value_type</span> <span class="special">&gt;</span> il<span class="special">)</span><span class="special">;</span></pre>
@@ -801,8 +801,7 @@
 <p><span class="bold"><strong>Effects</strong></span>: Extracts the internal sequence container.</p>
 <p><span class="bold"><strong>Complexity</strong></span>: Same as the move constructor of sequence_type, usually constant.</p>
 <p><span class="bold"><strong>Postcondition</strong></span>: this-&gt;<a class="link" href="classboost_1_1container_1_1flat__set.html#doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a3dc69d1a8990c3eb44d38db290d0e37e">empty()</a></p>
-<p><span class="bold"><strong>Throws</strong></span>: If sequence_type's move constructor throws <br>
- </p>
+<p><span class="bold"><strong>Throws</strong></span>: If sequence_type's move constructor throws </p>
 </li>
 <li class="listitem">
 <pre class="literallayout"><span class="keyword">void</span> <a name="doxygen.boost_container_header_reference.classboost_1_1container_1_1flat__set_1a5aaef4841f9b0810cdc4bd9bc49398c6"></a><span class="identifier">adopt_sequence</span><span class="special">(</span><span class="identifier">sequence_type</span> <span class="special">&amp;&amp;</span> seq<span class="special">)</span><span class="special">;</span></pre>
@@ -826,7 +825,7 @@
 </ol></div>
 </div>
 <div class="refsect2">
-<a name="id-1.3.8.14.12.4.4.9"></a><h3>
+<a name="id-1.3.8.13.3.12.4.4.9"></a><h3>
 <a name="id41-bb"></a><code class="computeroutput">flat_set</code> friend functions</h3>
 <div class="orderedlist"><ol class="orderedlist" type="1">
 <li class="listitem">
@@ -875,7 +874,7 @@
 </div>
 <hr>
 <div class="spirit-nav">
-<a accesskey="p" href="classboost_1_1container_1_1flat__multiset.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../boost_container_header_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="structboost_1_1container_1_1pmr_1_1flat__multiset__of.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
+<a accesskey="p" href="classboost_1_1container_1_1flat__multiset.html"><img src="../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../../container/index_reference.html#doxygen.boost_container_header_reference.flat__set_8hpp"><img src="../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="flat__set_8hpp_1a5c5b45c2df02d61581dd803d99470298.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a>
 </div>
 </body>
 </html>

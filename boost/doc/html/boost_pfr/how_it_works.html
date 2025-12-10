@@ -42,7 +42,16 @@
           user-provided structure
           <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
 <li class="listitem">
-                <span class="bold"><strong>BOOST_PFR_USE_CPP17 == 1</strong></span>:
+                <span class="bold"><strong>BOOST_PFR_USE_CPP26 == 1</strong></span>:
+                <div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
+                      at compile-time: structured bindings are used to decompose
+                      a type <code class="computeroutput"><span class="identifier">T</span></code> to
+                      known variadic amount of fields
+                    </li></ol></div>
+              </li>
+<li class="listitem">
+                <span class="bold"><strong>BOOST_PFR_USE_CPP26 == 0 &amp;&amp; BOOST_PFR_USE_CPP17
+                == 1</strong></span>:
                 <div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem">
                       at compile-time: structured bindings are used to decompose
                       a type <code class="computeroutput"><span class="identifier">T</span></code> to
@@ -50,8 +59,8 @@
                     </li></ol></div>
               </li>
 <li class="listitem">
-                <span class="bold"><strong>BOOST_PFR_USE_CPP17 == 0 &amp;&amp; BOOST_PFR_USE_LOOPHOLE
-                == 1</strong></span>:
+                <span class="bold"><strong>BOOST_PFR_USE_CPP26 == 0 &amp;&amp; BOOST_PFR_USE_CPP17
+                == 0 &amp;&amp; BOOST_PFR_USE_LOOPHOLE == 1</strong></span>:
                 <div class="orderedlist"><ol class="orderedlist" type="a">
 <li class="listitem">
                       at compile-time: use aggregate initialization to detect fields
@@ -81,8 +90,8 @@
 </ol></div>
               </li>
 <li class="listitem">
-                <span class="bold"><strong>BOOST_PFR_USE_CPP17 == 0 &amp;&amp; BOOST_PFR_USE_LOOPHOLE
-                == 0</strong></span>:
+                <span class="bold"><strong>BOOST_PFR_USE_CPP26 == 0 &amp;&amp; BOOST_PFR_USE_CPP17
+                == 0 &amp;&amp; BOOST_PFR_USE_LOOPHOLE == 0</strong></span>:
                 <div class="orderedlist"><ol class="orderedlist" type="a">
 <li class="listitem">
                       at compile-time: let <code class="computeroutput"><span class="identifier">I</span></code>

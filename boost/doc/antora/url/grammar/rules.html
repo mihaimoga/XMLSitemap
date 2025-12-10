@@ -7,7 +7,7 @@
   <link rel="canonical" href="https://antora.cppalliance.org/master/lib/doc/url/grammar/rules.html">
     <link rel="prev" href="index.html">
     <link rel="next" href="charset.html">
-  <meta name="generator" content="Antora 3.1.10">
+  <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../_/css/boostlook.css">
     <link rel="stylesheet" href="../../_/css/site.css">
     <link rel="stylesheet" href="../../_/css/vendor/tabs.css">
@@ -158,7 +158,7 @@
 It returns a <code><a href="https://www.boost.org/doc/libs/master/libs/system/doc/html/system.html#ref_resultt_e" target="_blank" rel="noopener">boost::system::result</a></code> containing a value if the match was successful, or an <code><a href="https://www.boost.org/doc/libs/master/libs/system/doc/html/system.html#ref_error_code" target="_blank" rel="noopener">error_code</a></code> if the match failed.
 Rules are not invoked directly.
 Instead they are passed as values to a <code><a href="../reference/boost/urls/grammar/parse-09.html" class="xref page">parse</a></code> function, along with the input character buffer to process.
-The first overload requires that the entire input string match, otherwise else an error occurs.
+The first overload requires that the entire input string match, otherwise an error occurs.
 The second overload advances the input buffer pointer to the first unconsumed character upon success, allowing a stream of data to be parsed sequentially:</p>
 </div>
 <div class="listingblock">
@@ -242,12 +242,12 @@ There is also an overload which matches exactly one character from a character s
 <h2 id="_error_handling"><a class="anchor" href="#_error_handling"></a>Error Handling</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When a rule fails to match, or if the rule detects a unrecoverable problem with the input, it returns a result assigned from an <code><a href="https://www.boost.org/doc/libs/master/libs/system/doc/html/system.html#ref_error_code" target="_blank" rel="noopener">error_code</a></code> indicating the failure.
+<p>When a rule fails to match, or if the rule detects an unrecoverable problem with the input, it returns a result assigned from an <code><a href="https://www.boost.org/doc/libs/master/libs/system/doc/html/system.html#ref_error_code" target="_blank" rel="noopener">error_code</a></code> indicating the failure.
 When using overloads of <code><a href="../reference/boost/urls/grammar/parse-09.html" class="xref page">parse</a></code> which have a character pointer as both an in and out parameter, it is up to the rule to define which character is pointed to upon error.
 When the rule matches successfully, the pointer is always changed to point to the first unconsumed character in the input, or to the <code><a href="https://en.cppreference.com/w/cpp/iterator/end" target="_blank" rel="noopener">end</a></code> pointer if all input was consumed.</p>
 </div>
 <div class="paragraph">
-<p>It is the responsibilty of library and user-defined implementations of <em>compound rules</em> (explained later) to rewind their internal pointer if a parsing operation was unsuccessful, and they wish to attempt parsing the same input using a different rule.
+<p>It is the responsibility of library and user-defined implementations of <em>compound rules</em> (explained later) to rewind their internal pointer if a parsing operation was unsuccessful, and they wish to attempt parsing the same input using a different rule.
 Users who extend the library&#8217;s grammar by defining their own custom rules should follow the behaviors described above regarding the handling of errors and the modification of the caller&#8217;s input pointer.</p>
 </div>
 </div>

@@ -2854,18 +2854,80 @@ in later version of C++.</p>
 <p><code>FILE*</code> any open file, including <code>stdin</code>, <code>stdout</code> and <code>stderr</code></p>
 </li>
 <li>
-<p>a filesystem::path, which will open a readable or writable depending on the direction of the stream</p>
-</li>
-<li>
 <p><code>native_handle</code> any native file handle (<code>HANDLE</code> on windows) or file descriptor (<code>int</code> on posix)</p>
 </li>
 <li>
-<p>any io-object with a .native_handle() function that is compatible with the above. E.g. a asio::ip::tcp::socket</p>
+<p>any io-object with a <code>.native_handle()</code> function that is compatible with the above. E.g. a <code>asio::ip::tcp::socket</code>, or a pipe object.</p>
 </li>
 <li>
-<p>an asio::basic_writeable_pipe for stdin or asio::basic_readable_pipe for stderr/stdout.</p>
+<p>a filesystem::path, which will open a readable or writable depending on the direction of the stream</p>
+</li>
+<li>
+<p>an <code>asio::basic_writeable_pipe</code> for stdin or <code>asio::basic_readable_pipe</code> for stderr/stdout.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>When passing a <code>FILE*</code>, a <code>native_handle</code> or an io-object with a <code>native_handle</code>,
+the initializer will assign the handle as is to the child process.
+That is the file descriptor/handle gets cloned into the subprocess and used without modification.</p>
+</div>
+<div class="paragraph">
+<p>When passing a filesystem::path, the initializer will attempt to open the file and then pass the handle
+to the subprocess.</p>
+</div>
+<div class="paragraph">
+<p>When passing a <code>readable_pipe</code> to stdout/stderr or a <code>writable_pipe</code> to stdin by reference,
+the initializer to create the other side of the pipe (<code>writable_pipe</code> for stdout/stderr, <code>readable_pipe</code> for <code>stdin</code>),
+connect the pair and pass the native_handle to the child process.</p>
+</div>
+<div class="paragraph">
+<p>That is, these two are equivalent:</p>
+</div>
+<div class="listingblock">
+<div class="title">Implicit construction of the readable pipe.</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="n">asio</span><span class="o">::</span><span class="n">io_context</span> <span class="n">ctx</span><span class="p">;</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">writable_pipe</span> <span class="n">wp</span><span class="p">{</span><span class="n">ctx</span><span class="p">};</span>
+<span class="c1">// create a readable pipe internally and connect it to wp</span>
+<span class="n">process</span> <span class="n">proc</span><span class="p">{</span><span class="n">ctx</span><span class="p">,</span> <span class="s">"/bin/bash"</span><span class="p">,</span> <span class="p">{},</span> <span class="n">process_stdio</span><span class="p">{.</span><span class="n">in</span><span class="o">=</span><span class="n">wp</span><span class="p">}};</span>
+
+<span class="c1">// create it explicitly</span>
+<span class="p">{</span>
+  <span class="c1">// the pipe the child process reads from</span>
+  <span class="n">asio</span><span class="o">::</span><span class="n">readable_pipe</span> <span class="n">rp</span><span class="p">{</span><span class="n">ctx</span><span class="p">};</span>
+  <span class="n">asio</span><span class="o">::</span><span class="n">connect_pipe</span><span class="p">(</span><span class="n">rp</span><span class="p">,</span> <span class="n">wp</span><span class="p">);</span>
+  <span class="c1">// `rp.native_handle()`  will be assigned to the child processes stdin</span>
+  <span class="n">process</span> <span class="n">proc</span><span class="p">{</span><span class="n">ctx</span><span class="p">,</span> <span class="s">"/bin/bash"</span><span class="p">,</span> <span class="p">{},</span> <span class="n">process_stdio</span><span class="p">{.</span><span class="n">in</span><span class="o">=</span><span class="n">rp</span><span class="p">}};</span>
+  <span class="n">rp</span><span class="p">.</span><span class="n">close</span><span class="p">();</span> <span class="c1">// close it so the pipe closes when the `proc exits.</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The explicit version allows you to assign the same <code>writable_pipe</code> to <code>stdout</code> and <code>stderr</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="cpp"><span class="c1">// the pipe the parent process reads from and both</span>
+<span class="c1">// stderr &amp; stdout of the child process write to</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">readable_pipe</span> <span class="n">rp</span><span class="p">{</span><span class="n">ctx</span><span class="p">};</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">writable_pipe</span> <span class="n">wp</span><span class="p">{</span><span class="n">ctx</span><span class="p">};</span>
+<span class="n">asio</span><span class="o">::</span><span class="n">connect_pipe</span><span class="p">(</span><span class="n">rp</span><span class="p">,</span> <span class="n">wp</span><span class="p">);</span>
+<span class="n">process</span> <span class="n">proc</span><span class="p">{</span><span class="n">ctx</span><span class="p">,</span> <span class="s">"/bin/bash"</span><span class="p">,</span> <span class="p">{},</span> <span class="n">process_stdio</span><span class="p">{.</span><span class="n">out</span><span class="o">=</span><span class="n">wp</span><span class="p">,</span> <span class="p">.</span><span class="n">err</span><span class="o">=</span><span class="n">wp</span><span class="p">}};</span>
+<span class="n">wp</span><span class="p">.</span><span class="n">close</span><span class="p">();</span> <span class="c1">// close it so the pipe closes when the `proc exits.</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the child writes to a pipe, the parent reads from it et vice versa.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3229,7 +3291,7 @@ without needing any option to enable it.</p>
 <div id="footer">
 <div id="footer-text">
 Version 2.0<br>
-Last updated 2025-08-06 18:48:57 UTC
+Last updated 2025-12-03 13:47:33 UTC
 </div>
 </div>
 </body>
