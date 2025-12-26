@@ -24,8 +24,8 @@ XML Sitemap. If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
 #define MAX_URL_LENGTH 0x1000
 
 // Regular expressions for absolute and relative URL validation
-#define ABSOLUTE_URL_REGEX _T("^(http[s]?)(:\\/\\/)(([\\w]+:)?//)?(([\\d\\w]|%[a-fA-f\\d]{2,2})+(:([\\d\\w]|%[a-fA-f\\d]{2,2})+)?@)?([\\d\\w][-\\d\\w]{0,253}[\\d\\w]\\.)+[\\w]{2,4}(:[\\d]+)?(/([-+_~.\\d\\w]|%[a-fA-f\\d]{2,2})*)*(\\?(&?([-+_~.\\d\\w]|%[a-fA-f\\d]{2,2})=?)*)?(#([-+_~.\\d\\w]|%[a-fA-f\\d]{2,2})*)?$")
-#define RELATIVE_URL_REGEX _T("^([\\/]?[\\.\\.\\/]+)?(([\\d\\w]|%[a-fA-f\\d]{2,2})+(:([\\d\\w]|%[a-fA-f\\d]{2,2})+)?@)?([\\d\\w][-\\d\\w]{0,253}[\\d\\w]\\.)+[\\w]{2,4}(:[\\d]+)?(/([-+_~.\\d\\w]|%[a-fA-f\\d]{2,2})*)*(\\?(&?([-+_~.\\d\\w]|%[a-fA-f\\d]{2,2})=?)*)?(#([-+_~.\\d\\w]|%[a-fA-f\\d]{2,2})*)?$")
+#define ABSOLUTE_URL_REGEX _T("((?:https?:)?\\/\\/(?:[\\w]+[.][\\w]+)+/?)+$")
+#define RELATIVE_URL_REGEX _T("^[^/]*/[^/].*$")
 
 /**
  * @brief Determines if a given URL points to an HTML page.

@@ -221,7 +221,7 @@ BOOL CXMLSitemapDlg::OnInitDialog()
 	m_ctrlDomainName.SetRegEx(ABSOLUTE_URL_REGEX);
 
 	m_ctrlFilename.SetWindowText(_T("Please specify XML output filename!"));
-	m_strDomainName = AfxGetApp()->GetProfileString(SETTINGS_SECTION, LAST_DOMAIN_NAME, _T("https://www.codeproject.com/"));
+	m_strDomainName = AfxGetApp()->GetProfileString(SETTINGS_SECTION, LAST_DOMAIN_NAME, _T("https://www.moga.doctor/"));
 	m_strOutputFile = AfxGetApp()->GetProfileString(SETTINGS_SECTION, OUTPUT_FILENAME, NULL);
 	if (!m_strDomainName.IsEmpty()) m_ctrlDomainName.SetWindowText(m_strDomainName);
 	if (!m_strOutputFile.IsEmpty()) m_ctrlFilename.SetWindowText(m_strOutputFile);
