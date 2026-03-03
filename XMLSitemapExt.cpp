@@ -24,9 +24,28 @@ XML Sitemap. If not, see <http://www.opensource.org/licenses/gpl-3.0.html>*/
 #include <Urlmon.h>
 #pragma comment(lib, "Urlmon")
 
-// Global arrays to store URLs, broken links, and the pages where broken links were found.
+/**
+ * @brief Global array storing all valid URLs discovered during sitemap generation
+ * 
+ * This array holds all unique URLs that are successfully crawled and will be
+ * included in the final XML sitemap output.
+ */
 CStringArray g_arrURL;
+
+/**
+ * @brief Global array storing broken/invalid URLs found during crawling
+ * 
+ * This array records URLs that failed to download (HTTP errors, timeouts, etc.)
+ * during the sitemap generation process.
+ */
 CStringArray g_arrBrokenLink;
+
+/**
+ * @brief Global array storing the pages where broken links were found
+ * 
+ * For each broken link in g_arrBrokenLink, this array stores the corresponding
+ * page URL where that broken link was discovered.
+ */
 CStringArray g_arrBrokenPage;
 
 #ifdef _DEBUG
@@ -34,16 +53,21 @@ CStringArray g_arrBrokenPage;
 #endif
 
 /**
- * @brief Pumps the Windows message queue, processing all pending messages.
- *        This function is typically used in long-running operations to keep the UI responsive.
+ * @brief Pumps the Windows message queue, processing all pending messages
+ * 
+ * This function is used in long-running operations to keep the UI responsive
+ * by processing Windows messages. Note: This implementation may block if no
+ * WM_QUIT message is received.
  */
 void PUMP_MESSAGES()
 {
 	MSG msg;
+	// Process all messages until WM_QUIT is received
+	// WARNING: This will block indefinitely if WM_QUIT is never sent
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+		TranslateMessage(&msg);  // Translate virtual-key messages
+		DispatchMessage(&msg);   // Dispatch message to window procedure
 	}
 }
 
@@ -176,6 +200,7 @@ BOOL IsValidURL(LPCTSTR lpszURL, BOOL bMatchPartialURL)
  * @param lpszBaseURL The base URL to compare against.
  * @return TRUE if both URLs share the same domain, FALSE otherwise.
  */
+#pragma warning(disable: 6262)
 BOOL IsLocalURL(LPCTSTR lpszAbsoluteURL, LPCTSTR lpszBaseURL)
 {
 	// Check to see if <lpszAbsoluteURL> has the same domain as <lpszBaseURL>
@@ -224,6 +249,7 @@ BOOL IsLocalURL(LPCTSTR lpszAbsoluteURL, LPCTSTR lpszBaseURL)
  * @param lpszBaseURL The base URL.
  * @return The absolute URL as a CString, or NULL if conversion fails.
  */
+#pragma warning(disable: 6262)
 CString ConvertURL(LPCTSTR lpszRelativeURL, LPCTSTR lpszBaseURL)
 {
 	// Convert relative URL (e.g. "../../somedir") to absolute URL
@@ -330,27 +356,40 @@ BOOL ExportBrokenLink(HWND hWnd, CString strFileName, CString strDomainName)
 	BOOL bRetVal = TRUE;
 	try
 	{
+		// Create the HTML report file
 		CStdioFile pOutputFile(strFileName, CFile::modeCreate | CFile::modeWrite | CFile::typeText);
+
+		// Write HTML header
 		pOutputFile.WriteString(_T("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n"));
 		pOutputFile.WriteString(_T("<html xmlns=\"http://www.w3.org/1999/xhtml\" >\n"));
 		pOutputFile.WriteString(_T("<head>\n"));
 		pOutputFile.WriteString(_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n"));
+
+		// Write title with domain name
 		strFileLine.Format(_T("<title>Broken link report for %s</title>\n"), static_cast<LPCWSTR>(strDomainName));
 		pOutputFile.WriteString(strFileLine);
 		pOutputFile.WriteString(_T("</head>\n"));
 		pOutputFile.WriteString(_T("<body>\n"));
+
+		// Write each broken link entry
 		const INT_PTR nSize = g_arrBrokenLink.GetCount();
 		for (INT_PTR nIndex = 0; nIndex < nSize; nIndex++)
 		{
 			const CString strBrokenLink = g_arrBrokenLink.GetAt(nIndex);
 			const CString strBrokenPage = g_arrBrokenPage.GetAt(nIndex);
-			strFileLine.Format(_T("Broken link %s found on page %s.<br />\n"), static_cast<LPCWSTR>(strBrokenLink), static_cast<LPCWSTR>(strBrokenPage));
+			// Format: "Broken link [URL] found on page [Page URL]."
+			strFileLine.Format(_T("Broken link %s found on page %s.<br />\n"), 
+				static_cast<LPCWSTR>(strBrokenLink), 
+				static_cast<LPCWSTR>(strBrokenPage));
 			pOutputFile.WriteString(strFileLine);
 		}
+
+		// Close HTML tags
 		pOutputFile.WriteString(_T("</body>\n"));
 		pOutputFile.WriteString(_T("</html>\n"));
 		pOutputFile.Close();
 
+		// Open the report in the default web browser
 		::ShellExecute(hWnd, _T("open"), strFileName, NULL, NULL, SW_NORMAL);
 	}
 	catch (CFileException* pFileException)
@@ -378,8 +417,8 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 	CString strFileLine;
 	BOOL bRetVal = TRUE;
 	CStringArray arrURL;
-	TCHAR lpszTempPath[MAX_STR_LENGTH] = { 0 };
-	TCHAR lpszTempFile[MAX_STR_LENGTH] = { 0 };
+	TCHAR lpszTempPath[MAX_PATH] = { 0 };
+	TCHAR lpszTempFile[MAX_PATH] = { 0 };
 
 	if (dlgXMLSitemap != NULL)
 	{
@@ -522,50 +561,75 @@ BOOL ProcessHTML(CXMLSitemapDlg* dlgXMLSitemap, CString strFileName, CString str
 }
 
 /**
- * @brief Thread procedure for generating the XML sitemap.
- *        Downloads the root page, processes it, and recursively crawls local links.
- * @param lpParam Pointer to the CXMLSitemapDlg dialog.
- * @return Always returns 0.
+ * @brief Thread procedure for generating the XML sitemap
+ * 
+ * This is the entry point for the worker thread that performs the sitemap
+ * generation. It:
+ * 1. Clears previous results
+ * 2. Downloads the root/home page of the website
+ * 3. Initiates recursive crawling via ProcessHTML
+ * 4. Runs in a separate thread to keep the UI responsive
+ * 
+ * The thread communicates with the main UI through the dlgXMLSitemap pointer
+ * and the global URL/broken link arrays.
+ * 
+ * @param lpParam Pointer to the CXMLSitemapDlg dialog instance
+ * @return Always returns 0 (success)
  */
 DWORD WINAPI XMLSitemap_ThreadProc(LPVOID lpParam)
 {
 	CString strMessage, strURL;
-	TCHAR lpszTempPath[MAX_STR_LENGTH] = { 0 };
-	TCHAR lpszTempFile[MAX_STR_LENGTH] = { 0 };
+	TCHAR lpszTempPath[MAX_PATH] = { 0 };
+	TCHAR lpszTempFile[MAX_PATH] = { 0 };
+
+	// Cast the parameter back to dialog pointer
 	CXMLSitemapDlg* dlgXMLSitemap = (CXMLSitemapDlg*)lpParam;
 
 	if (dlgXMLSitemap != NULL)
 	{
+		// Clear previous results from any prior sitemap generation
 		g_arrURL.RemoveAll();
 		g_arrBrokenLink.RemoveAll();
 		g_arrBrokenPage.RemoveAll();
+
+		// Get the root URL from the dialog (user input)
 		strURL = dlgXMLSitemap->m_strDomainName;
 		if (!strURL.IsEmpty())
 		{
-			// Remove trailing slash from domain name
+			// Normalize URL: remove trailing slash for consistency
+			// "http://example.com/" -> "http://example.com"
 			if (strURL.GetAt(strURL.GetLength() - 1) == _T('/'))
 				strURL = strURL.Left(strURL.GetLength() - 1);
 
+			// Get system temporary directory
 			const DWORD dwTempPath = GetTempPath(MAX_STR_LENGTH, lpszTempPath);
-			lpszTempPath[dwTempPath] = '\0';
+			lpszTempPath[dwTempPath] = '\0';  // Null-terminate the path
 			strMessage.Format(_T("lpszTempPath = %s\n"), lpszTempPath);
 			OutputDebugString(strMessage);
 
+			// Create a unique temporary file for the root page
+			// Prefix "map" identifies sitemap-related temp files
 			if (GetTempFileName(lpszTempPath, _T("map"), 0, lpszTempFile) != 0)
 			{
 				strMessage.Format(_T("lpszTempFile = %s\n"), lpszTempFile);
 				OutputDebugString(strMessage);
 
+				// Download the root/home page of the website
 				strMessage.Format(_T("URLDownloadToFile(%s)...\n"), static_cast<LPCWSTR>(strURL));
 				OutputDebugString(strMessage);
 				if (URLDownloadToFile(NULL, strURL, lpszTempFile, 0, NULL) == S_OK)
 				{
+					// Successfully downloaded - add root URL to sitemap
 					strMessage.Format(_T("URL added - %s\n"), static_cast<LPCWSTR>(strURL));
 					OutputDebugString(strMessage);
-					g_arrURL.Add(strURL); // add URL to XML sitemap
+					g_arrURL.Add(strURL);
+
+					// Update UI with current status
 					dlgXMLSitemap->m_ctrlStatus.SetWindowText(strURL);
 					dlgXMLSitemap->m_ctrlStatus.UpdateWindow();
 
+					// Start recursive processing of the root page
+					// This will find and follow all links on the page
 					if (!ProcessHTML(dlgXMLSitemap, lpszTempFile, strURL))
 					{
 						strMessage.Format(_T("ProcessHTML(%s) has failed\n"), lpszTempFile);
@@ -574,22 +638,27 @@ DWORD WINAPI XMLSitemap_ThreadProc(LPVOID lpParam)
 				}
 				else
 				{
+					// Failed to download root page - possibly network error or bad URL
 					OutputDebugString(_T("URLDownloadToFile has failed\n"));
 				}
 			}
 			else
 			{
+				// Failed to create temporary file - possibly disk full or permissions issue
 				OutputDebugString(_T("GetTempFileName has failed\n"));
 			}
 		}
 		else
 		{
+			// No domain name specified - cannot proceed
 			OutputDebugString(_T("ERROR: dlgXMLSitemap->m_strDomainName is empty!\n"));
 		}
 	}
 	else
 	{
+		// Invalid dialog pointer - should never happen
 		OutputDebugString(_T("ERROR: dlgXMLSitemap = NULL\n"));
 	}
-	return 0;
+
+	return 0;  // Thread exits successfully
 }

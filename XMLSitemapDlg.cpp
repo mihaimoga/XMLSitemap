@@ -57,10 +57,23 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
+/**
+ * @brief Constructor for the CAboutDlg class
+ * 
+ * Initializes the About dialog with the specified dialog resource.
+ */
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 {
 }
 
+/**
+ * @brief Data exchange mechanism for dialog controls
+ * 
+ * Maps dialog controls to member variables using DDX (Dialog Data Exchange).
+ * Establishes connections between UI controls and their corresponding member variables.
+ * 
+ * @param pDX Pointer to CDataExchange object that manages data transfer
+ */
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
@@ -74,16 +87,34 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	ON_WM_DESTROY()
 END_MESSAGE_MAP()
 
+/**
+ * @brief Retrieves the full path of the current module (executable)
+ * 
+ * This function safely retrieves the module file name by dynamically
+ * allocating buffer space until the full path fits. It handles cases
+ * where the initial buffer size is insufficient by doubling the buffer
+ * size and retrying.
+ * 
+ * @param pdwLastError Optional pointer to receive the last error code
+ *                     (ERROR_SUCCESS on success, or error code on failure)
+ * @return CString containing the full module path, or empty string on failure
+ */
 CString GetModuleFileName(_Inout_opt_ DWORD* pdwLastError = nullptr)
 {
 	CString strModuleFileName;
-	DWORD dwSize{ _MAX_PATH };
+	DWORD dwSize{ _MAX_PATH };  // Start with standard MAX_PATH size (260 characters)
+
 	while (true)
 	{
+		// Allocate buffer for the module file name
 		TCHAR* pszModuleFileName{ strModuleFileName.GetBuffer(dwSize) };
+
+		// Call Windows API to get the module file name
 		const DWORD dwResult{ ::GetModuleFileName(nullptr, pszModuleFileName, dwSize) };
+
 		if (dwResult == 0)
 		{
+			// Failed to get module file name - set error code
 			if (pdwLastError != nullptr)
 				*pdwLastError = GetLastError();
 			strModuleFileName.ReleaseBuffer(0);
@@ -91,6 +122,7 @@ CString GetModuleFileName(_Inout_opt_ DWORD* pdwLastError = nullptr)
 		}
 		else if (dwResult < dwSize)
 		{
+			// Success - buffer was large enough to hold the entire path
 			if (pdwLastError != nullptr)
 				*pdwLastError = ERROR_SUCCESS;
 			strModuleFileName.ReleaseBuffer(dwResult);
@@ -98,6 +130,8 @@ CString GetModuleFileName(_Inout_opt_ DWORD* pdwLastError = nullptr)
 		}
 		else if (dwResult == dwSize)
 		{
+			// Buffer too small - the path was truncated
+			// Double the buffer size and retry
 			strModuleFileName.ReleaseBuffer(0);
 			dwSize *= 2;
 		}
@@ -108,24 +142,31 @@ BOOL CAboutDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
+	// Get the full path of the current executable
 	CString strFullPath{ GetModuleFileName() };
 	if (strFullPath.IsEmpty())
 #pragma warning(suppress: 26487)
 		return FALSE;
 
+	// Load and display version information from the executable
 	if (m_pVersionInfo.Load(strFullPath.GetString()))
 	{
+		// Extract product name and version from version resource
 		CString strName = m_pVersionInfo.GetProductName().c_str();
 		CString strVersion = m_pVersionInfo.GetProductVersionAsString().c_str();
+		// Format version string: remove spaces and replace commas with dots
 		strVersion.Replace(_T(" "), _T(""));
 		strVersion.Replace(_T(","), _T("."));
+		// Truncate to major.minor version (e.g., "1.0" instead of "1.0.0.0")
 		const int nFirst = strVersion.Find(_T('.'));
 		const int nSecond = strVersion.Find(_T('.'), nFirst + 1);
 		strVersion.Truncate(nSecond);
 #if _WIN32 || _WIN64
 #if _WIN64
+		// Display 64-bit platform indicator
 		m_ctrlVersion.SetWindowText(strName + _T(" version ") + strVersion + _T(" (64-bit)"));
 #else
+		// Display 32-bit platform indicator
 		m_ctrlVersion.SetWindowText(strName + _T(" version ") + strVersion + _T(" (32-bit)"));
 #endif
 #endif
@@ -149,10 +190,17 @@ void CAboutDlg::OnDestroy()
 // CXMLSitemapDlg dialog
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief Constructor for the main XML Sitemap dialog
+ * 
+ * Initializes the dialog, loads the application icon, and sets default values.
+ * 
+ * @param pParent Pointer to the parent window (default is NULL)
+ */
 CXMLSitemapDlg::CXMLSitemapDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CXMLSitemapDlg::IDD, pParent)
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_hIcon = theApp.LoadIcon(IDR_MAINFRAME);
 	m_bGenerate = FALSE;
 }
 
@@ -221,12 +269,13 @@ BOOL CXMLSitemapDlg::OnInitDialog()
 	m_ctrlDomainName.SetRegEx(ABSOLUTE_URL_REGEX);
 
 	m_ctrlFilename.SetWindowText(_T("Please specify XML output filename!"));
-	m_strDomainName = AfxGetApp()->GetProfileString(SETTINGS_SECTION, LAST_DOMAIN_NAME, _T("https://www.moga.doctor/"));
-	m_strOutputFile = AfxGetApp()->GetProfileString(SETTINGS_SECTION, OUTPUT_FILENAME, NULL);
+	m_strDomainName = theApp.GetProfileString(SETTINGS_SECTION, LAST_DOMAIN_NAME, _T("https://www.moga.doctor/"));
+	m_strOutputFile = theApp.GetProfileString(SETTINGS_SECTION, OUTPUT_FILENAME, NULL);
 	if (!m_strDomainName.IsEmpty()) m_ctrlDomainName.SetWindowText(m_strDomainName);
 	if (!m_strOutputFile.IsEmpty()) m_ctrlFilename.SetWindowText(m_strOutputFile);
 	m_ctrlGenerate.EnableWindow(!m_strDomainName.IsEmpty() && !m_strOutputFile.IsEmpty());
 
+	// Populate frequency combo box with standard sitemap change frequencies
 	m_ctrlFrequency.AddString(_T("always"));
 	m_ctrlFrequency.AddString(_T("hourly"));
 	m_ctrlFrequency.AddString(_T("daily"));
@@ -234,9 +283,11 @@ BOOL CXMLSitemapDlg::OnInitDialog()
 	m_ctrlFrequency.AddString(_T("monthly"));
 	m_ctrlFrequency.AddString(_T("yearly"));
 	m_ctrlFrequency.AddString(_T("never"));
-	const UINT nFrequency = AfxGetApp()->GetProfileInt(SETTINGS_SECTION, LAST_FREQUENCY, 3);
+	// Load and set previously selected frequency (default: weekly)
+	const UINT nFrequency = theApp.GetProfileInt(SETTINGS_SECTION, LAST_FREQUENCY, 3);
 	m_ctrlFrequency.SetCurSel(nFrequency);
 
+	// Populate priority combo box with values from 0.0 to 1.0
 	m_ctrlPriority.AddString(_T("0.0"));
 	m_ctrlPriority.AddString(_T("0.1"));
 	m_ctrlPriority.AddString(_T("0.2"));
@@ -248,9 +299,11 @@ BOOL CXMLSitemapDlg::OnInitDialog()
 	m_ctrlPriority.AddString(_T("0.8"));
 	m_ctrlPriority.AddString(_T("0.9"));
 	m_ctrlPriority.AddString(_T("1.0"));
-	const UINT nPriority = AfxGetApp()->GetProfileInt(SETTINGS_SECTION, LAST_PRIORITY, 5);
+	// Load and set previously selected priority (default: 0.5)
+	const UINT nPriority = theApp.GetProfileInt(SETTINGS_SECTION, LAST_PRIORITY, 5);
 	m_ctrlPriority.SetCurSel(nPriority);
 
+	// Set an inspirational initial status message
 	m_ctrlStatus.SetWindowText(_T("We are always getting ready to live but never living... (Ralph Waldo Emerson)"));
 
 	CRect rectXMLSitemap;
@@ -274,13 +327,16 @@ void CXMLSitemapDlg::OnDestroy()
 
 void CXMLSitemapDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
+	// Check if this is the About menu item
 	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
 	{
+		// Display the About dialog modally
 		CAboutDlg dlgAbout;
 		dlgAbout.DoModal();
 	}
 	else
 	{
+		// Not the About command - pass to base class for default handling
 		CDialog::OnSysCommand(nID, lParam);
 	}
 }
@@ -293,23 +349,30 @@ void CXMLSitemapDlg::OnPaint()
 {
 	if (IsIconic())
 	{
+		// Window is minimized - draw the application icon
 		CPaintDC dc(this); // device context for painting
 
+		// Erase the icon background
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Center icon in client rectangle
+		// Get icon dimensions from system metrics
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
+
+		// Get client rectangle to calculate center position
 		CRect rect;
 		GetClientRect(&rect);
+
+		// Calculate centered position for the icon
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// Draw the icon
+		// Draw the icon centered in the minimized window
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
 	{
+		// Window is not minimized - use default painting
 		CDialog::OnPaint();
 	}
 }
@@ -330,19 +393,19 @@ void CXMLSitemapDlg::OnEnChangeDomain()
 
 	m_ctrlDomainName.GetWindowText(m_strDomainName);
 	m_ctrlGenerate.EnableWindow(!m_strDomainName.IsEmpty() && !m_strOutputFile.IsEmpty());
-	AfxGetApp()->WriteProfileString(SETTINGS_SECTION, LAST_DOMAIN_NAME, m_strDomainName);
+	theApp.WriteProfileString(SETTINGS_SECTION, LAST_DOMAIN_NAME, m_strDomainName);
 }
 
 void CXMLSitemapDlg::OnCbnSelchangeFrequency()
 {
 	const UINT nFrequency = m_ctrlFrequency.GetCurSel();
-	AfxGetApp()->WriteProfileInt(SETTINGS_SECTION, LAST_FREQUENCY, nFrequency);
+	theApp.WriteProfileInt(SETTINGS_SECTION, LAST_FREQUENCY, nFrequency);
 }
 
 void CXMLSitemapDlg::OnCbnSelchangePriority()
 {
 	const UINT nPriority = m_ctrlPriority.GetCurSel();
-	AfxGetApp()->WriteProfileInt(SETTINGS_SECTION, LAST_PRIORITY, nPriority);
+	theApp.WriteProfileInt(SETTINGS_SECTION, LAST_PRIORITY, nPriority);
 }
 
 void CXMLSitemapDlg::OnBnClickedSelect()
@@ -355,7 +418,7 @@ void CXMLSitemapDlg::OnBnClickedSelect()
 		m_strOutputFile = pFileDialog.GetPathName();
 		m_ctrlFilename.SetWindowText(m_strOutputFile);
 		m_ctrlGenerate.EnableWindow(!m_strDomainName.IsEmpty() && !m_strOutputFile.IsEmpty());
-		AfxGetApp()->WriteProfileString(SETTINGS_SECTION, OUTPUT_FILENAME, m_strOutputFile);
+		theApp.WriteProfileString(SETTINGS_SECTION, OUTPUT_FILENAME, m_strOutputFile);
 	}
 }
 
@@ -466,7 +529,14 @@ void CXMLSitemapDlg::OnBnClickedGenerate()
 void CXMLSitemapDlg::OnBnClickedCancel()
 {
 	if (m_bGenerate)
+	{
+		// Generation is in progress - set flag to FALSE to signal worker thread to stop
+		// The worker thread checks this flag periodically and will terminate when FALSE
 		m_bGenerate = FALSE;
+	}
 	else
+	{
+		// No generation in progress - close the dialog and exit application
 		CDialog::OnCancel();
+	}
 }
